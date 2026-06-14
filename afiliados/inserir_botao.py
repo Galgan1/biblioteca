@@ -6,6 +6,7 @@ Cada loja ativa com link vira um botao. Idempotente: rodar de novo atualiza no l
 
 Rode depois de gerar_links.py:  python afiliados/inserir_botao.py
 """
+
 import html
 import json
 import re
@@ -35,9 +36,11 @@ def bloco(titulo, compras):
         f'target="_blank" rel="nofollow sponsored noopener">{ICONE} Comprar na {html.escape(c["nome"])}</a>'
         for c in compras
     )
-    disc = ("Como Associado da Amazon, ganho comissão por compras qualificadas — sem custo extra para você."
-            if len(compras) == 1 else
-            "Alguns links acima são de afiliado — posso ganhar comissão por compras qualificadas, sem custo extra para você.")
+    disc = (
+        "Como Associado da Amazon, ganho comissão por compras qualificadas — sem custo extra para você."
+        if len(compras) == 1
+        else "Alguns links acima são de afiliado — posso ganhar comissão por compras qualificadas, sem custo extra para você."
+    )
     return f"""{INI}
         <section class="amazon-cta">
             <p class="amazon-cta-text">Gostou do resumo? Leia <strong>{t}</strong> na íntegra:</p>

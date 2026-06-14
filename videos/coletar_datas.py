@@ -8,15 +8,19 @@ Instagram-> Graph API media node: timestamp (publicacao real) + permalink.
 
 Uso:  python coletar_datas.py
 """
+
 import sys, os, json
 from pathlib import Path
+
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
 
-ROOT = Path(__file__).parent                                    # scripts + .secrets + upload_youtube/instagram_post
-BASE = Path(os.environ.get('MR_BASE', ROOT.parent))            # dados + saidas (local: biblioteca/ ; VPS: MR_BASE)
+ROOT = Path(__file__).parent  # scripts + .secrets + upload_youtube/instagram_post
+BASE = Path(
+    os.environ.get('MR_BASE', ROOT.parent)
+)  # dados + saidas (local: biblioteca/ ; VPS: MR_BASE)
 META = BASE / 'metadados.json'
 OUT = BASE / 'datas_coletadas.json'
 
@@ -44,9 +48,10 @@ resultado = {'youtube': {}, 'instagram': {}, 'erros': []}
 try:
     from upload_youtube import get_creds
     from googleapiclient.discovery import build
+
     yt = build('youtube', 'v3', credentials=get_creds())
     for i in range(0, len(yt_ids), 50):
-        lote = yt_ids[i:i + 50]
+        lote = yt_ids[i : i + 50]
         r = yt.videos().list(part='snippet,status,statistics', id=','.join(lote)).execute()
         achados = set()
         for it in r['items']:
@@ -63,7 +68,9 @@ try:
             }
         for faltou in set(lote) - achados:
             resultado['youtube'][faltou] = {'erro': 'nao encontrado (apagado/sem acesso)'}
-    print(f'  YouTube OK: {len([v for v in resultado["youtube"].values() if "erro" not in v])} videos')
+    print(
+        f'  YouTube OK: {len([v for v in resultado["youtube"].values() if "erro" not in v])} videos'
+    )
 except Exception as e:
     msg = f'YouTube falhou: {str(e)[:200]}'
     print('  ' + msg)
@@ -75,13 +82,16 @@ except Exception as e:
 # uma vez via:  python coletar_datas.py --auth-analytics). Headless-safe.
 SEC = ROOT / '.secrets'
 TOK_A = SEC / 'token_analytics.json'
-SCOPES_A = ['https://www.googleapis.com/auth/yt-analytics.readonly',
-            'https://www.googleapis.com/auth/youtube.readonly']
+SCOPES_A = [
+    'https://www.googleapis.com/auth/yt-analytics.readonly',
+    'https://www.googleapis.com/auth/youtube.readonly',
+]
 
 
 def creds_analytics(interactive=False):
     from google.oauth2.credentials import Credentials
     from google.auth.transport.requests import Request
+
     creds = Credentials.from_authorized_user_file(str(TOK_A), SCOPES_A) if TOK_A.exists() else None
     if creds and creds.valid:
         return creds
@@ -91,6 +101,7 @@ def creds_analytics(interactive=False):
         return creds
     if interactive:
         from google_auth_oauthlib.flow import InstalledAppFlow
+
         flow = InstalledAppFlow.from_client_secrets_file(str(SEC / 'client_secret.json'), SCOPES_A)
         print(">> Abrindo o navegador. ESCOLHA O CANAL 'Minuto Real' (NAO o pessoal).")
         creds = flow.run_local_server(port=0)
@@ -107,14 +118,28 @@ if '--auth-analytics' in sys.argv:
 if TOK_A.exists():
     try:
         from googleapiclient.discovery import build as _build
+
         ya = _build('youtubeAnalytics', 'v2', credentials=creds_analytics())
         pub_ids = [k for k, v in resultado['youtube'].items() if v.get('privacyStatus') == 'public']
         if pub_ids:
             import datetime as _dt
+
             filt = 'video==' + ','.join(pub_ids)
-            base = dict(ids='channel==MINE', startDate='2026-01-01',
-                        endDate=_dt.date.today().isoformat(), dimensions='video', filters=filt)
-            r1 = ya.reports().query(metrics='views,averageViewPercentage,averageViewDuration,subscribersGained', **base).execute()
+            base = dict(
+                ids='channel==MINE',
+                startDate='2026-01-01',
+                endDate=_dt.date.today().isoformat(),
+                dimensions='video',
+                filters=filt,
+            )
+            r1 = (
+                ya.reports()
+                .query(
+                    metrics='views,averageViewPercentage,averageViewDuration,subscribersGained',
+                    **base,
+                )
+                .execute()
+            )
             for row in r1.get('rows', []):
                 vid = row[0]
                 if vid in resultado['youtube']:
@@ -122,7 +147,11 @@ if TOK_A.exists():
                     resultado['youtube'][vid]['dur_media'] = int(row[3])
                     resultado['youtube'][vid]['subs'] = int(row[4])
             try:  # CTR/impressoes em consulta separada (grupo de metrica distinto)
-                r2 = ya.reports().query(metrics='impressions,impressionsClickThroughRate', **base).execute()
+                r2 = (
+                    ya.reports()
+                    .query(metrics='impressions,impressionsClickThroughRate', **base)
+                    .execute()
+                )
                 for row in r2.get('rows', []):
                     vid = row[0]
                     if vid in resultado['youtube']:
@@ -140,6 +169,7 @@ else:
 try:
     import urllib.request, urllib.parse
     from instagram_post import _get, _token, _user_id, GRAPH
+
     tok, uid = _token(), _user_id()
 
     def _graph(path, fields=None, extra=None):
@@ -148,20 +178,26 @@ try:
             p['fields'] = fields
         if extra:
             p.update(extra)
-        return json.load(urllib.request.urlopen(f'{GRAPH}{path}?{urllib.parse.urlencode(p)}', timeout=60))
+        return json.load(
+            urllib.request.urlopen(f'{GRAPH}{path}?{urllib.parse.urlencode(p)}', timeout=60)
+        )
 
     # conta (andamento geral)
     try:
-        resultado['instagram_account'] = _graph(f'/{uid}', 'id,username,media_count,followers_count')
+        resultado['instagram_account'] = _graph(
+            f'/{uid}', 'id,username,media_count,followers_count'
+        )
     except Exception as e:
         resultado['instagram_account'] = {'erro': str(e)[:160]}
 
     # lista REAL de midias publicadas (fonte de verdade do "no ar")
     media = []
     try:
-        page = _graph(f'/{uid}/media',
-                      'id,caption,media_type,media_product_type,timestamp,permalink,like_count,comments_count',
-                      {'limit': '50'})
+        page = _graph(
+            f'/{uid}/media',
+            'id,caption,media_type,media_product_type,timestamp,permalink,like_count,comments_count',
+            {'limit': '50'},
+        )
         media = page.get('data', [])
     except Exception as e:
         resultado['erros'].append(f'IG media list: {str(e)[:160]}')
@@ -176,7 +212,9 @@ try:
         mset = 'reach,saved,shares,total_interactions'
         try:
             d = _graph(f"/{m['id']}/insights", None, {'metric': mset})
-            m['insights'] = {x['name']: (x.get('values') or [{}])[0].get('value') for x in d.get('data', [])}
+            m['insights'] = {
+                x['name']: (x.get('values') or [{}])[0].get('value') for x in d.get('data', [])
+            }
             ins_n += 1
         except urllib.error.HTTPError as e:
             body = e.read().decode()
@@ -186,7 +224,10 @@ try:
             else:
                 try:  # fallback metrica minima
                     d = _graph(f"/{m['id']}/insights", None, {'metric': 'reach,saved'})
-                    m['insights'] = {x['name']: (x.get('values') or [{}])[0].get('value') for x in d.get('data', [])}
+                    m['insights'] = {
+                        x['name']: (x.get('values') or [{}])[0].get('value')
+                        for x in d.get('data', [])
+                    }
                     ins_n += 1
                 except Exception:
                     pass
@@ -201,15 +242,22 @@ try:
         try:
             d = _get(f'/{mid}', tok, fields='timestamp,permalink,media_type,media_product_type')
             resultado['instagram'][mid] = (
-                {'erro': d['error'].get('message', '')[:120]} if isinstance(d, dict) and 'error' in d
-                else {'timestamp': d.get('timestamp'), 'permalink': d.get('permalink'),
-                      'media_type': d.get('media_type')})
+                {'erro': d['error'].get('message', '')[:120]}
+                if isinstance(d, dict) and 'error' in d
+                else {
+                    'timestamp': d.get('timestamp'),
+                    'permalink': d.get('permalink'),
+                    'media_type': d.get('media_type'),
+                }
+            )
         except Exception as e:
             resultado['instagram'][mid] = {'erro': str(e)[:160]}
 
     acc = resultado['instagram_account']
-    print(f'  Instagram: @{acc.get("username")} | media_count={acc.get("media_count")} '
-          f'| seguidores={acc.get("followers_count")} | media list={len(media)}')
+    print(
+        f'  Instagram: @{acc.get("username")} | media_count={acc.get("media_count")} '
+        f'| seguidores={acc.get("followers_count")} | media list={len(media)}'
+    )
 except Exception as e:
     msg = f'Instagram falhou: {str(e)[:200]}'
     print('  ' + msg)
@@ -217,12 +265,18 @@ except Exception as e:
 
 # ---------------- Site (visitas por pagina via logs do nginx) ----------------
 import subprocess
+
 try:
-    agg = (r"zcat -f /var/log/nginx/access.log* 2>/dev/null | "
-           r"grep -oE 'GET /biblioteca/[a-z0-9-]+\.html' | "
-           r"sed 's#GET /biblioteca/##;s#\.html##' | sort | uniq -c")
-    cmd = (['bash', '-lc', agg] if os.environ.get('MR_LOCAL_LOGS')
-           else ['ssh', 'root@andregalgani.com.br', agg])
+    agg = (
+        r"zcat -f /var/log/nginx/access.log* 2>/dev/null | "
+        r"grep -oE 'GET /biblioteca/[a-z0-9-]+\.html' | "
+        r"sed 's#GET /biblioteca/##;s#\.html##' | sort | uniq -c"
+    )
+    cmd = (
+        ['bash', '-lc', agg]
+        if os.environ.get('MR_LOCAL_LOGS')
+        else ['ssh', 'root@andregalgani.com.br', agg]
+    )
     out = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
     vis = {}
     for line in out.stdout.splitlines():
@@ -247,6 +301,7 @@ av = BASE / 'amazon_vendas.json'
 resultado['amazon_vendas'] = json.loads(av.read_text(encoding='utf-8')) if av.exists() else {}
 
 from datetime import datetime, timezone, timedelta
+
 resultado['coletado_em'] = datetime.now(timezone.utc).isoformat()
 
 # ---------------- Historico (serie temporal p/ tendencias) ----------------
@@ -273,7 +328,9 @@ hist.append(snap)
 hist = sorted(hist, key=lambda h: h['data'])[-120:]
 HIST.write_text(json.dumps(hist, ensure_ascii=False), encoding='utf-8')
 resultado['historico'] = hist
-print(f'  Historico: {len(hist)} snapshots (hoje: {snap["views_total"]} views, {snap["likes_total"]} likes)')
+print(
+    f'  Historico: {len(hist)} snapshots (hoje: {snap["views_total"]} views, {snap["likes_total"]} likes)'
+)
 
 OUT.write_text(json.dumps(resultado, ensure_ascii=False, indent=1), encoding='utf-8')
 print(f'-> {OUT}')

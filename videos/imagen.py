@@ -1,28 +1,39 @@
 # -*- coding: utf-8 -*-
 """Cliente do Imagen (Google Gemini API) — gera imagens cinematográficas por prompt.
 Usa a API key em .secrets/imagen_api_key.txt. Stdlib only."""
+
 import sys, json, base64, urllib.request, urllib.error
 from pathlib import Path
 
 try:
     from circuit_breaker import circuit_breaker, retry, CircuitOpenError
+
     _cb_available = True
 except ImportError:
     _cb_available = False
-    def circuit_breaker(**kw): return lambda f: f
-    def retry(**kw): return lambda f: f
 
-KEY = (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
+    def circuit_breaker(**kw):
+        return lambda f: f
+
+    def retry(**kw):
+        return lambda f: f
+
+
+KEY = (
+    (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
+)
 MODELS = ['imagen-4.0-generate-001', 'imagen-4.0-fast-generate-001']
 
 
 @retry(max_attempts=3, base_s=2.0)
 @circuit_breaker(api='google_imagen', threshold=3, timeout_s=300)
 def gen(prompt, out_png, aspect='16:9'):
-    body = json.dumps({
-        'instances': [{'prompt': prompt}],
-        'parameters': {'sampleCount': 1, 'aspectRatio': aspect},
-    }).encode('utf-8')
+    body = json.dumps(
+        {
+            'instances': [{'prompt': prompt}],
+            'parameters': {'sampleCount': 1, 'aspectRatio': aspect},
+        }
+    ).encode('utf-8')
     last = ''
     for model in MODELS:
         url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:predict?key={KEY}'
@@ -37,6 +48,7 @@ def gen(prompt, out_png, aspect='16:9'):
             Path(out_png).write_bytes(base64.b64decode(preds[0]['bytesBase64Encoded']))
             try:
                 from cost_tracker import record_cost
+
                 record_cost(api='google_imagen')
             except Exception:
                 pass

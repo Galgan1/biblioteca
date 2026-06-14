@@ -6,6 +6,7 @@ Custo R$0 — só ffmpeg + Pillow, sem nenhuma API externa.
 Uso:  python gerar_short.py <slug> <idx_cena>   (ex.: python gerar_short.py maquiavel-pedagogo 2)
 Saída: _shorts/<slug>_NN.mp4  (1080x1920, ~20-45s)
 """
+
 import sys, json, subprocess
 from pathlib import Path
 from PIL import Image, ImageDraw
@@ -46,7 +47,7 @@ def make_overlay(cena, accent, hook, out_png):
     img = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     ac = gv.hex_rgb(accent)
-    scrim = gv.marca.rgb('papel')   # fundo da marca p/ os degradês de escurecimento
+    scrim = gv.marca.rgb('papel')  # fundo da marca p/ os degradês de escurecimento
     # escurecimento topo (gancho) e base (título + CTA)
     for py in range(0, 640, 2):
         a = int(205 * (1 - py / 640) ** 1.2)
@@ -84,15 +85,19 @@ def main(slug, idx):
     SH = ROOT / '_shorts'
     SH.mkdir(exist_ok=True)
 
-    bg_src = ROOT / '_img' / f'{slug}_{idx:02d}.png'   # existe só em vídeo cinema
+    bg_src = ROOT / '_img' / f'{slug}_{idx:02d}.png'  # existe só em vídeo cinema
 
     # re-sintetiza a narração desta cena com a MESMA voz do longo (pausas SSML via gv.tts)
     mp3 = SH / f'{slug}_{idx:02d}_aud.mp3'
     if not mp3.exists():
-        gv.tts(cena['narracao'], cfg.get('voz', 'pt-BR-Chirp3-HD-Iapetus'),
-               mp3, rate=cfg.get('tts_rate', 1.0))
+        gv.tts(
+            cena['narracao'],
+            cfg.get('voz', 'pt-BR-Chirp3-HD-Iapetus'),
+            mp3,
+            rate=cfg.get('tts_rate', 1.0),
+        )
 
-    LEAD = 0.45   # respiro de entrada: a 1ª palavra só entra DEPOIS do fade-in do vídeo
+    LEAD = 0.45  # respiro de entrada: a 1ª palavra só entra DEPOIS do fade-in do vídeo
     dur = LEAD + MP3(mp3).info.length + 0.6
     nf = max(2, int(dur * 30))
     fo = max(0.1, dur - 0.4)
@@ -104,15 +109,50 @@ def main(slug, idx):
     make_overlay(cena, accent, hook, ov_png)
 
     out = SH / f'{slug}_{idx:02d}.mp4'
-    vf = (f"[0:v]scale=1188:2112,zoompan=z='min(zoom+0.0008,1.12)':d={nf}:"
-          f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30[z];"
-          f"[z][1:v]overlay=0:0,fade=t=in:st=0:d=0.4,fade=t=out:st={fo:.2f}:d=0.4[v];"
-          f"[2:a]adelay={int(LEAD*1000)}:all=1[a]")   # 1ª palavra entra após o respiro
-    subprocess.run([FF, '-y', '-loop', '1', '-i', str(bg_png), '-loop', '1', '-i', str(ov_png),
-                    '-i', str(mp3), '-filter_complex', vf,
-                    '-map', '[v]', '-map', '[a]', '-t', f'{dur:.2f}',
-                    '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100',
-                    '-shortest', str(out)], check=True, capture_output=True)
+    vf = (
+        f"[0:v]scale=1188:2112,zoompan=z='min(zoom+0.0008,1.12)':d={nf}:"
+        f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30[z];"
+        f"[z][1:v]overlay=0:0,fade=t=in:st=0:d=0.4,fade=t=out:st={fo:.2f}:d=0.4[v];"
+        f"[2:a]adelay={int(LEAD * 1000)}:all=1[a]"
+    )  # 1ª palavra entra após o respiro
+    subprocess.run(
+        [
+            FF,
+            '-y',
+            '-loop',
+            '1',
+            '-i',
+            str(bg_png),
+            '-loop',
+            '1',
+            '-i',
+            str(ov_png),
+            '-i',
+            str(mp3),
+            '-filter_complex',
+            vf,
+            '-map',
+            '[v]',
+            '-map',
+            '[a]',
+            '-t',
+            f'{dur:.2f}',
+            '-c:v',
+            'libx264',
+            '-pix_fmt',
+            'yuv420p',
+            '-c:a',
+            'aac',
+            '-b:a',
+            '192k',
+            '-ar',
+            '44100',
+            '-shortest',
+            str(out),
+        ],
+        check=True,
+        capture_output=True,
+    )
     print(f'OK -> {out}  ({dur:.1f}s, 1080x1920)')
 
 

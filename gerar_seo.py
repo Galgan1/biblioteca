@@ -10,6 +10,7 @@ Bloco injetado entre marcadores <!-- seo:start --> / <!-- seo:end --> (re-escrit
 
 Uso:  python gerar_seo.py
 """
+
 import json
 import os
 import re
@@ -72,7 +73,7 @@ def chapter_name(html, fallback):
     m = TITLE_RE.search(html)
     if not m:
         return fallback
-    return (m.group(1).split("|")[0].strip() or fallback)
+    return m.group(1).split("|")[0].strip() or fallback
 
 
 def main():
@@ -95,34 +96,53 @@ def main():
         f"<changefreq>monthly</changefreq><priority>{pr}</priority></url>"
         for loc, lm, pr in entries
     )
-    sitemap = ('<?xml version="1.0" encoding="UTF-8"?>\n'
-               '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-               f"{urls}\n</urlset>\n")
+    sitemap = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        f"{urls}\n</urlset>\n"
+    )
     write(os.path.join(ROOT, "sitemap.xml"), sitemap)
 
     # ---------- robots.txt ----------
-    write(os.path.join(ROOT, "robots.txt"),
-          "User-agent: *\nAllow: /\n\nSitemap: " + BASE + "/sitemap.xml\n")
+    write(
+        os.path.join(ROOT, "robots.txt"),
+        "User-agent: *\nAllow: /\n\nSitemap: " + BASE + "/sitemap.xml\n",
+    )
 
     # ---------- JSON-LD: home ----------
     item_list = [
         {"@type": "ListItem", "position": i + 1, "url": absurl(b["url"]), "name": b["title"]}
         for i, b in enumerate(readable)
     ]
-    home_ld = ld({
-        "@context": "https://schema.org",
-        "@graph": [
-            {"@type": "WebSite", "@id": BASE + "/#website", "url": BASE + "/",
-             "name": SITE_NAME, "inLanguage": "pt-BR",
-             "publisher": {"@type": "Person", "name": AUTHOR}},
-            {"@type": "CollectionPage", "@id": BASE + "/#biblioteca", "url": BASE + "/",
-             "name": "Biblioteca", "isPartOf": {"@id": BASE + "/#website"},
-             "inLanguage": "pt-BR",
-             "description": "Livros inteiros, destilados numa página. Resumos visuais, capítulo a capítulo.",
-             "mainEntity": {"@type": "ItemList", "numberOfItems": len(item_list),
-                            "itemListElement": item_list}},
-        ],
-    })
+    home_ld = ld(
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "WebSite",
+                    "@id": BASE + "/#website",
+                    "url": BASE + "/",
+                    "name": SITE_NAME,
+                    "inLanguage": "pt-BR",
+                    "publisher": {"@type": "Person", "name": AUTHOR},
+                },
+                {
+                    "@type": "CollectionPage",
+                    "@id": BASE + "/#biblioteca",
+                    "url": BASE + "/",
+                    "name": "Biblioteca",
+                    "isPartOf": {"@id": BASE + "/#website"},
+                    "inLanguage": "pt-BR",
+                    "description": "Livros inteiros, destilados numa página. Resumos visuais, capítulo a capítulo.",
+                    "mainEntity": {
+                        "@type": "ItemList",
+                        "numberOfItems": len(item_list),
+                        "itemListElement": item_list,
+                    },
+                },
+            ],
+        }
+    )
     idx = os.path.join(ROOT, "index.html")
     write(idx, inject(read(idx), BASE + "/", home_ld))
 
@@ -133,20 +153,36 @@ def main():
         if not os.path.exists(f):
             continue
         page = absurl(b["url"])
-        book_ld = ld({
-            "@context": "https://schema.org",
-            "@graph": [
-                {"@type": "Book", "@id": page + "#book", "name": b["title"],
-                 "author": {"@type": "Person", "name": b["author"]},
-                 "description": b.get("description", ""),
-                 "image": absurl(b["coverUrl"]), "url": page,
-                 "inLanguage": "pt-BR", "genre": b.get("tags", [])},
-                {"@type": "BreadcrumbList", "itemListElement": [
-                    {"@type": "ListItem", "position": 1, "name": "Biblioteca", "item": BASE + "/"},
-                    {"@type": "ListItem", "position": 2, "name": b["title"], "item": page},
-                ]},
-            ],
-        })
+        book_ld = ld(
+            {
+                "@context": "https://schema.org",
+                "@graph": [
+                    {
+                        "@type": "Book",
+                        "@id": page + "#book",
+                        "name": b["title"],
+                        "author": {"@type": "Person", "name": b["author"]},
+                        "description": b.get("description", ""),
+                        "image": absurl(b["coverUrl"]),
+                        "url": page,
+                        "inLanguage": "pt-BR",
+                        "genre": b.get("tags", []),
+                    },
+                    {
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Biblioteca",
+                                "item": BASE + "/",
+                            },
+                            {"@type": "ListItem", "position": 2, "name": b["title"], "item": page},
+                        ],
+                    },
+                ],
+            }
+        )
         write(f, inject(read(f), page, book_ld))
         n_book += 1
 
@@ -160,25 +196,52 @@ def main():
             html = read(f)
             name = chapter_name(html, b["title"])
             ch_url = absurl(ch)
-            ch_ld = ld({
-                "@context": "https://schema.org",
-                "@graph": [
-                    {"@type": "Article", "@id": ch_url + "#article", "headline": name,
-                     "inLanguage": "pt-BR", "url": ch_url, "image": cover,
-                     "author": {"@type": "Person", "name": b["author"]},
-                     "isPartOf": {"@type": "Book", "@id": page + "#book", "name": b["title"]}},
-                    {"@type": "BreadcrumbList", "itemListElement": [
-                        {"@type": "ListItem", "position": 1, "name": "Biblioteca", "item": BASE + "/"},
-                        {"@type": "ListItem", "position": 2, "name": b["title"], "item": page},
-                        {"@type": "ListItem", "position": 3, "name": name, "item": ch_url},
-                    ]},
-                ],
-            })
+            ch_ld = ld(
+                {
+                    "@context": "https://schema.org",
+                    "@graph": [
+                        {
+                            "@type": "Article",
+                            "@id": ch_url + "#article",
+                            "headline": name,
+                            "inLanguage": "pt-BR",
+                            "url": ch_url,
+                            "image": cover,
+                            "author": {"@type": "Person", "name": b["author"]},
+                            "isPartOf": {
+                                "@type": "Book",
+                                "@id": page + "#book",
+                                "name": b["title"],
+                            },
+                        },
+                        {
+                            "@type": "BreadcrumbList",
+                            "itemListElement": [
+                                {
+                                    "@type": "ListItem",
+                                    "position": 1,
+                                    "name": "Biblioteca",
+                                    "item": BASE + "/",
+                                },
+                                {
+                                    "@type": "ListItem",
+                                    "position": 2,
+                                    "name": b["title"],
+                                    "item": page,
+                                },
+                                {"@type": "ListItem", "position": 3, "name": name, "item": ch_url},
+                            ],
+                        },
+                    ],
+                }
+            )
             write(f, inject(html, ch_url, ch_ld))
             n_ch += 1
 
-    print(f"sitemap.xml: {len(entries)} URLs | robots.txt | "
-          f"JSON-LD em index.html + {n_book} páginas de livro + {n_ch} capítulos")
+    print(
+        f"sitemap.xml: {len(entries)} URLs | robots.txt | "
+        f"JSON-LD em index.html + {n_book} páginas de livro + {n_ch} capítulos"
+    )
 
 
 if __name__ == "__main__":

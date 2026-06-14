@@ -4,6 +4,7 @@ Cada stage lista seus pré-requisitos. O orquestrador resolve a ordem topológic
 """
 
 # Stages e suas dependências
+# fmt: off
 DAG = {
     'skill':       [],                # sequencial (book-to-skill via Claude)
     'biblioteca':  ['skill'],         # publicar_livro.py --deploy
@@ -15,6 +16,7 @@ DAG = {
     'tiktok':      ['shorts'],        # tiktok_post.py (quando tiver token)
     'facebook':    ['uploaded'],      # facebook_post.py
 }
+# fmt: on
 
 
 def topological_sort(dag: dict) -> list:
@@ -51,8 +53,7 @@ def topological_sort(dag: dict) -> list:
 
 def ready_stages(dag: dict, done: set) -> list:
     """Stages cujas dependências estão todas em 'done' e que ainda não foram feitos."""
-    return [s for s, deps in dag.items()
-            if s not in done and all(d in done for d in deps)]
+    return [s for s, deps in dag.items() if s not in done and all(d in done for d in deps)]
 
 
 def parallel_groups(dag: dict) -> list:
@@ -65,8 +66,7 @@ def parallel_groups(dag: dict) -> list:
     done = set()
     groups = []
     while remaining:
-        group = {s for s in remaining
-                 if all(d in done for d in dag.get(s, []))}
+        group = {s for s in remaining if all(d in done for d in dag.get(s, []))}
         if not group:
             break  # ciclo ou stage sem deps resolvíveis — não deve ocorrer
         groups.append(group)

@@ -19,6 +19,7 @@ Saída:
   videos/_carrossel/<slug>_<parte>/01.png ... NN.png   (capa + conceitos + CTA)
   videos/_carrossel/<slug>_citacoes/01.png ... NN.png  (cards de citação)
 """
+
 import sys, os, re, json, importlib
 from pathlib import Path
 
@@ -47,15 +48,19 @@ _EXTRA = {
 def _ic(name):
     """icon() de gerar_livro, com fallback para os ícones extras locais."""
     if name in _EXTRA:
-        return ('<div class="card-icon" aria-hidden="true">'
-                '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
-                + _EXTRA[name] + '</svg></div>')
+        return (
+            '<div class="card-icon" aria-hidden="true">'
+            '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
+            + _EXTRA[name]
+            + '</svg></div>'
+        )
     return icon(name)
 
 
 def _svg(name):
     """SVG cru (sem o wrapper .card-icon), p/ usar inline em selos/rodapés."""
     from gerar_livro import ICONS
+
     inner = ICONS.get(name) or _EXTRA.get(name, '')
     return f'<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">{inner}</svg>'
 
@@ -231,9 +236,11 @@ def _slide(inner, cls='', ghost=''):
 
 
 def _dots(pos, total):
-    return ('<div class="dots">'
-            + ''.join(f'<i class="{"on" if k == pos else ""}"></i>' for k in range(1, total + 1))
-            + '</div>')
+    return (
+        '<div class="dots">'
+        + ''.join(f'<i class="{"on" if k == pos else ""}"></i>' for k in range(1, total + 1))
+        + '</div>'
+    )
 
 
 def _cover(book, n, pos, total):
@@ -250,7 +257,8 @@ def _cover(book, n, pos, total):
         f'<div class="swipe"><span>arraste</span>'
         f'<span class="arrow">{_svg("arrow")}</span></div>'
         f'{_dots(pos, total)}',
-        'cover')
+        'cover',
+    )
 
 
 def _concept(c, i, total_cards, pos, total):
@@ -258,7 +266,9 @@ def _concept(c, i, total_cards, pos, total):
     tip = ''
     if c.get('tip'):
         tipic = _svg('spark') if not c.get('warn') else _svg('shield')
-        tip = f'<div class="card-tip"><span class="tipic">{tipic}</span><span>{c["tip"]}</span></div>'
+        tip = (
+            f'<div class="card-tip"><span class="tipic">{tipic}</span><span>{c["tip"]}</span></div>'
+        )
     return _slide(
         f'<div class="topbar"><span class="brandmark">{_svg("book")}Minuto Real</span>'
         f'<span class="count"><b>{i:02d}</b><span class="sl">/</span>{total_cards:02d}</span></div>'
@@ -268,7 +278,8 @@ def _concept(c, i, total_cards, pos, total):
         f'{tip}'
         f'{_dots(pos, total)}',
         cls,
-        ghost=_ghost('top:-18px;left:46px;font-size:300px', f'{i:02d}'))
+        ghost=_ghost('top:-18px;left:46px;font-size:300px', f'{i:02d}'),
+    )
 
 
 def _cta(book, pos, total):
@@ -286,10 +297,12 @@ def _cta(book, pos, total):
         '<div class="handle">@minutoreal1701</div>'
         f'{_dots(pos, total)}',
         'cta',
-        ghost=_ghost('bottom:-80px;right:-30px;font-size:400px', '+'))
+        ghost=_ghost('bottom:-80px;right:-30px;font-size:400px', '+'),
+    )
 
 
 # ---------- modo citação ----------
+
 
 def _strip_html(s):
     return re.sub(r'<[^>]+>', '', s).strip()
@@ -313,8 +326,21 @@ def _score(sent):
     if '—' in sent or ' — ' in sent:
         s += 2
     low = sent.lower()
-    for kw in (' não é ', 'não há', 'sempre', 'nunca', 'toda', 'todo ', 'a meta', 'o segredo',
-               'a régua', 'a lei', 'a porta', 'é a ', ' é o '):
+    for kw in (
+        ' não é ',
+        'não há',
+        'sempre',
+        'nunca',
+        'toda',
+        'todo ',
+        'a meta',
+        'o segredo',
+        'a régua',
+        'a lei',
+        'a porta',
+        'é a ',
+        ' é o ',
+    ):
         if kw in low:
             s += 1
     if sent.endswith('?'):
@@ -404,24 +430,32 @@ def _quote_card(q, book, k, total):
         '<div class="foot">'
         '<span class="handle">@minutoreal1701</span>'
         f'<span class="cta-min">{_svg("play")}cheat sheet: link na bio</span>'
-        '</div>')
+        '</div>'
+    )
     attr = f'<div class="attr">{book["author"]}<br><span class="book">{book["title"]}</span></div>'
-    qcount = (f'<div class="qcount"><b>{k:02d}</b><span class="sl">/</span>{total:02d}</div>'
-              if total > 1 else '')
+    qcount = (
+        f'<div class="qcount"><b>{k:02d}</b><span class="sl">/</span>{total:02d}</div>'
+        if total > 1
+        else ''
+    )
     return _slide(
         '<div class="qhead"><div class="qmark">&ldquo;</div></div>'
         f'{qcount}'
         f'<div class="phrase">{_emph(q)}</div>'
         f'{attr}{foot}',
         'quote',
-        ghost=_ghost('bottom:-90px;right:-20px;font-size:440px', '&rdquo;'))
+        ghost=_ghost('bottom:-90px;right:-20px;font-size:440px', '&rdquo;'),
+    )
 
 
 def _render(slides, out, scale=2, w=W, h=H, css=None):
     out.mkdir(parents=True, exist_ok=True)
-    html = (f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
-            f'<style>{css or CSS}</style></head><body>{"".join(slides)}</body></html>')
+    html = (
+        f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
+        f'<style>{css or CSS}</style></head><body>{"".join(slides)}</body></html>'
+    )
     from playwright.sync_api import sync_playwright
+
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=scale)
@@ -469,38 +503,43 @@ def _caption_citacao(slug, book, quotes):
     apelo de salvar + CTA em camadas + seguir + afiliado/disclosure + hashtags."""
     gancho = _strip_html(quotes[0]).rstrip(' .') if quotes else book['title']
     tags = [re.sub(r'[^0-9a-z]', '', t.lower().replace(' ', '')) for t in book.get('tags', [])[:2]]
-    hs = ' '.join('#' + t for t in (['livros', 'resumodelivro', 'leitura']
-                                     + [t for t in tags if t]))
-    return (f'"{gancho}"\n— {book["author"]}, em "{book["title"]}"\n\n'
-            f'📌 Salve as frases que ficam.\n\n'
-            f'📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n'
-            f'🎬 Resumo em vídeo (~5 min) no YouTube.\n\n'
-            f'Siga @minutoreal1701 — um grande livro por semana.\n\n'
-            f'{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}')
+    hs = ' '.join(
+        '#' + t for t in (['livros', 'resumodelivro', 'leitura'] + [t for t in tags if t])
+    )
+    return (
+        f'"{gancho}"\n— {book["author"]}, em "{book["title"]}"\n\n'
+        f'📌 Salve as frases que ficam.\n\n'
+        f'📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n'
+        f'🎬 Resumo em vídeo (~5 min) no YouTube.\n\n'
+        f'Siga @minutoreal1701 — um grande livro por semana.\n\n'
+        f'{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}'
+    )
 
 
 def _write_stories(out, slug, book, n, quote):
     """Roteiro premium de STORIES (3 frames) p/ empurrar o post novo -> YouTube/
     acervo/Amazon. Texto pronto p/ overlay; salvo em stories.txt."""
     titulo = f'{book["header_light"]} {book["header_bold"]}'.strip()
-    txt = (f"=== STORIES - {book['title']} ===\n"
-           "1 frame por tela (1080x1920 vertical). Texto = overlay na arte; [..] = figurinha.\n\n"
-           "FRAME 1 - TEASER\n"
-           "NOVO no acervo\n"
-           f'"{titulo}" em {n} ideias que ficam.\n'
-           "[enquete] Ja conhece esse livro?  Sim / Ainda nao\n"
-           "-> Cheat sheet + PDF: toque no link da bio\n\n"
-           "FRAME 2 - FRASE-BOMBA\n"
-           f'"{quote}"\n'
-           f"- {book['author']}\n"
-           "[caixa de perguntas] O que isso muda pra voce?\n"
-           "-> O livro inteiro em 1 pagina, no acervo (link na bio)\n\n"
-           "FRAME 3 - CTA (3 destinos)\n"
-           "3 lugares, 1 toque:\n"
-           "> Acervo - cheat sheet + PDF (de graca)\n"
-           "> YouTube - o resumo em ~5 min\n"
-           "> Amazon - o livro (link de afiliado)\n"
-           "Tudo no link da bio. Salve e compartilhe.\n")
+    txt = (
+        f"=== STORIES - {book['title']} ===\n"
+        "1 frame por tela (1080x1920 vertical). Texto = overlay na arte; [..] = figurinha.\n\n"
+        "FRAME 1 - TEASER\n"
+        "NOVO no acervo\n"
+        f'"{titulo}" em {n} ideias que ficam.\n'
+        "[enquete] Ja conhece esse livro?  Sim / Ainda nao\n"
+        "-> Cheat sheet + PDF: toque no link da bio\n\n"
+        "FRAME 2 - FRASE-BOMBA\n"
+        f'"{quote}"\n'
+        f"- {book['author']}\n"
+        "[caixa de perguntas] O que isso muda pra voce?\n"
+        "-> O livro inteiro em 1 pagina, no acervo (link na bio)\n\n"
+        "FRAME 3 - CTA (3 destinos)\n"
+        "3 lugares, 1 toque:\n"
+        "> Acervo - cheat sheet + PDF (de graca)\n"
+        "> YouTube - o resumo em ~5 min\n"
+        "> Amazon - o livro (link de afiliado)\n"
+        "Tudo no link da bio. Salve e compartilhe.\n"
+    )
     (out / 'stories.txt').write_text(txt, encoding='utf-8')
     print('  stories.txt (roteiro de stories premium)')
 
@@ -610,7 +649,9 @@ def _story_teaser(book, n):
         f'<div class="hook"><span class="num">{n}</span> ideias que ficam</div>'
         f'<div class="foot"><span class="tap">toque no link da bio {_svg("arrow")}</span>'
         '<span class="handle">@minutoreal1701</span></div>',
-        'st', ghost=_ghost('top:140px;right:-20px;font-size:540px', f'{n}'))
+        'st',
+        ghost=_ghost('top:140px;right:-20px;font-size:540px', f'{n}'),
+    )
 
 
 def _story_quote(quote, book):
@@ -620,7 +661,9 @@ def _story_quote(quote, book):
         f'<div class="attr">{book["author"]}<span class="book">{book["title"]}</span></div>'
         f'<div class="foot"><span class="tap">resumo no YouTube {_svg("play")}</span>'
         '<span class="handle">link na bio</span></div>',
-        'sq', ghost=_ghost('bottom:60px;right:-20px;font-size:520px', '&rdquo;'))
+        'sq',
+        ghost=_ghost('bottom:60px;right:-20px;font-size:520px', '&rdquo;'),
+    )
 
 
 def _story_cta(book):
@@ -636,7 +679,9 @@ def _story_cta(book):
         '</div>'
         f'<div class="foot"><span class="tap">link na bio {_svg("arrow")}</span>'
         '<span class="handle">@minutoreal1701</span></div>',
-        'sc', ghost=_ghost('top:150px;left:-20px;font-size:480px', '+'))
+        'sc',
+        ghost=_ghost('top:150px;left:-20px;font-size:480px', '+'),
+    )
 
 
 def build_stories(slug):
@@ -648,7 +693,7 @@ def build_stories(slug):
     quote = _strip_html(qs[0]).rstrip(' .') if qs else book.get('subtitle', '')
     frames = [_story_teaser(book, n), _story_quote(quote, book), _story_cta(book)]
     out = _render(frames, OUT_ROOT / f'{slug}_stories', w=1080, h=1920, css=STORY_CSS)
-    _write_stories(out, slug, book, n, quote)   # roteiro de texto p/ figurinhas manuais
+    _write_stories(out, slug, book, n, quote)  # roteiro de texto p/ figurinhas manuais
     return out
 
 

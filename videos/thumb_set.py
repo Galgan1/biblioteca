@@ -4,7 +4,9 @@ Reusa as credenciais OAuth do upload_youtube. Requer canal verificado p/ thumb c
 
 Uso:  python thumb_set.py <video_id> <imagem.png>
 """
+
 import sys
+
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:

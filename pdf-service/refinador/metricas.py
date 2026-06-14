@@ -18,6 +18,7 @@ fuga (Claude) para o julgamento que a métrica não captura. Rasteriza com PyMuP
 
 Uso avulso:  python metricas.py arquivo.pdf [--expect N]
 """
+
 import sys
 import fitz  # PyMuPDF
 
@@ -41,20 +42,25 @@ def _ink_profile(page, dpi=80, bands=24, thresh=205):
     for b in range(bands):
         y0 = b * band_h
         y1 = h if b == bands - 1 else (b + 1) * band_h
-        seg = mask[y0 * w:y1 * w]
+        seg = mask[y0 * w : y1 * w]
         prof.append(seg.count(1) / max(1, len(seg)))
 
     # anel de borda (~3% de cada lado): tinta aqui = conteúdo encostando na margem
     m = max(2, int(min(w, h) * 0.03))
-    ring = mask[0:m * w].count(1) + mask[(h - m) * w:h * w].count(1)
+    ring = mask[0 : m * w].count(1) + mask[(h - m) * w : h * w].count(1)
     ringpx = 2 * m * w
     for y in range(m, h - m):
-        row = mask[y * w:(y + 1) * w]
+        row = mask[y * w : (y + 1) * w]
         ring += row[:m].count(1) + row[-m:].count(1)
         ringpx += 2 * m
 
-    return {"w": w, "h": h, "ink": mask.count(1) / total, "prof": prof,
-            "edge": ring / max(1, ringpx)}
+    return {
+        "w": w,
+        "h": h,
+        "ink": mask.count(1) / total,
+        "prof": prof,
+        "edge": ring / max(1, ringpx),
+    }
 
 
 def _page_shape(p, eps=0.004):
@@ -64,7 +70,7 @@ def _page_shape(p, eps=0.004):
     covered = [i for i, v in enumerate(prof) if v > eps]
     last = covered[-1] if covered else 0
     coverage = (last + 1) / bands
-    cov_vals = prof[:last + 1] or [0.0]
+    cov_vals = prof[: last + 1] or [0.0]
     density = sum(cov_vals) / len(cov_vals)
     holes = sum(1 for v in cov_vals if v <= eps)
     gap_frac = holes / max(1, len(cov_vals))
@@ -99,8 +105,14 @@ def score_pdf(pdf_bytes, expect_pages=1, dpi=80):
     else:
         lastfill_s = 1.0
 
-    patus = (0.42 * coverage_s + 0.15 * edge_s + 0.18 * comfort_s
-             + 0.10 * gap_s + 0.10 * pages_s + 0.05 * lastfill_s)
+    patus = (
+        0.42 * coverage_s
+        + 0.15 * edge_s
+        + 0.18 * comfort_s
+        + 0.10 * gap_s
+        + 0.10 * pages_s
+        + 0.05 * lastfill_s
+    )
 
     return {
         "patus": round(patus, 3),
@@ -110,16 +122,21 @@ def score_pdf(pdf_bytes, expect_pages=1, dpi=80):
         "gap_frac": round(gap, 3),
         "edge_ink": round(first["edge"], 4),
         "sub": {
-            "coverage": round(coverage_s, 3), "edge": round(edge_s, 3),
-            "comfort": round(comfort_s, 3), "gap": round(gap_s, 3),
-            "pages": round(pages_s, 3), "lastfill": round(lastfill_s, 3),
+            "coverage": round(coverage_s, 3),
+            "edge": round(edge_s, 3),
+            "comfort": round(comfort_s, 3),
+            "gap": round(gap_s, 3),
+            "pages": round(pages_s, 3),
+            "lastfill": round(lastfill_s, 3),
         },
     }
 
 
 def compact(sc):
-    return (f"patus={sc['patus']} cov={sc.get('coverage')} dens={sc.get('density')} "
-            f"edge={sc.get('edge_ink')} gap={sc.get('gap_frac')} pg={sc['pages']}")
+    return (
+        f"patus={sc['patus']} cov={sc.get('coverage')} dens={sc.get('density')} "
+        f"edge={sc.get('edge_ink')} gap={sc.get('gap_frac')} pg={sc['pages']}"
+    )
 
 
 if __name__ == "__main__":
@@ -127,8 +144,10 @@ if __name__ == "__main__":
     expect = 1
     if "--expect" in args:
         i = args.index("--expect")
-        expect = int(args[i + 1]); del args[i:i + 2]
+        expect = int(args[i + 1])
+        del args[i : i + 2]
     if not args:
-        print("uso: python metricas.py arquivo.pdf [--expect N]"); sys.exit(2)
+        print("uso: python metricas.py arquivo.pdf [--expect N]")
+        sys.exit(2)
     with open(args[0], "rb") as f:
         print(compact(score_pdf(f.read(), expect_pages=expect)))

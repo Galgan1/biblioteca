@@ -21,6 +21,7 @@ Cron sugerido (a cada 15 min; ocioso quando nada vence):
 
 Stdlib + (no momento do disparo) instagram_post. Console = sem nao-ASCII em print().
 """
+
 import sys
 import json
 import time
@@ -77,6 +78,7 @@ def publicar(job):
     """Dispara o post no IG conforme cmd do job. Retorna o media_id ou None.
     Importa o poster em runtime (sem editar instagram_post.py)."""
     import instagram_post as ig
+
     cmd = job.get('cmd') or []
     if not cmd:
         print('  [!] job sem cmd; pulando')
@@ -110,6 +112,7 @@ def publicar(job):
         try:
             from PIL import Image
             import os
+
             web_dir.mkdir(parents=True, exist_ok=True)
             urls = []
             for png in sorted(story_dir.glob('[0-9][0-9].png')):
@@ -142,7 +145,7 @@ def limpar_provisorio(job):
 
 def main():
     jobs = _load(MANIFEST, [])
-    state = _load(STATE, {})        # {job_key: {"media_id":..., "em":...}}
+    state = _load(STATE, {})  # {job_key: {"media_id":..., "em":...}}
     if not jobs:
         print('manifesto vazio - nada a sincronizar')
         return

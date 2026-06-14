@@ -21,6 +21,7 @@ Depois disso:
 
 Stdlib only (urllib). Conteúdo do canal é narrado por IA → marcamos AIGC.
 """
+
 import sys, json, time, urllib.request, urllib.error, math
 from pathlib import Path
 
@@ -38,19 +39,25 @@ HASHTAGS_BASE = ['resumodelivro', 'livros', 'conhecimento', 'aprendanotiktok']
 def _refresh(tj):
     """Renova o access_token via refresh_token. Atualiza os dois arquivos e devolve o token novo."""
     import urllib.parse
-    data = urllib.parse.urlencode({
-        'client_key': CLIENT_KEY_FILE.read_text(encoding='utf-8').strip(),
-        'client_secret': CLIENT_SECRET_FILE.read_text(encoding='utf-8').strip(),
-        'grant_type': 'refresh_token',
-        'refresh_token': tj['refresh_token'],
-    }).encode()
-    req = urllib.request.Request(OAUTH_TOKEN_URL, data=data,
-                                 headers={'Content-Type': 'application/x-www-form-urlencoded'})
+
+    data = urllib.parse.urlencode(
+        {
+            'client_key': CLIENT_KEY_FILE.read_text(encoding='utf-8').strip(),
+            'client_secret': CLIENT_SECRET_FILE.read_text(encoding='utf-8').strip(),
+            'grant_type': 'refresh_token',
+            'refresh_token': tj['refresh_token'],
+        }
+    ).encode()
+    req = urllib.request.Request(
+        OAUTH_TOKEN_URL, data=data, headers={'Content-Type': 'application/x-www-form-urlencoded'}
+    )
     try:
         r = json.load(urllib.request.urlopen(req, timeout=60))
     except urllib.error.HTTPError as e:
-        sys.exit(f'[!] falha ao renovar token TikTok: {e.code} {e.read().decode()[:200]} '
-                 '(refresh_token pode ter expirado — refaça o OAuth).')
+        sys.exit(
+            f'[!] falha ao renovar token TikTok: {e.code} {e.read().decode()[:200]} '
+            '(refresh_token pode ter expirado — refaça o OAuth).'
+        )
     if 'access_token' not in r:
         sys.exit(f'[!] resposta de refresh sem access_token: {r}')
     r['_obtained_at'] = int(time.time())
@@ -69,15 +76,22 @@ def _token():
                 return _refresh(tj)
             return tj['access_token']
     if not TOKEN_FILE.exists():
-        sys.exit(f'[!] token ausente: crie {TOKEN_FILE} com o access_token (escopo video.publish). '
-                 'Veja o cabeçalho deste arquivo para os passos.')
+        sys.exit(
+            f'[!] token ausente: crie {TOKEN_FILE} com o access_token (escopo video.publish). '
+            'Veja o cabeçalho deste arquivo para os passos.'
+        )
     return TOKEN_FILE.read_text(encoding='utf-8').strip()
 
 
 def _api(path, token, body):
-    req = urllib.request.Request(f'{BASE}{path}', data=json.dumps(body).encode('utf-8'),
-                                 headers={'Authorization': f'Bearer {token}',
-                                          'Content-Type': 'application/json; charset=UTF-8'})
+    req = urllib.request.Request(
+        f'{BASE}{path}',
+        data=json.dumps(body).encode('utf-8'),
+        headers={
+            'Authorization': f'Bearer {token}',
+            'Content-Type': 'application/json; charset=UTF-8',
+        },
+    )
     try:
         return json.load(urllib.request.urlopen(req, timeout=60))
     except urllib.error.HTTPError as e:
@@ -96,26 +110,38 @@ def post_video(mp4, caption, privacy='PUBLIC_TO_EVERYONE', aigc=True, draft=Fals
     if draft:
         init = _api('/post/publish/inbox/video/init/', token, {'source_info': src})
     else:
-        init = _api('/post/publish/video/init/', token, {
-            'post_info': {
-                'title': caption[:2200],
-                'privacy_level': privacy,             # PUBLIC_TO_EVERYONE exige app auditado
-                'disable_comment': False, 'disable_duet': False, 'disable_stitch': False,
-                'video_cover_timestamp_ms': 1000,
-                'is_aigc': bool(aigc),                # disclosure de conteúdo gerado por IA
+        init = _api(
+            '/post/publish/video/init/',
+            token,
+            {
+                'post_info': {
+                    'title': caption[:2200],
+                    'privacy_level': privacy,  # PUBLIC_TO_EVERYONE exige app auditado
+                    'disable_comment': False,
+                    'disable_duet': False,
+                    'disable_stitch': False,
+                    'video_cover_timestamp_ms': 1000,
+                    'is_aigc': bool(aigc),  # disclosure de conteúdo gerado por IA
+                },
+                'source_info': src,
             },
-            'source_info': src,
-        })
+        )
     if init.get('error', {}).get('code') not in (None, 'ok'):
         print(f'  ERRO init: {init["error"]}')
         return None
     d = init['data']
     pid, upload_url = d['publish_id'], d['upload_url']
     # envia os bytes (PUT com Content-Range)
-    put = urllib.request.Request(upload_url, data=data, method='PUT',
-                                 headers={'Content-Type': 'video/mp4',
-                                          'Content-Range': f'bytes 0-{size-1}/{size}',
-                                          'Content-Length': str(size)})
+    put = urllib.request.Request(
+        upload_url,
+        data=data,
+        method='PUT',
+        headers={
+            'Content-Type': 'video/mp4',
+            'Content-Range': f'bytes 0-{size - 1}/{size}',
+            'Content-Length': str(size),
+        },
+    )
     try:
         urllib.request.urlopen(put, timeout=300)
     except urllib.error.HTTPError as e:
@@ -139,6 +165,7 @@ def post_video(mp4, caption, privacy='PUBLIC_TO_EVERYONE', aigc=True, draft=Fals
 def caption_for(cfg, idx):
     """Legenda nativa de TikTok: 1ª frase (gancho) + CTA + hashtags amplas+nicho."""
     import re
+
     cena = cfg['cenas'][idx]
     gancho = re.split(r'(?<=[.?!])\s', cena['narracao'].strip())[0].strip()  # 1ª frase inteira
     tags = [t.replace(' ', '') for t in cfg.get('youtube', {}).get('tags', [])[:4]]
@@ -157,9 +184,11 @@ def postar_shorts(slug, draft=False):
         key = str(i)
         mp4 = SH / f'{slug}_{i:02d}.mp4'
         if key in state:
-            print(f'  já no TikTok: cena {i} ({state[key]})'); continue
+            print(f'  já no TikTok: cena {i} ({state[key]})')
+            continue
         if not mp4.exists():
-            print(f'  [!] short ausente: {mp4.name}'); continue
+            print(f'  [!] short ausente: {mp4.name}')
+            continue
         print(f'  postando cena {i}{" (rascunho)" if draft else ""}...')
         pid = post_video(str(mp4), caption_for(cfg, i), draft=draft)
         if pid:
@@ -175,4 +204,6 @@ if __name__ == '__main__':
     elif len(args) == 1:
         postar_shorts(args[0], draft=draft)
     else:
-        sys.exit('uso: python tiktok_post.py <slug> [--draft]  |  python tiktok_post.py file <mp4> "legenda" [--draft]')
+        sys.exit(
+            'uso: python tiktok_post.py <slug> [--draft]  |  python tiktok_post.py file <mp4> "legenda" [--draft]'
+        )

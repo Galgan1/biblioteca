@@ -5,6 +5,7 @@ engine.py — fala com o serviço biblioteca-pdf em modo refinador.
 Sobe a NOSSA instância (REFINADOR=1) numa porta própria se ela não estiver no ar,
 e renderiza páginas FRESCAS (sem cache) com um `tune` ad-hoc. Tudo local.
 """
+
 import json
 import os
 import subprocess
@@ -13,14 +14,13 @@ import urllib.parse
 import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SVC = os.path.dirname(HERE)             # .../pdf-service
-SITE_ROOT = os.path.dirname(SVC)        # .../biblioteca  (HTML do site ao vivo)
+SVC = os.path.dirname(HERE)  # .../pdf-service
+SITE_ROOT = os.path.dirname(SVC)  # .../biblioteca  (HTML do site ao vivo)
 TUNED_PATH = os.path.join(HERE, "tuned.json")
 
 PORT = int(os.environ.get("PDF_PORT", "3009"))  # porta do refinador (≠ 3008 de prod)
 BASE = f"http://127.0.0.1:{PORT}"
-CHROME = os.environ.get(
-    "CHROME", r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+CHROME = os.environ.get("CHROME", r"C:\Program Files\Google\Chrome\Application\chrome.exe")
 
 _proc = None  # instância que NÓS subimos (p/ encerrar no fim)
 
@@ -38,11 +38,14 @@ def ensure_service(timeout=45):
     global _proc
     if health():
         return None  # já estava no ar (assumimos que com REFINADOR=1)
-    env = dict(os.environ, SITE_ROOT=SITE_ROOT, CHROME=CHROME,
-               PORT=str(PORT), REFINADOR="1")
+    env = dict(os.environ, SITE_ROOT=SITE_ROOT, CHROME=CHROME, PORT=str(PORT), REFINADOR="1")
     _proc = subprocess.Popen(
-        ["node", "server.js"], cwd=SVC, env=env,
-        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        ["node", "server.js"],
+        cwd=SVC,
+        env=env,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
     t0 = time.time()
     while time.time() - t0 < timeout:
         if health():

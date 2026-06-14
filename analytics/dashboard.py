@@ -12,6 +12,7 @@ Uso:
   python analytics/dashboard.py           # gera analytics/dashboard.html
   python analytics/dashboard.py --open    # gera e abre no navegador
 """
+
 import json
 import sys
 from collections import defaultdict
@@ -20,25 +21,35 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
 ANALYTICS = ROOT / 'analytics'
-PIPELINE  = ROOT / 'pipeline'
-VIDEOS    = ROOT / 'videos'
+PIPELINE = ROOT / 'pipeline'
+VIDEOS = ROOT / 'videos'
 
 OUT = ANALYTICS / 'dashboard.html'
 
 STAGE_ICONS = {
-    'done':    '✓',
+    'done': '✓',
     'blocked': '✗',
     'skipped': '–',
     'pending': '·',
 }
 
-STAGES = ['skill', 'biblioteca', 'video_built', 'uploaded',
-          'shorts', 'scheduled', 'instagram', 'tiktok', 'facebook']
+STAGES = [
+    'skill',
+    'biblioteca',
+    'video_built',
+    'uploaded',
+    'shorts',
+    'scheduled',
+    'instagram',
+    'tiktok',
+    'facebook',
+]
 
 
 # ---------------------------------------------------------------------------
 # Carregamento de dados
 # ---------------------------------------------------------------------------
+
 
 def _load_json(path: Path, default=None):
     try:
@@ -84,6 +95,7 @@ def load_data() -> dict:
 # ---------------------------------------------------------------------------
 # Cálculos
 # ---------------------------------------------------------------------------
+
 
 def throughput_by_week(events: list) -> dict:
     """Conta eventos 'done' por semana (ISO week string)."""
@@ -147,9 +159,11 @@ tr:hover td { background: #161616; }
 
 
 def card(label: str, value, sub: str = '') -> str:
-    return (f'<div class="card"><div class="label">{label}</div>'
-            f'<div class="value">{value}</div>'
-            f'{"<div class=sub>" + sub + "</div>" if sub else ""}</div>')
+    return (
+        f'<div class="card"><div class="label">{label}</div>'
+        f'<div class="value">{value}</div>'
+        f'{"<div class=sub>" + sub + "</div>" if sub else ""}</div>'
+    )
 
 
 def status_cell(status: str) -> str:
@@ -159,10 +173,10 @@ def status_cell(status: str) -> str:
 
 def render(data: dict) -> str:
     aprendizados = data['aprendizados']
-    custos       = data['custos']
-    canal_state  = data['canal']
-    states       = data['states']
-    events       = data['events']
+    custos = data['custos']
+    canal_state = data['canal']
+    states = data['states']
+    events = data['events']
 
     now = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')
     canal_name = canal_state.get('channel_name', 'Minuto Real')
@@ -170,20 +184,20 @@ def render(data: dict) -> str:
     # --- Métricas do canal ---
     metrics = canal_metrics(aprendizados)
     total_views = metrics.get('total_views', '—')
-    n_videos    = metrics.get('total_videos', len(states))
-    ctr_med     = metrics.get('ctr_medio', None)
-    ret_med     = metrics.get('retencao_media', None)
-    grand_cost  = sum(r.get('total_usd', 0) for r in custos.get('runs', {}).values())
+    n_videos = metrics.get('total_videos', len(states))
+    ctr_med = metrics.get('ctr_medio', None)
+    ret_med = metrics.get('retencao_media', None)
+    grand_cost = sum(r.get('total_usd', 0) for r in custos.get('runs', {}).values())
 
     ctr_txt = f'{ctr_med:.1f}%' if ctr_med else '—'
     ret_txt = f'{ret_med:.1f}%' if ret_med else '—'
 
     cards_html = (
-        card('Total Views', total_views) +
-        card('Vídeos', n_videos) +
-        card('CTR médio', ctr_txt) +
-        card('Retenção', ret_txt) +
-        card('Custo acum.', f'US$ {grand_cost:.2f}')
+        card('Total Views', total_views)
+        + card('Vídeos', n_videos)
+        + card('CTR médio', ctr_txt)
+        + card('Retenção', ret_txt)
+        + card('Custo acum.', f'US$ {grand_cost:.2f}')
     )
 
     # --- Lanes ---
@@ -193,18 +207,17 @@ def render(data: dict) -> str:
         status = info.get('status', '?')
         reason = info.get('reason', '')
         cls = 'ok' if status == 'active' else ('warn' if status == 'blocked' else 'error')
-        lane_rows += (f'<tr><td>{lane}</td>'
-                      f'<td class="{cls}">{status}</td>'
-                      f'<td style="color:#555;font-size:11px">{reason}</td></tr>')
+        lane_rows += (
+            f'<tr><td>{lane}</td>'
+            f'<td class="{cls}">{status}</td>'
+            f'<td style="color:#555;font-size:11px">{reason}</td></tr>'
+        )
 
     # --- Pipeline por slug ---
     slug_rows = ''
     for slug in sorted(states):
         state = states[slug]
-        cells = ''.join(
-            status_cell(state.get(s, {}).get('status', 'pending'))
-            for s in STAGES
-        )
+        cells = ''.join(status_cell(state.get(s, {}).get('status', 'pending')) for s in STAGES)
         slug_rows += f'<tr><td>{slug}</td>{cells}</tr>'
 
     stage_headers = ''.join(f'<th>{s[:6]}</th>' for s in STAGES)
@@ -212,33 +225,39 @@ def render(data: dict) -> str:
     # --- Custos por slug ---
     cost_rows = ''
     for slug, info in sorted(custos.get('by_slug', {}).items()):
-        cost_rows += (f'<tr><td>{slug}</td>'
-                      f'<td>{info.get("runs", 0)}</td>'
-                      f'<td>US$ {info.get("total_usd", 0):.4f}</td>'
-                      f'<td>US$ {info.get("total_usd",0)/max(info.get("runs",1),1):.4f}</td></tr>')
+        cost_rows += (
+            f'<tr><td>{slug}</td>'
+            f'<td>{info.get("runs", 0)}</td>'
+            f'<td>US$ {info.get("total_usd", 0):.4f}</td>'
+            f'<td>US$ {info.get("total_usd", 0) / max(info.get("runs", 1), 1):.4f}</td></tr>'
+        )
 
     # --- Desempenho por vídeo ---
     perf_rows = ''
     for vid in aprendizados.get('por_video', []):
-        slug  = vid.get('slug', '?')
+        slug = vid.get('slug', '?')
         views = vid.get('views', '—')
-        ctr   = vid.get('ctr', None)
-        ret   = vid.get('retencao', None)
+        ctr = vid.get('ctr', None)
+        ret = vid.get('retencao', None)
         alerts = ', '.join(vid.get('alertas', []))
-        cls   = 'warn' if alerts else 'done'
+        cls = 'warn' if alerts else 'done'
         ctr_s = f'{ctr:.1f}%' if ctr else '—'
         ret_s = f'{ret:.1f}%' if ret else '—'
-        perf_rows += (f'<tr><td>{slug}</td><td>{views}</td>'
-                      f'<td>{ctr_s}</td><td>{ret_s}</td>'
-                      f'<td class="{cls}" style="font-size:11px">{alerts or "ok"}</td></tr>')
+        perf_rows += (
+            f'<tr><td>{slug}</td><td>{views}</td>'
+            f'<td>{ctr_s}</td><td>{ret_s}</td>'
+            f'<td class="{cls}" style="font-size:11px">{alerts or "ok"}</td></tr>'
+        )
 
     # --- Throughput ---
     tp = throughput_by_week(events)
     tp_rows = ''
     for week, count in list(tp.items())[-8:]:  # últimas 8 semanas
         pct = min(count * 8, 100)
-        tp_rows += (f'<tr><td>{week}</td><td>{count} eventos done</td>'
-                    f'<td><div class="bar-wrap"><div class="bar" style="width:{pct}%"></div></div></td></tr>')
+        tp_rows += (
+            f'<tr><td>{week}</td><td>{count} eventos done</td>'
+            f'<td><div class="bar-wrap"><div class="bar" style="width:{pct}%"></div></div></td></tr>'
+        )
 
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -294,6 +313,7 @@ def render(data: dict) -> str:
 # CLI
 # ---------------------------------------------------------------------------
 
+
 def main():
     data = load_data()
     html = render(data)
@@ -303,6 +323,7 @@ def main():
 
     if '--open' in sys.argv:
         import webbrowser
+
         webbrowser.open(OUT.as_uri())
 
 

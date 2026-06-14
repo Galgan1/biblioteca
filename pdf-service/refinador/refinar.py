@@ -11,6 +11,7 @@ Uso:
 
 Tudo local e offline. Não publica nada.
 """
+
 import json
 import os
 import re
@@ -66,8 +67,10 @@ def refine_page(book, page, budget=16, log=print):
                     break
                 if best.get(knob) == v:
                     continue
-                cand = dict(best); cand[knob] = v
-                sc, _ = evaluate(book, page, cand); used += 1
+                cand = dict(best)
+                cand[knob] = v
+                sc, _ = evaluate(book, page, cand)
+                used += 1
                 if sc["patus"] > best_patus + 0.004:
                     best, best_patus, best_sc = cand, sc["patus"], sc
                     improved = True
@@ -78,10 +81,13 @@ def refine_page(book, page, budget=16, log=print):
         sug, diag = claude_cli.suggest_tune(book, page, best_sc, best)
         if sug:
             cand = {**best, **sug}
-            sc, _ = evaluate(book, page, cand); used += 1
+            sc, _ = evaluate(book, page, cand)
+            used += 1
             adot = sc["patus"] > best_patus
-            log(f"  Claude {sug} → {metricas.compact(sc)} "
-                f"[{'adotado' if adot else 'descartado'}] «{diag[:70]}»")
+            log(
+                f"  Claude {sug} → {metricas.compact(sc)} "
+                f"[{'adotado' if adot else 'descartado'}] «{diag[:70]}»"
+            )
             if adot:
                 best, best_patus, best_sc = cand, sc["patus"], sc
         else:
@@ -119,13 +125,18 @@ def main():
     args = sys.argv[1:]
     budget = 16
     if "--budget" in args:
-        i = args.index("--budget"); budget = int(args[i + 1]); del args[i:i + 2]
+        i = args.index("--budget")
+        budget = int(args[i + 1])
+        del args[i : i + 2]
     fleet = "--all" in args
     if fleet:
         args = [a for a in args if a != "--all"]
     if not args and not fleet:
-        print("uso: python refinar.py <livro> [pagina ...] [--budget N]\n"
-              "     python refinar.py --all            # catálogo inteiro"); sys.exit(2)
+        print(
+            "uso: python refinar.py <livro> [pagina ...] [--budget N]\n"
+            "     python refinar.py --all            # catálogo inteiro"
+        )
+        sys.exit(2)
 
     if fleet:
         jobs = [(b, discover_pages(b)) for b in all_books()]
@@ -158,8 +169,10 @@ def main():
     abaixo = [r for r in results if r[2] < THRESHOLD]
     print(f"\n{len(results)} páginas · {len(abaixo)} abaixo do alvo ({THRESHOLD})")
     if abaixo:
-        print("→ candidatas a patch estrutural: python propor_patch.py "
-              + " ".join(f"{b}/{p}" for b, p, *_ in abaixo[:8]))
+        print(
+            "→ candidatas a patch estrutural: python propor_patch.py "
+            + " ".join(f"{b}/{p}" for b, p, *_ in abaixo[:8])
+        )
     print(f"tuned.json em {engine.TUNED_PATH}")
 
 

@@ -8,6 +8,7 @@ Uso rápido:
     from contracts import load_roteiro
     cfg = load_roteiro('roteiros/arte-da-guerra.json')
 """
+
 from __future__ import annotations
 
 import warnings
@@ -20,6 +21,7 @@ from pydantic import BaseModel, Field, field_validator, model_validator, ConfigD
 # ---------------------------------------------------------------------------
 # CenaSchema
 # ---------------------------------------------------------------------------
+
 
 class CenaSchema(BaseModel):
     model_config = ConfigDict(extra='allow')
@@ -39,14 +41,17 @@ class CenaSchema(BaseModel):
     def avisa_narracao_longa(cls, v: str) -> str:
         n_palavras = len(v.split())
         if n_palavras > 65:
-            print(f'  [contracts] aviso: narracao com {n_palavras} palavras '
-                  f'(regra do estudio: max 60 palavras/cena). Cena: "{v[:60]}..."')
+            print(
+                f'  [contracts] aviso: narracao com {n_palavras} palavras '
+                f'(regra do estudio: max 60 palavras/cena). Cena: "{v[:60]}..."'
+            )
         return v
 
 
 # ---------------------------------------------------------------------------
 # YouTubeCfg
 # ---------------------------------------------------------------------------
+
 
 class YouTubeCfg(BaseModel):
     model_config = ConfigDict(extra='allow')
@@ -61,6 +66,7 @@ class YouTubeCfg(BaseModel):
 # ---------------------------------------------------------------------------
 # RoteiroCfg
 # ---------------------------------------------------------------------------
+
 
 class RoteiroCfg(BaseModel):
     model_config = ConfigDict(extra='allow')
@@ -103,6 +109,7 @@ class RoteiroCfg(BaseModel):
 # PipelineStageResult
 # ---------------------------------------------------------------------------
 
+
 class PipelineStageResult(BaseModel):
     slug: str
     stage: str
@@ -114,6 +121,7 @@ class PipelineStageResult(BaseModel):
 # ---------------------------------------------------------------------------
 # SkillOutput
 # ---------------------------------------------------------------------------
+
 
 class SkillOutput(BaseModel):
     slug: str
@@ -127,8 +135,10 @@ class SkillOutput(BaseModel):
 # Helper
 # ---------------------------------------------------------------------------
 
+
 def load_roteiro(path) -> RoteiroCfg:
     import json
+
     raw = json.loads(Path(path).read_text(encoding='utf-8'))
     return RoteiroCfg.model_validate(raw)
 
@@ -155,7 +165,7 @@ if __name__ == '__main__':
             "descricao": "Os princípios de Sun Tzu em menos de 5 minutos.",
             "tags": ["arte da guerra", "sun tzu", "resumo"],
             "privacidade": "unlisted",
-            "playlist": "Minuto Real — Estratégia"
+            "playlist": "Minuto Real — Estratégia",
         },
         "cenas": [
             {
@@ -164,28 +174,28 @@ if __name__ == '__main__':
                 "subtitulo": "Sun Tzu",
                 "img": "ancient chinese scroll battlefield",
                 "motion": "slow pan across ancient scroll",
-                "narracao": "Há mais de dois mil anos, um general escreveu o tratado militar mais influente da história."
+                "narracao": "Há mais de dois mil anos, um general escreveu o tratado militar mais influente da história.",
             },
             {
                 "tipo": "conceito",
                 "kicker": "01 · A Estratégia Suprema",
                 "titulo": "Vencer sem lutar",
                 "img": "two armies facing each other across a misty valley",
-                "narracao": "O general supremo vence a batalha antes de ela começar. A vitória máxima é dobrar o inimigo sem combate."
+                "narracao": "O general supremo vence a batalha antes de ela começar. A vitória máxima é dobrar o inimigo sem combate.",
             },
             {
                 "tipo": "conceito",
                 "kicker": "02 · Conhecimento",
                 "titulo": "Conheça seu inimigo",
-                "narracao": "Conheça o inimigo e a si mesmo. Em cem batalhas, jamais estarás em perigo."
+                "narracao": "Conheça o inimigo e a si mesmo. Em cem batalhas, jamais estarás em perigo.",
             },
             {
                 "tipo": "encerramento",
                 "titulo": "A Arte da Guerra",
-                "narracao": "A estratégia não é sobre força bruta. É sobre inteligência, timing e adaptação."
-            }
+                "narracao": "A estratégia não é sobre força bruta. É sobre inteligência, timing e adaptação.",
+            },
         ],
-        "shorts": [0, 2]
+        "shorts": [0, 2],
     }
 
     print("--- Smoke test: roteiro válido ---")
@@ -214,8 +224,12 @@ if __name__ == '__main__':
     print(f"  {r}")
 
     print("\n--- Smoke test: SkillOutput ---")
-    s = SkillOutput(slug='arte-da-guerra', skill_path='~/.claude/skills/arte-da-guerra',
-                    chapter_count=12, tone='contemplativo')
+    s = SkillOutput(
+        slug='arte-da-guerra',
+        skill_path='~/.claude/skills/arte-da-guerra',
+        chapter_count=12,
+        tone='contemplativo',
+    )
     print(f"  {s}")
 
     print("\nTodos os smoke tests passaram.")

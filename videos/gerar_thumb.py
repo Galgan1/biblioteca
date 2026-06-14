@@ -5,6 +5,7 @@ Reaproveita _img/<slug>_NN.png + texto-bomba. Custo R$0 (Pillow). A maior alavan
 Uso:  python gerar_thumb.py <slug> <idx> "TEXTO BOMBA" ["Subtítulo"]
 Saída: _thumbs/<slug>.png
 """
+
 import sys, json
 from pathlib import Path
 from PIL import Image, ImageDraw
@@ -12,7 +13,7 @@ import gerar_video as gv
 
 ROOT = Path(__file__).parent
 W, H = 1280, 720
-F_BLACK = lambda s: gv.F_BLACK(s)   # Hanken Grotesk Black (marca) — leitura em miniatura
+F_BLACK = lambda s: gv.F_BLACK(s)  # Hanken Grotesk Black (marca) — leitura em miniatura
 
 
 def cover(src):
@@ -68,7 +69,9 @@ def main(slug, idx, punch, sub=None):
         d.text((54, y), ln, font=ft, fill=(248, 248, 250), stroke_width=10, stroke_fill=(6, 6, 10))
         y += lh
     # filete de acento acima do texto
-    d.rectangle([(58, H - 80 - len(lines) * lh - 20), (58 + 120, H - 80 - len(lines) * lh - 8)], fill=accent)
+    d.rectangle(
+        [(58, H - 80 - len(lines) * lh - 20), (58 + 120, H - 80 - len(lines) * lh - 8)], fill=accent
+    )
 
     # subtítulo (livro) topo-direita — largura real considerando o tracking
     if sub:

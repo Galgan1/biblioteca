@@ -11,6 +11,7 @@ Rejeita o "blank" do Open Library (~2,7 KB). Verifique sempre o resultado na est
 Uso:
   python buscar_capa.py <slug> "Título" "Autor" [ISBN]
 """
+
 import io
 import os
 import sys
@@ -31,15 +32,16 @@ def _get(url):
 
 
 def cover_ids(title, author):
-    q = urllib.parse.urlencode({"title": title, "author": author,
-                                "limit": 8, "fields": "cover_i"})
+    q = urllib.parse.urlencode({"title": title, "author": author, "limit": 8, "fields": "cover_i"})
     import json
+
     data = json.loads(_get("https://openlibrary.org/search.json?" + q))
     seen, ids = set(), []
     for d in data.get("docs", []):
         c = d.get("cover_i")
         if c and c not in seen:
-            seen.add(c); ids.append(c)
+            seen.add(c)
+            ids.append(c)
     return ids
 
 
@@ -59,7 +61,9 @@ def try_save(data, slug):
 def fetch(slug, title, author, isbn=None):
     if isbn:
         try:
-            if try_save(_get(f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg?default=false"), slug):
+            if try_save(
+                _get(f"https://covers.openlibrary.org/b/isbn/{isbn}-L.jpg?default=false"), slug
+            ):
                 return True
         except Exception:
             pass
@@ -72,8 +76,10 @@ def fetch(slug, title, author, isbn=None):
                 continue
     except Exception as e:
         print(f"AVISO: busca falhou ({e})")
-    print(f"AVISO: nenhuma capa original encontrada p/ '{title}' / '{author}'. "
-          f"Forneça manualmente (Google Books/editora) ou use gerar_capa.py só se NÃO for livro publicado.")
+    print(
+        f"AVISO: nenhuma capa original encontrada p/ '{title}' / '{author}'. "
+        f"Forneça manualmente (Google Books/editora) ou use gerar_capa.py só se NÃO for livro publicado."
+    )
     return False
 
 

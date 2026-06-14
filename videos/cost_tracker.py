@@ -18,15 +18,17 @@ Consulta:
   from cost_tracker import get_run_cost, get_slug_total, print_costs
   print_costs()
 """
+
 import json
 import os
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent   # biblioteca/
+ROOT = Path(__file__).parent.parent  # biblioteca/
 COSTS_FILE = ROOT / 'analytics' / 'custos.json'
 
+# fmt: off
 PRICES = {
     'google_imagen':  0.04,    # por imagem
     'google_veo_8s':  1.20,    # por clip de 8s
@@ -34,6 +36,7 @@ PRICES = {
     'youtube_upload': 0.00,
     'instagram_api':  0.00,
 }
+# fmt: on
 
 
 def new_run_id() -> str:
@@ -68,8 +71,9 @@ def _save(data: dict) -> None:
         print(f'[cost_tracker] aviso: não salvou — {e}')
 
 
-def record_cost(run_id: str = None, slug: str = None, api: str = '',
-                units: float = 1.0, cost_usd: float = None) -> float:
+def record_cost(
+    run_id: str = None, slug: str = None, api: str = '', units: float = 1.0, cost_usd: float = None
+) -> float:
     """Registra uma operação de API e retorna o custo em US$."""
     if run_id is None:
         run_id = _env_run_id()
@@ -122,6 +126,7 @@ def get_slug_total(slug: str) -> float:
 def weekly_cost() -> float:
     """Custo total dos runs da semana corrente (seg–dom UTC)."""
     from datetime import date, timedelta
+
     today = date.today()
     start = today - timedelta(days=today.weekday())  # segunda-feira
     start_iso = start.isoformat()

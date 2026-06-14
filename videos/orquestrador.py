@@ -12,6 +12,7 @@ Uso:
   python orquestrador.py <slug> --stages biblioteca,video_built  # só essas
   python orquestrador.py <slug> --dry-run                # mostra o que faria
 """
+
 import os
 import sys
 import json
@@ -28,8 +29,8 @@ try:
 except Exception:
     pass
 
-ROOT_VIDEOS = Path(__file__).parent          # biblioteca/videos/
-ROOT = ROOT_VIDEOS.parent                    # biblioteca/
+ROOT_VIDEOS = Path(__file__).parent  # biblioteca/videos/
+ROOT = ROOT_VIDEOS.parent  # biblioteca/
 
 sys.path.insert(0, str(ROOT_VIDEOS))
 import pipeline_state as ps
@@ -46,15 +47,15 @@ CANAL_STATE = ROOT_VIDEOS / 'canal-state.json'
 
 # Mapeamento stage → lane (para filtrar por lanes ativas)
 STAGE_LANE = {
-    'skill':       None,        # sempre (não é uma lane)
-    'biblioteca':  'biblioteca',
+    'skill': None,  # sempre (não é uma lane)
+    'biblioteca': 'biblioteca',
     'video_built': 'youtube',
-    'uploaded':    'youtube',
-    'shorts':      'youtube',
-    'scheduled':   'youtube',
-    'instagram':   'instagram',
-    'tiktok':      'tiktok',
-    'facebook':    'facebook',
+    'uploaded': 'youtube',
+    'shorts': 'youtube',
+    'scheduled': 'youtube',
+    'instagram': 'instagram',
+    'tiktok': 'tiktok',
+    'facebook': 'facebook',
 }
 
 
@@ -62,12 +63,14 @@ STAGE_LANE = {
 # Helpers
 # ---------------------------------------------------------------------------
 
+
 def get_active_lanes() -> set:
     """Lê canal-state.json e retorna o set de lanes com status == 'active'."""
     try:
         data = json.loads(CANAL_STATE.read_text(encoding='utf-8'))
-        return {lane for lane, cfg in data.get('lanes', {}).items()
-                if cfg.get('status') == 'active'}
+        return {
+            lane for lane, cfg in data.get('lanes', {}).items() if cfg.get('status') == 'active'
+        }
     except Exception as e:
         log.warning(f"Não conseguiu ler canal-state.json: {e}. Assumindo todas ativas.")
         return {'biblioteca', 'youtube', 'instagram', 'facebook'}
@@ -93,19 +96,18 @@ def _run(cmd: list, cwd: Path, stage: str, slug: str, dry_run: bool) -> dict:
 
     if result.returncode == 0:
         log.info(f"✓ {stage} done ({elapsed:.1f}s)")
-        return {'status': 'done', 'stage': stage, 'elapsed': elapsed,
-                'stdout': result.stdout}
+        return {'status': 'done', 'stage': stage, 'elapsed': elapsed, 'stdout': result.stdout}
     else:
         reason = (result.stderr or result.stdout or 'exit code != 0')[:300]
         log.error(f"✗ {stage} falhou ({elapsed:.1f}s): {reason}")
         ps.mark_blocked(slug, stage, reason)
-        return {'status': 'error', 'stage': stage, 'elapsed': elapsed,
-                'stderr': result.stderr}
+        return {'status': 'error', 'stage': stage, 'elapsed': elapsed, 'stderr': result.stderr}
 
 
 # ---------------------------------------------------------------------------
 # Runners por stage
 # ---------------------------------------------------------------------------
+
 
 def run_biblioteca(slug: str, dry_run: bool) -> dict:
     if ps.is_done(slug, 'biblioteca'):
@@ -173,11 +175,11 @@ def run_carrossel(slug: str, dry_run: bool) -> dict:
 # ---------------------------------------------------------------------------
 
 RUNNERS = {
-    'biblioteca':  run_biblioteca,
+    'biblioteca': run_biblioteca,
     'video_built': run_video_build,
-    'uploaded':    run_upload,
-    'shorts':      run_shorts,
-    'instagram':   run_carrossel,
+    'uploaded': run_upload,
+    'shorts': run_shorts,
+    'instagram': run_carrossel,
 }
 
 # Stages sem runner próprio no orquestrador (feitos manualmente ou por outro script)
@@ -188,14 +190,18 @@ UNMANAGED = {'skill', 'scheduled', 'tiktok', 'facebook'}
 # Executor principal
 # ---------------------------------------------------------------------------
 
+
 def main(slug: str, stages: list = None, dry_run: bool = False):
     from cost_tracker import new_run_id
+
     run_id = new_run_id()
     os.environ['PIPELINE_RUN_ID'] = run_id
     os.environ['PIPELINE_SLUG'] = slug
 
     active_lanes = get_active_lanes()
-    log.info(f"slug={slug} run_id={run_id} | lanes ativas={sorted(active_lanes)} | dry_run={dry_run}")
+    log.info(
+        f"slug={slug} run_id={run_id} | lanes ativas={sorted(active_lanes)} | dry_run={dry_run}"
+    )
 
     # Stages já concluídos
     done = {s for s in DAG if ps.is_done(slug, s)}

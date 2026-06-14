@@ -5,12 +5,13 @@ Custo R$0 (Pillow). Identidade: carvão + âmbar, serif elegante.
 Uso:  python gerar_canal_art.py
 Saída: _canal/avatar.png, _canal/banner.png
 """
+
 from pathlib import Path
 from PIL import Image, ImageDraw
 import gerar_video as gv
 
 ROOT = Path(__file__).parent
-AC = gv.marca.rgb('ouro')   # ouro canônico (marca.py) = cor-assinatura do canal
+AC = gv.marca.rgb('ouro')  # ouro canônico (marca.py) = cor-assinatura do canal
 BG = (10, 10, 14)
 
 

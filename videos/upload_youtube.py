@@ -12,7 +12,9 @@ Na 1ª execução abre o navegador para você autorizar; o token fica salvo em
 
 Uso:  python upload_youtube.py [video.mp4] [roteiro.json]
 """
+
 import sys, json
+
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
@@ -22,8 +24,14 @@ except Exception:
 try:
     from circuit_breaker import circuit_breaker, CircuitOpenError
 except ImportError:
-    def circuit_breaker(**kw): return lambda f: f
-    class CircuitOpenError(Exception): pass
+
+    def circuit_breaker(**kw):
+        return lambda f: f
+
+    class CircuitOpenError(Exception):
+        pass
+
+
 from pathlib import Path
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -60,20 +68,24 @@ def get_creds():
     #   gcloud auth application-default login --scopes=openid,...youtube.upload
     try:
         from google.auth import default as adc_default
+
         creds, _ = adc_default(scopes=SCOPES)
         if not creds.valid:
             creds.refresh(Request())
         return creds
     except Exception as e:
-        sys.exit(f"\n[!] Sem credenciais. Rode uma vez:\n"
-                 f"    gcloud auth application-default login --scopes=openid,{SCOPES[0]}\n"
-                 f"    (ou salve client_secret.json em {CLIENT})\n    detalhe: {e}\n")
+        sys.exit(
+            f"\n[!] Sem credenciais. Rode uma vez:\n"
+            f"    gcloud auth application-default login --scopes=openid,{SCOPES[0]}\n"
+            f"    (ou salve client_secret.json em {CLIENT})\n    detalhe: {e}\n"
+        )
 
 
 def build_metadata(roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
     try:
         from contracts import load_roteiro
+
         _cfg_validated = load_roteiro(roteiro_path)
     except ImportError:
         pass  # contracts.py opcional
@@ -88,8 +100,15 @@ def build_metadata(roteiro_path):
         f"📚 Biblioteca de André Galgani — https://www.andregalgani.com.br/biblioteca\n\n"
         f"#resumo #livros #{cfg['slug'].replace('-', '')}"
     )
-    tags = yt.get('tags') or [cfg['titulo'], cfg['autor'], 'resumo de livro',
-                              'resumo', 'livros', 'audiolivro', 'filosofia']
+    tags = yt.get('tags') or [
+        cfg['titulo'],
+        cfg['autor'],
+        'resumo de livro',
+        'resumo',
+        'livros',
+        'audiolivro',
+        'filosofia',
+    ]
     return {
         'titulo': titulo[:100],
         'descricao': desc[:5000],
@@ -105,6 +124,7 @@ def upload(video_path, roteiro_path):
     # Pós-produção API (capítulos): injeta timestamps na descrição se houver timing.
     try:
         import youtube_pos
+
         meta['descricao'] = youtube_pos.with_chapters(meta['descricao'], cfg)
     except Exception as e:
         print(f"  [aviso] capitulos pulados: {str(e)[:120]}")
@@ -124,7 +144,9 @@ def upload(video_path, roteiro_path):
             'containsSyntheticMedia': True,
         },
     }
-    media = MediaFileUpload(str(video_path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024)
+    media = MediaFileUpload(
+        str(video_path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024
+    )
     req = yt.videos().insert(part='snippet,status', body=body, media_body=media)
     print(f"Enviando '{meta['titulo']}' ({meta['privacidade']})...")
     resp = None
@@ -136,17 +158,20 @@ def upload(video_path, roteiro_path):
     print(f"\nOK ✓  https://youtu.be/{vid}   (privacidade: {meta['privacidade']})")
     try:
         import pipeline_state
+
         pipeline_state.mark_done(cfg['slug'], 'uploaded', data={'video_id': vid})
     except Exception:
         pass
     try:
         from cost_tracker import record_cost
+
         record_cost(api='youtube_upload', slug=cfg['slug'])
     except Exception:
         pass
     # Pós-produção API (legendas + playlist temática) — best-effort, nunca derruba o upload.
     try:
         import youtube_pos
+
         youtube_pos.post_publish(yt, cfg, vid)
     except Exception as e:
         print(f"  [aviso] legendas/playlist puladas: {str(e)[:120]}")

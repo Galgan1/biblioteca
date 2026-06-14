@@ -10,6 +10,7 @@ Pré-requisito (uma vez, feito pelo Showrunner):
 Mantém a MESMA assinatura de imagen.gen() e veo.animate(), então o pipeline
 só troca o provedor — nada mais muda.
 """
+
 import os, sys, urllib.request
 from pathlib import Path
 
@@ -31,11 +32,15 @@ def _download(url, out_path):
 def gen(prompt, out_png, aspect='16:9'):
     """Gera imagem (Flux). Mesma assinatura de imagen.gen(). Retorna model id ou None."""
     try:
-        res = fal_client.subscribe(IMG_MODEL, arguments={
-            'prompt': prompt,
-            'image_size': 'landscape_16_9',
-            'num_images': 1,
-        }, with_logs=False)
+        res = fal_client.subscribe(
+            IMG_MODEL,
+            arguments={
+                'prompt': prompt,
+                'image_size': 'landscape_16_9',
+                'num_images': 1,
+            },
+            with_logs=False,
+        )
     except Exception as e:
         print(f'  ERRO fal imagem: {e}')
         return None
@@ -53,12 +58,16 @@ def animate(img_path, prompt, out_mp4, duration=5):
     """Anima img_path (Kling i2v). Mesma assinatura de veo.animate(). Retorna True/False."""
     try:
         img_url = fal_client.upload_file(str(img_path))
-        res = fal_client.subscribe(VID_MODEL, arguments={
-            'prompt': prompt,
-            'image_url': img_url,
-            'duration': str(duration),
-            'aspect_ratio': '16:9',
-        }, with_logs=False)
+        res = fal_client.subscribe(
+            VID_MODEL,
+            arguments={
+                'prompt': prompt,
+                'image_url': img_url,
+                'duration': str(duration),
+                'aspect_ratio': '16:9',
+            },
+            with_logs=False,
+        )
     except Exception as e:
         print(f'  ERRO fal vídeo: {e}')
         return False
@@ -75,10 +84,16 @@ if __name__ == '__main__':
     # Smoke test:  python falgen.py img   |   python falgen.py vid <img.png>
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'img'
     if cmd == 'img':
-        m = gen('a vast dark cinema with a projector beam through haze, '
-                'cinematic atmospheric digital painting', '_img/_falcheck.png')
+        m = gen(
+            'a vast dark cinema with a projector beam through haze, '
+            'cinematic atmospheric digital painting',
+            '_img/_falcheck.png',
+        )
         print('OK img ->', m if m else 'FALHOU')
     elif cmd == 'vid':
-        ok = animate(sys.argv[2], 'slow cinematic push-in, drifting haze, gentle light flicker',
-                     '_motion/_falcheck.mp4')
+        ok = animate(
+            sys.argv[2],
+            'slow cinematic push-in, drifting haze, gentle light flicker',
+            '_motion/_falcheck.mp4',
+        )
         print('OK vid' if ok else 'FALHOU vid')

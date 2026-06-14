@@ -4,17 +4,27 @@ Usa a mesma API key do Imagen (.secrets/imagen_api_key.txt). Stdlib only.
 
 Custo: variante fast ≈ US$0,15/s (8s ≈ US$1,20/clipe). Saída 1280x720 24fps.
 """
+
 import sys, json, time, base64, urllib.request, urllib.error
 from pathlib import Path
 
 try:
     from circuit_breaker import circuit_breaker, retry, CircuitOpenError
 except ImportError:
-    def circuit_breaker(**kw): return lambda f: f
-    def retry(**kw): return lambda f: f
-    class CircuitOpenError(Exception): pass
 
-KEY = (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
+    def circuit_breaker(**kw):
+        return lambda f: f
+
+    def retry(**kw):
+        return lambda f: f
+
+    class CircuitOpenError(Exception):
+        pass
+
+
+KEY = (
+    (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
+)
 BASE = 'https://generativelanguage.googleapis.com/v1beta'
 MODEL = 'veo-3.1-fast-generate-preview'
 
@@ -24,10 +34,12 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
     """Anima img_path segundo o prompt de movimento. Retorna True se gerou."""
     b64 = base64.b64encode(Path(img_path).read_bytes()).decode()
     body = {
-        'instances': [{
-            'prompt': prompt,
-            'image': {'bytesBase64Encoded': b64, 'mimeType': 'image/png'},
-        }],
+        'instances': [
+            {
+                'prompt': prompt,
+                'image': {'bytesBase64Encoded': b64, 'mimeType': 'image/png'},
+            }
+        ],
         'parameters': {
             'aspectRatio': aspect,
             'durationSeconds': duration,
@@ -36,8 +48,9 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
         },
     }
     url = f'{BASE}/models/{MODEL}:predictLongRunning?key={KEY}'
-    req = urllib.request.Request(url, data=json.dumps(body).encode('utf-8'),
-                                 headers={'Content-Type': 'application/json'})
+    req = urllib.request.Request(
+        url, data=json.dumps(body).encode('utf-8'), headers={'Content-Type': 'application/json'}
+    )
     try:
         op = json.load(urllib.request.urlopen(req))
     except urllib.error.HTTPError as e:
@@ -64,6 +77,7 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
             Path(out_mp4).write_bytes(urllib.request.urlopen(dl).read())
             try:
                 from cost_tracker import record_cost
+
                 record_cost(api='google_veo_8s', units=duration / 8)
             except Exception:
                 pass

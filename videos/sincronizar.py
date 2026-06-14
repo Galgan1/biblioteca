@@ -28,6 +28,7 @@ Uso:
 
 Stdlib only. Console Windows = cp1252: sem caractere não-ASCII em print().
 """
+
 import sys
 import json
 import time
@@ -49,13 +50,13 @@ BRT = timezone(timedelta(hours=-3))
 DOW = ['seg', 'ter', 'qua', 'qui', 'sex', 'sab', 'dom']
 
 # Coreografia do eco: IG depois do longo, dentro de uma janela curta.
-OFFSET_DEFAULT_H = 2.0          # +2h por padrao
-MAX_OFFSET_H = 4.0             # trava dura: nunca mais que 4h depois do longo
+OFFSET_DEFAULT_H = 2.0  # +2h por padrao
+MAX_OFFSET_H = 4.0  # trava dura: nunca mais que 4h depois do longo
 
 # VPS (sempre ligada). A pasta provisoria fica FORA da web, dentro de /opt.
 VPS_HOST = 'root@andregalgani.com.br'
 VPS_BASE = '/opt/minutoreal'
-VPS_PROVISORIO = f'{VPS_BASE}/ig-provisorio'        # /opt/minutoreal/ig-provisorio/<slug>/
+VPS_PROVISORIO = f'{VPS_BASE}/ig-provisorio'  # /opt/minutoreal/ig-provisorio/<slug>/
 VPS_MANIFEST = f'{VPS_BASE}/sync_manifest.json'
 
 
@@ -96,7 +97,9 @@ def parse_anchor(ddmm, hhmm):
 def clamp_offset(offset_h):
     """Garante 0 < offset <= 4h. Eco: sempre DEPOIS, nunca alem da janela."""
     if offset_h <= 0:
-        print(f'  [aviso] offset {offset_h}h invalido (eco e DEPOIS do longo); usando {OFFSET_DEFAULT_H}h')
+        print(
+            f'  [aviso] offset {offset_h}h invalido (eco e DEPOIS do longo); usando {OFFSET_DEFAULT_H}h'
+        )
         offset_h = OFFSET_DEFAULT_H
     if offset_h > MAX_OFFSET_H:
         print(f'  [aviso] offset {offset_h}h excede a janela; travando em {MAX_OFFSET_H}h')
@@ -125,8 +128,9 @@ def push_manifest():
         print('  [i] nada para enviar (manifesto local nao existe)')
         return False
     subprocess.run(['ssh', VPS_HOST, f'mkdir -p {VPS_PROVISORIO}'], check=True)
-    r = subprocess.run(['scp', '-q', str(MANIFEST), f'{VPS_HOST}:{VPS_MANIFEST}'],
-                       capture_output=True, text=True)
+    r = subprocess.run(
+        ['scp', '-q', str(MANIFEST), f'{VPS_HOST}:{VPS_MANIFEST}'], capture_output=True, text=True
+    )
     if r.returncode == 0:
         print('  manifesto enviado para a VPS OK')
         return True
@@ -144,8 +148,11 @@ def upload_media(slug, media_files):
         p = Path(f)
         if not p.exists():
             sys.exit(f'[!] midia ausente: {p} (gere o short antes de enfileirar)')
-        r = subprocess.run(['scp', '-q', str(p), f'{VPS_HOST}:{remote_dir}/{p.name}'],
-                           capture_output=True, text=True)
+        r = subprocess.run(
+            ['scp', '-q', str(p), f'{VPS_HOST}:{remote_dir}/{p.name}'],
+            capture_output=True,
+            text=True,
+        )
         if r.returncode != 0:
             sys.exit(f'[!] scp da midia falhou ({p.name}): {r.stderr[:160]}')
         remotes.append(f'{remote_dir}/{p.name}')
@@ -166,9 +173,9 @@ def build_job(slug, tipo, anchor, offset_h):
         'ig_alvo_brt': alvo.strftime('%Y-%m-%dT%H:%M:%S%z'),
         'ig_alvo_utc': alvo.astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
         'offset_h': offset_h,
-        'youtube_id': None,        # opcional: id do longo p/ o runner confirmar "publico"
-        'status': 'pendente',      # pendente -> publicado | falhou
-        'media': [],               # caminhos REMOTOS na pasta provisoria da VPS
+        'youtube_id': None,  # opcional: id do longo p/ o runner confirmar "publico"
+        'status': 'pendente',  # pendente -> publicado | falhou
+        'media': [],  # caminhos REMOTOS na pasta provisoria da VPS
         'criado_em': int(time.time()),
     }
     if tipo == 'reel':
@@ -180,13 +187,15 @@ def build_job(slug, tipo, anchor, offset_h):
         job['cmd'] = ['file_reel', slug, idx]
     elif tipo == 'carousel':
         job['parte'] = 'overview'
-        job['media_local'] = []     # carrossel hospeda via VPS no proprio poster
+        job['media_local'] = []  # carrossel hospeda via VPS no proprio poster
         job['cmd'] = ['carousel', slug, 'overview']
     elif tipo == 'story':
         story_dir = ROOT / '_carrossel' / f'{slug}_stories'
         if not story_dir.exists():
-            sys.exit(f'[!] stories ausentes: {story_dir}\n'
-                     f'    Gere com: python gerar_carrossel.py {slug} --stories')
+            sys.exit(
+                f'[!] stories ausentes: {story_dir}\n'
+                f'    Gere com: python gerar_carrossel.py {slug} --stories'
+            )
         pngs = sorted(story_dir.glob('[0-9][0-9].png'))
         if not pngs:
             sys.exit(f'[!] nenhum frame .png em {story_dir}')
@@ -202,8 +211,15 @@ def job_key(job):
     return (job['slug'], job['tipo'], job.get('parte'))
 
 
-def enqueue(slug, ddmm=None, hhmm=None, offset_h=OFFSET_DEFAULT_H, tipo='reel',
-            youtube_id=None, dry_run=False):
+def enqueue(
+    slug,
+    ddmm=None,
+    hhmm=None,
+    offset_h=OFFSET_DEFAULT_H,
+    tipo='reel',
+    youtube_id=None,
+    dry_run=False,
+):
     anchor = parse_anchor(ddmm, hhmm)
     job = build_job(slug, tipo, anchor, offset_h)
     job['youtube_id'] = youtube_id
@@ -234,8 +250,11 @@ def enqueue(slug, ddmm=None, hhmm=None, offset_h=OFFSET_DEFAULT_H, tipo='reel',
             subprocess.run(['ssh', VPS_HOST, f'mkdir -p {remote_dir}'], check=True)
             for f in job['media_local']:
                 p = Path(f)
-                r = subprocess.run(['scp', '-q', str(p), f'{VPS_HOST}:{remote_dir}/{p.name}'],
-                                   capture_output=True, text=True)
+                r = subprocess.run(
+                    ['scp', '-q', str(p), f'{VPS_HOST}:{remote_dir}/{p.name}'],
+                    capture_output=True,
+                    text=True,
+                )
                 if r.returncode != 0:
                     sys.exit(f'[!] scp do frame story falhou ({p.name}): {r.stderr[:160]}')
                 print(f'  story frame enviado: {p.name}')
@@ -266,7 +285,9 @@ def cmd_list():
         return
     for j in jobs:
         alvo = j.get('ig_alvo_brt', '?')
-        print(f"  [{j.get('status'):9}] {j['slug']:22} {j['tipo']:8} parte={j.get('parte')}  IG={alvo}")
+        print(
+            f"  [{j.get('status'):9}] {j['slug']:22} {j['tipo']:8} parte={j.get('parte')}  IG={alvo}"
+        )
 
 
 def _parse_cli(args):
@@ -280,15 +301,20 @@ def _parse_cli(args):
     while i < len(args):
         a = args[i]
         if a == '--offset':
-            offset = float(args[i + 1]); i += 2
+            offset = float(args[i + 1])
+            i += 2
         elif a == '--tipo':
-            tipo = args[i + 1]; i += 2
+            tipo = args[i + 1]
+            i += 2
         elif a == '--yt':
-            youtube_id = args[i + 1]; i += 2
+            youtube_id = args[i + 1]
+            i += 2
         elif a in ('--dry-run', '--dry'):
-            dry = True; i += 1
+            dry = True
+            i += 1
         else:
-            pos.append(a); i += 1
+            pos.append(a)
+            i += 1
     ddmm = pos[0] if len(pos) >= 1 else None
     hhmm = pos[1] if len(pos) >= 2 else None
     return ddmm, hhmm, offset, tipo, youtube_id, dry
@@ -297,8 +323,10 @@ def _parse_cli(args):
 if __name__ == '__main__':
     a = sys.argv[1:]
     if not a:
-        sys.exit('uso: python sincronizar.py enqueue <slug> [DD/MM] [HH:MM] '
-                 '[--offset H] [--tipo reel|carousel] [--yt <id>] [--dry-run]  |  list  |  push')
+        sys.exit(
+            'uso: python sincronizar.py enqueue <slug> [DD/MM] [HH:MM] '
+            '[--offset H] [--tipo reel|carousel] [--yt <id>] [--dry-run]  |  list  |  push'
+        )
     if a[0] == 'list':
         cmd_list()
     elif a[0] == 'push':

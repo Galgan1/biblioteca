@@ -20,6 +20,7 @@ Uso:
   python facebook_post.py text "<mensagem>"            # post de texto avulso
   python facebook_post.py link "<url>" "<mensagem>"     # post-link avulso
 """
+
 import sys, json, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
@@ -35,8 +36,10 @@ HUB = 'https://www.andregalgani.com.br/biblioteca'
 
 def _token():
     if not PAGE_TOKEN_FILE.exists():
-        sys.exit(f'[!] {PAGE_TOKEN_FILE} ausente: salve o Page access token (escopo '
-                 'pages_manage_posts). Veja o cabeçalho deste arquivo.')
+        sys.exit(
+            f'[!] {PAGE_TOKEN_FILE} ausente: salve o Page access token (escopo '
+            'pages_manage_posts). Veja o cabeçalho deste arquivo.'
+        )
     return PAGE_TOKEN_FILE.read_text(encoding='utf-8').strip()
 
 
@@ -62,12 +65,14 @@ def caption_for(cfg):
     gancho = yt.get('titulo', cfg['titulo']).split('|')[0].strip()
     tags = [t.replace(' ', '').lower() for t in yt.get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + tags))
-    return (f"{gancho}\n\n"
-            f"As ideias que ficam de \"{cfg['titulo']}\" — destiladas, em minutos.\n"
-            f"📄 O livro inteiro em 1 cheat sheet + PDF, de graça, no acervo: {HUB}\n"
-            f"🎬 Prefere assistir? O resumo de ~5 min está no vídeo abaixo. 👇\n\n"
-            f"Curta a Página e acompanhe — um grande livro destilado por semana.\n"
-            f"Narração e arte por IA.\n\n{hs}")
+    return (
+        f"{gancho}\n\n"
+        f"As ideias que ficam de \"{cfg['titulo']}\" — destiladas, em minutos.\n"
+        f"📄 O livro inteiro em 1 cheat sheet + PDF, de graça, no acervo: {HUB}\n"
+        f"🎬 Prefere assistir? O resumo de ~5 min está no vídeo abaixo. 👇\n\n"
+        f"Curta a Página e acompanhe — um grande livro destilado por semana.\n"
+        f"Narração e arte por IA.\n\n{hs}"
+    )
 
 
 def post_link(url, message):
@@ -97,7 +102,8 @@ def postar_longo(slug, video_id):
     state_f = SH / f'{slug}_facebook_state.json'
     state = json.loads(state_f.read_text()) if state_f.exists() else {}
     if video_id in state:
-        print(f'  já no Facebook: {video_id} ({state[video_id]})'); return
+        print(f'  já no Facebook: {video_id} ({state[video_id]})')
+        return
     msg = caption_for(cfg)
     (SH / f'{slug}_facebook_caption.md').write_text(msg, encoding='utf-8')
     print(f'  postando link do longo de {slug}...')
@@ -116,6 +122,8 @@ if __name__ == '__main__':
     elif len(args) == 2:
         postar_longo(args[0], args[1])
     else:
-        sys.exit('uso: python facebook_post.py <slug> <video_id>  |  '
-                 'python facebook_post.py text "<mensagem>"  |  '
-                 'python facebook_post.py link "<url>" "<mensagem>"')
+        sys.exit(
+            'uso: python facebook_post.py <slug> <video_id>  |  '
+            'python facebook_post.py text "<mensagem>"  |  '
+            'python facebook_post.py link "<url>" "<mensagem>"'
+        )

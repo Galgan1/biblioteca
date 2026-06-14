@@ -15,6 +15,7 @@ Consumo:
 Fontes em _fonts/ (variaveis, OFL, Google Fonts). Se faltarem, o font() cai de
 forma graciosa nas fontes do Windows — o pipeline nunca quebra por causa disso.
 """
+
 from pathlib import Path
 
 DIR = Path(__file__).parent
@@ -24,6 +25,7 @@ FONTS = DIR / '_fonts'
 # PALETA  ·  hue 152 = verde-mae   ·   hue 83 = ouro (acento UNICO, #d8a64a)
 # Cada token:  (oklch claro,  oklch escuro,  hex p/ Pillow no canvas escuro)
 # ---------------------------------------------------------------------------
+# fmt: off
 TOKENS = {
     'verde':       ('oklch(52% 0.14 152)',  'oklch(70% 0.13 152)',  '#3faf76'),
     'verde-deep':  ('oklch(40% 0.12 152)',  'oklch(77% 0.11 152)',  '#5cc28a'),
@@ -42,6 +44,7 @@ _CSS_VARMAP = {
     'ouro': '--gold', 'ouro-soft': '--gold-soft', 'alerta': '--alert',
     'tinta': '--ink', 'tinta-fraca': '--ink-dim', 'papel': '--bg',
 }
+# fmt: on
 
 # ---------------------------------------------------------------------------
 # TIPOGRAFIA
@@ -54,6 +57,7 @@ def font(role, size, weight='SemiBold'):
     """Fonte da marca p/ Pillow. role: 'display' (Hanken) | 'serif' (Literata).
     weight: Thin/ExtraLight/Light/Regular/Medium/SemiBold/Bold/ExtraBold/Black."""
     from PIL import ImageFont
+
     path = _FONT_FILES.get(role)
     if path and path.exists():
         ft = ImageFont.truetype(str(path), size)
@@ -74,7 +78,7 @@ def hex_of(name):
 
 def rgb(name):
     h = TOKENS[name][2].lstrip('#')
-    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+    return tuple(int(h[i : i + 2], 16) for i in (0, 2, 4))
 
 
 # ---------------------------------------------------------------------------
@@ -84,8 +88,10 @@ def css_root(mode='dark'):
     """Bloco :root{} canonico. mode='dark' (carrossel/video) ou 'light' (site claro)."""
     i = 1 if mode == 'dark' else 0
     decls = '\n'.join(f'  {var}: {TOKENS[tok][i]};' for tok, var in _CSS_VARMAP.items())
-    fonts = ("  --font-display: 'Hanken Grotesk', system-ui, sans-serif;\n"
-             "  --font-serif: 'Literata', Georgia, serif;")
+    fonts = (
+        "  --font-display: 'Hanken Grotesk', system-ui, sans-serif;\n"
+        "  --font-serif: 'Literata', Georgia, serif;"
+    )
     return f':root{{\n{decls}\n{fonts}\n}}'
 
 

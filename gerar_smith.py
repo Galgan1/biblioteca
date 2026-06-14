@@ -3,6 +3,7 @@
 no padrão "Cheat Sheet Verde". Saída: story-mckee.html (visão geral) +
 story-mckee/chNN-*.html (19 capítulos) + story-mckee/script.js.
 Usa apenas classes de assets/style.css — nenhum estilo inline."""
+
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -41,27 +42,35 @@ ICONS = {
 
 
 def icon(name):
-    return ('<div class="card-icon" aria-hidden="true">'
-            '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
-            + ICONS[name] + '</svg></div>')
+    return (
+        '<div class="card-icon" aria-hidden="true">'
+        '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + ICONS[name]
+        + '</svg></div>'
+    )
 
 
 def card(c):
     cls = "card card-warning" if c.get("warn") else "card"
     if c.get("wide"):
         cls += " card-wide"
-    parts = [f'<article class="{cls} animate-entrance" style="--i: {c["i"]}">',
-             icon(c["ic"]),
-             '<div class="card-content">',
-             f'<h2 class="card-title">{c["t"]}</h2>',
-             f'<p class="card-body">{c["b"]}</p>']
+    parts = [
+        f'<article class="{cls} animate-entrance" style="--i: {c["i"]}">',
+        icon(c["ic"]),
+        '<div class="card-content">',
+        f'<h2 class="card-title">{c["t"]}</h2>',
+        f'<p class="card-body">{c["b"]}</p>',
+    ]
     if c.get("list"):
-        parts.append('<ul class="content-list">' + "".join(f'<li>{x}</li>' for x in c["list"]) + '</ul>')
+        parts.append(
+            '<ul class="content-list">' + "".join(f'<li>{x}</li>' for x in c["list"]) + '</ul>'
+        )
     if c.get("tip"):
         parts.append(f'<p class="card-tip">{c["tip"]}</p>')
     if c.get("det"):
-        parts.append('<div class="card-details"><div class="card-details-inner">'
-                     + c["det"] + '</div></div>')
+        parts.append(
+            '<div class="card-details"><div class="card-details-inner">' + c["det"] + '</div></div>'
+        )
     parts.append('</div></article>')
     return "\n".join(parts)
 
@@ -96,7 +105,10 @@ def chapter_page(ch, prev_href, prev_label, next_href, next_label):
     cards_html = "\n".join(card({**c, "i": idx + 1}) for idx, c in enumerate(ch["cards"]))
     lessons_html = "\n".join(f"<li>{x}</li>" for x in ch["lessons"])
     li = len(ch["cards"]) + 1
-    html = HEAD.format(title=f'{ch["sub"]} | Quando Digo Não, Me Sinto Culpado | Biblioteca', css="../assets/style.css")
+    html = HEAD.format(
+        title=f'{ch["sub"]} | Quando Digo Não, Me Sinto Culpado | Biblioteca',
+        css="../assets/style.css",
+    )
     html += f'''
         <nav aria-label="Navegação principal">
             <a href="../smith-assertividade.html" class="back-link"><span class="icon-arrow" aria-hidden="true">&larr;</span> Voltar para Visão Geral</a>
@@ -148,9 +160,13 @@ SCRIPT_JS = """document.addEventListener('DOMContentLoaded', () => {
 def overview_page(chapters):
     links = "\n".join(
         f'                            <a href="smith-assertividade/{ch["slug"]}.html" class="chapter-link">{ch["sub"].replace("CAPÍTULO", "Cap.")} <span class="arrow" aria-hidden="true">&rarr;</span></a>'
-        for ch in chapters)
-    html = HEAD.format(title="Visão Geral: Quando Digo Não, Me Sinto Culpado | Biblioteca", css="assets/style.css")
-    html += '''
+        for ch in chapters
+    )
+    html = HEAD.format(
+        title="Visão Geral: Quando Digo Não, Me Sinto Culpado | Biblioteca", css="assets/style.css"
+    )
+    html += (
+        '''
         <nav aria-label="Navegação Voltar">
             <a href="index.html" class="back-link"><span class="icon-arrow" aria-hidden="true">&larr;</span> Voltar para a Biblioteca</a>
         </nav>
@@ -172,7 +188,9 @@ def overview_page(chapters):
 
                 <article class="card animate-entrance" style="--i: 1">
                     <div class="card-icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">''' + ICONS["target"] + '''</svg>
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'''
+        + ICONS["target"]
+        + '''</svg>
                     </div>
                     <div class="card-content">
                         <h2 class="card-title">As 7 Técnicas Verbais</h2>
@@ -190,7 +208,9 @@ def overview_page(chapters):
 
                 <article class="card animate-entrance" style="--i: 2">
                     <div class="card-icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">''' + ICONS["fork"] + '''</svg>
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'''
+        + ICONS["fork"]
+        + '''</svg>
                     </div>
                     <div class="card-content">
                         <h2 class="card-title">Classifique a Interação</h2>
@@ -224,28 +244,36 @@ def overview_page(chapters):
                         <h2 class="card-title">Aprofunde-se nos Capítulos</h2>
                         <p class="card-body">As notas detalhadas dos 11 capítulos do livro:</p>
                         <nav aria-label="Navegação de Capítulos" class="chapter-list">
-''' + links + '''
+'''
+        + links
+        + '''
                         </nav>
                     </div>
                 </article>
             </div>
         </main>
 '''
+    )
     html += FOOT.format(script="smith-assertividade/script.js")
     return html
 
 
 if __name__ == "__main__":
     from smith_data import CHAPTERS  # noqa
+
     # script.js
     with open(os.path.join(OUT_DIR, "script.js"), "w", encoding="utf-8") as f:
         f.write(SCRIPT_JS)
     # capítulos
     n = len(CHAPTERS)
     for idx, ch in enumerate(CHAPTERS):
-        prev_href = "../smith-assertividade.html" if idx == 0 else CHAPTERS[idx - 1]["slug"] + ".html"
+        prev_href = (
+            "../smith-assertividade.html" if idx == 0 else CHAPTERS[idx - 1]["slug"] + ".html"
+        )
         prev_label = "&larr; Visão Geral" if idx == 0 else "&larr; Anterior"
-        next_href = "../smith-assertividade.html" if idx == n - 1 else CHAPTERS[idx + 1]["slug"] + ".html"
+        next_href = (
+            "../smith-assertividade.html" if idx == n - 1 else CHAPTERS[idx + 1]["slug"] + ".html"
+        )
         next_label = "Visão Geral &rarr;" if idx == n - 1 else "Próximo &rarr;"
         html = chapter_page(ch, prev_href, prev_label, next_href, next_label)
         with open(os.path.join(OUT_DIR, ch["slug"] + ".html"), "w", encoding="utf-8") as f:

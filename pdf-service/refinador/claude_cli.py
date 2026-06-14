@@ -7,6 +7,7 @@ Manda as MÉTRICAS + o tune atual para o `claude` (CLI) e recebe de volta um tun
 sugerido (JSON). Texto puro — sem visão, sem ferramentas, sem prompt interativo:
 o prompt vai pelo stdin para não esbarrar em aspas/acentos no Windows.
 """
+
 import json
 import re
 import shutil
@@ -14,11 +15,11 @@ import subprocess
 
 # Botões que o refinador conhece, com faixa segura (o que vier fora é grampeado).
 KNOBS = {
-    "maxFs": (12.0, 18.0),          # teto da fonte (↑ enche mais com pouco texto)
-    "fillTarget": (0.85, 0.98),     # alvo de altura preenchida antes do ritmo
-    "rhythmCap": (1.2, 2.6),        # teto do "ar" entre cards (↑ espalha conteúdo curto)
-    "padCap": (1.0, 1.8),           # teto do padding interno dos cards
-    "marginMul": (0.6, 1.6),        # multiplicador da margem entre cards
+    "maxFs": (12.0, 18.0),  # teto da fonte (↑ enche mais com pouco texto)
+    "fillTarget": (0.85, 0.98),  # alvo de altura preenchida antes do ritmo
+    "rhythmCap": (1.2, 2.6),  # teto do "ar" entre cards (↑ espalha conteúdo curto)
+    "padCap": (1.0, 1.8),  # teto do padding interno dos cards
+    "marginMul": (0.6, 1.6),  # multiplicador da margem entre cards
 }
 
 _SCHEMA = "\n".join(f"  - {k}: faixa [{lo}, {hi}]" for k, (lo, hi) in KNOBS.items())
@@ -34,8 +35,15 @@ def ask(prompt, timeout=300):
         return None
     try:
         out = subprocess.run(
-            "claude -p", input=prompt, capture_output=True, text=True,
-            shell=True, encoding="utf-8", errors="replace", timeout=timeout)
+            "claude -p",
+            input=prompt,
+            capture_output=True,
+            text=True,
+            shell=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout,
+        )
     except Exception:  # noqa: BLE001
         return None
     return (out.stdout or "").strip() or None
@@ -84,8 +92,15 @@ Responda SOMENTE com um objeto JSON, sem texto fora dele, no formato:
 
     try:
         out = subprocess.run(
-            "claude -p", input=prompt, capture_output=True, text=True,
-            shell=True, encoding="utf-8", errors="replace", timeout=timeout)
+            "claude -p",
+            input=prompt,
+            capture_output=True,
+            text=True,
+            shell=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=timeout,
+        )
     except Exception as e:  # noqa: BLE001
         return None, f"falha ao chamar claude: {e}"
 

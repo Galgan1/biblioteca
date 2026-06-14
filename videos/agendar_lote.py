@@ -16,8 +16,10 @@ Uso:  python agendar_lote.py <slug> <video_id_longo> <DD/MM>  (use QUARTAS e QUI
 Ex.:  python agendar_lote.py sound-design <id> 22/07   (qua)
       python agendar_lote.py audiovisao  <id> 25/07   (qui)
 """
+
 import sys, json
 from datetime import datetime, timedelta, timezone
+
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
@@ -33,10 +35,15 @@ SLOTS_SHORTS = [(1, 12), (2, 19), (3, 12), (4, 10)]  # (dias após o longo, hora
 
 
 def agendar(yt, vid, dt, rotulo):
-    body = {'id': vid, 'status': {
-        'privacyStatus': 'private',
-        'publishAt': dt.astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.0Z'),
-        'selfDeclaredMadeForKids': False, 'containsSyntheticMedia': True}}
+    body = {
+        'id': vid,
+        'status': {
+            'privacyStatus': 'private',
+            'publishAt': dt.astimezone(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.0Z'),
+            'selfDeclaredMadeForKids': False,
+            'containsSyntheticMedia': True,
+        },
+    }
     try:
         yt.videos().update(part='status', body=body).execute()
         print(f'  AGENDADO ✓ {dt:%a %d/%m %H:%M} BRT — {rotulo} ({vid})')
@@ -60,6 +67,7 @@ def main(slug, longo_id, ddmm):
 
     try:
         import pipeline_state
+
         pipeline_state.mark_done(slug, 'scheduled', data={'longo_id': longo_id, 'date': ddmm})
     except Exception:
         pass
@@ -70,10 +78,14 @@ def main(slug, longo_id, ddmm):
     # Falha aqui NUNCA derruba o agendamento do YouTube (já concluído acima).
     try:
         import sincronizar
+
         print('--- sincronia Instagram (eco +2h) ---')
-        sincronizar.enqueue(slug, ddmm=f'{dia.day:02d}/{dia.month:02d}',
-                            hhmm=f'{dia.hour:02d}:{dia.minute:02d}',
-                            youtube_id=longo_id)
+        sincronizar.enqueue(
+            slug,
+            ddmm=f'{dia.day:02d}/{dia.month:02d}',
+            hhmm=f'{dia.hour:02d}:{dia.minute:02d}',
+            youtube_id=longo_id,
+        )
     except SystemExit as e:
         print(f'  [sync IG] pulado (YouTube ok): {e}')
     except Exception as e:
@@ -86,13 +98,19 @@ def main(slug, longo_id, ddmm):
         story_dir = ROOT / '_carrossel' / f'{slug}_stories'
         if list(story_dir.glob('[0-9][0-9].png')):
             print('--- story de follow-up IG (+2.5h) ---')
-            sincronizar.enqueue(slug, ddmm=f'{dia.day:02d}/{dia.month:02d}',
-                                hhmm=f'{dia.hour:02d}:{dia.minute:02d}',
-                                offset_h=2.5, tipo='story',
-                                youtube_id=longo_id)
+            sincronizar.enqueue(
+                slug,
+                ddmm=f'{dia.day:02d}/{dia.month:02d}',
+                hhmm=f'{dia.hour:02d}:{dia.minute:02d}',
+                offset_h=2.5,
+                tipo='story',
+                youtube_id=longo_id,
+            )
         else:
-            print(f'  [story IG] stories nao gerados para {slug}; pulando '
-                  f'(gere com: python gerar_carrossel.py {slug} --stories)')
+            print(
+                f'  [story IG] stories nao gerados para {slug}; pulando '
+                f'(gere com: python gerar_carrossel.py {slug} --stories)'
+            )
     except SystemExit as e:
         print(f'  [story IG] pulado: {e}')
     except Exception as e:

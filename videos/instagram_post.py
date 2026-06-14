@@ -30,6 +30,7 @@ Depois disso:
 Stdlib only (urllib). Conteúdo do canal é narrado/ilustrado por IA (perfil já tem o
 rótulo "Criador de conteúdo de IA"; a legenda reforça a divulgação).
 """
+
 import sys, json, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 
@@ -90,6 +91,7 @@ def _afiliado_block(slug):
 def _frases(texto):
     """Quebra um texto em frases limpas (p/ gancho + 1 linha de valor)."""
     import re
+
     return [s.strip() for s in re.split(r'(?<=[.?!])\s+', (texto or '').strip()) if s.strip()]
 
 
@@ -98,8 +100,10 @@ def _pergunta_ancora(titulo, tags=None):
     Leva o leitor a comentar — comentários são o 3º sinal de ranking do algoritmo.
     Roteamento por tags do livro; fallback genérico mas acionável."""
     tags = [t.lower() for t in (tags or [])]
+
     def _tem(*palavras):
         return any(any(p in t for p in palavras) for t in tags)
+
     if _tem('dinheiro', 'financ', 'investimento', 'riqueza', 'capital', 'econom'):
         return 'Qual hábito financeiro deste livro você aplicaria primeiro?'
     if _tem('hábito', 'habit', 'produtividade', 'rotina', 'disciplina'):
@@ -120,12 +124,14 @@ def _refresh(tj):
     só roda se houver app_id + app_secret em .secrets. Atualiza os dois arquivos."""
     if not (APP_ID_FILE.exists() and APP_SECRET_FILE.exists()):
         return tj['access_token']
-    q = urllib.parse.urlencode({
-        'grant_type': 'fb_exchange_token',
-        'client_id': APP_ID_FILE.read_text(encoding='utf-8').strip(),
-        'client_secret': APP_SECRET_FILE.read_text(encoding='utf-8').strip(),
-        'fb_exchange_token': tj['access_token'],
-    })
+    q = urllib.parse.urlencode(
+        {
+            'grant_type': 'fb_exchange_token',
+            'client_id': APP_ID_FILE.read_text(encoding='utf-8').strip(),
+            'client_secret': APP_SECRET_FILE.read_text(encoding='utf-8').strip(),
+            'fb_exchange_token': tj['access_token'],
+        }
+    )
     try:
         r = json.load(urllib.request.urlopen(f'{GRAPH}/oauth/access_token?{q}', timeout=60))
     except urllib.error.HTTPError as e:
@@ -149,8 +155,10 @@ def _token():
                 return _refresh(tj)
             return tj['access_token']
     if not TOKEN_FILE.exists():
-        sys.exit(f'[!] token ausente: crie {TOKEN_FILE} com o access_token (permissão '
-                 'instagram_content_publish). Veja o cabeçalho deste arquivo.')
+        sys.exit(
+            f'[!] token ausente: crie {TOKEN_FILE} com o access_token (permissão '
+            'instagram_content_publish). Veja o cabeçalho deste arquivo.'
+        )
     return TOKEN_FILE.read_text(encoding='utf-8').strip()
 
 
@@ -177,7 +185,9 @@ def _post(path, token, params):
         return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
 
 
-COVER_OFFSET_MS = 1500   # capa do Reel num frame APÓS o fade-in (~0,45s) — senão IG usa o frame 0 (PRETO)
+COVER_OFFSET_MS = (
+    1500  # capa do Reel num frame APÓS o fade-in (~0,45s) — senão IG usa o frame 0 (PRETO)
+)
 
 
 def post_reel(mp4, caption, share_to_feed=True, thumb_offset=COVER_OFFSET_MS):
@@ -187,21 +197,28 @@ def post_reel(mp4, caption, share_to_feed=True, thumb_offset=COVER_OFFSET_MS):
     data = Path(mp4).read_bytes()
     size = len(data)
     # 1) cria o contêiner em modo resumável
-    cont = _post(f'/{uid}/media', token, {
-        'media_type': 'REELS',
-        'upload_type': 'resumable',
-        'caption': caption,
-        'share_to_feed': 'true' if share_to_feed else 'false',
-        **({'thumb_offset': str(int(thumb_offset))} if thumb_offset else {}),
-    })
+    cont = _post(
+        f'/{uid}/media',
+        token,
+        {
+            'media_type': 'REELS',
+            'upload_type': 'resumable',
+            'caption': caption,
+            'share_to_feed': 'true' if share_to_feed else 'false',
+            **({'thumb_offset': str(int(thumb_offset))} if thumb_offset else {}),
+        },
+    )
     if 'error' in cont or 'id' not in cont:
         print(f'  ERRO container: {cont.get("error", cont)}')
         return None
     cid = cont['id']
     # 2) envia os bytes para o rupload (offset 0, arquivo inteiro)
-    up = urllib.request.Request(f'{RUPLOAD}/{cid}', data=data, method='POST',
-                                headers={'Authorization': f'OAuth {token}',
-                                         'offset': '0', 'file_size': str(size)})
+    up = urllib.request.Request(
+        f'{RUPLOAD}/{cid}',
+        data=data,
+        method='POST',
+        headers={'Authorization': f'OAuth {token}', 'offset': '0', 'file_size': str(size)},
+    )
     try:
         r = json.load(urllib.request.urlopen(up, timeout=600))
     except urllib.error.HTTPError as e:
@@ -238,13 +255,15 @@ def caption_for(cfg, idx):
     tags = [t.replace(' ', '').lower() for t in cfg.get('youtube', {}).get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + [t for t in tags if t]))
     ancora = _pergunta_ancora(cfg['titulo'], cfg.get('youtube', {}).get('tags', []))
-    return (f"{corpo}\n\n"
-            f"Uma das ideias de \"{cfg['titulo']}\".\n"
-            f"📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n"
-            f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
-            f"Salve e siga @minutoreal1701 — um grande livro por semana.\n\n"
-            f"{ancora}\n\n"
-            f"{_afiliado_block(cfg['slug'])}\n🎬 Narração e arte por IA.\n\n{hs}")
+    return (
+        f"{corpo}\n\n"
+        f"Uma das ideias de \"{cfg['titulo']}\".\n"
+        f"📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n"
+        f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
+        f"Salve e siga @minutoreal1701 — um grande livro por semana.\n\n"
+        f"{ancora}\n\n"
+        f"{_afiliado_block(cfg['slug'])}\n🎬 Narração e arte por IA.\n\n{hs}"
+    )
 
 
 def postar_reels(slug):
@@ -257,9 +276,11 @@ def postar_reels(slug):
         key = str(i)
         mp4 = SH / f'{slug}_{i:02d}.mp4'
         if key in state:
-            print(f'  já no Instagram: cena {i} ({state[key]})'); continue
+            print(f'  já no Instagram: cena {i} ({state[key]})')
+            continue
         if not mp4.exists():
-            print(f'  [!] short ausente: {mp4.name}'); continue
+            print(f'  [!] short ausente: {mp4.name}')
+            continue
         print(f'  postando Reel cena {i}...')
         mid = post_reel(str(mp4), caption_for(cfg, i))
         if mid:
@@ -282,6 +303,7 @@ PUB_BASE = 'https://www.andregalgani.com.br/biblioteca/_carrossel'
 def _book_for(slug):
     """Importa o BOOK do <slug>_data.py (mesma convenção do gerar_carrossel.py)."""
     import importlib
+
     root = ROOT.parent  # raiz do projeto, onde vivem os *_data.py
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
@@ -294,6 +316,7 @@ def caption_carousel(slug):
     + apelo de SALVAR (carrossel é campeão de salvamento) + CTA em camadas +
     seguir + afiliado/disclosure + 3–5 hashtags de nicho."""
     import re
+
     book = _book_for(slug)
     frases = _frases(book.get('intro') or book.get('description') or '')
     gancho = frases[0] if frases else book['title']
@@ -302,19 +325,22 @@ def caption_carousel(slug):
     tags = [re.sub(r'[^0-9a-z]', '', t.lower().replace(' ', '')) for t in book.get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + [t for t in tags if t]))
     ancora = _pergunta_ancora(book['title'], book.get('tags', []))
-    return (f"{corpo}\n\n"
-            f"Arrasta para o lado: as ideias de \"{book['title']}\", de {book['author']}.\n"
-            f"📌 Salve para não perder.\n\n"
-            f"📄 O livro em 1 página: cheat sheet + PDF no acervo — link na bio.\n"
-            f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
-            f"Siga @minutoreal1701 — um grande livro por semana.\n\n"
-            f"{ancora}\n\n"
-            f"{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}")
+    return (
+        f"{corpo}\n\n"
+        f"Arrasta para o lado: as ideias de \"{book['title']}\", de {book['author']}.\n"
+        f"📌 Salve para não perder.\n\n"
+        f"📄 O livro em 1 página: cheat sheet + PDF no acervo — link na bio.\n"
+        f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
+        f"Siga @minutoreal1701 — um grande livro por semana.\n\n"
+        f"{ancora}\n\n"
+        f"{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}"
+    )
 
 
 def _png_to_jpg(folder):
     """Converte NN.png -> NN.jpg (qualidade 88, RGB). Retorna os .jpg ordenados."""
     from PIL import Image
+
     jpgs = []
     for png in sorted(folder.glob('[0-9][0-9].png')):
         jpg = png.with_suffix('.jpg')
@@ -327,11 +353,11 @@ def _png_to_jpg(folder):
 def _scp_host(jpgs, slug, part):
     """Envia os JPEGs para a VPS, chmod 644, e retorna as URLs públicas."""
     import subprocess
+
     remote_dir = f'{VPS_BASE}/{slug}_{part}'
     subprocess.run(['ssh', VPS_HOST, f'mkdir -p {remote_dir}'], check=True)
     for jpg in jpgs:
-        subprocess.run(['scp', '-q', str(jpg), f'{VPS_HOST}:{remote_dir}/{jpg.name}'],
-                       check=True)
+        subprocess.run(['scp', '-q', str(jpg), f'{VPS_HOST}:{remote_dir}/{jpg.name}'], check=True)
     subprocess.run(['ssh', VPS_HOST, f'chmod 644 {remote_dir}/*.jpg'], check=True)
     return [f'{PUB_BASE}/{slug}_{part}/{jpg.name}' for jpg in jpgs]
 
@@ -362,27 +388,35 @@ def post_carousel(slug, part='overview', caption=None, publish=False):
     # 1) contêineres-filho (um por slide)
     try:
         book_info = _book_for(slug)
-        alt = f"Resumo de {book_info['title']} por {book_info.get('author','')}: slide {{n}} | Minuto Real"
+        alt = f"Resumo de {book_info['title']} por {book_info.get('author', '')}: slide {{n}} | Minuto Real"
     except Exception:
         alt = f"Cheat sheet {slug}: slide {{n}} | Minuto Real"
     children = []
     for n, url in enumerate(urls, 1):
-        c = _post(f'/{uid}/media', token, {
-            'image_url': url,
-            'is_carousel_item': 'true',
-            'alt_text': alt.format(n=n),
-        })
+        c = _post(
+            f'/{uid}/media',
+            token,
+            {
+                'image_url': url,
+                'is_carousel_item': 'true',
+                'alt_text': alt.format(n=n),
+            },
+        )
         if 'id' not in c:
             print(f'  ERRO container-filho: {c.get("error", c)}')
             return None
         children.append(c['id'])
     print(f'  {len(children)} conteineres-filho criados')
     # 2) contêiner CAROUSEL
-    parent = _post(f'/{uid}/media', token, {
-        'media_type': 'CAROUSEL',
-        'children': ','.join(children),
-        'caption': cap,
-    })
+    parent = _post(
+        f'/{uid}/media',
+        token,
+        {
+            'media_type': 'CAROUSEL',
+            'children': ','.join(children),
+            'caption': cap,
+        },
+    )
     if 'id' not in parent:
         print(f'  ERRO container CAROUSEL: {parent.get("error", parent)}')
         return None
@@ -415,8 +449,10 @@ def post_story(slug, publish=False):
     token, uid = _token(), _user_id()
     folder = CARR / f'{slug}_stories'
     if not folder.exists():
-        print(f'  [!] pasta de stories ausente: {folder} '
-              f'(rode: python gerar_carrossel.py {slug} --stories)')
+        print(
+            f'  [!] pasta de stories ausente: {folder} '
+            f'(rode: python gerar_carrossel.py {slug} --stories)'
+        )
         return []
     jpgs = _png_to_jpg(folder)
     if not jpgs:
@@ -510,7 +546,9 @@ if __name__ == '__main__':
     elif len(args) == 1:
         postar_reels(args[0])
     else:
-        sys.exit('uso: python instagram_post.py <slug>  |  '
-                 'python instagram_post.py file <mp4> "legenda"  |  '
-                 'python instagram_post.py carousel <slug> [parte] [--publish]  |  '
-                 'python instagram_post.py story <slug> [--publish]')
+        sys.exit(
+            'uso: python instagram_post.py <slug>  |  '
+            'python instagram_post.py file <mp4> "legenda"  |  '
+            'python instagram_post.py carousel <slug> [parte] [--publish]  |  '
+            'python instagram_post.py story <slug> [--publish]'
+        )

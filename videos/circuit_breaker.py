@@ -12,6 +12,7 @@ Uso:
   def gen_image(prompt, out_png):
       ...
 """
+
 import json
 import random
 import time
@@ -30,6 +31,7 @@ class CircuitOpenError(Exception):
 # ---------------------------------------------------------------------------
 # Persistência (leitura/escrita atômica simples com try/except para concorrência)
 # ---------------------------------------------------------------------------
+
 
 def _load_state() -> dict:
     try:
@@ -69,6 +71,7 @@ def _set_api(api: str, info: dict) -> None:
 # API pública utilitária
 # ---------------------------------------------------------------------------
 
+
 def get_circuit_state(api: str) -> dict:
     """Retorna o estado atual do circuit para a API informada."""
     return _get_api(api)
@@ -91,12 +94,15 @@ def print_circuit_status() -> None:
     for api, info in health.items():
         opened = info.get('opened_at') or '-'
         err = (info.get('last_error') or '-')[:40]
-        print(f'{api:<20} {info.get("state","?"):<10} {info.get("failures",0):<10} {str(opened):<22} {err}')
+        print(
+            f'{api:<20} {info.get("state", "?"):<10} {info.get("failures", 0):<10} {str(opened):<22} {err}'
+        )
 
 
 # ---------------------------------------------------------------------------
 # Decorators
 # ---------------------------------------------------------------------------
+
 
 def circuit_breaker(api: str, threshold: int = 3, timeout_s: float = 300):
     """Decorator de circuit breaker.
@@ -106,6 +112,7 @@ def circuit_breaker(api: str, threshold: int = 3, timeout_s: float = 300):
         threshold: nº de falhas consecutivas para abrir o circuit
         timeout_s: segundos em OPEN antes de tentar HALF_OPEN
     """
+
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -144,6 +151,7 @@ def circuit_breaker(api: str, threshold: int = 3, timeout_s: float = 300):
             return result
 
         return wrapper
+
     return decorator
 
 
@@ -155,6 +163,7 @@ def retry(max_attempts: int = 3, base_s: float = 2.0, jitter: bool = True):
         base_s: base do backoff em segundos (espera = base_s * 2^attempt)
         jitter: se True, adiciona ±50% de aleatoriedade à espera
     """
+
     def decorator(func):
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -166,13 +175,17 @@ def retry(max_attempts: int = 3, base_s: float = 2.0, jitter: bool = True):
                 except Exception as e:
                     if attempt == max_attempts - 1:
                         raise
-                    wait = base_s * (2 ** attempt)
+                    wait = base_s * (2**attempt)
                     if jitter:
                         wait *= random.uniform(0.5, 1.5)
-                    print(f'[retry] {func.__name__} tentativa {attempt + 1}/{max_attempts} '
-                          f'falhou ({type(e).__name__}: {e}), aguardando {wait:.1f}s')
+                    print(
+                        f'[retry] {func.__name__} tentativa {attempt + 1}/{max_attempts} '
+                        f'falhou ({type(e).__name__}: {e}), aguardando {wait:.1f}s'
+                    )
                     time.sleep(wait)
+
         return wrapper
+
     return decorator
 
 

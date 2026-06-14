@@ -8,6 +8,7 @@ fila.json: [{"id": "...", "comentario": "..."}, ...]
 Estado:    comentarios_state.json (ids já comentados)
 Cron:      17 */2 * * * /opt/minutoreal/run.sh   (permanente; ocioso quando nada pende)
 """
+
 import json
 from pathlib import Path
 from upload_youtube import get_creds
@@ -30,13 +31,19 @@ def main():
     ids = list(falta)
     publicos = []
     for i in range(0, len(ids), 50):
-        r = yt.videos().list(part='status', id=','.join(ids[i:i + 50])).execute()
+        r = yt.videos().list(part='status', id=','.join(ids[i : i + 50])).execute()
         publicos += [it['id'] for it in r['items'] if it['status']['privacyStatus'] == 'public']
     for vid in publicos:
         try:
-            yt.commentThreads().insert(part='snippet', body={'snippet': {
-                'videoId': vid,
-                'topLevelComment': {'snippet': {'textOriginal': falta[vid]}}}}).execute()
+            yt.commentThreads().insert(
+                part='snippet',
+                body={
+                    'snippet': {
+                        'videoId': vid,
+                        'topLevelComment': {'snippet': {'textOriginal': falta[vid]}},
+                    }
+                },
+            ).execute()
             feitos.add(vid)
             print(f'comentado: {vid}')
         except Exception as e:

@@ -20,6 +20,7 @@ Uso:
 Dependências:
   pip install langgraph langchain-anthropic
 """
+
 import sys
 from pathlib import Path
 from typing import Annotated, Optional
@@ -49,17 +50,19 @@ from nodes import (
 # Estado do grafo
 # ---------------------------------------------------------------------------
 
+
 class PipelineState(TypedDict):
     slug: str
     stages_done: list[str]
     video_id: Optional[str]
-    errors: Annotated[list[str], operator.add]   # reducer: append-only
+    errors: Annotated[list[str], operator.add]  # reducer: append-only
     run_id: str
 
 
 # ---------------------------------------------------------------------------
 # Roteamento condicional
 # ---------------------------------------------------------------------------
+
 
 def _route_after_validate(state: PipelineState) -> str:
     """Após validação: decide se há skill disponível para produzir."""
@@ -81,22 +84,23 @@ def _route_after_upload(state: PipelineState) -> str:
 # Construção do grafo
 # ---------------------------------------------------------------------------
 
+
 def build_graph(checkpointer=None):
     builder = StateGraph(PipelineState)
 
     # Nós
-    builder.add_node('load_state',      node_load_state)
-    builder.add_node('validate',        node_validate)
-    builder.add_node('run_biblioteca',  node_run_biblioteca)
+    builder.add_node('load_state', node_load_state)
+    builder.add_node('validate', node_validate)
+    builder.add_node('run_biblioteca', node_run_biblioteca)
     builder.add_node('run_video_build', node_run_video_build)
-    builder.add_node('run_upload',      node_run_upload)
-    builder.add_node('run_shorts',      node_run_shorts)
-    builder.add_node('run_carrossel',   node_run_carrossel)
-    builder.add_node('verify',          node_verify)
+    builder.add_node('run_upload', node_run_upload)
+    builder.add_node('run_shorts', node_run_shorts)
+    builder.add_node('run_carrossel', node_run_carrossel)
+    builder.add_node('verify', node_verify)
 
     # Fluxo principal
-    builder.add_edge(START,              'load_state')
-    builder.add_edge('load_state',       'validate')
+    builder.add_edge(START, 'load_state')
+    builder.add_edge('load_state', 'validate')
 
     # Após validate: vai para biblioteca ou direto para verify (em caso de erro)
     builder.add_conditional_edges(
@@ -107,7 +111,7 @@ def build_graph(checkpointer=None):
 
     # biblioteca e video_build correm em sequência dentro do grafo
     # (a verdadeira paralelização está no orquestrador.py + ThreadPoolExecutor)
-    builder.add_edge('run_biblioteca',  'run_video_build')
+    builder.add_edge('run_biblioteca', 'run_video_build')
     builder.add_edge('run_video_build', 'run_upload')
 
     # Após upload: shorts (se video_id disponível) ou verify
@@ -118,9 +122,9 @@ def build_graph(checkpointer=None):
     )
 
     # Instagram corre depois dos shorts
-    builder.add_edge('run_shorts',      'run_carrossel')
-    builder.add_edge('run_carrossel',   'verify')
-    builder.add_edge('verify',          END)
+    builder.add_edge('run_shorts', 'run_carrossel')
+    builder.add_edge('run_carrossel', 'verify')
+    builder.add_edge('verify', END)
 
     return builder.compile(checkpointer=checkpointer)
 
@@ -139,6 +143,7 @@ def run_pipeline(slug: str, run_id: str = None, dry_run: bool = False):
     Chamadas subsequentes retomam de onde pararam.
     """
     import uuid
+
     if run_id is None:
         run_id = str(uuid.uuid4())[:8]
 
@@ -202,12 +207,13 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Pipeline LangGraph — Minuto Real')
     parser.add_argument('slug', help='Slug do livro (ex: arte-da-guerra)')
-    parser.add_argument('--dry-run', action='store_true',
-                        help='Exibe checkpoint atual sem executar')
-    parser.add_argument('--history', action='store_true',
-                        help='Exibe histórico de checkpoints')
-    parser.add_argument('--run-id', default=None,
-                        help='ID de run (gerado automaticamente se omitido)')
+    parser.add_argument(
+        '--dry-run', action='store_true', help='Exibe checkpoint atual sem executar'
+    )
+    parser.add_argument('--history', action='store_true', help='Exibe histórico de checkpoints')
+    parser.add_argument(
+        '--run-id', default=None, help='ID de run (gerado automaticamente se omitido)'
+    )
     args = parser.parse_args()
 
     if args.history:

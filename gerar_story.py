@@ -3,6 +3,7 @@
 no padrão "Cheat Sheet Verde". Saída: story-mckee.html (visão geral) +
 story-mckee/chNN-*.html (19 capítulos) + story-mckee/script.js.
 Usa apenas classes de assets/style.css — nenhum estilo inline."""
+
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -41,25 +42,31 @@ ICONS = {
 
 
 def icon(name):
-    return ('<div class="card-icon" aria-hidden="true">'
-            '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
-            + ICONS[name] + '</svg></div>')
+    return (
+        '<div class="card-icon" aria-hidden="true">'
+        '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + ICONS[name]
+        + '</svg></div>'
+    )
 
 
 def card(c):
     cls = "card card-warning" if c.get("warn") else "card"
     if c.get("wide"):
         cls += " card-wide"
-    parts = [f'<article class="{cls} animate-entrance" style="--i: {c["i"]}">',
-             icon(c["ic"]),
-             '<div class="card-content">',
-             f'<h2 class="card-title">{c["t"]}</h2>',
-             f'<p class="card-body">{c["b"]}</p>']
+    parts = [
+        f'<article class="{cls} animate-entrance" style="--i: {c["i"]}">',
+        icon(c["ic"]),
+        '<div class="card-content">',
+        f'<h2 class="card-title">{c["t"]}</h2>',
+        f'<p class="card-body">{c["b"]}</p>',
+    ]
     if c.get("tip"):
         parts.append(f'<p class="card-tip">{c["tip"]}</p>')
     if c.get("det"):
-        parts.append('<div class="card-details"><div class="card-details-inner">'
-                     + c["det"] + '</div></div>')
+        parts.append(
+            '<div class="card-details"><div class="card-details-inner">' + c["det"] + '</div></div>'
+        )
     parts.append('</div></article>')
     return "\n".join(parts)
 
@@ -146,9 +153,11 @@ SCRIPT_JS = """document.addEventListener('DOMContentLoaded', () => {
 def overview_page(chapters):
     links = "\n".join(
         f'                            <a href="story-mckee/{ch["slug"]}.html" class="chapter-link">{ch["sub"].replace("CAPÍTULO", "Cap.")} <span class="arrow" aria-hidden="true">&rarr;</span></a>'
-        for ch in chapters)
+        for ch in chapters
+    )
     html = HEAD.format(title="Visão Geral: Story (McKee) | Biblioteca", css="assets/style.css")
-    html += '''
+    html += (
+        '''
         <nav aria-label="Navegação Voltar">
             <a href="index.html" class="back-link"><span class="icon-arrow" aria-hidden="true">&larr;</span> Voltar para a Biblioteca</a>
         </nav>
@@ -170,7 +179,9 @@ def overview_page(chapters):
 
                 <article class="card animate-entrance" style="--i: 1">
                     <div class="card-icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">''' + ICONS["target"] + '''</svg>
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'''
+        + ICONS["target"]
+        + '''</svg>
                     </div>
                     <div class="card-content">
                         <h2 class="card-title">Os 5 Frameworks Centrais</h2>
@@ -187,7 +198,9 @@ def overview_page(chapters):
 
                 <article class="card animate-entrance" style="--i: 2">
                     <div class="card-icon" aria-hidden="true">
-                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">''' + ICONS["fork"] + '''</svg>
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'''
+        + ICONS["fork"]
+        + '''</svg>
                     </div>
                     <div class="card-content">
                         <h2 class="card-title">O Teste de Design</h2>
@@ -221,19 +234,23 @@ def overview_page(chapters):
                         <h2 class="card-title">Aprofunde-se nos Capítulos</h2>
                         <p class="card-body">As notas detalhadas dos 19 capítulos de <em>Story</em>:</p>
                         <nav aria-label="Navegação de Capítulos" class="chapter-list">
-''' + links + '''
+'''
+        + links
+        + '''
                         </nav>
                     </div>
                 </article>
             </div>
         </main>
 '''
+    )
     html += FOOT.format(script="story-mckee/script.js")
     return html
 
 
 if __name__ == "__main__":
     from story_data import CHAPTERS  # noqa
+
     # script.js
     with open(os.path.join(OUT_DIR, "script.js"), "w", encoding="utf-8") as f:
         f.write(SCRIPT_JS)

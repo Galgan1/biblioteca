@@ -7,6 +7,7 @@ Regra: tem ASIN -> link direto /dp/ASIN ; sem ASIN -> link de busca.
 Os dois ganham comissao. Rode:  python afiliados/gerar_links.py
 Saida: imprime a tabela e escreve ./links.json (id -> url).
 """
+
 import json
 import sys
 from pathlib import Path
@@ -36,7 +37,9 @@ def montar_compras(cfg, book):
     compras = []
     if lojas.get("amazon", {}).get("ativa", True):
         url, _ = montar_link(cfg, book)
-        compras.append({"loja": "amazon", "nome": lojas.get("amazon", {}).get("nome", "Amazon"), "url": url})
+        compras.append(
+            {"loja": "amazon", "nome": lojas.get("amazon", {}).get("nome", "Amazon"), "url": url}
+        )
     for loja, info in lojas.items():
         if loja == "amazon" or not info.get("ativa"):
             continue
@@ -59,7 +62,9 @@ def main():
         links[book["id"]] = url
         linhas.append((book["title"], tipo, url))
 
-    SAIDA.write_text(json.dumps(links, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n')
+    SAIDA.write_text(
+        json.dumps(links, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n'
+    )
 
     # Espelha o link no books.json (campo "amazon") — fonte única que a estante
     # (script.js) lê para o botão de compra discreto por card. Excluídos ficam sem.
@@ -70,10 +75,14 @@ def main():
         else:
             book.pop("amazon", None)
             book.pop("compras", None)
-    BOOKS.write_text(json.dumps(books, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n')
+    BOOKS.write_text(
+        json.dumps(books, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n'
+    )
 
     diretos = sum(1 for _, t, _ in linhas if t == "direto")
-    print(f"{len(linhas)} livros | {diretos} link(s) direto(s) | {len(linhas) - diretos} de busca | tag={cfg['tag']}\n")
+    print(
+        f"{len(linhas)} livros | {diretos} link(s) direto(s) | {len(linhas) - diretos} de busca | tag={cfg['tag']}\n"
+    )
     for titulo, tipo, url in linhas:
         marca = "[*]" if tipo == "direto" else "[~]"
         print(f"{marca} {titulo}")

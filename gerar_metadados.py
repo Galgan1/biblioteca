@@ -12,28 +12,35 @@ Saida: metadados/index.html (dashboard premium no tema "Cheat Sheet Verde").
 Pipeline:  python videos/coletar_datas.py  →  python gerar_metadados.py
 Futuro (por temas): cada livro carrega `temas`; basta trocar o agrupamento.
 """
+
 import json
 import html
 import os
 from pathlib import Path
 from datetime import date, datetime, timedelta
 
-ROOT = Path(os.environ.get("MR_BASE", Path(__file__).parent))   # dados (books/metadados/datas/afiliados)
-OUT_DIR = Path(os.environ.get("MR_OUT", ROOT / "metadados"))    # onde gravar o index.html (VPS: web root)
+ROOT = Path(
+    os.environ.get("MR_BASE", Path(__file__).parent)
+)  # dados (books/metadados/datas/afiliados)
+OUT_DIR = Path(
+    os.environ.get("MR_OUT", ROOT / "metadados")
+)  # onde gravar o index.html (VPS: web root)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 books = {b["id"]: b for b in json.loads((ROOT / "books.json").read_text(encoding="utf-8"))}
 meta = json.loads((ROOT / "metadados.json").read_text(encoding="utf-8"))
 DF = ROOT / "datas_coletadas.json"
-datas = json.loads(DF.read_text(encoding="utf-8")) if DF.exists() else {"youtube": {}, "instagram": {}}
+datas = (
+    json.loads(DF.read_text(encoding="utf-8")) if DF.exists() else {"youtube": {}, "instagram": {}}
+)
 YT, IG = datas.get("youtube", {}), datas.get("instagram", {})
-IG_MEDIA = datas.get("instagram_media", [])          # midias REAIS no ar
-IG_ACCT = datas.get("instagram_account", {})         # {username, media_count, followers_count}
+IG_MEDIA = datas.get("instagram_media", [])  # midias REAIS no ar
+IG_ACCT = datas.get("instagram_account", {})  # {username, media_count, followers_count}
 IG_LIVE_IDS = {m.get("id") for m in IG_MEDIA if m.get("id")}
 IG_BY_ID = {m.get("id"): m for m in IG_MEDIA}
-VISITAS = datas.get("site_visitas", {})              # {slug: hits} via logs nginx
+VISITAS = datas.get("site_visitas", {})  # {slug: hits} via logs nginx
 SITE_PERIODO = datas.get("site_periodo", "")
-VENDAS = datas.get("amazon_vendas", {})              # {slug|asin: qtd} (opcional)
+VENDAS = datas.get("amazon_vendas", {})  # {slug|asin: qtd} (opcional)
 
 afil = json.loads((ROOT / "afiliados" / "afiliados.json").read_text(encoding="utf-8"))
 ASINS = afil.get("asins", {})
@@ -63,11 +70,26 @@ def ig_live(pid, title):
             return m
     return None
 
+
 MES = ["", "jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
-MES_F = ["", "Janeiro", "Fevereiro", "Marco", "Abril", "Maio", "Junho",
-         "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"]
+MES_F = [
+    "",
+    "Janeiro",
+    "Fevereiro",
+    "Marco",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro",
+]
 
 # situ -> (rotulo, classe)
+# fmt: off
 SIT = {
     "publico":   ("No ar",         "s-pub"),
     "agendado":  ("Agendado",      "s-age"),
@@ -81,6 +103,7 @@ SIT = {
 }
 REDE = {"YouTube": ("YouTube", "r-yt"), "YouTube Shorts": ("Shorts", "r-yt"),
         "Instagram": ("Instagram", "r-ig"), "TikTok": ("TikTok", "r-tt")}
+# fmt: on
 TIPO = {"video": "Video-resumo", "short": "Short", "carrossel": "Carrossel"}
 
 
@@ -94,7 +117,9 @@ def to_brt(iso):
 
 
 def yt_url(rede, pid):
-    return ("https://www.youtube.com/shorts/" if rede == "YouTube Shorts" else "https://youtu.be/") + pid
+    return (
+        "https://www.youtube.com/shorts/" if rede == "YouTube Shorts" else "https://youtu.be/"
+    ) + pid
 
 
 def plano_dt(iso):
@@ -112,26 +137,48 @@ def _m(n, sing, plur):
 
 
 def eng_str(views=None, likes=None, coms=None):
-    parts = [p for p in (_m(views, "view", "views"), _m(likes, "like", "likes"),
-                         _m(coms, "coment.", "coments.")) if p]
+    parts = [
+        p
+        for p in (
+            _m(views, "view", "views"),
+            _m(likes, "like", "likes"),
+            _m(coms, "coment.", "coments."),
+        )
+        if p
+    ]
     return " · ".join(parts)
 
 
 def rec(slug, bm, tipo, rotulo, rede, pub):
     pid = pub.get("id", "")
     plano_iso, hora = pub.get("data", ""), pub.get("hora", "")
-    r = {"slug": slug, "title": bm.get("title", slug), "author": bm.get("author", ""),
-         "cover": f"../{bm.get('coverUrl','')}" if bm.get("coverUrl") else "",
-         "tipo": tipo, "rotulo": rotulo, "rede": rede,
-         "situ": "previsto", "date": None, "date_label": "", "link": "", "id": pid,
-         "eng": "", "nota": pub.get("nota", "")}
+    r = {
+        "slug": slug,
+        "title": bm.get("title", slug),
+        "author": bm.get("author", ""),
+        "cover": f"../{bm.get('coverUrl', '')}" if bm.get("coverUrl") else "",
+        "tipo": tipo,
+        "rotulo": rotulo,
+        "rede": rede,
+        "situ": "previsto",
+        "date": None,
+        "date_label": "",
+        "link": "",
+        "id": pid,
+        "eng": "",
+        "nota": pub.get("nota", ""),
+    }
 
     if rede in ("YouTube", "YouTube Shorts") and pid in YT and "erro" not in YT[pid]:
         a = YT[pid]
         ps = a.get("privacyStatus")
         r["link"] = yt_url(rede, pid)
         if ps == "public":
-            r["situ"], r["date"], r["date_label"] = "publico", to_brt(a.get("publishedAt")), "Publicado"
+            r["situ"], r["date"], r["date_label"] = (
+                "publico",
+                to_brt(a.get("publishedAt")),
+                "Publicado",
+            )
             extra = []
             if a.get("retencao") is not None:
                 extra.append(f'{a["retencao"]:.0f}% reten&ccedil;&atilde;o')
@@ -139,20 +186,34 @@ def rec(slug, bm, tipo, rotulo, rede, pub):
                 extra.append(f'CTR {a["ctr"]:.1f}%')
             if a.get("subs"):
                 extra.append(f'+{a["subs"]} inscr.')
-            r["eng"] = " &middot; ".join(filter(None, [eng_str(a.get("viewCount"), a.get("likeCount"), a.get("commentCount"))] + extra))
+            r["eng"] = " &middot; ".join(
+                filter(
+                    None,
+                    [eng_str(a.get("viewCount"), a.get("likeCount"), a.get("commentCount"))]
+                    + extra,
+                )
+            )
         elif a.get("publishAt"):
             r["situ"], r["date"], r["date_label"] = "agendado", to_brt(a["publishAt"]), "Agendado"
             if plano_iso and r["date"] and r["date"].strftime("%Y-%m-%d") != plano_iso:
                 d = plano_dt(plano_iso)
                 r["nota"] = f"remarcado (plano: {d.day:02d}/{MES[d.month]})" if d else "remarcado"
         else:
-            r["situ"], r["date"], r["date_label"] = "privado", to_brt(a.get("publishedAt")), "Enviado"
+            r["situ"], r["date"], r["date_label"] = (
+                "privado",
+                to_brt(a.get("publishedAt")),
+                "Enviado",
+            )
         return r
 
     if rede == "Instagram":
         live = ig_live(pid, r["title"])
         if live and live.get("timestamp"):
-            r["situ"], r["date"], r["date_label"] = "publico", to_brt(live["timestamp"]), "Publicado"
+            r["situ"], r["date"], r["date_label"] = (
+                "publico",
+                to_brt(live["timestamp"]),
+                "Publicado",
+            )
             r["link"] = live.get("permalink", "")
             ins = live.get("insights") or {}
             extra = []
@@ -162,12 +223,21 @@ def rec(slug, bm, tipo, rotulo, rede, pub):
                 extra.append(f'{ins["saved"]} salvos')
             if ins.get("shares") is not None:
                 extra.append(f'{ins["shares"]} compart.')
-            r["eng"] = " &middot; ".join(filter(None, [eng_str(likes=live.get("like_count"), coms=live.get("comments_count"))] + extra))
+            r["eng"] = " &middot; ".join(
+                filter(
+                    None,
+                    [eng_str(likes=live.get("like_count"), coms=live.get("comments_count"))]
+                    + extra,
+                )
+            )
         elif pid:  # upload tentado (state tem id), mas nao consta no ar
             r["situ"], r["date_label"] = "enviado", "Enviado, sem confirmacao"
-        else:      # gerado localmente, ainda nao enviado (ex.: carrossel)
+        else:  # gerado localmente, ainda nao enviado (ex.: carrossel)
             st = pub.get("status", "produzido")
-            r["situ"], r["date_label"] = ("produzido" if st in ("publico", "produzido") else st), "Gerado (local)"
+            r["situ"], r["date_label"] = (
+                ("produzido" if st in ("publico", "produzido") else st),
+                "Gerado (local)",
+            )
         return r
 
     if rede == "TikTok":
@@ -190,12 +260,22 @@ for livro in meta["livros"]:
     slug = livro["slug"]
     bm = books.get(slug, {})
     short_total = sum(1 for p in livro["pecas"] if p["tipo"] == "short")
-    grupo = {"slug": slug, "title": bm.get("title", slug), "author": bm.get("author", ""),
-             "cover": f"../{bm.get('coverUrl','')}" if bm.get("coverUrl") else "",
-             "tags": bm.get("tags", []) or [], "url": bm.get("url", ""),
-             "destaque": livro.get("destaque", ""), "video_situ": "previsto",
-             "short_done": 0, "short_total": short_total, "reels": 0, "tt": 0, "carr": 0,
-             "prox": None}
+    grupo = {
+        "slug": slug,
+        "title": bm.get("title", slug),
+        "author": bm.get("author", ""),
+        "cover": f"../{bm.get('coverUrl', '')}" if bm.get("coverUrl") else "",
+        "tags": bm.get("tags", []) or [],
+        "url": bm.get("url", ""),
+        "destaque": livro.get("destaque", ""),
+        "video_situ": "previsto",
+        "short_done": 0,
+        "short_total": short_total,
+        "reels": 0,
+        "tt": 0,
+        "carr": 0,
+        "prox": None,
+    }
     for p in livro["pecas"]:
         feito = False
         for pub in p["pubs"]:
@@ -209,7 +289,11 @@ for livro in meta["livros"]:
                 grupo["reels"] += 1
             if pub["rede"] == "TikTok":
                 grupo["tt"] += 1
-            if r["situ"] == "agendado" and r["date"] and (grupo["prox"] is None or r["date"] < grupo["prox"]):
+            if (
+                r["situ"] == "agendado"
+                and r["date"]
+                and (grupo["prox"] is None or r["date"] < grupo["prox"])
+            ):
                 grupo["prox"] = r["date"]
         if p["tipo"] == "short" and feito:
             grupo["short_done"] += 1
@@ -217,9 +301,11 @@ for livro in meta["livros"]:
             grupo["carr"] += 1
     livros_agg.append(grupo)
 
+
 # KPIs
 def cnt(pred):
     return sum(1 for r in items if pred(r))
+
 
 kpi = {
     "livros": len(livros_agg),
@@ -238,7 +324,9 @@ for pid, a in YT.items():
 
 # proxima publicacao (menor data agendada futura)
 hoje = datetime.now()
-futuras = sorted([r["date"] for r in items if r["situ"] == "agendado" and r["date"] and r["date"] >= hoje])
+futuras = sorted(
+    [r["date"] for r in items if r["situ"] == "agendado" and r["date"] and r["date"] >= hoje]
+)
 prox_pub = futuras[0] if futuras else None
 
 
@@ -247,18 +335,32 @@ def datechip(r):
     d, lab, sit = r["date"], r["date_label"], r["situ"]
     cls = SIT.get(sit, ("", ""))[1]
     if d:
-        hora = "" if (d.hour == 0 and d.minute == 0) else f'<span class="d-hr">{d.hour:02d}:{d.minute:02d}</span>'
-        return (f'<div class="chip-cal {cls}"><span class="d-day">{d.day:02d}</span>'
-                f'<span class="d-mo">{MES[d.month]} {d.year}</span>{hora}'
-                f'<span class="d-lab">{lab}</span></div>')
-    return f'<div class="chip-cal cal-none {cls}"><span class="d-na">{lab or "&mdash;"}</span></div>'
+        hora = (
+            ""
+            if (d.hour == 0 and d.minute == 0)
+            else f'<span class="d-hr">{d.hour:02d}:{d.minute:02d}</span>'
+        )
+        return (
+            f'<div class="chip-cal {cls}"><span class="d-day">{d.day:02d}</span>'
+            f'<span class="d-mo">{MES[d.month]} {d.year}</span>{hora}'
+            f'<span class="d-lab">{lab}</span></div>'
+        )
+    return (
+        f'<div class="chip-cal cal-none {cls}"><span class="d-na">{lab or "&mdash;"}</span></div>'
+    )
 
 
 def item_html(r, show_book=True):
     rrot, rcls = REDE.get(r["rede"], (r["rede"], ""))
     srot, scls = SIT.get(r["situ"], (r["situ"], ""))
-    book = (f'<img class="it-cover" src="{r["cover"]}" alt="" loading="lazy">' if (show_book and r["cover"]) else "")
-    title_line = (f'<span class="it-book">{html.escape(r["title"])}</span> &middot; ' if show_book else "")
+    book = (
+        f'<img class="it-cover" src="{r["cover"]}" alt="" loading="lazy">'
+        if (show_book and r["cover"])
+        else ""
+    )
+    title_line = (
+        f'<span class="it-book">{html.escape(r["title"])}</span> &middot; ' if show_book else ""
+    )
     views = f'<span class="it-views">{r["eng"]}</span>' if r["eng"] else ""
     nota = f'<span class="it-nota">{html.escape(r["nota"])}</span>' if r["nota"] else ""
     if r["link"]:
@@ -288,48 +390,67 @@ for b in sorted(books.values(), key=lambda x: -VISITAS.get(x["id"], 0)):
     tags = b.get("tags", []) or []
     tema = tags[0] if tags else ""
     url = b.get("url", "")
-    cover = f"../{b.get('coverUrl','')}" if b.get("coverUrl") else ""
+    cover = f"../{b.get('coverUrl', '')}" if b.get("coverUrl") else ""
     vis = VISITAS.get(slug, 0)
     g = video_by_slug.get(slug)
     if g:
         vs = SIT.get(g["video_situ"], (g["video_situ"], ""))
-        video_cell, vord = f'<span class="pill {vs[1]}">{vs[0]}</span>', SIT_ORD.get(g["video_situ"], 1)
+        video_cell, vord = (
+            f'<span class="pill {vs[1]}">{vs[0]}</span>',
+            SIT_ORD.get(g["video_situ"], 1),
+        )
     else:
         video_cell, vord = '<span class="muted">&mdash;</span>', 0
     if slug in EXCLUIR:
         amz = '<span class="muted">n/a</span>'
     else:
         url_amz = LINKS.get(slug) or b.get("amazon", "")
-        amz = (f'<a class="it-go" href="{url_amz}" target="_blank" rel="noopener">comprar &#8599;</a>'
-               if url_amz else '<span class="muted">&mdash;</span>')
+        amz = (
+            f'<a class="it-go" href="{url_amz}" target="_blank" rel="noopener">comprar &#8599;</a>'
+            if url_amz
+            else '<span class="muted">&mdash;</span>'
+        )
     v = vendas_de(slug)
     vendas_cell = f'<b>{v}</b>' if v else '<span class="muted">&mdash;</span>'
-    cov = (f'<img class="bt-cover" src="{cover}" loading="lazy" alt="">' if cover
-           else '<span class="bt-cover bt-none"></span>')
-    tlink = (f'<a href="../{url}" target="_blank" rel="noopener">{html.escape(title)}</a>' if url else html.escape(title))
-    book_rows.append(f"""<tr data-blob="{html.escape((title+' '+author+' '+' '.join(tags)).lower())}" data-vis="{vis}" data-vendas="{v or 0}" data-video="{vord}" data-title="{html.escape(title.lower())}">
+    cov = (
+        f'<img class="bt-cover" src="{cover}" loading="lazy" alt="">'
+        if cover
+        else '<span class="bt-cover bt-none"></span>'
+    )
+    tlink = (
+        f'<a href="../{url}" target="_blank" rel="noopener">{html.escape(title)}</a>'
+        if url
+        else html.escape(title)
+    )
+    book_rows.append(f"""<tr data-blob="{html.escape((title + ' ' + author + ' ' + ' '.join(tags)).lower())}" data-vis="{vis}" data-vendas="{v or 0}" data-video="{vord}" data-title="{html.escape(title.lower())}">
   <td class="bt-livro">{cov}<div class="bt-id"><span class="bt-t">{tlink}</span><span class="bt-a">{html.escape(author)}</span></div></td>
   <td>{html.escape(tema)}</td>
-  <td class="bt-prog">{html.escape(b.get('progress',''))}</td>
+  <td class="bt-prog">{html.escape(b.get('progress', ''))}</td>
   <td class="bt-num">{vis}</td>
   <td>{video_cell}</td>
   <td>{amz}</td>
   <td class="bt-num">{vendas_cell}</td>
 </tr>""")
 books_table = "\n".join(book_rows)
-com_amazon = sum(1 for b in books.values() if b["id"] not in EXCLUIR and (LINKS.get(b["id"]) or b.get("amazon")))
+com_amazon = sum(
+    1 for b in books.values() if b["id"] not in EXCLUIR and (LINKS.get(b["id"]) or b.get("amazon"))
+)
 tot_visitas = sum(VISITAS.values())
 
 # ---- Agenda (timeline cronologica)
-items_sorted = sorted(items, key=lambda r: (0, r["date"]) if r["date"] else (1, datetime(9999, 1, 1)))
+items_sorted = sorted(
+    items, key=lambda r: (0, r["date"]) if r["date"] else (1, datetime(9999, 1, 1))
+)
 tl_blocks, atual = [], None
 for r in items_sorted:
-    lab = (f"{MES_F[r['date'].month]} de {r['date'].year}" if r["date"] else "Sem data definida")
+    lab = f"{MES_F[r['date'].month]} de {r['date'].year}" if r["date"] else "Sem data definida"
     if lab != atual:
         if atual is not None:
             tl_blocks.append("</div></section>")
         passado = bool(r["date"]) and r["date"] < hoje
-        tl_blocks.append(f'<section class="tl-grp"><h3 class="tl-h{" past" if passado else ""}">{lab}</h3><div class="tl-items">')
+        tl_blocks.append(
+            f'<section class="tl-grp"><h3 class="tl-h{" past" if passado else ""}">{lab}</h3><div class="tl-items">'
+        )
         atual = lab
     tl_blocks.append(item_html(r, show_book=True))
 if atual is not None:
@@ -340,11 +461,15 @@ timeline = "\n".join(tl_blocks)
 porlivro = []
 for g in livros_agg:
     its = [r for r in items if r["slug"] == g["slug"]]
-    cover = (f'<img class="pl-cover" src="{g["cover"]}" alt="" loading="lazy">' if g["cover"] else "")
+    cover = f'<img class="pl-cover" src="{g["cover"]}" alt="" loading="lazy">' if g["cover"] else ""
     rows = "\n".join(item_html(r, show_book=False) for r in its)
     dest = f'<p class="pl-dest">{html.escape(g["destaque"])}</p>' if g["destaque"] else ""
-    bib = f'<a class="pl-bib" href="../{g["url"]}" target="_blank">cheat sheet &#8599;</a>' if g["url"] else ""
-    porlivro.append(f"""<section class="pl" data-slug="{g['slug']}" data-blob="{html.escape((g['title']+' '+g['author']+' '+' '.join(g['tags'])).lower())}">
+    bib = (
+        f'<a class="pl-bib" href="../{g["url"]}" target="_blank">cheat sheet &#8599;</a>'
+        if g["url"]
+        else ""
+    )
+    porlivro.append(f"""<section class="pl" data-slug="{g['slug']}" data-blob="{html.escape((g['title'] + ' ' + g['author'] + ' ' + ' '.join(g['tags'])).lower())}">
   <div class="pl-head">{cover}<div><div class="pl-title">{html.escape(g['title'])} {bib}</div>
   <div class="pl-author">{html.escape(g['author'])}</div></div></div>
   {dest}
@@ -359,8 +484,10 @@ STEP_LABELS = ["Gerado", "Enviado", "No ar"]
 
 def stepper(situ):
     reached = IG_STAGE.get(situ, 0)
-    sp = "".join(f'<span class="step {"done" if i <= reached else "todo"}">{lab}</span>'
-                 for i, lab in enumerate(STEP_LABELS, start=1))
+    sp = "".join(
+        f'<span class="step {"done" if i <= reached else "todo"}">{lab}</span>'
+        for i, lab in enumerate(STEP_LABELS, start=1)
+    )
     return f'<div class="steps">{sp}</div>'
 
 
@@ -370,8 +497,11 @@ def igrow_html(r):
     if r["situ"] == "publico" and r["date"]:
         d = r["date"]
         date = f'<div class="ig-date">{d.day:02d}/{MES[d.month]}/{d.year}</div>'
-    link = (f'<a class="it-go" href="{r["link"]}" target="_blank" rel="noopener">ver post &#8599;</a>'
-            if r["link"] else "")
+    link = (
+        f'<a class="it-go" href="{r["link"]}" target="_blank" rel="noopener">ver post &#8599;</a>'
+        if r["link"]
+        else ""
+    )
     eng = f'<div class="ig-eng">{r["eng"]}</div>' if r["eng"] else ""
     return f"""<div class="igrow {scls}" data-rede="Instagram" data-situ="{r['situ']}" data-slug="{r['slug']}">
   <div class="ig-main"><div class="ig-piece">{html.escape(r['rotulo'])}</div>{stepper(r['situ'])}</div>
@@ -392,16 +522,19 @@ for g in livros_agg:
         continue
     cover = f'<img class="pl-cover" src="{g["cover"]}" alt="" loading="lazy">' if g["cover"] else ""
     rows = "\n".join(igrow_html(r) for r in its)
-    ig_secs.append(f"""<section class="pl" data-slug="{g['slug']}" data-blob="{html.escape((g['title']+' '+g['author']).lower())}">
+    ig_secs.append(f"""<section class="pl" data-slug="{g['slug']}" data-blob="{html.escape((g['title'] + ' ' + g['author']).lower())}">
   <div class="pl-head">{cover}<div><div class="pl-title">{html.escape(g['title'])}</div></div></div>
   <div class="pl-items">{rows}</div>
 </section>""")
 acct_name = IG_ACCT.get("username", "minutoreal1701")
 acct_count = IG_ACCT.get("media_count", 0)
 acct_foll = IG_ACCT.get("followers_count", 0)
-aviso = ('<p class="ig-aviso">Nenhum post no ar ainda. As pe&ccedil;as abaixo j&aacute; foram geradas; '
-         'os Reels tiveram envio sem confirma&ccedil;&atilde;o (n&atilde;o constam na conta via API).</p>'
-         if acct_count == 0 else "")
+aviso = (
+    '<p class="ig-aviso">Nenhum post no ar ainda. As pe&ccedil;as abaixo j&aacute; foram geradas; '
+    'os Reels tiveram envio sem confirma&ccedil;&atilde;o (n&atilde;o constam na conta via API).</p>'
+    if acct_count == 0
+    else ""
+)
 ig_banner = f"""<div class="ig-acct">
   <div class="ig-acct-head">
     <span class="ig-at">@{html.escape(str(acct_name))}</span>
@@ -422,60 +555,95 @@ HIST = datas.get("historico", [])
 views_delta = (HIST[-1]["views_total"] - HIST[-2]["views_total"]) if len(HIST) >= 2 else None
 
 # oportunidades: livros mais visitados que ainda NAO viraram video
-oport = sorted((b for b in books.values() if b["id"] not in video_by_slug),
-               key=lambda b: -VISITAS.get(b["id"], 0))
+oport = sorted(
+    (b for b in books.values() if b["id"] not in video_by_slug),
+    key=lambda b: -VISITAS.get(b["id"], 0),
+)
 oport = [b for b in oport if VISITAS.get(b["id"], 0) >= 4][:5]
 
 # alertas acionaveis
 alertas = []
 _n = sum(1 for r in items if r["tipo"] == "video" and r["situ"] == "pendente")
 if _n:
-    alertas.append(("s-pen", f"{_n} video(s) construido(s) aguardando upload no YouTube (cota diaria)"))
+    alertas.append(
+        ("s-pen", f"{_n} video(s) construido(s) aguardando upload no YouTube (cota diaria)")
+    )
 _n = sum(1 for r in items if r["rede"] == "Instagram" and r["situ"] == "enviado")
 if _n:
-    alertas.append(("s-nao", f"{_n} Reel(s) do Instagram sem confirmacao na conta — refazer/checar"))
+    alertas.append(
+        ("s-nao", f"{_n} Reel(s) do Instagram sem confirmacao na conta — refazer/checar")
+    )
 _n = sum(1 for r in items if r["rede"] == "TikTok" and r["situ"] == "rascunho")
 if _n:
     alertas.append(("s-ras", f"{_n} TikTok(s) parado(s) em rascunho — publicar"))
 if (not VENDAS) or all(str(k).startswith("_") for k in VENDAS):
     alertas.append(("s-pre", "Vendas Amazon sem dados — colar relatorio em amazon_vendas.json"))
 
-prox7 = sorted((r for r in items if r["situ"] == "agendado" and r["date"]
-                and hoje <= r["date"] <= hoje + timedelta(days=7)), key=lambda r: r["date"])[:8]
+prox7 = sorted(
+    (
+        r
+        for r in items
+        if r["situ"] == "agendado" and r["date"] and hoje <= r["date"] <= hoje + timedelta(days=7)
+    ),
+    key=lambda r: r["date"],
+)[:8]
 
 _empty = '<li class="ins-empty">nada por aqui &#10003;</li>'
-oport_html = "".join(
-    f'<li><a href="../{b.get("url","")}" target="_blank">{html.escape(b.get("title",""))}</a>'
-    f'<span class="ins-n">{VISITAS.get(b["id"],0)} visitas &middot; sem video</span></li>' for b in oport) or _empty
-prox_html = "".join(
-    f'<li><b>{r["date"].day:02d}/{MES[r["date"].month]}</b> {html.escape(r["title"])}'
-    f'<span class="ins-n">{html.escape(r["rotulo"])} &middot; {REDE.get(r["rede"],(r["rede"],""))[0]}</span></li>'
-    for r in prox7) or _empty
-alert_html = "".join(
-    f'<li><span class="dot {cls}"></span>{html.escape(txt)}</li>' for cls, txt in alertas) or _empty
+oport_html = (
+    "".join(
+        f'<li><a href="../{b.get("url", "")}" target="_blank">{html.escape(b.get("title", ""))}</a>'
+        f'<span class="ins-n">{VISITAS.get(b["id"], 0)} visitas &middot; sem video</span></li>'
+        for b in oport
+    )
+    or _empty
+)
+prox_html = (
+    "".join(
+        f'<li><b>{r["date"].day:02d}/{MES[r["date"].month]}</b> {html.escape(r["title"])}'
+        f'<span class="ins-n">{html.escape(r["rotulo"])} &middot; {REDE.get(r["rede"], (r["rede"], ""))[0]}</span></li>'
+        for r in prox7
+    )
+    or _empty
+)
+alert_html = (
+    "".join(f'<li><span class="dot {cls}"></span>{html.escape(txt)}</li>' for cls, txt in alertas)
+    or _empty
+)
 
 # cadencia: pecas datadas por mes
 from collections import Counter
+
 cad = Counter()
 for r in items:
     if r["date"]:
         cad[(r["date"].year, r["date"].month)] += 1
 cad_mx = max(cad.values()) if cad else 1
-cad_bars = "".join(
-    f'<div class="bar" title="{v} pecas">'
-    f'<div class="bar-track"><div class="bar-fill" style="height:{max(8,int(v/cad_mx*100))}%"></div></div>'
-    f'<span class="bar-n">{v}</span><span class="bar-l">{MES[m]}/{str(y)[2:]}</span></div>'
-    for (y, m), v in sorted(cad.items())) or '<div class="spark-empty">sem datas ainda</div>'
+cad_bars = (
+    "".join(
+        f'<div class="bar" title="{v} pecas">'
+        f'<div class="bar-track"><div class="bar-fill" style="height:{max(8, int(v / cad_mx * 100))}%"></div></div>'
+        f'<span class="bar-n">{v}</span><span class="bar-l">{MES[m]}/{str(y)[2:]}</span></div>'
+        for (y, m), v in sorted(cad.items())
+    )
+    or '<div class="spark-empty">sem datas ainda</div>'
+)
 
 
 def svg_spark(vals, w=220, h=44):
     if len(vals) < 2:
-        return '<div class="spark-empty">1 ponto coletado — a curva aparece a partir de 2 dias</div>'
+        return (
+            '<div class="spark-empty">1 ponto coletado — a curva aparece a partir de 2 dias</div>'
+        )
     mn, mx = min(vals), max(vals)
     rng = (mx - mn) or 1
-    pts = " ".join(f"{i/(len(vals)-1)*w:.1f},{h-(v-mn)/rng*(h-6)-3:.1f}" for i, v in enumerate(vals))
-    return (f'<svg class="spark" viewBox="0 0 {w} {h}" preserveAspectRatio="none">'
-            f'<polyline points="{pts}"/></svg>')
+    pts = " ".join(
+        f"{i / (len(vals) - 1) * w:.1f},{h - (v - mn) / rng * (h - 6) - 3:.1f}"
+        for i, v in enumerate(vals)
+    )
+    return (
+        f'<svg class="spark" viewBox="0 0 {w} {h}" preserveAspectRatio="none">'
+        f'<polyline points="{pts}"/></svg>'
+    )
 
 
 spark = svg_spark([h["views_total"] for h in HIST])
@@ -483,10 +651,18 @@ spark_lo = HIST[0]["views_total"] if HIST else 0
 spark_hi = HIST[-1]["views_total"] if HIST else 0
 delta_html = ""
 if views_delta is not None:
-    delta_html = f'<span class="kpi-delta">{"+" if views_delta >= 0 else ""}{views_delta} desde ontem</span>'
+    delta_html = (
+        f'<span class="kpi-delta">{"+" if views_delta >= 0 else ""}{views_delta} desde ontem</span>'
+    )
 
-col = to_brt(datas.get("coletado_em", "").replace("+00:00", "Z")) if datas.get("coletado_em") else None
-col_str = f"{col.day:02d}/{MES[col.month]}/{col.year} {col.hour:02d}:{col.minute:02d}" if col else "n/d"
+col = (
+    to_brt(datas.get("coletado_em", "").replace("+00:00", "Z"))
+    if datas.get("coletado_em")
+    else None
+)
+col_str = (
+    f"{col.day:02d}/{MES[col.month]}/{col.year} {col.hour:02d}:{col.minute:02d}" if col else "n/d"
+)
 prox_str = f"{prox_pub.day:02d}/{MES[prox_pub.month]}" if prox_pub else "&mdash;"
 gerado = meta.get("gerado_em", str(date.today()))
 
@@ -977,5 +1153,5 @@ $('#csv').addEventListener('click',()=>{{
 </html>"""
 
 (OUT_DIR / "index.html").write_text(HTML, encoding="utf-8")
-print(f"OK -> {OUT_DIR/'index.html'}  ({len(livros_agg)} livros, {len(items)} pecas)")
+print(f"OK -> {OUT_DIR / 'index.html'}  ({len(livros_agg)} livros, {len(items)} pecas)")
 print(f"KPIs: {kpi} | proxima: {prox_str}")

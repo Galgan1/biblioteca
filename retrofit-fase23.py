@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Retrofit Fase 2+3: navegação nomeada, favicon, Open Graph e link da estante
 no rodapé, em todas as páginas existentes. Idempotente (pode rodar de novo)."""
+
 import json
 import re
 import sys
@@ -42,8 +43,10 @@ def head_inject(html, prefix, title, desc, image, url):
     if skin:
         theme = f'\n    <meta name="theme-color" content="{skin}">'
     else:
-        theme = ('\n    <meta name="theme-color" content="#fcfdfc" media="(prefers-color-scheme: light)">'
-                 '\n    <meta name="theme-color" content="#1c1f1d" media="(prefers-color-scheme: dark)">')
+        theme = (
+            '\n    <meta name="theme-color" content="#fcfdfc" media="(prefers-color-scheme: light)">'
+            '\n    <meta name="theme-color" content="#1c1f1d" media="(prefers-color-scheme: dark)">'
+        )
     block = f"""    <link rel="icon" type="image/svg+xml" href="{prefix}assets/favicon.svg">{theme}{desc_tag}
     <!-- og-retrofit -->
     <meta property="og:type" content="article">
@@ -67,8 +70,10 @@ def footer_link(html, prefix):
     if not m:
         return html
     inner = m.group(1).strip()
-    new = (f'<p class="footer-credit">{inner} · '
-           f'<a class="footer-link" href="{prefix}index.html">Biblioteca</a></p>')
+    new = (
+        f'<p class="footer-credit">{inner} · '
+        f'<a class="footer-link" href="{prefix}index.html">Biblioteca</a></p>'
+    )
     return html.replace(m.group(0), new, 1)
 
 
@@ -82,13 +87,21 @@ total_nav = 0
 # ---------------------------------------------------------------- index.html
 idx_file = ROOT / "index.html"
 idx = idx_file.read_text(encoding="utf-8")
-idx = head_inject(idx, "", "Biblioteca — André Galgani",
-                  "Livros inteiros, destilados numa página. Resumos visuais, capítulo a capítulo.",
-                  f"{BASE}/assets/og-banner.png", f"{BASE}/")
-idx = idx.replace('<meta property="og:type" content="article">',
-                  '<meta property="og:type" content="website">')
-idx = idx.replace('<meta name="twitter:card" content="summary">',
-                  '<meta name="twitter:card" content="summary_large_image">')
+idx = head_inject(
+    idx,
+    "",
+    "Biblioteca — André Galgani",
+    "Livros inteiros, destilados numa página. Resumos visuais, capítulo a capítulo.",
+    f"{BASE}/assets/og-banner.png",
+    f"{BASE}/",
+)
+idx = idx.replace(
+    '<meta property="og:type" content="article">', '<meta property="og:type" content="website">'
+)
+idx = idx.replace(
+    '<meta name="twitter:card" content="summary">',
+    '<meta name="twitter:card" content="summary_large_image">',
+)
 idx_file.write_text(idx, encoding="utf-8", newline='\n')
 total_pages += 1
 
@@ -114,7 +127,9 @@ for book in books:
         order.append(page)
 
     cover = f"{BASE}/{book['coverUrl']}"
-    ov = head_inject(ov, "", esc(book["title"]), esc(book["description"]), cover, f"{BASE}/{slug}.html")
+    ov = head_inject(
+        ov, "", esc(book["title"]), esc(book["description"]), cover, f"{BASE}/{slug}.html"
+    )
     ov = footer_link(ov, "")
     ov_file.write_text(ov, encoding="utf-8", newline='\n')
     total_pages += 1
@@ -132,7 +147,9 @@ for book in books:
         m = re.search(r'<p class="header-intro"[^>]*>(.*?)</p>', html, flags=re.S)
         intro = re.sub(r"<[^>]+>", "", m.group(1)) if m else book["description"]
 
-        html = head_inject(html, "../", esc(page_title), esc(intro), cover, f"{BASE}/{slug}/{page}.html")
+        html = head_inject(
+            html, "../", esc(page_title), esc(intro), cover, f"{BASE}/{slug}/{page}.html"
+        )
         html = footer_link(html, "../")
 
         # navegação nomeada
@@ -147,8 +164,10 @@ for book in books:
             label = "Visão Geral" if href.startswith("..") else nav_label(target, True)
             if label is None:
                 return mm.group(0)
-            return (f'<a href="{href}" class="chapter-nav-link" rel="prev" '
-                    f'aria-label="Capítulo anterior: {esc(label)}">&larr; {esc(label)}</a>')
+            return (
+                f'<a href="{href}" class="chapter-nav-link" rel="prev" '
+                f'aria-label="Capítulo anterior: {esc(label)}">&larr; {esc(label)}</a>'
+            )
 
         def sub_next(mm):
             href = mm.group(1)
@@ -156,14 +175,22 @@ for book in books:
             label = "Visão Geral" if href.startswith("..") else nav_label(target, False)
             if label is None:
                 return mm.group(0)
-            return (f'<a href="{href}" class="chapter-nav-link" rel="next" '
-                    f'aria-label="Próximo capítulo: {esc(label)}">{esc(label)} &rarr;</a>')
+            return (
+                f'<a href="{href}" class="chapter-nav-link" rel="next" '
+                f'aria-label="Próximo capítulo: {esc(label)}">{esc(label)} &rarr;</a>'
+            )
 
         n0 = html
-        html = re.sub(r'<a href="([^"]+)" class="chapter-nav-link"[^>]*>\s*(?:&larr;|←)[^<]*</a>',
-                      sub_prev, html)
-        html = re.sub(r'<a href="([^"]+)" class="chapter-nav-link"[^>]*>[^<]*(?:&rarr;|→)\s*</a>',
-                      sub_next, html)
+        html = re.sub(
+            r'<a href="([^"]+)" class="chapter-nav-link"[^>]*>\s*(?:&larr;|←)[^<]*</a>',
+            sub_prev,
+            html,
+        )
+        html = re.sub(
+            r'<a href="([^"]+)" class="chapter-nav-link"[^>]*>[^<]*(?:&rarr;|→)\s*</a>',
+            sub_next,
+            html,
+        )
         if html != n0:
             total_nav += 1
 

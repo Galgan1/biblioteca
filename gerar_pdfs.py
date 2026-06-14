@@ -28,28 +28,28 @@ print("Iniciando geracao de PDFs (1 pagina por capitulo, layout otimizado)...")
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
-    
+
     for item in pages:
         print(f"\nAcessando {item['url']}...")
         page = browser.new_page()
         page.goto(item['url'], wait_until="networkidle")
         page.wait_for_timeout(1500)
-        
+
         output_path = os.path.join(OUTPUT_DIR, item['output'])
-        
+
         # Gerar PDF com margem zero (a pagina HTML ja tem seu proprio padding)
         page.pdf(
             path=output_path,
             format="A4",
             print_background=True,
             scale=1.0,
-            margin={"top": "0", "bottom": "0", "left": "0", "right": "0"}
+            margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
         )
-        
+
         # Validar
         reader = PdfReader(output_path)
         num_pages = len(reader.pages)
-        
+
         if num_pages == 1:
             print(f"[{item['output']}] OK - Exatamente 1 pagina.")
         else:
@@ -60,20 +60,22 @@ with sync_playwright() as p:
             new_scale = a4_height / content_height
             if new_scale < 0.1:
                 new_scale = 0.1
-            
+
             page.pdf(
                 path=output_path,
                 format="A4",
                 print_background=True,
                 scale=new_scale,
-                margin={"top": "0", "bottom": "0", "left": "0", "right": "0"}
+                margin={"top": "0", "bottom": "0", "left": "0", "right": "0"},
             )
             reader2 = PdfReader(output_path)
-            print(f"[{item['output']}] Re-gerado com scale={new_scale:.3f} -> {len(reader2.pages)} pagina(s).")
-        
+            print(
+                f"[{item['output']}] Re-gerado com scale={new_scale:.3f} -> {len(reader2.pages)} pagina(s)."
+            )
+
         generated_pdfs.append(output_path)
         page.close()
-        
+
     browser.close()
 
 print(f"\n--- Resumo ---")

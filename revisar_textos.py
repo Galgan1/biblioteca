@@ -2,6 +2,7 @@
 """Revisao de texto: converte markdown cru remanescente (<p> - item</p>,
 <p>&bull; item</p>, <p>* item</p>) em listas HTML reais, agrupando runs
 consecutivos. Aplica a todos os livros."""
+
 import re
 from pathlib import Path
 

@@ -11,6 +11,7 @@ Ex.:  python aplicar_pos.py padrao-bitcoin ur9LHfpKUCY
 - Playlist: garante a temática e adiciona o vídeo.
 Idempotente: não duplica capítulos (checa '0:00'), legenda standard nem item de playlist.
 """
+
 import sys, json
 from pathlib import Path
 from upload_youtube import get_creds
@@ -19,7 +20,7 @@ import youtube_pos as yp
 import recuperar_timing
 
 ROOT = Path(__file__).parent
-CANAL_OK = 'UC2N5xZ-gyCU3hNvH1QqNahA'   # Minuto Real (NUNCA o pessoal)
+CANAL_OK = 'UC2N5xZ-gyCU3hNvH1QqNahA'  # Minuto Real (NUNCA o pessoal)
 
 
 def _writable_snippet(old, new_desc):
@@ -52,7 +53,9 @@ def main(slug, vid):
         snip = yt.videos().list(part='snippet', id=vid).execute()['items'][0]['snippet']
         if bloco and '0:00' not in snip.get('description', ''):
             nd = f"{snip.get('description', '')}\n\n⏱️ Capítulos\n{bloco}"[:5000]
-            yt.videos().update(part='snippet', body={'id': vid, 'snippet': _writable_snippet(snip, nd)}).execute()
+            yt.videos().update(
+                part='snippet', body={'id': vid, 'snippet': _writable_snippet(snip, nd)}
+            ).execute()
             feito.append(f'capítulos ({len(bloco.splitlines())})')
         else:
             print('  capítulos já presentes — pulando')
@@ -63,8 +66,11 @@ def main(slug, vid):
             p = yp.LEG / f'{slug}.srt'
             p.write_text(srt, encoding='utf-8')
             existing = yt.captions().list(part='snippet', videoId=vid).execute().get('items', [])
-            ja = any(c['snippet'].get('trackKind') == 'standard'
-                     and c['snippet'].get('language', '').startswith('pt') for c in existing)
+            ja = any(
+                c['snippet'].get('trackKind') == 'standard'
+                and c['snippet'].get('language', '').startswith('pt')
+                for c in existing
+            )
             if ja:
                 print('  legenda standard pt já existe — pulando')
             else:
@@ -76,8 +82,13 @@ def main(slug, vid):
     # 3) PLAYLIST
     title = yp.playlist_title_for(cfg)
     pid = yp.ensure_playlist(yt, title)
-    try:   # playlist recém-criada pode demorar a responder ao list (404) — então só dedup se der
-        itens = yt.playlistItems().list(part='snippet', playlistId=pid, maxResults=50).execute().get('items', [])
+    try:  # playlist recém-criada pode demorar a responder ao list (404) — então só dedup se der
+        itens = (
+            yt.playlistItems()
+            .list(part='snippet', playlistId=pid, maxResults=50)
+            .execute()
+            .get('items', [])
+        )
     except Exception:
         itens = []
     if any(i['snippet']['resourceId'].get('videoId') == vid for i in itens):

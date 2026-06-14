@@ -11,6 +11,7 @@ no MESMO formato do build, deixando o vídeo pronto p/ legendas/capítulos retro
 Fonte do vídeo: _stems/<slug>/video_mudo.mp4 (preferido) ou <slug>.mp4.
 Uso:  python recuperar_timing.py <slug> [<slug> ...]
 """
+
 import sys, json, subprocess, re
 from pathlib import Path
 import imageio_ffmpeg
@@ -41,10 +42,15 @@ _LADDER = [(0.06, 0.06), (0.10, 0.05), (0.13, 0.05), (0.16, 0.04), (0.08, 0.08)]
 
 
 def _boundaries(vid, total, pix_th, d):
-    r = subprocess.run([FF, '-i', str(vid), '-vf', f'blackdetect=d={d}:pix_th={pix_th}',
-                        '-an', '-f', 'null', '-'], capture_output=True, text=True)
+    r = subprocess.run(
+        [FF, '-i', str(vid), '-vf', f'blackdetect=d={d}:pix_th={pix_th}', '-an', '-f', 'null', '-'],
+        capture_output=True,
+        text=True,
+    )
     blacks = [float(x) for x in re.findall(r'black_start:([\d.]+)', r.stderr)]
-    internas = [b for b in blacks if 1.0 < b < total - 1.0]   # tira abertura(~0) e fechamento(~total)
+    internas = [
+        b for b in blacks if 1.0 < b < total - 1.0
+    ]  # tira abertura(~0) e fechamento(~total)
     return [0.0] + internas
 
 
@@ -60,8 +66,15 @@ def recover(slug, n_cenas):
         if len(starts) == n_cenas:
             durs = [round(starts[i + 1] - starts[i], 2) for i in range(n_cenas - 1)]
             durs.append(round(total - starts[-1], 2))
-            return ({'tail': TAIL, 'durs': durs, 'fonte': f'blackdetect@{pix_th}/{d}',
-                     'total': round(total, 2)}, 'ok')
+            return (
+                {
+                    'tail': TAIL,
+                    'durs': durs,
+                    'fonte': f'blackdetect@{pix_th}/{d}',
+                    'total': round(total, 2),
+                },
+                'ok',
+            )
     return None, f'blackdetect não isolou {n_cenas} cenas em nenhum threshold da escada'
 
 
@@ -73,7 +86,9 @@ def main(slug):
         print(f'{slug}: FALHOU — {msg}')
         return False
     (STEMS / slug).mkdir(parents=True, exist_ok=True)
-    (STEMS / slug / 'timing.json').write_text(json.dumps(data, ensure_ascii=False), encoding='utf-8')
+    (STEMS / slug / 'timing.json').write_text(
+        json.dumps(data, ensure_ascii=False), encoding='utf-8'
+    )
     print(f'{slug}: OK — {n} cenas, total {data["total"]}s -> _stems/{slug}/timing.json')
     return True
 

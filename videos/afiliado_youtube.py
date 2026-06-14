@@ -8,6 +8,7 @@ login interativo: se o token estiver invalido, encerra pedindo pra rodar upload_
 Casa video->livro pelo titulo (titulo do livro aparece no titulo do video). Pega o
 link em ../afiliados/links.json. Append idempotente (marcador), preserva o resto da descricao.
 """
+
 import json
 import re
 import sys
@@ -34,7 +35,9 @@ def creds():
         if c.expired and c.refresh_token:
             c.refresh(Request())
         else:
-            sys.exit("[!] token invalido/expirado sem refresh — rode upload_youtube.py p/ reautorizar.")
+            sys.exit(
+                "[!] token invalido/expirado sem refresh — rode upload_youtube.py p/ reautorizar."
+            )
     return c
 
 
@@ -60,21 +63,27 @@ def listar_videos(yt):
     pl = up["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
     ids, tok = [], None
     while True:
-        r = yt.playlistItems().list(part="contentDetails", playlistId=pl, maxResults=50, pageToken=tok).execute()
+        r = (
+            yt.playlistItems()
+            .list(part="contentDetails", playlistId=pl, maxResults=50, pageToken=tok)
+            .execute()
+        )
         ids += [it["contentDetails"]["videoId"] for it in r["items"]]
         tok = r.get("nextPageToken")
         if not tok:
             break
     vids = []
     for i in range(0, len(ids), 50):
-        r = yt.videos().list(part="snippet", id=",".join(ids[i:i + 50])).execute()
+        r = yt.videos().list(part="snippet", id=",".join(ids[i : i + 50])).execute()
         vids += r["items"]
     return vids
 
 
 def bloco_afiliado(book, url):
-    return (f"\n\n———\n{MARCADOR} \"{book['title']}\" na Amazon: {url}\n"
-            f"Como Associado da Amazon, ganho com compras qualificadas — sem custo extra para você.")
+    return (
+        f"\n\n———\n{MARCADOR} \"{book['title']}\" na Amazon: {url}\n"
+        f"Como Associado da Amazon, ganho com compras qualificadas — sem custo extra para você."
+    )
 
 
 def main():
@@ -94,8 +103,17 @@ def main():
         book = casa_livro(titulo, books)
         tem_link = MARCADOR in sn.get("description", "")
         url = links.get(book["id"]) if book else None
-        status = ("ja tem" if tem_link else "ADD" if (url and not is_short) else
-                  "short" if is_short else "sem match" if not book else "livro excluido")
+        status = (
+            "ja tem"
+            if tem_link
+            else "ADD"
+            if (url and not is_short)
+            else "short"
+            if is_short
+            else "sem match"
+            if not book
+            else "livro excluido"
+        )
         print(f"[{status:>12}] {vid}  {titulo[:58]}")
         if book:
             print(f"               -> {book['id']}  {url}")
@@ -106,12 +124,15 @@ def main():
     if modo == "apply":
         for vid, sn, book, url in planos:
             novo = sn.get("description", "") + bloco_afiliado(book, url)
-            body = {"id": vid, "snippet": {
-                "title": sn["title"],
-                "categoryId": sn.get("categoryId", "27"),
-                "description": novo[:5000],
-                "tags": sn.get("tags", []),
-            }}
+            body = {
+                "id": vid,
+                "snippet": {
+                    "title": sn["title"],
+                    "categoryId": sn.get("categoryId", "27"),
+                    "description": novo[:5000],
+                    "tags": sn.get("tags", []),
+                },
+            }
             if sn.get("defaultLanguage"):
                 body["snippet"]["defaultLanguage"] = sn["defaultLanguage"]
             yt.videos().update(part="snippet", body=body).execute()

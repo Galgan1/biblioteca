@@ -11,6 +11,7 @@ NÃO aplica diff. NÃO faz deploy. NÃO toca em produção.
 
 Uso:  python propor_patch.py <livro>/<pagina> [<livro>/<pagina> ...]
 """
+
 import datetime
 import os
 import re
@@ -44,9 +45,11 @@ def _png(pdf_bytes, path):
 def main():
     specs = [s for s in sys.argv[1:] if "/" in s]
     if not specs:
-        print("uso: python propor_patch.py <livro>/<pagina> ..."); sys.exit(2)
+        print("uso: python propor_patch.py <livro>/<pagina> ...")
+        sys.exit(2)
     if not claude_cli.available():
-        print("claude CLI indisponível — esta etapa precisa da rota de fuga."); sys.exit(1)
+        print("claude CLI indisponível — esta etapa precisa da rota de fuga.")
+        sys.exit(1)
 
     ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
     outdir = os.path.join(PROP_DIR, ts)
@@ -67,8 +70,7 @@ def main():
         engine.stop_service()
 
     print_css = _extract_print_css()
-    casos_txt = "\n".join(
-        f"- {spec}: {metricas.compact(sc)}" for spec, sc in casos)
+    casos_txt = "\n".join(f"- {spec}: {metricas.compact(sc)}" for spec, sc in casos)
     prompt = f"""Você é engenheiro do motor de PDF da Biblioteca (cheat sheets verdes, A4).
 Estas páginas continuam abaixo do alvo de "patus" MESMO após o ajuste automático de
 parâmetros (maxFs, fillTarget, rhythmCap, padCap, marginMul). Logo, o gargalo é
@@ -97,8 +99,10 @@ Responda em Markdown com EXATAMENTE estas seções:
     resp = claude_cli.ask(prompt)
     md = os.path.join(outdir, "proposta.md")
     with open(md, "w", encoding="utf-8") as f:
-        f.write(f"# Proposta de patch estrutural — {ts}\n\n"
-                f"Casos:\n{casos_txt}\n\n---\n\n{resp or '(claude não respondeu)'}\n")
+        f.write(
+            f"# Proposta de patch estrutural — {ts}\n\n"
+            f"Casos:\n{casos_txt}\n\n---\n\n{resp or '(claude não respondeu)'}\n"
+        )
 
     print(f"\nproposta salva em {md}")
     print("PORTÃO: revise o diff. Para aplicar com segurança:")

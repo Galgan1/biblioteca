@@ -3,6 +3,7 @@
 Uso:  python gerar_capa.py <slug> "Título do Livro" "Autor"
 Saída: assets/<slug>-cover.png  (800x1200)
 """
+
 import sys, os
 from PIL import Image, ImageDraw, ImageFont
 
@@ -30,7 +31,8 @@ def wrap(d, text, fnt, maxw):
         if d.textlength(t, font=fnt) <= maxw:
             cur = t
         else:
-            lines.append(cur); cur = w
+            lines.append(cur)
+            cur = w
     if cur:
         lines.append(cur)
     return lines
@@ -39,8 +41,8 @@ def wrap(d, text, fnt, maxw):
 def main(slug, title, author):
     img = Image.new("RGB", (W, H), PAPER)
     d = ImageDraw.Draw(img)
-    d.rectangle([0, 0, W, 130], fill=GREEN)            # faixa superior
-    d.rectangle([0, H - 90, W, H], fill=GREEN)          # faixa inferior
+    d.rectangle([0, 0, W, 130], fill=GREEN)  # faixa superior
+    d.rectangle([0, H - 90, W, H], fill=GREEN)  # faixa inferior
     # moldura tracejada
     for x in range(40, W - 40, 22):
         d.line([(x, 170), (x + 12, 170)], fill=GREEN, width=3)
@@ -53,7 +55,8 @@ def main(slug, title, author):
     ft = font(86)
     lines = wrap(d, title.upper(), ft, W - 160)
     while len(lines) > 4 and ft.size > 48:
-        ft = font(ft.size - 6); lines = wrap(d, title.upper(), ft, W - 160)
+        ft = font(ft.size - 6)
+        lines = wrap(d, title.upper(), ft, W - 160)
     y = H // 2 - len(lines) * int(ft.size * 0.58)
     for ln in lines:
         w = d.textlength(ln, font=ft)

@@ -14,6 +14,7 @@ Encadeia, na ordem certa e sem deixar esquecer nenhum passo:
   5. verifica: paginas existem + smoke no navegador
   6. [--deploy] sobe os arquivos do livro + assets e corrige a permissao da pasta
 """
+
 import importlib
 import os
 import subprocess
@@ -68,8 +69,9 @@ def validate(slug):
         for card in c["cards"]:
             if not {"ic", "t", "b"} <= set(card):
                 fail(f"card em '{c['slug']}' precisa de ic/t/b: {card!r}")
-    print(f"OK: {mod_name}.py valido — {len(CH)} capitulos, "
-          f"{sum(len(c['cards']) for c in CH)} cards.")
+    print(
+        f"OK: {mod_name}.py valido — {len(CH)} capitulos, {sum(len(c['cards']) for c in CH)} cards."
+    )
     return B, CH
 
 
@@ -92,8 +94,10 @@ def ensure_cover(B, slug):
         cmd.append(str(B["isbn"]))
     if subprocess.run(cmd, cwd=BASE).returncode == 0:
         return
-    print("AVISO: capa original NAO encontrada — gerando tipografica PROVISORIA. "
-          "Substitua por uma capa original (a tipografica so vale p/ nao-livros, ex.: provimento juridico).")
+    print(
+        "AVISO: capa original NAO encontrada — gerando tipografica PROVISORIA. "
+        "Substitua por uma capa original (a tipografica so vale p/ nao-livros, ex.: provimento juridico)."
+    )
     run([sys.executable, "gerar_capa.py", slug, B["title"], B["author"]], cwd=BASE)
 
 
@@ -113,12 +117,32 @@ def verify(slug, CH):
 def deploy(slug, CH):
     step("6", f"deploy -> {VPS}:{REMOTE}/{slug}")
     run(["ssh", VPS, f"mkdir -p {REMOTE}/{slug}"])
-    run(["scp", f"{slug}.html", "index.html", "books.json", "sitemap.xml", "robots.txt",
-         f"{VPS}:{REMOTE}/"], cwd=BASE)
-    files = [os.path.join(slug, f"{c['slug']}.html") for c in CH] + [os.path.join(slug, "script.js")]
+    run(
+        [
+            "scp",
+            f"{slug}.html",
+            "index.html",
+            "books.json",
+            "sitemap.xml",
+            "robots.txt",
+            f"{VPS}:{REMOTE}/",
+        ],
+        cwd=BASE,
+    )
+    files = [os.path.join(slug, f"{c['slug']}.html") for c in CH] + [
+        os.path.join(slug, "script.js")
+    ]
     run(["scp", *files, f"{VPS}:{REMOTE}/{slug}/"], cwd=BASE)
-    run(["scp", "assets/style.css", f"assets/{slug}-cover.png", "assets/favicon.svg",
-         f"{VPS}:{REMOTE}/assets/"], cwd=BASE)
+    run(
+        [
+            "scp",
+            "assets/style.css",
+            f"assets/{slug}-cover.png",
+            "assets/favicon.svg",
+            f"{VPS}:{REMOTE}/assets/",
+        ],
+        cwd=BASE,
+    )
     # corrige a permissao da pasta nova (senao o nginx da 404 — o bug classico)
     run(["ssh", VPS, f"chmod 755 {REMOTE}/{slug} && chmod 644 {REMOTE}/{slug}/*"])
     print(f"OK: no ar -> https://www.andregalgani.com.br/biblioteca/{slug}.html")
@@ -139,6 +163,7 @@ def main():
 
     step("2", "gerando paginas + books.json")
     import gerar_livro
+
     gerar_livro.main(slug)
 
     step("3", "garantindo a capa")

@@ -18,6 +18,7 @@ Pós-edição: edite `_stems/<slug>/mix.json` (ex.: music_gain, loudnorm) e rode
 CLI:  python mixmaster.py <slug>            # re-mixa o master a partir dos stems
       python mixmaster.py <slug> out.mp4    # master num caminho específico
 """
+
 import sys, json, subprocess
 from pathlib import Path
 import imageio_ffmpeg
@@ -65,19 +66,28 @@ def export_stems(slug, narr_mp4, music_wav=None, efeitos_wav=None):
 def master(slug, out=None):
     """Re-monta o master a partir dos stems + mix.json — segundos, sem re-render."""
     d = STEMS / slug
-    video, voz, trilha, efe = d / 'video_mudo.mp4', d / 'voz.wav', d / 'trilha.wav', d / 'efeitos.wav'
+    video, voz, trilha, efe = (
+        d / 'video_mudo.mp4',
+        d / 'voz.wav',
+        d / 'trilha.wav',
+        d / 'efeitos.wav',
+    )
     if not video.exists() or not voz.exists():
         sys.exit(f'[!] stems ausentes em {d} — rode o build (gerar_video.py) primeiro.')
-    mix = {**DEFAULT_MIX, **(json.loads(mj.read_text(encoding='utf-8')) if (mj := d / 'mix.json').exists() else {})}
+    mix = {
+        **DEFAULT_MIX,
+        **(json.loads(mj.read_text(encoding='utf-8')) if (mj := d / 'mix.json').exists() else {}),
+    }
     out = Path(out) if out else ROOT / f'{slug}.mp4'
 
-    inp = ['-i', str(video), '-i', str(voz)]          # 0:v vídeo · 1:a voz
-    parts, idx, cur = [], 2, '[1:a]'                   # voz soberana
+    inp = ['-i', str(video), '-i', str(voz)]  # 0:v vídeo · 1:a voz
+    parts, idx, cur = [], 2, '[1:a]'  # voz soberana
     if trilha.exists():
         inp += ['-i', str(trilha)]
         parts.append(f'[{idx}:a]volume={mix["music_gain"]}[m]')
         parts.append(f'{cur}[m]amix=inputs=2:duration=first:dropout_transition=2[vt]')
-        cur = '[vt]'; idx += 1
+        cur = '[vt]'
+        idx += 1
     if efe.exists():
         # SFX (sonoplastia) entra por uma 2ª soma SEM normalização (normalize=0): não
         # rebaixa voz/trilha. O knock cai no respiro entre cenas, onde a voz está em
@@ -85,7 +95,8 @@ def master(slug, out=None):
         inp += ['-i', str(efe)]
         parts.append(f'[{idx}:a]volume={mix["sfx_gain"]}[e]')
         parts.append(f'{cur}[e]amix=inputs=2:duration=first:normalize=0[ve]')
-        cur = '[ve]'; idx += 1
+        cur = '[ve]'
+        idx += 1
     if mix.get('loudnorm'):
         parts.append(f'{cur}loudnorm=I={mix["lufs"]}:TP={mix["tp"]}:LRA=11[a]')
         cur = '[a]'
@@ -98,8 +109,12 @@ def master(slug, out=None):
         amap = last
     args += ['-map', '0:v', '-map', amap, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', str(out)]
     _run(args)
-    extras = (' +trilha' if trilha.exists() else '') + (' +SFX' if efe.exists() else '') + (' +loudnorm' if mix.get('loudnorm') else '')
-    print(f"OK master -> {out}  ({out.stat().st_size/1e6:.1f} MB){extras}")
+    extras = (
+        (' +trilha' if trilha.exists() else '')
+        + (' +SFX' if efe.exists() else '')
+        + (' +loudnorm' if mix.get('loudnorm') else '')
+    )
+    print(f"OK master -> {out}  ({out.stat().st_size / 1e6:.1f} MB){extras}")
     return out
 
 

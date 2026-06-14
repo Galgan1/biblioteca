@@ -6,6 +6,7 @@
 
 Uso:  python check_marca.py        (sai != 0 se houver drift)
 """
+
 import sys
 import math
 import re
@@ -15,8 +16,13 @@ import marca
 ROOT = Path(__file__).parent
 
 # Superfícies que DEVEM ler a marca (não hardcodar)
-TARGETS = ['gerar_carrossel.py', 'assets/style.css',
-           'videos/gerar_video.py', 'videos/gerar_thumb.py', 'videos/gerar_canal_art.py']
+TARGETS = [
+    'gerar_carrossel.py',
+    'assets/style.css',
+    'videos/gerar_video.py',
+    'videos/gerar_thumb.py',
+    'videos/gerar_canal_art.py',
+]
 
 # Tokens/fontes PROIBIDOS de aparecer hardcoded nessas superfícies
 FORBIDDEN = {
@@ -52,7 +58,7 @@ def _lin(c):
 
 def _lum(hexv):
     h = hexv.lstrip('#')
-    r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    r, g, b = (int(h[i : i + 2], 16) for i in (0, 2, 4))
     return 0.2126 * _lin(r) + 0.7152 * _lin(g) + 0.0722 * _lin(b)
 
 
@@ -95,9 +101,9 @@ def oklch_to_srgb(oklch_str):
     m_ = L - 0.1055613458 * a - 0.0638541728 * b
     s_ = L - 0.0894841775 * a - 1.2914855480 * b
 
-    l = l_ ** 3
-    mm = m_ ** 3
-    s = s_ ** 3
+    l = l_**3
+    mm = m_**3
+    s = s_**3
 
     lr = +4.0767416621 * l - 3.3077115913 * mm + 0.2309699292 * s
     lg = -1.2684380046 * l + 2.6097574011 * mm - 0.3413193965 * s

@@ -10,7 +10,9 @@ Ex.:  python produzir_shorts.py poder-do-silencio A9vOvkLDj0w
 Sobe cada Short unlisted (#Shorts, flag de IA, CTA p/ o vídeo-mãe). Idempotente:
 estado em _shorts/<slug>_upload_state.json — não re-sobe o que já subiu.
 """
+
 import sys, json, time
+
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
@@ -42,11 +44,13 @@ def short_title(cena):
 
 
 def short_desc(parent):
-    return (f"Corte do resumo completo no canal Minuto Real.\n\n"
-            f"▶ Vídeo completo: https://youtu.be/{parent}\n"
-            f"📚 Acervo: {LINK_BIB}\n\n"
-            f"Narração gerada por inteligência artificial.\n\n"
-            f"#Shorts #livros #resumo #minutoreal")
+    return (
+        f"Corte do resumo completo no canal Minuto Real.\n\n"
+        f"▶ Vídeo completo: https://youtu.be/{parent}\n"
+        f"📚 Acervo: {LINK_BIB}\n\n"
+        f"Narração gerada por inteligência artificial.\n\n"
+        f"#Shorts #livros #resumo #minutoreal"
+    )
 
 
 def main(slug, parent):
@@ -76,12 +80,22 @@ def main(slug, parent):
         path = SH / f'{slug}_{i:02d}.mp4'
         cena = cfg['cenas'][i]
         body = {
-            'snippet': {'title': short_title(cena), 'description': short_desc(parent),
-                        'tags': tags, 'categoryId': '27', 'defaultLanguage': 'pt-BR'},
-            'status': {'privacyStatus': 'unlisted', 'selfDeclaredMadeForKids': False,
-                       'containsSyntheticMedia': True},
+            'snippet': {
+                'title': short_title(cena),
+                'description': short_desc(parent),
+                'tags': tags,
+                'categoryId': '27',
+                'defaultLanguage': 'pt-BR',
+            },
+            'status': {
+                'privacyStatus': 'unlisted',
+                'selfDeclaredMadeForKids': False,
+                'containsSyntheticMedia': True,
+            },
         }
-        media = MediaFileUpload(str(path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024)
+        media = MediaFileUpload(
+            str(path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024
+        )
         req = yt.videos().insert(part='snippet,status', body=body, media_body=media)
         resp = None
         while resp is None:
@@ -93,6 +107,7 @@ def main(slug, parent):
 
     try:
         import pipeline_state
+
         pipeline_state.mark_done(slug, 'shorts', data={'ids': state})
     except Exception:
         pass

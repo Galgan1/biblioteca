@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Protótipo de UMA cena premium: imagem IA de fundo + overlay + texto + Ken Burns
 + narração Iapetus + trilha. Para validar o visual antes de aplicar a tudo."""
+
 import subprocess
 from pathlib import Path
 from PIL import Image, ImageDraw
@@ -15,8 +16,10 @@ KICKER = '01 · A Estratégia Suprema'
 TITLE = 'Vencer sem lutar'
 ACCENT = gv.hex_rgb('#d8a64a')
 BOOK = 'A ARTE DA GUERRA  ·  SUN TZU'
-NAR = ('Para Sun Tzu, ganhar cem batalhas em cem combates não é o auge da excelência. '
-       'A maior vitória é subjugar o inimigo sem lutar.')
+NAR = (
+    'Para Sun Tzu, ganhar cem batalhas em cem combates não é o auge da excelência. '
+    'A maior vitória é subjugar o inimigo sem lutar.'
+)
 
 # ── compor slide: imagem cobrindo 1920x1080 + escurecimento à esquerda ──
 bg = Image.open(P / 'teste.png').convert('RGB')
@@ -56,14 +59,40 @@ gv.sintetiza_ambiente(dur + 1, P / 'mus.wav')
 # ── Ken Burns + mix ──
 nf = int(dur * 30)
 fo = dur - 0.5
-subprocess.run([FF, '-y', '-loop', '1', '-i', str(P / 'slide.png'),
-                '-i', str(P / 'aud.mp3'), '-i', str(P / 'mus.wav'),
-                '-filter_complex',
-                f"[0:v]scale=2304:1296,zoompan=z='min(zoom+0.0006,1.10)':d={nf}:"
-                f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1920x1080:fps=30,"
-                f"fade=t=in:st=0:d=0.5,fade=t=out:st={fo:.2f}:d=0.5[v];"
-                f"[2:a]volume=0.11[m];[1:a][m]amix=inputs=2:duration=first[a]",
-                '-map', '[v]', '-map', '[a]', '-t', f'{dur:.2f}',
-                '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k',
-                str(P / 'proto.mp4')], check=True, capture_output=True)
+subprocess.run(
+    [
+        FF,
+        '-y',
+        '-loop',
+        '1',
+        '-i',
+        str(P / 'slide.png'),
+        '-i',
+        str(P / 'aud.mp3'),
+        '-i',
+        str(P / 'mus.wav'),
+        '-filter_complex',
+        f"[0:v]scale=2304:1296,zoompan=z='min(zoom+0.0006,1.10)':d={nf}:"
+        f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1920x1080:fps=30,"
+        f"fade=t=in:st=0:d=0.5,fade=t=out:st={fo:.2f}:d=0.5[v];"
+        f"[2:a]volume=0.11[m];[1:a][m]amix=inputs=2:duration=first[a]",
+        '-map',
+        '[v]',
+        '-map',
+        '[a]',
+        '-t',
+        f'{dur:.2f}',
+        '-c:v',
+        'libx264',
+        '-pix_fmt',
+        'yuv420p',
+        '-c:a',
+        'aac',
+        '-b:a',
+        '192k',
+        str(P / 'proto.mp4'),
+    ],
+    check=True,
+    capture_output=True,
+)
 print(f'OK -> _proto/proto.mp4 ({dur:.1f}s)')

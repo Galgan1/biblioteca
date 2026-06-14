@@ -21,12 +21,13 @@ keller_dir = os.path.join(BASE_DIR, "keller-casamento")
 if os.path.exists(os.path.join(keller_dir, "script.js")):
     shutil.copy(os.path.join(keller_dir, "script.js"), os.path.join(TARGET_DIR, "script.js"))
 
+
 # Helper for HTML generation
 def generate_chapter_html(chapter_file, md_content, chapter_num, total_chapters, chapter_files):
     # Parse Markdown
     title_match = re.search(r'^# (.+)$', md_content, re.MULTILINE)
     title = title_match.group(1) if title_match else f"Capítulo {chapter_num}"
-    
+
     sections = {}
     current_section = None
     for line in md_content.split('\n'):
@@ -35,21 +36,27 @@ def generate_chapter_html(chapter_file, md_content, chapter_num, total_chapters,
             sections[current_section] = []
         elif current_section:
             sections[current_section].append(line)
-            
+
     ideia_central = "\n".join(sections.get("Ideia Central", sections.get("Resumo", []))).strip()
-    
+
     licoes_list = sections.get("Principais Lições", [])
     if not licoes_list:
         licoes_list = sections.get("Insights e Padrões de Manipulação", [])
     if not licoes_list:
         licoes_list = sections.get("Conclusão", [])
     licoes = "\n".join(licoes_list).strip()
-    
+
     # Process sections into cards
     cards_html = ""
     card_index = 1
-    
-    skip_headers = ["Ideia Central", "Resumo", "Principais Lições", "Insights e Padrões de Manipulação", "Conclusão"]
+
+    skip_headers = [
+        "Ideia Central",
+        "Resumo",
+        "Principais Lições",
+        "Insights e Padrões de Manipulação",
+        "Conclusão",
+    ]
     for sec_title, sec_content in sections.items():
         if sec_title in skip_headers:
             continue
@@ -59,14 +66,16 @@ def generate_chapter_html(chapter_file, md_content, chapter_num, total_chapters,
             items = []
             for item in content.split('\n'):
                 if item.startswith('- **'):
-                    items.append(f"<p style='margin-bottom:0.5rem;'>{item.replace('- **', '<strong>').replace('**:', '</strong>:')}</p>")
+                    items.append(
+                        f"<p style='margin-bottom:0.5rem;'>{item.replace('- **', '<strong>').replace('**:', '</strong>:')}</p>"
+                    )
                 elif item.startswith('- '):
                     items.append(f"<p style='margin-bottom:0.5rem;'>&bull; {item[2:]}</p>")
                 elif item.strip():
                     items.append(f"<p style='margin-bottom:0.5rem;'>{item}</p>")
-                    
+
             body_html = "\n".join(items)
-            
+
             cards_html += f"""
             <article class="card animate-entrance" style="--i: {card_index}">
                 <div class="card-icon" aria-hidden="true">
@@ -93,14 +102,21 @@ def generate_chapter_html(chapter_file, md_content, chapter_num, total_chapters,
         if item.strip().startswith(('1.', '2.', '3.', '4.', '5.', '6.', '7.', '8.', '9.', '- ')):
             licoes_html += f"<li>{re.sub(r'^[0-9]+\.\s*|-\s*', '', item)}</li>\n"
 
-
     # Navigation
-    prev_file = chapter_files[chapter_num-1].replace('.md', '.html') if chapter_num > 0 else "../maquiavel-pedagogo.html"
-    next_file = chapter_files[chapter_num+1].replace('.md', '.html') if chapter_num < total_chapters - 1 else "../maquiavel-pedagogo.html"
-    
+    prev_file = (
+        chapter_files[chapter_num - 1].replace('.md', '.html')
+        if chapter_num > 0
+        else "../maquiavel-pedagogo.html"
+    )
+    next_file = (
+        chapter_files[chapter_num + 1].replace('.md', '.html')
+        if chapter_num < total_chapters - 1
+        else "../maquiavel-pedagogo.html"
+    )
+
     prev_link = prev_file
     next_link = next_file
-    
+
     html = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -156,14 +172,15 @@ def generate_chapter_html(chapter_file, md_content, chapter_num, total_chapters,
     <script src="script.js"></script>
 </body>
 </html>"""
-    
+
     output_filename = os.path.basename(chapter_file).replace('.md', '.html')
     # Make sure we use generic chXX.html names for simpler navigation links (or just replace the name)
     out_path = os.path.join(TARGET_DIR, output_filename)
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(html)
-        
+
     return output_filename, title
+
 
 # Read chapters
 chapter_files = [f for f in os.listdir(SKILL_DIR) if f.startswith('ch') and f.endswith('.md')]
@@ -174,7 +191,9 @@ for idx, ch_file in enumerate(chapter_files):
     with open(os.path.join(SKILL_DIR, ch_file), "r", encoding="utf-8") as f:
         md = f.read()
     filename, title = generate_chapter_html(ch_file, md, idx, len(chapter_files), chapter_files)
-    chapter_links.append(f'<a href="maquiavel-pedagogo/{filename}" style="text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 4px; color: var(--accent); font-weight: bold; background: rgba(0,0,0,0.02); margin-bottom: 0.5rem; display: block;">{title} &rarr;</a>')
+    chapter_links.append(
+        f'<a href="maquiavel-pedagogo/{filename}" style="text-decoration: none; padding: 0.5rem 1rem; border: 1px solid var(--border); border-radius: 4px; color: var(--accent); font-weight: bold; background: rgba(0,0,0,0.02); margin-bottom: 0.5rem; display: block;">{title} &rarr;</a>'
+    )
 
 # Generate overview page (maquiavel-pedagogo.html)
 overview_html = f"""<!DOCTYPE html>

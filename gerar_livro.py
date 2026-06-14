@@ -16,6 +16,7 @@ BOOK = {
 }
 CHAPTERS = [ {"slug","sub","intro","cards":[...],"lessons_title","lessons":[...]} ]
 """
+
 import os, sys, json, shutil, importlib
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -54,25 +55,35 @@ ICONS = {
 
 
 def icon(name):
-    return ('<div class="card-icon" aria-hidden="true">'
-            '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
-            + ICONS.get(name, ICONS["book"]) + '</svg></div>')
+    return (
+        '<div class="card-icon" aria-hidden="true">'
+        '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">'
+        + ICONS.get(name, ICONS["book"])
+        + '</svg></div>'
+    )
 
 
 def card(c):
     cls = "card card-warning" if c.get("warn") else "card"
     if c.get("wide"):
         cls += " card-wide"
-    parts = [f'<article class="{cls} animate-entrance" style="--i: {c["i"]}">',
-             icon(c["ic"]), '<div class="card-content">',
-             f'<h2 class="card-title">{c["t"]}</h2>',
-             f'<p class="card-body">{c["b"]}</p>']
+    parts = [
+        f'<article class="{cls} animate-entrance" style="--i: {c["i"]}">',
+        icon(c["ic"]),
+        '<div class="card-content">',
+        f'<h2 class="card-title">{c["t"]}</h2>',
+        f'<p class="card-body">{c["b"]}</p>',
+    ]
     if c.get("list"):
-        parts.append('<ul class="content-list">' + "".join(f'<li>{x}</li>' for x in c["list"]) + '</ul>')
+        parts.append(
+            '<ul class="content-list">' + "".join(f'<li>{x}</li>' for x in c["list"]) + '</ul>'
+        )
     if c.get("tip"):
         parts.append(f'<p class="card-tip">{c["tip"]}</p>')
     if c.get("det"):
-        parts.append('<div class="card-details"><div class="card-details-inner">' + c["det"] + '</div></div>')
+        parts.append(
+            '<div class="card-details"><div class="card-details-inner">' + c["det"] + '</div></div>'
+        )
     parts.append('</div></article>')
     return "\n".join(parts)
 
@@ -156,7 +167,8 @@ def chapter_page(B, ch, prev_href, prev_label, next_href, next_label):
 def overview_page(B, chapters):
     links = "\n".join(
         f'                            <a href="{B["slug"]}/{ch["slug"]}.html" class="chapter-link">{ch["sub"].replace("CAPÍTULO", "Cap.").replace("Capítulo", "Cap.")} <span class="arrow" aria-hidden="true">&rarr;</span></a>'
-        for ch in chapters)
+        for ch in chapters
+    )
     html = HEAD.format(title=f'Visão Geral: {B["title"]} | Biblioteca', css="assets/style.css")
     html += f'''
         <nav class="crumbs" aria-label="Trilha de navegação">
@@ -171,7 +183,7 @@ def overview_page(B, chapters):
     ov = list(B.get("overview_cards", []))
     html += "\n".join(card({**c, "i": i + 1}) for i, c in enumerate(ov))
     html += f'''
-                <article class="card card-wide animate-entrance" style="--i: {len(ov)+1}">
+                <article class="card card-wide animate-entrance" style="--i: {len(ov) + 1}">
                     <div class="card-content">
                         <h2 class="card-title">Aprofunde-se nos Capítulos</h2>
                         <p class="card-body">As notas detalhadas dos {len(chapters)} capítulos do livro:</p>
@@ -190,11 +202,16 @@ def overview_page(B, chapters):
 def update_books_json(B):
     path = os.path.join(BASE, "books.json")
     data = json.load(open(path, encoding="utf-8"))
-    entry = {"id": B["slug"], "title": B["title"], "author": B["author"],
-             "coverUrl": B.get("cover", f'assets/{B["slug"]}-cover.png'),
-             "description": B["description"], "tags": B.get("tags", []),
-             "progress": B.get("progress", f'{B["_n"]} Capítulos'),
-             "url": f'{B["slug"]}.html'}
+    entry = {
+        "id": B["slug"],
+        "title": B["title"],
+        "author": B["author"],
+        "coverUrl": B.get("cover", f'assets/{B["slug"]}-cover.png'),
+        "description": B["description"],
+        "tags": B.get("tags", []),
+        "progress": B.get("progress", f'{B["_n"]} Capítulos'),
+        "url": f'{B["slug"]}.html',
+    }
     data = [e for e in data if e.get("id") != B["slug"]] + [entry]
     json.dump(data, open(path, "w", encoding="utf-8", newline='\n'), ensure_ascii=False, indent=2)
 
@@ -212,7 +229,8 @@ def main(slug):
         shutil.copyfile(src_js, dst_js)
     else:
         open(dst_js, "w", encoding="utf-8", newline='\n').write(
-            "document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>{if(c.querySelector('.card-details'))c.classList.toggle('expanded')}))});")
+            "document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>{if(c.querySelector('.card-details'))c.classList.toggle('expanded')}))});"
+        )
 
     n = len(CH)
     for i, ch in enumerate(CH):
@@ -221,9 +239,12 @@ def main(slug):
         next_href = f'../{slug}.html' if i == n - 1 else CH[i + 1]["slug"] + ".html"
         next_label = "Visão Geral &rarr;" if i == n - 1 else "Próximo &rarr;"
         open(os.path.join(out, ch["slug"] + ".html"), "w", encoding="utf-8", newline='\n').write(
-            chapter_page(B, ch, prev_href, prev_label, next_href, next_label))
+            chapter_page(B, ch, prev_href, prev_label, next_href, next_label)
+        )
 
-    open(os.path.join(BASE, slug + ".html"), "w", encoding="utf-8", newline='\n').write(overview_page(B, CH))
+    open(os.path.join(BASE, slug + ".html"), "w", encoding="utf-8", newline='\n').write(
+        overview_page(B, CH)
+    )
     update_books_json(B)
     print(f"OK: {slug} — {n} capítulos + visão geral + script.js; books.json atualizado.")
 

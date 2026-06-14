@@ -9,6 +9,7 @@ Uso:
   python analytics_ig.py --limit N # últimos N posts (máx 100)
   python analytics_ig.py --csv     # só o CSV, sem relatório
 """
+
 import sys, json, csv, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 from datetime import datetime, timezone
@@ -27,15 +28,18 @@ OUT_DIR = ROOT / '_analytics'
 # Auth (mesmo padrão de instagram_post.py)
 # ---------------------------------------------------------------------------
 
+
 def _refresh(tj):
     if not (APP_ID_FILE.exists() and APP_SECRET_FILE.exists()):
         return tj['access_token']
-    q = urllib.parse.urlencode({
-        'grant_type': 'fb_exchange_token',
-        'client_id': APP_ID_FILE.read_text(encoding='utf-8').strip(),
-        'client_secret': APP_SECRET_FILE.read_text(encoding='utf-8').strip(),
-        'fb_exchange_token': tj['access_token'],
-    })
+    q = urllib.parse.urlencode(
+        {
+            'grant_type': 'fb_exchange_token',
+            'client_id': APP_ID_FILE.read_text(encoding='utf-8').strip(),
+            'client_secret': APP_SECRET_FILE.read_text(encoding='utf-8').strip(),
+            'fb_exchange_token': tj['access_token'],
+        }
+    )
     try:
         r = json.load(urllib.request.urlopen(f'{GRAPH}/oauth/access_token?{q}', timeout=60))
     except urllib.error.HTTPError as e:
@@ -58,8 +62,10 @@ def _token():
                 return _refresh(tj)
             return tj['access_token']
     if not TOKEN_FILE.exists():
-        sys.exit(f'[!] token ausente: crie {TOKEN_FILE} com o access_token (permissão '
-                 'instagram_basic). Veja instagram_post.py para instruções.')
+        sys.exit(
+            f'[!] token ausente: crie {TOKEN_FILE} com o access_token (permissão '
+            'instagram_basic). Veja instagram_post.py para instruções.'
+        )
     return TOKEN_FILE.read_text(encoding='utf-8').strip()
 
 
@@ -77,16 +83,22 @@ def _get(path, token, params=None):
     except urllib.error.HTTPError as e:
         return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
 
+
 # ---------------------------------------------------------------------------
 # Coleta de dados
 # ---------------------------------------------------------------------------
 
+
 def _fetch_media(token, uid, limit):
     """Retorna lista de posts recentes (id, timestamp, media_type, permalink, caption)."""
-    r = _get(f'/{uid}/media', token, {
-        'fields': 'id,timestamp,media_type,permalink,caption',
-        'limit': str(min(limit, 100)),
-    })
+    r = _get(
+        f'/{uid}/media',
+        token,
+        {
+            'fields': 'id,timestamp,media_type,permalink,caption',
+            'limit': str(min(limit, 100)),
+        },
+    )
     if 'error' in r:
         sys.exit(f'[!] erro ao buscar /media: {r["error"]}')
     return r.get('data', [])
@@ -119,15 +131,18 @@ def _slug_from_caption(caption):
     de short (ex: habitos-atomicos_01.mp4) ou na legenda como parte de uma frase.
     Estratégia simples: pega a primeira palavra-chave em kebab-case com 2+ hífens."""
     import re
+
     if not caption:
         return None
     # Procura por padrão slug kebab-case (2+ segmentos)
     m = re.search(r'\b([a-z][a-z0-9]+-[a-z][a-z0-9]+(?:-[a-z][a-z0-9]+)*)\b', caption)
     return m.group(1) if m else None
 
+
 # ---------------------------------------------------------------------------
 # Cálculo de métricas derivadas
 # ---------------------------------------------------------------------------
+
 
 def _rates(ins, followers):
     reach = ins.get('reach') or 0
@@ -153,12 +168,14 @@ def _rates(ins, followers):
         'views_rate': views_rate,
     }
 
+
 # ---------------------------------------------------------------------------
 # Relatório no terminal
 # ---------------------------------------------------------------------------
 
+
 def _pct(v):
-    return f'{v*100:.1f}%' if v is not None else 'n/d'
+    return f'{v * 100:.1f}%' if v is not None else 'n/d'
 
 
 def _report(posts, followers):
@@ -177,9 +194,7 @@ def _report(posts, followers):
 
     def _top5(key):
         ranked = sorted(
-            [p for p in posts if p.get(key) is not None],
-            key=lambda p: p[key],
-            reverse=True
+            [p for p in posts if p.get(key) is not None], key=lambda p: p[key], reverse=True
         )[:5]
         other_key = 'share_rate' if key == 'save_rate' else 'save_rate'
         print(f'TOP 5 por {key}:')
@@ -187,8 +202,10 @@ def _report(posts, followers):
             name, ts = _label(p)
             other = p.get(other_key)
             reach = p.get('reach')
-            print(f'  {i}. {name:<30} {key}={_pct(p[key])}  {other_key}={_pct(other)}'
-                  f'  reach={reach if reach is not None else "n/d"}  ({ts})')
+            print(
+                f'  {i}. {name:<30} {key}={_pct(p[key])}  {other_key}={_pct(other)}'
+                f'  reach={reach if reach is not None else "n/d"}  ({ts})'
+            )
         if not ranked:
             print('  (sem dados suficientes)')
         print()
@@ -215,9 +232,11 @@ def _report(posts, followers):
     print(f'  {type_parts}')
     print()
 
+
 # ---------------------------------------------------------------------------
 # Persistência: JSON e CSV
 # ---------------------------------------------------------------------------
+
 
 def _save_json(posts, out_dir):
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -229,9 +248,20 @@ def _save_json(posts, out_dir):
 def _save_csv(posts, out_dir):
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / 'ig_insights.csv'
-    cols = ['id', 'media_type', 'timestamp', 'permalink',
-            'reach', 'saved', 'shares', 'video_views',
-            'save_rate', 'share_rate', 'reach_rate', 'total_interactions']
+    cols = [
+        'id',
+        'media_type',
+        'timestamp',
+        'permalink',
+        'reach',
+        'saved',
+        'shares',
+        'video_views',
+        'save_rate',
+        'share_rate',
+        'reach_rate',
+        'total_interactions',
+    ]
     with open(path, 'w', newline='', encoding='utf-8') as f:
         w = csv.DictWriter(f, fieldnames=cols, extrasaction='ignore')
         w.writeheader()
@@ -239,9 +269,11 @@ def _save_csv(posts, out_dir):
             w.writerow({k: p.get(k) for k in cols})
     print(f'  CSV salvo: {path}')
 
+
 # ---------------------------------------------------------------------------
 # Entrada principal
 # ---------------------------------------------------------------------------
+
 
 def run(limit=50, csv_only=False):
     token = _token()
@@ -258,7 +290,9 @@ def run(limit=50, csv_only=False):
     posts = []
     for i, m in enumerate(media_list, 1):
         mid = m['id']
-        print(f'  [{i}/{len(media_list)}] {mid}  {m.get("media_type","?")}  {m.get("timestamp","")[:10]}')
+        print(
+            f'  [{i}/{len(media_list)}] {mid}  {m.get("media_type", "?")}  {m.get("timestamp", "")[:10]}'
+        )
         ins = _fetch_insights(token, mid)
         rates = _rates(ins, followers)
         slug = _slug_from_caption(m.get('caption', ''))

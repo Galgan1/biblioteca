@@ -3,9 +3,11 @@
 Atribui cada livro à PRIMEIRA coleção (ordem = prioridade) cuja lista de tags
 intersecta as tags do livro. Imprime a distribuição p/ eu validar/ajustar antes
 de levar a lógica para o script.js. OVERRIDES corrige casos de borda por id."""
+
 import json, sys
 
 # ordem importa: a 1ª coleção que casa vence
+# fmt: off
 COLLECTIONS = [
     ("Som & cinema",                ["Som", "Cinema"]),
     ("Espiritualidade & consciência",["Espiritualidade", "Consciência", "Misticismo", "Meditação", "Sabedoria"]),
@@ -27,7 +29,9 @@ COLLECTIONS = [
                                      "Mentalidade", "Carreira", "Hábitos"]),
     ("Direito & registros",         ["Direito", "Cartório", "Registros Públicos"]),
 ]
+# fmt: on
 OVERRIDES = {}  # id -> nome da coleção, p/ corrigir borda
+
 
 def classify(book):
     if book["id"] in OVERRIDES:
@@ -38,6 +42,7 @@ def classify(book):
             return name
     return "Outros"
 
+
 def main():
     b = json.load(open("books.json", encoding="utf-8"))
     buckets = {name: [] for name, _ in COLLECTIONS}
@@ -47,12 +52,14 @@ def main():
     for name in [n for n, _ in COLLECTIONS] + ["Outros"]:
         books = buckets[name]
         if not books and name != "Outros":
-            print(f"\n## {name}  — VAZIA"); continue
+            print(f"\n## {name}  — VAZIA")
+            continue
         prontos = sum(1 for x in books if not x.get("comingSoon"))
         print(f"\n## {name}  ({len(books)} livros · {prontos} prontos)")
         for x in books:
             mark = "•" if not x.get("comingSoon") else "→"
             print(f"   {mark} {x['title']}  [{', '.join(x.get('tags', []))}]")
+
 
 if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
