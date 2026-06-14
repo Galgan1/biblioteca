@@ -36,6 +36,16 @@ python agendar_lote.py <slug> <video_id> <DD/MM>           # grade 2 longos/sem 
 python enfileirar_comentarios.py <slug> <video_id> "<pergunta-ancora>"   # fila.json -> VPS; cron 2/2h posta CTA
 ```
 
+## Pós-produção automática via API (jun/2026)
+
+O `upload_youtube.py` agora aciona 3 alavancas nativas do YouTube no upload (módulo `youtube_pos.py`, **best-effort** — nunca derrubam o upload):
+
+1. **Legendas (SRT)** — gera faixa `pt-BR` em nível de frase a partir da narração + timing das cenas e sobe via `captions.insert`. Saída local em `_legendas/<slug>.srt`.
+2. **Capítulos** — injeta timestamps na descrição (1º em `0:00`, ≥3, ≥10s cada; abertura→"Introdução", encerramento→"Conclusão").
+3. **Playlist temática** — `ensure_playlist` + adiciona o vídeo. Título vem de `roteiro.youtube.playlist` ou `roteiro.tema` (ex.: "Dinheiro" → "Minuto Real — Dinheiro"); sem isso, cai em "Minuto Real — Resumos de Livros".
+
+**Dependência de timing:** legendas/capítulos exigem `_stems/<slug>/timing.json` (escrito pelo `gerar_video.py` a cada build). Vídeo antigo sem esse arquivo → legendas/capítulos são pulados graciosamente; a playlist ainda roda. **Para playlist temática real, definir `playlist` (ou `tema`) no roteiro.**
+
 ## Invariáveis (nunca violar)
 
 - OAuth **sempre** no canal **Minuto Real** `UC2N5xZ-gyCU3hNvH1QqNahA` — nunca o pessoal `UCmSpZF4cVFd1kTYomdC_NUw`. Conferir `channels.list(mine=True).snippet.title == 'Minuto Real'`.
