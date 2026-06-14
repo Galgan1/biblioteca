@@ -91,6 +91,11 @@ def main(slug, parent):
         print(f"  SUBIU cena {i} -> https://youtu.be/{resp['id']}")
         time.sleep(1)
 
+    try:
+        import pipeline_state
+        pipeline_state.mark_done(slug, 'shorts', data={'ids': state})
+    except Exception:
+        pass
     print("\n=== SHORTS DE", slug, "===")
     for i in idxs:
         print(f"https://youtu.be/{state[str(i)]}  (cena {i} — {cfg['cenas'][i]['titulo']})")

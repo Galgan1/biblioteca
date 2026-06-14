@@ -56,6 +56,11 @@ def main(slug, longo_id, ddmm):
         alvo = (dia + timedelta(days=dias)).replace(hour=hora)
         agendar(yt, vid, alvo, f'SHORT · {slug} ({DOW[alvo.weekday()]})')
 
+    try:
+        import pipeline_state
+        pipeline_state.mark_done(slug, 'scheduled', data={'longo_id': longo_id, 'date': ddmm})
+    except Exception:
+        pass
     # --- Sincronia YouTube -> Instagram (eco) -------------------------------
     # Agendar o longo é a ÚNICA ação necessária: ela também enfileira o eco do
     # Instagram (Reel-herói, +2h, janela <= 4h) e espelha a fila para a VPS, que

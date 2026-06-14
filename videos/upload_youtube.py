@@ -120,6 +120,11 @@ def upload(video_path, roteiro_path):
             print(f"  {int(status.progress() * 100)}%")
     vid = resp['id']
     print(f"\nOK ✓  https://youtu.be/{vid}   (privacidade: {meta['privacidade']})")
+    try:
+        import pipeline_state
+        pipeline_state.mark_done(cfg['slug'], 'uploaded', data={'video_id': vid})
+    except Exception:
+        pass
     # Pós-produção API (legendas + playlist temática) — best-effort, nunca derruba o upload.
     try:
         import youtube_pos
