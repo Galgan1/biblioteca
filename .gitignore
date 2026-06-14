@@ -38,7 +38,8 @@ ocr_data/
 *.bak
 
 # ===== Pipeline — estado de runtime (gerado automaticamente) =====
-*_data.py
+# NÃO ignorar *_data.py: é CONTEÚDO-FONTE autoral dos livros (o BOOK = {...} que
+# gerar_livro.py lê para emitir o HTML). É fonte, não estado gerado — versionar.
 pipeline/events.jsonl
 pipeline/checkpoints.db
 pipeline/state/
