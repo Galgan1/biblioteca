@@ -426,6 +426,7 @@ def main(roteiro_path):
             mot_gen = veo.animate
 
     clips = []
+    durs = []   # duração on-screen de cada cena (p/ legendas/capítulos da lane YouTube)
     label = {'fal': 'Flux + Kling', 'google': 'Imagen + Veo'}.get(provider, provider)
     print(f"Gerando '{cfg['titulo']}' — {n} cenas"
           + (f" · imagens IA + movimento ({label})" if usa_img else ""))
@@ -457,6 +458,7 @@ def main(roteiro_path):
 
         tts(cena['narracao'], voice, mp3, rate=cfg.get('tts_rate', 1.0))
         dur = MP3(mp3).info.length + TAIL
+        durs.append(dur)
         if mot:
             make_overlay(cena, accent, i, n, book_label, png, side=side)
             make_motion_clip(mot, png, mp3, dur, clip)
@@ -486,6 +488,8 @@ def main(roteiro_path):
         sintetiza_ambiente(dur_total + 2, mus, energia=energia)
         print(f"  trilha ambiente sintetizada: {dur_total:.0f}s (energia={energia})")
     mixmaster.export_stems(slug, narr, mus)                 # _stems/<slug>/ (D·M·E + vídeo mudo)
+    (ROOT / '_stems' / slug / 'timing.json').write_text(    # timing p/ legendas/capítulos (lane YouTube)
+        json.dumps({'tail': TAIL, 'durs': durs}, ensure_ascii=False), encoding='utf-8')
     try:                                                    # Sonoplasta: batidas de transição em arco de comoção (Fibonacci)
         import efeitos_transicao
         efeitos_transicao.main(str(roteiro_path))           # escreve _stems/<slug>/efeitos.wav (antes do master)

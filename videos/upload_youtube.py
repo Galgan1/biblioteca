@@ -86,7 +86,14 @@ def build_metadata(roteiro_path):
 
 
 def upload(video_path, roteiro_path):
+    cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
     meta = build_metadata(roteiro_path)
+    # Pós-produção API (capítulos): injeta timestamps na descrição se houver timing.
+    try:
+        import youtube_pos
+        meta['descricao'] = youtube_pos.with_chapters(meta['descricao'], cfg)
+    except Exception as e:
+        print(f"  [aviso] capitulos pulados: {str(e)[:120]}")
     yt = build('youtube', 'v3', credentials=get_creds())
     body = {
         'snippet': {
@@ -113,6 +120,12 @@ def upload(video_path, roteiro_path):
             print(f"  {int(status.progress() * 100)}%")
     vid = resp['id']
     print(f"\nOK ✓  https://youtu.be/{vid}   (privacidade: {meta['privacidade']})")
+    # Pós-produção API (legendas + playlist temática) — best-effort, nunca derruba o upload.
+    try:
+        import youtube_pos
+        youtube_pos.post_publish(yt, cfg, vid)
+    except Exception as e:
+        print(f"  [aviso] legendas/playlist puladas: {str(e)[:120]}")
     return vid
 
 
