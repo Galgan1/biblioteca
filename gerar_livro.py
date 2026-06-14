@@ -196,7 +196,7 @@ def update_books_json(B):
              "progress": B.get("progress", f'{B["_n"]} Capítulos'),
              "url": f'{B["slug"]}.html'}
     data = [e for e in data if e.get("id") != B["slug"]] + [entry]
-    json.dump(data, open(path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    json.dump(data, open(path, "w", encoding="utf-8", newline='\n'), ensure_ascii=False, indent=2)
 
 
 def main(slug):
@@ -211,7 +211,7 @@ def main(slug):
     if os.path.exists(src_js):
         shutil.copyfile(src_js, dst_js)
     else:
-        open(dst_js, "w", encoding="utf-8").write(
+        open(dst_js, "w", encoding="utf-8", newline='\n').write(
             "document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>{if(c.querySelector('.card-details'))c.classList.toggle('expanded')}))});")
 
     n = len(CH)
@@ -220,10 +220,10 @@ def main(slug):
         prev_label = "&larr; Visão Geral" if i == 0 else "&larr; Anterior"
         next_href = f'../{slug}.html' if i == n - 1 else CH[i + 1]["slug"] + ".html"
         next_label = "Visão Geral &rarr;" if i == n - 1 else "Próximo &rarr;"
-        open(os.path.join(out, ch["slug"] + ".html"), "w", encoding="utf-8").write(
+        open(os.path.join(out, ch["slug"] + ".html"), "w", encoding="utf-8", newline='\n').write(
             chapter_page(B, ch, prev_href, prev_label, next_href, next_label))
 
-    open(os.path.join(BASE, slug + ".html"), "w", encoding="utf-8").write(overview_page(B, CH))
+    open(os.path.join(BASE, slug + ".html"), "w", encoding="utf-8", newline='\n').write(overview_page(B, CH))
     update_books_json(B)
     print(f"OK: {slug} — {n} capítulos + visão geral + script.js; books.json atualizado.")
 

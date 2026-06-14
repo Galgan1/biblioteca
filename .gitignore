@@ -47,6 +47,10 @@ pipeline/state/
 analytics/custos.json
 analytics/dashboard.html
 
+# ===== Logs e sondas de diagnóstico (regeneráveis) =====
+*.log
+_probe_*
+
 # ===== OS / editor =====
 Thumbs.db
 .DS_Store

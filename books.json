@@ -388,248 +388,6 @@
     ]
   },
   {
-    "id": "conversas-cruciais",
-    "title": "Conversas Cruciais",
-    "author": "Kerry Patterson e outros",
-    "coverUrl": "assets/conversas-cruciais-cover.png",
-    "description": "Como dialogar quando as opiniões divergem, as emoções pegam fogo e há muito em jogo. Ferramentas para manter o diálogo seguro, falar o que precisa ser dito e transformar discussões tensas em resultados.",
-    "tags": [
-      "Comunicação",
-      "Conflito",
-      "Liderança"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8593585000/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8593585000/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "escute",
-    "title": "Escute!",
-    "author": "Kate Murphy",
-    "coverUrl": "assets/escute-cover.png",
-    "description": "Perdemos a arte de ouvir. A jornalista Kate Murphy mostra por que escutar de verdade — não apenas esperar a vez de falar — aprofunda relações, gera ideias e é a habilidade social mais subestimada.",
-    "tags": [
-      "Comunicação",
-      "Escuta",
-      "Relacionamentos"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/6555646292/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6555646292/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "obrigado-pelo-feedback",
-    "title": "Obrigado pelo Feedback",
-    "author": "Douglas Stone & Sheila Heen",
-    "coverUrl": "assets/obrigado-pelo-feedback-cover.png",
-    "description": "Receber feedback bem é uma habilidade — e a mais difícil. Os autores de Harvard mostram por que reagimos mal a críticas e como extrair valor de qualquer retorno, mesmo o injusto ou mal dado.",
-    "tags": [
-      "Feedback",
-      "Comunicação",
-      "Carreira"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8582850263/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8582850263/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "poder-dos-quietos",
-    "title": "O Poder dos Quietos",
-    "author": "Susan Cain",
-    "coverUrl": "assets/poder-dos-quietos-cover.png",
-    "description": "Num mundo que não para de falar, Susan Cain reabilita os introvertidos: mostra como a quietude alimenta a criatividade e a liderança, e por que metade de nós pensa melhor longe do palco.",
-    "tags": [
-      "Psicologia",
-      "Introversão",
-      "Comportamento"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8595080747/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8595080747/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "segredos-da-mente-milionaria",
-    "title": "Os Segredos da Mente Milionária",
-    "author": "T. Harv Eker",
-    "coverUrl": "assets/segredos-da-mente-milionaria-cover.png",
-    "description": "Seu 'modelo de dinheiro' interior determina sua renda. Eker mapeia os arquivos mentais que separam ricos de pobres e propõe declarações e hábitos para reprogramar a relação com a riqueza.",
-    "tags": [
-      "Finanças",
-      "Mentalidade",
-      "Riqueza"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8575425927/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8575425927/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "investidor-inteligente",
-    "title": "O Investidor Inteligente",
-    "author": "Benjamin Graham",
-    "coverUrl": "assets/investidor-inteligente-cover.png",
-    "description": "A bíblia do investimento em valor, mestre de Warren Buffett. Graham ensina a diferença entre investir e especular, a margem de segurança e o 'Sr. Mercado' — disciplina contra a emoção das cotações.",
-    "tags": [
-      "Investimentos",
-      "Finanças",
-      "Clássico"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8595080801/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8595080801/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "do-mil-ao-milhao",
-    "title": "Do Mil ao Milhão",
-    "author": "Thiago Nigro",
-    "coverUrl": "assets/do-mil-ao-milhao-cover.png",
-    "description": "O Primo Rico destila seu método em três pilares — gastar bem, investir melhor e ganhar mais — para sair do zero e construir patrimônio, com foco na realidade do investidor brasileiro.",
-    "tags": [
-      "Finanças",
-      "Investimentos",
-      "Brasil"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8595083274/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8595083274/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "quem-pensa-enriquece",
-    "title": "Quem Pensa, Enriquece",
-    "author": "Napoleon Hill",
-    "coverUrl": "assets/quem-pensa-enriquece-cover.png",
-    "description": "Fruto de 20 anos estudando magnatas, o clássico de Hill destila 13 princípios da riqueza — do desejo ardente à fé, à persistência e à mente mestra — partindo da ideia de que o pensamento se materializa.",
-    "tags": [
-      "Sucesso",
-      "Mentalidade",
-      "Clássico"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/6587885004/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6587885004/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "psicopolitica",
-    "title": "Psicopolítica",
-    "author": "Byung-Chul Han",
-    "coverUrl": "assets/psicopolitica-cover.png",
-    "description": "O neoliberalismo não reprime: seduz. Han mostra como o poder migrou da biopolítica para a psicopolítica — Big Data, transparência e a ilusão de liberdade que nos faz explorar a nós mesmos com prazer.",
-    "tags": [
-      "Filosofia",
-      "Tecnologia",
-      "Poder"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8592649390/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8592649390/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "realismo-capitalista",
-    "title": "Realismo Capitalista",
-    "author": "Mark Fisher",
-    "coverUrl": "assets/realismo-capitalista-cover.png",
-    "description": "'É mais fácil imaginar o fim do mundo do que o fim do capitalismo.' Fisher anatomiza a crença de que não há alternativa ao capitalismo e liga essa resignação ao adoecimento mental em massa.",
-    "tags": [
-      "Filosofia",
-      "Política",
-      "Cultura"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/6587233090/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6587233090/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "geracao-ansiosa",
-    "title": "A Geração Ansiosa",
-    "author": "Jonathan Haidt",
-    "coverUrl": "assets/geracao-ansiosa-cover.png",
-    "description": "Haidt liga a epidemia de ansiedade e depressão juvenil à reconfiguração da infância: smartphones e redes sociais substituindo a brincadeira livre. Um alerta e um plano de ação para pais e escolas.",
-    "tags": [
-      "Psicologia",
-      "Tecnologia",
-      "Educação"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "1984",
     "title": "1984",
     "author": "George Orwell",
@@ -1595,6 +1353,248 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "conversas-cruciais",
+    "title": "Conversas Cruciais",
+    "author": "Kerry Patterson, Joseph Grenny, Ron McMillan & Al Switzler",
+    "coverUrl": "assets/conversas-cruciais-cover.png",
+    "description": "O método de Patterson, Grenny, McMillan e Switzler para conduzir conversas de alto risco: o Pool de Significado Comum, Começar pelo Coração, detectar silêncio × violência, Tornar Seguro (Contraste e CRIB), Dominar Minhas Histórias, o método STATE para falar, o AMPP para escutar e o WWWF para agir.",
+    "tags": [
+      "Comunicação",
+      "Relacionamentos",
+      "Liderança"
+    ],
+    "progress": "9 Capítulos",
+    "url": "conversas-cruciais.html",
+    "amazon": "https://www.amazon.com.br/dp/8593585000/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8593585000/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "escute",
+    "title": "Escute!",
+    "author": "Kate Murphy",
+    "coverUrl": "assets/escute-cover.png",
+    "description": "O guia de Kate Murphy para a habilidade de escutar: ouvir ≠ escutar, a resposta de deslocamento vs. apoio, o egoísmo conversacional, escutar para compreender (não para responder), curiosidade genuína, viés da familiaridade, o celular que mata a escuta, o poder do silêncio e a lacuna fala-pensamento.",
+    "tags": [
+      "Comunicação",
+      "Relacionamentos",
+      "Escuta Ativa"
+    ],
+    "progress": "9 Capítulos",
+    "url": "escute.html",
+    "amazon": "https://www.amazon.com.br/dp/6555646292/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555646292/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "obrigado-pelo-feedback",
+    "title": "Obrigado pelo Feedback",
+    "author": "Douglas Stone & Sheila Heen",
+    "coverUrl": "assets/obrigado-pelo-feedback-cover.png",
+    "description": "O método de Stone e Heen para receber feedback: os 3 tipos (apreciação, orientação, avaliação) e seus desencontros; os 3 gatilhos (verdade, relacionamento, identidade); pontos cegos e intenção × impacto; diferença de mapas e o sistema; identidade complexa e mentalidade de crescimento; e os 3 limites legítimos.",
+    "tags": [
+      "Feedback",
+      "Comunicação",
+      "Desenvolvimento Pessoal"
+    ],
+    "progress": "9 Capítulos",
+    "url": "obrigado-pelo-feedback.html",
+    "amazon": "https://www.amazon.com.br/dp/8582850263/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8582850263/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "poder-dos-quietos",
+    "title": "O Poder dos Quietos",
+    "author": "Susan Cain",
+    "coverUrl": "assets/poder-dos-quietos-cover.png",
+    "description": "O guia de Susan Cain sobre introversão e poder silencioso. O Ideal da Extroversão e seu custo, a biologia da alta reatividade (Kagan), a teoria do elástico e dos traços livres com nichos restauradores, o mito do brainstorming em grupo, a liderança introvertida e como prosperar sendo quieto.",
+    "tags": [
+      "Introversão",
+      "Autoconhecimento",
+      "Liderança"
+    ],
+    "progress": "9 Capítulos",
+    "url": "poder-dos-quietos.html",
+    "amazon": "https://www.amazon.com.br/dp/8595080747/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595080747/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "segredos-da-mente-milionaria",
+    "title": "Os Segredos da Mente Milionária",
+    "author": "T. Harv Eker",
+    "coverUrl": "assets/segredos-da-mente-milionaria-cover.png",
+    "description": "O método de T. Harv Eker para reprogramar a mentalidade financeira. O modelo de dinheiro (money blueprint) instalado na infância, a cadeia P→S→A→R, os 4 passos da mudança, as declarações de poder e os 17 Arquivos de Riqueza — protagonismo, visão grande, gestão do patrimônio, coragem e crescimento contínuo.",
+    "tags": [
+      "Mentalidade Financeira",
+      "Autodesenvolvimento",
+      "Riqueza"
+    ],
+    "progress": "9 Capítulos",
+    "url": "segredos-da-mente-milionaria.html",
+    "amazon": "https://www.amazon.com.br/dp/8575425927/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8575425927/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "investidor-inteligente",
+    "title": "O Investidor Inteligente",
+    "author": "Benjamin Graham",
+    "coverUrl": "assets/investidor-inteligente-cover.png",
+    "description": "A bíblia do value investing de Benjamin Graham. Investidor vs. especulador, a alegoria do Sr. Mercado, a margem de segurança, o investidor defensivo (50/50 e dollar-cost averaging), o empreendedor e as net-nets, preço vs. valor, inflação, temperamento e os critérios quantitativos de seleção de ações.",
+    "tags": [
+      "Value Investing",
+      "Finanças",
+      "Bolsa de Valores"
+    ],
+    "progress": "10 Capítulos",
+    "url": "investidor-inteligente.html",
+    "amazon": "https://www.amazon.com.br/dp/8595080801/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595080801/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "do-mil-ao-milhao",
+    "title": "Do Mil ao Milhão",
+    "author": "Thiago Nigro (Primo Rico)",
+    "coverUrl": "assets/do-mil-ao-milhao-cover.png",
+    "description": "O guia de educação financeira de Thiago Nigro (Primo Rico). Os três pilares da riqueza (gastar bem, investir melhor, ganhar mais), o mito do cafezinho, orçamento e padrão de vida, tipos de gasto, como sair das dívidas, renda fixa vs. variável, juros compostos, o erro da poupança e o caminho até o primeiro milhão.",
+    "tags": [
+      "Educação Financeira",
+      "Investimentos",
+      "Independência Financeira"
+    ],
+    "progress": "9 Capítulos",
+    "url": "do-mil-ao-milhao.html",
+    "amazon": "https://www.amazon.com.br/dp/8595083274/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595083274/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "quem-pensa-enriquece",
+    "title": "Quem Pensa, Enriquece",
+    "author": "Napoleon Hill",
+    "coverUrl": "assets/quem-pensa-enriquece-cover.png",
+    "description": "Os 13 princípios de Napoleon Hill para transmutar desejo em riqueza: os 6 Passos do desejo ardente, fé como estado induzido, autossugestão, imaginação sintética e criativa, planejamento organizado, decisão rápida, persistência, Mastermind, transmutação e os 6 fantasmas do medo.",
+    "tags": [
+      "Mentalidade",
+      "Riqueza",
+      "Autodesenvolvimento"
+    ],
+    "progress": "9 Capítulos",
+    "url": "quem-pensa-enriquece.html",
+    "amazon": "https://www.amazon.com.br/dp/6587885004/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6587885004/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "psicopolitica",
+    "title": "Psicopolítica",
+    "author": "Byung-Chul Han",
+    "coverUrl": "assets/psicopolitica-cover.png",
+    "description": "Byung-Chul Han analisa a passagem do biopoder (controle dos corpos) para a psicopolítica neoliberal (controle da psique e do desejo). Smart power, emocionalização, Big Data, transparência como controle e o idiotismo como resistência.",
+    "tags": [
+      "Filosofia",
+      "Poder",
+      "Crítica Digital"
+    ],
+    "progress": "8 Capítulos",
+    "url": "psicopolitica.html",
+    "amazon": "https://www.amazon.com.br/dp/8592649390/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8592649390/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "realismo-capitalista",
+    "title": "Realismo Capitalista",
+    "author": "Mark Fisher",
+    "coverUrl": "assets/realismo-capitalista-cover.png",
+    "description": "Mark Fisher analisa o realismo capitalista — a convicção de que não há alternativa ao capitalismo. Precorporação, os três Reais, privatização do estresse, impotência reflexiva, stalinismo de mercado, disavowal e a Supernanny marxista como saída.",
+    "tags": [
+      "Filosofia",
+      "Crítica Social",
+      "Política"
+    ],
+    "progress": "9 Capítulos",
+    "url": "realismo-capitalista.html",
+    "amazon": "https://www.amazon.com.br/dp/6587233090/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6587233090/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "geracao-ansiosa",
+    "title": "A Geração Ansiosa",
+    "author": "Jonathan Haidt",
+    "coverUrl": "assets/geracao-ansiosa-cover.png",
+    "description": "Jonathan Haidt analisa a epidemia de ansiedade e depressão na Geração Z causada pela Grande Reconfiguração da Infância (~2010-2015). Os 4 danos fundamentais, antifragilidade, modo descoberta vs. defesa, assimetria meninas-meninos, dilema do prisioneiro dos pais e as 4 normas para reverter o dano.",
+    "tags": [
+      "Saúde Mental",
+      "Educação",
+      "Tecnologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "geracao-ansiosa.html",
+    "amazon": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   }

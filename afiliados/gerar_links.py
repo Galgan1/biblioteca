@@ -59,7 +59,7 @@ def main():
         links[book["id"]] = url
         linhas.append((book["title"], tipo, url))
 
-    SAIDA.write_text(json.dumps(links, ensure_ascii=False, indent=2), encoding="utf-8")
+    SAIDA.write_text(json.dumps(links, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n')
 
     # Espelha o link no books.json (campo "amazon") — fonte única que a estante
     # (script.js) lê para o botão de compra discreto por card. Excluídos ficam sem.
@@ -70,7 +70,7 @@ def main():
         else:
             book.pop("amazon", None)
             book.pop("compras", None)
-    BOOKS.write_text(json.dumps(books, ensure_ascii=False, indent=2), encoding="utf-8")
+    BOOKS.write_text(json.dumps(books, ensure_ascii=False, indent=2), encoding="utf-8", newline='\n')
 
     diretos = sum(1 for _, t, _ in linhas if t == "direto")
     print(f"{len(linhas)} livros | {diretos} link(s) direto(s) | {len(linhas) - diretos} de busca | tag={cfg['tag']}\n")

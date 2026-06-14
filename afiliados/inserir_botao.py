@@ -71,7 +71,7 @@ def main():
             doc = re.sub(r"(\n[ \t]*<footer)", "\n        " + novo + r"\1", doc, count=1)
             acao = "inserido"
 
-        arq.write_text(doc, encoding="utf-8")
+        arq.write_text(doc, encoding="utf-8", newline='\n')
         feitos.append(f"{acao}: {book['id']}.html ({len(compras)} loja)")
 
     for linha in feitos:

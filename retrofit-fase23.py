@@ -89,7 +89,7 @@ idx = idx.replace('<meta property="og:type" content="article">',
                   '<meta property="og:type" content="website">')
 idx = idx.replace('<meta name="twitter:card" content="summary">',
                   '<meta name="twitter:card" content="summary_large_image">')
-idx_file.write_text(idx, encoding="utf-8")
+idx_file.write_text(idx, encoding="utf-8", newline='\n')
 total_pages += 1
 
 # ------------------------------------------------------------------- livros
@@ -116,7 +116,7 @@ for book in books:
     cover = f"{BASE}/{book['coverUrl']}"
     ov = head_inject(ov, "", esc(book["title"]), esc(book["description"]), cover, f"{BASE}/{slug}.html")
     ov = footer_link(ov, "")
-    ov_file.write_text(ov, encoding="utf-8")
+    ov_file.write_text(ov, encoding="utf-8", newline='\n')
     total_pages += 1
 
     book_dir = ROOT / slug
@@ -167,7 +167,7 @@ for book in books:
         if html != n0:
             total_nav += 1
 
-        ch_file.write_text(html, encoding="utf-8")
+        ch_file.write_text(html, encoding="utf-8", newline='\n')
         total_pages += 1
 
 print(f"ok: {total_pages} páginas processadas, {total_nav} navegações nomeadas")

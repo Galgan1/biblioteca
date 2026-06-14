@@ -40,7 +40,7 @@ def read(path):
 
 
 def write(path, text):
-    with open(path, "w", encoding="utf-8") as f:
+    with open(path, "w", encoding="utf-8", newline='\n') as f:
         f.write(text)
 
 
