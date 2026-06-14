@@ -388,50 +388,6 @@
     ]
   },
   {
-    "id": "1984",
-    "title": "1984",
-    "author": "George Orwell",
-    "coverUrl": "assets/1984-cover.png",
-    "description": "A distopia definitiva: Winston Smith vive sob o Grande Irmão, a vigilância total e a 'novilíngua' que mata o pensamento. Orwell projeta o totalitarismo levado às últimas consequências.",
-    "tags": [
-      "Distopia",
-      "Política",
-      "Clássico"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "admiravel-mundo-novo",
-    "title": "Admirável Mundo Novo",
-    "author": "Aldous Huxley",
-    "coverUrl": "assets/admiravel-mundo-novo-cover.png",
-    "description": "Uma distopia oposta à de Orwell: aqui a opressão vem pelo prazer. Bebês produzidos em série, castas, sexo livre e a droga 'soma' garantem uma felicidade rasa — e a liberdade trocada por conforto.",
-    "tags": [
-      "Distopia",
-      "Ficção Científica",
-      "Clássico"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8525056006/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8525056006/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "marketing-4-0",
     "title": "Marketing 4.0",
     "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
@@ -1441,6 +1397,50 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "1984",
+    "title": "1984",
+    "author": "George Orwell",
+    "coverUrl": "assets/1984-cover.png",
+    "description": "O romance distópico de George Orwell sobre o totalitarismo e a destruição da verdade. Grande Irmão, duplipensar, Novafala, crime de pensamento, o controle do passado e a fórmula '2+2=5' — analisados como ferramentas de poder e alertas permanentes sobre vigilância e manipulação.",
+    "tags": [
+      "Distopia",
+      "Política",
+      "Totalitarismo"
+    ],
+    "progress": "9 Capítulos",
+    "url": "1984.html",
+    "amazon": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "admiravel-mundo-novo",
+    "title": "Admirável Mundo Novo",
+    "author": "Aldous Huxley",
+    "coverUrl": "assets/admiravel-mundo-novo-cover.png",
+    "description": "O romance distópico de Aldous Huxley sobre o controle pelo prazer. Processo Bokanovsky, castas, hipnopedia, soma e o grande debate liberdade × felicidade — analisados como o avesso de 1984 e como profecia assombrosa da cultura do consumo e do entretenimento permanente.",
+    "tags": [
+      "Distopia",
+      "Filosofia",
+      "Consumismo"
+    ],
+    "progress": "8 Capítulos",
+    "url": "admiravel-mundo-novo.html",
+    "amazon": "https://www.amazon.com.br/dp/8525056006/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8525056006/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
