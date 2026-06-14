@@ -432,160 +432,6 @@
     ]
   },
   {
-    "id": "21-licoes",
-    "title": "21 Lições para o Século 21",
-    "author": "Yuval Noah Harari",
-    "coverUrl": "assets/21-licoes-cover.png",
-    "description": "Depois de explorar o passado e o futuro, Harari encara o presente: IA, fake news, terrorismo, crise de sentido e religião — 21 ensaios sobre como navegar a confusão das próximas décadas.",
-    "tags": [
-      "Sociedade",
-      "Tecnologia",
-      "Futuro"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8535930914/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535930914/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "amor-liquido",
-    "title": "Amor Líquido",
-    "author": "Zygmunt Bauman",
-    "coverUrl": "assets/amor-liquido-cover.png",
-    "description": "Bauman diagnostica o amor na 'modernidade líquida': laços frágeis e descartáveis, relações 'até segunda ordem' e o medo de se comprometer num mundo de vínculos sob demanda.",
-    "tags": [
-      "Sociologia",
-      "Relacionamentos",
-      "Modernidade"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8571107955/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8571107955/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "sete-saberes",
-    "title": "Os Sete Saberes Necessários à Educação do Futuro",
-    "author": "Edgar Morin",
-    "coverUrl": "assets/sete-saberes-cover.png",
-    "description": "Encomendado pela UNESCO, Morin propõe sete saberes que a educação ignora — do conhecimento do erro à compreensão humana e à ética do gênero humano — para formar mentes capazes de enfrentar a complexidade.",
-    "tags": [
-      "Educação",
-      "Filosofia",
-      "Complexidade"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "cabeca-bem-feita",
-    "title": "A Cabeça Bem-Feita",
-    "author": "Edgar Morin",
-    "coverUrl": "assets/cabeca-bem-feita-cover.png",
-    "description": "Vale mais uma cabeça bem-feita que uma cabeça cheia. Morin critica a fragmentação do saber e defende uma reforma do pensamento que religue as disciplinas e ensine a contextualizar.",
-    "tags": [
-      "Educação",
-      "Filosofia",
-      "Complexidade"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/852860764X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/852860764X/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "pensamento-complexo",
-    "title": "Introdução ao Pensamento Complexo",
-    "author": "Edgar Morin",
-    "coverUrl": "assets/pensamento-complexo-cover.png",
-    "description": "O manifesto do pensamento complexo: contra a simplificação que isola e reduz, Morin propõe religar o que foi separado e conviver com a incerteza, a contradição e o todo que é mais que a soma das partes.",
-    "tags": [
-      "Filosofia",
-      "Complexidade",
-      "Epistemologia"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8520505988/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8520505988/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "coisa-de-rico",
-    "title": "Coisa de Rico",
-    "author": "Michel Alcoforado",
-    "coverUrl": "assets/coisa-de-rico-cover.png",
-    "description": "O 'antropólogo do luxo' Michel Alcoforado decifra os códigos secretos dos ricos brasileiros: como se vestem, gastam, herdam e se distinguem. Uma etnografia bem-humorada das regras invisíveis da elite nacional.",
-    "tags": [
-      "Sociedade",
-      "Antropologia",
-      "Brasil"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/6556928585/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6556928585/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "insustentavel-leveza-do-ser",
-    "title": "A Insustentável Leveza do Ser",
-    "author": "Milan Kundera",
-    "coverUrl": "assets/insustentavel-leveza-do-ser-cover.png",
-    "description": "Em Praga, sob a invasão soviética de 1968, quatro amantes encarnam o peso e a leveza da existência. Kundera tece filosofia (o eterno retorno, o kitsch) e romance num clássico do século 20.",
-    "tags": [
-      "Literatura",
-      "Filosofia",
-      "Romance"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "marketing-4-0",
     "title": "Marketing 4.0",
     "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
@@ -1595,6 +1441,160 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "21-licoes",
+    "title": "21 Lições para o Século 21",
+    "author": "Yuval Noah Harari",
+    "coverUrl": "assets/21-licoes-cover.png",
+    "description": "Yuval Noah Harari analisa os grandes desafios do presente: o vazio de narrativa, a classe inútil criada pela automação, o hackeamento humano via Big Data, a desigualdade biológica emergente, o terrorismo como teatro, e a meditação como defesa pessoal num mundo que quer te hackear.",
+    "tags": [
+      "Política",
+      "Tecnologia",
+      "Filosofia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "21-licoes.html",
+    "amazon": "https://www.amazon.com.br/dp/8535930914/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535930914/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "amor-liquido",
+    "title": "Amor Líquido",
+    "author": "Zygmunt Bauman",
+    "coverUrl": "assets/amor-liquido-cover.png",
+    "description": "Ensaio de Zygmunt Bauman sobre a fragilidade dos laços humanos na modernidade líquida. Amor como consumo, conexões × relações, segurança × liberdade, mixofobia × mixofilia, humanos refugados e o convívio desmantelado. Diagnóstico sociológico dos vínculos contemporâneos.",
+    "tags": [
+      "Sociologia",
+      "Modernidade",
+      "Vínculos Humanos"
+    ],
+    "progress": "4 Capítulos",
+    "url": "amor-liquido.html",
+    "amazon": "https://www.amazon.com.br/dp/8571107955/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8571107955/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "sete-saberes",
+    "title": "Os Sete Saberes Necessários à Educação do Futuro",
+    "author": "Edgar Morin",
+    "coverUrl": "assets/sete-saberes-cover.png",
+    "description": "Os Sete Saberes de Edgar Morin para a UNESCO: bússola filosófica que aponta os buracos fatais da educação — das cegueiras do conhecimento à antropoética. Frameworks: conhecimento pertinente, ecologia da ação, estratégia × programa, unitas multiplex, compreensão × explicação, cidadania terrena.",
+    "tags": [
+      "Educação",
+      "Filosofia",
+      "Pensamento Complexo"
+    ],
+    "progress": "7 Capítulos",
+    "url": "sete-saberes.html",
+    "amazon": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "cabeca-bem-feita",
+    "title": "A Cabeça Bem-Feita",
+    "author": "Edgar Morin",
+    "coverUrl": "assets/cabeca-bem-feita-cover.png",
+    "description": "Edgar Morin cita Montaigne para diagnosticar a educação moderna: cabeça bem-cheia (acúmulo) versus bem-feita (aptidão para organizar). Frameworks: conhecimento pertinente, os 3 desafios, ecologia da ação, transdisciplinaridade, reforma circular pensamento ⇄ ensino, Eros do professor.",
+    "tags": [
+      "Educação",
+      "Filosofia",
+      "Pensamento Complexo"
+    ],
+    "progress": "9 Capítulos",
+    "url": "cabeca-bem-feita.html",
+    "amazon": "https://www.amazon.com.br/dp/852860764X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/852860764X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "pensamento-complexo",
+    "title": "Introdução ao Pensamento Complexo",
+    "author": "Edgar Morin",
+    "coverUrl": "assets/pensamento-complexo-cover.png",
+    "description": "O guia essencial de Edgar Morin para pensar a complexidade sem mutilá-la. Os dois paradigmas (simplificação × complexidade), os três princípios operadores (dialógico, recursão organizacional e hologramático), o tetragrama ordem-desordem-interações-organização, e o imperativo de religar o que o saber clássico separou.",
+    "tags": [
+      "Filosofia",
+      "Epistemologia",
+      "Pensamento Crítico"
+    ],
+    "progress": "6 Capítulos",
+    "url": "pensamento-complexo.html",
+    "amazon": "https://www.amazon.com.br/dp/8520505988/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8520505988/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "coisa-de-rico",
+    "title": "Coisa de Rico",
+    "author": "Michel Alcoforado",
+    "coverUrl": "assets/coisa-de-rico-cover.png",
+    "description": "Antropologia etnográfica da elite brasileira: os códigos sociais que separam quem pertence de quem só tem dinheiro. Operação da diferença, quiet luxury, ocupados desocupados, riqueza como relação, consumo conspícuo e a insegurança estrutural da elite — com as lentes de Bourdieu e Veblen.",
+    "tags": [
+      "Sociologia",
+      "Comportamento",
+      "Cultura"
+    ],
+    "progress": "5 Capítulos",
+    "url": "coisa-de-rico.html",
+    "amazon": "https://www.amazon.com.br/dp/6556928585/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6556928585/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "insustentavel-leveza-do-ser",
+    "title": "A Insustentável Leveza do Ser",
+    "author": "Milan Kundera",
+    "coverUrl": "assets/insustentavel-leveza-do-ser-cover.png",
+    "description": "Romance filosófico de Milan Kundera: a oposição fundadora leveza × peso, o eterno retorno de Nietzsche, 'einmal ist keinmal' (uma vez é nenhuma vez), o kitsch como negação da morte, 'es muss sein!', os seis acasos, o corpo × a alma, a Grande Marcha e o idílio de Karenin. Com Tomáš, Tereza, Sabina e Franz.",
+    "tags": [
+      "Literatura",
+      "Filosofia",
+      "Existencialismo"
+    ],
+    "progress": "9 Capítulos",
+    "url": "insustentavel-leveza-do-ser.html",
+    "amazon": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   }
