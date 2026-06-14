@@ -16,11 +16,24 @@ Uso (no maestro — pular etapas já feitas):
   Stages: skill · biblioteca · video_built · uploaded · shorts · scheduled · instagram · tiktok · facebook
 """
 import json
+import threading
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent          # biblioteca/
 STATE_DIR = ROOT / 'pipeline' / 'state'
+
+# Lock por slug — evita sobreposição quando orquestrador.py roda threads em paralelo
+# para o mesmo slug (ex: biblioteca + instagram marcando done simultaneamente).
+_locks: dict[str, threading.RLock] = {}
+_locks_guard = threading.Lock()
+
+
+def _get_lock(slug: str) -> threading.RLock:
+    with _locks_guard:
+        if slug not in _locks:
+            _locks[slug] = threading.RLock()
+        return _locks[slug]
 
 STAGES = [
     'skill',        # book-to-skill concluído
@@ -63,18 +76,19 @@ def _log(slug, stage, status, detail=None):
 
 
 def mark_done(slug, stage, data=None, run_id=None, cost_usd=None):
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    state = get_state(slug)
-    entry = {'status': 'done', 'ts': datetime.now(timezone.utc).isoformat()}
-    if data:
-        entry['data'] = data
-    if run_id:
-        entry['run_id'] = run_id
-    if cost_usd is not None:
-        entry['cost_usd'] = cost_usd
-    state[stage] = entry
-    state.setdefault('slug', slug)
-    _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
+    with _get_lock(slug):
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        state = get_state(slug)
+        entry = {'status': 'done', 'ts': datetime.now(timezone.utc).isoformat()}
+        if data:
+            entry['data'] = data
+        if run_id:
+            entry['run_id'] = run_id
+        if cost_usd is not None:
+            entry['cost_usd'] = cost_usd
+        state[stage] = entry
+        state.setdefault('slug', slug)
+        _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
     _log(slug, stage, 'done', data)
 
 
@@ -89,22 +103,24 @@ def total_cost(slug) -> float:
 
 
 def mark_blocked(slug, stage, reason):
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    state = get_state(slug)
-    state[stage] = {'status': 'blocked', 'reason': reason,
-                    'ts': datetime.now(timezone.utc).isoformat()}
-    state.setdefault('slug', slug)
-    _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
+    with _get_lock(slug):
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        state = get_state(slug)
+        state[stage] = {'status': 'blocked', 'reason': reason,
+                        'ts': datetime.now(timezone.utc).isoformat()}
+        state.setdefault('slug', slug)
+        _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
     _log(slug, stage, 'blocked', {'reason': reason})
 
 
 def mark_skipped(slug, stage, reason=''):
-    STATE_DIR.mkdir(parents=True, exist_ok=True)
-    state = get_state(slug)
-    state[stage] = {'status': 'skipped', 'reason': reason,
-                    'ts': datetime.now(timezone.utc).isoformat()}
-    state.setdefault('slug', slug)
-    _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
+    with _get_lock(slug):
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        state = get_state(slug)
+        state[stage] = {'status': 'skipped', 'reason': reason,
+                        'ts': datetime.now(timezone.utc).isoformat()}
+        state.setdefault('slug', slug)
+        _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
     _log(slug, stage, 'skipped', {'reason': reason} if reason else None)
 
 
