@@ -62,16 +62,30 @@ def _log(slug, stage, status, detail=None):
         f.write(json.dumps(ev, ensure_ascii=False) + '\n')
 
 
-def mark_done(slug, stage, data=None):
+def mark_done(slug, stage, data=None, run_id=None, cost_usd=None):
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     state = get_state(slug)
     entry = {'status': 'done', 'ts': datetime.now(timezone.utc).isoformat()}
     if data:
         entry['data'] = data
+    if run_id:
+        entry['run_id'] = run_id
+    if cost_usd is not None:
+        entry['cost_usd'] = cost_usd
     state[stage] = entry
     state.setdefault('slug', slug)
     _path(slug).write_text(json.dumps(state, indent=2, ensure_ascii=False), encoding='utf-8')
     _log(slug, stage, 'done', data)
+
+
+def total_cost(slug) -> float:
+    """Soma cost_usd de todas as entradas done do slug."""
+    state = get_state(slug)
+    return round(sum(
+        e.get('cost_usd', 0.0)
+        for e in state.values()
+        if isinstance(e, dict) and e.get('cost_usd') is not None
+    ), 4)
 
 
 def mark_blocked(slug, stage, reason):

@@ -43,6 +43,13 @@
     }
   },
 
+  "api_health": {
+    "google_imagen": {"state": "closed", "failures": 0, "opened_at": null, "last_error": null},
+    "google_veo":    {"state": "closed", "failures": 0, "opened_at": null, "last_error": null},
+    "google_tts":    {"state": "closed", "failures": 0, "opened_at": null, "last_error": null},
+    "youtube_api":   {"state": "closed", "failures": 0, "opened_at": null, "last_error": null}
+  },
+
   "oauth": {
     "token_file": ".secrets/token_v2.json",
     "scope": "youtube.force-ssl",
