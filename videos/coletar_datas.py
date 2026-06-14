@@ -8,16 +8,17 @@ Instagram-> Graph API media node: timestamp (publicacao real) + permalink.
 
 Uso:  python coletar_datas.py
 """
-import sys, json
+import sys, os, json
 from pathlib import Path
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
 
-ROOT = Path(__file__).parent
-META = ROOT.parent / 'metadados.json'
-OUT = ROOT.parent / 'datas_coletadas.json'
+ROOT = Path(__file__).parent                                    # scripts + .secrets + upload_youtube/instagram_post
+BASE = Path(os.environ.get('MR_BASE', ROOT.parent))            # dados + saidas (local: biblioteca/ ; VPS: MR_BASE)
+META = BASE / 'metadados.json'
+OUT = BASE / 'datas_coletadas.json'
 
 meta = json.loads(META.read_text(encoding='utf-8'))
 
@@ -220,8 +221,9 @@ try:
     agg = (r"zcat -f /var/log/nginx/access.log* 2>/dev/null | "
            r"grep -oE 'GET /biblioteca/[a-z0-9-]+\.html' | "
            r"sed 's#GET /biblioteca/##;s#\.html##' | sort | uniq -c")
-    out = subprocess.run(['ssh', 'root@andregalgani.com.br', agg],
-                         capture_output=True, text=True, timeout=90)
+    cmd = (['bash', '-lc', agg] if os.environ.get('MR_LOCAL_LOGS')
+           else ['ssh', 'root@andregalgani.com.br', agg])
+    out = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
     vis = {}
     for line in out.stdout.splitlines():
         line = line.strip()
@@ -241,7 +243,7 @@ except Exception as e:
 # ---------------- Amazon (vendas — opcional, colado pelo usuario) ----------------
 # Sem API: PA-API exige 3 vendas; relatorio so no painel Associados. Se existir
 # ../amazon_vendas.json ({slug|asin: qtd}), e ingerido; senao fica vazio.
-av = ROOT.parent / 'amazon_vendas.json'
+av = BASE / 'amazon_vendas.json'
 resultado['amazon_vendas'] = json.loads(av.read_text(encoding='utf-8')) if av.exists() else {}
 
 from datetime import datetime, timezone, timedelta
@@ -249,7 +251,7 @@ resultado['coletado_em'] = datetime.now(timezone.utc).isoformat()
 
 # ---------------- Historico (serie temporal p/ tendencias) ----------------
 # 1 snapshot por DIA (substitui o do mesmo dia); guarda 120 dias.
-HIST = ROOT.parent / 'historico_metadados.json'
+HIST = BASE / 'historico_metadados.json'
 yt_pub = {k: v for k, v in resultado['youtube'].items() if v.get('privacyStatus') == 'public'}
 hoje_brt = (datetime.now(timezone.utc) - timedelta(hours=3)).strftime('%Y-%m-%d')
 snap = {

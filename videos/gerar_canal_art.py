@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw
 import gerar_video as gv
 
 ROOT = Path(__file__).parent
-AC = gv.hex_rgb('#d8a64a')   # âmbar = cor-assinatura do canal
+AC = gv.marca.rgb('ouro')   # ouro canônico (marca.py) = cor-assinatura do canal
 BG = (10, 10, 14)
 
 

@@ -14,15 +14,19 @@ import numpy as np
 from mutagen.mp3 import MP3
 
 ROOT = Path(__file__).parent
+import sys as _sys
+if str(ROOT.parent) not in _sys.path:
+    _sys.path.insert(0, str(ROOT.parent))
+import marca  # fonte ÚNICA de tokens da marca (raiz do projeto)
 WORK = ROOT / '_work'
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 FONTS = Path('C:/Windows/Fonts')
 
 W, H = 1920, 1080
 MARGIN = 170
-BG = (8, 8, 12)
-WHITE = (242, 242, 245)
-GRAY = (150, 150, 165)
+BG = marca.rgb('papel')        # fundo escuro da marca
+WHITE = marca.rgb('tinta')     # texto claro
+GRAY = marca.rgb('tinta-fraca')
 TAIL = 0.7   # silêncio extra ao fim de cada narração (respiro)
 FADE = 0.45  # fade in/out por cena (fade-to-black entre cenas)
 
@@ -30,10 +34,12 @@ FADE = 0.45  # fade in/out por cena (fade-to-black entre cenas)
 def font(name, size):
     return ImageFont.truetype(str(FONTS / name), size)
 
-F_TITLE = lambda s: font('georgia.ttf', s)      # serif elegante p/ títulos
-F_TITLE_B = lambda s: font('arialbd.ttf', s)
-F_UI = lambda s: font('arial.ttf', s)
-F_UI_B = lambda s: font('arialbd.ttf', s)
+# Tipografia da MARCA via marca.py: Hanken Grotesk (display) + Literata (serif)
+F_TITLE = lambda s: marca.font('serif', s, 'Medium')       # serif editorial p/ títulos
+F_TITLE_B = lambda s: marca.font('display', s, 'ExtraBold')
+F_UI = lambda s: marca.font('display', s, 'Regular')
+F_UI_B = lambda s: marca.font('display', s, 'SemiBold')
+F_BLACK = lambda s: marca.font('display', s, 'Black')       # peso máximo p/ thumbnail
 
 
 def hex_rgb(h):
@@ -395,7 +401,7 @@ def make_motion_clip(veo_mp4, overlay_png, mp3, dur, out_mp4, src_dur=None):
 def main(roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
     slug = cfg['slug']
-    accent = cfg.get('acento', '#d8a64a')
+    accent = cfg.get('acento', marca.hex_of('ouro'))
     voice = cfg.get('voz', 'pt-BR-AntonioNeural')
     book_label = f"{cfg['titulo'].upper()}  ·  {cfg['autor'].upper()}"
     estilo = cfg.get('estilo_img', '')

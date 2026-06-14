@@ -12,7 +12,7 @@ import gerar_video as gv
 
 ROOT = Path(__file__).parent
 W, H = 1280, 720
-F_BLACK = lambda s: gv.font('ariblk.ttf', s)   # Arial Black — leitura em miniatura
+F_BLACK = lambda s: gv.F_BLACK(s)   # Hanken Grotesk Black (marca) — leitura em miniatura
 
 
 def cover(src):
@@ -35,7 +35,7 @@ def fit_font(d, lines, maxw, start=200, floor=64):
 
 def main(slug, idx, punch, sub=None):
     cfg = json.loads((ROOT / 'roteiros' / f'{slug}.json').read_text(encoding='utf-8'))
-    accent = gv.hex_rgb(cfg.get('acento', '#d8a64a'))
+    accent = gv.hex_rgb(cfg.get('acento', gv.marca.hex_of('ouro')))
     src = ROOT / '_img' / f'{slug}_{idx:02d}.png'
     if not src.exists():
         sys.exit(f'[!] imagem ausente: {src}')

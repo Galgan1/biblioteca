@@ -14,12 +14,13 @@ Futuro (por temas): cada livro carrega `temas`; basta trocar o agrupamento.
 """
 import json
 import html
+import os
 from pathlib import Path
 from datetime import date, datetime, timedelta
 
-ROOT = Path(__file__).parent
-OUT_DIR = ROOT / "metadados"
-OUT_DIR.mkdir(exist_ok=True)
+ROOT = Path(os.environ.get("MR_BASE", Path(__file__).parent))   # dados (books/metadados/datas/afiliados)
+OUT_DIR = Path(os.environ.get("MR_OUT", ROOT / "metadados"))    # onde gravar o index.html (VPS: web root)
+OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 books = {b["id"]: b for b in json.loads((ROOT / "books.json").read_text(encoding="utf-8"))}
 meta = json.loads((ROOT / "metadados.json").read_text(encoding="utf-8"))

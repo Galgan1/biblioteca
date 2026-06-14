@@ -17,6 +17,8 @@
     --green: oklch(52% 0.14 152);        /* verde vivo — pílulas, bordas, ícones */
     --green-dark: oklch(40% 0.12 152);   /* texto verde sobre fundo claro */
     --green-light: oklch(95% 0.03 152);  /* tinta verde sutil */
+    --gold: oklch(60% 0.10 83);          /* ouro — acento premium (marca.py, hue 83) */
+    --gold-soft: oklch(72% 0.09 83);
     --black: oklch(22% 0.01 152);
     --gray-dark: oklch(46% 0.01 152);
     --gray-light: oklch(86% 0.01 152);
@@ -26,9 +28,9 @@
     --on-green: oklch(99% 0.002 152);    /* texto sobre pílula verde */
     --footer-bg: oklch(22% 0.01 152);
     --footer-text: oklch(97% 0.005 152);
-    --dislike: oklch(58% 0.17 25);       /* vermelho — desjoinha */
-    --dislike-dark: oklch(48% 0.16 25);  /* texto vermelho sobre fundo claro */
-    --on-dislike: oklch(99% 0.004 25);   /* texto sobre pílula vermelha */
+    --dislike: oklch(55% 0.17 30);       /* vermelho — desjoinha (hue 30 = alerta da rede) */
+    --dislike-dark: oklch(48% 0.16 30);  /* texto vermelho sobre fundo claro */
+    --on-dislike: oklch(99% 0.004 30);   /* texto sobre pílula vermelha */
 
     /* Layout */
     --border-solid: 1px solid var(--gray-light);
@@ -46,9 +48,11 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --green: oklch(67% 0.13 152);
+        --green: oklch(70% 0.13 152);
         --green-dark: oklch(76% 0.11 152);
         --green-light: oklch(28% 0.04 152);
+        --gold: oklch(76% 0.105 83);
+        --gold-soft: oklch(86% 0.075 83);
         --black: oklch(95% 0.01 152);
         --gray-dark: oklch(72% 0.01 152);
         --gray-light: oklch(38% 0.01 152);
@@ -58,9 +62,9 @@
         --on-green: oklch(16% 0.01 152);
         --footer-bg: oklch(26% 0.01 152);
         --footer-text: oklch(95% 0.005 152);
-        --dislike: oklch(70% 0.16 25);
-        --dislike-dark: oklch(78% 0.14 25);
-        --on-dislike: oklch(18% 0.02 25);
+        --dislike: oklch(72% 0.16 30);
+        --dislike-dark: oklch(78% 0.14 30);
+        --on-dislike: oklch(18% 0.02 30);
     }
 }
 

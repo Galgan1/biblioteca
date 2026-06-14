@@ -1,1 +1,54 @@
-{}
+{
+  "maquiavel-pedagogo": {
+    "ch01-tecnicas-manipulacao": {
+      "fillTarget": 0.97
+    },
+    "ch10-avaliacao-informatizacao": {
+      "fillTarget": 0.97
+    },
+    "ch12-revolucao-pedagogica-franca": {
+      "fillTarget": 0.97
+    }
+  },
+  "arte-da-guerra": {
+    "ch05-vantagens": {
+      "maxFs": 17.0
+    },
+    "ch06-pontos-fortes-e-fracos": {
+      "fillTarget": 0.9
+    },
+    "ch10-o-terreno": {
+      "maxFs": 17.0
+    },
+    "ch12-ataque-pelo-fogo": {
+      "maxFs": 17.0
+    }
+  },
+  "experiencia-psicodelica": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch2-tributos-e-contexto": {
+      "fillTarget": 0.97
+    }
+  },
+  "tjmg-regras-cartorios": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "livro-1": {
+      "fillTarget": 0.97
+    },
+    "livro-5": {
+      "fillTarget": 0.97
+    }
+  },
+  "story-mckee": {
+    "ch01-o-problema-da-historia": {
+      "fillTarget": 0.97
+    },
+    "ch07-substancia-da-historia": {
+      "maxFs": 17.0
+    }
+  }
+}
