@@ -1,0 +1,24 @@
+# Ferramental de higiene de código da rede Minuto Real / Biblioteca (lane do Programador).
+# ruff faz LINT e FORMAT (compatível com black) — uma ferramenta só, mantém o stack enxuto.
+#   Diagnóstico:  ruff check .
+#   Corrigir:     ruff check --fix .
+#   Formatar:     ruff format .
+[tool.ruff]
+target-version = "py313"
+line-length = 100
+extend-exclude = [
+    "*_data.py",        # conteúdo-fonte dos livros (dicts) — dado, não lógica
+    "book-to-skill",    # sub-repo com lint/CI próprios
+    "**/node_modules",
+    ".claude",
+    "_*",               # diretórios de scratch (_work, _pdfcheck, _carrossel...)
+]
+
+[tool.ruff.lint]
+# F = pyflakes (imports mortos, nomes indefinidos — BUGS reais); E/W = pycodestyle;
+# I = ordenação de imports; B = bugbear; UP = pyupgrade.
+select = ["F", "E", "W", "I", "B", "UP"]
+ignore = ["E501"]       # comprimento de linha fica a cargo do `ruff format`
+
+[tool.ruff.format]
+quote-style = "preserve"   # não troca aspas em massa — minimiza o diff inicial
