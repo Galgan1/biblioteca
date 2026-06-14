@@ -79,14 +79,12 @@ def _amazon_url(slug):
 
 
 def _afiliado_block(slug):
-    """Rodapé das legendas: link de afiliado Amazon (texto, copiável) +
-    disclosure obrigatória. O CTA da Biblioteca/YouTube fica no corpo."""
-    url = _amazon_url(slug)
-    linhas = []
-    if url:
-        linhas.append(f'🛒 Comprar (afiliado): {url}')
-    linhas.append(DISCLOSURE)
-    return '\n'.join(linhas)
+    """Rodapé das legendas do Instagram: o IG NÃO torna URL clicável na legenda
+    (só bio e Stories), então NÃO colocamos link aqui — vira texto morto e polui.
+    O produto/afiliado mora no acervo, alcançado pelo 'link na bio'. Mantém só a
+    disclosure obrigatória de afiliado (o canal é Associado Amazon). (slug mantido
+    na assinatura por compatibilidade; o Facebook tem CTA própria com link clicável.)"""
+    return DISCLOSURE
 
 
 def _frases(texto):
