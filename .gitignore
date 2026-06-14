@@ -36,6 +36,12 @@ pdfs/
 downloads/
 ocr_data/
 *.bak
+# Runs de comparação do refinador de PDF (saídas de teste, regeneráveis)
+_rich/
+_new/
+_live/
+_livecheck/
+pdf-service/cache/
 
 # ===== Pipeline — estado de runtime (gerado automaticamente) =====
 # NÃO ignorar *_data.py: é CONTEÚDO-FONTE autoral dos livros (o BOOK = {...} que
