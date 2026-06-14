@@ -8,6 +8,7 @@ As funções chamam os scripts Python existentes via subprocess — não duplica
 lógica. O grafo (graph.py) conecta esses nós com checkpointing SQLite.
 """
 import json
+import os
 import subprocess
 import sys
 import time
@@ -52,9 +53,14 @@ def node_load_state(state: dict) -> dict:
     """Carrega o estado atual do pipeline_state para o slug."""
     import pipeline_state as ps
     slug = state['slug']
+    run_id = state.get('run_id', '')
+    # Propaga run_id e slug via env para todos os subprocessos deste grafo
+    if run_id:
+        os.environ['PIPELINE_RUN_ID'] = run_id
+    os.environ['PIPELINE_SLUG'] = slug
     stages_done = [s for s in ps.STAGES if ps.is_done(slug, s)]
     video_id = _get_video_id(slug)
-    print(f'[pipeline] slug={slug!r} | stages done: {stages_done}')
+    print(f'[pipeline] slug={slug!r} run_id={run_id!r} | stages done: {stages_done}')
     return {
         'stages_done': stages_done,
         'video_id': video_id,

@@ -35,6 +35,11 @@ def gen(prompt, out_png, aspect='16:9'):
         preds = resp.get('predictions', [])
         if preds and preds[0].get('bytesBase64Encoded'):
             Path(out_png).write_bytes(base64.b64decode(preds[0]['bytesBase64Encoded']))
+            try:
+                from cost_tracker import record_cost
+                record_cost(api='google_imagen')
+            except Exception:
+                pass
             return model
         last = f'{model}: sem imagem — {json.dumps(resp)[:200]}'
     print('ERRO:', last)

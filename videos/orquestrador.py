@@ -12,6 +12,7 @@ Uso:
   python orquestrador.py <slug> --stages biblioteca,video_built  # só essas
   python orquestrador.py <slug> --dry-run                # mostra o que faria
 """
+import os
 import sys
 import json
 import logging
@@ -188,8 +189,13 @@ UNMANAGED = {'skill', 'scheduled', 'tiktok', 'facebook'}
 # ---------------------------------------------------------------------------
 
 def main(slug: str, stages: list = None, dry_run: bool = False):
+    from cost_tracker import new_run_id
+    run_id = new_run_id()
+    os.environ['PIPELINE_RUN_ID'] = run_id
+    os.environ['PIPELINE_SLUG'] = slug
+
     active_lanes = get_active_lanes()
-    log.info(f"slug={slug} | lanes ativas={sorted(active_lanes)} | dry_run={dry_run}")
+    log.info(f"slug={slug} run_id={run_id} | lanes ativas={sorted(active_lanes)} | dry_run={dry_run}")
 
     # Stages já concluídos
     done = {s for s in DAG if ps.is_done(slug, s)}

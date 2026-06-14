@@ -18,6 +18,12 @@ try:
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
+
+try:
+    from circuit_breaker import circuit_breaker, CircuitOpenError
+except ImportError:
+    def circuit_breaker(**kw): return lambda f: f
+    class CircuitOpenError(Exception): pass
 from pathlib import Path
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -92,6 +98,7 @@ def build_metadata(roteiro_path):
     }
 
 
+@circuit_breaker(api='youtube_api', threshold=2, timeout_s=600)
 def upload(video_path, roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
     meta = build_metadata(roteiro_path)
@@ -130,6 +137,11 @@ def upload(video_path, roteiro_path):
     try:
         import pipeline_state
         pipeline_state.mark_done(cfg['slug'], 'uploaded', data={'video_id': vid})
+    except Exception:
+        pass
+    try:
+        from cost_tracker import record_cost
+        record_cost(api='youtube_upload', slug=cfg['slug'])
     except Exception:
         pass
     # Pós-produção API (legendas + playlist temática) — best-effort, nunca derruba o upload.

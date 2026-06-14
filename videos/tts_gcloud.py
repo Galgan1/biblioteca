@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 """Cliente do Google Cloud Text-to-Speech (vozes naturais Chirp3-HD / Studio).
 Usa a API key restrita em .secrets/tts_api_key.txt. Stdlib only (urllib)."""
-import sys, json, time, base64, urllib.request, urllib.error
+import sys, json, base64, urllib.request, urllib.error
 from pathlib import Path
+
+try:
+    from circuit_breaker import circuit_breaker, retry, CircuitOpenError
+except ImportError:
+    def circuit_breaker(**kw): return lambda f: f
+    def retry(**kw): return lambda f: f
+    class CircuitOpenError(Exception): pass
 
 KEY = (Path(__file__).parent / '.secrets' / 'tts_api_key.txt').read_text(encoding='utf-8').strip()
 BASE = 'https://texttospeech.googleapis.com/v1'
@@ -14,6 +21,8 @@ def list_voices(lang='pt-BR'):
     return data.get('voices', [])
 
 
+@retry(max_attempts=4, base_s=3.0)
+@circuit_breaker(api='google_tts', threshold=3, timeout_s=300)
 def synth(text, voice, out_mp3, rate=1.0, pitch=0.0, ssml=None):
     body = json.dumps({
         'input': {'ssml': ssml} if ssml else {'text': text},
@@ -22,21 +31,19 @@ def synth(text, voice, out_mp3, rate=1.0, pitch=0.0, ssml=None):
     }).encode('utf-8')
     req = urllib.request.Request(f'{BASE}/text:synthesize?key={KEY}', data=body,
                                 headers={'Content-Type': 'application/json'})
-    # retry: quedas transitórias de conexão não podem matar um build longo
-    for tent in range(4):
+    try:
+        resp = json.load(urllib.request.urlopen(req, timeout=60))
+        Path(out_mp3).write_bytes(base64.b64decode(resp['audioContent']))
         try:
-            resp = json.load(urllib.request.urlopen(req, timeout=60))
-            Path(out_mp3).write_bytes(base64.b64decode(resp['audioContent']))
-            return True
-        except urllib.error.HTTPError as e:
-            print(f"  ERRO {voice}: {e.read().decode()[:200]}")
-            return False
-        except (urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
-            if tent == 3:
-                print(f"  ERRO {voice}: rede após 4 tentativas — {e}")
-                return False
-            time.sleep(2 ** tent * 3)  # 3s, 6s, 12s
-    return False
+            from cost_tracker import record_cost
+            record_cost(api='google_tts_1k', units=len(ssml or text) / 1000)
+        except Exception:
+            pass
+        return True
+    except urllib.error.HTTPError as e:
+        raise RuntimeError(f'{voice}: HTTP {e.code} {e.read().decode()[:200]}')
+    except (urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
+        raise RuntimeError(f'{voice}: rede — {e}')
 
 
 if __name__ == '__main__':

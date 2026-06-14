@@ -19,6 +19,7 @@ Consulta:
   print_costs()
 """
 import json
+import os
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -37,6 +38,15 @@ PRICES = {
 
 def new_run_id() -> str:
     return str(uuid.uuid4())[:8]
+
+
+def _env_run_id() -> str:
+    """Lê PIPELINE_RUN_ID do ambiente, ou gera um novo."""
+    return os.environ.get('PIPELINE_RUN_ID') or new_run_id()
+
+
+def _env_slug() -> str:
+    return os.environ.get('PIPELINE_SLUG', 'unknown')
 
 
 def _load() -> dict:
@@ -58,9 +68,13 @@ def _save(data: dict) -> None:
         print(f'[cost_tracker] aviso: não salvou — {e}')
 
 
-def record_cost(run_id: str, slug: str, api: str,
+def record_cost(run_id: str = None, slug: str = None, api: str = '',
                 units: float = 1.0, cost_usd: float = None) -> float:
     """Registra uma operação de API e retorna o custo em US$."""
+    if run_id is None:
+        run_id = _env_run_id()
+    if slug is None:
+        slug = _env_slug()
     if cost_usd is None:
         price = PRICES.get(api)
         if price is None:

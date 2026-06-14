@@ -408,6 +408,7 @@ def main(roteiro_path):
     except Exception as e:
         print(f'  [contracts] aviso: {e}')
     slug = cfg['slug']
+    import os as _os; _os.environ['PIPELINE_SLUG'] = slug
     accent = cfg.get('acento', marca.hex_of('ouro'))
     voice = cfg.get('voz', 'pt-BR-AntonioNeural')
     book_label = f"{cfg['titulo'].upper()}  ·  {cfg['autor'].upper()}"
@@ -462,8 +463,12 @@ def main(roteiro_path):
             mot = MOTDIR / f'{slug}_{i:02d}.mp4'
             if not mot.exists():  # cache: clipe de movimento é pago — nunca regenera
                 print(f"  animando cena {i+1}/{n}...")
-                if not mot_gen(str(bg), cena['motion'], str(mot)):
-                    print(f"  [!] movimento falhou na cena {i+1} — usando Ken Burns")
+                try:
+                    if not mot_gen(str(bg), cena['motion'], str(mot)):
+                        print(f"  [!] movimento falhou na cena {i+1} — usando Ken Burns")
+                        mot = None
+                except Exception as _me:
+                    print(f"  [!] movimento falhou ({type(_me).__name__}: {str(_me)[:80]}) — usando Ken Burns")
                     mot = None
 
         tipo = cena.get('tipo', 'conceito')
