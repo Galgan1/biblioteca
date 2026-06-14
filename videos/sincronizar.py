@@ -182,8 +182,19 @@ def build_job(slug, tipo, anchor, offset_h):
         job['parte'] = 'overview'
         job['media_local'] = []     # carrossel hospeda via VPS no proprio poster
         job['cmd'] = ['carousel', slug, 'overview']
+    elif tipo == 'story':
+        story_dir = ROOT / '_carrossel' / f'{slug}_stories'
+        if not story_dir.exists():
+            sys.exit(f'[!] stories ausentes: {story_dir}\n'
+                     f'    Gere com: python gerar_carrossel.py {slug} --stories')
+        pngs = sorted(story_dir.glob('[0-9][0-9].png'))
+        if not pngs:
+            sys.exit(f'[!] nenhum frame .png em {story_dir}')
+        job['parte'] = 'stories'
+        job['media_local'] = [str(p) for p in pngs]
+        job['cmd'] = ['story', slug]
     else:
-        sys.exit(f'[!] tipo "{tipo}" ainda nao suportado (use reel | carousel).')
+        sys.exit(f'[!] tipo "{tipo}" ainda nao suportado (use reel | carousel | story).')
     return job
 
 
@@ -215,9 +226,22 @@ def enqueue(slug, ddmm=None, hhmm=None, offset_h=OFFSET_DEFAULT_H, tipo='reel',
             print(f'    - {m}  [{ex}]')
         return job
 
-    # 1) sobe a midia para a pasta provisoria da VPS (copia do PC permanece)
+    # 1) sobe a midia para a VPS (copia do PC permanece)
     if job.get('media_local'):
-        job['media'] = upload_media(slug, job['media_local'])
+        if job['tipo'] == 'story':
+            # Story: PNGs vao para _carrossel/<slug>_stories/ na VPS (onde o runner le)
+            remote_dir = f'{VPS_BASE}/_carrossel/{slug}_stories'
+            subprocess.run(['ssh', VPS_HOST, f'mkdir -p {remote_dir}'], check=True)
+            for f in job['media_local']:
+                p = Path(f)
+                r = subprocess.run(['scp', '-q', str(p), f'{VPS_HOST}:{remote_dir}/{p.name}'],
+                                   capture_output=True, text=True)
+                if r.returncode != 0:
+                    sys.exit(f'[!] scp do frame story falhou ({p.name}): {r.stderr[:160]}')
+                print(f'  story frame enviado: {p.name}')
+            job['media'] = [f'{remote_dir}/{Path(f).name}' for f in job['media_local']]
+        else:
+            job['media'] = upload_media(slug, job['media_local'])
 
     # 2) merge idempotente no manifesto (mesma chave slug/tipo/parte = atualiza)
     jobs = load_manifest()

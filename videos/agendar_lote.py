@@ -2,17 +2,19 @@
 """ROTINA: agenda a publicação de um lote (longo + Shorts) na grade do canal.
 
 Cadência (parecer do Especialista de Algoritmo, jun/2026): **2 longos por semana
-(SEGUNDA e QUINTA, 19h BRT) + 1 short por dia**. Cada longo é agendado no seu dia;
+(QUARTA e QUINTA, 19h BRT) + 1 short por dia**. Cada longo é agendado no seu dia;
 seus 4 shorts caem nos 4 dias seguintes, 1 por dia. Assim o canal publica todo dia
 (≥2/dia quando longo+short coincidem) sem empilhar longos nem queimar o acervo.
+QUA e QUI 20h-22h BRT = janela ótima do algoritmo IG 2026; o eco do IG (+2h) cai
+às 21h nos dois dias.
 Regra da API: publishAt exige o vídeo 'private' (e que nunca tenha sido público).
 
 Ao agendar o longo, o ECO no Instagram é enfileirado AUTOMATICAMENTE (Reel-herói,
 +2h, via sincronizar.py) — uma única ação agenda as duas plataformas em sincronia.
 
-Uso:  python agendar_lote.py <slug> <video_id_longo> <DD/MM>  (use SEGUNDAS e QUINTAS)
-Ex.:  python agendar_lote.py sound-design <id> 20/07   (seg)
-      python agendar_lote.py audiovisao  <id> 23/07   (qui)
+Uso:  python agendar_lote.py <slug> <video_id_longo> <DD/MM>  (use QUARTAS e QUINTAS)
+Ex.:  python agendar_lote.py sound-design <id> 22/07   (qua)
+      python agendar_lote.py audiovisao  <id> 25/07   (qui)
 """
 import sys, json
 from datetime import datetime, timedelta, timezone
@@ -46,8 +48,8 @@ def main(slug, longo_id, ddmm):
     d, m = map(int, ddmm.split('/'))
     ano = datetime.now(BRT).year
     dia = datetime(ano, m, d, hour=19, tzinfo=BRT)
-    if dia.weekday() not in (0, 3):
-        print(f'  [i] {ddmm} é {DOW[dia.weekday()]}; para 2 longos/semana use SEGUNDA e QUINTA.')
+    if dia.weekday() not in (2, 3):
+        print(f'  [i] {ddmm} é {DOW[dia.weekday()]}; para 2 longos/semana use QUARTA e QUINTA.')
     yt = build('youtube', 'v3', credentials=get_creds())
     agendar(yt, longo_id, dia, f'LONGO · {slug} ({DOW[dia.weekday()]})')
     st = ROOT / '_shorts' / f'{slug}_upload_state.json'
@@ -76,6 +78,25 @@ def main(slug, longo_id, ddmm):
         print(f'  [sync IG] pulado (YouTube ok): {e}')
     except Exception as e:
         print(f'  [sync IG] FALHOU (YouTube ok): {str(e)[:140]}')
+
+    # --- Story de follow-up do Instagram (+2.5h, 30 min após o Reel-herói) -------
+    # Publica os 3 frames de story gerados pelo gerar_carrossel.py --stories.
+    # Se os stories ainda não foram gerados para este slug, é pulado graciosamente.
+    try:
+        story_dir = ROOT / '_carrossel' / f'{slug}_stories'
+        if list(story_dir.glob('[0-9][0-9].png')):
+            print('--- story de follow-up IG (+2.5h) ---')
+            sincronizar.enqueue(slug, ddmm=f'{dia.day:02d}/{dia.month:02d}',
+                                hhmm=f'{dia.hour:02d}:{dia.minute:02d}',
+                                offset_h=2.5, tipo='story',
+                                youtube_id=longo_id)
+        else:
+            print(f'  [story IG] stories nao gerados para {slug}; pulando '
+                  f'(gere com: python gerar_carrossel.py {slug} --stories)')
+    except SystemExit as e:
+        print(f'  [story IG] pulado: {e}')
+    except Exception as e:
+        print(f'  [story IG] FALHOU (YouTube ok): {str(e)[:140]}')
 
 
 if __name__ == '__main__':
