@@ -1,6 +1,8 @@
 # Biblioteca
 Bem-vindo à Biblioteca.
 
+> **Bibliotecario** é o agente responsável por este site — estética, pipeline de páginas, PDF-service, afiliados, SEO e deploy.
+
 ## Funcionamento e Estética
 Tudo o que está dentro do diretório `/biblioteca` possuirá **rigorosamente o mesmo estilo**.
 A estética adota o design "Cheat Sheet Verde", utilizando:

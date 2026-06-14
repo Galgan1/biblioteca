@@ -1,0 +1,37 @@
+# Dependências do pipeline Minuto Real / Biblioteca (Python 3.13).
+# Geradas a partir dos imports REAIS do código (AST scan de 148 .py) em 14/jun/2026.
+# Instale tudo:  python -m pip install -r requirements.txt
+#
+# Binários externos (NÃO vêm pelo pip):
+#   - ffmpeg ........ embutido via imageio-ffmpeg (sem instalação manual)
+#   - Tesseract OCR . instalar no SO (winget UB-Mannheim) p/ o pytesseract funcionar
+#   - Chromium ...... rodar `python -m playwright install chromium` após o pip
+# (o sub-repo book-to-skill tem seu próprio requirements/CI — não incluído aqui)
+
+# ---- Vídeo / áudio (gerar_video.py, dsp.py, marca_sonora.py) ----
+numpy==2.4.2
+pillow==10.4.0
+mutagen==1.47.0
+imageio-ffmpeg==0.6.0
+edge-tts==7.2.8                 # voz grátis local (rota de fuga do TTS Google)
+
+# ---- Imagem / vídeo por IA (imagen.py, veo.py, falgen.py) ----
+google-genai==1.75.0           # Imagen 4 + Veo 3.1
+fal-client==1.0.0              # Flux + Kling (reserva, conta sem saldo)
+
+# ---- Google APIs: YouTube + TTS REST (upload_youtube.py, tts_gcloud.py) ----
+google-api-python-client==2.197.0
+google-auth-oauthlib==1.4.0
+google-auth==2.53.0
+requests==2.34.2               # tts_gcloud usa a REST texttospeech.googleapis.com
+
+# ---- PDF / OCR / site (render_pdf.py, ocr_pdf.py, gerar_pdfs.py) ----
+PyMuPDF==1.27.2.3             # fitz — rasteriza/extrai PDF
+PyPDF2==3.0.1
+pytesseract==0.3.13           # wrapper; exige o binário Tesseract no SO
+playwright==1.60.0            # gera PDFs do site; exige `playwright install chromium`
+
+# ---- Orquestração do pipeline (pipeline/graph.py, contracts.py) ----
+langgraph==1.2.5
+langgraph-checkpoint-sqlite==3.1.0
+pydantic==2.12.5
