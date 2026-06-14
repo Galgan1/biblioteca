@@ -102,6 +102,31 @@ def publicar(job):
         part = cmd[2] if len(cmd) > 2 else 'overview'
         print(f'  publicando carrossel {slug}/{part}...')
         return ig.post_carousel(slug, part, publish=True)
+    if kind == 'story':
+        slug = cmd[1]
+        story_dir = ROOT / '_carrossel' / f'{slug}_stories'
+        web_dir = Path('/var/www/andregalgani/biblioteca/_carrossel') / f'{slug}_stories'
+        pub_base = 'https://www.andregalgani.com.br/biblioteca/_carrossel'
+        try:
+            from PIL import Image
+            import os
+            web_dir.mkdir(parents=True, exist_ok=True)
+            urls = []
+            for png in sorted(story_dir.glob('[0-9][0-9].png')):
+                jpg = web_dir / png.with_suffix('.jpg').name
+                with Image.open(png) as im:
+                    im.convert('RGB').save(jpg, 'JPEG', quality=88)
+                os.chmod(jpg, 0o644)
+                urls.append(f'{pub_base}/{slug}_stories/{jpg.name}')
+            if not urls:
+                print(f'  [!] nenhum frame de story em {story_dir}')
+                return None
+            print(f'  {len(urls)} frames hospedados em {web_dir}')
+            ids = ig.post_story_from_urls(urls, publish=True)
+            return ids[0] if ids else None
+        except Exception as e:
+            print(f'  ERRO story {slug}: {str(e)[:160]}')
+            return None
     print(f'  [!] cmd desconhecido: {kind}')
     return None
 
