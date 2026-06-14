@@ -216,10 +216,10 @@ def caption_for(cfg, idx):
     tags = [t.replace(' ', '').lower() for t in cfg.get('youtube', {}).get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + [t for t in tags if t]))
     return (f"{corpo}\n\n"
-            f"Essa é uma das ideias de \"{cfg['titulo']}\".\n"
-            f"📄 O livro inteiro em 1 cheat sheet + PDF, de graça, no acervo — link na bio.\n"
-            f"🎬 Prefere assistir? O resumo de ~5 min está no YouTube.\n\n"
-            f"Salve para aplicar e siga @minutoreal1701 — um grande livro destilado por semana.\n\n"
+            f"Uma das ideias de \"{cfg['titulo']}\".\n"
+            f"📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n"
+            f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
+            f"Salve e siga @minutoreal1701 — um grande livro por semana.\n\n"
             f"{_afiliado_block(cfg['slug'])}\n🎬 Narração e arte por IA.\n\n{hs}")
 
 
@@ -278,11 +278,11 @@ def caption_carousel(slug):
     tags = [re.sub(r'[^0-9a-z]', '', t.lower().replace(' ', '')) for t in book.get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + [t for t in tags if t]))
     return (f"{corpo}\n\n"
-            f"Arrasta para o lado: as ideias que ficam de \"{book['title']}\", de {book['author']}.\n"
+            f"Arrasta para o lado: as ideias de \"{book['title']}\", de {book['author']}.\n"
             f"📌 Salve para não perder.\n\n"
-            f"📄 Quer o livro inteiro em 1 página? Cheat sheet + PDF no acervo — link na bio.\n"
-            f"🎬 E o resumo em vídeo (~5 min) está no YouTube.\n\n"
-            f"Siga @minutoreal1701 — um grande livro destilado por semana.\n\n"
+            f"📄 O livro em 1 página: cheat sheet + PDF no acervo — link na bio.\n"
+            f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
+            f"Siga @minutoreal1701 — um grande livro por semana.\n\n"
             f"{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}")
 
 

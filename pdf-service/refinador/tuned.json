@@ -50,5 +50,842 @@
     "ch07-substancia-da-historia": {
       "maxFs": 17.0
     }
+  },
+  "smith-assertividade": {
+    "ch05-conversa-assertiva": {
+      "maxFs": 17.0
+    },
+    "ch09-situacoes-autoridade": {
+      "maxFs": 17.0
+    }
+  },
+  "poder-do-silencio": {
+    "ch1-silencio-e-calma": {
+      "fillTarget": 0.9
+    },
+    "ch3-eu-autocentrado": {
+      "maxFs": 17.0
+    },
+    "ch7-natureza": {
+      "fillTarget": 0.9
+    },
+    "ch8-relacionamentos": {
+      "fillTarget": 0.91,
+      "rhythmCap": 2.3,
+      "padCap": 1.7
+    }
+  },
+  "aristoteles-poetica": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-mimese": {
+      "maxFs": 17.0
+    },
+    "ch02-seis-partes": {
+      "maxFs": 17.0
+    },
+    "ch03-mito-uno-inteiro": {
+      "maxFs": 17.0
+    },
+    "ch04-verossimil": {
+      "maxFs": 17.0
+    },
+    "ch05-peripecia-reconhecimento": {
+      "maxFs": 17.0
+    },
+    "ch06-hamartia-catarse": {
+      "maxFs": 17.0
+    },
+    "ch07-antipadroes": {
+      "maxFs": 17.0
+    }
+  },
+  "save-the-cat": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-logline": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch02-generos": {
+      "maxFs": 17.0
+    },
+    "ch03-heroi": {
+      "maxFs": 17.0
+    },
+    "ch04-beat-sheet": {
+      "maxFs": 17.0
+    },
+    "ch05-o-quadro": {
+      "maxFs": 17.0
+    },
+    "ch06-leis-fisica-roteiro": {
+      "maxFs": 17.0
+    },
+    "ch07-diagnostico": {
+      "maxFs": 17.0
+    },
+    "ch08-fade-in-final": {
+      "maxFs": 17.0
+    }
+  },
+  "jornada-do-escritor": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-monomito-arquetipos": {
+      "maxFs": 17.0
+    },
+    "ch02-mundo-comum-chamado": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch03-recusa-mentor": {
+      "maxFs": 17.0
+    },
+    "ch04-travessia-limiar": {
+      "maxFs": 17.0
+    },
+    "ch05-provas-aliados-inimigos": {
+      "maxFs": 17.0
+    },
+    "ch06-aproximacao-provacao": {
+      "maxFs": 17.0
+    },
+    "ch07-recompensa": {
+      "maxFs": 17.0
+    },
+    "ch08-caminho-de-volta": {
+      "maxFs": 17.0
+    },
+    "ch09-ressurreicao": {
+      "maxFs": 17.0
+    },
+    "ch10-retorno-com-elixir": {
+      "maxFs": 17.0
+    }
+  },
+  "sound-design": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-processo-sound-design": {
+      "maxFs": 17.0
+    },
+    "ch02-criatividade-sons": {
+      "maxFs": 17.0
+    },
+    "ch03-vibracao-sensacao": {
+      "maxFs": 17.0
+    },
+    "ch04-sensacao-percepcao": {
+      "maxFs": 17.0
+    },
+    "ch05-musica": {
+      "maxFs": 17.0
+    },
+    "ch06-voz-humana": {
+      "maxFs": 17.0
+    },
+    "ch07-efeitos-paisagem": {
+      "maxFs": 17.0
+    },
+    "ch08-som-imagem-emocao": {
+      "maxFs": 17.0
+    }
+  },
+  "audiovisao": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-contrato-audiovisual": {
+      "maxFs": 17.0
+    },
+    "ch02-valor-acrescentado": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch03-sincrese": {
+      "maxFs": 17.0
+    },
+    "ch04-modos-de-escuta": {
+      "maxFs": 17.0
+    },
+    "ch05-acusmatico-acusmetre": {
+      "maxFs": 17.0
+    },
+    "ch06-temporalizacao": {
+      "maxFs": 17.0
+    },
+    "ch07-rendering": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch08-espacos-vococentrismo": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    }
+  },
+  "coesao-coerencia": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-textualidade": {
+      "maxFs": 17.0
+    },
+    "ch02-coesao-referencia": {
+      "maxFs": 17.0
+    },
+    "ch03-coesao-conjuncao-lexical": {
+      "maxFs": 17.0
+    },
+    "ch04-coerencia": {
+      "maxFs": 17.0
+    },
+    "ch05-intencionalidade-aceitabilidade": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch06-informatividade": {
+      "maxFs": 17.0
+    },
+    "ch07-situacionalidade": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch08-intertextualidade": {
+      "maxFs": 17.0
+    },
+    "ch09-principios-regulativos": {
+      "maxFs": 17.0
+    }
+  },
+  "ponerologia": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-ciencia-do-mal": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch02-psicopatia-essencial": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch03-caracteropatias": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch04-spellbinders-paramoralismos": {
+      "maxFs": 17.0
+    },
+    "ch05-ponerogenese": {
+      "maxFs": 17.0
+    },
+    "ch06-associacoes-ponerogenicas": {
+      "maxFs": 17.0
+    },
+    "ch07-mascara-ideologica": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch08-pathocracia": {
+      "maxFs": 17.0
+    },
+    "ch09-ciclo-histeroidal": {
+      "maxFs": 17.0
+    },
+    "ch10-defesa-imunizacao": {
+      "maxFs": 17.0
+    }
+  },
+  "quem-mexeu-no-queijo": {
+    "ch01-quatro-personagens": {
+      "maxFs": 17.0
+    },
+    "ch02-queijo-e-labirinto": {
+      "maxFs": 17.0
+    },
+    "ch03-nao-ha-queijo": {
+      "maxFs": 17.0
+    },
+    "ch04-vencendo-o-medo": {
+      "maxFs": 17.0
+    },
+    "ch05-manuscrito-na-parede": {
+      "maxFs": 17.0
+    },
+    "ch06-novo-queijo": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    }
+  },
+  "nacao-dopamina": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-balanca-prazer-dor": {
+      "maxFs": 17.0
+    },
+    "ch02-dopamina-moeda": {
+      "maxFs": 17.0
+    },
+    "ch03-deficit-dopamina": {
+      "maxFs": 17.0
+    },
+    "ch04-era-da-indulgencia": {
+      "maxFs": 17.0
+    },
+    "ch05-jejum-de-dopamina": {
+      "maxFs": 17.0
+    },
+    "ch06-autovinculo": {
+      "maxFs": 17.0
+    },
+    "ch07-busca-pela-dor": {
+      "maxFs": 17.0
+    },
+    "ch08-honestidade-radical": {
+      "maxFs": 17.0
+    },
+    "ch09-vergonha-equilibrio": {
+      "maxFs": 17.0
+    }
+  },
+  "poder-de-delegar": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-parabola-james-jones": {
+      "maxFs": 17.0
+    },
+    "ch02-passo1-preparar": {
+      "maxFs": 17.0
+    },
+    "ch03-passo2-discutir": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch04-passo3-prazo": {
+      "maxFs": 17.0
+    },
+    "ch05-passo4-autoridade": {
+      "maxFs": 17.0
+    },
+    "ch06-passo5-checkpoints": {
+      "maxFs": 17.0
+    },
+    "ch07-passo6-debriefing": {
+      "maxFs": 17.0
+    },
+    "ch08-aplicacoes": {
+      "maxFs": 17.0
+    }
+  },
+  "marketing-4-0": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-mudanca-de-poder": {
+      "maxFs": 17.0
+    },
+    "ch02-subculturas-jmn": {
+      "maxFs": 17.0
+    },
+    "ch03-quatro-eras": {
+      "maxFs": 17.0
+    },
+    "ch04-cinco-as": {
+      "maxFs": 17.0
+    },
+    "ch05-par-bar": {
+      "maxFs": 17.0
+    },
+    "ch06-quatro-cs": {
+      "maxFs": 17.0
+    },
+    "ch08-omnichannel-engajamento": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    }
+  },
+  "habitos-atomicos": {
+    "ch01-1porcento-sistemas": {
+      "maxFs": 17.0
+    },
+    "ch02-identidade": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch03-loop-do-habito": {
+      "maxFs": 17.0
+    },
+    "ch04-lei1-obvio": {
+      "maxFs": 17.0
+    },
+    "ch05-lei2-atraente": {
+      "maxFs": 17.0
+    },
+    "ch06-lei3-facil": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch07-lei4-satisfatorio": {
+      "maxFs": 17.0
+    },
+    "ch08-avancado": {
+      "maxFs": 17.0
+    }
+  },
+  "48-leis-do-poder": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-natureza-do-poder": {
+      "maxFs": 17.0
+    },
+    "ch02-mestre-reputacao": {
+      "maxFs": 17.0
+    },
+    "ch03-aparencias-atencao": {
+      "maxFs": 17.0
+    },
+    "ch04-controle-dependencia": {
+      "maxFs": 17.0
+    },
+    "ch05-tatica-indirecao": {
+      "maxFs": 17.0
+    },
+    "ch07-defesa": {
+      "maxFs": 17.0
+    },
+    "ch08-lei-suprema": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    }
+  },
+  "psicologia-financeira": {
+    "ch01-ninguem-e-doido": {
+      "maxFs": 17.0
+    },
+    "ch02-sorte-e-risco": {
+      "maxFs": 17.0
+    },
+    "ch03-nunca-o-bastante": {
+      "maxFs": 17.0
+    },
+    "ch04-juros-compostos": {
+      "maxFs": 17.0
+    },
+    "ch05-ficar-rico-continuar-rico": {
+      "maxFs": 17.0
+    },
+    "ch06-cauda-longa": {
+      "maxFs": 17.0
+    },
+    "ch07-liberdade": {
+      "maxFs": 17.0
+    },
+    "ch08-homem-no-carro": {
+      "maxFs": 17.0
+    },
+    "ch09-riqueza-invisivel": {
+      "maxFs": 17.0
+    },
+    "ch10-poupar-margem": {
+      "maxFs": 17.0
+    },
+    "ch11-pessimismo-e-mudanca": {
+      "maxFs": 17.0
+    }
+  },
+  "comunicacao-nao-violenta": {
+    "ch01-coracao-da-cnv": {
+      "maxFs": 17.0
+    },
+    "ch03-observar-sem-avaliar": {
+      "maxFs": 17.0
+    },
+    "ch04-identificar-sentimentos": {
+      "maxFs": 17.0
+    },
+    "ch05-necessidades": {
+      "maxFs": 17.0
+    },
+    "ch06-pedidos": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch07-receber-com-empatia": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch08-poder-da-empatia": {
+      "maxFs": 17.0
+    },
+    "ch09-auto-empatia": {
+      "maxFs": 17.0
+    },
+    "ch10-raiva": {
+      "maxFs": 17.0
+    },
+    "ch11-gratidao-e-poder-protetor": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    }
+  },
+  "sutil-arte": {
+    "ch01-nao-tente": {
+      "maxFs": 17.0
+    },
+    "ch02-felicidade-problema": {
+      "maxFs": 17.0
+    },
+    "ch03-voce-nao-e-especial": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch04-valores": {
+      "maxFs": 17.0
+    },
+    "ch05-responsabilidade": {
+      "maxFs": 17.0
+    },
+    "ch06-duvida": {
+      "maxFs": 17.0
+    },
+    "ch07-faca-algo": {
+      "maxFs": 17.0
+    },
+    "ch08-nao-e-morte": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    }
+  },
+  "coragem-de-nao-agradar": {
+    "ch01-trauma-nao-existe": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch02-objetivo-e-estilo-de-vida": {
+      "maxFs": 17.0
+    },
+    "ch04-competicao-e-poder": {
+      "maxFs": 17.0
+    },
+    "ch05-separacao-de-tarefas": {
+      "maxFs": 17.0
+    },
+    "ch06-liberdade-e-reconhecimento": {
+      "maxFs": 17.0
+    },
+    "ch07-relacoes-horizontais": {
+      "maxFs": 17.0
+    },
+    "ch09-aqui-e-agora": {
+      "maxFs": 17.0
+    }
+  },
+  "como-fazer-amigos": {
+    "ch01-fundamentos": {
+      "maxFs": 17.0
+    },
+    "ch02-nao-critique": {
+      "maxFs": 17.0
+    },
+    "ch03-aprecie": {
+      "maxFs": 17.0
+    },
+    "ch04-desperte-desejo": {
+      "maxFs": 17.0
+    },
+    "ch07-convencer-1": {
+      "maxFs": 17.0
+    },
+    "ch08-convencer-2": {
+      "maxFs": 17.0
+    },
+    "ch09-convencer-3": {
+      "maxFs": 17.0
+    },
+    "ch10-liderar-1": {
+      "maxFs": 17.0
+    },
+    "ch11-liderar-2": {
+      "maxFs": 17.0
+    }
+  },
+  "essencialismo": {
+    "ch01-essencia-escolha": {
+      "maxFs": 17.0
+    },
+    "ch02-essencia-discernir": {
+      "maxFs": 17.0
+    },
+    "ch04-explorar-espaco": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch05-explorar-observar": {
+      "maxFs": 17.0
+    },
+    "ch06-explorar-brincar-dormir": {
+      "maxFs": 17.0
+    },
+    "ch07-explorar-criterio90": {
+      "maxFs": 17.0
+    },
+    "ch08-eliminar-clarear-nao": {
+      "maxFs": 17.0
+    },
+    "ch09-eliminar-descomprometer-editar-limites": {
+      "marginMul": 1.25
+    },
+    "ch10-executar-buffer-gargalo": {
+      "maxFs": 17.0
+    },
+    "ch11-executar-progresso-rotina-fluxo": {
+      "maxFs": 17.0
+    },
+    "ch12-a-vida-do-essencialista": {
+      "maxFs": 17.0
+    }
+  },
+  "rapido-e-devagar": {
+    "ch01-os-dois-sistemas": {
+      "maxFs": 17.0
+    },
+    "ch02-atencao-esforco-piloto-automatico": {
+      "maxFs": 17.0
+    },
+    "ch03-wysiati-coerencia": {
+      "maxFs": 17.0
+    },
+    "ch04-substituicao-heuristicas": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch05-ancoragem": {
+      "maxFs": 17.0
+    },
+    "ch06-disponibilidade-representatividade": {
+      "maxFs": 17.0
+    },
+    "ch07-linda-regressao": {
+      "maxFs": 17.0
+    },
+    "ch08-ilusao-validade-intuicao": {
+      "maxFs": 17.0
+    },
+    "ch09-excesso-confianca-pre-mortem": {
+      "maxFs": 17.0
+    },
+    "ch10-teoria-do-prospecto": {
+      "maxFs": 17.0
+    },
+    "ch11-enquadramento-contabilidade-mental": {
+      "maxFs": 17.0
+    },
+    "ch12-os-dois-eus": {
+      "maxFs": 17.0
+    }
+  },
+  "armas-da-persuasao": {
+    "ch01-armas-da-influencia": {
+      "maxFs": 17.0
+    },
+    "ch02-reciprocidade": {
+      "maxFs": 17.0
+    },
+    "ch03-compromisso-coerencia": {
+      "maxFs": 17.0
+    },
+    "ch04-aprovacao-social": {
+      "maxFs": 17.0
+    },
+    "ch05-afeicao": {
+      "maxFs": 17.0
+    },
+    "ch06-autoridade": {
+      "maxFs": 17.0
+    },
+    "ch07-escassez": {
+      "maxFs": 17.0
+    },
+    "ch08-defesa-e-unidade": {
+      "maxFs": 17.0
+    }
+  },
+  "pai-rico-pai-pobre": {
+    "ch01-dois-pais": {
+      "maxFs": 17.0
+    },
+    "ch02-nao-trabalhar-por-dinheiro": {
+      "maxFs": 17.0
+    },
+    "ch04-cuide-do-seu-negocio": {
+      "maxFs": 17.0
+    },
+    "ch05-impostos-corporacoes": {
+      "maxFs": 17.0
+    },
+    "ch06-inventar-dinheiro": {
+      "maxFs": 17.0
+    },
+    "ch07-trabalhe-para-aprender": {
+      "maxFs": 17.0
+    },
+    "ch08-cinco-obstaculos": {
+      "maxFs": 17.0
+    },
+    "ch09-pague-se-primeiro": {
+      "maxFs": 17.0
+    },
+    "ch10-comecar": {
+      "maxFs": 17.0
+    }
+  },
+  "quatro-compromissos": {
+    "ch01-domesticacao-sonho": {
+      "maxFs": 17.0
+    },
+    "ch03-lado-pessoal": {
+      "maxFs": 17.0
+    },
+    "ch06-quebrar-acordos": {
+      "maxFs": 17.0
+    },
+    "ch07-liberdade-novo-sonho": {
+      "maxFs": 17.0
+    }
+  },
+  "homem-mais-rico-babilonia": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-homem-que-desejava-ouro": {
+      "maxFs": 17.0
+    },
+    "ch02-homem-mais-rico": {
+      "maxFs": 17.0
+    },
+    "ch03-sete-curas": {
+      "maxFs": 17.0
+    },
+    "ch04-deusa-da-boa-sorte": {
+      "maxFs": 17.0
+    },
+    "ch05-cinco-leis-do-ouro": {
+      "maxFs": 17.0
+    },
+    "ch06-emprestador-de-ouro": {
+      "maxFs": 17.0
+    },
+    "ch07-muralhas-da-babilonia": {
+      "maxFs": 17.0
+    },
+    "ch08-mercador-de-camelos": {
+      "maxFs": 17.0
+    },
+    "ch09-tabuas-de-argila-e-trabalho": {
+      "maxFs": 17.0
+    }
+  },
+  "design-do-dia-a-dia": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-psicopatologia": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch02-affordances-significantes-mapeamento": {
+      "maxFs": 17.0
+    },
+    "ch04-conhecimento-cabeca-mundo": {
+      "maxFs": 17.0
+    },
+    "ch06-funcoes-de-forca": {
+      "maxFs": 17.0
+    },
+    "ch07-erro-humano-mau-design": {
+      "maxFs": 17.0
+    },
+    "ch08-design-a-prova-de-erro": {
+      "maxFs": 17.0
+    },
+    "ch09-design-centrado-no-humano": {
+      "maxFs": 17.0
+    },
+    "ch10-design-no-mundo-dos-negocios": {
+      "maxFs": 17.0
+    }
+  },
+  "nao-me-faca-pensar": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-nao-me-faca-pensar": {
+      "maxFs": 17.0
+    },
+    "ch04-omita-palavras": {
+      "maxFs": 17.0
+    },
+    "ch05-navegacao-persistente": {
+      "maxFs": 17.0
+    },
+    "ch06-teste-do-tronco": {
+      "maxFs": 17.0
+    },
+    "ch08-teste-de-usabilidade": {
+      "maxFs": 17.0
+    },
+    "ch10-acessibilidade-mobile": {
+      "maxFs": 17.0
+    }
+  },
+  "futebol-brasileiro": {
+    "visao-geral": {
+      "fillTarget": 0.97
+    },
+    "ch01-origem-aristocratica": {
+      "maxFs": 17.0
+    },
+    "ch02-barreira-racial": {
+      "maxFs": 17.0
+    },
+    "ch03-ruptura-vasco": {
+      "maxFs": 17.0
+    },
+    "ch04-friedenreich": {
+      "maxFs": 17.0
+    },
+    "ch05-profissionalizacao": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch06-futebol-arte": {
+      "maxFs": 17.0
+    },
+    "ch07-maracanazo": {
+      "maxFs": 17.0,
+      "marginMul": 1.25
+    },
+    "ch08-tri-pele": {
+      "maxFs": 17.0
+    },
+    "ch10-7x1-legado": {
+      "maxFs": 17.0
+    }
+  },
+  "padrao-bitcoin": {
+    "ch07-ciclos-economicos": {
+      "fillTarget": 0.97
+    },
+    "ch09-bitcoin-dinheiro-digital": {
+      "fillTarget": 0.9
+    }
   }
 }

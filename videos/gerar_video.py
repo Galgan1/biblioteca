@@ -400,6 +400,13 @@ def make_motion_clip(veo_mp4, overlay_png, mp3, dur, out_mp4, src_dur=None):
 
 def main(roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
+    try:
+        from contracts import load_roteiro
+        _cfg_validated = load_roteiro(roteiro_path)
+    except ImportError:
+        pass  # contracts.py opcional
+    except Exception as e:
+        print(f'  [contracts] aviso: {e}')
     slug = cfg['slug']
     accent = cfg.get('acento', marca.hex_of('ouro'))
     voice = cfg.get('voz', 'pt-BR-AntonioNeural')

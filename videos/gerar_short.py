@@ -30,7 +30,7 @@ def cover(src):
 def dark_bg(accent):
     """Fundo vertical escuro com aura suave — para Shorts de vídeos nível BASE (sem _img)."""
     ac = gv.hex_rgb(accent)
-    img = Image.new('RGB', (W, H), (9, 10, 14))
+    img = Image.new('RGB', (W, H), gv.marca.rgb('papel'))
     ov = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     od = ImageDraw.Draw(ov)
     cx, cy = W // 2, int(H * 0.40)
@@ -46,13 +46,14 @@ def make_overlay(cena, accent, hook, out_png):
     img = Image.new('RGBA', (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(img)
     ac = gv.hex_rgb(accent)
+    scrim = gv.marca.rgb('papel')   # fundo da marca p/ os degradês de escurecimento
     # escurecimento topo (gancho) e base (título + CTA)
     for py in range(0, 640, 2):
         a = int(205 * (1 - py / 640) ** 1.2)
-        d.rectangle([(0, py), (W, py + 2)], fill=(6, 6, 10, a))
+        d.rectangle([(0, py), (W, py + 2)], fill=scrim + (a,))
     for py in range(H - 780, H, 2):
         a = int(225 * ((py - (H - 780)) / 780) ** 1.05)
-        d.rectangle([(0, py), (W, py + 2)], fill=(6, 6, 10, a))
+        d.rectangle([(0, py), (W, py + 2)], fill=scrim + (a,))
     # GANCHO (topo)
     fh = gv.F_UI_B(56)
     yy = 150
@@ -65,12 +66,12 @@ def make_overlay(cena, accent, hook, out_png):
     lines = gv.wrap(d, cena['titulo'], ft, W - 140)
     ty = H - 470 - len(lines) * int(ft.size * 1.08)
     for ln in lines:
-        d.text((70, ty), ln, font=ft, fill=(245, 245, 248))
+        d.text((70, ty), ln, font=ft, fill=gv.marca.rgb('tinta'))
         ty += int(ft.size * 1.08)
     # rodapé: marca + CTA (triângulo desenhado, sem depender de glifo da fonte)
     d.text((70, H - 168), HANDLE, font=gv.F_UI_B(44), fill=ac)
     cta = 'vídeo completo no canal'
-    d.text((70, H - 108), cta, font=gv.F_UI(36), fill=(212, 212, 222))
+    d.text((70, H - 108), cta, font=gv.F_UI(36), fill=gv.marca.rgb('tinta-fraca'))
     tx = 70 + d.textlength(cta, font=gv.F_UI(36)) + 22
     d.polygon([(tx, H - 100), (tx, H - 76), (tx + 20, H - 88)], fill=ac)
     img.save(out_png)
@@ -79,7 +80,7 @@ def make_overlay(cena, accent, hook, out_png):
 def main(slug, idx):
     cfg = json.loads((ROOT / 'roteiros' / f'{slug}.json').read_text(encoding='utf-8'))
     cena = cfg['cenas'][idx]
-    accent = cfg.get('acento', '#d8a64a')
+    accent = cfg.get('acento', gv.marca.hex_of('ouro'))
     SH = ROOT / '_shorts'
     SH.mkdir(exist_ok=True)
 

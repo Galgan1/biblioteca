@@ -180,7 +180,7 @@ body {
     letter-spacing: 0.08em;
     text-transform: uppercase;
 }
-.crumbs-sep { color: var(--gray-light); }
+.crumbs-sep { color: var(--gold); }
 .crumbs-current { color: var(--black); }
 
 /* --- Header --- */

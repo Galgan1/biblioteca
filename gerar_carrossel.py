@@ -472,10 +472,10 @@ def _caption_citacao(slug, book, quotes):
     hs = ' '.join('#' + t for t in (['livros', 'resumodelivro', 'leitura']
                                      + [t for t in tags if t]))
     return (f'"{gancho}"\n— {book["author"]}, em "{book["title"]}"\n\n'
-            f'Uma frase que resume um livro inteiro. 📌 Salve as que ficam.\n\n'
-            f'📄 O cheat sheet completo + PDF, de graça, está no acervo — link na bio.\n'
-            f'🎬 E o resumo em vídeo (~5 min), no YouTube.\n\n'
-            f'Siga @minutoreal1701 — um grande livro destilado por semana.\n\n'
+            f'📌 Salve as frases que ficam.\n\n'
+            f'📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n'
+            f'🎬 Resumo em vídeo (~5 min) no YouTube.\n\n'
+            f'Siga @minutoreal1701 — um grande livro por semana.\n\n'
             f'{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}')
 
 
