@@ -388,50 +388,6 @@
     ]
   },
   {
-    "id": "arte-da-seducao",
-    "title": "A Arte da Sedução",
-    "author": "Robert Greene",
-    "coverUrl": "assets/arte-da-seducao-cover.png",
-    "description": "A sedução como forma de poder. Greene anatomiza os nove tipos de sedutor, as vítimas e o processo em 24 fases — de criar tensão a render o alvo — aplicável ao amor, à política e à persuasão.",
-    "tags": [
-      "Sedução",
-      "Psicologia",
-      "Poder"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/6555322047/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6555322047/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "jogos-da-vida",
-    "title": "Os Jogos da Vida",
-    "author": "Eric Berne",
-    "coverUrl": "assets/jogos-da-vida-cover.png",
-    "description": "O fundador da Análise Transacional revela os 'jogos' psicológicos — sequências de transações com ganho oculto — que estruturam nossas relações, e os papéis de Pai, Adulto e Criança que assumimos sem perceber.",
-    "tags": [
-      "Psicologia",
-      "Relacionamentos",
-      "Análise Transacional"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8521308760/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8521308760/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "nunca-divida-a-diferenca",
     "title": "Nunca Divida a Diferença",
     "author": "Chris Voss",
@@ -1597,5 +1553,41 @@
         "url": "https://www.amazon.com.br/dp/6555353686/?tag=andregalgani-20&language=pt_BR"
       }
     ]
+  },
+  {
+    "id": "arte-da-seducao",
+    "title": "A Arte da Sedução",
+    "author": "Robert Greene",
+    "coverUrl": "assets/arte-da-seducao-cover.png",
+    "description": "A Arte da Sedução de Robert Greene em cheat sheet: os 9 tipos de sedutor (Sereia, Libertino, Amante Ideal, Dândi, Natural, Coquete, Encantador, Carismático, Estrela), o Anti-Sedutor, as vítimas e as 4 fases (separar, penetrar, precipitar, o tombo) — frameworks de influência e atração.",
+    "tags": [
+      "Poder",
+      "Influência",
+      "Psicologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "arte-da-seducao.html",
+    "amazon": "https://www.amazon.com.br/dp/6555322047/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555322047/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "jogos-da-vida",
+    "title": "Os Jogos da Vida",
+    "author": "Eric Berne",
+    "coverUrl": "assets/jogos-da-vida-cover.png",
+    "description": "Os Jogos da Vida de Eric Berne em cheat sheet: estados de ego P-A-C, transações complementares/cruzadas/ulteriores, carícias e fome de reconhecimento, a Fórmula J (Isca+Fraqueza→Resposta→Virada→Confusão→Recompensa), os jogos clássicos ('Sim mas', 'Se não fosse por você', 'Chuta-me', 'Tribunal') e a saída pela autonomia.",
+    "tags": [
+      "Psicologia",
+      "Relacionamentos",
+      "Autoconhecimento"
+    ],
+    "progress": "9 Capítulos",
+    "url": "jogos-da-vida.html"
   }
 ]
