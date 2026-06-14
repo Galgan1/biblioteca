@@ -402,6 +402,35 @@ const REFLOW_JS = `
   });
 `;
 
+// --------------------------------------------------- tuning aprendido
+// O refinador (local, offline) grava aqui a melhor configuração por livro/tipo
+// de página. Ausência do arquivo (ou de uma entrada) = comportamento padrão do
+// adaptiveFit. Produção NÃO muda enquanto não houver tuned.json.
+const TUNED_FILE = path.join(__dirname, 'refinador', 'tuned.json');
+function loadTuned() {
+  try { return JSON.parse(fs.readFileSync(TUNED_FILE, 'utf8')); } catch { return {}; }
+}
+let TUNED = loadTuned();
+function pageKind(page) {
+  if (page === 'livro-completo') return 'livro-completo';
+  if (page === 'visao-geral') return 'visao-geral';
+  return 'capitulo';
+}
+// precedência (mais específico ganha): default global → tipo global →
+// default do livro → tipo do livro → página exata.
+function tuneFor(book, page) {
+  const kind = pageKind(page);
+  const gd = TUNED._default || {};
+  const bd = TUNED[book] || {};
+  return {
+    ...(gd._default || {}),
+    ...(gd[kind] || {}),
+    ...(bd._default || {}),
+    ...(bd[kind] || {}),
+    ...(bd[page] || {}),
+  };
+}
+
 function headerTemplate(title, subtitle) {
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
   return `
@@ -458,7 +487,8 @@ async function stampMetadata(pdfBytes, { title, subtitle, author }) {
 // (2) "ritmo": distribui o residual como AR entre os cards (respiro elegante),
 // nunca como anúncio. Multipágina: mata-viúva. Roda no contexto da página.
 function adaptiveFit(cfg) {
-  const T = 1010; // altura útil aproximada de uma página A4 (px CSS)
+  const t = cfg.tune || {};
+  const T = t.pageH || 1010; // altura útil aproximada de uma página A4 (px CSS)
   const el = document.querySelector('.page');
   if (!el) return { mode: 'skip' };
   const setFS = (px) => { document.documentElement.style.fontSize = px + 'px'; };
@@ -478,7 +508,7 @@ function adaptiveFit(cfg) {
   if (h > T) { // multipágina: evitar última página quase vazia (mata-viúva)
     const pages = Math.ceil(h / T);
     const lastFrac = h / T - (pages - 1);
-    if (pages > 1 && lastFrac < 0.30) {
+    if (pages > 1 && lastFrac < (t.widowFrac || 0.30)) {
       const fs2 = Math.max(10, (11 * ((pages - 1) * T)) / h * 0.99);
       setFS(fs2);
       if (H() > (pages - 1) * T) { setFS(11); } else { fs = fs2; }
@@ -487,9 +517,9 @@ function adaptiveFit(cfg) {
     return { mode: 'multi', fs: +fs.toFixed(2), pagesEst: Math.ceil(h / T), lastFill: +((h / T) % 1 || 1).toFixed(2) };
   }
 
-  // página única — (1) fonte generosa até ~94%, teto premium
-  const cap = cfg.maxFs || 15.5;
-  const target = T * 0.94;
+  // página única — (1) fonte generosa até o alvo de preenchimento, teto premium
+  const cap = t.maxFs || 15.5;
+  const target = T * (t.fillTarget || 0.94);
   for (let i = 0; i < 4; i++) {
     fs = Math.min(cap, Math.max(11, (fs * target) / h));
     setFS(fs); h = H();
@@ -503,21 +533,22 @@ function adaptiveFit(cfg) {
 
   // (2) ritmo elegante — o residual vira AR entre os cards (não bloco-anúncio):
   // cresce sobretudo a margem entre cards e o espaço do cabeçalho; padding e
-  // entrelinha sobem pouco (cap) para não inchar os cards.
+  // entrelinha sobem pouco (cap) para não inchar os cards. Tudo tunável.
   let rhythm = 1;
   if ((T - h) / T > 0.05) {
+    const padCap = t.padCap || 1.4, lhCap = t.lhCap || 1.16, marginMul = t.marginMul || 1.0;
     const st = document.createElement('style');
     document.head.appendChild(st);
     const apply = (m) => {
-      const pad = Math.min(m, 1.4), lh = Math.min(m, 1.16);
+      const pad = Math.min(m, padCap), lh = Math.min(m, lhCap);
       st.textContent =
-        '.card,.lessons{margin-bottom:' + (1.0 * m).toFixed(2) + 'rem!important;' +
+        '.card,.lessons{margin-bottom:' + (marginMul * m).toFixed(2) + 'rem!important;' +
         'padding:' + (0.75 * pad).toFixed(2) + 'rem!important}' +
         '.header{margin-bottom:' + (0.8 * m).toFixed(2) + 'rem!important}' +
         '.header-intro{margin-top:' + (0.25 * m).toFixed(2) + 'rem!important}' +
         '.card-body,.card-tip,.content-list li,.lessons-list li{line-height:' + (1.38 * lh).toFixed(3) + '!important}';
     };
-    let r = Math.min(1.9, (T * 0.965) / h);
+    let r = Math.min(t.rhythmCap || 1.9, (T * (t.rhythmFillTarget || 0.965)) / h);
     while (r > 1.03) { apply(r); h = H(); if (h <= T) break; r -= 0.06; }
     if (H() > T) { st.textContent = ''; h = H(); }
     rhythm = +r.toFixed(2);
@@ -526,7 +557,7 @@ function adaptiveFit(cfg) {
   return { mode: 'single', fs: +fs.toFixed(2), fill: +(h / T).toFixed(3), rhythm };
 }
 
-async function renderUrlToPdf(url, { title, subtitle, author, footer, maxFs }) {
+async function renderUrlToPdf(url, { title, subtitle, author, footer, maxFs, tune }) {
   const browser = await getBrowser();
   const page = await browser.newPage();
   try {
@@ -539,7 +570,7 @@ async function renderUrlToPdf(url, { title, subtitle, author, footer, maxFs }) {
     await page.setViewport({ width: 725, height: 1050 }); // largura útil do A4 p/ medição fiel
     const diag = await page.evaluate(adaptiveFit, {
       footer: footer || '',
-      maxFs: maxFs || 15.5,
+      tune: { maxFs: maxFs || 15.5, ...(tune || {}) },
     });
     const buffer = await page.pdf({
       ...PDF_OPTS,
@@ -685,6 +716,54 @@ pdf.post('/vote', (req, res) => {
   res.json(applyVote(book, from, to));
 });
 
+// ----- refinador (DEV, só com REFINADOR=1): render fresco, sem cache, com -----
+// um `tune` ad-hoc. Devolve o PDF cru + o diagnóstico do fit no header X-Fit-Diag.
+// Em produção o env não está setado, então estas rotas nem existem.
+if (process.env.REFINADOR === '1') {
+  pdf.get('/_refinar/:book/:page', async (req, res) => {
+    const { book, page } = req.params;
+    if (!SLUG_RE.test(book) || !SLUG_RE.test(page)) return res.status(400).send('inválido');
+    let tune = {};
+    try { if (req.query.tune) tune = JSON.parse(req.query.tune); } catch {}
+    try {
+      const meta = bookMeta(book);
+      let out;
+      if (page === 'livro-completo') {
+        const built = await buildBookHtml(book, `http://127.0.0.1:${PORT}/site`);
+        const buffer = await enqueue(() => renderHtmlToPdf(built.html,
+          { title: meta.title, subtitle: 'Resumo completo', author: meta.author }));
+        out = { buffer, diag: { mode: 'book' } };
+      } else {
+        const isOverview = page === 'visao-geral';
+        const file = isOverview ? path.join(SITE_ROOT, `${book}.html`)
+                                : path.join(SITE_ROOT, book, `${page}.html`);
+        await fsp.access(file);
+        const url = isOverview ? `http://127.0.0.1:${PORT}/site/${book}.html`
+                               : `http://127.0.0.1:${PORT}/site/${book}/${page}.html`;
+        const html = await fsp.readFile(file, 'utf8');
+        const subtitle = textOf(html, /<p class="header-subtitle">([\s\S]*?)<\/p>/)
+                         || (isOverview ? 'Visão geral' : page);
+        const footer = await buildFooter(book);
+        out = await enqueue(() => renderUrlToPdf(url,
+          { title: meta.title, subtitle, author: meta.author, footer, maxFs: tune.maxFs || 15.5, tune }));
+      }
+      res.setHeader('X-Fit-Diag', JSON.stringify(out.diag || {}));
+      res.setHeader('Content-Type', 'application/pdf');
+      res.end(out.buffer);
+    } catch (err) {
+      if (err.code === 'ENOENT') return res.status(404).send('não encontrada');
+      console.error('[refinar]', err.message);
+      res.status(500).send('erro');
+    }
+  });
+  // recarrega o tuned.json em memória (o refinador chama após gravar)
+  pdf.post('/_reload-tuned', (_req, res) => {
+    TUNED = loadTuned();
+    res.json({ ok: true, livros: Object.keys(TUNED) });
+  });
+  console.log('[refinador] rotas DEV ativas: GET /pdf/_refinar/:book/:page  ·  POST /pdf/_reload-tuned');
+}
+
 // ----- paywall: dados do Pix, QR e emissão de token -----
 pdf.get('/pix-info', (_req, res) => {
   res.json({ code: PIX_CODE, amount: PIX_AMOUNT, ttlMin: TOKEN_TTL_MS / 60000 });
@@ -758,7 +837,8 @@ pdf.get('/:book/:page.pdf', async (req, res) => {
       const subtitle = textOf(html, /<p class="header-subtitle">([\s\S]*?)<\/p>/) || (isOverview ? 'Visão geral' : page);
       const footer = await buildFooter(book);
       const base = { title: meta.title, subtitle, author: meta.author };
-      make = () => renderUrlToPdf(url, { ...base, footer, maxFs: 15.5 });
+      const tune = tuneFor(book, page);
+      make = () => renderUrlToPdf(url, { ...base, footer, maxFs: 15.5, tune });
       // fallback conservador: densidade padrão (garante 1 página quando o fit vazar)
       makeSafe = () => renderUrlToPdf(url, { ...base, footer, maxFs: 11 });
     }
