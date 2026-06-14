@@ -12,7 +12,7 @@ BOOK = {
  "intro": "Chion derruba a intuição de que vemos uma coisa e ouvimos outra, somando as duas. Na audiovisão, som e imagem se transformam mutuamente — é um contrato, uma fusão consentida em que o som faz o trabalho e a imagem leva o crédito. Do valor acrescentado à síncrese, do acusmático ao rendering, é a teoria que explica por que metade do que sentimos num filme vem do que ouvimos sem perceber.",
  "description": "A teoria do som no cinema por Michel Chion: o contrato audiovisual, o valor acrescentado, a síncrese, os três modos de escuta, o som acusmático e o acusmêtre, a temporalização, o rendering e o vococentrismo.",
  "tags": ["Som", "Cinema", "Teoria"],
- "progress": "8 Capítulos Completos",
+ "progress": "8 Capítulos",
  "cover": "assets/audiovisao-cover.png",
  "overview_cards": [
    {"ic":"link","t":"O Contrato Audiovisual","b":"Não percebemos som e imagem separados e depois somados — cada um <strong>transforma a percepção do outro</strong>. A audiovisão é essa fusão consentida, irredutível às partes.","tip":"<strong>Como aplicar:</strong> 1 + 1 = 3. A cena é um acordo, não uma gravação.","wide":True},

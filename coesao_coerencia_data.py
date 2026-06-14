@@ -12,7 +12,7 @@ BOOK = {
  "intro": "O que faz de um conjunto de frases um texto? Beaugrande & Dressler respondem com sete critérios de textualidade — e Halliday & Hasan detalham os cinco mecanismos que amarram a superfície. Um texto não é frase grande: é uma ocorrência comunicativa que precisa se conectar (coesão), fazer sentido (coerência) e funcionar numa situação real. É a régua para diagnosticar por que um texto não fecha.",
  "description": "A linguística textual de Beaugrande & Dressler (os 7 critérios de textualidade) e os 5 mecanismos de coesão de Halliday & Hasan: coesão, coerência, intencionalidade, aceitabilidade, informatividade, situacionalidade e intertextualidade.",
  "tags": ["Língua", "Texto", "Redação"],
- "progress": "9 Capítulos Completos",
+ "progress": "9 Capítulos",
  "cover": "assets/coesao-coerencia-cover.png",
  "overview_cards": [
    {"ic":"layers","t":"Os 7 Critérios de Textualidade","b":"Um texto só é texto se cumpre sete critérios — <strong>coesão</strong> e <strong>coerência</strong> (no texto) + <strong>intencionalidade, aceitabilidade, informatividade, situacionalidade e intertextualidade</strong> (no uso). Falhou um, não fecha.","tip":"<strong>Como aplicar:</strong> quando um texto 'não soa como texto', pergunte qual dos sete falhou.","wide":True},

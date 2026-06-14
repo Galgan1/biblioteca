@@ -19,7 +19,7 @@ BOOK = {
  "intro": "Um diálogo socrático entre um Filósofo e um Jovem cético, ao longo de cinco noites. O Filósofo defende a psicologia de Alfred Adler — quase esquecida ao lado de Freud e Jung. A tese choca: o passado não nos determina, todo problema é de relações interpessoais, e a felicidade é uma escolha de coragem. A coragem de ser livre — e, portanto, de ser desprezado por alguém.",
  "description": "O fenômeno japonês de Kishimi e Koga que popularizou Alfred Adler pelo mundo. Em forma de diálogo, vira do avesso a ideia de que somos reféns do trauma: vivemos por objetivos, não por causas. Ensina a separação de tarefas, a sair da armadilha do reconhecimento e a sustentar a felicidade na tríade autoaceitação, confiança e contribuição — a verdadeira coragem de não agradar.",
  "tags": ["Psicologia", "Adler", "Autoconhecimento"],
- "progress": "9 Capítulos Completos",
+ "progress": "9 Capítulos",
  "cover": "assets/coragem-de-nao-agradar-cover.png",
  "overview_cards": [
    {"ic":"fork","t":"Teleologia vs. Etiologia — \"o trauma não existe\"","b":"Freud explica pela <strong>causa</strong> passada ('você é assim por causa de…'); Adler, pelo <strong>objetivo</strong> presente ('você age assim para conseguir algo'). A experiência não determina — nós damos significado a ela. O 'trauma não existe' não nega a dor: nega que ela nos <strong>obrigue</strong> a um destino.","tip":"<strong>Modelo mental:</strong> pergunte 'para quê?', não 'por quê?'. A causa prende; o objetivo liberta.","wide":True},

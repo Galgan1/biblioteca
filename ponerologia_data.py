@@ -12,7 +12,7 @@ BOOK = {
  "intro": "Psiquiatra sob um regime totalitário, Łobaczewski propôs estudar o mal social como um fenômeno com causas observáveis — para que pessoas normais aprendessem a reconhecê-lo e resistir. É uma obra de diagnóstico e imunização: descreve como uma minoria patológica captura movimentos e Estados (ponerogênese), e como a maioria saudável pode interromper o processo. Lente defensiva, jamais um manual.",
  "description": "A ponerologia de Łobaczewski: o estudo clínico da gênese do mal social. Ponerogênese, psicopatia essencial, spellbinders, paramoralismos, a máscara ideológica, a pathocracia e o ciclo histeroidal — em chave defensiva, para reconhecer e resistir.",
  "tags": ["Psicologia", "Política", "Sociedade"],
- "progress": "10 Capítulos Completos",
+ "progress": "10 Capítulos",
  "cover": "assets/ponerologia-cover.png",
  "overview_cards": [
    {"ic":"eye","t":"A Ciência do Mal (defensiva)","b":"Tratar o mal social não como mistério moral, mas como <strong>fenômeno com causas</strong> — para diagnosticar e prevenir. O propósito é <strong>imunológico</strong>: entender para reconhecer e resistir, nunca replicar.","tip":"<strong>Como aplicar:</strong> troque 'quem é culpado' por 'como o processo aconteceu'.","wide":True},

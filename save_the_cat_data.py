@@ -12,7 +12,7 @@ BOOK = {
  "intro": "Blake Snyder destilou décadas de roteiro de Hollywood num sistema prático e brutalmente claro: venda a ideia numa frase (logline), descubra o tipo de transformação que você está contando (os 10 gêneros), bata as 15 batidas da estrutura (a beat sheet), arme a história inteira no Quadro antes de escrever e diagnostique o que trava pelo nome do defeito. Não é fórmula — é a gramática que o público já tem no ouvido.",
  "description": "O método prático de Blake Snyder para estruturar histórias: logline com ironia, os 10 gêneros de transformação, a beat sheet de 15 beats, o Quadro de 40 cartões, as leis da física do roteiro e um checklist de diagnóstico.",
  "tags": ["Roteiro", "Narrativa", "Ofício"],
- "progress": "8 Capítulos Completos",
+ "progress": "8 Capítulos",
  "cover": "assets/save-the-cat-cover.png",
  "overview_cards": [
    {"ic":"target","t":"A Logline — \"o que é isso?\"","b":"Antes da primeira cena, uma frase que vende: com <strong>ironia</strong> (tensão na própria premissa), <strong>imagem mental</strong> do filme inteiro, <strong>público/tom</strong> implícitos e <strong>título matador</strong>. Se não fisga em um minuto, o roteiro não conserta.","tip":"<strong>Como aplicar:</strong> teste a logline com estranhos — os olhos deles são o veredito.","wide":True},

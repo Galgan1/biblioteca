@@ -12,7 +12,7 @@ BOOK = {
  "intro": "Uma fábula curta sobre quatro personagens num labirinto à procura de Queijo — metáfora do que queremos na vida. Dois ratos, Sniff e Scurry, agem com simplicidade; dois duendes, Hem e Haw, complicam com crenças e medo. Quando o Queijo some, descobrimos quem somos diante da mudança — e como antecipá-la, monitorá-la e nos adaptar a tempo.",
  "description": "A parábola mais vendida sobre mudança. Spencer Johnson usa quatro personagens num labirinto para mostrar como antecipar, monitorar e se adaptar rápido quando o 'Queijo' — emprego, relação, segurança — sai do lugar.",
  "tags": ["Mudança", "Carreira", "Autodesenvolvimento"],
- "progress": "7 Capítulos Completos",
+ "progress": "7 Capítulos",
  "cover": "assets/quem-mexeu-no-queijo-cover.png",
  "overview_cards": [
    {"ic":"fork","t":"Os 4 Personagens","b":"Não são tipos de gente — são <strong>partes de você</strong> diante da mudança:","list":[

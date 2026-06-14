@@ -14,7 +14,7 @@ BOOK = {
  "intro": "Em parábolas ambientadas na antiga Babilônia, George Clason traduz princípios financeiros em regras simples e atemporais. O fio que costura todas as histórias é uma frase: \"uma parte de tudo que você ganha é sua para guardar\". Não é o tamanho do salário que enriquece — é o hábito de pagar a si mesmo primeiro, controlar gastos, multiplicar o ouro e protegê-lo de perdas.",
  "description": "As parábolas de Arkad, Bansir e Dabasir destilam as leis universais da prosperidade: pague-se primeiro (no mínimo 10%), as Sete Curas para uma bolsa vazia, as Cinco Leis do Ouro, o plano 70/20/10 para sair das dívidas, e a ideia de que a sorte favorece quem age. Riqueza é resultado de hábitos simples e constantes, não de salário alto ou sorte.",
  "tags": ["Finanças", "Poupança", "Riqueza"],
- "progress": "9 Capítulos Completos",
+ "progress": "9 Capítulos",
  "cover": "assets/homem-mais-rico-babilonia-cover.png",
  "overview_cards": [
    {"ic":"key","t":"Pague-se Primeiro (no mínimo 10%)","b":"O princípio-mãe do livro: <strong>\"uma parte de tudo que você ganha é sua para guardar\"</strong>. Antes de pagar qualquer conta, separe ao menos <strong>1/10 do que ganha</strong> — e nunca toque nesse ouro. Riqueza nasce desse hábito, não do salário.","tip":"<strong>Como aplicar:</strong> automatize a retirada de 10% no dia em que o dinheiro entra, antes de tudo o mais.","wide":True},

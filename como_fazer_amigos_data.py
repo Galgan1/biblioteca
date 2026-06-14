@@ -23,7 +23,7 @@ BOOK = {
  "intro": "O livro que fundou a literatura de relações humanas. Carnegie destila em princípios simples como lidar com pessoas, fazer-se querido, convencer pelo modo de pensar do outro e mudar comportamentos sem gerar ressentimento. A tese que costura tudo: as pessoas agem pelo que ELAS querem e pela fome de sentir-se importantes. Quem para de empurrar a própria vontade e aprende a despertar o desejo do outro tem o mundo a seu favor.",
  "description": "Publicado em 1936 e nunca mais saído de moda, é o clássico definitivo sobre influência honesta. Em quatro partes — as 3 técnicas fundamentais, as 6 maneiras de cair nas graças, as 12 maneiras de convencer e as 9 maneiras de liderar sem ofender — Carnegie mostra que influência é atração, não imposição. O fio condutor: pense pelo ponto de vista do outro, reconheça seu valor com sinceridade e desperte nele o desejo de agir.",
  "tags": ["Comunicação", "Relacionamentos", "Influência"],
- "progress": "11 Capítulos Completos",
+ "progress": "11 Capítulos",
  "cover": "assets/como-fazer-amigos-cover.png",
  "overview_cards": [
    {"ic":"key","t":"O Desejo de Sentir-se Importante","b":"A fome humana mais profunda, depois do alimento, é o <strong>desejo de ser importante</strong>. Quase todo comportamento serve a ela. Quem aprende a satisfazê-la com <strong>sinceridade</strong> — não com bajulação — torna-se raro e poderoso nas relações.","tip":"<strong>Modelo mental:</strong> dê às pessoas o que elas têm fome de receber — a sensação de importância. É a moeda mais barata e mais valiosa.","wide":True},

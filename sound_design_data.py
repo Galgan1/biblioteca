@@ -12,7 +12,7 @@ BOOK = {
  "intro": "Sonnenschein trata a trilha sonora — voz, música e efeitos — como uma camada de contar história tão poderosa quanto a imagem, e quase sempre subutilizada. O som percorre uma cadeia (vibração → sensação → percepção → emoção), e o ofício é desenhá-la de ponta a ponta: traçar a curva emocional da história e pintá-la com tom, ritmo, intensidade, timbre, espaço e silêncio.",
  "description": "O guia prático e expressivo do sound design por David Sonnenschein: o processo (do roteiro à mixagem), a criação de sons, a acústica e a psicoacústica, música, voz, efeitos e o mapa emocional que faz o som dirigir o que o público sente.",
  "tags": ["Som", "Cinema", "Ofício"],
- "progress": "8 Capítulos Completos",
+ "progress": "8 Capítulos",
  "cover": "assets/sound-design-cover.png",
  "overview_cards": [
    {"ic":"layers","t":"As 3 Famílias do Som","b":"Todo áudio se divide em <strong>voz</strong> (o rei — vococentrismo), <strong>música</strong> (que comenta, não ilustra) e <strong>efeitos</strong> (que constroem o mundo). Orquestrar as três sem que briguem é o ofício.","tip":"<strong>Como aplicar:</strong> em cada instante, um elemento manda (em geral a voz); os outros recuam.","wide":True},

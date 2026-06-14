@@ -19,7 +19,7 @@ BOOK = {
  "intro": "E se você parasse de perguntar 'como faço tudo?' e passasse a perguntar 'o que é absolutamente essencial?'. Greg McKeown chama isso de Essencialismo: não é gestão de tempo nem fazer mais com menos esforço — é a disciplina sistemática de discernir o vital de poucos do trivial de muitos, eliminar o resto sem culpa e proteger com folga o que importa. O lema: menos, porém melhor.",
  "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
  "tags": ["Produtividade", "Foco", "Prioridades"],
- "progress": "12 Capítulos Completos",
+ "progress": "12 Capítulos",
  "cover": "assets/essencialismo-cover.png",
  "overview_cards": [
    {"ic":"scale","t":"A Essência: Escolha · Discernir · Trade-off","b":"Três verdades destravam tudo. <strong>A escolha</strong>: você sempre pode escolher como gastar tempo e energia ('não posso' → 'eu escolho não'). <strong>O discernimento</strong>: quase tudo é ruído, pouquíssimo é sinal — esforço não vira resultado proporcional. <strong>O trade-off</strong>: não dá para ter tudo, então a pergunta certa não é 'como faço as duas?', mas <strong>'o que vou renunciar?'</strong>.","tip":"<strong>Modelo mental:</strong> antes de cada 'sim', nomeie do que você está abrindo mão. Todo 'sim' é um 'não' a outra coisa.","wide":True},

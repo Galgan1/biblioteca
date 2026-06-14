@@ -15,7 +15,7 @@ BOOK = {
  "intro": "Sua mente tem dois motores. O Sistema 1 é rápido, automático, intuitivo e emocional — ele dirige quase tudo o que você pensa e faz. O Sistema 2 é lento, deliberado, lógico e esforçado — e preguiçoso: costuma assinar embaixo das intuições do Sistema 1 sem conferir. Daniel Kahneman mostra que os atalhos do pensamento rápido produzem erros previsíveis (vieses) — e que pensar melhor começa por saber em qual sistema você está.",
  "description": "O mapa da mente de Daniel Kahneman, vencedor do Nobel de Economia. Os dois sistemas de pensamento (rápido/intuitivo e lento/deliberado), o princípio WYSIATI, as heurísticas e vieses que enganam o julgamento (ancoragem, disponibilidade, representatividade, falácia da conjunção, taxa-base, regressão à média), o excesso de confiança e o pré-mortem, a Teoria do Prospecto (aversão à perda, ponto de referência, enquadramento) e os dois eus — o que experiencia e o que recorda.",
  "tags": ["Psicologia", "Decisão", "Vieses Cognitivos"],
- "progress": "12 Capítulos Completos",
+ "progress": "12 Capítulos",
  "cover": "assets/rapido-e-devagar-cover.png",
  "overview_cards": [
    {"ic":"fork","t":"Sistema 1 vs. Sistema 2","b":"O <strong>Sistema 1</strong> é rápido, automático, intuitivo e emocional; o <strong>Sistema 2</strong> é lento, deliberado, lógico — e <strong>preguiçoso</strong>. O S1 dirige quase tudo, e o S2 quase sempre só endossa sem checar.","tip":"<strong>Como aplicar:</strong> antes de decidir, pergunte 'essa resposta veio sozinha (S1) ou exigiu esforço (S2)?'.","wide":True},

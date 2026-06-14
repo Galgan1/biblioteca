@@ -15,7 +15,7 @@ BOOK = {
  "intro": "Para entender o Bitcoin, é preciso primeiro entender o dinheiro. Ammous percorre toda a história monetária — do escambo às conchas, do ouro ao fiat — para extrair a lei que governa todo dinheiro: vence o que é mais difícil de produzir. A régua é a razão estoque/fluxo, e a tese é que o Bitcoin, com oferta absolutamente fixa, é o dinheiro mais forte já inventado.",
  "description": "Para entender o Bitcoin, entenda o dinheiro. Ammous usa a história monetária e a escola austríaca para mostrar por que o dinheiro forte (alta razão estoque/fluxo) preserva poupança e civilização — e por que o Bitcoin seria o mais forte já criado.",
  "tags": ["Economia", "Dinheiro", "Bitcoin"],
- "progress": "10 Capítulos Completos",
+ "progress": "10 Capítulos",
  "cover": "assets/padrao-bitcoin-cover.png",
  "overview_cards": [
    {"ic":"scale","t":"A Régua: Estoque / Fluxo","b":"A força de uma moeda = razão entre o <strong>estoque</strong> (tudo já produzido) e o <strong>fluxo</strong> (a produção nova). Razão <strong>alta</strong> = moeda forte (mantém valor); razão <strong>baixa</strong> = moeda fraca (destrói a poupança).","tip":"<strong>Como aplicar:</strong> antes de poupar em algo, pergunte: se virar reserva popular, fica fácil produzir mais?","wide":True},

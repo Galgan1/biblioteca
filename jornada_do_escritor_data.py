@@ -12,7 +12,7 @@ BOOK = {
  "intro": "Christopher Vogler traduziu o monomito de Joseph Campbell para a linguagem do roteiro. Sob a infinita variedade das histórias, há um único padrão — a Jornada do Herói — porque ele descreve a forma da transformação humana. Vogler organiza esse padrão em 12 estágios e 8 arquétipos, ferramentas para escrever (e diagnosticar) qualquer narrativa, do mito épico ao drama doméstico.",
  "description": "A adaptação de Christopher Vogler do monomito de Campbell para roteiristas: os 12 estágios da Jornada do Herói e os 8 arquétipos como funções psicológicas — uma bússola flexível para a estrutura de qualquer história.",
  "tags": ["Roteiro", "Mito", "Ofício"],
- "progress": "10 Capítulos Completos",
+ "progress": "10 Capítulos",
  "cover": "assets/jornada-do-escritor-cover.png",
  "overview_cards": [
    {"ic":"spiral","t":"A Jornada do Herói — 12 Estágios","b":"O padrão universal em três atos: <strong>Partida</strong> (Mundo Comum → Travessia do Limiar), <strong>Iniciação</strong> (Provas → Recompensa) e <strong>Retorno</strong> (Caminho de Volta → Elixir). É bússola flexível, não fórmula rígida.","tip":"<strong>Como aplicar:</strong> comprima, mova ou subverta estágios — o público reconhece o padrão no osso.","wide":True},

@@ -16,7 +16,7 @@ BOOK = {
  "intro": "Da sabedoria tolteca, quatro acordos para reescrever os acordos que você nunca escolheu. Don Miguel Ruiz parte de uma ideia desconcertante: tudo o que você chama de 'eu' foi instalado de fora para dentro — a domesticação. Um Juiz interno condena, uma Vítima sofre, e um Livro da Lei herdado governa o seu sonho. Os quatro acordos são as novas regras que substituem o medo pelo amor e devolvem a liberdade pessoal.",
  "description": "O clássico de Don Miguel Ruiz baseado na sabedoria tolteca. A domesticação do humano e o sonho do planeta; o Juiz, a Vítima e o Livro da Lei; os QUATRO acordos — seja impecável com a palavra, não leve nada para o lado pessoal, não tire conclusões precipitadas, sempre faça o melhor que puder; a quebra de acordos antigos rumo à liberdade pessoal, mais o quinto acordo: seja cético, mas aprenda a ouvir.",
  "tags": ["Sabedoria", "Autoconhecimento", "Espiritualidade"],
- "progress": "8 Capítulos Completos",
+ "progress": "8 Capítulos",
  "cover": "assets/quatro-compromissos-cover.png",
  "overview_cards": [
    {"ic":"key","t":"Os Quatro Acordos","b":"As quatro regras novas que substituem os acordos de medo da domesticação:","list":[

@@ -12,7 +12,7 @@ BOOK = {
  "intro": "A psiquiatra Anna Lembke explica por que, num mundo de prazer ilimitado, estamos mais infelizes. A chave é uma balança: prazer e dor moram no mesmo lugar do cérebro e buscam o equilíbrio — todo prazer é pago com dor depois. Do excesso nasce o déficit de dopamina; a cura passa por abstinência, autovínculo e, surpreendentemente, pela busca deliberada da dor.",
  "description": "A neurociência do prazer e do vício, por Anna Lembke: a balança prazer-dor, a dopamina como moeda do vício, o déficit por excesso, o jejum de dopamina (acrônimo DOPAMINE), o autovínculo, a hormese e o caminho do equilíbrio.",
  "tags": ["Psicologia", "Neurociência", "Hábitos"],
- "progress": "9 Capítulos Completos",
+ "progress": "9 Capítulos",
  "cover": "assets/nacao-dopamina-cover.png",
  "overview_cards": [
    {"ic":"scale","t":"A Balança Prazer-Dor","b":"O cérebro processa <strong>prazer e dor no mesmo lugar</strong>, em lados opostos de uma balança que busca o nível. Todo pico de prazer é compensado com dor — e o cérebro <strong>passa do ponto</strong>. Não há prazer de graça.","tip":"<strong>Como aplicar:</strong> o baixo depois do alto é física do cérebro, não fraqueza moral.","wide":True},

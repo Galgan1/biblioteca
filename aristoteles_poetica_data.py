@@ -12,7 +12,7 @@ BOOK = {
  "intro": "O texto que fundou a teoria da narrativa, há 2.300 anos. Aristóteles disseca a tragédia e descobre as leis que ainda governam toda história que emociona: o enredo é a alma, o herói cai por um erro, a reviravolta surpreende e é inevitável, e a solução nasce de dentro — nunca de um truque. É o avô direto de toda dramaturgia, do teatro grego ao roteiro de cinema.",
  "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
  "tags": ["Filosofia", "Narrativa", "Dramaturgia"],
- "progress": "7 Capítulos Completos",
+ "progress": "7 Capítulos",
  "cover": "assets/aristoteles-poetica-cover.png",
  "overview_cards": [
    {"ic":"layers","t":"As 6 Partes da Tragédia","b":"Em ordem de importância — só a 1ª é a alma:","list":[

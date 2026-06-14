@@ -19,7 +19,7 @@ BOOK = {
  "intro": "Por que algumas portas a gente empurra quando deveria puxar, e sai com a sensação de ser burro? Don Norman responde: a culpa é do design, não do usuário. Nesta obra fundadora da UX, ele mostra que objetos bem projetados comunicam sozinhos o que se pode fazer e o que cada coisa significa — e nos dá o vocabulário para enxergar (e consertar) o mau design em tudo à nossa volta.",
  "description": "O clássico que inventou o vocabulário do design centrado no humano. Don Norman explica os cinco princípios que fazem um objeto se explicar sozinho — affordances, significantes, mapeamento, feedback e restrições — e por que 'erro humano' quase sempre é erro de design. Da psicologia da ação (os dois golfos, os sete estágios) ao design à prova de erro (deslizes × enganos, funções de força, poka-yoke), é o manual para projetar coisas que as pessoas conseguem usar sem manual.",
  "tags": ["Design", "UX", "Produtos Digitais"],
- "progress": "10 Capítulos Completos",
+ "progress": "10 Capítulos",
  "cover": "assets/design-do-dia-a-dia-cover.png",
  "overview_cards": [
    {"ic":"key","t":"A Culpa é do Design, Não do Usuário","b":"O princípio-mãe da obra. Quando as pessoas erram, se sentem burras ou precisam de manual para o básico, o <strong>objeto está mal projetado</strong> — não as pessoas mal preparadas. 'Erro humano' quase sempre é erro de design. A pergunta certa nunca é 'por que erraram?', mas <strong>'o que no design induziu o erro?'</strong>.","tip":"<strong>Como aplicar:</strong> diante de qualquer falha de uso recorrente, conserte o objeto — não tente 'treinar o usuário a prestar mais atenção'.","wide":True},

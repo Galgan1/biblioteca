@@ -12,7 +12,7 @@ BOOK = {
  "intro": "O sucesso com dinheiro não é uma ciência exata — é uma habilidade comportamental. Um gênio que perde o controle das emoções pode quebrar; uma pessoa comum, sem formação financeira, pode enriquecer apenas com paciência, poupança e bom comportamento. Morgan Housel mostra que como você se comporta importa mais do que o que você sabe.",
  "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade. Por que o comportamento vence a matemática nas finanças: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver para deixar o tempo compor, a cauda longa, a liberdade como maior dividendo, a riqueza invisível e a margem de segurança.",
  "tags": ["Finanças", "Comportamento", "Investimento"],
- "progress": "11 Capítulos Completos",
+ "progress": "11 Capítulos",
  "cover": "assets/psicologia-financeira-cover.png",
  "overview_cards": [
    {"ic":"scale","t":"Comportamento > Matemática","b":"Finanças são uma <strong>soft skill</strong>, não uma ciência exata. Um gênio que perde o controle das emoções quebra; uma pessoa comum enriquece com <strong>paciência, poupança e bom comportamento</strong>.","tip":"<strong>Como aplicar:</strong> trabalhe a atitude (poupar, sobreviver, ser humilde) antes de escolher ativos.","wide":True},

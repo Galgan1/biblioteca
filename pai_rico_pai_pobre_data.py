@@ -15,7 +15,7 @@ BOOK = {
  "intro": "Robert Kiyosaki cresceu entre dois pais: um instruído, professor e financeiramente conservador (o Pai Pobre), e o pai de um amigo, empreendedor que largou a escola mas dominava o jogo do dinheiro (o Pai Rico). Conselhos opostos, destinos opostos. A lição central: a escola ensina a trabalhar por dinheiro; os ricos aprendem a fazer o dinheiro trabalhar para eles — e isso começa por saber a diferença entre um ativo e um passivo.",
  "description": "O clássico da educação financeira de Robert Kiyosaki. Por que inteligência acadêmica não é inteligência financeira: a parábola dos dois pais, a regra nº1 (ativo vs. passivo e o fluxo de caixa), a corrida dos ratos movida por medo e ganância, construir a coluna de ativos, o poder das corporações e dos impostos, inventar dinheiro com risco calculado, trabalhar para aprender, pagar-se primeiro e vencer os 5 obstáculos à riqueza.",
  "tags": ["Finanças", "Educação Financeira", "Mentalidade"],
- "progress": "10 Capítulos Completos",
+ "progress": "10 Capítulos",
  "cover": "assets/pai-rico-pai-pobre-cover.png",
  "overview_cards": [
    {"ic":"scale","t":"Ativo vs. Passivo — a Regra nº1","b":"A alfabetização financeira começa aqui: <strong>ativo põe dinheiro no seu bolso; passivo tira</strong>. Os ricos compram ativos; a classe média compra passivos achando que são ativos.","tip":"<strong>Como aplicar:</strong> antes de comprar, pergunte 'isto traz dinheiro todo mês ou leva?'.","wide":True},

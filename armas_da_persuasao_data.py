@@ -14,7 +14,7 @@ BOOK = {
  "intro": "Vivemos cercados de informação demais para analisar tudo, então decidimos por atalhos mentais disparados por um único gatilho. Eles costumam ajudar — mas viram armas nas mãos de quem sabe acioná-los. Cialdini mapeia seis (mais um) gatilhos universais do 'sim' automático: como cada um funciona, como é explorado e, sobretudo, como você se defende.",
  "description": "O clássico de Robert Cialdini sobre a psicologia do consentimento. Os padrões fixos de ação (o 'clique, zumm'), o contraste perceptivo e os 6 princípios universais da influência — reciprocidade, compromisso e coerência, aprovação/prova social, afeição, autoridade e escassez (mais a unidade como 7º). Para cada princípio: como funciona e como se proteger da manipulação.",
  "tags": ["Persuasão", "Influência", "Psicologia"],
- "progress": "8 Capítulos Completos",
+ "progress": "8 Capítulos",
  "cover": "assets/armas-da-persuasao-cover.png",
  "overview_cards": [
    {"ic":"target","t":"Os 6 Princípios da Influência","b":"Toda persuasão eficaz aciona um destes gatilhos universais:","list":[
