@@ -37,6 +37,16 @@ downloads/
 ocr_data/
 *.bak
 
+# ===== Pipeline — estado de runtime (gerado automaticamente) =====
+*_data.py
+pipeline/events.jsonl
+pipeline/checkpoints.db
+pipeline/state/
+
+# ===== Analytics — dados e outputs gerados =====
+analytics/custos.json
+analytics/dashboard.html
+
 # ===== OS / editor =====
 Thumbs.db
 .DS_Store

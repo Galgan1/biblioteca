@@ -388,270 +388,6 @@
     ]
   },
   {
-    "id": "hora-da-estrela",
-    "title": "A Hora da Estrela",
-    "author": "Clarice Lispector",
-    "coverUrl": "assets/hora-da-estrela-cover.png",
-    "description": "O último romance de Clarice: a história de Macabéa, datilógrafa nordestina e quase invisível no Rio. Uma meditação cortante sobre pobreza, existência e o instante fatal, narrada por um escritor em crise.",
-    "tags": [
-      "Literatura",
-      "Ficção",
-      "Brasil"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "noites-brancas",
-    "title": "Noites Brancas",
-    "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/noites-brancas-cover.png",
-    "description": "Em quatro noites de verão em São Petersburgo, um sonhador solitário encontra a jovem Nástienka. Uma novela breve e melancólica sobre amor não correspondido, ilusão e a beleza efêmera de um encontro.",
-    "tags": [
-      "Literatura",
-      "Romance",
-      "Rússia"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8582850743/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8582850743/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "mais-esperto-que-o-diabo",
-    "title": "Mais Esperto que o Diabo",
-    "author": "Napoleon Hill",
-    "coverUrl": "assets/mais-esperto-que-o-diabo-cover.png",
-    "description": "Escrito em 1938 e mantido inédito por décadas: numa entrevista imaginária, Hill arranca do 'Diabo' o segredo do medo, da procrastinação e da deriva — o hábito de deixar a vida ser decidida pelas circunstâncias.",
-    "tags": [
-      "Sucesso",
-      "Mentalidade",
-      "Autodesenvolvimento"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8568014003/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8568014003/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "quebrando-o-habito",
-    "title": "Quebrando o Hábito de Ser Você Mesmo",
-    "author": "Joe Dispenza",
-    "coverUrl": "assets/quebrando-o-habito-cover.png",
-    "description": "Unindo neurociência, epigenética e meditação, Dispenza mostra como romper os padrões automáticos de pensamento e emoção que recriam o mesmo 'eu' todo dia — e reprogramar a mente para uma nova realidade.",
-    "tags": [
-      "Neurociência",
-      "Mentalidade",
-      "Autodesenvolvimento"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8568014321/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8568014321/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "mulheres-que-correm-com-os-lobos",
-    "title": "Mulheres que Correm com os Lobos",
-    "author": "Clarissa Pinkola Estés",
-    "coverUrl": "assets/mulheres-que-correm-com-os-lobos-cover.png",
-    "description": "A psicanalista junguiana resgata o arquétipo da Mulher Selvagem por meio de mitos e contos, mapeando a recuperação da intuição, da criatividade e da força instintiva sufocadas pela cultura.",
-    "tags": [
-      "Psicologia",
-      "Mitologia",
-      "Feminino"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/853252978X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/853252978X/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "sociedade-do-cansaco",
-    "title": "Sociedade do Cansaço",
-    "author": "Byung-Chul Han",
-    "coverUrl": "assets/sociedade-do-cansaco-cover.png",
-    "description": "Saímos da sociedade disciplinar (do dever) para a do desempenho (do poder): livres para nos explorarmos sozinhos. Han diagnostica o burnout e a depressão como doenças do excesso de positividade.",
-    "tags": [
-      "Filosofia",
-      "Sociedade",
-      "Trabalho"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8532649963/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8532649963/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "assim-falou-zaratustra",
-    "title": "Assim Falou Zaratustra",
-    "author": "Friedrich Nietzsche",
-    "coverUrl": "assets/assim-falou-zaratustra-cover.png",
-    "description": "O poema filosófico de Nietzsche: Zaratustra desce da montanha para anunciar a morte de Deus, o além-do-homem, a vontade de potência e o eterno retorno. Uma obra 'para todos e para ninguém'.",
-    "tags": [
-      "Filosofia",
-      "Clássico",
-      "Existência"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8535930485/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535930485/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "mundo-de-sofia",
-    "title": "O Mundo de Sofia",
-    "author": "Jostein Gaarder",
-    "coverUrl": "assets/mundo-de-sofia-cover.png",
-    "description": "Um romance que é também um curso de filosofia: a jovem Sofia recebe cartas misteriosas que a conduzem dos pré-socráticos a Sartre — enquanto descobre que sua própria realidade pode não ser o que parece.",
-    "tags": [
-      "Filosofia",
-      "Romance",
-      "História das Ideias"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8535921893/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535921893/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "crime-e-castigo",
-    "title": "Crime e Castigo",
-    "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/crime-e-castigo-cover.png",
-    "description": "Raskólnikov, estudante miserável, assassina uma agiota para provar que está acima da moral comum. Dostoiévski disseca a culpa, a redenção e a teoria do 'homem extraordinário' num thriller psicológico monumental.",
-    "tags": [
-      "Literatura",
-      "Psicologia",
-      "Rússia"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8573262087/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8573262087/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "irmaos-karamazov",
-    "title": "Os Irmãos Karamázov",
-    "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/irmaos-karamazov-cover.png",
-    "description": "A obra-prima final de Dostoiévski: o assassinato de um pai e o julgamento dos filhos viram palco para as maiores questões humanas — fé e dúvida, livre-arbítrio e o problema do mal (o 'Grande Inquisidor').",
-    "tags": [
-      "Literatura",
-      "Filosofia",
-      "Rússia"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8573265388/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8573265388/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "o-idiota",
-    "title": "O Idiota",
-    "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/o-idiota-cover.png",
-    "description": "O príncipe Míchkin, bondoso a ponto de parecer 'idiota', volta à Rússia e é triturado pela ganância e pela vaidade da sociedade. Dostoiévski pergunta se um homem verdadeiramente bom pode sobreviver neste mundo.",
-    "tags": [
-      "Literatura",
-      "Psicologia",
-      "Rússia"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8573262559/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8573262559/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "memorias-do-subsolo",
-    "title": "Memórias do Subsolo",
-    "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/memorias-do-subsolo-cover.png",
-    "description": "O monólogo amargo do 'homem do subsolo', funcionário ressentido que ataca a razão e o progresso. Considerado o primeiro romance existencialista: um mergulho na liberdade, no rancor e na autossabotagem.",
-    "tags": [
-      "Literatura",
-      "Filosofia",
-      "Existência"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8573261854/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8573261854/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "o-principe",
     "title": "O Príncipe",
     "author": "Nicolau Maquiavel",
@@ -1588,6 +1324,278 @@
       "Bitcoin"
     ],
     "progress": "10 Capítulos Completos",
-    "url": "padrao-bitcoin.html"
+    "url": "padrao-bitcoin.html",
+    "amazon": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "hora-da-estrela",
+    "title": "A Hora da Estrela",
+    "author": "Clarice Lispector",
+    "coverUrl": "assets/hora-da-estrela-cover.png",
+    "description": "Análise literária de 'A Hora da Estrela' de Clarice Lispector: metalinguagem, narrador-personagem Rodrigo S.M., a anti-heroína Macabéa, invisibilidade social, linguagem e silêncio, o instante, a falsa epifania e a morte como ápice da existência.",
+    "tags": [
+      "Literatura Brasileira",
+      "Clarice Lispector",
+      "Análise Literária"
+    ],
+    "progress": "8 Capítulos",
+    "url": "hora-da-estrela.html",
+    "amazon": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "noites-brancas",
+    "title": "Noites Brancas",
+    "author": "Fiódor Dostoiévski",
+    "coverUrl": "assets/noites-brancas-cover.png",
+    "description": "Análise literária de 'Noites Brancas' de Dostoiévski: o Sonhador como tipo, sonho versus realidade, a solidão urbana de Petersburgo, a efemeridade da felicidade, o altruísmo no sofrimento e os símbolos da obra.",
+    "tags": [
+      "Literatura Russa",
+      "Dostoiévski",
+      "Análise Literária"
+    ],
+    "progress": "7 Capítulos",
+    "url": "noites-brancas.html",
+    "amazon": "https://www.amazon.com.br/dp/8582850743/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8582850743/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "mais-esperto-que-o-diabo",
+    "title": "Mais Esperto que o Diabo",
+    "author": "Napoleon Hill",
+    "coverUrl": "assets/mais-esperto-que-o-diabo-cover.png",
+    "description": "Frameworks de libertação pessoal de Napoleon Hill: a deriva (drifting), as armas do Diabo (medo, procrastinação, dúvida), a definição de propósito, o hipnotismo rítmico do hábito e os sete princípios da liberdade.",
+    "tags": [
+      "Autodesenvolvimento",
+      "Napoleon Hill",
+      "Mentalidade"
+    ],
+    "progress": "9 Capítulos",
+    "url": "mais-esperto-que-o-diabo.html",
+    "amazon": "https://www.amazon.com.br/dp/8568014003/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8568014003/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "quebrando-o-habito",
+    "title": "Quebrando o Hábito de Ser Você Mesmo",
+    "author": "Dr. Joe Dispenza",
+    "coverUrl": "assets/quebrando-o-habito-cover.png",
+    "description": "Os frameworks de Joe Dispenza para reprogramar a mente e criar uma nova realidade: os três carcereiros (ambiente, corpo, tempo), sobreviver versus criar, o ciclo Pensar→Fazer→Ser, epigenética, neuroplasticidade, a meditação reprogramadora e o estado generativo.",
+    "tags": [
+      "Autodesenvolvimento",
+      "Neurociência",
+      "Mentalidade"
+    ],
+    "progress": "10 Capítulos",
+    "url": "quebrando-o-habito.html",
+    "amazon": "https://www.amazon.com.br/dp/8568014321/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8568014321/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "mulheres-que-correm-com-os-lobos",
+    "title": "Mulheres que Correm com os Lobos",
+    "author": "Clarissa Pinkola Estés",
+    "coverUrl": "assets/mulheres-que-correm-com-os-lobos-cover.png",
+    "description": "Psicanálise junguiana e contos de fada como frameworks arquetípicos para recuperar a psique instintiva feminina. La Loba, Barba Azul, Vasalisa, a Mulher Esqueleto, o Patinho Feio, os Sapatinhos Vermelhos, Manawee e a Donzela Manca — cada conto é um diagnóstico e um caminho de cura.",
+    "tags": [
+      "Psicologia",
+      "Feminino",
+      "Autoconhecimento"
+    ],
+    "progress": "9 Capítulos",
+    "url": "mulheres-que-correm-com-os-lobos.html",
+    "amazon": "https://www.amazon.com.br/dp/853252978X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/853252978X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "sociedade-do-cansaco",
+    "title": "Sociedade do Cansaço",
+    "author": "Byung-Chul Han",
+    "coverUrl": "assets/sociedade-do-cansaco-cover.png",
+    "description": "O ensaio filosófico de Byung-Chul Han sobre a passagem da sociedade disciplinar (Foucault) para a sociedade do desempenho. Autoexploração, excesso de positividade, violência neuronal (burnout, depressão, TDAH), a perda do tédio profundo e da atenção contemplativa — e o cansaço fundamental de Handke como caminho de reconciliação.",
+    "tags": [
+      "Filosofia",
+      "Burnout",
+      "Contemporâneo"
+    ],
+    "progress": "8 Capítulos",
+    "url": "sociedade-do-cansaco.html",
+    "amazon": "https://www.amazon.com.br/dp/8532649963/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8532649963/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "assim-falou-zaratustra",
+    "title": "Assim Falou Zaratustra",
+    "author": "Friedrich Nietzsche",
+    "coverUrl": "assets/assim-falou-zaratustra-cover.png",
+    "description": "Análise de 'Assim Falou Zaratustra' de Nietzsche (1883–1885): morte de Deus, o além-do-homem como sentido da Terra, as três metamorfoses (camelo→leão→criança), vontade de potência, eterno retorno, amor fati, ressentimento e transvaloração dos valores. Filosofia encenada em parábolas e símbolos.",
+    "tags": [
+      "Filosofia",
+      "Nietzsche",
+      "Existencialismo"
+    ],
+    "progress": "9 Capítulos",
+    "url": "assim-falou-zaratustra.html",
+    "amazon": "https://www.amazon.com.br/dp/8535930485/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535930485/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "mundo-de-sofia",
+    "title": "O Mundo de Sofia",
+    "author": "Jostein Gaarder",
+    "coverUrl": "assets/mundo-de-sofia-cover.png",
+    "description": "Romance filosófico de Jostein Gaarder que percorre a história da filosofia ocidental: dos pré-socráticos e o espanto originário, passando por Sócrates/Platão/Aristóteles, helenismo, Descartes, empiristas, Kant, Hegel, Marx/Darwin/Freud e Sartre, até a virada meta onde os personagens descobrem que são fictícios.",
+    "tags": [
+      "Filosofia",
+      "História",
+      "Educação"
+    ],
+    "progress": "9 Capítulos",
+    "url": "mundo-de-sofia.html",
+    "amazon": "https://www.amazon.com.br/dp/8535921893/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535921893/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "crime-e-castigo",
+    "title": "Crime e Castigo",
+    "author": "Fiódor Dostoiévski",
+    "coverUrl": "assets/crime-e-castigo-cover.png",
+    "description": "Análise de Crime e Castigo de Dostoiévski: a teoria do homem extraordinário, o crime como experimento filosófico, a culpa como castigo interior, Sônia e o sofrimento redentor, o duelo psicológico com Porfiry, Svidrigáilov como duplo niilista e a ressurreição pelo amor no epílogo.",
+    "tags": [
+      "Literatura Clássica",
+      "Filosofia",
+      "Psicologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "crime-e-castigo.html",
+    "amazon": "https://www.amazon.com.br/dp/8573262087/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573262087/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "irmaos-karamazov",
+    "title": "Os Irmãos Karamázov",
+    "author": "Fiódor Dostoiévski",
+    "coverUrl": "assets/irmaos-karamazov-cover.png",
+    "description": "Análise de Os Irmãos Karamázov de Dostoiévski: os três irmãos como facetas da alma, a tese de Ivan ('tudo é permitido'), A Lenda do Grande Inquisidor (liberdade × pão/segurança), o ancião Zóssima e o amor ativo, a teodiceia (sofrimento das crianças), o parricídio e a culpa difusa, a redenção pelo sofrimento aceito e a polifonia do romance.",
+    "tags": [
+      "Literatura Clássica",
+      "Filosofia",
+      "Espiritualidade"
+    ],
+    "progress": "10 Capítulos",
+    "url": "irmaos-karamazov.html",
+    "amazon": "https://www.amazon.com.br/dp/8573265388/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573265388/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "o-idiota",
+    "title": "O Idiota",
+    "author": "Fiódor Dostoiévski",
+    "coverUrl": "assets/o-idiota-cover.png",
+    "description": "Análise de O Idiota de Dostoiévski: Míchkin como figura de Cristo e a tragédia da bondade, Nastássia Filíppovna (beleza ferida), Rogójin (paixão possessiva), 'a beleza salvará o mundo', compaixão × paixão, a epilepsia e o êxtase, o Cristo morto de Holbein, e a estrutura circular trágica.",
+    "tags": [
+      "Literatura Clássica",
+      "Filosofia",
+      "Psicologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "o-idiota.html",
+    "amazon": "https://www.amazon.com.br/dp/8573262559/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573262559/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "memorias-do-subsolo",
+    "title": "Memórias do Subsolo",
+    "author": "Fiódor Dostoiévski",
+    "coverUrl": "assets/memorias-do-subsolo-cover.png",
+    "description": "Análise de Memórias do Subsolo de Dostoiévski: o anti-herói e o estado do subsolo, a hiperconsciência que paralisa, o ataque ao palácio de cristal e ao utilitarismo de Tchernichévski, o livre-arbítrio e o capricho contra o determinismo, o jantar humilhante com Zvérkov, Liza e a incapacidade de amar, o narrador não confiável e o legado existencialista.",
+    "tags": [
+      "Literatura Clássica",
+      "Filosofia",
+      "Existencialismo"
+    ],
+    "progress": "8 Capítulos",
+    "url": "memorias-do-subsolo.html",
+    "amazon": "https://www.amazon.com.br/dp/8573261854/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573261854/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   }
 ]
