@@ -1,0 +1,114 @@
+{
+  "slug": "arte-da-guerra",
+  "titulo": "A Arte da Guerra",
+  "autor": "Sun Tzu",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 0.96,
+  "acento": "#d8a64a",
+  "musica": true,
+  "estilo_img": "cinematic atmospheric digital painting, ancient China, muted antique gold and deep charcoal palette, dramatic volumetric fog and soft directional light, painterly brushwork, subtle film grain, epic somber contemplative mood, wide cinematic composition, highly detailed, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "O tratado de guerra que manda você NÃO lutar | A Arte da Guerra, Sun Tzu",
+    "descricao": "Os princípios essenciais de A Arte da Guerra, o tratado de estratégia mais influente da história, em um resumo cinematográfico de 5 minutos.\n\nVencer sem lutar • Conhecer a si e ao inimigo • Os cinco fatores • A vitória rápida • A dissimulação • O impulso e a oportunidade • Ser como a água • O terreno • A serpente de Chang • As cinco fraquezas fatais • O valor da informação • Vencer com prudência.\n\n📚 Biblioteca de André Galgani — https://www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração e imagens geradas por IA.\n\n#arteDaGuerra #sunTzu #estrategia #resumo #livros",
+    "tags": ["a arte da guerra", "sun tzu", "estratégia", "resumo de livro", "resumo", "livros", "filosofia", "liderança"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A Arte da Guerra",
+      "subtitulo": "Sun Tzu",
+      "img": "a lone ancient Chinese general in dark lacquered armor standing on a misty mountain ridge at dawn, overlooking a vast valley of fog, golden sunrise breaking through clouds, monumental and epic",
+      "motion": "Slow cinematic camera push-in over a misty mountain valley at golden dawn; fog drifts slowly across the peaks; gentle wind moves the lone general's cloak; soft volumetric light, subtle floating embers; calm, epic, contemplative.",
+      "narracao": "Um general que jamais lutaria uma batalha se pudesse evitar. Um estrategista que acreditava que a maior vitória era aquela que não precisava de sangue. Há mais de dois mil anos, Sun Tzu condensou essa visão num tratado que cabe em poucas páginas — e que generais, executivos e negociadores carregam consigo até hoje. Não porque ensinasse a matar. Mas porque ensinava a não precisar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Estratégia Suprema",
+      "titulo": "Vencer sem lutar",
+      "img": "two vast ancient armies facing each other across a foggy plain at dawn, banners and spears raised, tense silent standoff with no fighting, distant mountains",
+      "narracao": "Para Sun Tzu, ganhar cem batalhas em cem combates não é o auge da excelência. A maior vitória é subjugar o inimigo sem lutar. A hierarquia da estratégia vai do melhor ao pior: atacar primeiro os planos do adversário, depois suas alianças, depois suas tropas, e só em último caso, suas cidades. Quanto mais alto você resolve o conflito, menor o custo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Base de Tudo",
+      "titulo": "Conheça a si mesmo e ao inimigo",
+      "img": "an ancient Chinese general studying a detailed war map spread on a table by warm candlelight inside a dim military tent at night, scrolls and a brush nearby, pensive",
+      "narracao": "Esta é a máxima mais famosa do livro. Se você conhece o inimigo e conhece a si mesmo, não precisa temer o resultado de cem batalhas. Se conhece a si mesmo, mas não o inimigo, para cada vitória sofrerá uma derrota. E se não conhece nem a si nem ao inimigo, perderá todas. O autoconhecimento é o alicerce de toda estratégia."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Cálculo Prévio",
+      "titulo": "Os cinco fatores",
+      "img": "a sweeping epic landscape uniting a towering mountain, a winding river, a stormy sky and a distant marching army on a plain, the elements of war, vast scale",
+      "narracao": "Toda situação se avalia por cinco fatores. O Caminho: o alinhamento entre o líder e seu povo. O Clima: o momento certo. O Terreno: a posição. O Comando: as virtudes do general. E a Doutrina: a organização e a disciplina. Quem domina mais fatores, vence. E a conta se faz antes da batalha, não durante."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Economia da Guerra",
+      "titulo": "A vitória rápida",
+      "img": "an ancient army marching swiftly at dusk carrying torches across a dusty plain, sense of urgency and speed, long banners, dramatic low sun",
+      "narracao": "A guerra consome recursos imensos. Por isso Sun Tzu insiste: busque sempre a vitória rápida e nunca prolongue as hostilidades. Campanhas longas drenam o tesouro, desgastam as tropas e atraem ataques de vizinhos oportunistas. E, sempre que possível, alimente seu exército com os recursos do próprio inimigo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Arte do Engano",
+      "titulo": "A dissimulação",
+      "img": "a cloaked shadowy figure half hidden in thick fog, face obscured, an air of secrecy and deception, dim moonlight, mysterious",
+      "motion": "Thick fog swirling slowly around the cloaked figure; the cloak sways gently in a faint wind; dim moonlight flickers softly through the mist; static camera, ambient mysterious motion.",
+      "narracao": "Toda guerra se baseia no engano. Se você é capaz, finja incapacidade. Se está pronto, finja despreparo. Se está perto, pareça distante. A aparência deve sempre contradizer a realidade. É um multiplicador de força que não custa absolutamente nada."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Momento Decisivo",
+      "titulo": "O impulso e a oportunidade",
+      "img": "a falcon diving fast through misty air toward its prey above a mountain river, explosive momentum and precision, dynamic motion, dramatic",
+      "narracao": "A arte da guerra combina duas forças: o ataque direto, que prende o inimigo, e o ataque de surpresa, que o destrói. Suas combinações são infinitas, como as notas de uma melodia. E a energia decisiva vem da posição, não do esforço: como uma pedra redonda que rola de uma montanha, imparável pela situação em que se encontra."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Adaptação",
+      "titulo": "Seja como a água",
+      "img": "clear water flowing and winding around dark rocks through a misty mountain gorge, fluid and adaptive, soft reflections, serene yet powerful",
+      "motion": "Soft mist drifting low over the water surface; gentle ripples and golden light shimmering on the water; static camera, slow serene ambient motion, painterly cinematic mood.",
+      "narracao": "As táticas devem fluir como a água, que evita o terreno alto e corre para o baixo. Na guerra, evite a força do inimigo e ataque suas fraquezas. E assim como a água não tem forma constante, não existe tática permanente: cada situação exige uma resposta nova."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · O Campo de Batalha",
+      "titulo": "Conheça o terreno",
+      "img": "a high aerial view of a vast varied battlefield terrain with valleys, ridges, forests and a river winding through morning mist, atmospheric depth",
+      "narracao": "Nenhum general vence sem ler o terreno. Existem seis tipos, e cada um exige a sua tática. A fórmula completa da vitória soma três conhecimentos: conhecer o inimigo, conhecer a si mesmo e conhecer o terreno. Quem domina os três vence sem jamais correr perigo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Unidade",
+      "titulo": "A serpente de Chang",
+      "img": "a long sinuous oriental dragon-serpent coiling through swirling mist over mountains, sense of unity and instant coordination, mythical and elegant",
+      "motion": "The long serpent-dragon undulates slowly through swirling mist; clouds drift gently between the mountain peaks; elegant, mythical ambient motion; static camera, slow cinematic feel.",
+      "narracao": "O exército ideal move-se como a lendária serpente do Monte Chang. Golpeie a sua cabeça, e o rabo ataca. Golpeie o rabo, e a cabeça responde. Golpeie o meio, e os dois reagem juntos. É a coordenação perfeita, em que cada parte protege a outra de forma instantânea."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Caráter do Líder",
+      "titulo": "As cinco fraquezas fatais",
+      "img": "a lone general silhouette on a cliff at dusk with a huge looming ominous shadow cast behind him, vulnerability and inner danger, dramatic backlight",
+      "narracao": "Cinco defeitos destroem um líder. A coragem temerária, que leva à morte. A covardia, que leva à captura. A ira, que se deixa provocar. O excesso de honra, que se deixa envergonhar. E a compaixão excessiva, que se deixa paralisar. Toda virtude levada ao extremo se transforma em vulnerabilidade."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Inteligência",
+      "titulo": "O valor da informação",
+      "img": "a hooded spy crouched on a ridge at night observing distant enemy campfires in a valley, scrolls of intelligence, secrecy and watchfulness, starlit",
+      "narracao": "Um exército move-se às cegas sem inteligência. Por isso Sun Tzu dedica o capítulo final aos espiões. Conhecer o inimigo de antemão não vem de presságios ou adivinhação, mas de pessoas. Investir em informação custa infinitamente menos do que a ignorância na guerra."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Vença com prudência",
+      "subtitulo": "A maior lição",
+      "img": "an old wise Chinese general slowly lowering his sword at a peaceful golden sunset after battle, calm resolution and wisdom, serene epic atmosphere",
+      "motion": "Golden sunset light shimmers softly on the water; the general's robes sway gently in the breeze; drifting clouds and floating dust motes in warm light; serene, contemplative slow ambient motion; static camera.",
+      "narracao": "No fim, a lição mais profunda não é tática, mas humana. Nunca aja por ira; nunca entre em guerra por orgulho. Um Estado destruído não pode renascer; um morto não volta à vida. O verdadeiro mestre da estratégia é aquele que vence com prudência e sabe, acima de tudo, quando não lutar."
+    }
+  ]
+}

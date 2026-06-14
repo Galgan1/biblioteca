@@ -1,0 +1,6 @@
+# Credenciais — NUNCA versionar nem fazer deploy
+.secrets/
+# Temporários e saídas pesadas
+_work/
+*.mp4
+*.wav

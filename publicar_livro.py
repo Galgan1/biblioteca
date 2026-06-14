@@ -1,0 +1,167 @@
+# -*- coding: utf-8 -*-
+"""ORQUESTRADOR de publicacao de um livro na biblioteca — um comando, do
+`<slug>_data.py` ao site verificado (e, opcionalmente, ao ar).
+
+    python publicar_livro.py <slug>            # gera + capa + retrofit + verifica (local)
+    python publicar_livro.py <slug> --check    # so valida o <slug>_data.py (nao escreve nada)
+    python publicar_livro.py <slug> --deploy   # tudo acima + scp p/ VPS + chmod da pasta
+
+Encadeia, na ordem certa e sem deixar esquecer nenhum passo:
+  1. valida o schema do `<slug>_data.py`
+  2. gera visao geral + capitulos + script.js + books.json   (gerar_livro)
+  3. garante a capa (gera tipografica on-brand se faltar)     (gerar_capa)
+  4. roda o retrofit (favicon, OG/Twitter, theme-color, nav nomeada, rodape)
+  5. verifica: paginas existem + smoke no navegador
+  6. [--deploy] sobe os arquivos do livro + assets e corrige a permissao da pasta
+"""
+import importlib
+import os
+import subprocess
+import sys
+
+try:  # console do Windows e cp1252 — forca UTF-8 para nao quebrar nos acentos
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
+
+BASE = os.path.dirname(os.path.abspath(__file__))
+SKILL = os.path.join(os.path.expanduser("~"), ".claude", "skills", "run-biblioteca")
+VPS = "root@andregalgani.com.br"
+REMOTE = "/var/www/andregalgani/biblioteca"
+
+REQ_BOOK = {"title", "author", "header_light", "header_bold", "intro", "description"}
+REQ_CH = {"slug", "sub", "intro", "cards"}
+
+
+def step(n, msg):
+    print(f"\n[{n}] {msg}")
+
+
+def fail(msg):
+    print(f"ERRO: {msg}")
+    sys.exit(1)
+
+
+def validate(slug):
+    """Carrega e valida o <slug>_data.py. Devolve (BOOK, CHAPTERS)."""
+    mod_name = slug.replace("-", "_") + "_data"
+    try:
+        mod = importlib.import_module(mod_name)
+    except ModuleNotFoundError:
+        fail(f"nao encontrei {mod_name}.py — escreva o arquivo de conteudo primeiro.")
+    B, CH = getattr(mod, "BOOK", None), getattr(mod, "CHAPTERS", None)
+    if not isinstance(B, dict) or not isinstance(CH, list) or not CH:
+        fail(f"{mod_name}.py precisa definir BOOK (dict) e CHAPTERS (lista nao vazia).")
+    miss = REQ_BOOK - set(B)
+    if miss:
+        fail(f"BOOK faltando chaves obrigatorias: {sorted(miss)}")
+    slugs = [c.get("slug") for c in CH]
+    if len(slugs) != len(set(slugs)):
+        dups = sorted({s for s in slugs if slugs.count(s) > 1})
+        fail(f"slugs de capitulo duplicados: {dups}")
+    for c in CH:
+        cmiss = REQ_CH - set(c)
+        if cmiss:
+            fail(f"capitulo '{c.get('slug', '?')}' faltando: {sorted(cmiss)}")
+        if not c.get("cards"):
+            fail(f"capitulo '{c['slug']}' sem cards.")
+        for card in c["cards"]:
+            if not {"ic", "t", "b"} <= set(card):
+                fail(f"card em '{c['slug']}' precisa de ic/t/b: {card!r}")
+    print(f"OK: {mod_name}.py valido — {len(CH)} capitulos, "
+          f"{sum(len(c['cards']) for c in CH)} cards.")
+    return B, CH
+
+
+def run(cmd, cwd=None):
+    r = subprocess.run(cmd, cwd=cwd)
+    if r.returncode != 0:
+        fail(f"falhou: {' '.join(cmd)}")
+
+
+def ensure_cover(B, slug):
+    # Padrao da biblioteca: capa ORIGINAL (arte real do livro). A tipografica
+    # so e' ultimo recurso para itens que NAO sao livros publicados.
+    cover = B.get("cover", f"assets/{slug}-cover.png")
+    if os.path.exists(os.path.join(BASE, cover)):
+        print(f"OK: capa existe: {cover}")
+        return
+    print(f"... capa ausente — buscando ORIGINAL no Open Library para '{slug}'")
+    cmd = [sys.executable, "buscar_capa.py", slug, B["title"], B["author"]]
+    if B.get("isbn"):
+        cmd.append(str(B["isbn"]))
+    if subprocess.run(cmd, cwd=BASE).returncode == 0:
+        return
+    print("AVISO: capa original NAO encontrada — gerando tipografica PROVISORIA. "
+          "Substitua por uma capa original (a tipografica so vale p/ nao-livros, ex.: provimento juridico).")
+    run([sys.executable, "gerar_capa.py", slug, B["title"], B["author"]], cwd=BASE)
+
+
+def verify(slug, CH):
+    falta = [f"{slug}.html"] + [f"{slug}/{c['slug']}.html" for c in CH]
+    falta = [f for f in falta if not os.path.exists(os.path.join(BASE, f))]
+    if falta:
+        fail(f"paginas nao geradas: {falta}")
+    print(f"OK: {len(CH) + 1} paginas no disco.")
+    if os.path.exists(os.path.join(SKILL, "driver.mjs")):
+        print("... smoke no navegador (driver.mjs)")
+        run(["node", "driver.mjs", "smoke"], cwd=SKILL)
+    else:
+        print("AVISO: driver.mjs nao encontrado — pulei o smoke (rode a skill run-biblioteca).")
+
+
+def deploy(slug, CH):
+    step("6", f"deploy -> {VPS}:{REMOTE}/{slug}")
+    run(["ssh", VPS, f"mkdir -p {REMOTE}/{slug}"])
+    run(["scp", f"{slug}.html", "index.html", "books.json", "sitemap.xml", "robots.txt",
+         f"{VPS}:{REMOTE}/"], cwd=BASE)
+    files = [os.path.join(slug, f"{c['slug']}.html") for c in CH] + [os.path.join(slug, "script.js")]
+    run(["scp", *files, f"{VPS}:{REMOTE}/{slug}/"], cwd=BASE)
+    run(["scp", "assets/style.css", f"assets/{slug}-cover.png", "assets/favicon.svg",
+         f"{VPS}:{REMOTE}/assets/"], cwd=BASE)
+    # corrige a permissao da pasta nova (senao o nginx da 404 — o bug classico)
+    run(["ssh", VPS, f"chmod 755 {REMOTE}/{slug} && chmod 644 {REMOTE}/{slug}/*"])
+    print(f"OK: no ar -> https://www.andregalgani.com.br/biblioteca/{slug}.html")
+
+
+def main():
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = {a for a in sys.argv[1:] if a.startswith("--")}
+    if not args:
+        fail("uso: python publicar_livro.py <slug> [--check] [--deploy]")
+    slug = args[0]
+
+    step("1", f"validando {slug}_data.py")
+    B, CH = validate(slug)
+    if "--check" in flags:
+        print("\nOK: --check: schema ok, nada escrito.")
+        return
+
+    step("2", "gerando paginas + books.json")
+    import gerar_livro
+    gerar_livro.main(slug)
+
+    step("3", "garantindo a capa")
+    ensure_cover(B, slug)
+
+    step("4", "retrofit (favicon - OG - theme-color - nav nomeada - rodape)")
+    run([sys.executable, "retrofit-fase23.py"], cwd=BASE)
+
+    step("4b", "afiliado Amazon (gera links + injeta botao Comprar)")
+    run([sys.executable, os.path.join("afiliados", "gerar_links.py")], cwd=BASE)
+    run([sys.executable, os.path.join("afiliados", "inserir_botao.py")], cwd=BASE)
+
+    step("4c", "SEO (sitemap.xml + robots.txt + JSON-LD/canonical)")
+    run([sys.executable, "gerar_seo.py"], cwd=BASE)
+
+    step("5", "verificacao")
+    verify(slug, CH)
+
+    if "--deploy" in flags:
+        deploy(slug, CH)
+    else:
+        print(f"\nOK: pronto localmente. Para publicar:  python publicar_livro.py {slug} --deploy")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,91 @@
+{
+  "slug": "aristoteles-poetica",
+  "titulo": "A Poética de Aristóteles",
+  "autor": "Aristóteles",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#c9a24a",
+  "musica": true,
+  "provider": "base",
+  "shorts": [2, 4, 6, 9],
+  "estilo_img": "cinematic atmospheric digital painting, warm amber and deep bronze palette, ancient Greek amphitheatre and marble in golden dusk light, dramatic volumetric haze, painterly brushwork, subtle film grain, solemn classical contemplative mood, wide cinematic composition, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "As regras secretas de toda boa história — há 2.300 anos | A Poética, Aristóteles",
+    "descricao": "O resumo essencial da Poética de Aristóteles — o tratado que fundou a teoria da narrativa. As seis partes da tragédia, o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse (compaixão e temor), o verossímil acima do possível, e o desenlace que nasce de dentro — nunca do deus ex machina.\n\nO enredo é a alma • Imita-se ação, não pessoas • Inteiro, uno, com magnitude • O verossímil vence o possível • Peripécia e reconhecimento • O herói do meio e a hamartia • A catarse • Nada de deus ex machina.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/aristoteles-poetica.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#poetica #aristoteles #narrativa #roteiro #storytelling #resumo #livros",
+    "tags": ["poetica", "aristoteles", "narrativa", "dramaturgia", "roteiro", "storytelling", "filosofia", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A Poética de Aristóteles",
+      "subtitulo": "Aristóteles",
+      "img": "a vast ancient Greek amphitheatre at golden dusk, empty stone seats curving into warm haze, a single shaft of amber light on the orchestra below, solemn and timeless",
+      "motion": "Slow cinematic descent over the empty amphitheatre; warm dust drifts through the amber light; long shadows lengthen on the stone; solemn, timeless mood.",
+      "narracao": "Por que algumas histórias te prendem e outras te soltam? A resposta não é nova — tem dois mil e trezentos anos. Aristóteles dissecou a tragédia grega como quem disseca um animal, e encontrou as leis secretas de tudo o que emociona. Roteiristas de Hollywood ainda estudam estas páginas. São as regras que governam toda boa história — inclusive esta."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Alma",
+      "titulo": "O enredo é a alma",
+      "img": "a single glowing thread of golden light weaving through dark marble columns, forming an intricate structure, symbolic and luminous",
+      "narracao": "A primeira lei desmonta um mito moderno. Não é o personagem que importa mais — é o enredo. Aristóteles chama a estrutura dos fatos de a alma da tragédia. As pessoas, ele diz, não agem para mostrar quem são; elas se tornam quem são pelo que fazem. Sem ação, não há história. Personagem sem enredo é retrato parado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Imitação",
+      "titulo": "Imita-se ação, não pessoas",
+      "img": "a theatrical mask of polished bronze reflecting a scene of movement, warm light, the mask half in shadow, classical",
+      "narracao": "Toda arte, diz Aristóteles, é imitação — mimese. Mas imitação de quê? De homens em ação. E aqui está o segredo do prazer — contemplamos com gosto até a imagem do que é penoso, porque aprender agrada. Reconhecer 'ah, isto é aquilo' é um prazer do intelecto. Você não mostra um atributo parado. Mostra a escolha em movimento."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Unidade",
+      "titulo": "Inteiro, uno e do tamanho certo",
+      "img": "a perfectly balanced golden ratio spiral carved in marble, a single continuous form with no loose parts, harmonious",
+      "narracao": "Um bom enredo tem três virtudes. É inteiro — começo, meio e fim ligados por causa, não por relógio. É uno — uma só ação, não tudo que aconteceu a um homem. E tem o tamanho certo. O teste é cruel — se você pode tirar uma cena sem que ninguém sinta falta, ela não pertence à história. Corte."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Verdade",
+      "titulo": "O verossímil vence o possível",
+      "img": "two paths diverging in golden light, one solid but fading, one luminous and inviting, symbolic of belief over fact",
+      "narracao": "Aqui Aristóteles inverte o senso comum. A poesia é mais verdadeira que a história — porque conta o universal, o que tal pessoa faria, não apenas o que um dia aconteceu. E a regra de ouro — prefira o impossível em que se acredita ao possível em que ninguém acredita. O critério nunca é 'isto aconteceu'. É 'o público acredita que aconteceria'."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Virada",
+      "titulo": "Peripécia e reconhecimento",
+      "img": "a great marble wheel turning, one half rising into light and the other falling into shadow, a moment of reversal, dramatic",
+      "narracao": "O enredo superior tem duas forças. A peripécia — a reviravolta que joga a ação no sentido contrário ao esperado. E o reconhecimento — o instante em que alguém passa da ignorância à verdade. O ápice é quando os dois caem juntos. Em Édipo, a notícia que vinha salvar é exatamente a que destrói. Surpreende — e, olhando para trás, era inevitável."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Herói",
+      "titulo": "O herói do meio e a hamartia",
+      "img": "a noble bronze figure beginning to fall, caught mid-stumble in warm dramatic light, dignified and human, no clear face",
+      "narracao": "Por que choramos por um herói? Não pelo santo — sua queda repugna. Nem pelo vilão — sua queda não comove. Choramos pelo herói do meio — bom, parecido conosco, que cai não por maldade, mas por um erro. Hamartia. É essa falha humana que acende a compaixão e o temor — porque pensamos: poderia ser eu."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Efeito",
+      "titulo": "A catarse",
+      "img": "warm golden light flooding an ancient theatre, a sense of release and purification washing over empty stone seats, cathartic",
+      "narracao": "Tudo isso serve a um único fim — a catarse. A tragédia provoca compaixão e temor para depois purificá-los. É por isso que sair de uma boa história nos deixa estranhamente leves. Vivemos a queda de outro, sentimos o medo e a dor — e voltamos lavados. A arte faz, em duas horas, o que a vida levaria anos para ensinar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · O Pecado",
+      "titulo": "Nada de deus ex machina",
+      "img": "a tangled knot of golden rope slowly untying itself from within, no external hand, self-resolving, elegant",
+      "narracao": "E a regra que mais se desobedece até hoje. O desfecho deve nascer do próprio enredo — nunca de um deus que desce do céu para resolver tudo. Aristóteles condena a máquina. A solução está plantada no problema; quem recorre a uma salvação de fora confessa que a estrutura não se sustenta. Boas histórias se resolvem de dentro."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "As leis que não envelhecem",
+      "subtitulo": "A lição final",
+      "img": "an ancient scroll resting on marble, glowing in warm dusk light, timeless and enduring, the amphitheatre fading behind",
+      "narracao": "Dois mil e trezentos anos depois, nada mudou. Enredo é a alma. A virada surpreende e é inevitável. O herói cai por um erro. E a solução nasce de dentro. Aristóteles não inventou essas regras — ele as descobriu, observando o que já funcionava. Se este resumo te fez ver as histórias de outro jeito, deixe o like e inscreva-se — toda semana, um grande livro em minutos."
+    }
+  ]
+}

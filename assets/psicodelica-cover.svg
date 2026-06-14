@@ -1,0 +1,71 @@
+<svg viewBox="0 0 800 1040" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capa: A Experiência Psicodélica">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="38%" r="75%">
+      <stop offset="0%" stop-color="#ffd23f"/>
+      <stop offset="22%" stop-color="#ff8a2b"/>
+      <stop offset="45%" stop-color="#ff2d95"/>
+      <stop offset="72%" stop-color="#b863ff"/>
+      <stop offset="100%" stop-color="#160233"/>
+    </radialGradient>
+    <radialGradient id="iris" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0a0118"/>
+      <stop offset="35%" stop-color="#1fe0ff"/>
+      <stop offset="70%" stop-color="#b6ff3a"/>
+      <stop offset="100%" stop-color="#ffd23f"/>
+    </radialGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffd23f"/>
+      <stop offset="50%" stop-color="#1fe0ff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1040" fill="url(#bg)"/>
+
+  <!-- raios solares psicodélicos a partir do olho -->
+  <g transform="translate(400,390)" opacity="0.55">
+    <g fill="#ffd23f">
+      <path d="M0 0 L40 -520 L-40 -520 Z"/>
+      <path d="M0 0 L40 520 L-40 520 Z"/>
+      <path d="M0 0 L520 40 L520 -40 Z"/>
+      <path d="M0 0 L-520 40 L-520 -40 Z"/>
+    </g>
+    <g fill="#ff2d95" transform="rotate(30)">
+      <path d="M0 0 L34 -520 L-34 -520 Z"/>
+      <path d="M0 0 L34 520 L-34 520 Z"/>
+      <path d="M0 0 L520 34 L520 -34 Z"/>
+      <path d="M0 0 L-520 34 L-520 -34 Z"/>
+    </g>
+    <g fill="#1fe0ff" transform="rotate(60)">
+      <path d="M0 0 L30 -520 L-30 -520 Z"/>
+      <path d="M0 0 L30 520 L-30 520 Z"/>
+      <path d="M0 0 L520 30 L520 -30 Z"/>
+      <path d="M0 0 L-520 30 L-520 -30 Z"/>
+    </g>
+  </g>
+
+  <!-- ondas concêntricas -->
+  <g transform="translate(400,390)" fill="none" stroke-width="6" opacity="0.85">
+    <circle r="150" stroke="#0a0118"/>
+    <circle r="178" stroke="#ffd23f"/>
+    <circle r="206" stroke="#ff2d95"/>
+    <circle r="236" stroke="#1fe0ff"/>
+    <circle r="268" stroke="#b6ff3a"/>
+  </g>
+
+  <!-- olho da consciência -->
+  <g transform="translate(400,390)">
+    <path d="M-150 0 Q0 -120 150 0 Q0 120 -150 0 Z" fill="#160233" stroke="#ffffff" stroke-width="5"/>
+    <circle r="78" fill="url(#iris)"/>
+    <circle r="34" fill="#0a0118"/>
+    <circle r="12" cx="-14" cy="-14" fill="#ffffff" opacity="0.9"/>
+  </g>
+
+  <!-- título -->
+  <g text-anchor="middle" font-family="'Arial Black', Impact, sans-serif" font-weight="900">
+    <text x="400" y="800" font-size="92" fill="url(#title)" letter-spacing="2">A EXPERIÊNCIA</text>
+    <text x="400" y="892" font-size="92" fill="url(#title)" letter-spacing="2">PSICODÉLICA</text>
+    <text x="400" y="958" font-size="30" fill="#f4e9ff" font-family="Georgia, serif" font-weight="400" font-style="italic">Manual baseado no Livro Tibetano dos Mortos</text>
+    <text x="400" y="1004" font-size="26" fill="#ffd23f" font-family="Arial, sans-serif" font-weight="700" letter-spacing="1">LEARY · METZNER · ALPERT</text>
+  </g>
+</svg>

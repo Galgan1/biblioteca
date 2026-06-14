@@ -1,0 +1,112 @@
+{
+  "slug": "marketing-4-0",
+  "titulo": "Marketing 4.0",
+  "autor": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#e0673a",
+  "musica": true,
+  "provider": "base",
+  "shorts": [1, 3, 5, 7],
+  "efeitos": {"cap": 3, "intensidade": 0.9, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, warm amber and cool teal palette, abstract network and connection motifs, modern minimalist marketing imagery, soft volumetric light, painterly brushwork, subtle film grain, wide cinematic composition, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que confiam mais num estranho que na sua marca? | Marketing 4.0, Kotler",
+    "descricao": "O resumo essencial de Marketing 4.0 — Do Tradicional ao Digital, de Philip Kotler, Hermawan Kartajaya e Iwan Setiawan. A virada do poder para o cliente conectado, a jornada dos Cinco As, os Quatro Cs, as métricas PAR e BAR e o marketing humano, de conteúdo e de engajamento na era digital.\n\nO poder mudou de mãos • As quatro eras do marketing • A jornada dos Cinco As • A arguição decide • A apologia é o novo topo • PAR e BAR • Os Quatro Cs • A marca com alma • Conteúdo, não interrupção • Omnichannel e o momento UAU • Merecer a recomendação.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/marketing-4-0.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#marketing40 #kotler #marketingdigital #marketing #negócios #resumo #livros",
+    "tags": ["marketing 4.0", "philip kotler", "marketing digital", "marketing", "negócios", "cinco as", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Marketing 4.0",
+      "subtitulo": "Philip Kotler",
+      "img": "an abstract glowing network of connected nodes over a dark field, warm amber light at the center, modern and digital",
+      "narracao": "Por que as pessoas confiam mais num estranho na internet do que na sua propaganda? Porque o poder mudou de mãos. Philip Kotler e seus coautores escreveram o mapa dessa nova era — onde o cliente é conectado, e a marca não manda mais na conversa. Ela só pode merecer ser recomendada."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Virada",
+      "titulo": "O poder mudou de mãos",
+      "img": "a single bright node connected to many others by glowing threads, horizontal web of influence, warm and cool tones",
+      "narracao": "O cliente de hoje é conectado e social. Antes de comprar, ele pesquisa e pergunta à rede — e confia no fator-F, amigos e seguidores, acima de qualquer anúncio. Segundo Kotler, a marca não comanda mais a conversa. Agora ela só participa — ou fica de fora."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Evolução",
+      "titulo": "As quatro eras",
+      "img": "four ascending layered platforms glowing progressively brighter, evolution and progress, abstract painterly",
+      "narracao": "O marketing evoluiu em camadas. O um ponto zero girava em torno do produto. O dois ponto zero, do cliente. O três ponto zero, dos valores humanos. E o quatro ponto zero é o digital que costura tudo — online encontra offline. Atenção — não é trocar tudo por internet. O digital sozinho não basta; ele serve ao humano."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Jornada",
+      "titulo": "Os cinco As",
+      "img": "a glowing spiral path with five luminous points, a journey looping forward, warm amber trail, abstract",
+      "narracao": "O velho funil morreu. Kotler propõe cinco fases — assimilação, atração, arguição, ação e apologia. Você conhece a marca, se atrai, pesquisa, compra e, no fim, recomenda. Não é uma linha reta — é uma espiral, e quem decide no meio é a comunidade."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Ponto Decisivo",
+      "titulo": "A arguição decide",
+      "img": "a magnifying glass of light over a web of opinions and reviews, the moment of research, cool teal glow",
+      "narracao": "Entre gostar e comprar existe uma fase que define tudo — a arguição. É quando o cliente pesquisa, lê avaliações e pergunta aos outros. Aqui o anúncio vale pouco; o que vale é o que a comunidade diz de você. A marca que já ofereceu conteúdo útil aparece como aliada — não como vendedora."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Meta",
+      "titulo": "A apologia é o novo topo",
+      "img": "one glowing node radiating outward to recruit many new ones, advocacy spreading, warm light, hopeful",
+      "narracao": "Vender não é mais a linha de chegada. A meta é a apologia — o cliente que defende e recomenda você sem ser pedido. Por quê? Porque um defensor traz novos clientes de graça. Segundo os autores, a lealdade de verdade hoje se mede por uma pergunta — você recomendaria esta marca a um amigo?"
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Medida",
+      "titulo": "PAR e BAR",
+      "img": "two glowing funnels side by side, one measuring purchase and one measuring advocacy, abstract data visualization",
+      "narracao": "Como medir tudo isso? Com duas razões simples. O PAR mostra quantos, dos que conhecem a marca, chegam a comprar. O BAR mostra quantos chegam a recomendar. O BAR é a métrica-mestra da era conectada. E o segredo — encontre o maior vazamento entre duas fases, e conserte ele primeiro."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Novo Mix",
+      "titulo": "Os quatro Cs",
+      "img": "four interlocking circles glowing and connecting, collaboration and dialogue, warm and cool palette, abstract",
+      "narracao": "O velho mix dos quatro Pês foi feito para um mundo onde a marca mandava. Kotler o reescreve em quatro Cês. Produto vira co-criação. Preço vira moeda dinâmica. Praça vira ativação da comunidade. Promoção vira conversa. Em uma frase — de monólogo para diálogo. O cliente entra na fábrica e na loja."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Atração",
+      "titulo": "A marca com alma",
+      "img": "a warm humanlike glow inside a brand symbol, personality and warmth, soft amber light, painterly abstract",
+      "narracao": "Para atrair, a marca precisa parecer gente. Os autores listam seis atributos humanos — corpo, intelecto, emoção, personalidade e, acima de tudo, moralidade. A marca com princípios claros e defeitos charmosos ganha confiança. Marca com alma vence marca perfeita — ninguém se conecta com algo frio e impecável."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Curiosidade",
+      "titulo": "Conteúdo, não interrupção",
+      "img": "an open book of light radiating useful sparks that draw people in, content as a beacon, warm glow",
+      "narracao": "Em vez de interromper com propaganda, ofereça conteúdo útil que as pessoas querem consumir. É o que responde à arguição e abre a conversa. Segundo Kotler, o conteúdo é a nova propaganda — mas só funciona se servir ao cliente primeiro. Seja útil antes de pedir a venda. O resto vem como consequência."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Compromisso",
+      "titulo": "Sem costura, até o UAU",
+      "img": "online and offline worlds merging seamlessly into one glowing path, a surprising spark of delight at the end",
+      "narracao": "Online e offline precisam virar uma experiência só, sem costura — o cliente passa do aplicativo para a loja e é reconhecido nos dois. Some a isso engajamento de verdade e você cria o momento UAU — a surpresa que encanta. E é esse momento que transforma um comprador comum em um defensor da marca."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Tese",
+      "titulo": "Merecer a recomendação",
+      "img": "a brand light earning a crown of connected advocates around it, won not commanded, warm radiant composition",
+      "narracao": "No fim, Marketing 4.0 cabe numa ideia — na era da conexão, você não controla mais a sua imagem. Você a conquista. Conquiste os jovens, as mulheres e os cidadãos da rede, que movem todos os outros. Ofereça humanidade e utilidade. E a recompensa será a única propaganda que sobrou — a recomendação espontânea."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Você é recomendável?",
+      "subtitulo": "A pergunta final",
+      "img": "a single glowing question mark formed by a network of light dissolving into open space, reflective and open",
+      "narracao": "Então fica a pergunta — a sua marca é digna de ser recomendada? Pare de empurrar e comece a merecer. Se este resumo te deu uma ideia nova, deixe o like e inscreva-se. Toda semana, um grande livro destilado em minutos — aqui no Minuto Real."
+    }
+  ]
+}

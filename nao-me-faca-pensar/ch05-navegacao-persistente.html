@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPÍTULO 5: Navegação Persistente | Não Me Faça Pensar | Biblioteca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style.css">
+    <meta name="description" content="Na web não há 'sensação de lugar' física; a navegação substitui as paredes e placas do mundo real. Ela precisa estar presente em toda página (persistente)…">
+
+    <!-- seo:start -->
+    <link rel="canonical" href="https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar/ch05-navegacao-persistente.html">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar/ch05-navegacao-persistente.html#article",
+      "headline": "CAPÍTULO 5: Navegação Persistente",
+      "inLanguage": "pt-BR",
+      "url": "https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar/ch05-navegacao-persistente.html",
+      "image": "https://www.andregalgani.com.br/biblioteca/assets/nao-me-faca-pensar-cover.png",
+      "author": {
+        "@type": "Person",
+        "name": "Steve Krug"
+      },
+      "isPartOf": {
+        "@type": "Book",
+        "@id": "https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar.html#book",
+        "name": "Não Me Faça Pensar"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Biblioteca",
+          "item": "https://www.andregalgani.com.br/biblioteca/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Não Me Faça Pensar",
+          "item": "https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CAPÍTULO 5: Navegação Persistente",
+          "item": "https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar/ch05-navegacao-persistente.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- seo:end -->
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta name="theme-color" content="#fcfdfc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1c1f1d" media="(prefers-color-scheme: dark)">
+    <!-- og-retrofit -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Biblioteca André Galgani">
+    <meta property="og:title" content="CAPÍTULO 5: Navegação Persistente | Não Me Faça Pensar | Biblioteca">
+    <meta property="og:description" content="Na web não há 'sensação de lugar' física; a navegação substitui as paredes e placas do mundo real. Ela precisa estar presente em toda página (persistente)…">
+    <meta property="og:image" content="https://www.andregalgani.com.br/biblioteca/assets/nao-me-faca-pensar-cover.png">
+    <meta property="og:url" content="https://www.andregalgani.com.br/biblioteca/nao-me-faca-pensar/ch05-navegacao-persistente.html">
+    <meta name="twitter:card" content="summary">
+    <!-- /og-retrofit -->
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Ir para o conteúdo</a>
+    <div class="page">
+        <nav class="crumbs" aria-label="Trilha de navegação">
+            <a class="crumbs-home" href="../index.html">Biblioteca</a>
+            <span class="crumbs-sep" aria-hidden="true">›</span>
+            <a href="../nao-me-faca-pensar.html">Não Me Faça Pensar</a>
+            <span class="crumbs-sep" aria-hidden="true">›</span>
+            <span class="crumbs-current" aria-current="page">Cap. 5: Navegação Persistente</span>
+        </nav>
+
+        <header class="header animate-entrance" style="--i: 0">
+            <h1 class="header-title">
+                <span class="header-title-light">NÃO ME</span>
+                <span class="header-title-bold">FAÇA PENSAR</span>
+            </h1>
+            <p class="header-subtitle">CAPÍTULO 5: Navegação Persistente</p>
+            <p class="header-credit">Steve Krug</p>
+            <p class="header-intro">Na web não há 'sensação de lugar' física; a navegação substitui as paredes e placas do mundo real. Ela precisa estar presente em toda página (persistente) e responder de imediato às perguntas tácitas: onde estou, o que tem aqui, como busco, como volto ao início.</p>
+        </header>
+        <main id="conteudo">
+            <div class="grid">
+<article class="card card-wide animate-entrance" style="--i: 1">
+<div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 56s16-14 16-28a16 16 0 0 0-32 0c0 14 16 28 16 28z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="32" cy="28" r="6" stroke="currentColor" stroke-width="3"/></svg></div>
+<div class="card-content">
+<h2 class="card-title">O "Billboard de Navegação"</h2>
+<p class="card-body">O núcleo que se repete em todas as páginas: <strong>Site ID</strong> (logo no topo, clicável, leva à home), <strong>Seções</strong> (navegação primária), <strong>'Você está aqui'</strong> (destaque da seção atual), <strong>Busca</strong> (caixa simples, sempre no mesmo lugar) e atalhos/utilitários.</p>
+<p class="card-tip"><strong>Como aplicar:</strong> repita exatamente o mesmo núcleo de navegação em toda página, na mesma posição.</p>
+</div></article>
+<article class="card animate-entrance" style="--i: 2">
+<div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 56s16-14 16-28a16 16 0 0 0-32 0c0 14 16 28 16 28z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><circle cx="32" cy="28" r="6" stroke="currentColor" stroke-width="3"/></svg></div>
+<div class="card-content">
+<h2 class="card-title">Sempre Marque "Você Está Aqui"</h2>
+<p class="card-body">O usuário <strong>não chega pela home</strong> — entra fundo, por links do Google. Por isso precisa se localizar de qualquer ponto. O marcador 'você está aqui' (a seção atual destacada) e os breadcrumbs respondem 'onde estou?'.</p>
+<p class="card-tip"><strong>Modelo mental:</strong> pense nas placas de um shopping — 'Você está aqui', mapa sempre no mesmo lugar.</p>
+</div></article>
+<article class="card card-warning animate-entrance" style="--i: 3">
+<div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M26 38l12-12" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 32l-6 6a8 8 0 0 0 11 11l6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M42 32l6-6a8 8 0 0 0-11-11l-6 6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div>
+<div class="card-content">
+<h2 class="card-title">O Logo Leva à Home</h2>
+<p class="card-body">Convenção universal: clicar no <strong>Site ID volta ao começo</strong>. Navegação que muda de página para página, ou busca escondida atrás de filtros, desorienta e viola o satisficing.</p>
+<p class="card-tip"><strong>Cuidado:</strong> navegação inconsistente entre páginas quebra a persistência e perde o usuário.</p>
+</div></article>
+            </div>
+            <section class="lessons animate-entrance" style="--i: 4">
+                <h2 class="lessons-title">Lições-Chave: Navegação Persistente</h2>
+                <ul class="lessons-list">
+<li>Repita a navegação central em toda página (ID, seções, 'você está aqui', busca, home).</li>
+<li>Sempre marque 'você está aqui' — o usuário entra por qualquer porta.</li>
+<li>O logo no topo leva à home; a busca é simples e fica sempre no mesmo lugar.</li>
+                </ul>
+            </section>
+            <nav aria-label="Navegação entre capítulos" class="chapter-nav">
+                <a href="ch04-omita-palavras.html" class="chapter-nav-link" rel="prev" aria-label="Capítulo anterior: Cap. 4: Omita as Palavras Desnecessárias">&larr; Cap. 4: Omita as Palavras Desnecessárias</a>
+                <a href="ch06-teste-do-tronco.html" class="chapter-nav-link" rel="next" aria-label="Próximo capítulo: Cap. 6: O Teste do Tronco (Trunk Test)">Cap. 6: O Teste do Tronco (Trunk Test) &rarr;</a>
+            </nav>
+        </main>
+        <footer class="footer">
+            <p class="footer-credit">Não Me Faça Pensar · Steve Krug · <a class="footer-link" href="../index.html">Biblioteca</a></p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

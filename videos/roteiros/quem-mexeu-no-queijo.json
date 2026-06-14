@@ -1,0 +1,105 @@
+{
+  "slug": "quem-mexeu-no-queijo",
+  "titulo": "Quem Mexeu no Meu Queijo?",
+  "autor": "Spencer Johnson",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#e0a838",
+  "musica": true,
+  "provider": "base",
+  "shorts": [3, 5, 7, 11],
+  "estilo_img": "cinematic atmospheric digital painting, warm amber and deep charcoal palette, a vast mysterious maze of stone corridors, soft volumetric light, painterly brushwork, subtle film grain, contemplative parable mood, wide cinematic composition, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que você trava quando tudo muda? | Quem Mexeu no Meu Queijo?, Spencer Johnson",
+    "descricao": "O resumo essencial de Quem Mexeu no Meu Queijo?, de Spencer Johnson — a parábola mais vendida sobre mudança. Os quatro personagens (Sniff, Scurry, Hem e Haw), o Labirinto, o Queijo como metáfora e os sete princípios do Manuscrito na Parede: antecipar, monitorar e se adaptar rápido quando o que você quer sai do lugar.\n\nQuatro personagens dentro de você • O Queijo e o Labirinto • Não há Queijo! • O senso de direito que trava • A pergunta que liberta • Rir de si mesmo • O Manuscrito na Parede • Imaginar o Novo Queijo • O obstáculo é interno • Mova seu próprio Queijo.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/quem-mexeu-no-queijo.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#quemMexeuNoMeuQueijo #spencerJohnson #mudança #carreira #resumo #livros",
+    "tags": ["quem mexeu no meu queijo", "spencer johnson", "mudança", "carreira", "autodesenvolvimento", "resumo de livro", "resumo", "livros", "motivação"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Quem Mexeu no Meu Queijo?",
+      "subtitulo": "Spencer Johnson",
+      "img": "a vast dark stone labyrinth seen from above, warm amber light glowing at the center, mysterious and contemplative",
+      "motion": "Slow cinematic descent over the maze; warm light pulses faintly at the center; soft haze drifts through the corridors; quiet contemplative mood.",
+      "narracao": "Algo que você ama vai embora — o emprego, a relação, a segurança — e você simplesmente trava. Reclama, espera, insiste que não é justo. Spencer Johnson escreveu a parábola mais vendida do mundo sobre exatamente isso. Quatro personagens, um labirinto, um pedaço de queijo. E uma pergunta que pode mudar a sua vida."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Elenco",
+      "titulo": "Quatro partes de você",
+      "img": "two small mice and two little figures at the entrance of a maze, warm amber light, painterly and symbolic",
+      "narracao": "No labirinto vivem quatro personagens — e nenhum é outra pessoa. São partes de você. Sniff fareja a mudança cedo. Scurry corre e age na hora. Hem nega e resiste. Haw resiste, mas aprende a se adaptar. Os ratos vencem não por serem espertos — humanos são mais inteligentes — mas por manterem tudo simples."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Metáfora",
+      "titulo": "O Queijo e o Labirinto",
+      "img": "a glowing wedge of cheese on a stone pedestal inside a maze, warm light, symbolic and inviting",
+      "narracao": "O Queijo é o que você quer ter — emprego, dinheiro, amor, saúde, paz. O Labirinto é onde você procura — a empresa, a vida, as relações. E aqui está a armadilha: ter Queijo por muito tempo vira conforto, vira arrogância, vira cegueira. Você esquece que todo Queijo, um dia, acaba."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Choque",
+      "titulo": "Não há Queijo!",
+      "img": "an empty stone alcove in a maze where cheese once was, cold shadow creeping into warm light, sense of loss",
+      "narracao": "Um dia o queijo some. Os ratos, que viam o estoque diminuir, já calçam os tênis. Mas Hem explode — grita, fica vermelho, berra que não é justo. Volta todo dia ao lugar vazio, esperando o passado voltar. Até cava a parede atrás do queijo. Muita atividade. Nenhum resultado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Armadilha",
+      "titulo": "O senso de direito",
+      "img": "a small figure standing frozen before an empty space, arms crossed, warm light fading around it, stubborn stillness",
+      "narracao": "Por que Hem não se mexe? Porque acha que tem direito. Somos especiais, ele diz, isso não deveria acontecer conosco, merecemos o nosso Queijo. A lógica é impecável e completamente inútil — nenhuma dessas frases produz queijo. Guarde o sinal: quando você se ouve dizer não é justo, ou eu mereço, é Hem quem está no comando."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Pergunta",
+      "titulo": "E se não tivesse medo?",
+      "img": "a dark maze corridor with a single shaft of warm light ahead, an open path into the unknown",
+      "narracao": "A virada de Haw não é coragem heroica. É uma pergunta que ele escreve na parede — o que você faria se não tivesse medo? O medo que cresce na mente é sempre maior que o perigo real. Um pouco de medo protege. O excesso paralisa. E a resposta à pergunta é quase sempre a mesma: seguir em frente."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Chave",
+      "titulo": "Rir de si mesmo",
+      "img": "warm light breaking through a maze wall, a sense of release and lightness, painterly",
+      "narracao": "E então Haw faz a coisa mais simples e mais difícil — ele ri de si mesmo. Ri de fazer sempre a mesma coisa esperando resultado diferente. Esse riso quebra o medo. O caminho mais rápido para mudar, diz Johnson, é rir da própria insensatez. Aí você se liberta e segue. Aja com medo — a coragem vem depois do primeiro passo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Método",
+      "titulo": "O Manuscrito na Parede",
+      "img": "ancient writing carved on a glowing maze wall surrounded by a drawing of cheese, warm amber light, wisdom",
+      "narracao": "Pelo labirinto, Haw deixa um método escrito na parede — sete princípios. A mudança acontece. Antecipe. Monitore: cheire o queijo para saber quando envelhece. Adapte-se rápido. Mude. Aproveite. E esteja pronto para mudar de novo. Não é um poema — é um checklist. E o sétimo fecha o ciclo: nunca para de mexer no queijo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · O Combustível",
+      "titulo": "Imaginar o Novo Queijo",
+      "img": "a vivid imagined feast of cheeses glowing warmly in a maze, hopeful and motivating, painterly",
+      "narracao": "O que move Haw para a frente é a imaginação. Ele se vê, em detalhes vivos, saboreando o Novo Queijo antes mesmo de encontrá-lo. E essa imagem o conduz a ele. Quanto mais claro o quadro do que você ganha, menos peso tem o que você perde. O medo encolhe quando o destino fica nítido."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Verdade",
+      "titulo": "O obstáculo é interno",
+      "img": "a figure walking freely through an open maze corridor bathed in warm light, lightness and clarity",
+      "narracao": "No fim, Haw descobre algo inesperado. A felicidade não estava no queijo — estava em não ser movido pelo medo. Ele era feliz simplesmente por estar em movimento. O maior obstáculo à mudança, percebe, está dentro de você mesmo. E nada melhora até você mudar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · A Liderança",
+      "titulo": "Mova seu próprio Queijo",
+      "img": "a wide maze opening into a vast bright landscape, a new abundant cheese store glowing ahead, expansive",
+      "narracao": "E há uma última lição, para quem lidera. Não espere mexerem no seu queijo — mova você mesmo, enquanto ainda pode. Numa equipe, cada um é um personagem, e precisa de um trato diferente. Mudança imposta vira mudança oposta. Antecipar custa menos que reagir. Uma organização só muda quando gente suficiente muda."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Saia do lugar assim como o Queijo",
+      "subtitulo": "A lição final",
+      "img": "a small figure stepping out of the maze into warm golden light, embracing the open unknown, hopeful",
+      "narracao": "O queijo sempre vai se mexer. A única escolha é se você se mexe junto. Pergunte-se hoje — qual é o meu Velho Queijo, que já mofou? E o que eu faria, agora, se não tivesse medo? Se este resumo te deu um empurrão, deixe o like e inscreva-se — toda semana, um grande livro em minutos."
+    }
+  ]
+}

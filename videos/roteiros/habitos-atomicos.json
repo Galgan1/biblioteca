@@ -1,0 +1,112 @@
+{
+  "slug": "habitos-atomicos",
+  "titulo": "Hábitos Atômicos",
+  "autor": "James Clear",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#33b88f",
+  "musica": true,
+  "provider": "base",
+  "shorts": [1, 3, 7, 9],
+  "efeitos": {"cap": 3, "intensidade": 0.9, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, fresh green and deep charcoal palette, minimalist imagery of growth and small repeated marks, seeds, steps, a single rising line, soft volumetric light, painterly brushwork, subtle film grain, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que você desiste — e como mudar de verdade | Hábitos Atômicos, James Clear",
+    "descricao": "O resumo essencial de Hábitos Atômicos (Atomic Habits), de James Clear. O poder do 1%, sistemas acima de metas, a mudança baseada em identidade, o loop do hábito e as quatro leis — tornar óbvio, atraente, fácil e satisfatório — com a regra dos 2 minutos e o 'nunca falhe duas vezes'.\n\nO poder de 1% • Esqueça a meta, construa o sistema • Você vota em quem se torna • O loop do hábito • As 4 leis • A regra dos 2 minutos • Nunca falhe duas vezes • O vale da decepção.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/habitos-atomicos.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#habitosatomicos #jamesclear #habitos #produtividade #resumo #livros",
+    "tags": ["hábitos atômicos", "james clear", "hábitos", "produtividade", "autodesenvolvimento", "resumo de livro", "resumo", "livros", "disciplina"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Hábitos Atômicos",
+      "subtitulo": "James Clear",
+      "img": "a single small green sprout breaking through dark soil, dawn light, minimalist and hopeful",
+      "narracao": "Você já tentou mudar na base da força de vontade — e desistiu. O problema nunca foi você; foi o seu sistema. James Clear mostra que pequenos hábitos, de um por cento, compõem resultados enormes. Mudar de verdade não é querer mais — é desenhar melhor."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Composto",
+      "titulo": "O poder de um por cento",
+      "img": "a faint rising line curving gently upward over a dark grid, almost flat at first then steep, abstract growth",
+      "narracao": "Um por cento melhor a cada dia parece nada. Mas, ao longo de um ano, isso multiplica você por quase quarenta. Um por cento pior te leva a zero. Hábitos são os juros compostos do crescimento — minúsculos hoje, decisivos depois. A direção importa mais que a velocidade."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Sistema",
+      "titulo": "Esqueça a meta",
+      "img": "a winding path of repeated stepping stones leading to a distant glow, the path matters more than the goal",
+      "narracao": "Vencedores e perdedores têm a mesma meta. O que muda é o sistema. Clear é direto — você não sobe ao nível das suas metas, você cai ao nível dos seus sistemas. A meta dá a direção; o sistema diário é o que de fato produz o resultado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Alavanca",
+      "titulo": "Você vota em quem se torna",
+      "img": "a single hand dropping a small token into a growing pile, each one a vote, warm light, symbolic",
+      "narracao": "A mudança que dura não começa no resultado, começa na identidade. Cada hábito é um voto no tipo de pessoa que você quer ser. A meta não é ler um livro — é tornar-se um leitor. Não junte vontade; junte provas de quem você está virando."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Loop",
+      "titulo": "Como todo hábito funciona",
+      "img": "a glowing four-step circular loop, four points connected in a cycle, abstract and clean",
+      "narracao": "Todo hábito gira em quatro tempos — deixa, desejo, resposta e recompensa. A deixa dispara, o desejo move, a resposta age, a recompensa ensina o cérebro a repetir. Clear cria uma lei para cada tempo. E é nelas que mora o poder de mudar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · 1ª Lei",
+      "titulo": "Torne Óbvio",
+      "img": "a book placed deliberately on top of a coffee machine, an obvious visual cue in a tidy kitchen, soft light",
+      "narracao": "A maioria dos hábitos dispara pelo ambiente, não pela decisão. Então torne a deixa óbvia. Empilhe o novo hábito num que já existe — depois do café, leio uma página. E deixe a pista à vista. O ambiente vence a força de vontade todos os dias."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · 2ª Lei",
+      "titulo": "Torne Atraente",
+      "img": "two glowing shapes merging into one, a need joined to a pleasure, warm inviting tones, abstract",
+      "narracao": "Agimos pela expectativa do prazer. Junte o que você precisa fazer com algo que você adora — só ouço o podcast na esteira. E escolha a tribo onde o hábito já é normal. A gente copia os próximos, os muitos e os poderosos. Pertencer é desejar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · 3ª Lei",
+      "titulo": "A regra dos 2 minutos",
+      "img": "a pair of running shoes by the door, ready, the smallest possible first step, morning light",
+      "narracao": "O que decide não é a intensidade, é aparecer. Por isso, comece pequeno demais para falhar — a regra dos dois minutos. Treinar vira calçar o tênis; ler vira uma página. Domine a arte de aparecer e o hábito se instala antes mesmo de crescer."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · 4ª Lei",
+      "titulo": "Torne Satisfatório",
+      "img": "a calendar wall with a long unbroken chain of green check marks, satisfying streak, clean composition",
+      "narracao": "O que é recompensado na hora, se repete. Mas o bom hábito costuma pagar só lá na frente — então crie uma recompensa imediata. Use um rastreador e não quebre a corrente. O prazer de marcar feito é pequeno, e é exatamente o que te faz voltar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Regra de Ouro",
+      "titulo": "Nunca falhe duas vezes",
+      "img": "a single broken link in a chain being immediately mended, recovery, warm resolve, symbolic",
+      "narracao": "Você vai falhar — todo mundo falha. A regra que separa quem desiste de quem segue é simples — nunca falhe duas vezes. Pular um dia é acidente; pular o segundo é o começo de um novo hábito, do ruim. Errou? Volte amanhã, sem drama."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Platô",
+      "titulo": "O vale da decepção",
+      "img": "an ice cube about to melt at the edge of a threshold, pressure building unseen, cool light turning warm",
+      "narracao": "No começo, você se esforça e nada acontece. É o vale da decepção — e é onde quase todo mundo desiste. Mas o progresso fica guardado, como o gelo que só derrete ao cruzar zero grau. Persista. O platô está a um grau de virar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Verdade",
+      "titulo": "Você é o que repete",
+      "img": "many small repeated marks forming the silhouette of a strong shape, the whole made of tiny parts, painterly",
+      "narracao": "No fim, Clear inverte tudo — você não tem hábitos, você é seus hábitos. Cada repetição esculpe quem você é. Não precisa de uma revolução; precisa de um voto, hoje, e de novo amanhã. Pequeno, atômico — e, somado, capaz de te transformar por inteiro."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Comece com dois minutos",
+      "subtitulo": "A lição final",
+      "img": "a hand placing the first small stone of a path that stretches into bright open distance, beginning, hopeful",
+      "narracao": "Então não tente mudar tudo. Escolha um hábito, encolha para dois minutos e apareça amanhã. Qual será o seu primeiro voto? Se este resumo te deu um empurrão, deixe o like e inscreva-se. Toda semana, um grande livro destilado em minutos — aqui no Minuto Real."
+    }
+  ]
+}

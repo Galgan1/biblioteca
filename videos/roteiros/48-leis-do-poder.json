@@ -1,0 +1,112 @@
+{
+  "slug": "48-leis-do-poder",
+  "titulo": "As 48 Leis do Poder",
+  "autor": "Robert Greene",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#b5443f",
+  "musica": true,
+  "provider": "base",
+  "shorts": [1, 4, 9, 11],
+  "efeitos": {"cap": 3, "intensidade": 0.8, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, deep crimson and gold over charcoal palette, baroque court and chessboard motifs, shadows, masks, still water, candlelight, painterly brushwork, subtle film grain, ominous strategic mood, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Você está sendo manipulado — e não percebe | As 48 Leis do Poder, Robert Greene",
+    "descricao": "O resumo essencial de As 48 Leis do Poder, de Robert Greene — em chave DEFENSIVA: reconhecer as táticas do poder para não virar peão. A natureza do poder, proteger a reputação, dissimular intenções, criar dependência, o ponto fraco, a fantasia e a audácia, e a defesa contra a manipulação.\n\nO poder é um jogo • Nunca ofusque o mestre • A reputação é tudo • Dissimule e diga menos • Faça-os depender de você • Vença por ações • O ponto fraco • Desconfie do que é grátis • Escolha o círculo • Seja informe.\n\n⚠️ Leitura defensiva — para reconhecer e se proteger, não para manipular.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/48-leis-do-poder.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#48leisdopoder #robertgreene #poder #estrategia #resumo #livros",
+    "tags": ["as 48 leis do poder", "robert greene", "poder", "estratégia", "psicologia", "manipulação", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "As 48 Leis do Poder",
+      "subtitulo": "Robert Greene",
+      "img": "a lone chess king casting a long shadow on a marble floor, candlelight, ominous and regal",
+      "narracao": "Você está sendo influenciado agora — e talvez não perceba. Robert Greene reuniu três mil anos de história num código frio de quarenta e oito leis do poder. A gente lê de um jeito só — defensivo. Reconhecer o jogo para nunca virar peça dele."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Jogo",
+      "titulo": "O poder é social",
+      "img": "an opulent baroque court hall seen from above, figures implied by long shadows, a stage of influence",
+      "narracao": "Poder não é força bruta — é influência, indireta e sutil. Greene usa a corte de Versalhes como laboratório, onde o cortesão vence pela aparência, não pelo confronto. E avisa — quem se recusa a entender o jogo não fica puro. Fica peão."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · Lei 1",
+      "titulo": "Nunca ofusque o mestre",
+      "img": "a brilliant star dimmed beside a larger crown, deference, gold light, symbolic of not outshining",
+      "narracao": "A primeira lei é a que mais derruba talento — nunca ofusque quem está acima. Brilho demais, sem tato, vira ameaça, e o ameaçado revida. Quem corrige o chefe em público colhe sabotagem. Deixe o crédito subir; a sua ascensão para de assustar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · Lei 5",
+      "titulo": "A reputação é tudo",
+      "img": "a polished golden seal on dark velvet, fragile and valuable, a single crack threatening it",
+      "narracao": "A reputação é a pedra angular, diz Greene. Ela decide como você é lido antes de abrir a boca — forte, intimida; arranhada, convida ataque. Construída devagar, perdida num instante. Defenda a sua como capital. Atacar a do rival é a jogada mais comum."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · Leis 3 e 4",
+      "titulo": "Dissimule, e diga menos",
+      "img": "an elegant mask half in shadow, lips sealed, an air of withheld secrets, crimson and gold",
+      "narracao": "Intenção exposta é arma entregue. Por isso, dissimule o que planeja e diga sempre menos que o necessário. O silêncio sugere poder; quem fala demais entrega a mão. Numa negociação, cale — e veja o outro preencher o vazio com concessões."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · Lei 11",
+      "titulo": "Faça-os depender de você",
+      "img": "a single keystone holding a stone arch, remove it and all falls, symbolic of indispensability",
+      "narracao": "O poder que dura é aquele de que precisam. Torne-se o nó que, removido, derruba tudo — indispensável, e intocável. E em vez de correr atrás, use uma isca e faça o outro vir até você. Quem provoca o movimento alheio controla o terreno."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · Lei 9",
+      "titulo": "Vença por ações",
+      "img": "a finished masterwork revealed while an empty debate table sits in shadow, results over words",
+      "narracao": "Greene é categórico — vença por ações, nunca por argumentos. Discussão gera ressentimento; o fato consumado convence sem criar inimigo. Você pode ganhar a discussão e perder a pessoa. Então prove com o resultado, e deixe-o calar quem duvidava."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · Leis 33 e 13",
+      "titulo": "O ponto fraco e o interesse",
+      "img": "a magnifying glass finding a single hairline crack in a marble statue, the weak point, dramatic light",
+      "narracao": "Todo alvo tem um ponto fraco — uma vaidade, um medo, uma necessidade. Encontrá-lo é achar a alavanca. E ao pedir algo, nunca apele à gratidão; apele ao interesse próprio do outro. O sim vem fácil quando atende a quem decide."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · Leis 32 e 28",
+      "titulo": "A fantasia e a audácia",
+      "img": "a glowing mirage of a golden palace rising over a crowd's gaze, seductive promise, bold light",
+      "narracao": "A verdade é dura; quem oferece o sonho atrai multidões. E faça-o com audácia — a hesitação contamina, o gesto ousado convence pela própria convicção. Meia audácia é o pior dos mundos. Imponha a sua imagem antes que imponham uma a você."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · Lei 40 · Defesa",
+      "titulo": "Desconfie do que é grátis",
+      "img": "an ornate gift box with subtle chains trailing from it, a present that binds, shadow and gold",
+      "narracao": "Agora a defesa. Greene manda desprezar o que é gratuito — toda dádiva tem preço oculto. O presente súbito antes da negociação não é gentileza; é uma dívida disfarçada, é controle. Aceite com cuidado, ou agradeça sem ficar refém da reciprocidade."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · Leis 10 e 20 · Defesa",
+      "titulo": "Escolha o círculo",
+      "img": "one bright figure of light keeping distance from a sinking dark swirl, protecting independence",
+      "narracao": "Mais defesa. Estados de espírito e padrões de fracasso são contagiosos — fuja de quem vive afundado, porque você absorve quem te cerca. E não se comprometa cedo demais. Independência preserva opções. Quem não deve, não é dono de ninguém, nem refém."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · Lei 48",
+      "titulo": "Seja informe",
+      "img": "still water taking the shape of any vessel, formless and adaptable, calm and powerful, moonlight",
+      "narracao": "E a lei suprema — seja informe, como a água. O que tem forma fixa é previsível, e o previsível é alvo. Não se prenda a um único método; mude conforme o terreno e ninguém te encurrala. Informe não é sem caráter — é flexível sobre valores firmes."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Reconhecer é se defender",
+      "subtitulo": "A lição final",
+      "img": "a pair of eyes opening in the dark, clarity and awareness, a calm steady light, no figure",
+      "narracao": "No fim, o poder é uma lente, não cartilha de vilania — manipular corrói a sua própria reputação. Fica a pergunta — quem está aplicando essas leis em você agora? Se este resumo abriu seus olhos, deixe o like e inscreva-se. Toda semana, um grande livro em minutos, no Minuto Real."
+    }
+  ]
+}

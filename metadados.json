@@ -1,0 +1,355 @@
+{
+  "gerado_em": "2026-06-13",
+  "fonte": "Reconciliado de CONTEXTO-CANAL-MINUTO-REAL.md (secao 'IDs ATUAIS'), fila.json e videos/_shorts/*_state.json. Copias orfas (canal pessoal, a apagar) excluidas. Datas/horas em BRT.",
+  "redes": {
+    "YouTube": {"base_url": "https://youtu.be/"},
+    "YouTube Shorts": {"base_url": "https://www.youtube.com/shorts/"},
+    "Instagram": {"base_url": ""},
+    "TikTok": {"base_url": ""}
+  },
+  "livros": [
+    {
+      "slug": "arte-da-guerra",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "publico", "data": "2026-06-12", "id": "zLqdMHJ-k8A"}
+        ]},
+        {"tipo": "short", "rotulo": "Short de lancamento", "pubs": [
+          {"rede": "YouTube Shorts", "status": "publico", "data": "2026-06-12", "id": "BeR1z9GKygs"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18089711993057579"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · Vencer sem lutar", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-16", "hora": "12h", "id": "fEVIgIFu8og"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "17996092907969917"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · O impulso e a oportunidade", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-17", "hora": "19h", "id": "sW8KKf3-CoA"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18068896079379895"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · As cinco fraquezas fatais", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-19", "hora": "12h", "id": "xtrshk9yadA"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "17886739908569893"}
+        ]}
+      ]
+    },
+    {
+      "slug": "maquiavel-pedagogo",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "publico", "data": "2026-06-12", "id": "QIYk743VByU"}
+        ]},
+        {"tipo": "short", "rotulo": "Short de lancamento", "pubs": [
+          {"rede": "YouTube Shorts", "status": "publico", "data": "2026-06-12", "id": "A3ms3ixqn74"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18116362477890490"}
+        ]},
+        {"tipo": "short", "rotulo": "Short 2", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-23", "hora": "12h", "id": "ODqa4x0uMTc"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18098657021335846"}
+        ]},
+        {"tipo": "short", "rotulo": "Short 3", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-26", "hora": "12h", "id": "gWa8BL1iZP8"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18086834855387283"}
+        ]},
+        {"tipo": "short", "rotulo": "Short 4", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-27", "hora": "10h", "id": "eUXaxESkSCo"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "17959144208961858"}
+        ]}
+      ]
+    },
+    {
+      "slug": "save-the-cat",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "publico", "data": "2026-06-13", "id": "WAHhiIW6Wjc"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 1 (A logline que vende)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "publico", "data": "2026-06-13", "id": "QVKAObJqcQg"},
+          {"rede": "TikTok", "status": "rascunho", "data": "", "id": "v_inbox_file~v2.7650919481664997383"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18175382647410663"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 3", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-14", "hora": "10h", "id": "3sXdnZ3avHU"},
+          {"rede": "TikTok", "status": "rascunho", "data": "", "id": "v_inbox_file~v2.7650920313676662791"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18119492101813059"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 4", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-15", "hora": "12h", "id": "9E0napGqpnY"},
+          {"rede": "TikTok", "status": "rascunho", "data": "", "id": "v_inbox_file~v2.7650920345298094088"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18059207660739140"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 6", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-16", "hora": "10h", "id": "1wUlNH-otWE"},
+          {"rede": "TikTok", "status": "rascunho", "data": "", "id": "v_inbox_file~v2.7650920474172327943"},
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-13", "id": "18594615088063587"}
+        ]},
+        {"tipo": "carrossel", "rotulo": "Carrossel · visão geral", "pubs": [
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-14", "id": "18072025541682385"}
+        ]},
+        {"tipo": "carrossel", "rotulo": "Carrossel · citações", "pubs": [
+          {"rede": "Instagram", "status": "publico", "data": "2026-06-14", "id": "18374270761205527"}
+        ]}
+      ]
+    },
+    {
+      "slug": "jornada-do-escritor",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "2026-06-14", "hora": "19h", "id": "Eb4LTgfF65o"}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 1)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 2)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 3)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 4)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]}
+      ]
+    },
+    {
+      "slug": "nacao-dopamina",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "2026-06-15", "hora": "19h", "id": "dzPz77iqffs"}
+        ]},
+        {"tipo": "carrossel", "rotulo": "Carrossel · Overview", "pubs": [
+          {"rede": "Instagram", "status": "produzido", "data": "", "id": ""}
+        ]},
+        {"tipo": "carrossel", "rotulo": "Carrossel · cap. 7 (A busca pela dor)", "pubs": [
+          {"rede": "Instagram", "status": "produzido", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 1)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 2)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 3)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 4)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]}
+      ]
+    },
+    {
+      "slug": "poder-do-silencio",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "2026-06-29", "hora": "19h", "id": "3X5s-p2LH9c"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 2", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-06-30", "id": "LAlSS3Gkbgk"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 3", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-01", "id": "XbR5IfLl190"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 8", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-03", "id": "zSyLcgLWBwo"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 11", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-04", "id": "JPYYyEVZVlU"}
+        ]}
+      ]
+    },
+    {
+      "slug": "quem-mexeu-no-queijo",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "2026-07-06", "hora": "19h", "id": "JDmuaZ9hA_U"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 3", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-07", "id": "ynwCFDI8Vl4"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 5", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-08", "id": "fnzyThF7fic"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 7", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-10", "id": "VijxfJZj-vQ"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 11", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-11", "id": "vvlVJxGaG98"}
+        ]}
+      ]
+    },
+    {
+      "slug": "padrao-bitcoin",
+      "destaque": "Premium (Imagen + Veo cinema). Reels do Instagram ja publicados; no YouTube a cena 8 ficou pendente por cota diaria.",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min) · PREMIUM", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "2026-07-13", "hora": "19h", "id": "ur9LHfpKUCY"}
+        ]},
+        {"tipo": "short", "rotulo": "Short / Reel · cena 2", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-14", "id": "iXQOU8uVCJs"},
+          {"rede": "Instagram", "status": "publico", "data": "", "id": "18146609263453590"}
+        ]},
+        {"tipo": "short", "rotulo": "Short / Reel · cena 4", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-15", "id": "OuIMtbDcxUk"},
+          {"rede": "Instagram", "status": "publico", "data": "", "id": "18065861792700596"}
+        ]},
+        {"tipo": "short", "rotulo": "Short / Reel · cena 5", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "2026-07-17", "id": "seCJSaOZOpk"},
+          {"rede": "Instagram", "status": "publico", "data": "", "id": "18401039209157032"}
+        ]},
+        {"tipo": "short", "rotulo": "Short / Reel · cena 8", "pubs": [
+          {"rede": "YouTube Shorts", "status": "pendente", "data": "2026-07-18", "id": "", "nota": "uploadLimitExceeded (cota diaria YouTube) — slot sab 18/07"},
+          {"rede": "Instagram", "status": "publico", "data": "", "id": "18119961703695926"}
+        ]},
+        {"tipo": "carrossel", "rotulo": "Carrossel · Overview", "pubs": [
+          {"rede": "Instagram", "status": "publico", "data": "", "id": ""}
+        ]},
+        {"tipo": "carrossel", "rotulo": "Carrossel · Citacoes", "pubs": [
+          {"rede": "Instagram", "status": "produzido", "data": "", "id": ""}
+        ]}
+      ]
+    },
+    {
+      "slug": "aristoteles-poetica",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "", "id": "KGgaBw4FawU"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 2", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "gRDh4Dgsr2I"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 4", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "lkCCcaRkmsc"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 6", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "xSGi8XhWdCs"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 9", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "Nwr7dD-nwWs"}
+        ]}
+      ]
+    },
+    {
+      "slug": "marketing-4-0",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "", "id": "crXTV8ZPo0o"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 1", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "pTcM6PSt0Jk"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 3", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "O_Cl2ygmKeQ"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 5", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "TeSLkPjm-zs"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 7", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "d5Je-hOxNx8"}
+        ]}
+      ]
+    },
+    {
+      "slug": "poder-de-delegar",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "agendado", "data": "", "id": "WKLk-F9JuQ0"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 2", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "hxTdpTuKjY0"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 4", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "mihU4s26rNk"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 7", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "QfhPw5i7hEI"}
+        ]},
+        {"tipo": "short", "rotulo": "Short · cena 10", "pubs": [
+          {"rede": "YouTube Shorts", "status": "agendado", "data": "", "id": "An1ruvoJ3sw"}
+        ]}
+      ]
+    },
+    {
+      "slug": "sound-design",
+      "destaque": "Construido localmente; pendente de upload (cota diaria YouTube). Agendar 20/07 (seg).",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "pendente", "data": "2026-07-20", "hora": "19h", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 1)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 3)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 6)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 8)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]}
+      ]
+    },
+    {
+      "slug": "audiovisao",
+      "destaque": "Construido localmente; pendente de upload. Agendar 23/07 (qui).",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "pendente", "data": "2026-07-23", "hora": "19h", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 1)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 2)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 4)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 5)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]}
+      ]
+    },
+    {
+      "slug": "coesao-coerencia",
+      "destaque": "Construido localmente; pendente de upload. Agendar 27/07 (seg).",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "pendente", "data": "2026-07-27", "hora": "19h", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 2)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 3)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 5)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 7)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]}
+      ]
+    },
+    {
+      "slug": "ponerologia",
+      "destaque": "Construido localmente; pendente de upload. Agendar 30/07 (qui).",
+      "pecas": [
+        {"tipo": "video", "rotulo": "Video-resumo (~5 min)", "pubs": [
+          {"rede": "YouTube", "status": "pendente", "data": "2026-07-30", "hora": "19h", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 2)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 3)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 6)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]},
+        {"tipo": "short", "rotulo": "Short (cena 8)", "pubs": [
+          {"rede": "YouTube Shorts", "status": "previsto", "data": "", "id": ""}
+        ]}
+      ]
+    }
+  ]
+}

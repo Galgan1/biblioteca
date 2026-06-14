@@ -1,0 +1,1186 @@
+/* =========================================
+   CHEAT SHEET — Style Infographic
+   Theme: Productivity Cheat Sheet (Green Edition)
+   ========================================= */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Brand Colors - OKLCH */
+    --green: oklch(52% 0.14 152);        /* verde vivo — pílulas, bordas, ícones */
+    --green-dark: oklch(40% 0.12 152);   /* texto verde sobre fundo claro */
+    --green-light: oklch(95% 0.03 152);  /* tinta verde sutil */
+    --black: oklch(22% 0.01 152);
+    --gray-dark: oklch(46% 0.01 152);
+    --gray-light: oklch(86% 0.01 152);
+    --paper-bg: oklch(99% 0.002 152);
+    --body-bg: oklch(95% 0.005 152);
+    --surface-hover: oklch(96% 0.012 152);
+    --on-green: oklch(99% 0.002 152);    /* texto sobre pílula verde */
+    --footer-bg: oklch(22% 0.01 152);
+    --footer-text: oklch(97% 0.005 152);
+    --dislike: oklch(58% 0.17 25);       /* vermelho — desjoinha */
+    --dislike-dark: oklch(48% 0.16 25);  /* texto vermelho sobre fundo claro */
+    --on-dislike: oklch(99% 0.004 25);   /* texto sobre pílula vermelha */
+
+    /* Layout */
+    --border-solid: 1px solid var(--gray-light);
+    --radius: 6px;
+
+    /* Typography */
+    --font-display: 'Hanken Grotesk', system-ui, sans-serif;
+    --font-body: 'Hanken Grotesk', system-ui, sans-serif;
+    --font-serif: 'Literata', Georgia, serif;
+
+    /* Animation Easing */
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --green: oklch(67% 0.13 152);
+        --green-dark: oklch(76% 0.11 152);
+        --green-light: oklch(28% 0.04 152);
+        --black: oklch(95% 0.01 152);
+        --gray-dark: oklch(72% 0.01 152);
+        --gray-light: oklch(38% 0.01 152);
+        --paper-bg: oklch(21% 0.005 152);
+        --body-bg: oklch(16% 0.01 152);
+        --surface-hover: oklch(26% 0.01 152);
+        --on-green: oklch(16% 0.01 152);
+        --footer-bg: oklch(26% 0.01 152);
+        --footer-text: oklch(95% 0.005 152);
+        --dislike: oklch(70% 0.16 25);
+        --dislike-dark: oklch(78% 0.14 25);
+        --on-dislike: oklch(18% 0.02 25);
+    }
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--body-bg);
+}
+
+/* Navegação entre páginas com fundido suave (progressive enhancement) */
+@view-transition {
+    navigation: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation: none !important;
+    }
+}
+
+::selection {
+    background: var(--green);
+    color: var(--on-green);
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--black);
+    line-height: 1.55;
+    display: flex;
+    justify-content: center;
+    background: var(--body-bg);
+    font-kerning: normal;
+    font-optical-sizing: auto;
+}
+
+/* --- Accessibility Focus --- */
+*:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: var(--on-green);
+    padding: 10px 20px;
+    z-index: 9999;
+    text-decoration: none;
+    font-weight: 700;
+    border-radius: 0;
+    transition: top 200ms var(--ease-out-quart);
+}
+
+.skip-link:focus, .skip-link:focus-visible {
+    top: 0;
+    outline: 2px solid var(--black);
+    outline-offset: 2px;
+}
+
+/* --- Page Container --- */
+.page {
+    background: var(--paper-bg);
+    width: 100%;
+    max-width: 950px;
+    padding: max(3.5rem, env(safe-area-inset-top)) max(3.5rem, env(safe-area-inset-right)) max(3.5rem, env(safe-area-inset-bottom)) max(3.5rem, env(safe-area-inset-left));
+    animation: fade-in 800ms var(--ease-out-quart) forwards;
+}
+
+/* --- Back Link --- */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--gray-dark);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    padding-bottom: 2px;
+    border-bottom: var(--border-solid);
+    transition: color 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart);
+}
+.icon-arrow {
+    display: inline-block;
+    transition: transform 200ms var(--ease-out-quart);
+    margin-right: 4px;
+}
+
+/* --- Breadcrumb (trilha): Site ID + "você está aqui" em toda página --- */
+.crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+}
+.crumbs a {
+    color: var(--gray-dark);
+    text-decoration: none;
+    transition: color 200ms var(--ease-out-quart);
+}
+.crumbs a:hover { color: var(--green); }
+.crumbs a.crumbs-home {
+    color: var(--green);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.crumbs-sep { color: var(--gray-light); }
+.crumbs-current { color: var(--black); }
+
+/* --- Header --- */
+.header {
+    text-align: center;
+    padding: 0 0 3rem 0;
+    margin-bottom: 3rem;
+    border-bottom: 3px solid var(--green);
+}
+
+.header-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw + 1rem, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    text-wrap: balance;
+    font-weight: 800;
+}
+
+/* Primeira palavra verde, restante preto — como na referência */
+.header-title-light {
+    font-weight: 800;
+    color: var(--green);
+}
+
+.header-title-bold {
+    font-weight: 800;
+    color: var(--black);
+}
+
+.header-subtitle {
+    color: var(--gray-dark);
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.header-credit {
+    color: var(--gray-dark);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+}
+
+.header-intro {
+    font-size: 1.05rem;
+    max-width: 58ch;
+    margin: 0 auto;
+    color: var(--gray-dark);
+    text-wrap: balance;
+}
+
+/* --- Library Controls --- */
+.library-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+.search-input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    background: var(--paper-bg);
+    color: var(--black);
+}
+
+/* --- Grid Layout --- */
+/* Páginas de capítulo/visão geral: colunas balanceadas (sem buracos),
+   mesma regra de densidade do PDF. A estante (#bookshelf) usa grid próprio. */
+.grid {
+    columns: 2;
+    column-gap: 2rem;
+    margin-bottom: 3rem;
+}
+.grid > * {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+}
+.grid > .card-wide {
+    column-span: all;
+}
+/* Lições fluem dentro das colunas (reparentadas pelo script.js), como no PDF */
+.grid > .lessons {
+    margin-bottom: 2rem;
+}
+
+/* Estante: vitrine de capas inteiras em 3 colunas */
+#bookshelf { margin-bottom: 3rem; }
+.shelf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.grid-message {
+    color: var(--gray-dark);
+    text-align: center;
+    grid-column: 1 / -1;
+    column-span: all;
+}
+
+/* === Estante curada: controles, chips, trilhas e seções (jun/2026) ===
+   Coleções temáticas geradas das tags pelo script.js; tudo nos tokens verdes. */
+.library-controls { flex-wrap: wrap; }
+.status-toggle {
+    display: inline-flex;
+    border: var(--border-solid);
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.status-toggle button {
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--gray-dark);
+    padding: 0 1rem;
+    min-height: 44px;
+    transition: background 160ms var(--ease-out-quart), color 160ms var(--ease-out-quart);
+}
+.status-toggle button + button { border-left: var(--border-solid); }
+.status-toggle button:hover { background: var(--surface-hover); }
+.status-toggle button[aria-pressed="true"] { background: var(--green); color: var(--on-green); }
+
+/* Voto por livro: joinha verde (curtir) / desjoinha vermelho (não curtir) */
+.card-vote { display: flex; gap: 0.5rem; margin-top: 0.6rem; }
+.vote-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    background: transparent;
+    border-radius: 999px;
+    font-family: var(--font-body);
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 0.35rem 0.5rem;
+    min-height: 40px;
+    transition: background 160ms var(--ease-out-quart), color 160ms var(--ease-out-quart);
+}
+.vote-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+.vote-up { color: var(--green-dark); border: 2px solid var(--green); }
+.vote-up:hover { background: var(--surface-hover); }
+.vote-up[aria-pressed="true"] { background: var(--green); color: var(--on-green); }
+.vote-down { color: var(--dislike-dark); border: 2px solid var(--dislike); }
+.vote-down:hover { background: var(--surface-hover); }
+.vote-down[aria-pressed="true"] { background: var(--dislike); color: var(--on-dislike); }
+.vote-down svg { transform: scaleY(-1); }
+
+.trilhas { margin-bottom: 2.5rem; }
+.trilhas-head { margin-bottom: 1rem; }
+.trilhas-head h2 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--black);
+}
+.trilhas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1rem;
+}
+.trilha-card {
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: 2px dashed var(--green);
+    border-radius: var(--radius);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: background 160ms var(--ease-out-quart), border-color 160ms var(--ease-out-quart);
+}
+.trilha-card:hover { background: var(--surface-hover); }
+.trilha-card[aria-pressed="true"] { border-color: var(--green-dark); background: var(--surface-hover); }
+.trilha-name {
+    align-self: flex-start;
+    background: var(--green);
+    color: var(--on-green);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+}
+.trilha-titles { color: var(--gray-dark); font-size: 0.85rem; line-height: 1.45; }
+.trilha-count {
+    color: var(--green-dark);
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.shelf-section { margin-bottom: 3rem; }
+.section-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--black);
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--green);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+.section-title .section-count {
+    color: var(--gray-dark);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    white-space: nowrap;
+}
+
+/* Mobile: o toggle de status ocupa a largura toda e divide entre os 3 botões */
+@media (max-width: 640px) {
+    .status-toggle { width: 100%; }
+    .status-toggle button { flex: 1; padding: 0 0.5rem; font-size: 0.72rem; letter-spacing: 0.02em; line-height: 1.2; }
+}
+
+/* --- Extracted Components --- */
+.chapter-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.chapter-link {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    color: var(--green-dark);
+    font-weight: 700;
+    background: var(--paper-bg);
+    margin-bottom: 0.5rem;
+    transition: background-color 200ms var(--ease-out-quart);
+}
+.chapter-link .arrow {
+    transition: transform 200ms var(--ease-out-quart);
+}
+
+.content-list {
+    list-style-type: square;
+    margin-left: 1.25rem;
+    color: var(--gray-dark);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+}
+.content-list li {
+    margin-bottom: 0.5rem;
+}
+.content-list li::marker {
+    color: var(--green);
+}
+.content-list strong {
+    color: var(--black);
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    text-align: left;
+}
+.data-table th {
+    padding: 0.75rem;
+    color: var(--green-dark);
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid var(--green);
+}
+.data-table td {
+    padding: 0.75rem;
+    color: var(--gray-dark);
+    border-bottom: var(--border-solid);
+}
+
+/* --- Chapter Navigation --- */
+.chapter-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* botões nomeados sempre na mesma altura */
+    gap: 1rem;
+    margin-top: 0; /* o grid acima já dá o respiro — sem vazio acumulado */
+    margin-bottom: 3rem;
+    padding-top: 1.5rem;
+    border-top: var(--border-solid);
+}
+
+.chapter-nav-link {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    flex: 1 1 0; /* navegação nomeada: botões gêmeos, sempre da mesma altura */
+    max-width: 48%;
+    font-size: 0.92rem;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    color: var(--green-dark);
+    font-weight: 700;
+    transition: background-color 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart);
+}
+.chapter-nav-link[rel="next"],
+.chapter-nav-link:last-child {
+    justify-content: flex-end;
+    text-align: right;
+    margin-left: auto;
+}
+
+.chapter-nav-link:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--green);
+}
+
+/* --- Botões de PDF (cheat sheet premium) --- */
+.pdf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin: -0.75rem 0 2.25rem; /* colado à régua do header, sem boiar no vazio */
+}
+
+.pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 700;
+    transition: background-color 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart);
+}
+
+.pdf-btn:hover {
+    background-color: var(--surface-hover);
+    border-color: var(--green);
+}
+
+.pdf-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+/* --- CTA de afiliado Amazon (discreto, on-brand — gerado por afiliados/inserir_botao.py) --- */
+.amazon-cta {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: var(--border-solid);
+    text-align: center;
+}
+
+.amazon-cta-text {
+    color: var(--gray-dark);
+    margin: 0 auto 1rem;
+    max-width: 50ch;
+}
+
+.amazon-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0.7rem 1.6rem;
+    border-radius: var(--radius);
+    background: var(--green);
+    color: var(--on-green);
+    font-weight: 700;
+    text-decoration: none;
+    transition: filter 200ms var(--ease-out-quart), transform 200ms var(--ease-out-quart);
+}
+
+.amazon-btn:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+}
+
+.amazon-btn:focus-visible {
+    outline: 2px solid var(--green-dark);
+    outline-offset: 2px;
+}
+
+.amazon-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.amazon-cta-disc {
+    color: var(--gray-dark);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    margin: 0.9rem auto 0;
+    max-width: 52ch;
+    opacity: 0.8;
+}
+
+/* --- Estante: link de compra discreto por card (aparece no hover) --- */
+.shelf-item { position: relative; display: flex; flex-direction: column; }
+.card-buy {
+    position: absolute;
+    top: 0.55rem;
+    right: 0.55rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.28rem 0.6rem;
+    font-size: 0.76rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--green-dark);
+    background: var(--paper-bg);
+    border: 1px solid var(--green);
+    border-radius: 999px;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 200ms var(--ease-out-quart), transform 200ms var(--ease-out-quart);
+}
+.card-buy svg { width: 15px; height: 15px; flex-shrink: 0; }
+.shelf-item:hover .card-buy,
+.card-buy:focus-visible { opacity: 1; transform: translateY(0); }
+.card-buy:hover { background: var(--green); color: var(--on-green); }
+/* Touch (sem hover): chip discreto sempre visível, sem deslocar layout */
+@media (hover: none) {
+    .card-buy { opacity: 0.92; transform: none; }
+}
+
+/* --- Modal Pix (liberação do PDF) --- */
+.pix-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgb(0 0 0 / 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 50;
+}
+
+.pix-modal {
+    position: relative;
+    background: var(--paper-bg);
+    border: 2px dashed var(--green);
+    border-radius: var(--radius);
+    max-width: 430px;
+    width: 100%;
+    max-height: 92vh;
+    overflow: auto;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.pix-amount {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.7rem;
+    color: var(--green-dark);
+    margin: 0.35rem 0 0.1rem;
+}
+
+.pix-lead {
+    font-size: 0.92rem;
+    color: var(--gray-dark);
+    margin-bottom: 0.5rem;
+}
+
+.pix-qr {
+    width: 230px;
+    height: 230px;
+    margin: 0.5rem auto;
+    display: block;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+}
+
+.pix-code {
+    width: 100%;
+    text-align: left;
+    font-size: 0.7rem;
+    color: var(--gray-dark);
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    max-height: 64px;
+    overflow: auto;
+    word-break: break-all;
+}
+
+.pix-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+}
+
+.pix-note {
+    font-size: 0.78rem;
+    color: var(--gray-dark);
+    margin-top: 0.7rem;
+}
+
+/* --- Card Details Typography --- */
+.card-details-inner p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: var(--gray-dark);
+}
+.card-details-inner p:last-child {
+    margin-bottom: 0;
+}
+.card-details-inner h3 {
+    font-size: 0.95rem;
+    color: var(--green-dark);
+    letter-spacing: 0.02em;
+    margin: 0.85rem 0 0.35rem;
+}
+.card-details-inner h3:first-child {
+    margin-top: 0.5rem;
+}
+
+blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--gray-dark);
+    border-left: 3px solid var(--green);
+    padding-left: 1rem;
+    margin: 0.75rem 0;
+    font-size: 0.95rem;
+}
+
+/* --- Cards --- */
+.card {
+    border: 2px dashed var(--green);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    background: transparent;
+    transition: border-color 200ms var(--ease-out-quart);
+}
+
+.card-wide {
+    grid-column: span 2;
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--green);
+}
+.card-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.card-content { flex: 1; min-width: 0; }
+
+/* Título em pílula verde — como na referência. `inline-block` + `text-wrap:
+   balance`: a pílula abraça o texto (curto = uma linha) e, quando precisa
+   quebrar, divide o título em DUAS LINHAS EQUILIBRADAS dentro de um único
+   retângulo — sem palavra órfã solta nem segunda pílula ragged. (O balance
+   só funciona em inline-block/block, não em `display:inline`.) */
+.card-title,
+.lessons-title {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.32;
+    text-wrap: balance;
+    background: var(--green);
+    color: var(--on-green);
+    padding: 0.3rem 0.95rem;
+    border-radius: 8px;
+}
+.card-title + *,
+.lessons-title + * {
+    margin-top: 0.75rem;
+}
+
+/* Cards de alerta ("Cuidado") — pílula preta */
+.card-warning .card-title {
+    background: var(--black);
+    color: var(--paper-bg);
+}
+
+.card-body {
+    font-size: 1rem;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+}
+.card-body strong { font-weight: 700; }
+
+/* Dica prática — texto verde pequeno, como na referência */
+.card-tip {
+    color: var(--green-dark);
+    font-weight: 500;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* --- Fluxo numerado (passo a passo) --- */
+.cycle-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.cycle-step {
+    flex: 1 1 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-start;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    padding: 0.85rem;
+    background: var(--paper-bg);
+}
+
+.cycle-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.7rem;
+    height: 1.7rem;
+    border-radius: 50%;
+    background: var(--green);
+    color: var(--on-green);
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 0.9rem;
+}
+
+.cycle-desc {
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+}
+
+.cycle-arrow {
+    align-self: center;
+    color: var(--green);
+    font-weight: 800;
+    font-size: 1.4rem;
+    flex: 0 0 auto;
+}
+
+/* --- Lições-Chave (bloco largo tracejado) --- */
+.lessons {
+    border: 2px dashed var(--green);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.lessons-list {
+    list-style-type: square;
+    margin-left: 1.25rem;
+    color: var(--black);
+    font-size: 0.95rem;
+}
+.lessons-list li {
+    margin-bottom: 0.5rem;
+}
+.lessons-list li::marker {
+    color: var(--green);
+}
+
+/* Non-card sections */
+.section-block {
+    margin-bottom: 3rem;
+}
+.section-title {
+    color: var(--green-dark);
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+}
+
+/* --- Footer (barra escura, como na referência) --- */
+.footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    text-align: center;
+}
+.footer-connections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.footer-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+}
+.footer .tag {
+    color: inherit;
+    border-color: oklch(60% 0.01 152 / 0.6);
+}
+.footer-credit {
+    color: inherit;
+    opacity: 0.85;
+    font-size: 0.9rem;
+}
+.footer-link {
+    color: inherit;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* --- Skeleton Loader --- */
+.skeleton {
+    animation: pulse 1.5s infinite;
+    background: var(--surface-hover);
+    border-radius: var(--radius);
+}
+@keyframes pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+.skeleton-card {
+    aspect-ratio: 2 / 3.6; /* capa 2:3 + faixa de conteúdo */
+    width: 100%;
+}
+
+/* =========================================
+   ANIMATIONS & INTERACTIONS
+   ========================================= */
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide-up-fade {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-entrance {
+    opacity: 0;
+    animation: slide-up-fade 600ms var(--ease-out-quint) forwards;
+    animation-delay: calc(min(var(--i, 0) * 80ms, 600ms));
+}
+
+.animate-sequence {
+    opacity: 0;
+    animation: slide-up-fade 500ms var(--ease-out-quint) forwards;
+    animation-delay: calc(200ms + min(var(--seq, 0) * 120ms, 800ms));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+    }
+}
+
+/* Hover Devices */
+@media (hover: hover) {
+    .back-link:hover {
+        color: var(--green-dark);
+        border-color: var(--green);
+    }
+    .back-link:hover .icon-arrow {
+        transform: translateX(-3px);
+    }
+    .chapter-link:hover {
+        background-color: var(--surface-hover);
+    }
+    .chapter-link:hover .arrow {
+        transform: translateX(3px);
+    }
+    a.card:hover {
+        transform: translateY(-2px);
+        border-color: var(--green-dark);
+    }
+    a.card:hover .card-cover img {
+        transform: scale(1.02);
+    }
+}
+
+/* Touch Devices */
+@media (hover: none) {
+    a.card:active, .chapter-link:active {
+        transform: scale(0.98);
+        transition: transform 100ms;
+    }
+}
+
+/* --- Responsive ---
+   Três faixas: telefone ≤640 · tablet 641–900 · desktop >900 */
+
+/* Tablet (iPad retrato, telefone paisagem): capítulos mantêm as 2 colunas
+   densas do desktop; estante em 2 colunas largas com tipografia padrão. */
+@media (min-width: 641px) and (max-width: 900px) {
+    .page {
+        padding: max(2rem, env(safe-area-inset-top)) max(2rem, env(safe-area-inset-right)) max(2rem, env(safe-area-inset-bottom)) max(2rem, env(safe-area-inset-left));
+    }
+    .header { padding: 0 0 2.5rem; margin-bottom: 2.5rem; }
+    .card { padding: 1.25rem; gap: 1rem; }
+    .card-icon { width: 40px; height: 40px; }
+    .card-title, .lessons-title { font-size: 0.98rem; }
+}
+/* Só na faixa estreita do tablet retrato a estante desce para 2 colunas;
+   de 800px em diante as 3 colunas do desktop já respiram. */
+@media (min-width: 641px) and (max-width: 799px) {
+    .shelf-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+}
+
+@media (max-width: 640px) {
+    .page {
+        padding: max(1.25rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right)) max(1.25rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+        border: none; box-shadow: none;
+    }
+    .grid { columns: 1; column-gap: 1.5rem; margin-bottom: 2rem; }
+    .grid > * { margin-bottom: 1.25rem; }
+    .card-wide { grid-column: span 1; }
+
+    /* Estante: livraria de bolso — 2 colunas de capas, 4 livros por tela */
+    .shelf-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    a.card .card-content { padding: 0.9rem; }
+    a.card .card-title { font-size: 0.8rem; padding: 0.25rem 0.7rem; }
+    .card-author { font-size: 0.8rem; margin-top: 0.6rem; }
+    .card-progress { font-size: 0.68rem; padding-top: 0.6rem; }
+    .library-controls { margin-bottom: 1.5rem; }
+
+    /* Prólogo curto: o conteúdo aparece antes da primeira dobra acabar */
+    .header { padding: 0 0 1.75rem; margin-bottom: 2rem; }
+    .header-subtitle { font-size: 0.92rem; letter-spacing: 0.06em; }
+    .header-credit { margin-bottom: 1rem; }
+    .header-intro { font-size: 0.98rem; }
+    .back-link { margin-bottom: 1.25rem; }
+    .pdf-actions { margin: -0.5rem 0 1.75rem; }
+    .pdf-btn { flex: 1 1 auto; justify-content: center; }
+
+    /* Cards: ícone menor devolve largura ao texto */
+    .card { padding: 1.25rem; gap: 1rem; }
+    .card-icon { width: 40px; height: 40px; }
+    .card-title, .lessons-title { font-size: 0.95rem; }
+    .lessons { padding: 1.25rem; }
+}
+
+/* Grid Card Link Layout */
+a.card {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    transition: transform 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart);
+}
+.card-cover {
+    width: 100%;
+    aspect-ratio: 2 / 3; /* capa de livro inteira — nunca cortar o título */
+    overflow: hidden;
+    border-bottom: var(--border-solid);
+    background: var(--surface-hover);
+}
+.card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 300ms var(--ease-out-quart);
+}
+a.card .card-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+a.card .card-title {
+    font-size: 0.95rem;
+}
+a.card .card-body {
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+/* Estante: autor e progresso em uma língua tipográfica só */
+.card-author {
+    color: var(--gray-dark);
+    font-size: 0.92rem;
+    margin-top: 0.75rem;
+}
+.card-progress {
+    color: var(--green-dark);
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
+/* Estante: card "Em breve" — livro candidato, ainda sem resumo. Não navega
+   (sem href): só o chip "Comprar" leva à Amazon. O progresso vira um selo
+   discreto em pílula tracejada verde, sinalizando que o resumo está por vir. */
+a.card-soon { cursor: default; }
+a.card-soon:hover { transform: none; border-color: var(--green); }
+a.card-soon:hover .card-cover img { transform: none; }
+.card-soon .card-progress {
+    align-self: flex-start;
+    color: var(--green-dark);
+    border: 1px dashed var(--green);
+    border-radius: 999px;
+    padding: 0.22rem 0.7rem;
+}
+
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.tag {
+    background: transparent;
+    color: var(--gray-dark);
+    padding: 0.2rem 0.6rem;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+h1, h2, h3, h4 {
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: var(--font-display);
+}
+
+/* --- Print --- */
+@media print {
+    html, body { background: white; }
+    .page { max-width: none; padding: 0; }
+    .skip-link, .back-link, .search-input, .chapter-nav, .pdf-actions { display: none; }
+    .card, .lessons { break-inside: avoid; }
+    .footer { background: none; color: var(--black); border-top: 2px solid var(--black); border-radius: 0; }
+}

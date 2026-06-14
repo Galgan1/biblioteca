@@ -1,0 +1,112 @@
+{
+  "slug": "psicologia-financeira",
+  "titulo": "A Psicologia Financeira",
+  "autor": "Morgan Housel",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#2f8fa3",
+  "musica": true,
+  "provider": "base",
+  "shorts": [2, 4, 7, 8],
+  "efeitos": {"cap": 3, "intensidade": 0.8, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, calm teal-blue and deep charcoal palette, minimalist symbolic imagery of time, seeds compounding, a quiet horizon, a steady scale, soft volumetric light, painterly brushwork, subtle film grain, thoughtful sober mood, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que gênios quebram e gente simples enriquece | A Psicologia Financeira, Morgan Housel",
+    "descricao": "O resumo essencial de A Psicologia Financeira (The Psychology of Money), de Morgan Housel. Lidar bem com dinheiro tem menos a ver com inteligência e mais com comportamento: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver, as caudas longas, o controle do tempo, riqueza é o que você não vê, poupar, margem de segurança e o razoável acima do racional.\n\nSorte e risco • O bastante • Os juros compostos • Sobreviver • As caudas longas • O controle do tempo • Riqueza invisível • Poupe • Espaço para o erro • Razoável vence racional.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/psicologia-financeira.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#psicologiafinanceira #morganhousel #dinheiro #investimentos #resumo #livros",
+    "tags": ["a psicologia financeira", "morgan housel", "dinheiro", "investimentos", "comportamento", "finanças", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A Psicologia Financeira",
+      "subtitulo": "Morgan Housel",
+      "img": "a calm horizon at dawn over still water, a single small seed in the foreground, patience and time, sober",
+      "narracao": "Você pode saber tudo de finanças e ainda quebrar — e alguém sem diploma nenhum enriquecer. Morgan Housel mostra por quê — lidar com dinheiro não é sobre o que você sabe, é sobre como você se comporta. As contas são fáceis; o difícil é o que a ganância e o medo fazem com elas."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · Sorte e Risco",
+      "titulo": "Os gêmeos invisíveis",
+      "img": "two identical coins mid-flip in soft light, one shadowed and one bright, luck and risk as twins, symbolic",
+      "narracao": "Nada é só mérito, nem só azar. Housel lembra — Bill Gates estudou numa das pouquíssimas escolas com computador no mundo. Sorte e risco são irmãos invisíveis em todo resultado. Por isso, admire menos os extremos e copie padrões amplos, não o caso isolado de um sortudo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Bastante",
+      "titulo": "Quando o suficiente não existe",
+      "img": "a goalpost on a field being moved ever further away, an endless chase, muted tones, symbolic",
+      "narracao": "O pecado mais caro do dinheiro — não saber a hora de parar. Gente que já tinha tudo arriscou e perdeu tudo, atrás de mais. Se o bastante não existe pra você, você move a baliza pra sempre. Saber dizer já chega é uma habilidade financeira, não fraqueza."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Tempo",
+      "titulo": "Os juros compostos",
+      "img": "a tiny sprout becoming a vast tree across a long timeline, slow then sudden growth, warm light",
+      "narracao": "O segredo de Buffett não é o retorno — é o tempo. Quase toda a fortuna dele veio depois dos sessenta e cinco anos. Os juros compostos parecem lentos e então explodem. Não interrompa o que está compondo. A paciência é o ativo mais subestimado que existe."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · Sobreviver",
+      "titulo": "Ficar rico não é continuar rico",
+      "img": "a lone ship staying afloat through a storm while others sink, endurance over speed, symbolic",
+      "narracao": "Há mil formas de ficar rico, mas só uma de continuar — sobreviver. O que mantém você no jogo não é o retorno máximo, é não ser obrigado a sair na pior hora. Housel resume — fique inquebrável. Quem não quebra, fica tempo suficiente pros juros fazerem mágica."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · As Caudas",
+      "titulo": "Poucas decisões decidem tudo",
+      "img": "a long tail of small dim dots ending in a few enormous bright ones, tail events, symbolic data",
+      "narracao": "Quase tudo que importa vem de pouquíssimos eventos. Nos investimentos, um punhado de acertos paga todos os erros. Housel chama de cauda longa. Você vai errar na maioria das vezes — e tudo bem. Só não saia de campo, porque a cauda que muda tudo chega quando menos se espera."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Dividendo",
+      "titulo": "O controle do tempo",
+      "img": "an open clock dissolving into an open road at sunrise, freedom of time, calm and expansive",
+      "narracao": "Qual o maior valor do dinheiro? Segundo Housel, é poder acordar e dizer — hoje eu faço o que eu quiser. Controlar o próprio tempo é o dividendo mais alto que a riqueza paga. Mais que carro, mais que casa — a liberdade de dispor das suas próprias horas."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Invisível",
+      "titulo": "Riqueza é o que você não vê",
+      "img": "a glowing vault hidden behind a plain modest house, the unseen wealth, quiet contrast, symbolic",
+      "narracao": "Cuidado pra não confundir rico com rico. Quem ganha muito e gasta tudo é só rico de aparência. Riqueza de verdade é o dinheiro que você não gastou — os carros não comprados, o patrimônio guardado. Por ser invisível, ninguém aprende com ela. Mas é ela que dá segurança."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Poupança",
+      "titulo": "Poupe sem motivo",
+      "img": "a steadily filling reservoir of light, drop by drop, accumulation without a specific goal, calm",
+      "narracao": "A taxa de poupança importa mais que a renda e mais que o retorno. E o melhor — poupe sem um motivo específico. Essa poupança vira flexibilidade, opções, paz. Housel diz que poupar é a distância entre o seu ego e a sua renda. Gaste menos do que você pode."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Margem",
+      "titulo": "Espaço para o erro",
+      "img": "a bridge built with visible extra support beams, a safety buffer, engineering margin, symbolic",
+      "narracao": "Ninguém prevê o futuro — então deixe espaço pro erro. Housel chama de margem de segurança. Planeje pra que o plano não precise dar tudo certo. Quem opera no limite quebra na primeira surpresa; quem deixa folga sobrevive ao imprevisto. A folga não é desperdício, é resistência."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Pessimismo",
+      "titulo": "Por que o medo parece inteligente",
+      "img": "a rising staircase of light interrupted by small dips, long-term progress with setbacks, symbolic",
+      "narracao": "O pessimismo soa mais inteligente que o otimismo — a má notícia é urgente, a boa é lenta. Mas a história é uma escada de progresso com quedas no caminho. Housel ensina — seja otimista no longo prazo e paranoico no curto. Espere problemas; aposte no progresso."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · O Razoável",
+      "titulo": "Razoável vence racional",
+      "img": "a calm hand choosing a simple steady path over a complex tangled one, sustainable over optimal, symbolic",
+      "narracao": "Você não é uma planilha. Housel prefere o razoável ao puramente racional — a estratégia perfeita que você não aguenta seguir é pior que a boa que você mantém. A melhor decisão financeira é a que te deixa dormir à noite. Sustentável vence o ótimo no papel."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Durma tranquilo",
+      "subtitulo": "A lição final",
+      "img": "a peaceful night sky over a calm landscape, a single steady star, financial peace, serene",
+      "narracao": "No fim, dinheiro é menos matemática e mais comportamento — humildade com a sorte, paciência com o tempo e folga pro erro. Pergunte hoje — qual é o meu o bastante? Se este resumo te fez pensar, deixe o like e inscreva-se. Toda semana, um grande livro em minutos, no Minuto Real."
+    }
+  ]
+}

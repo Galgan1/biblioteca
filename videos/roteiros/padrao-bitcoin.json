@@ -1,0 +1,108 @@
+{
+  "slug": "padrao-bitcoin",
+  "titulo": "O Padrão Bitcoin",
+  "autor": "Saifedean Ammous",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#f7931a",
+  "musica": true,
+  "provider": "google",
+  "shorts": [2, 4, 5, 8],
+  "estilo_img": "cinematic atmospheric digital painting, deep amber and molten gold palette, dramatic chiaroscuro lighting, volumetric god-rays and drifting dust, museum-grade epic still life, subtle film grain, solemn and majestic mood, wide cinematic composition, no people, no faces, no text, no letters, no numbers, no words, no watermark",
+  "youtube": {
+    "titulo": "Para entender o Bitcoin, primeiro entenda o dinheiro | O Padrão Bitcoin — Saifedean Ammous",
+    "descricao": "O resumo essencial de O Padrão Bitcoin, de Saifedean Ammous — o livro que usa a história do dinheiro e a escola austríaca para explicar por que o dinheiro forte preserva a poupança e a civilização, e por que o Bitcoin pode ser o dinheiro mais forte já criado.\n\nVendabilidade • A régua estoque/fluxo • A armadilha da moeda fraca • Por que o ouro venceu • O dinheiro do governo e a inflação invisível • Preferência temporal • Ciclos econômicos e juros • Dinheiro forte e liberdade • Bitcoin e a escassez de 21 milhões • Para que serve, afinal.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/padrao-bitcoin.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#bitcoin #padraobitcoin #dinheiro #economia #resumo #livros",
+    "tags": ["bitcoin", "padrao bitcoin", "saifedean ammous", "dinheiro", "economia", "ouro", "inflacao", "escola austriaca", "reserva de valor", "preferencia temporal", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "O Padrão Bitcoin",
+      "subtitulo": "Saifedean Ammous",
+      "img": "a colossal golden coin half-buried in dark earth, monumental, lit by a single shaft of warm amber light, deep shadows, epic and mysterious",
+      "motion": "Slow cinematic push-in toward the colossal golden coin; fine dust drifts through the amber shaft of light; faint glints awaken across the metal; solemn, epic mood.",
+      "narracao": "Antes de entender o Bitcoin, entenda o dinheiro. Saifedean Ammous percorre toda a história monetária — das conchas ao ouro, do ouro ao papel — para revelar uma única lei. Vence o dinheiro mais difícil de produzir. Ela explica por que civilizações sobem e caem — e por que o Bitcoin pode ser o dinheiro mais forte já criado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Escolha",
+      "titulo": "Vendabilidade",
+      "img": "an old brass merchant balance scale on dark wood, one pan holds glowing gold, the other ripe fruit decaying into shadow, warm chiaroscuro",
+      "motion": "Gentle sway of the balance scale settling; the gold pan glows warmer while the fruit side dims and withers into shadow; soft drifting dust.",
+      "narracao": "Por que o ouro virou dinheiro, e não o tomate? Por causa da vendabilidade — a facilidade de vender algo sem perder valor. Ela tem três faces — escala, espaço e tempo. A mais importante é o tempo. O melhor dinheiro é o que atravessa os anos sem apodrecer. Guardar valor para o futuro é a função que decide tudo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Régua",
+      "titulo": "Estoque sobre fluxo",
+      "img": "a vast mountain of gold bars stacked into darkness contrasted with a single tiny stream of molten gold trickling from above, dramatic scale, amber light",
+      "motion": "A thin stream of molten gold trickles down onto an immense, near-static mountain of gold bars; the great stock barely changes; heat shimmer rises; epic scale.",
+      "narracao": "Existe uma régua que mede a força de qualquer dinheiro — a razão entre estoque e fluxo. Estoque é tudo que já existe. Fluxo é o quanto se produz por ano. Quando o estoque é gigante e o fluxo é mínimo, nem uma corrida de produção move o valor. Razão alta — moeda forte. Razão baixa — sua poupança evapora."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Vencedor",
+      "titulo": "Por que o ouro venceu",
+      "img": "ancient shells, clay beads and a few worn stone discs lying in shadow, while polished gold coins rise glowing in the warm light above them, history of money",
+      "motion": "The dull shells and beads sink slowly into shadow as the gold coins rise and catch the amber light; slow majestic reveal; drifting motes of dust.",
+      "narracao": "Na história, todo dinheiro fácil de produzir desabou. Conchas, contas, pedras — bastou a tecnologia baratear a oferta, e quem poupou foi expropriado. O ouro venceu por um motivo só — é quase indestrutível e dificílimo de minerar. O maior estoque, o menor fluxo. Foi a base do mundo que mais poupou e prosperou. Mas tinha um calcanhar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Tentação",
+      "titulo": "O dinheiro do governo",
+      "img": "a heavy iron bank vault door ajar in gloom, from which loose paper notes spill and scatter into the dark, a golden glow fading behind, ominous",
+      "motion": "The heavy vault door creaks open; loose paper notes drift and scatter outward into the darkness; the golden glow behind slowly fades; uneasy, ominous mood.",
+      "narracao": "O ouro era pesado — então foi parar em cofres, e o papel virou promessa de ouro. Aí veio a tentação. Para financiar a guerra, em mil novecentos e quatorze, os governos cortaram a âncora. Nasceu o papel sem lastro. Sem o freio da escassez, a inflação virou um imposto invisível — que transfere a sua poupança, silenciosamente."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · O Tempo",
+      "titulo": "Preferência temporal",
+      "img": "two diverging paths in warm amber light, one leads to a grand stone cathedral under construction, the other dissolves into restless smoke, symbolic",
+      "motion": "Camera drifts between two diverging paths; the cathedral path holds firm and luminous while the other ripples and dissolves into smoke; contemplative, cinematic.",
+      "narracao": "O dinheiro molda como você encara o futuro. Dinheiro que guarda valor recompensa quem poupa, planeja, constrói para durar — baixa preferência temporal. Dinheiro que apodrece pune o poupador e premia o gasto e a dívida — alta preferência temporal. Não é só economia. É a diferença entre quem ergue catedrais e quem vive só no agora."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Sinal",
+      "titulo": "Ciclos e juros",
+      "img": "a great golden pendulum mid-swing over cracked ground, light on one side and deep shadow on the other, the tension of a turning point, dramatic",
+      "motion": "A massive golden pendulum swings slowly from light into shadow; fine cracks spread across the ground beneath at the turning point; tense, dramatic atmosphere.",
+      "narracao": "E os juros? Eles são um sinal — dizem quanta poupança real existe para investir. Quando o banco central derruba os juros imprimindo dinheiro, ele mente para a economia inteira. Vem o boom — investimentos que a poupança não sustenta. Depois, o estouro, que limpa os erros. A recessão não é a doença. É a cura do dinheiro fácil."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Liberdade",
+      "titulo": "Dinheiro forte e liberdade",
+      "img": "a single broken iron chain link transforming into a glowing gold ingot, warm light breaking through dark clouds behind, a sense of release",
+      "motion": "A broken iron chain link slowly transmutes into a glowing gold ingot; warm light breaks through dark clouds behind it; a quiet sense of release and freedom.",
+      "narracao": "Há uma ligação direta entre dinheiro forte e liberdade. Sob o ouro, o governo só gasta o que arrecada — e o povo sente o custo. Com a impressora, ele gasta e guerreia sem pedir licença. Poupança segura é liberdade estocada — o poder de esperar e escolher. Destruir a sua reserva de valor encolhe a sua soberania."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Escassez",
+      "titulo": "Bitcoin — 21 milhões",
+      "img": "a luminous geometric golden coin etched with a circuit-like network, floating in dark space, radiant and crystalline, futuristic yet warm",
+      "motion": "A radiant circuit-etched golden coin rotates slowly in dark space; pulses of light travel along its network lines; fine particles orbit it; futuristic, awe-inspiring.",
+      "narracao": "Então chega o Bitcoin — e faz algo inédito. A oferta é fixa em código. Vinte e um milhões. Ninguém — governo, banco ou maioria — pode criar mais. A cada quatro anos, a emissão cai pela metade — o halving. O fluxo corre para zero, e a razão estoque sobre fluxo só sobe, ultrapassando o ouro. Mais demanda não cria mais oferta."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Uso",
+      "titulo": "Para que serve",
+      "img": "a glowing golden vault key resting on dark stone, behind it a faint layered structure of light like stacked settlement tiers, secure and solemn",
+      "motion": "Subtle push-in on a glowing golden key resting on dark stone; faint layers of light shift behind it like stacked tiers; calm, secure, solemn mood.",
+      "narracao": "Mas para que serve, afinal? Não para comprar o cafezinho. Para Ammous, o Bitcoin é ouro digital — reserva de valor que ninguém confisca, congela ou infla, e liquidação final entre quem não confia. A velocidade vem de camadas por cima. A base existe para uma coisa só — garantir escassez. Quem tem as chaves, tem o dinheiro."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Vence o dinheiro mais difícil",
+      "subtitulo": "A lição final",
+      "img": "an ancient gold coin and a glowing digital coin side by side on dark marble, warm dusk light uniting them, timeless and enduring",
+      "motion": "Warm dusk light slowly sweeps across an ancient gold coin and a glowing digital coin side by side; a gentle glow rises uniting them; timeless, enduring mood.",
+      "narracao": "A tese é uma só. Vence o dinheiro mais difícil de produzir — porque ele protege a poupança, e com ela a liberdade. O ouro fez isso por séculos. O Bitcoin tenta fazer com matemática. Se este resumo te fez ver o dinheiro de outro jeito, deixe o like e inscreva-se — toda semana, um grande livro em minutos."
+    }
+  ]
+}

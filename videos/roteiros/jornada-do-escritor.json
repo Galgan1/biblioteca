@@ -1,0 +1,85 @@
+{
+  "slug": "jornada-do-escritor",
+  "titulo": "A Jornada do Escritor",
+  "autor": "Christopher Vogler",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#c9a24a",
+  "musica": true,
+  "provider": "base",
+  "shorts": [1, 6, 8, 9],
+  "youtube": {
+    "titulo": "A estrutura secreta de toda grande história — a Jornada do Herói | A Jornada do Escritor, Vogler",
+    "descricao": "O resumo essencial de A Jornada do Escritor, de Christopher Vogler — a adaptação do monomito de Joseph Campbell para roteiristas. Os 12 estágios da Jornada do Herói e os 8 arquétipos como funções psicológicas: o mapa universal da transformação que está por baixo de quase toda história que te emociona.\n\nO monomito e os arquétipos • Mundo Comum e o Chamado • Recusa e o Mentor • A Travessia do Limiar • Provas, Aliados e a Sombra • A Provação • A Recompensa e o Caminho de Volta • A Ressurreição • O Retorno com o Elixir.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/jornada-do-escritor.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#jornadadoheroi #vogler #roteiro #storytelling #mito #resumo #livros",
+    "tags": ["jornada do heroi", "christopher vogler", "jornada do escritor", "monomito", "campbell", "roteiro", "storytelling", "narrativa", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A Jornada do Escritor",
+      "subtitulo": "Christopher Vogler",
+      "narracao": "Por que mitos de culturas que nunca se encontraram contam a mesma história? Joseph Campbell descobriu um único padrão sob todos eles, e Christopher Vogler o traduziu para o cinema. Chama-se a Jornada do Herói — e ela não é um truque de roteiro. É a forma da transformação humana. Por isso te emociona, do mito antigo ao filme de ontem."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Mapa",
+      "titulo": "Monomito e arquétipos",
+      "narracao": "O mapa tem doze estágios e oito arquétipos. E o segredo do arquétipo é este — ele é uma função, não um tipo. O Mentor, a Sombra, o Arauto, o Guardião do Limiar — são papéis que a história precisa, máscaras que um personagem veste e troca. Não pergunte que personagem colocar. Pergunte que função a cena pede. Estrutura é bússola, não trilho."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Partida",
+      "titulo": "Mundo Comum e o Chamado",
+      "narracao": "Toda jornada começa no Mundo Comum — a vida do herói antes, e o que falta nela. É a casa, para você sentir o tamanho da viagem. Então chega o Chamado à Aventura, trazido por um arauto — uma notícia, um estranho, uma perda. O Chamado quebra o equilíbrio e fecha a porta de trás. A partir dali, seguir como antes deixa de ser possível."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Limiar Interno",
+      "titulo": "Recusa e o Mentor",
+      "narracao": "O herói hesita — a Recusa. Sente medo, e é esse medo que torna humana a coragem. Ninguém recua diante do que é fácil. E surge o Mentor — o velho marinheiro, a lembrança, o código — que entrega um dom, um treino, um conselho. Mas repare — o Mentor abre a porta e se retira. Quem atravessa é o herói. Dom que resolve tudo rouba o arco."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Travessia",
+      "titulo": "O Primeiro Limiar",
+      "narracao": "Então ele cruza o primeiro limiar — e se compromete. É o ponto sem retorno que abre o segundo ato; o mundo antigo se fecha. Na soleira, um Guardião do Limiar testa se ele está pronto. Cuidado — o guardião não é o vilão final. É o filtro. E a sabedoria, muitas vezes, não é vencê-lo na força — é contorná-lo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · O Mundo Especial",
+      "titulo": "Provas, aliados e a Sombra",
+      "narracao": "No mundo especial, o herói aprende as novas regras na pele — provas que o treinam e revelam seu caráter. Ganha aliados, desconfia de camaleões, e encara a Sombra — a oposição. E aqui um segredo — a melhor Sombra é um espelho. O vilão que mostra o que o herói poderia se tornar dá peso ao filme. Inimigo genérico desperdiça o tema."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Crise",
+      "titulo": "A Provação",
+      "narracao": "No centro de tudo, a Provação — a crise. O herói desce à caverna mais profunda, encara seu maior medo, e parece morrer. É uma morte simbólica — uma ilusão, uma identidade, um controle que acaba. E dela ele renasce, transformado. Sem essa morte, não há ressurreição. O público prende a respiração e renasce junto. É daqui que vem a magia da história."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Retorno Começa",
+      "titulo": "Recompensa e Caminho de Volta",
+      "narracao": "Sobrevivente, o herói toma a Recompensa — a espada, o tesouro, ou uma verdade sobre si mesmo. Há um respiro, uma falsa paz. Mas a história ainda não acabou. Vem o Caminho de Volta — as consequências cobram seu preço, a Sombra contra-ataca, a perseguição começa. E o herói reescolhe a missão. Essa decisão de voltar e terminar prova que a transformação pegou."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · O Clímax",
+      "titulo": "A Ressurreição",
+      "narracao": "E então o clímax — a Ressurreição. A prova final, ainda mais dura que a Provação. O herói enfrenta a morte uma última vez e renasce purificado. A situação que o teria destruído no início, agora ele vence — porque é outra pessoa. Cuidado com a regra de ouro — quem vence o clímax é o herói, nunca um salvador que cai do céu."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Círculo Fechado",
+      "titulo": "O Retorno com o Elixir",
+      "narracao": "Falta voltar para casa. O herói retorna ao Mundo Comum trazendo o Elixir — algo que cura o mundo de onde partiu. Sabedoria, amor, liberdade, um remédio. A última imagem responde à primeira — o mesmo lugar, agora transformado por quem mudou. E esta é a regra final — transformação que não volta para casa, e não se reparte, fica incompleta."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "O mapa que mora em nós",
+      "subtitulo": "A lição final",
+      "narracao": "Doze estágios, oito arquétipos, uma só verdade — toda grande história é o mapa de uma transformação. Vogler não inventou esse padrão. Ele o reconheceu, porque ele já mora em nós. Da próxima vez que um filme te emocionar, você vai ver a jornada por baixo. Se este resumo te abriu os olhos, deixe o like e inscreva-se — toda semana, um grande livro em minutos."
+    }
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "slug": "poder-do-silencio",
+  "titulo": "O Poder do Silêncio",
+  "autor": "Eckhart Tolle",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#9bb0c2",
+  "musica": true,
+  "provider": "base",
+  "shorts": [2, 3, 8, 11],
+  "estilo_img": "cinematic atmospheric digital painting, serene minimalist, deep charcoal and soft moonlit silver-blue palette, vast empty space, gentle volumetric haze and still water, painterly brushwork, subtle film grain, contemplative tranquil meditative mood, wide cinematic composition, highly detailed, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Quem é você quando os pensamentos param? | O Poder do Silêncio, Eckhart Tolle",
+    "descricao": "O resumo essencial de O Poder do Silêncio (Stillness Speaks), de Eckhart Tolle — sobre a calma que existe sob o barulho da mente, a desidentificação com o pensamento, o ego, o poder do Agora, a aceitação e o fim do sofrimento.\n\nA calma sob o ruído • Você não é seus pensamentos • O ego • Como reconhecer o ego • O poder do Agora • O corpo como âncora • Aceitação • A fórmula que nunca falha • A natureza como mestra • O corpo sofrido • O fim do sofrimento • A calma que sempre esteve aqui.\n\n📚 Acervo em cheat sheets: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#oPoderDoSilencio #eckhartTolle #presença #espiritualidade #autoconhecimento #resumo #livros",
+    "tags": ["o poder do silencio", "eckhart tolle", "stillness speaks", "presença", "meditação", "espiritualidade", "autoconhecimento", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "O Poder do Silêncio",
+      "subtitulo": "Eckhart Tolle",
+      "img": "a vast dark still lake at night under faint moonlight, perfectly calm water reflecting a hazy silver sky, profound silence and emptiness, contemplative",
+      "motion": "Almost imperceptible ripples drift across the still dark water; faint mist rolls slowly over the surface; the moonlit reflection shimmers gently; static camera, deep meditative calm.",
+      "narracao": "Você já deitou exausto — e a sua mente simplesmente não desligou? Uma voz que comenta, julga, repete e planeja, sem parar. Eckhart Tolle dá um nome a isso — e uma saída. Por baixo desse barulho existe uma calma que nunca se alterou. E essa calma, diz ele, é quem você realmente é."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Calma",
+      "titulo": "A calma sob o ruído",
+      "img": "a single smooth stone resting on still dark water, concentric ripples spreading outward into silver-blue haze, minimalist and tranquil",
+      "narracao": "Calma não é a ausência de som — é a presença de consciência. O barulho de fora tem um gêmeo dentro de você: o pensamento compulsivo. Mas existem intervalos. Entre dois pensamentos. Entre uma palavra e outra. Entre inspirar e expirar. Nessas frestas, você não pensa — apenas percebe. E perceber já é estar em paz."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Descoberta",
+      "titulo": "Você não é seus pensamentos",
+      "img": "a wide misty void with a single faint point of light suspended in soft darkness, vast empty contemplative space, silver-blue tones",
+      "narracao": "A descoberta que muda tudo é simples — você não é seus pensamentos. Você é aquele que os observa. Ao dizer 'estou tendo o pensamento de que falhei', em vez de 'eu falhei', abre-se um espaço. Nesse espaço mora a liberdade. O pensamento continua — mas deixa de ser o seu dono."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Ego",
+      "titulo": "O eu que nunca se satisfaz",
+      "img": "a hall of faint overlapping mirror reflections fading into dark haze, a sense of a fabricated self multiplying, cold silver light, unsettling and empty",
+      "narracao": "Mas há um pensamento que insiste em ser você — o ego. Um 'eu' fabricado pela mente, movido por medo e desejo, que nunca se satisfaz. Ele vive de comparação e de queixa. Conquista algo e, em segundos, já quer outra coisa. O ego não procura a paz — porque, na paz, ele desaparece."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Flagrante",
+      "titulo": "Como reconhecer o ego",
+      "img": "five faint identical shadows cast on a misty floor receding into darkness, soft cold light, minimalist and quiet",
+      "narracao": "Como flagrar o ego em ação? Ele tem assinaturas. A reclamação sem nenhuma vontade de mudar. A necessidade de estar sempre certo. A história em que você é sempre a vítima. A comparação constante. E usar o presente só como meio para o futuro. Percebeu uma delas? Pronto — já não é mais ela quem comanda."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · O Agora",
+      "titulo": "A única realidade",
+      "img": "an endless calm horizon where dark water meets hazy sky with no past or future, a single present instant of soft light, vast and still",
+      "motion": "Soft haze drifts slowly along the endless horizon; the faint light at the center pulses almost imperceptibly; the still water barely breathes; static camera, timeless calm.",
+      "narracao": "O ego se alimenta de tempo — remói o passado, teme o futuro. Mas Tolle aponta um fato incontornável — nada jamais aconteceu fora do agora. Passado e futuro são pensamentos, e acontecem sempre neste instante. A vida não está adiante, nem atrás. Ela é só aqui. E só aqui ela pode ser vivida."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Âncora",
+      "titulo": "O corpo como porta",
+      "img": "soft moonlight resting on open upturned hands emerging from darkness, gentle silver glow, intimate and still, no face",
+      "narracao": "E quando a mente te arrasta para a ansiedade do depois? Há uma âncora sempre à mão — o corpo. Sinta as mãos. Os pés. O ar entrando e saindo. O corpo só existe agora. Ao senti-lo, você é puxado de volta ao único lugar onde a paz é possível — este momento."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Aceitação",
+      "titulo": "Aceitar não é desistir",
+      "img": "a calm river flowing smoothly around a dark stone without resistance, soft silver reflections, serene and yielding",
+      "narracao": "O próximo passo parece fraqueza, mas é força — a aceitação. Não é concordar com tudo, nem desistir. É parar de brigar por dentro com aquilo que já é. A dor de uma situação é inevitável. O sofrimento vem da resistência a ela. Aceitar é trocar a guerra interna pela paz — sem mudar nada lá fora."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Entrega",
+      "titulo": "A fórmula que nunca falha",
+      "img": "ripples within ripples on dark water, ever deeper concentric circles dissolving into calm, soft silver-blue light, meditative",
+      "narracao": "Mas e quando você simplesmente não consegue aceitar? Tolle dá a fórmula que nunca falha — aceite a sua não-aceitação. Não consegue se entregar? Entregue-se à sua não-entrega. Há sempre um nível mais profundo onde o sim é possível. E basta um sim sincero para a resistência se dissolver e a calma voltar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Mestra",
+      "titulo": "A natureza ensina",
+      "img": "a solitary ancient tree standing in soft mist at dawn, deeply rooted and utterly still, muted silver-green and charcoal tones, serene",
+      "motion": "Thin mist drifts slowly between the still branches; a few leaves tremble almost imperceptibly; soft dawn light grows gently; static camera, deep rooted calm.",
+      "narracao": "Onde treinar tudo isso? Tolle aponta para a janela — a natureza. Uma árvore, uma pedra, um animal existem numa calma anterior ao pensamento. Olhe para algo natural sem nomeá-lo. Por um instante, o observador e o observado se fundem. Essa fusão silenciosa tem um nome muito antigo — e o nome é amor."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · A Dor Antiga",
+      "titulo": "O corpo sofrido",
+      "img": "a dark heavy cloud slowly lifting off still water revealing calm beneath, faint silver light breaking through, somber turning to serene",
+      "narracao": "Mas há uma dor antiga que insiste em voltar — Tolle a chama de corpo sofrido. Um acúmulo de mágoas do passado que desperta e quer mais. Ele se alimenta do drama, sobretudo nos relacionamentos. A saída é a mesma — perceber, sem virar a dor. 'Ah, o corpo sofrido acordou.' Visto, ele perde a força."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Virada",
+      "titulo": "O fim do sofrimento",
+      "img": "first light of dawn dissolving the last mist over perfectly still water, profound peace and clarity emerging, soft silver-gold glow",
+      "narracao": "E aqui está a virada mais profunda do livro. Não são as situações que te fazem sofrer — são os seus pensamentos sobre elas. O sofrimento, diz Tolle, é necessário apenas até você perceber que ele é desnecessário. No instante em que você o observa em silêncio, sem alimentá-lo, ele começa a se dissolver."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "A calma que sempre esteve aqui",
+      "subtitulo": "A lição final",
+      "img": "a vast serene dawn over calm water, complete stillness and quiet light filling the whole frame, peaceful and infinite",
+      "motion": "Gentle dawn light slowly fills the calm water; the last thread of mist dissolves; the surface settles into perfect stillness; static camera, profound peace.",
+      "narracao": "No fim, não há nada a alcançar. A calma que você procura é aquilo que procura. Ela nunca foi embora — só estava encoberta pelo ruído. Pare, por um segundo, e escute. Se este resumo te trouxe um instante de paz, deixe o like e inscreva-se — toda semana, um grande livro em minutos."
+    }
+  ]
+}

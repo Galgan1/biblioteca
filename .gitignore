@@ -1,0 +1,42 @@
+# ===== SEGREDOS — NUNCA versionar =====
+**/.secrets/
+**/*token*.json
+**/*client_secret*
+*.key
+*.pem
+*.crt
+*.keystore
+*.env
+.env*
+
+# ===== Config local / repos aninhados =====
+.claude/
+book-to-skill/
+
+# ===== Dependências e caches =====
+node_modules/
+__pycache__/
+*.pyc
+
+# ===== Mídia pesada (gerada / regenerável) =====
+*.mp4
+*.wav
+*.mp3
+*.7z
+*.sf2
+*.mid
+
+# ===== Artefatos de geração de vídeo/áudio =====
+videos/_*/
+
+# ===== Scratch / gerados / regeneráveis =====
+_pdfcheck/
+_hi/
+pdfs/
+downloads/
+ocr_data/
+*.bak
+
+# ===== OS / editor =====
+Thumbs.db
+.DS_Store

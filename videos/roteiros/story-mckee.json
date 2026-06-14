@@ -1,0 +1,126 @@
+{
+  "slug": "story-mckee",
+  "titulo": "Story",
+  "autor": "Robert McKee",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#cfa05a",
+  "musica": true,
+  "provider": "google",
+  "estilo_img": "cinematic atmospheric digital painting, deep charcoal and warm tungsten amber palette with cool silver projector light, dramatic volumetric haze and soft directional light, painterly brushwork, subtle film grain, intimate contemplative mood, wide cinematic composition, highly detailed, no children, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que você não consegue parar de assistir? | Story, Robert McKee",
+    "descricao": "O resumo essencial de Story, de Robert McKee — o manual de narrativa mais influente de Hollywood. O mecanismo que prende o público, personagem contra caracterização, o incidente incitante, subtexto, o princípio do antagonismo, o dilema, o clímax e o método de escrever de trás para a frente.\n\nO problema • A fresta • Personagem e caracterização • O incidente incitante • Cenas que viram • Subtexto • O princípio do antagonismo • O dilema • O clímax • A ideia de controle • O método • Escreva com coragem.\n\n📚 Biblioteca de André Galgani — https://www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração e imagens geradas por IA.\n\n#story #robertMckee #roteiro #storytelling #resumo #livros",
+    "tags": [
+      "story robert mckee",
+      "robert mckee",
+      "roteiro",
+      "storytelling",
+      "narrativa",
+      "escrita criativa",
+      "resumo de livro",
+      "resumo",
+      "livros",
+      "cinema"
+    ],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Story",
+      "subtitulo": "Robert McKee",
+      "img": "a vast dark movie theater with empty red velvet seats, a lone adult silhouette seated in the middle, a brilliant projector beam cutting through haze from behind, intimate and monumental",
+      "motion": "Dust motes drift slowly through the bright projector beam; the light flickers subtly like a running film; the silhouette sits perfectly still; static camera, hushed reverent mood.",
+      "narracao": "Você já perdeu a hora de dormir porque era só mais um episódio? Isso não é falta de disciplina. É engenharia. Existe um mecanismo por trás de toda história que prende — e um homem passou trinta anos decifrando como ele funciona. O nome dele é Robert McKee. E o manual se chama Story."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Problema",
+      "titulo": "História boa, bem contada",
+      "img": "a vintage typewriter under a warm tungsten desk lamp in a dark study, crumpled pages scattered around it like snow, deep chiaroscuro, quiet frustration",
+      "narracao": "A resposta é mecânica. Por baixo de toda história que funciona existe uma estrutura invisível — e Story a destrincha peça por peça. Nos estúdios, um roteiro lindo com história ruim é recusado. Um torto com história brilhante é comprado. Talento é o que você traz — ofício é o que você constrói. E todo ofício começa numa fresta."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Mecanismo",
+      "titulo": "A fresta",
+      "img": "a dark stage floor split by a narrow glowing crack of golden light, an adult silhouette on one side reaching toward a distant door on the other, haze drifting",
+      "motion": "Golden haze drifts slowly through the glowing crack in the floor; the light pulses gently like breathing; the silhouette stands almost still; static camera, suspended tension.",
+      "narracao": "O mecanismo que te prende tem nome — a fresta. O personagem age esperando uma reação do mundo. E o mundo devolve outra coisa. Entre a expectativa e o resultado, abre-se um vão — e a sua mente precisa fechá-lo. É por isso que você não consegue parar. Cada cena abre uma nova fresta."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Personagem",
+      "titulo": "A máscara e a escolha",
+      "img": "an elegant theatrical mask half-lifted on a dressing room table, warm bulb lights around a dark mirror, deep shadow waiting beneath the mask, chiaroscuro",
+      "narracao": "Quem é um personagem? Não é a aparência, o emprego, o jeito de falar — isso é caracterização, a máscara. O verdadeiro caráter aparece numa única situação — a escolha sob pressão. Quanto maior a pressão, mais verdadeira a revelação. Sob pressão, o covarde foge. O herói também quer fugir — e fica."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Início",
+      "titulo": "O incidente incitante",
+      "img": "a single struck match flaring brilliantly in total darkness, sparks scattering, the flame illuminating the edge of a manuscript page, dramatic macro composition",
+      "narracao": "Toda história começa com um evento que tira a vida do equilíbrio — o incidente incitante. Um tubarão devora uma banhista. Uma esposa vai embora. A partir daí, o público faz uma exigência silenciosa — quer ver o confronto final. McKee chama isso de cena obrigatória. A história é a dívida. O clímax é o pagamento."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Cena",
+      "titulo": "Cenas que viram",
+      "img": "a vintage film editing room with strips of film hanging like curtains in the dark, one strip glowing warm amber against the cold others, dust in the light",
+      "narracao": "Mas a dívida se paga em prestações — cena a cena. E a regra é uma só — toda cena precisa virar um valor. O herói entra com esperança e sai em desespero. Entra perdendo e sai vencendo. Se sai igual ao que entrou, nada aconteceu — é atividade, não ação. McKee é direto. Corte."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Não Dito",
+      "titulo": "Subtexto",
+      "img": "two empty chairs facing each other at a small café table by a rain-streaked window at night, warm interior light, steam rising from two abandoned cups",
+      "narracao": "Mas saber que a cena vira não basta — a maioria vira pela superfície e mente no fundo. O ditado de Hollywood avisa — se a cena é sobre o que parece ser, você está em apuros. Quer escrever amor? Ponha duas pessoas trocando um pneu. O público vê através — e sorri. O que importa é o que ninguém disse."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Antagonismo",
+      "titulo": "O tamanho do dragão",
+      "img": "a tiny adult silhouette holding a small lantern facing an immense dragon shadow cast across a vast dark wall, warm lantern glow against cold darkness, epic scale contrast",
+      "motion": "The lantern flame flickers warmly; the immense dragon shadow breathes slowly on the wall; haze drifts low across the floor; static camera, awe and dread in stillness.",
+      "narracao": "E o que faz a história inteira virar com força? O tamanho do obstáculo. Uma história vale exatamente o que valem as forças contra o protagonista — o herói só cresce na medida do dragão que enfrenta. Roteiro fraco? Não melhore o herói. Fortaleça o que se opõe a ele — até o herói ser obrigado a se superar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Escolha",
+      "titulo": "O dilema",
+      "img": "a forked corridor backstage in an old theater, two passages lit with equal warm amber light, an adult silhouette frozen exactly between them, haze and ropes and curtains",
+      "narracao": "E diante do dragão chega a escolha — que nunca é entre o bem e o mal. Essa não é escolha, é obviedade. A escolha verdadeira é o dilema. Dois bens irreconciliáveis — e só um cabe na vida. Ou o menor de dois males. O preço pago na escolha é o que encerra a história."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Final",
+      "titulo": "Inevitável e inesperado",
+      "img": "a grand theater stage flooded with golden light as the heavy red curtain begins to close, seen from the dark empty audience, monumental farewell",
+      "motion": "The heavy red curtain sways slowly as it begins to close; golden stage light pulses softly through the gap; dust drifts in the beams; static camera, solemn grandeur.",
+      "narracao": "E tudo aponta para um lugar — o clímax, que precisa ser a experiência mais forte de toda a história. Aristóteles deu a régua — inevitável e inesperado. Olhando para trás, era o único caminho. Vivendo para a frente, ninguém previu. E tudo o que não ajuda a chegar até ele deve ser cortado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Significado",
+      "titulo": "A ideia de controle",
+      "img": "a single taut golden thread stretched through a dark labyrinth of towering bookshelves, glowing faintly, leading toward a distant warm light",
+      "narracao": "Sob tudo isso, uma frase — a ideia de controle. Valor mais causa — a justiça triunfa porque o herói é mais astuto que o criminoso. Uma história é a prova viva de uma ideia. E a regra de ouro — nunca explique. Dramatize. O público não precisa entender. Precisa acreditar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · O Método",
+      "titulo": "De dentro para fora",
+      "img": "hundreds of index cards pinned across a vast corkboard wall in a dim study, one warm desk lamp glowing, a few cards fallen to the floor, obsessive devotion",
+      "narracao": "É por isso que McKee manda escrever de trás para a frente — descubra o final primeiro. Quatro meses em fichas antes da primeira linha de diálogo. Crie dez versões de cada cena — e destrua nove. Conte a história em dez minutos a um amigo — se não segura assim, não segura na tela. O diálogo vem por último. E vem fácil."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Escreva com coragem",
+      "subtitulo": "A lição final",
+      "img": "a dawn-lit writing desk by a tall window, a vintage typewriter waiting with a fresh page, city rooftops in golden morning haze beyond, quiet resolve",
+      "motion": "Golden dawn light slowly widens across the desk and typewriter; dust motes rise gently through the beam; thin haze drifts over the rooftops outside; static camera, quiet hopeful mood.",
+      "narracao": "McKee encerra com a fábula da milípede — ao pensar em como andava, ela travou. Estudando perna por perna, voltou a andar. E dançou. Estudo transforma instinto em comando. E agora você sabe — toda vez que não conseguiu parar de assistir, era uma fresta aberta. McKee mostrou o mecanismo. Escreva com coragem — o resto é escolha sua."
+    }
+  ]
+}

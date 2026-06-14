@@ -1,0 +1,7 @@
+{
+  "_leia-me": "Vendas Amazon Associados (sem API: PA-API exige 3 vendas; o relatorio so existe no painel associados.amazon.com.br > Relatorios). Para preencher a coluna Vendas da planilha: baixe o relatorio de pedidos/ganhos, e liste aqui chave=slug-do-livro (ex.: padrao-bitcoin) OU o ASIN, valor=quantidade vendida. Depois rode: python videos/coletar_datas.py && python gerar_metadados.py && deploy. Apague _exemplo quando preencher de verdade.",
+  "_exemplo": {
+    "padrao-bitcoin": 2,
+    "8550827673": 1
+  }
+}

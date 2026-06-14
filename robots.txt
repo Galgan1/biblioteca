@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.andregalgani.com.br/biblioteca/sitemap.xml

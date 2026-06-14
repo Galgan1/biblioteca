@@ -1,0 +1,117 @@
+{
+  "slug": "futebol-brasileiro",
+  "titulo": "A História do Futebol Brasileiro",
+  "autor": "a partir de Mário Filho, Bellos e Galeano",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#e0b53a",
+  "musica": true,
+  "provider": "google",
+  "shorts": [3, 8, 10, 12],
+  "efeitos": {"cap": 3, "intensidade": 0.8, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, dramatic volumetric light, deep emerald green and warm gold palette, Brazilian football heritage mood, symbolic and painterly, subtle film grain, no real people, no recognizable faces, generic silhouettes only, no text, no letters, no numbers, no logos, no watermark",
+  "youtube": {
+    "titulo": "Como o Brasil virou o PAÍS DO FUTEBOL — a história do futebol brasileiro (de 1894 ao 7 a 1)",
+    "descricao": "Estamos em Copa do Mundo — e esta é a história de como um esporte de elite branca virou a alma do Brasil. De Charles Miller (1894) ao 7 a 1, passando pelo 'pó de arroz', a ruptura do Vasco (1923), Friedenreich, a profissionalização (1933), Leônidas, a invenção do futebol-arte, o Maracanazo de 1950 e o 'complexo de vira-lata', o tri de Pelé e Garrincha (1958/1962/1970), a beleza que perdeu em 1982, o tetra e o penta (1994/2002) — até o espelho do país em 2014.\n\nInspirado no maior clássico do tema, 'O Negro no Futebol Brasileiro', de Mário Filho (1947), com Alex Bellos e Eduardo Galeano.\n\nOrigem de elite • O pó de arroz • A ruptura do Vasco • Friedenreich • Profissionalização e Leônidas • O futebol-arte • O Maracanazo • O tri de Pelé • 1982, o tetra e o penta • O 7 a 1 e o espelho do Brasil.\n\n📚 Página completa: www.andregalgani.com.br/biblioteca/futebol-brasileiro.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo com narração e imagens geradas por inteligência artificial.\n\n#copadomundo #futebol #brasil #selecaobrasileira #pele #historia #futebolbrasileiro",
+    "tags": ["futebol brasileiro", "história do futebol", "copa do mundo", "seleção brasileira", "pelé", "garrincha", "maracanazo", "7 a 1", "mário filho", "futebol arte", "resumo", "minuto real"],
+    "privacidade": "public"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A História do Futebol Brasileiro",
+      "subtitulo": "Como o esporte virou a alma do país",
+      "img": "a vast empty historic football stadium at dawn, a single round black and white soccer ball on dewy green grass in the center circle, god rays through morning mist, hopeful and epic mood",
+      "motion": "slow drifting mist and gentle god rays shimmering, subtle light flicker, calm",
+      "narracao": "O futebol chegou ao Brasil como passatempo de uma elite branca e rica — e virou a coisa mais brasileira que existe. Como? A resposta é a história de um país inteiro aprendendo a se olhar no espelho. Do primeiro chute em mil oitocentos e noventa e quatro ao sete a um, esta é a história do futebol brasileiro."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Origem",
+      "titulo": "Um esporte de elite",
+      "img": "an old leather football and a vintage rulebook on an elegant wooden table, early 1900s aristocratic club atmosphere, sepia and emerald tones, exclusive and refined",
+      "narracao": "Tudo começou com Charles Miller, que voltou da Inglaterra em mil oitocentos e noventa e quatro com duas bolas e um livro de regras. O jogo entrou pela porta da aristocracia — clube fechado, sócios brancos, vestidos à inglesa. Era marca de status, não paixão de rua. O povo jogava longe dali, na várzea."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Barreira",
+      "titulo": "O pó de arroz",
+      "img": "a divided football pitch, one half bright and manicured, the other a raw dirt field, a powder puff and an old mirror resting symbolically on the line, somber and tense",
+      "narracao": "Para entrar no futebol de elite, o jogador de pele escura precisava parecer branco. Conta a lenda que um mulato do Fluminense empoava o rosto para clarear — e nasceu o apelido pó de arroz. A barreira era clara — havia dois futebóis, e o talento de verdade estava do lado de fora."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Ruptura",
+      "titulo": "O Vasco quebra o muro",
+      "img": "a defiant working-class football team in silhouette standing under stadium lights, breaking through a cracked stone wall, dramatic backlight, triumphant and historic",
+      "narracao": "Até que, em mil novecentos e vinte e três, o Vasco escalou negros, mulatos e operários — e foi campeão logo na estreia. A elite reagiu criando uma liga só dela, com regras feitas para barrar o pobre. Mas o Vasco não recuou. O muro tinha rachado, e não havia mais volta."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Pioneiro",
+      "titulo": "Friedenreich, antes de Pelé",
+      "img": "a lone early-20th-century footballer silhouette mid-dribble in a misty old stadium, a comb and mirror in deep shadow nearby, vintage heroic portrait with the face turned away, green and gold light",
+      "narracao": "Antes de Pelé, houve Friedenreich. Filho de pai alemão e mãe negra, foi o maior craque do Brasil das primeiras décadas e marcou o gol do título sul-americano de mil novecentos e dezenove. Mestiço, alisava o cabelo no vestiário — o maior ídolo do país carregava, no corpo, a contradição do próprio Brasil."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Abertura",
+      "titulo": "Profissão e Diamante Negro",
+      "img": "a dramatic bicycle-kick silhouette frozen midair against a glowing golden sky, a subtle black diamond motif of light, 1930s stadium, iconic and dynamic, face not visible",
+      "narracao": "Em mil novecentos e trinta e três, o futebol virou profissão — quem joga, recebe. O último muro do amadorismo caiu, e o talento popular chegou ao topo. Surgiu Leônidas, o Diamante Negro, craque da bicicleta e artilheiro da Copa de mil novecentos e trinta e oito. O Brasil já jogava com voz própria."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Estilo",
+      "titulo": "A invenção do futebol-arte",
+      "img": "an abstract dancing footballer silhouette flowing with samba and capoeira movement, swirling golden light trails orbiting a soccer ball, the art of the dribble, joyful and luminous",
+      "motion": "swirling golden light trails gently orbiting, soft particle drift, graceful",
+      "narracao": "E foi aí que o Brasil parou de imitar e começou a inventar. Do encontro da técnica com a malandragem, a capoeira e o samba, nasceu a ginga — drible, finta, improviso. Galeano chamou de futebol-arte — a beleza como fim, não só a vitória como meio. O mundo nunca mais desgrudou os olhos."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Tragédia",
+      "titulo": "O Maracanazo",
+      "img": "a once-packed 1950 stadium falling into silence, a single ball resting in the empty center circle, cold blue twilight, profound melancholy and the weight of a nation",
+      "motion": "faint drifting fog over the empty pitch, light slowly dimming, heavy stillness",
+      "narracao": "Mil novecentos e cinquenta. Copa em casa, Brasil favorito, só faltava empatar. Diante de quase duzentas mil pessoas, perdeu de virada para o Uruguai. O silêncio do Maracanã virou trauma nacional — Nelson Rodrigues batizou de complexo de vira-lata. Mas, no fundo daquela dor, já nascia uma fome de redenção."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Redenção",
+      "titulo": "1958 — enfim campeão",
+      "img": "a golden world cup style trophy rising into bright stadium floodlights, confetti of light falling, a young footballer silhouette celebrating with arms raised, redemption and pure joy",
+      "narracao": "A redenção veio da Suécia. Em mil novecentos e cinquenta e oito, o Brasil foi enfim campeão do mundo — e surgiu um menino de dezessete anos chamado Pelé, ao lado de Garrincha. Quatro anos depois, no Chile, veio o bi. O vira-lata tinha virado campeão."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Auge",
+      "titulo": "1970, o time perfeito",
+      "img": "five footballer silhouettes in perfect formation passing the ball toward a goal, warm golden hour light, a sweeping collective move, masterpiece and harmony, no visible faces",
+      "motion": "soft golden dust motes drifting in the floodlight, gentle warm haze, slow",
+      "narracao": "Mas o auge foi mil novecentos e setenta, no México. Pelé, Tostão, Gérson, Jairzinho, Rivelino — tricampeão com uma campanha perfeita e o gol coletivo mais bonito da história. Para muitos, o melhor time de todos os tempos. Ali o Brasil ganhou, de vez, o apelido de país do futebol."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · Glória e Beleza",
+      "titulo": "1982, o tetra e o penta",
+      "img": "a graceful losing team in silhouette walking off a glowing pitch with heads held high, while two distant golden stars shine above the stadium, bittersweet turning to triumphant",
+      "narracao": "Nem toda lenda é campeã. Em mil novecentos e oitenta e dois, o time de Sócrates e Zico encantou o mundo e perdeu — a derrota mais amada do futebol. A taça voltaria em noventa e quatro, com Romário, e em dois mil e dois, com Ronaldo. Cinco estrelas — ninguém ganhou mais."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · O Espelho",
+      "titulo": "O 7 a 1 e a nossa cara",
+      "img": "a large cracked mirror reflecting a stadium, one half in golden celebration and the other half in dark defeat, the duality of a nation, poignant and deeply symbolic",
+      "narracao": "E então, em dois mil e quatorze, em casa de novo, veio o avesso de cinquenta — o sete a um para a Alemanha. Da glória ao trauma, o futebol sempre foi o espelho do Brasil — a festa e a ferida, o gênio e a queda. Não é fuga da realidade. É a nossa cara."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "O futebol é o Brasil",
+      "subtitulo": "Grandes temas, em minutos",
+      "img": "a single round soccer ball on green grass under a vast warm sky at golden hour, a quiet stadium horizon in the distance, timeless emotional and inviting",
+      "motion": "gentle breeze over the grass, warm light slowly pulsing, clouds drifting softly",
+      "narracao": "De Charles Miller a Neymar, o futebol é onde o Brasil se vê inteiro. Um esporte de elite que o povo tomou para si e transformou em arte. Qual é o seu maior momento da seleção? Conta aqui embaixo. Se essa história te emocionou, deixa o like e se inscreve — toda semana, um grande tema, no Minuto Real."
+    }
+  ]
+}

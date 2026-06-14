@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Minuto Real · Autorização TikTok</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+         font-family: ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
+         background:#0b1411; color:#e8f3ee; padding:24px; }
+  .card { max-width:560px; width:100%; background:#11201b; border:1px solid #1f4034;
+          border-radius:14px; padding:28px 26px; }
+  h1 { font-size:20px; margin:0 0 6px; color:#9be6c2; }
+  p { font-size:14px; line-height:1.5; color:#b9cfc6; margin:8px 0; }
+  .label { font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:#7fae9b; margin-top:18px; }
+  code { display:block; background:#0a1714; border:1px solid #1f4034; border-radius:8px;
+         padding:12px 14px; margin-top:6px; font-size:13px; word-break:break-all; color:#e8f3ee; }
+  button { margin-top:16px; background:#1f7a55; color:#fff; border:0; border-radius:8px;
+           padding:11px 18px; font-size:14px; font-weight:600; cursor:pointer; }
+  button:hover { background:#26966a; }
+  .ok { color:#9be6c2; }
+  .err { color:#ff9b9b; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Minuto Real · Autorização TikTok</h1>
+    <p id="msg">Lendo o retorno da autorização…</p>
+    <div id="codebox" style="display:none">
+      <div class="label">Authorization code</div>
+      <code id="code">—</code>
+      <div class="label">State</div>
+      <code id="state">—</code>
+      <button id="copy">Copiar tudo</button>
+      <p class="ok">Copie o conteúdo e cole para o assistente concluir a conexão.</p>
+    </div>
+  </div>
+<script>
+  var q = new URLSearchParams(location.search);
+  var code = q.get('code'), state = q.get('state'), err = q.get('error');
+  var msg = document.getElementById('msg');
+  if (err) {
+    msg.innerHTML = '<span class="err">Autorização não concluída: ' + err +
+                    (q.get('error_description') ? ' — ' + q.get('error_description') : '') + '</span>';
+  } else if (code) {
+    msg.textContent = 'Autorização recebida. ✅';
+    document.getElementById('codebox').style.display = 'block';
+    document.getElementById('code').textContent = code;
+    document.getElementById('state').textContent = state || '(sem state)';
+    document.getElementById('copy').onclick = function () {
+      navigator.clipboard.writeText('code=' + code + '\nstate=' + (state || ''));
+      this.textContent = 'Copiado!';
+    };
+  } else {
+    msg.innerHTML = '<span class="err">Nenhum código na URL.</span> Esta página recebe o retorno do TikTok após você clicar em “Autorizar”.';
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf _work/*)",
+      "Bash(timeout 400 python gerar_video.py roteiros/arte-da-guerra.json)",
+      "mcp__Claude_in_Chrome__javascript_tool"
+    ]
+  }
+}

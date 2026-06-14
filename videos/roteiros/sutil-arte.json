@@ -1,0 +1,112 @@
+{
+  "slug": "sutil-arte",
+  "titulo": "A Sutil Arte de Ligar o F*da-se",
+  "autor": "Mark Manson",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#e07a2f",
+  "musica": true,
+  "provider": "base",
+  "shorts": [1, 4, 6, 9],
+  "efeitos": {"cap": 3, "intensidade": 0.8, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, bold orange and deep charcoal palette, minimalist symbolic imagery of calm amid chaos, a single steady object in a storm, painterly brushwork, subtle film grain, irreverent honest mood, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que correr atrás da felicidade te deixa infeliz | A Sutil Arte de Ligar o F*da-se, Mark Manson",
+    "descricao": "O resumo essencial de A Sutil Arte de Ligar o F*da-se, de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), você não é especial, bons vs maus valores, responsabilidade ≠ culpa, e a morte como bússola.\n\nA cota de fodas-se • O loop do inferno • A felicidade é um problema • Você não é especial • Bons e maus valores • Mude a métrica • Responsabilidade não é culpa • Faça algo • E então você morre.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/sutil-arte.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#asutilarte #markmanson #autoconhecimento #filosofia #resumo #livros",
+    "tags": ["a sutil arte de ligar o foda-se", "mark manson", "autoajuda", "filosofia", "comportamento", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A Sutil Arte de Ligar o F*da-se",
+      "subtitulo": "Mark Manson",
+      "img": "a single calm candle flame steady inside a chaotic swirling storm of orange and ash, contrast of peace and chaos",
+      "narracao": "Quanto mais você corre atrás de ser feliz, mais infeliz parece ficar. Mark Manson faz a autoajuda ao contrário — o problema não é falta de positividade, é o excesso dela. Você tem uma cota limitada de energia pra se importar. A arte é escolher com o quê."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Cota",
+      "titulo": "Você não dá conta de tudo",
+      "img": "a small finite pile of glowing coins being spent, scarcity of attention, warm orange light, symbolic",
+      "narracao": "Seus fodas-se são limitados — gastar com tudo é falir emocionalmente. Não dar a mínima, diz Manson, não é ser frio; é escolher poucas coisas, e melhores. Quem se incomoda com cada crítica, cada fila, cada opinião, não sobra energia pro que de fato importa."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Loop do Inferno",
+      "titulo": "Sentir-se mal por se sentir mal",
+      "img": "an endless spiral feeding into itself, anxiety about anxiety, dark orange vortex, symbolic",
+      "narracao": "Tem uma armadilha que Manson chama de loop do inferno — você fica ansioso, e aí fica ansioso por estar ansioso. A obsessão por se sentir bem fabrica mais sofrimento. A saída não é pensar positivo; é aceitar a emoção ruim como normal e parar de brigar com ela."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Virada",
+      "titulo": "A felicidade é um problema",
+      "img": "a path of stepping stones where each stone is a problem solved leading to the next, endless but purposeful",
+      "narracao": "Felicidade não é um lugar sem problemas — vem de resolver problemas. A vida só troca um problema por outro. Então a pergunta certa não é o que você quer; todo mundo quer o prêmio. É — que dor você está disposto a sustentar pra chegar lá?"
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Alívio",
+      "titulo": "Você não é especial",
+      "img": "one ordinary pebble among many on a vast beach, humble and free, soft warm light, symbolic of being average",
+      "narracao": "E aqui vem um alívio disfarçado de tapa — você não é especial. A cultura do extraordinário te faz esperar grandeza o tempo todo e desabar na primeira mediocridade. Aceitar-se mediano na maioria das coisas libera energia pras poucas que realmente importam."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Régua",
+      "titulo": "Bons e maus valores",
+      "img": "a balance scale weighing solid inner stones against fleeting smoke, internal vs external values, symbolic",
+      "narracao": "Tudo na sua vida se mede por valores. Maus valores são externos e sem fim — prazer, status, estar certo; você nunca chega. Bons valores dependem de você — honestidade, curiosidade, responsabilidade. A régua errada faz sofrer à toa; a régua certa dá sentido à dor."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Chave",
+      "titulo": "Mude a métrica",
+      "img": "a ruler being swapped for a different ruler, the same object measured anew, clarity dawning, warm light",
+      "narracao": "E essa é a grande virada do livro — você não controla o resultado, controla a métrica pela qual se mede. O mesmo dia é vitória ou fracasso conforme o valor que você usa. Troque a régua errada pela certa, e a vida inteira muda de cor."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · O Poder",
+      "titulo": "Responsabilidade não é culpa",
+      "img": "a hand taking hold of a steering wheel in a storm, agency and control, resolve, warm orange glow",
+      "narracao": "Manson separa duas coisas que a gente embola — culpa e responsabilidade. Você pode não ter culpa do que te aconteceu, mas é sempre responsável por como responde. Culpar o mundo dá alívio curto e impotência longa. Assumir a resposta, mesmo sem culpa, devolve o controle."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Dúvida",
+      "titulo": "Você está errado sobre tudo",
+      "img": "a question mark made of light dissolving a rigid statue of certainty, growth through doubt, symbolic",
+      "narracao": "Crescer não é estar certo de uma vez — é estar menos errado com o tempo. E Manson avisa — quanto mais uma ideia ameaça quem você acha que é, mais você foge dela. Por isso segure suas certezas de leve. A identidade rígida é a que mais aprisiona."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Antídoto",
+      "titulo": "Faça algo",
+      "img": "a first small spark igniting a chain of larger flames, action sparking motivation, warm momentum, symbolic",
+      "narracao": "Você espera a motivação chegar pra agir. Manson inverte — aja primeiro, e a motivação vem depois. Ação gera inspiração, que gera mais ação. Travado? Faça qualquer coisa pequena. Até o erro ensina; a inércia não ensina nada. O fracasso é o caminho, não o muro."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Sim",
+      "titulo": "Comprometer-se é rejeitar",
+      "img": "one deep-rooted tree chosen over a field of shallow saplings, depth over breadth, grounded and strong",
+      "narracao": "Liberdade total de opções é vazia. O significado vem de escolher — e escolher é rejeitar todo o resto. Dizer sim a tudo dilui tudo. Uma relação, um ofício, escolhidos a fundo, valem mais que mil possibilidades rasas. É o não que dá peso ao sim."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Bússola",
+      "titulo": "...e então você morre",
+      "img": "a single hourglass glowing against the dark, sand running, mortality as clarity, calm and solemn",
+      "narracao": "E a bússola final é a mais desconfortável — você vai morrer. Manson termina aí de propósito. Lembrar da finitude corta o supérfluo na hora e revela o que merece os seus poucos fodas-se. A morte não é o oposto da vida; é o que dá sentido a ela."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Escolha com o que se importar",
+      "subtitulo": "A lição final",
+      "img": "a hand calmly choosing one glowing ember and letting the others fade, deliberate focus, warm resolution",
+      "narracao": "No fim, a sutil arte não é não ligar pra nada — é ligar só pro que vale. Pergunte hoje — o que merece a sua energia, e o que você pode largar? Se este resumo mexeu com você, deixe o like e inscreva-se. Toda semana, um grande livro em minutos, no Minuto Real."
+    }
+  ]
+}

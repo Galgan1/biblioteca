@@ -1,0 +1,124 @@
+{
+  "slug": "maquiavel-pedagogo",
+  "titulo": "Maquiavel Pedagogo",
+  "autor": "Pascal Bernardin",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#7fb2c4",
+  "musica": true,
+  "estilo_img": "cinematic atmospheric digital painting, cold institutional palette of slate blue, charcoal and pale chalk green, dramatic volumetric fog and soft directional light, painterly brushwork, subtle film grain, somber unsettling contemplative mood, wide cinematic composition, highly detailed, no children, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "A escola não está falhando. Está funcionando. | Maquiavel Pedagogo",
+    "descricao": "O resumo essencial de Maquiavel Pedagogo, de Pascal Bernardin — o livro que sustenta, citando documentos oficiais da Unesco, da OCDE e do Conselho da Europa, que a escola moderna deixou de ensinar para modificar valores, atitudes e comportamentos.\n\nA ciência da obediência • O experimento de 1 dólar • O sentimento de liberdade • Do álibi nobre ao controle geral • A escola redefinida • Tese, antítese, síntese • A fábrica de professores • A autonomia que aprisiona • Avaliação e fichamento • A sociedade dual • Está tudo escrito • Tornar visível.\n\n📚 Biblioteca de André Galgani — https://www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração e imagens geradas por IA. As teses apresentadas são do autor do livro.\n\n#maquiavelPedagogo #pascalBernardin #educacao #resumo #livros",
+    "tags": [
+      "maquiavel pedagogo",
+      "pascal bernardin",
+      "educação",
+      "escola",
+      "pedagogia",
+      "resumo de livro",
+      "resumo",
+      "livros",
+      "engenharia social"
+    ],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Maquiavel Pedagogo",
+      "subtitulo": "Pascal Bernardin",
+      "img": "a vast empty classroom with long rows of identical wooden desks disappearing into cold fog, tall windows casting pale institutional light, a chalkboard barely visible in the haze, somber and unsettling",
+      "motion": "Slow cinematic push-in down the center aisle of the empty classroom; cold fog drifts between the desks; dust motes float in the pale window light; quiet, unsettling, contemplative mood.",
+      "narracao": "Todo mundo acredita que a escola está falhando. Notas caindo, alunos que não leem, professores exaustos. Este livro sustenta o contrário — a escola está funcionando perfeitamente. Só que para um objetivo que não é o que está escrito no portão. Pascal Bernardin passou anos lendo os documentos oficiais da educação. O que encontrou muda a forma de olhar para uma sala de aula."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Laboratório",
+      "titulo": "A ciência da obediência",
+      "img": "a stark 1960s psychology laboratory with an ominous electrical control panel of switches and dials, a single harsh overhead lamp, an adult silhouette seated in deep shadow, cold clinical atmosphere",
+      "motion": "The harsh overhead lamp flickers subtly; faint shadows sway on the wall behind the control panel; the seated silhouette breathes almost imperceptibly; static camera, tense clinical stillness.",
+      "narracao": "A história começa longe da escola — num laboratório. Nos anos sessenta, Milgram pediu a pessoas comuns que aplicassem choques elétricos em desconhecidos. Mais de sessenta por cento obedeceram até o fim. Asch mostrou que três em cada quatro negam o que veem para acompanhar o grupo. A obediência virou ciência exata. Mas o experimento decisivo custou um dólar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Experimento de 1 Dólar",
+      "titulo": "Atos mudam opiniões",
+      "img": "a single dollar bill lying on an old wooden school desk under a cone of cold laboratory light, deep painterly chiaroscuro shadows surrounding it, quiet menace",
+      "narracao": "Festinger pagou voluntários para defender uma ideia na qual não acreditavam. Quem recebeu vinte dólares mentiu e continuou pensando igual. Quem recebeu um dólar terminou acreditando na própria mentira. A conclusão inverteu a psicologia. Não são as opiniões que guiam os atos — são os atos que mudam as opiniões. Guarde essa inversão. Ela é a chave de tudo o que vem a seguir."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Ingrediente Secreto",
+      "titulo": "O sentimento de liberdade",
+      "img": "an open birdcage with its door ajar standing in an empty foggy institutional corridor, pale cold light, no bird anywhere, metaphorical and quietly unsettling",
+      "narracao": "Há uma condição para a mágica funcionar — a pessoa precisa sentir que escolheu livremente. Pressão forte gera obediência externa e revolta silenciosa. Pressão mínima gera convicção. Os documentos citados por Bernardin dizem isso com todas as letras — os novos valores devem aparecer ao indivíduo como escolha própria. A liberdade, aqui, não é o oposto da manipulação. É a ferramenta dela."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Extensão de Campo",
+      "titulo": "Do álibi nobre ao controle geral",
+      "img": "a long institutional corridor lined with identical grey doors vanishing into fog, a faded peeling poster of a white dove on the wall, cold pale light, quiet decay",
+      "narracao": "Essas técnicas nasceram sob bandeiras nobres — a paz, o combate ao preconceito. Mas os documentos dão o passo seguinte — as mesmas ferramentas são declaradas aplicáveis a atitudes sociais em geral. O pretexto era específico; o dispositivo, universal. E havia uma instituição perfeita para aplicá-lo em escala — uma onde todos passam a infância inteira."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Escola Redefinida",
+      "titulo": "De ensinar a moldar",
+      "img": "a school blackboard in cold fog where faint chalk equations are half-erased, replaced by an abstract diagram of a human silhouette, slate light, unsettling quiet",
+      "narracao": "É aqui que a escola entra. Os organismos internacionais redefiniram a missão escolar. O objetivo deixou de ser transmitir conhecimento — e passou a ser modificar valores, atitudes e comportamentos. A expressão é dos documentos, não do autor. O saber virou veículo. O alvo é a personalidade. E essa missão exige reformar a ética, a cultura e a história."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Manobra em Três Tempos",
+      "titulo": "Tese, antítese, síntese",
+      "img": "three tall dark chess pieces standing on a cracked marble floor in a vast shadowy institutional hall, dramatic cold backlight, low fog rolling between them",
+      "motion": "Low fog rolls slowly across the marble floor around the chess pieces; the cold backlight flickers subtly; dust motes drift through the beam; static camera, ominous stillness.",
+      "narracao": "Bernardin descreve uma manobra em três tempos. Primeiro — enfraquecer a transmissão de valores da família. Segundo — deixar o caos ético se instalar, até a sociedade implorar por ordem. Terceiro — oferecer o Estado como restaurador moral, com uma ética desenhada em gabinete. Quem reconstrói os valores controla o resultado. A decadência não é acidente — é a etapa que prepara a síntese."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Fábrica de Professores",
+      "titulo": "Formando o agente da mudança",
+      "img": "an endless assembly line of identical empty teacher chairs under cold industrial lights in a fog-filled factory-like school hall, painterly, dehumanized order",
+      "narracao": "Nenhuma reforma atravessa a porta da sala sem o professor. Por isso a formação docente virou o alvo central. O critério deixou de ser o domínio da matéria — e passou a ser a adesão à pedagogia oficial. O professor ideal não é o sábio que transmite. É o facilitador que aplica métodos. Dócil ao sistema, ativo na mudança. Restava vencer a resistência dos que não aderissem."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Autonomia que Aprisiona",
+      "titulo": "Descentralização",
+      "img": "a grand open iron gate in a high stone wall, but beyond it only a narrow fenced corridor disappearing into fog, pale cold light, the illusion of freedom",
+      "narracao": "A resistência foi vencida com um presente — autonomia. Escolas livres, professores convidados a participar de tudo. Mas lembre do experimento do dólar — quem age, adere. O projeto de escola transforma cada professor em coautor da reforma que talvez rejeitasse. Bernardin chama isso pelo nome técnico — engajamento extorquido. A autonomia concedida era a armadilha."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Leme Invisível",
+      "titulo": "Avaliação e fichamento",
+      "img": "endless rows of grey index card filing cabinets stretching into darkness, one open drawer glowing with pale cold light, archival dust in the air, painterly",
+      "narracao": "Como garantir a aplicação sem fiscais? Com a avaliação. Os professores ensinam o que a prova cobra — quem desenha a prova governa o ensino. As novas avaliações medem menos conhecimento e mais comportamento. Os resultados alimentam fichas informatizadas — nos Estados Unidos, noventa por cento das crianças já estavam fichadas. O leme é invisível. E está na mão de alguém."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · O Controle Que Não Se Sente",
+      "titulo": "A sociedade dual",
+      "img": "a vast dark hall split in two by light — one side endless identical desks fading into shadow, the other a small elevated library platform glowing with pale light, cold dramatic contrast",
+      "motion": "Fog drifts slowly through the dark half of the hall; the pale light over the small library platform pulses gently; dust motes float in the divide; static camera, vast oppressive stillness.",
+      "narracao": "E chegamos ao resultado. De um lado, uma massa educada para o comportamento — nos Estados Unidos, os iletrados saltaram de dezoito para vinte e cinco milhões. Do outro, uma elite pequena, instruída e cooptada. Skinner chamava isso de controle não aversivo — o que não dói, não gera revolta. A queda do ensino, conclui Bernardin, não é o fracasso do projeto. É a prova de que ele funciona."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Confissão Documental",
+      "titulo": "Está tudo escrito",
+      "img": "thick stacks of official reports and bound documents on a dark wooden desk under a cold reading lamp, deep chiaroscuro shadows, quiet gravity, painterly",
+      "narracao": "A parte mais desconcertante do livro não é a tese. É o método. Bernardin quase não argumenta — ele cita. Relatórios da Unesco. Documentos da OCDE. Conselho da Europa. Os próprios reformadores descrevem objetivos, técnicas e etapas. Não é preciso confiar no autor. Basta ler o que as instituições escreveram sobre si mesmas."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Tornar visível",
+      "subtitulo": "A resposta do livro",
+      "img": "a heavy dark curtain drawn open in a vast institutional hall, a shaft of cold dawn light revealing rows of empty desks, fog dissolving in the beam, somber but resolute",
+      "motion": "The shaft of cold dawn light slowly widens across the floor; fog dissolves and drifts away from the beam; dust motes rise gently through the light; static camera, quiet resolute mood.",
+      "narracao": "A resposta de Bernardin cabe em três verbos — desmascarar, conscientizar, opor. O controle não aversivo tem uma única fraqueza. Ele depende de não ser percebido. Visto e nomeado, perde o poder. E por isso a leitura mais importante talvez sejam os documentos da escola do seu filho. O controle invisível só pode ser combatido depois de tornado visível."
+    }
+  ]
+}

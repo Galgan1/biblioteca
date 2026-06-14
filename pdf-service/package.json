@@ -1,0 +1,16 @@
+{
+  "name": "biblioteca-pdf",
+  "version": "1.0.0",
+  "description": "Serviço de geração de PDF premium (A4) das páginas da Biblioteca",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.0",
+    "pdf-lib": "^1.17.1",
+    "puppeteer-core": "^23.11.1",
+    "qrcode": "^1.5.4"
+  }
+}

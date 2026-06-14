@@ -1,0 +1,236 @@
+/* =========================================
+   SILENCIO — tema exclusivo de "O Poder do Silêncio"
+   Carregado APÓS style.css, só nas páginas deste livro (body.zen).
+   Reaproveita a estrutura/classes do projeto; troca apenas a "pele".
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;700&display=swap');
+
+body.zen {
+    --c-teal: #2dd4bf;
+    --c-gold: #f5c842;
+    --c-amber: #d4a045;
+    --c-sage: #6bbb8a;
+    --c-mist: #7eb8c9;
+    --c-lavender: #a78bfa;
+    --ink: #e8ede9;
+    --ink-soft: #a3b5ab;
+    --font-zen: 'Cormorant Garamond', Georgia, serif;
+    --font-read: 'Nunito', system-ui, sans-serif;
+
+    background:
+        radial-gradient(60% 55% at 20% 0%, rgba(45, 212, 191, 0.15), transparent 60%),
+        radial-gradient(55% 45% at 85% 15%, rgba(245, 200, 66, 0.10), transparent 60%),
+        radial-gradient(65% 55% at 50% 100%, rgba(107, 187, 138, 0.12), transparent 60%),
+        #0b1a17;
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--font-read);
+}
+
+/* neblina sutil flutuando */
+body.zen::before {
+    content: '';
+    position: fixed;
+    inset: -30%;
+    z-index: -1;
+    background:
+        radial-gradient(ellipse at 30% 40%, rgba(45, 212, 191, 0.06) 0%, transparent 70%),
+        radial-gradient(ellipse at 70% 60%, rgba(245, 200, 66, 0.05) 0%, transparent 70%);
+    animation: zen-breathe 12s ease-in-out infinite alternate;
+}
+@keyframes zen-breathe {
+    from { opacity: 0.4; transform: scale(1); }
+    to   { opacity: 1;   transform: scale(1.05); }
+}
+
+.zen .page {
+    background: rgba(11, 26, 23, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 60px rgba(45, 212, 191, 0.08) inset;
+}
+
+/* ---- Navegação superior ---- */
+.zen .back-link {
+    color: var(--c-teal);
+    border-bottom-color: rgba(45, 212, 191, 0.4);
+    font-family: var(--font-read);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+.zen .back-link:hover { color: var(--c-gold); border-bottom-color: var(--c-gold); }
+.zen .skip-link { background: var(--c-teal); color: #0b1a17; }
+
+/* ---- Header ---- */
+.zen .header { border-bottom: none; position: relative; }
+.zen .header::after {
+    content: '';
+    display: block;
+    height: 2px;
+    margin-top: 2rem;
+    border-radius: 4px;
+    background: linear-gradient(90deg,
+        transparent, var(--c-teal), var(--c-gold), var(--c-teal), transparent);
+    opacity: 0.6;
+}
+.zen .header-title {
+    font-family: var(--font-zen);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.1;
+}
+.zen .header-title-light {
+    font-family: var(--font-zen);
+    font-weight: 400;
+    color: var(--c-teal);
+    opacity: 0.8;
+}
+.zen .header-title-bold {
+    font-family: var(--font-zen);
+    font-weight: 700;
+    color: var(--c-gold);
+    filter: drop-shadow(0 1px 8px rgba(245, 200, 66, 0.3));
+}
+
+.zen .header-subtitle {
+    color: var(--c-teal);
+    font-family: var(--font-read);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+.zen .header-credit { color: var(--ink-soft); font-family: var(--font-read); }
+.zen .header-intro { color: var(--ink); font-size: 1.05rem; line-height: 1.7; }
+.zen .header-intro strong { color: var(--c-gold); }
+
+/* ---- Cards ---- */
+.zen .card {
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    border-radius: 16px;
+    background: rgba(15, 30, 26, 0.7);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: transform 400ms cubic-bezier(.25,.46,.45,.94),
+                box-shadow 400ms cubic-bezier(.25,.46,.45,.94),
+                border-color 400ms ease;
+}
+.zen .grid .card:nth-child(6n+1) { --accent: var(--c-teal); }
+.zen .grid .card:nth-child(6n+2) { --accent: var(--c-gold); }
+.zen .grid .card:nth-child(6n+3) { --accent: var(--c-sage); }
+.zen .grid .card:nth-child(6n+4) { --accent: var(--c-mist); }
+.zen .grid .card:nth-child(6n+5) { --accent: var(--c-lavender); }
+.zen .grid .card:nth-child(6n+6) { --accent: var(--c-amber); }
+
+.zen .card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent, var(--c-teal));
+    box-shadow: 0 0 24px -8px var(--accent, var(--c-teal));
+}
+.zen .card-icon { color: var(--accent, var(--c-teal)); opacity: 0.8; }
+
+.zen .card-title {
+    font-family: var(--font-zen);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--accent, var(--c-teal));
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    letter-spacing: 0.01em;
+}
+
+.zen .card-body { color: var(--ink); line-height: 1.7; }
+.zen .card-body strong { color: var(--accent, var(--c-teal)); }
+.zen .card-tip { color: var(--c-sage); font-weight: 500; font-style: italic; }
+.zen .card-tip strong { color: var(--c-gold); font-style: normal; }
+
+.zen .content-list { color: var(--ink-soft); }
+.zen .content-list li::marker { color: var(--accent, var(--c-teal)); }
+.zen .content-list strong { color: var(--ink); }
+
+.zen .card-details-inner p { color: var(--ink-soft); }
+.zen .card-details-inner h3 { color: var(--accent, var(--c-teal)); }
+.zen blockquote {
+    font-family: var(--font-zen);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink);
+    border-left: 3px solid var(--accent, var(--c-teal));
+    padding-left: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ---- Tabelas ---- */
+.zen .data-table th { color: var(--c-gold); border-bottom-color: rgba(45, 212, 191, 0.3); }
+.zen .data-table td { color: var(--ink-soft); border-bottom-color: rgba(45, 212, 191, 0.15); }
+
+/* ---- Lições-Chave ---- */
+.zen .lessons {
+    border: 1px solid rgba(45, 212, 191, 0.25);
+    border-radius: 16px;
+    background: rgba(15, 30, 26, 0.6);
+    box-shadow: 0 0 20px -8px rgba(45, 212, 191, 0.15);
+}
+.zen .lessons-title {
+    font-family: var(--font-zen);
+    font-weight: 700;
+    color: var(--c-gold);
+    background: transparent;
+    border-radius: 0;
+    font-size: 1.2rem;
+}
+.zen .lessons-list { color: var(--ink); }
+.zen .lessons-list li::marker { color: var(--c-gold); }
+
+/* ---- Navegação entre capítulos ---- */
+.zen .chapter-nav { border-top-color: rgba(45, 212, 191, 0.2); }
+.zen .chapter-nav-link {
+    font-family: var(--font-read);
+    font-weight: 600;
+    color: var(--c-teal);
+    border: 1px solid rgba(45, 212, 191, 0.3);
+    border-radius: 999px;
+    background: transparent;
+    transition: all 300ms ease;
+}
+.zen .chapter-nav-link:hover {
+    background: rgba(45, 212, 191, 0.12);
+    border-color: var(--c-teal);
+    box-shadow: 0 0 14px -4px var(--c-teal);
+}
+
+/* ---- Lista de capítulos (visão geral) ---- */
+.zen .chapter-link {
+    color: var(--ink);
+    border: 1px solid rgba(45, 212, 191, 0.2);
+    border-radius: 12px;
+    background: rgba(15, 30, 26, 0.5);
+    font-family: var(--font-read);
+    font-weight: 500;
+    transition: background 250ms, box-shadow 250ms, border-color 250ms;
+}
+.zen .chapter-link:hover {
+    background: rgba(45, 212, 191, 0.08);
+    border-color: var(--c-teal);
+    box-shadow: 0 0 14px -6px var(--c-teal);
+}
+.zen .chapter-link .arrow { color: var(--c-gold); }
+
+/* ---- Footer ---- */
+.zen .footer {
+    background: rgba(11, 26, 23, 0.8);
+    border: 1px solid rgba(45, 212, 191, 0.15);
+    color: var(--ink-soft);
+}
+.zen .footer-credit { color: var(--ink-soft); }
+
+/* ---- Headings genéricos ---- */
+.zen h1, .zen h2, .zen h3, .zen h4 { font-family: var(--font-zen); }
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    body.zen::before { animation: none; }
+}

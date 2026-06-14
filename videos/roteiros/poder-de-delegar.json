@@ -1,0 +1,111 @@
+{
+  "slug": "poder-de-delegar",
+  "titulo": "O Poder de Delegar",
+  "autor": "Donna M. Genett",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#3a8fb7",
+  "musica": true,
+  "provider": "base",
+  "shorts": [2, 4, 7, 10],
+  "estilo_img": "cinematic atmospheric digital painting, cool teal and deep charcoal palette with warm window light, modern office corridors and architectural interiors, calm executive mood, painterly brushwork, subtle film grain, wide cinematic composition, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "Por que você vive afogado em trabalho? | O Poder de Delegar, Donna Genett",
+    "descricao": "O resumo essencial de O Poder de Delegar (If You Want It Done Right, You Don't Have to Do It Yourself!), de Donna M. Genett — a parábola dos primos idênticos James e Jones e os seis passos da delegação eficaz, para o líder se multiplicar sem se afogar.\n\nDois primos, finais opostos • A diferença é delegar • Passo 1 Preparar • Passo 2 Repetir de volta • Passo 3 O prazo • Passo 4 O nível de autoridade • Os três níveis (Recomendar, Informar e iniciar, Agir) • Passo 5 Checkpoints e delegação reversa • Passo 6 O debriefing • A regra dos 95% • James vira Jones.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/poder-de-delegar.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#oPoderDeDelegar #donnaGenett #delegação #liderança #gestão #resumo #livros",
+    "tags": ["o poder de delegar", "donna genett", "delegação", "liderança", "gestão", "produtividade", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "O Poder de Delegar",
+      "subtitulo": "Donna M. Genett",
+      "img": "a quiet modern office at dusk, a single desk lamp glowing over a tall stack of paperwork, cool teal shadows and warm window light, contemplative",
+      "narracao": "Você trabalha mais que todo mundo — chega antes, sai depois, leva tarefa para casa. E mesmo assim a pilha só cresce. Donna Genett conta a história de dois primos idênticos para revelar por quê. A diferença entre se afogar e liderar cabe numa só habilidade — e ela se aprende."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · Os Primos",
+      "titulo": "Dois primos idênticos",
+      "img": "two identical office doors side by side in a corridor, one open to warm calm light, the other crowded with shadow, symbolic contrast",
+      "narracao": "James e Jones — mesma família, mesma inteligência, mesmos cargos de chefia. Jones sai depois de um café tranquilo, volta para o jantar e ainda joga golfe e leva os filhos para acampar. James pula o café e vive apagando incêndios. Mesma largada, finais opostos. O que Jones sabe que James não sabe?"
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Diagnóstico",
+      "titulo": "A diferença é delegar",
+      "img": "a single hand releasing a paper boat onto calm water inside an office setting, letting go, cool teal palette, symbolic",
+      "narracao": "A resposta é uma palavra só — delegar. James acredita no velho ditado — se quer bem feito, faça você mesmo. Genett vira a frase do avesso. Delegar bem não é empurrar trabalho, é liderança e coaching. E quem faz tudo sozinho não é insubstituível — virou um gargalo com o próprio nome."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · Passo Um",
+      "titulo": "Preparar",
+      "img": "an architect's desk with a clear blueprint laid out before construction, careful planning, warm light over cool tones",
+      "narracao": "Jones ensina a James um método de seis passos. O primeiro — preparar antes de abrir a boca. Sair delegando no susto não funciona. Defina o resultado que você quer e o propósito. Você delega para tirar trabalho da mesa, ou para desenvolver a pessoa? Essa escolha muda tudo o que vem depois."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · Passo Dois",
+      "titulo": "Repetir de volta",
+      "img": "two speech shapes facing each other, one mirroring the other, clarity and agreement, painterly symbolic, cool teal palette",
+      "narracao": "Passo dois — discuta a tarefa, e peça para a pessoa repetir, com as palavras dela, o que entendeu. Parece bobo, é o passo mais ignorado. Perguntar ficou claro? só colhe um sim automático. Ouvir a pessoa reformular revela o mal-entendido agora — e não no dia da entrega, com tudo refeito."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · Passo Três",
+      "titulo": "O prazo",
+      "img": "a large wall clock beside a calendar with a buffer of marked days before the deadline, planning time, warm and cool light",
+      "narracao": "Passo três — o prazo. Óbvio, e mesmo assim onde os chefes tropeçam. Ele precisa ser realista, e você embute tempo de revisão logo no início — porque o primeiro pronto quase nunca é o pronto final. E combine onde essa tarefa entra na fila das outras que a pessoa já carrega."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · Passo Quatro",
+      "titulo": "O nível de autoridade",
+      "img": "a hand stepping back from a control dial, giving space, symbolic of granting authority, cool teal and warm accent",
+      "narracao": "Passo quatro, o coração do método — diga quanto poder a pessoa tem, e então saia da frente. Sem isso, você ou microgerencia, ou abandona. Genett define três níveis de autoridade, escolhidos pelo risco da tarefa e pela experiência de quem recebe a delegação."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · Os Três Níveis",
+      "titulo": "Recomendar, informar, agir",
+      "img": "three ascending stone steps lit progressively brighter, a staircase of growing autonomy, symbolic, cool palette warm top",
+      "narracao": "Nível um, recomendar — a pessoa pesquisa e sugere, e você decide. Nível dois, informar e iniciar — ela escolhe e te avisa antes de agir. Nível três, agir — autonomia total. Para só entregar, escolha quem já está no nível agir. Para desenvolver alguém, comece nos dois primeiros e deixe a pessoa subir a escada."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · Passo Cinco",
+      "titulo": "Checkpoints",
+      "img": "evenly spaced markers along a path that widen apart toward the horizon, safety net loosening, cool teal palette",
+      "narracao": "Passo cinco — combine pontos de checagem desde o começo, juntos no início, espaçando conforme a confiança cresce. Não é vigilância, é a rede que pega o desvio enquanto ainda é barato corrigir. E cuidado com a delegação reversa — quando a pessoa trava, faça uma pergunta. Não pegue a tarefa de volta para o seu colo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · Passo Seis",
+      "titulo": "O debriefing",
+      "img": "two chairs facing each other by a window with warm light, an honest two-way conversation, calm and reflective",
+      "narracao": "Passo seis, o mais pulado — o debriefing. Terminada a tarefa, conversem sobre como foi. Pergunte primeiro como a pessoa acha que se saiu. Depois inverta o espelho — peça que ela avalie você como chefe. Sem esse fechamento, o aprendizado evapora, e a próxima delegação repete os mesmos atritos."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · A Meta",
+      "titulo": "Delegue noventa e cinco por cento",
+      "img": "a wide desk almost empty with a single important document in the center spotlight, focus and clarity, warm light",
+      "narracao": "E a meta que assusta — Genett sustenta que um líder deveria delegar cerca de noventa e cinco por cento do que cruza a sua mesa. O que sobra, esses cinco por cento, é o trabalho que só você pode fazer. Fazer sozinho soma uma pessoa. Delegar bem multiplica o time inteiro."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Virada",
+      "titulo": "James vira Jones",
+      "img": "a cluttered desk transforming into a clear one, paper stacks shrinking, dawn light entering, transformation, hopeful",
+      "narracao": "No começo o método é mais lento — preparar, discutir e checar custa tempo. Em poucas semanas, a caixa de entrada de James baixa, os incêndios diminuem, e ele recupera o jantar em casa. Ele não passou a trabalhar mais. Passou a se multiplicar. Virou Jones — e a diferença sempre foi um método."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Você não precisa fazer sozinho",
+      "subtitulo": "A lição final",
+      "img": "an open office door leading into bright morning light and an open horizon, freedom and delegation, hopeful and expansive",
+      "narracao": "Se quer bem feito, você não precisa fazer sozinho — precisa delegar certo. Pergunte-se hoje — qual tarefa eu seguro por puro hábito, que já poderia ser de outra pessoa? Se este resumo te deu um empurrão, deixe o like e inscreva-se. Toda semana, um grande livro em minutos."
+    }
+  ]
+}

@@ -1,0 +1,220 @@
+/* =========================================
+   PSICODELIA — tema exclusivo de "A Experiência Psicodélica"
+   Carregado APÓS style.css, só nas páginas deste livro (body.psy).
+   Reaproveita a estrutura/classes do projeto; troca apenas a "pele".
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Shrikhand&family=Righteous&family=Quicksand:wght@400;500;700&display=swap');
+
+body.psy {
+    --c-magenta: #ff2d95;
+    --c-cyan: #1fe0ff;
+    --c-lime: #b6ff3a;
+    --c-orange: #ff8a2b;
+    --c-violet: #b863ff;
+    --c-gold: #ffd23f;
+    --ink: #f4e9ff;
+    --ink-soft: #c9b6e6;
+    --font-trip: 'Shrikhand', cursive;
+    --font-groove: 'Righteous', sans-serif;
+    --font-read: 'Quicksand', system-ui, sans-serif;
+
+    background:
+        radial-gradient(60% 50% at 15% 0%, rgba(255, 45, 149, 0.35), transparent 60%),
+        radial-gradient(55% 45% at 90% 10%, rgba(31, 224, 255, 0.30), transparent 60%),
+        radial-gradient(70% 60% at 50% 100%, rgba(184, 99, 255, 0.35), transparent 60%),
+        radial-gradient(50% 40% at 80% 80%, rgba(182, 255, 58, 0.18), transparent 60%),
+        #0a0118;
+    background-attachment: fixed;
+    color: var(--ink);
+    font-family: var(--font-read);
+}
+
+/* fundo girando lentamente atrás de tudo */
+body.psy::before {
+    content: '';
+    position: fixed;
+    inset: -50%;
+    z-index: -1;
+    background:
+        conic-gradient(from 0deg at 50% 50%,
+            rgba(255, 45, 149, 0.10), rgba(31, 224, 255, 0.10),
+            rgba(182, 255, 58, 0.08), rgba(184, 99, 255, 0.12),
+            rgba(255, 210, 63, 0.08), rgba(255, 45, 149, 0.10));
+    animation: psy-spin 60s linear infinite;
+}
+@keyframes psy-spin { to { transform: rotate(360deg); } }
+
+.psy .page {
+    background: rgba(12, 2, 28, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 0 80px rgba(184, 99, 255, 0.25) inset;
+}
+
+/* ---- Navegação superior ---- */
+.psy .back-link {
+    color: var(--c-cyan);
+    border-bottom-color: rgba(31, 224, 255, 0.5);
+    font-family: var(--font-groove);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.psy .back-link:hover { color: var(--c-magenta); border-bottom-color: var(--c-magenta); }
+.psy .skip-link { background: var(--c-magenta); color: #0a0118; }
+
+/* ---- Header ---- */
+.psy .header { border-bottom: none; position: relative; }
+.psy .header::after {
+    content: '';
+    display: block;
+    height: 4px;
+    margin-top: 2rem;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--c-magenta), var(--c-gold), var(--c-cyan), var(--c-violet), var(--c-magenta));
+    background-size: 300% 100%;
+    animation: psy-flow 6s linear infinite;
+}
+.psy .header-title {
+    font-family: var(--font-trip);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.05;
+    filter: drop-shadow(0 2px 18px rgba(255, 45, 149, 0.5));
+}
+.psy .header-title-light,
+.psy .header-title-bold {
+    font-family: var(--font-trip);
+    font-weight: 400;
+    color: transparent;
+    background: linear-gradient(92deg, var(--c-magenta), var(--c-gold), var(--c-cyan), var(--c-violet), var(--c-magenta));
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: psy-flow 8s linear infinite;
+}
+@keyframes psy-flow { to { background-position: 300% 0; } }
+
+.psy .header-subtitle {
+    color: var(--c-gold);
+    font-family: var(--font-groove);
+    letter-spacing: 0.15em;
+}
+.psy .header-credit { color: var(--ink-soft); font-family: var(--font-groove); }
+.psy .header-intro { color: var(--ink); font-size: 1.1rem; }
+.psy .header-intro strong { color: var(--c-cyan); }
+
+/* ---- Cards: cor neon rotativa por posição (efeito arco-íris) ---- */
+.psy .card {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 18px;
+    background: rgba(20, 6, 40, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: transform 300ms var(--ease-out-quart), box-shadow 300ms var(--ease-out-quart);
+}
+.psy .grid .card:nth-child(6n+1) { --neon: var(--c-magenta); }
+.psy .grid .card:nth-child(6n+2) { --neon: var(--c-cyan); }
+.psy .grid .card:nth-child(6n+3) { --neon: var(--c-lime); }
+.psy .grid .card:nth-child(6n+4) { --neon: var(--c-gold); }
+.psy .grid .card:nth-child(6n+5) { --neon: var(--c-violet); }
+.psy .grid .card:nth-child(6n+6) { --neon: var(--c-orange); }
+.psy .card {
+    border-color: var(--neon, var(--c-magenta));
+    box-shadow: 0 0 22px -6px var(--neon, var(--c-magenta));
+}
+.psy .card:hover {
+    transform: translateY(-3px) rotate(-0.4deg);
+    box-shadow: 0 0 34px -4px var(--neon, var(--c-magenta));
+}
+.psy .card-icon { color: var(--neon, var(--c-magenta)); filter: drop-shadow(0 0 6px var(--neon)); }
+
+.psy .card-title {
+    font-family: var(--font-groove);
+    background: var(--neon, var(--c-magenta));
+    color: #12021c;
+    border-radius: 999px;
+    box-shadow: 0 0 18px -4px var(--neon, var(--c-magenta));
+    letter-spacing: 0.01em;
+}
+.psy .card-warning .card-title { background: #12021c; color: var(--neon, var(--c-orange)); border: 2px solid var(--neon); }
+
+.psy .card-body { color: var(--ink); }
+.psy .card-body strong { color: var(--neon, var(--c-magenta)); }
+.psy .card-tip { color: var(--c-cyan); font-weight: 500; }
+.psy .card-tip strong { color: var(--c-gold); }
+
+.psy .content-list { color: var(--ink-soft); }
+.psy .content-list li::marker { color: var(--neon, var(--c-magenta)); }
+.psy .content-list strong { color: var(--ink); }
+
+.psy .card-details-inner p { color: var(--ink-soft); }
+.psy .card-details-inner h3 { color: var(--neon, var(--c-cyan)); }
+.psy blockquote {
+    font-family: var(--font-read);
+    font-style: italic;
+    color: var(--ink);
+    border-left-color: var(--neon, var(--c-magenta));
+}
+
+/* ---- Tabelas (visões, mundos) ---- */
+.psy .data-table th { color: var(--c-gold); border-bottom-color: var(--c-violet); }
+.psy .data-table td { color: var(--ink-soft); border-bottom-color: rgba(184, 99, 255, 0.25); }
+
+/* ---- Lições-Chave ---- */
+.psy .lessons {
+    border: 2px solid var(--c-violet);
+    border-radius: 18px;
+    background: rgba(20, 6, 40, 0.6);
+    box-shadow: 0 0 26px -8px var(--c-violet);
+}
+.psy .lessons-title {
+    font-family: var(--font-groove);
+    background: linear-gradient(92deg, var(--c-violet), var(--c-magenta));
+    color: #12021c;
+    border-radius: 999px;
+}
+.psy .lessons-list { color: var(--ink); }
+.psy .lessons-list li::marker { color: var(--c-gold); }
+
+/* ---- Navegação entre capítulos ---- */
+.psy .chapter-nav { border-top-color: rgba(184, 99, 255, 0.3); }
+.psy .chapter-nav-link {
+    font-family: var(--font-groove);
+    color: var(--c-cyan);
+    border: 2px solid var(--c-cyan);
+    border-radius: 999px;
+    background: transparent;
+}
+.psy .chapter-nav-link:hover { background: var(--c-cyan); color: #0a0118; box-shadow: 0 0 18px -2px var(--c-cyan); }
+
+/* ---- Lista de capítulos (visão geral) ---- */
+.psy .chapter-link {
+    color: var(--ink);
+    border: 2px solid var(--c-violet);
+    border-radius: 14px;
+    background: rgba(20, 6, 40, 0.5);
+    font-family: var(--font-groove);
+    transition: background 200ms, box-shadow 200ms;
+}
+.psy .chapter-link:hover { background: rgba(184, 99, 255, 0.18); box-shadow: 0 0 16px -4px var(--c-violet); }
+.psy .chapter-link .arrow { color: var(--c-gold); }
+
+/* ---- Footer ---- */
+.psy .footer {
+    background: rgba(10, 1, 24, 0.7);
+    border: 1px solid rgba(184, 99, 255, 0.35);
+    color: var(--ink-soft);
+    box-shadow: 0 0 30px -10px var(--c-violet) inset;
+}
+.psy .footer-credit { color: var(--ink-soft); }
+
+/* ---- Headings genéricos ---- */
+.psy h1, .psy h2, .psy h3, .psy h4 { font-family: var(--font-groove); }
+
+/* Respeita quem prefere menos movimento */
+@media (prefers-reduced-motion: reduce) {
+    body.psy::before { animation: none; }
+    .psy .header-title-light, .psy .header-title-bold, .psy .header::after { animation: none; }
+}

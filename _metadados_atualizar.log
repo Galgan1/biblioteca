@@ -1,0 +1,22 @@
+==== [14/06/2026 12:21:15,77] inicio ==== 
+YouTube IDs: 46 | Instagram IDs: 18
+  YouTube OK: 46 videos
+  Instagram: @minutoreal1701 | media_count=28 | seguidores=9 | media list=28
+  Site: 34 paginas com visita | total 323 hits
+  Historico: 1 snapshots (hoje: 511 views, 12 likes)
+-> C:\Users\User\.gemini\antigravity\scratch\biblioteca\datas_coletadas.json
+OK -> C:\Users\User\.gemini\antigravity\scratch\biblioteca\metadados\index.html  (15 livros, 101 pecas)
+KPIs: {'livros': 15, 'no_ar': 7, 'agendado': 39, 'pendente': 29, 'pecas': 101, 'views': 511} | proxima: 14/jun
+==== [14/06/2026 12:21:27,05] fim ==== 
+==== [14/06/2026 13:00:01,88] inicio ==== 
+YouTube IDs: 46 | Instagram IDs: 18
+  YouTube OK: 46 videos
+  YouTube Analytics: pulado (sem token_analytics.json — rode --auth-analytics 1x)
+  Instagram: @minutoreal1701 | media_count=16 | seguidores=9 | media list=16
+  Site: 36 paginas com visita | total 326 hits
+  Historico: 1 snapshots (hoje: 517 views, 12 likes)
+-> C:\Users\User\.gemini\antigravity\scratch\biblioteca\datas_coletadas.json
+ERROS: ['IG insights: sem permissao (instagram_manage_insights)']
+OK -> C:\Users\User\.gemini\antigravity\scratch\biblioteca\metadados\index.html  (15 livros, 101 pecas)
+KPIs: {'livros': 15, 'no_ar': 7, 'agendado': 39, 'pendente': 29, 'pecas': 101, 'views': 517} | proxima: 14/jun
+==== [14/06/2026 13:00:14,13] fim ==== 

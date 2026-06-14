@@ -1,0 +1,112 @@
+{
+  "slug": "pai-rico-pai-pobre",
+  "titulo": "Pai Rico, Pai Pobre",
+  "autor": "Robert Kiyosaki",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 1.0,
+  "acento": "#c9a23a",
+  "musica": true,
+  "provider": "base",
+  "shorts": [2, 3, 6, 10],
+  "efeitos": {"cap": 3, "intensidade": 0.8, "silencio_no_climax": true},
+  "estilo_img": "cinematic atmospheric digital painting, warm gold and deep charcoal palette, minimalist symbolic imagery of two diverging paths, a hamster wheel, coins growing into a tree, soft volumetric light, painterly brushwork, subtle film grain, aspirational sober mood, no people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "O que a escola não te ensina sobre dinheiro | Pai Rico, Pai Pobre, Robert Kiyosaki",
+    "descricao": "O resumo essencial de Pai Rico, Pai Pobre (Rich Dad Poor Dad), de Robert Kiyosaki. A parábola dos dois pais, a diferença entre ativo e passivo, a corrida dos ratos, por que os ricos não trabalham por dinheiro, a coluna de ativos, a inteligência financeira e os cinco obstáculos.\n\nOs dois pais • Ativo ou passivo • A corrida dos ratos • Não trabalhe por dinheiro • Cuide do seu negócio • A casa não é um ativo • Os ricos inventam dinheiro • Pague-se primeiro • Os cinco obstáculos.\n\n📚 Página do livro: www.andregalgani.com.br/biblioteca/pai-rico-pai-pobre.html\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Vídeo produzido com narração gerada por inteligência artificial.\n\n#pairicopaipobre #kiyosaki #educacaofinanceira #dinheiro #resumo #livros",
+    "tags": ["pai rico pai pobre", "robert kiyosaki", "educação financeira", "dinheiro", "investimentos", "riqueza", "resumo de livro", "resumo", "livros"],
+    "privacidade": "unlisted"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Pai Rico, Pai Pobre",
+      "subtitulo": "Robert Kiyosaki",
+      "img": "two diverging roads from a single point, one paved and gray, one golden and open, a choice of paths",
+      "narracao": "A escola te prepara pra trabalhar por dinheiro a vida inteira — mas não ensina o dinheiro a trabalhar por você. Robert Kiyosaki cresceu ouvindo dois pais, com duas filosofias opostas sobre dinheiro. E a diferença entre eles explica por que uns enriquecem e a maioria só corre atrás."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · Os Dois Pais",
+      "titulo": "Duas filosofias",
+      "img": "two contrasting desks side by side, one with a paycheck and one with growing investments, symbolic",
+      "narracao": "Um pai era instruído e empregado — dizia estude, arranje um bom emprego, segurança em primeiro lugar. O outro mal terminou a escola e virou empreendedor — dizia faça o dinheiro trabalhar pra você. Kiyosaki escolheu seguir o pai rico. Não pela conta bancária, pela forma de pensar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Regra Nº1",
+      "titulo": "Ativo ou passivo",
+      "img": "a balance with coins flowing INTO a pocket on one side and OUT on the other, asset vs liability, symbolic",
+      "narracao": "A regra número um, diz Kiyosaki — saiba a diferença entre ativo e passivo, e compre ativos. Ativo é o que põe dinheiro no seu bolso; passivo é o que tira. Simples assim. Os ricos acumulam ativos. O resto acumula passivos achando que são ativos."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Corrida",
+      "titulo": "A corrida dos ratos",
+      "img": "a hamster wheel spinning endlessly with coins, the rat race, exhaustion without progress, symbolic",
+      "narracao": "A maioria vive na corrida dos ratos — trabalha, recebe, gasta, e quanto mais ganha, mais gasta. Medo de não ter dinheiro e desejo de ter mais giram o ciclo pra sempre. O aumento de salário não liberta; vira mais contas. Sair da corrida começa na cabeça, não no holerite."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Segredo",
+      "titulo": "Não trabalhe por dinheiro",
+      "img": "a young hand choosing a book of knowledge over a small stack of coins, learning over wages, symbolic",
+      "narracao": "Aqui vem o choque — os ricos não trabalham por dinheiro, trabalham pra aprender. O jovem Kiyosaki aceitou trabalhar quase de graça, e foi aí que aprendeu a enxergar oportunidades. O salário acalma o medo de hoje; o aprendizado constrói a liberdade de amanhã. Busque a segunda coisa."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · O Seu Negócio",
+      "titulo": "Cuide da coluna de ativos",
+      "img": "a growing column of solid blocks each labeled implicitly as income sources, building wealth, symbolic",
+      "narracao": "Cuide do seu negócio, diz Kiyosaki — e negócio não é o seu emprego, é a sua coluna de ativos. Mantenha o emprego, mas use cada sobra pra comprar coisas que geram renda. O patrão cuida do negócio dele; ninguém vai cuidar do seu por você."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · O Mito",
+      "titulo": "A sua casa não é um ativo",
+      "img": "a house with coins quietly leaking out of it each month, the hidden liability, sober tone, symbolic",
+      "narracao": "E aqui a frase mais polêmica do livro — a sua casa própria não é um ativo. Pela regra dele, ativo põe dinheiro no bolso; a casa tira, todo mês, com prestação, imposto e manutenção. Não é que comprar seja errado — é não confundir um passivo grande com riqueza."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Inteligência",
+      "titulo": "Os ricos inventam dinheiro",
+      "img": "a trained eye seeing a glowing opportunity where others see only a dull rock, financial intelligence",
+      "narracao": "Os ricos inventam dinheiro, diz Kiyosaki — não por sorte, mas por inteligência financeira. Onde os outros veem risco, eles veem oportunidade, porque estudaram o jogo. A mente treinada enxerga negócios que os olhos não treinados nem notam. Quem entende as regras acha dinheiro onde parecia não haver."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Disciplina",
+      "titulo": "Pague-se primeiro",
+      "img": "a hand setting aside a glowing coin first, before a pile of bills, paying yourself first, symbolic",
+      "narracao": "Pague-se primeiro — antes das contas, separe a parte que vira o seu ativo. Parece arriscado, mas é o que cria a pressão pra você ganhar mais, em vez de só sobreviver. A maioria paga todo mundo e sobra zero pra si. Inverta a ordem."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Habilidade",
+      "titulo": "Trabalhe para aprender",
+      "img": "many small tools being gathered into one capable hand, broad skills over narrow specialty, symbolic",
+      "narracao": "Kiyosaki diz pra trabalhar pra aprender, não pra ganhar — sobretudo a vender e a se comunicar, as habilidades que mais geram renda. O especialista que só sabe uma coisa fica preso a ela. Aprenda um pouco de muitas áreas do dinheiro, e você nunca fica sem opção."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · Os Inimigos",
+      "titulo": "Os cinco obstáculos",
+      "img": "five dark barriers blocking a golden path, fear cynicism laziness bad-habits arrogance, symbolic",
+      "narracao": "Mesmo sabendo tudo isso, cinco coisas travam quase todo mundo — o medo de perder, o cinismo dos que dizem que não vai dar certo, a preguiça disfarçada de ocupação, os maus hábitos e a arrogância de achar que já sabe. Vença esses cinco e o resto é técnica."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "11 · A Virada",
+      "titulo": "Comece pela mentalidade",
+      "img": "a closed door turning into an open one, a question reframing into possibility, mindset shift, symbolic",
+      "narracao": "No fim, Pai Rico, Pai Pobre não é sobre ficar rico rápido — é sobre trocar a mentalidade do empregado pela do dono. Pare de dizer não posso pagar e comece a perguntar como eu poderia pagar? A primeira frase fecha a mente; a segunda a coloca pra trabalhar."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Faça o dinheiro trabalhar",
+      "subtitulo": "A lição final",
+      "img": "a single coin planted in soil sprouting into a golden tree of coins, money working for you, hopeful",
+      "narracao": "A virada é simples — em vez de passar a vida trabalhando por dinheiro, ensine o dinheiro a trabalhar por você, comprando ativos. Qual ativo você começaria a construir este mês? Se este resumo abriu seus olhos, deixe o like e inscreva-se. Toda semana, um grande livro em minutos, no Minuto Real."
+    }
+  ]
+}
