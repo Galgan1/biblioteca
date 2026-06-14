@@ -93,6 +93,28 @@ def _frases(texto):
     return [s.strip() for s in re.split(r'(?<=[.?!])\s+', (texto or '').strip()) if s.strip()]
 
 
+def _pergunta_ancora(titulo, tags=None):
+    """Pergunta âncora específica e polarizante no final da legenda.
+    Leva o leitor a comentar — comentários são o 3º sinal de ranking do algoritmo.
+    Roteamento por tags do livro; fallback genérico mas acionável."""
+    tags = [t.lower() for t in (tags or [])]
+    def _tem(*palavras):
+        return any(any(p in t for p in palavras) for t in tags)
+    if _tem('dinheiro', 'financ', 'investimento', 'riqueza', 'capital', 'econom'):
+        return 'Qual hábito financeiro deste livro você aplicaria primeiro?'
+    if _tem('hábito', 'habit', 'produtividade', 'rotina', 'disciplina'):
+        return 'Qual hábito deste livro você tenta mas não consegue manter?'
+    if _tem('comunicação', 'persuasão', 'negociação', 'conversa', 'relacionamento'):
+        return 'Qual dessas técnicas você vai testar hoje?'
+    if _tem('liderança', 'negócio', 'estratégia', 'poder', 'gestão'):
+        return 'Qual decisão na sua vida mudaria se você aplicasse isso?'
+    if _tem('psicologia', 'mente', 'filosofia', 'comportamento', 'consciência'):
+        return 'Qual ideia aqui mais te incomodou — ou mais fez sentido?'
+    if _tem('ficção', 'romance', 'literatura', 'narrativa', 'roteiro'):
+        return 'Qual personagem ou cena ficou mais na sua cabeça?'
+    return f'Qual ideia de "{titulo}" você colocaria em prática esta semana?'
+
+
 def _refresh(tj):
     """Troca o token de 60 dias por outro de 60 dias (fb_exchange_token). Best-effort:
     só roda se houver app_id + app_secret em .secrets. Atualiza os dois arquivos."""
@@ -215,11 +237,13 @@ def caption_for(cfg, idx):
     corpo = gancho + (f'\n\n{valor}' if valor else '')
     tags = [t.replace(' ', '').lower() for t in cfg.get('youtube', {}).get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + [t for t in tags if t]))
+    ancora = _pergunta_ancora(cfg['titulo'], cfg.get('youtube', {}).get('tags', []))
     return (f"{corpo}\n\n"
             f"Uma das ideias de \"{cfg['titulo']}\".\n"
             f"📄 Cheat sheet + PDF, de graça, no acervo — link na bio.\n"
             f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
             f"Salve e siga @minutoreal1701 — um grande livro por semana.\n\n"
+            f"{ancora}\n\n"
             f"{_afiliado_block(cfg['slug'])}\n🎬 Narração e arte por IA.\n\n{hs}")
 
 
@@ -277,12 +301,14 @@ def caption_carousel(slug):
     corpo = gancho + (f'\n\n{valor}' if valor else '')
     tags = [re.sub(r'[^0-9a-z]', '', t.lower().replace(' ', '')) for t in book.get('tags', [])[:2]]
     hs = ' '.join('#' + t for t in (HASHTAGS_BASE + [t for t in tags if t]))
+    ancora = _pergunta_ancora(book['title'], book.get('tags', []))
     return (f"{corpo}\n\n"
             f"Arrasta para o lado: as ideias de \"{book['title']}\", de {book['author']}.\n"
             f"📌 Salve para não perder.\n\n"
             f"📄 O livro em 1 página: cheat sheet + PDF no acervo — link na bio.\n"
             f"🎬 Resumo em vídeo (~5 min) no YouTube.\n\n"
             f"Siga @minutoreal1701 — um grande livro por semana.\n\n"
+            f"{ancora}\n\n"
             f"{_afiliado_block(slug)}\nNarração e arte por IA.\n\n{hs}")
 
 
@@ -334,9 +360,18 @@ def post_carousel(slug, part='overview', caption=None, publish=False):
     else:
         cap = caption_carousel(slug)
     # 1) contêineres-filho (um por slide)
+    try:
+        book_info = _book_for(slug)
+        alt = f"Resumo de {book_info['title']} por {book_info.get('author','')}: slide {{n}} | Minuto Real"
+    except Exception:
+        alt = f"Cheat sheet {slug}: slide {{n}} | Minuto Real"
     children = []
-    for url in urls:
-        c = _post(f'/{uid}/media', token, {'image_url': url, 'is_carousel_item': 'true'})
+    for n, url in enumerate(urls, 1):
+        c = _post(f'/{uid}/media', token, {
+            'image_url': url,
+            'is_carousel_item': 'true',
+            'alt_text': alt.format(n=n),
+        })
         if 'id' not in c:
             print(f'  ERRO container-filho: {c.get("error", c)}')
             return None
@@ -389,6 +424,43 @@ def post_story(slug, publish=False):
         return []
     urls = _scp_host(jpgs, slug, 'stories')
     print(f'  {len(jpgs)} frames de story hospedados na VPS')
+    ids = []
+    for i, url in enumerate(urls, 1):
+        cont = _post(f'/{uid}/media', token, {'media_type': 'STORIES', 'image_url': url})
+        if 'id' not in cont:
+            print(f'  ERRO container story {i}: {cont.get("error", cont)}')
+            continue
+        cid = cont['id']
+        if not publish:
+            print(f'  (teste) frame {i} creation_id={cid}')
+            ids.append(cid)
+            continue
+        ok = True
+        for _ in range(30):
+            st = _get(f'/{cid}', token, fields='status_code').get('status_code')
+            if st in (None, 'FINISHED'):
+                break
+            if st in ('ERROR', 'EXPIRED'):
+                print(f'  FALHOU processamento story {i}: {st}')
+                ok = False
+                break
+            time.sleep(4)
+        if not ok:
+            continue
+        pub = _post(f'/{uid}/media_publish', token, {'creation_id': cid})
+        if 'id' in pub:
+            print(f'  OK story {i} media_id={pub["id"]}')
+            ids.append(pub['id'])
+        else:
+            print(f'  ERRO publish story {i}: {pub.get("error", pub)}')
+    return ids
+
+
+def post_story_from_urls(urls, publish=False):
+    """Publica frames de story já hospedados como URLs HTTPS públicas.
+    Usado pelo runner da VPS, que converte e hospeda os PNGs localmente
+    antes de chamar esta função (sem SCP self-loop)."""
+    token, uid = _token(), _user_id()
     ids = []
     for i, url in enumerate(urls, 1):
         cont = _post(f'/{uid}/media', token, {'media_type': 'STORIES', 'image_url': url})
