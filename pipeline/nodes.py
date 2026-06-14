@@ -7,7 +7,6 @@ um dict com os campos de estado a serem atualizados.
 As funções chamam os scripts Python existentes via subprocess — não duplicam
 lógica. O grafo (graph.py) conecta esses nós com checkpointing SQLite.
 """
-import json
 import os
 import subprocess
 import sys
@@ -189,7 +188,7 @@ def node_verify(state: dict) -> dict:
 
     errors = state.get('errors', [])
     if errors:
-        print(f'\nErros registrados:')
+        print('\nErros registrados:')
         for e in errors:
             print(f'  ✗ {e}')
 

@@ -21,7 +21,6 @@ Cron sugerido (a cada 15 min; ocioso quando nada vence):
 
 Stdlib + (no momento do disparo) instagram_post. Console = sem nao-ASCII em print().
 """
-import sys
 import json
 import time
 import shutil

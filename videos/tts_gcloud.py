@@ -41,9 +41,9 @@ def synth(text, voice, out_mp3, rate=1.0, pitch=0.0, ssml=None):
             pass
         return True
     except urllib.error.HTTPError as e:
-        raise RuntimeError(f'{voice}: HTTP {e.code} {e.read().decode()[:200]}')
+        raise RuntimeError(f'{voice}: HTTP {e.code} {e.read().decode()[:200]}') from e
     except (urllib.error.URLError, ConnectionError, TimeoutError, OSError) as e:
-        raise RuntimeError(f'{voice}: rede — {e}')
+        raise RuntimeError(f'{voice}: rede — {e}') from e
 
 
 if __name__ == '__main__':

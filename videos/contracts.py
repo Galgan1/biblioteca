@@ -10,7 +10,6 @@ Uso rápido:
 """
 from __future__ import annotations
 
-import warnings
 from pathlib import Path
 from typing import List, Literal, Optional
 
@@ -138,7 +137,6 @@ def load_roteiro(path) -> RoteiroCfg:
 # ---------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    import json
 
     roteiro_exemplo = {
         "slug": "arte-da-guerra",

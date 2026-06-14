@@ -76,7 +76,7 @@ with sync_playwright() as p:
         
     browser.close()
 
-print(f"\n--- Resumo ---")
+print("\n--- Resumo ---")
 total = 0
 for pdf in generated_pdfs:
     reader = PdfReader(pdf)

@@ -3,7 +3,6 @@
 no rodapé, em todas as páginas existentes. Idempotente (pode rodar de novo)."""
 import json
 import re
-import sys
 from pathlib import Path
 
 ROOT = Path(__file__).parent

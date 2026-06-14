@@ -21,7 +21,7 @@ Depois disso:
 
 Stdlib only (urllib). Conteúdo do canal é narrado por IA → marcamos AIGC.
 """
-import sys, json, time, urllib.request, urllib.error, math
+import sys, json, time, urllib.request, urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).parent
