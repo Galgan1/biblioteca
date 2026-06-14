@@ -388,28 +388,6 @@
     ]
   },
   {
-    "id": "nunca-divida-a-diferenca",
-    "title": "Nunca Divida a Diferença",
-    "author": "Chris Voss",
-    "coverUrl": "assets/nunca-divida-a-diferenca-cover.png",
-    "description": "As táticas de um ex-negociador de reféns do FBI: empatia tática, espelhamento, rotulagem de emoções e o poder do 'não' — para fechar acordos sem ceder pela metade. (Edição BR: 'Negocie como se sua vida dependesse disso'.)",
-    "tags": [
-      "Negociação",
-      "Comunicação",
-      "Persuasão"
-    ],
-    "progress": "Em breve",
-    "comingSoon": true,
-    "amazon": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "conversas-cruciais",
     "title": "Conversas Cruciais",
     "author": "Kerry Patterson e outros",
@@ -1588,6 +1566,36 @@
       "Autoconhecimento"
     ],
     "progress": "9 Capítulos",
-    "url": "jogos-da-vida.html"
+    "url": "jogos-da-vida.html",
+    "amazon": "https://www.amazon.com.br/dp/8521308760/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8521308760/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "nunca-divida-a-diferenca",
+    "title": "Nunca Divida a Diferença",
+    "author": "Chris Voss",
+    "coverUrl": "assets/nunca-divida-a-diferenca-cover.png",
+    "description": "O manual de negociação de Chris Voss, ex-negociador de reféns do FBI: empatia tática, espelhamento, rotulação, auditoria de acusações, o poder do 'não', o 'é isso mesmo', perguntas calibradas com 'como/o quê', o método Ackerman e a caça aos cisnes negros.",
+    "tags": [
+      "Negociação",
+      "Comunicação",
+      "Influência"
+    ],
+    "progress": "9 Capítulos",
+    "url": "nunca-divida-a-diferenca.html",
+    "amazon": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   }
 ]
