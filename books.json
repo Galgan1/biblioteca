@@ -3,7 +3,7 @@
     "id": "keller-casamento",
     "title": "O Significado do Casamento",
     "author": "Timothy Keller",
-    "coverUrl": "assets/keller-cover.png",
+    "coverUrl": "assets/keller-casamento-cover.png",
     "description": "Uma visão profunda e inspiradora sobre o casamento a partir da perspectiva cristã. Cada cônjuge carrega uma definição diferente de amor, moldada pela família de origem.",
     "tags": [
       "Relacionamento",
@@ -25,7 +25,7 @@
     "id": "maquiavel-pedagogo",
     "title": "Maquiavel Pedagogo",
     "author": "Pascal Bernardin",
-    "coverUrl": "assets/maquiavel-cover.jpg",
+    "coverUrl": "assets/maquiavel-pedagogo-cover.png",
     "description": "Desvenda as técnicas de engenharia social aplicadas à educação pela UNESCO para formar o novo cidadão global através da subversão cognitiva e psicológica.",
     "tags": [
       "Educação",
@@ -69,7 +69,7 @@
     "id": "experiencia-psicodelica",
     "title": "A Experiência Psicodélica",
     "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
-    "coverUrl": "assets/psicodelica-cover.png",
+    "coverUrl": "assets/experiencia-psicodelica-cover.png",
     "description": "Um manual baseado no Livro Tibetano dos Mortos para navegar estados alterados de consciência. Mapeia os Três Bardos da expansão da mente e o protocolo Confiar-Desligar-Flutuar.",
     "tags": [
       "Consciência",
@@ -91,7 +91,7 @@
     "id": "tjmg-regras-cartorios",
     "title": "Normas dos Cartórios (Prov. 93/2020)",
     "author": "TJMG · Corregedoria-Geral de Justiça",
-    "coverUrl": "assets/tjmg-cover.png",
+    "coverUrl": "assets/tjmg-regras-cartorios-cover.png",
     "description": "Referência rápida do Código de Normas dos Serviços Notariais e de Registro de Minas Gerais: princípios, deveres, prazos e procedimentos de todas as serventias, das notas ao registro de imóveis.",
     "tags": [
       "Direito",
@@ -105,7 +105,7 @@
     "id": "story-mckee",
     "title": "Story: Os Princípios do Roteiro",
     "author": "Robert McKee",
-    "coverUrl": "assets/story-cover.png",
+    "coverUrl": "assets/story-mckee-cover.png",
     "description": "A bíblia do roteiro. McKee destila os princípios eternos da narrativa — do Incidente Incitante e A Lacuna ao Princípio do Antagonismo e ao Clímax — num sistema operável de estrutura, personagem e significado.",
     "tags": [
       "Roteiro",
@@ -127,7 +127,7 @@
     "id": "smith-assertividade",
     "title": "Quando Digo Não, Me Sinto Culpado",
     "author": "Manuel J. Smith",
-    "coverUrl": "assets/smith-cover.png",
+    "coverUrl": "assets/smith-assertividade-cover.png",
     "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
     "tags": [
       "Assertividade",
@@ -149,7 +149,7 @@
     "id": "poder-do-silencio",
     "title": "O Poder do Silêncio",
     "author": "Eckhart Tolle",
-    "coverUrl": "assets/silencio-cover.png",
+    "coverUrl": "assets/poder-do-silencio-cover.png",
     "description": "Ensinamentos sobre presença, calma interior e transcendência do ego. Tolle revela como acessar a inteligência primordial que existe além do pensamento e dissolver o sofrimento pela aceitação do Agora.",
     "tags": [
       "Espiritualidade",
