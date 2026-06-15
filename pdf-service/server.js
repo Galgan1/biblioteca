@@ -776,6 +776,116 @@ pdf.get('/asset/:book/:fmt.png', async (req, res) => {
   }
 });
 
+// ----- Kit de Divulgação: CARROSSEL por capítulo, on-demand (gera no 1º clique) -----
+// O conteúdo dos slides (HTML) é emitido localmente por gerar_dados_carrossel.py
+// (mesmos construtores do gerar_carrossel → zero deriva) em assets/kit/<livro>/slides.json.
+// Aqui montamos CSS + slides, renderizamos no mesmo Chrome dos PDFs (png + webp),
+// armazenamos em assets/kit/<livro>/caps/<cap>/ e devolvemos o manifesto. Idempotente.
+const CRC_TABLE = (() => {
+  const t = new Array(256);
+  for (let n = 0; n < 256; n++) {
+    let c = n;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+    t[n] = c >>> 0;
+  }
+  return t;
+})();
+function crc32(buf) {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function zipStore(entries) {
+  // ZIP método "store" (sem compressão) — PNG já é comprimido. Sem dependências.
+  const locals = [], central = [];
+  let offset = 0;
+  for (const e of entries) {
+    const name = Buffer.from(e.name, 'utf8');
+    const crc = crc32(e.data);
+    const lh = Buffer.alloc(30);
+    lh.writeUInt32LE(0x04034b50, 0); lh.writeUInt16LE(20, 4); lh.writeUInt16LE(0, 6);
+    lh.writeUInt16LE(0, 8); lh.writeUInt16LE(0, 10); lh.writeUInt16LE(0, 12);
+    lh.writeUInt32LE(crc, 14); lh.writeUInt32LE(e.data.length, 18); lh.writeUInt32LE(e.data.length, 22);
+    lh.writeUInt16LE(name.length, 26); lh.writeUInt16LE(0, 28);
+    locals.push(lh, name, e.data);
+    const ch = Buffer.alloc(46);
+    ch.writeUInt32LE(0x02014b50, 0); ch.writeUInt16LE(20, 4); ch.writeUInt16LE(20, 6); ch.writeUInt16LE(0, 8);
+    ch.writeUInt16LE(0, 10); ch.writeUInt16LE(0, 12); ch.writeUInt16LE(0, 14);
+    ch.writeUInt32LE(crc, 16); ch.writeUInt32LE(e.data.length, 20); ch.writeUInt32LE(e.data.length, 24);
+    ch.writeUInt16LE(name.length, 28); ch.writeUInt16LE(0, 30); ch.writeUInt16LE(0, 32);
+    ch.writeUInt16LE(0, 34); ch.writeUInt16LE(0, 36); ch.writeUInt32LE(0, 38); ch.writeUInt32LE(offset, 42);
+    central.push(ch, name);
+    offset += lh.length + name.length + e.data.length;
+  }
+  const cdStart = offset;
+  const cdSize = central.reduce((s, b) => s + b.length, 0);
+  const eocd = Buffer.alloc(22);
+  eocd.writeUInt32LE(0x06054b50, 0); eocd.writeUInt16LE(0, 4); eocd.writeUInt16LE(0, 6);
+  eocd.writeUInt16LE(entries.length, 8); eocd.writeUInt16LE(entries.length, 10);
+  eocd.writeUInt32LE(cdSize, 12); eocd.writeUInt32LE(cdStart, 16); eocd.writeUInt16LE(0, 20);
+  return Buffer.concat([...locals, ...central, eocd]);
+}
+const CAROUSEL_SHRINK = `() => {
+  for (const el of document.querySelectorAll('.cover h1, .st h1')) {
+    const box = el.parentElement, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let fs = parseFloat(getComputedStyle(el).fontSize), guard = 0;
+    while (el.getBoundingClientRect().width > avail && fs > 50 && guard < 120) { fs -= 3; el.style.fontSize = fs + 'px'; guard++; }
+  }
+}`;
+async function renderCarousel(book, cap) {
+  const outDir = path.join(SITE_ROOT, 'assets', 'kit', book, 'caps', cap);
+  const mfPath = path.join(outDir, 'manifest.json');
+  try { return { manifest: JSON.parse(await fsp.readFile(mfPath, 'utf8')), cached: true }; } catch {}
+  const slidesFile = path.join(SITE_ROOT, 'assets', 'kit', book, 'slides.json');
+  const data = JSON.parse(await fsp.readFile(slidesFile, 'utf8'));
+  const slidesHtml = (data.chapters || {})[cap];
+  if (!Array.isArray(slidesHtml) || !slidesHtml.length) { const e = new Error('cap'); e.code = 'ENOENT'; throw e; }
+  const css = await fsp.readFile(path.join(SITE_ROOT, 'assets', 'kit', '_carousel.css'), 'utf8');
+  const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${css}</style></head><body>${slidesHtml.join('')}</body></html>`;
+  await fsp.mkdir(outDir, { recursive: true });
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  const pngEntries = [];
+  const slides = [], view = [];
+  try {
+    await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
+    await page.setContent(html, { waitUntil: 'networkidle0', timeout: 60000 });
+    await page.evaluateHandle('document.fonts.ready');
+    await new Promise(r => setTimeout(r, 500));
+    await page.evaluate(CAROUSEL_SHRINK);
+    const els = await page.$$('.slide');
+    for (let i = 0; i < els.length; i++) {
+      const n = String(i + 1).padStart(2, '0');
+      const png = await els[i].screenshot({ type: 'png' });
+      const webp = await els[i].screenshot({ type: 'webp', quality: 72 });
+      await fsp.writeFile(path.join(outDir, n + '.png'), png);
+      await fsp.writeFile(path.join(outDir, n + '.webp'), webp);
+      pngEntries.push({ name: `${book}-${cap}-${n}.png`, data: png });
+      slides.push(`assets/kit/${book}/caps/${cap}/${n}.png`);
+      view.push(`assets/kit/${book}/caps/${cap}/${n}.webp`);
+    }
+  } finally { await page.close().catch(() => {}); }
+  await fsp.writeFile(path.join(outDir, 'carrossel.zip'), zipStore(pngEntries));
+  const manifest = { book, chapter: cap, count: slides.length, slides, view, zip: `assets/kit/${book}/caps/${cap}/carrossel.zip` };
+  await fsp.writeFile(mfPath, JSON.stringify(manifest, null, 2));
+  return { manifest, cached: false };
+}
+pdf.get('/carrossel/:book/:cap.json', async (req, res) => {
+  const book = String(req.params.book), cap = String(req.params.cap);
+  if (!SLUG_RE.test(book) || !SLUG_RE.test(cap)) return res.status(400).json({ error: 'inválido' });
+  try {
+    const { manifest, cached } = await enqueue(() => renderCarousel(book, cap));
+    res.setHeader('X-Kit-Cache', cached ? 'hit' : 'miss');
+    res.setHeader('Cache-Control', 'public, max-age=60');
+    return res.json(manifest);
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.status(404).json({ error: 'capítulo sem carrossel' });
+    console.error('[kit-carrossel]', err.message);
+    res.status(500).json({ error: 'erro ao gerar carrossel' });
+  }
+});
+
 // ----- refinador (DEV, só com REFINADOR=1): render fresco, sem cache, com -----
 // um `tune` ad-hoc. Devolve o PDF cru + o diagnóstico do fit no header X-Fit-Diag.
 // Em produção o env não está setado, então estas rotas nem existem.

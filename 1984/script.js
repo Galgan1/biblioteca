@@ -77,11 +77,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(m => { if (m && Array.isArray(m.assets) && m.assets.length) renderKit(m); })
                 .catch(() => { /* sem manifesto, sem kit */ });
         } else if (chapterMatch) {
-            // capítulo → carrossel daquele capítulo
+            // capítulo → carrossel daquele capítulo (índice leve decide se há kit;
+            // a geração das imagens é sob demanda, no clique).
             const cap = chapterMatch[1];
-            fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/caps/' + cap + '/manifest.json')
+            fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/caps.json')
                 .then(r => (r.ok ? r.json() : null))
-                .then(m => { if (m && Array.isArray(m.slides) && m.slides.length) renderChapterKit(m); })
+                .then(idx => {
+                    const count = idx && idx.chapters && idx.chapters[cap];
+                    if (count) renderChapterKit(cap, count);
+                })
                 .catch(() => { /* capítulo sem carrossel */ });
         }
     }
@@ -172,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     // capítulo: dropdown com o carrossel daquele capítulo (abre o visualizador C3)
-    function renderChapterKit(m) {
+    function renderChapterKit(cap, count) {
         const sec = document.createElement('details');
         sec.className = 'kit-section';
         const sum = document.createElement('summary');
@@ -183,22 +187,43 @@ document.addEventListener('DOMContentLoaded', () => {
         sec.appendChild(sum);
         const p = document.createElement('p');
         p.className = 'kit-intro';
-        p.textContent = 'Um carrossel pronto sobre este capítulo — ' + m.count + ' slides no padrão da Biblioteca. Abrir conta como um curtir.';
+        p.textContent = 'Um carrossel sobre este capítulo — ' + count + ' slides no padrão da Biblioteca. Gerar conta como um curtir.';
         sec.appendChild(p);
         const pills = document.createElement('div');
         pills.className = 'kit-pills';
         const pill = document.createElement('button');
         pill.type = 'button';
         pill.className = 'kit-pill';
-        pill.title = 'Ver o carrossel do capítulo (' + m.count + ' slides)';
+        pill.title = 'Gerar o carrossel do capítulo (' + count + ' slides)';
         pill.innerHTML = KIT_ICONS.carousel
             + '<span class="kit-pill__label">Carrossel do capítulo</span>'
-            + '<span class="kit-pill__fmt">· ' + m.count + ' slides · 4:5</span>';
-        pill.addEventListener('click', () => { registerKitLike(BIBLIOTECA_BOOK); openCarousel(m); });
+            + '<span class="kit-pill__fmt">· ' + count + ' slides · 4:5</span>';
+        pill.addEventListener('click', () => genCarousel(cap, pill));
         pills.appendChild(pill);
         sec.appendChild(pills);
         const anchor = document.querySelector('.pdf-actions') || header;
         anchor.insertAdjacentElement('afterend', sec);
+    }
+    // clique → o servidor gera o carrossel do capítulo no 1º acesso (e armazena);
+    // depois serve o cache. Gerar = curtir.
+    function genCarousel(cap, pill) {
+        if (pill.classList.contains('is-generating')) return;
+        registerKitLike(BIBLIOTECA_BOOK);
+        const fmt = pill.querySelector('.kit-pill__fmt');
+        const orig = fmt ? fmt.textContent : '';
+        pill.classList.add('is-generating');
+        if (fmt) fmt.textContent = '· Gerando…';
+        fetch(prefix + 'pdf/carrossel/' + BIBLIOTECA_BOOK + '/' + cap + '.json')
+            .then(r => (r.ok ? r.json() : null))
+            .then(m => {
+                pill.classList.remove('is-generating');
+                if (m && Array.isArray(m.slides) && m.slides.length) {
+                    pill.classList.add('is-generated');
+                    if (fmt) fmt.textContent = orig;
+                    openCarousel(m);
+                } else if (fmt) { fmt.textContent = '· indisponível'; }
+            })
+            .catch(() => { pill.classList.remove('is-generating'); if (fmt) fmt.textContent = '· erro, tente de novo'; });
     }
     // visualizador C3: palco + trilho de miniaturas, navegação por teclado, baixar
     function openCarousel(m) {

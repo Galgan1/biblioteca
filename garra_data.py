@@ -4,8 +4,8 @@
 BOOK = {
   "title": "Garra",
   "author": "Angela Duckworth",
-  "header_light": "GA",
-  "header_bold": "RRA",
+  "header_light": "GARRA",
+  "header_bold": "PAIXÃO E PERSEVERANÇA",
   "subtitle": "VISÃO GERAL · O PODER DA PAIXÃO E DA PERSEVERANÇA",
   "intro": "O que separa quem realiza grandes coisas não é o talento — é a garra: paixão (um interesse de longo prazo, constante) somada à perseverança (não desistir diante dos reveses). Duckworth mostra que o talento não é destino: o esforço 'conta duas vezes', e a garra cresce de dentro (interesse, prática, propósito, esperança) e de fora (pais, treinadores, cultura).",
   "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",

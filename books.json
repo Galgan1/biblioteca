@@ -1767,28 +1767,6 @@
     ]
   },
   {
-    "id": "garra",
-    "title": "Garra",
-    "author": "Angela Duckworth",
-    "coverUrl": "assets/garra-capa.png",
-    "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",
-    "tags": [
-      "Psicologia",
-      "Sucesso",
-      "Hábitos"
-    ],
-    "progress": "7 Capítulos",
-    "url": "garra.html",
-    "amazon": "https://www.amazon.com.br/dp/8551000020/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8551000020/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "flow",
     "title": "Flow",
     "author": "Mihaly Csikszentmihalyi",
@@ -2175,5 +2153,19 @@
     ],
     "progress": "9 Capítulos",
     "url": "1984.html"
+  },
+  {
+    "id": "garra",
+    "title": "Garra",
+    "author": "Angela Duckworth",
+    "coverUrl": "assets/garra-capa.png",
+    "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",
+    "tags": [
+      "Psicologia",
+      "Sucesso",
+      "Hábitos"
+    ],
+    "progress": "7 Capítulos",
+    "url": "garra.html"
   }
 ]

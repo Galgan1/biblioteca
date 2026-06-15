@@ -1,2 +1,4 @@
 @echo off
-python generate.py
+echo Executando build.js...
+node build.js
+echo Finalizado!
