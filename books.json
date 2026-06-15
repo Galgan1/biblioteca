@@ -171,7 +171,7 @@
     "id": "aristoteles-poetica",
     "title": "Poética",
     "author": "Aristóteles",
-    "coverUrl": "assets/aristoteles-poetica-cover.png",
+    "coverUrl": "assets/aristoteles-poetica-capa.png",
     "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
     "tags": [
       "Filosofia",
@@ -185,7 +185,7 @@
     "id": "save-the-cat",
     "title": "Save the Cat!",
     "author": "Blake Snyder",
-    "coverUrl": "assets/save-the-cat-cover.png",
+    "coverUrl": "assets/save-the-cat-capa.png",
     "description": "O método prático de Blake Snyder para estruturar histórias: logline com ironia, os 10 gêneros de transformação, a beat sheet de 15 beats, o Quadro de 40 cartões, as leis da física do roteiro e um checklist de diagnóstico.",
     "tags": [
       "Roteiro",
@@ -199,7 +199,7 @@
     "id": "jornada-do-escritor",
     "title": "A Jornada do Escritor",
     "author": "Christopher Vogler",
-    "coverUrl": "assets/jornada-do-escritor-cover.png",
+    "coverUrl": "assets/jornada-do-escritor-capa.png",
     "description": "A adaptação de Christopher Vogler do monomito de Campbell para roteiristas: os 12 estágios da Jornada do Herói e os 8 arquétipos como funções psicológicas — uma bússola flexível para a estrutura de qualquer história.",
     "tags": [
       "Roteiro",
@@ -213,7 +213,7 @@
     "id": "sound-design",
     "title": "Sound Design",
     "author": "David Sonnenschein",
-    "coverUrl": "assets/sound-design-cover.png",
+    "coverUrl": "assets/sound-design-capa.png",
     "description": "O guia prático e expressivo do sound design por David Sonnenschein: o processo (do roteiro à mixagem), a criação de sons, a acústica e a psicoacústica, música, voz, efeitos e o mapa emocional que faz o som dirigir o que o público sente.",
     "tags": [
       "Som",
@@ -227,7 +227,7 @@
     "id": "audiovisao",
     "title": "A Audiovisão",
     "author": "Michel Chion",
-    "coverUrl": "assets/audiovisao-cover.png",
+    "coverUrl": "assets/audiovisao-capa.png",
     "description": "A teoria do som no cinema por Michel Chion: o contrato audiovisual, o valor acrescentado, a síncrese, os três modos de escuta, o som acusmático e o acusmêtre, a temporalização, o rendering e o vococentrismo.",
     "tags": [
       "Som",
@@ -241,7 +241,7 @@
     "id": "coesao-coerencia",
     "title": "Coesão e Coerência",
     "author": "Beaugrande, Dressler & Halliday",
-    "coverUrl": "assets/coesao-coerencia-cover.png",
+    "coverUrl": "assets/coesao-coerencia-capa.png",
     "description": "A linguística textual de Beaugrande & Dressler (os 7 critérios de textualidade) e os 5 mecanismos de coesão de Halliday & Hasan: coesão, coerência, intencionalidade, aceitabilidade, informatividade, situacionalidade e intertextualidade.",
     "tags": [
       "Língua",
@@ -255,7 +255,7 @@
     "id": "ponerologia",
     "title": "Ponerologia Política",
     "author": "Andrzej Łobaczewski",
-    "coverUrl": "assets/ponerologia-cover.png",
+    "coverUrl": "assets/ponerologia-capa.png",
     "description": "A ponerologia de Łobaczewski: o estudo clínico da gênese do mal social. Ponerogênese, psicopatia essencial, spellbinders, paramoralismos, a máscara ideológica, a pathocracia e o ciclo histeroidal — em chave defensiva, para reconhecer e resistir.",
     "tags": [
       "Psicologia",
@@ -269,7 +269,7 @@
     "id": "quem-mexeu-no-queijo",
     "title": "Quem Mexeu no Meu Queijo?",
     "author": "Spencer Johnson",
-    "coverUrl": "assets/quem-mexeu-no-queijo-cover.png",
+    "coverUrl": "assets/quem-mexeu-no-queijo-capa.png",
     "description": "A parábola mais vendida sobre mudança. Spencer Johnson usa quatro personagens num labirinto para mostrar como antecipar, monitorar e se adaptar rápido quando o 'Queijo' — emprego, relação, segurança — sai do lugar.",
     "tags": [
       "Mudança",
@@ -283,7 +283,7 @@
     "id": "nacao-dopamina",
     "title": "Nação Dopamina",
     "author": "Anna Lembke",
-    "coverUrl": "assets/nacao-dopamina-cover.png",
+    "coverUrl": "assets/nacao-dopamina-capa.png",
     "description": "A neurociência do prazer e do vício, por Anna Lembke: a balança prazer-dor, a dopamina como moeda do vício, o déficit por excesso, o jejum de dopamina (acrônimo DOPAMINE), o autovínculo, a hormese e o caminho do equilíbrio.",
     "tags": [
       "Psicologia",
@@ -297,7 +297,7 @@
     "id": "poder-de-delegar",
     "title": "O Poder de Delegar",
     "author": "Donna M. Genett",
-    "coverUrl": "assets/poder-de-delegar-cover.png",
+    "coverUrl": "assets/poder-de-delegar-capa.png",
     "description": "O clássico de Donna Genett que vira do avesso o ditado 'se quer bem feito, faça você mesmo'. Pela parábola dos primos James e Jones, ensina os seis passos da delegação eficaz — preparar, discutir, prazo, nível de autoridade, checkpoints e debriefing — para o líder se multiplicar sem se afogar.",
     "tags": [
       "Liderança",
@@ -311,7 +311,7 @@
     "id": "marketing-4-0",
     "title": "Marketing 4.0",
     "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
-    "coverUrl": "assets/marketing-4-0-cover.png",
+    "coverUrl": "assets/marketing-4-0-capa.png",
     "description": "O guia de Kotler para o marketing na era da conectividade. Apresenta a jornada dos Cinco As (Assimilação, Atração, Arguição, Ação, Apologia), os Quatro Cs que substituem os 4 Ps, as métricas PAR e BAR, o fator-F e o marketing humano, de conteúdo, omnichannel e de engajamento.",
     "tags": [
       "Marketing",
@@ -325,7 +325,7 @@
     "id": "48-leis-do-poder",
     "title": "As 48 Leis do Poder",
     "author": "Robert Greene",
-    "coverUrl": "assets/48-leis-do-poder-cover.png",
+    "coverUrl": "assets/48-leis-do-poder-capa.png",
     "description": "O compêndio de Robert Greene sobre a dinâmica do poder, destilado de três mil anos de história. Apresentado em agrupamento temático e em chave defensiva: proteger a reputação, dominar as aparências, criar dependência, a tática da indireção, sedução e timing, a defesa contra manipulação e a lei suprema de ser informe.",
     "tags": [
       "Poder",
@@ -339,7 +339,7 @@
     "id": "psicologia-financeira",
     "title": "A Psicologia Financeira",
     "author": "Morgan Housel",
-    "coverUrl": "assets/psicologia-financeira-cover.png",
+    "coverUrl": "assets/psicologia-financeira-capa.png",
     "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade. Por que o comportamento vence a matemática nas finanças: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver para deixar o tempo compor, a cauda longa, a liberdade como maior dividendo, a riqueza invisível e a margem de segurança.",
     "tags": [
       "Finanças",
@@ -353,7 +353,7 @@
     "id": "comunicacao-nao-violenta",
     "title": "Comunicação Não-Violenta",
     "author": "Marshall B. Rosenberg",
-    "coverUrl": "assets/comunicacao-nao-violenta-cover.png",
+    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
     "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
     "tags": [
       "Comunicação",
@@ -367,7 +367,7 @@
     "id": "sutil-arte",
     "title": "A Sutil Arte de Ligar o F*da-se",
     "author": "Mark Manson",
-    "coverUrl": "assets/sutil-arte-cover.png",
+    "coverUrl": "assets/sutil-arte-capa.png",
     "description": "O best-seller contraintuitivo de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), a tirania do excepcionalismo, os bons e maus valores, a diferença entre responsabilidade e culpa, e a morte como bússola do que importa.",
     "tags": [
       "Autodesenvolvimento",
@@ -381,7 +381,7 @@
     "id": "coragem-de-nao-agradar",
     "title": "A Coragem de Não Agradar",
     "author": "Ichiro Kishimi & Fumitake Koga",
-    "coverUrl": "assets/coragem-de-nao-agradar-cover.png",
+    "coverUrl": "assets/coragem-de-nao-agradar-capa.png",
     "description": "O fenômeno japonês de Kishimi e Koga que popularizou Alfred Adler pelo mundo. Em forma de diálogo, vira do avesso a ideia de que somos reféns do trauma: vivemos por objetivos, não por causas. Ensina a separação de tarefas, a sair da armadilha do reconhecimento e a sustentar a felicidade na tríade autoaceitação, confiança e contribuição — a verdadeira coragem de não agradar.",
     "tags": [
       "Psicologia",
@@ -395,7 +395,7 @@
     "id": "como-fazer-amigos",
     "title": "Como Fazer Amigos e Influenciar Pessoas",
     "author": "Dale Carnegie",
-    "coverUrl": "assets/como-fazer-amigos-cover.png",
+    "coverUrl": "assets/como-fazer-amigos-capa.png",
     "description": "Publicado em 1936 e nunca mais saído de moda, é o clássico definitivo sobre influência honesta. Em quatro partes — as 3 técnicas fundamentais, as 6 maneiras de cair nas graças, as 12 maneiras de convencer e as 9 maneiras de liderar sem ofender — Carnegie mostra que influência é atração, não imposição. O fio condutor: pense pelo ponto de vista do outro, reconheça seu valor com sinceridade e desperte nele o desejo de agir.",
     "tags": [
       "Comunicação",
@@ -409,7 +409,7 @@
     "id": "essencialismo",
     "title": "Essencialismo",
     "author": "Greg McKeown",
-    "coverUrl": "assets/essencialismo-cover.png",
+    "coverUrl": "assets/essencialismo-capa.png",
     "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
     "tags": [
       "Produtividade",
@@ -423,7 +423,7 @@
     "id": "rapido-e-devagar",
     "title": "Rápido e Devagar: Duas Formas de Pensar",
     "author": "Daniel Kahneman",
-    "coverUrl": "assets/rapido-e-devagar-cover.png",
+    "coverUrl": "assets/rapido-e-devagar-capa.png",
     "description": "O mapa da mente de Daniel Kahneman, vencedor do Nobel de Economia. Os dois sistemas de pensamento (rápido/intuitivo e lento/deliberado), o princípio WYSIATI, as heurísticas e vieses que enganam o julgamento (ancoragem, disponibilidade, representatividade, falácia da conjunção, taxa-base, regressão à média), o excesso de confiança e o pré-mortem, a Teoria do Prospecto (aversão à perda, ponto de referência, enquadramento) e os dois eus — o que experiencia e o que recorda.",
     "tags": [
       "Psicologia",
@@ -437,7 +437,7 @@
     "id": "armas-da-persuasao",
     "title": "As Armas da Persuasão",
     "author": "Robert B. Cialdini",
-    "coverUrl": "assets/armas-da-persuasao-cover.png",
+    "coverUrl": "assets/armas-da-persuasao-capa.png",
     "description": "O clássico de Robert Cialdini sobre a psicologia do consentimento. Os padrões fixos de ação (o 'clique, zumm'), o contraste perceptivo e os 6 princípios universais da influência — reciprocidade, compromisso e coerência, aprovação/prova social, afeição, autoridade e escassez (mais a unidade como 7º). Para cada princípio: como funciona e como se proteger da manipulação.",
     "tags": [
       "Persuasão",
@@ -451,7 +451,7 @@
     "id": "pai-rico-pai-pobre",
     "title": "Pai Rico, Pai Pobre",
     "author": "Robert T. Kiyosaki",
-    "coverUrl": "assets/pai-rico-pai-pobre-cover.png",
+    "coverUrl": "assets/pai-rico-pai-pobre-capa.png",
     "description": "O clássico da educação financeira de Robert Kiyosaki. Por que inteligência acadêmica não é inteligência financeira: a parábola dos dois pais, a regra nº1 (ativo vs. passivo e o fluxo de caixa), a corrida dos ratos movida por medo e ganância, construir a coluna de ativos, o poder das corporações e dos impostos, inventar dinheiro com risco calculado, trabalhar para aprender, pagar-se primeiro e vencer os 5 obstáculos à riqueza.",
     "tags": [
       "Finanças",
@@ -465,7 +465,7 @@
     "id": "quatro-compromissos",
     "title": "Os Quatro Compromissos",
     "author": "Don Miguel Ruiz",
-    "coverUrl": "assets/quatro-compromissos-cover.png",
+    "coverUrl": "assets/quatro-compromissos-capa.png",
     "description": "O clássico de Don Miguel Ruiz baseado na sabedoria tolteca. A domesticação do humano e o sonho do planeta; o Juiz, a Vítima e o Livro da Lei; os QUATRO acordos — seja impecável com a palavra, não leve nada para o lado pessoal, não tire conclusões precipitadas, sempre faça o melhor que puder; a quebra de acordos antigos rumo à liberdade pessoal, mais o quinto acordo: seja cético, mas aprenda a ouvir.",
     "tags": [
       "Sabedoria",
@@ -479,7 +479,7 @@
     "id": "homem-mais-rico-babilonia",
     "title": "O Homem Mais Rico da Babilônia",
     "author": "George S. Clason",
-    "coverUrl": "assets/homem-mais-rico-babilonia-cover.png",
+    "coverUrl": "assets/homem-mais-rico-babilonia-capa.png",
     "description": "As parábolas de Arkad, Bansir e Dabasir destilam as leis universais da prosperidade: pague-se primeiro (no mínimo 10%), as Sete Curas para uma bolsa vazia, as Cinco Leis do Ouro, o plano 70/20/10 para sair das dívidas, e a ideia de que a sorte favorece quem age. Riqueza é resultado de hábitos simples e constantes, não de salário alto ou sorte.",
     "tags": [
       "Finanças",
@@ -493,7 +493,7 @@
     "id": "design-do-dia-a-dia",
     "title": "O Design do Dia a Dia",
     "author": "Don Norman",
-    "coverUrl": "assets/design-do-dia-a-dia-cover.png",
+    "coverUrl": "assets/design-do-dia-a-dia-capa.png",
     "description": "O clássico que inventou o vocabulário do design centrado no humano. Don Norman explica os cinco princípios que fazem um objeto se explicar sozinho — affordances, significantes, mapeamento, feedback e restrições — e por que 'erro humano' quase sempre é erro de design. Da psicologia da ação (os dois golfos, os sete estágios) ao design à prova de erro (deslizes × enganos, funções de força, poka-yoke), é o manual para projetar coisas que as pessoas conseguem usar sem manual.",
     "tags": [
       "Design",
@@ -507,7 +507,7 @@
     "id": "nao-me-faca-pensar",
     "title": "Não Me Faça Pensar",
     "author": "Steve Krug",
-    "coverUrl": "assets/nao-me-faca-pensar-cover.png",
+    "coverUrl": "assets/nao-me-faca-pensar-capa.png",
     "description": "O clássico mais influente da usabilidade web, de Steve Krug. Em vez de um manual técnico, é um guia de bom senso: reduza a carga cognitiva, aproveite as convenções, deixe óbvio o que é clicável, corte as palavras desnecessárias e dê ao usuário uma navegação que sempre responde 'onde estou?' e 'como volto?'. Krug demole o mito do 'usuário médio' e da home perfeita, e mostra como um teste de usabilidade barato — três pessoas, uma manhã por mês — resolve discussões com evidência. No centro de tudo, a reserva de boa vontade do usuário: cada atrito a esvazia, cada cortesia a reabastece.",
     "tags": [
       "Usabilidade",
@@ -521,7 +521,7 @@
     "id": "futebol-brasileiro",
     "title": "A História do Futebol Brasileiro",
     "author": "Mário Filho e clássicos do tema",
-    "coverUrl": "assets/futebol-brasileiro-cover.png",
+    "coverUrl": "assets/futebol-brasileiro-capa.png",
     "description": "A história do futebol brasileiro, da origem aristocrática (Charles Miller, 1894) à era das cinco estrelas — inspirada no maior clássico do tema, 'O Negro no Futebol Brasileiro' de Mário Filho. A barreira racial e o 'pó de arroz', a ruptura do Vasco (1923), Friedenreich e Leônidas, a profissionalização (1933), a invenção do futebol-arte, o Maracanazo (1950) e o 'complexo de vira-lata', o tri de Pelé e Garrincha (1958/62/70), a beleza que perdeu em 1982, o tetra e o penta (1994/2002), o 7 a 1 de 2014 e o debate sobre o mito da democracia racial.",
     "tags": [
       "História",
@@ -536,7 +536,7 @@
     "id": "padrao-bitcoin",
     "title": "O Padrão Bitcoin",
     "author": "Saifedean Ammous",
-    "coverUrl": "assets/padrao-bitcoin-cover.png",
+    "coverUrl": "assets/padrao-bitcoin-capa.png",
     "description": "Para entender o Bitcoin, entenda o dinheiro. Ammous usa a história monetária e a escola austríaca para mostrar por que o dinheiro forte (alta razão estoque/fluxo) preserva poupança e civilização — e por que o Bitcoin seria o mais forte já criado.",
     "tags": [
       "Economia",
@@ -550,7 +550,7 @@
     "id": "hora-da-estrela",
     "title": "A Hora da Estrela",
     "author": "Clarice Lispector",
-    "coverUrl": "assets/hora-da-estrela-cover.png",
+    "coverUrl": "assets/hora-da-estrela-capa.png",
     "description": "Análise literária de 'A Hora da Estrela' de Clarice Lispector: metalinguagem, narrador-personagem Rodrigo S.M., a anti-heroína Macabéa, invisibilidade social, linguagem e silêncio, o instante, a falsa epifania e a morte como ápice da existência.",
     "tags": [
       "Literatura Brasileira",
@@ -564,7 +564,7 @@
     "id": "noites-brancas",
     "title": "Noites Brancas",
     "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/noites-brancas-cover.png",
+    "coverUrl": "assets/noites-brancas-capa.png",
     "description": "Análise literária de 'Noites Brancas' de Dostoiévski: o Sonhador como tipo, sonho versus realidade, a solidão urbana de Petersburgo, a efemeridade da felicidade, o altruísmo no sofrimento e os símbolos da obra.",
     "tags": [
       "Literatura Russa",
@@ -578,7 +578,7 @@
     "id": "mais-esperto-que-o-diabo",
     "title": "Mais Esperto que o Diabo",
     "author": "Napoleon Hill",
-    "coverUrl": "assets/mais-esperto-que-o-diabo-cover.png",
+    "coverUrl": "assets/mais-esperto-que-o-diabo-capa.png",
     "description": "Frameworks de libertação pessoal de Napoleon Hill: a deriva (drifting), as armas do Diabo (medo, procrastinação, dúvida), a definição de propósito, o hipnotismo rítmico do hábito e os sete princípios da liberdade.",
     "tags": [
       "Autodesenvolvimento",
@@ -592,7 +592,7 @@
     "id": "quebrando-o-habito",
     "title": "Quebrando o Hábito de Ser Você Mesmo",
     "author": "Dr. Joe Dispenza",
-    "coverUrl": "assets/quebrando-o-habito-cover.png",
+    "coverUrl": "assets/quebrando-o-habito-capa.png",
     "description": "Os frameworks de Joe Dispenza para reprogramar a mente e criar uma nova realidade: os três carcereiros (ambiente, corpo, tempo), sobreviver versus criar, o ciclo Pensar→Fazer→Ser, epigenética, neuroplasticidade, a meditação reprogramadora e o estado generativo.",
     "tags": [
       "Autodesenvolvimento",
@@ -606,7 +606,7 @@
     "id": "mulheres-que-correm-com-os-lobos",
     "title": "Mulheres que Correm com os Lobos",
     "author": "Clarissa Pinkola Estés",
-    "coverUrl": "assets/mulheres-que-correm-com-os-lobos-cover.png",
+    "coverUrl": "assets/mulheres-que-correm-com-os-lobos-capa.png",
     "description": "Psicanálise junguiana e contos de fada como frameworks arquetípicos para recuperar a psique instintiva feminina. La Loba, Barba Azul, Vasalisa, a Mulher Esqueleto, o Patinho Feio, os Sapatinhos Vermelhos, Manawee e a Donzela Manca — cada conto é um diagnóstico e um caminho de cura.",
     "tags": [
       "Psicologia",
@@ -620,7 +620,7 @@
     "id": "sociedade-do-cansaco",
     "title": "Sociedade do Cansaço",
     "author": "Byung-Chul Han",
-    "coverUrl": "assets/sociedade-do-cansaco-cover.png",
+    "coverUrl": "assets/sociedade-do-cansaco-capa.png",
     "description": "O ensaio filosófico de Byung-Chul Han sobre a passagem da sociedade disciplinar (Foucault) para a sociedade do desempenho. Autoexploração, excesso de positividade, violência neuronal (burnout, depressão, TDAH), a perda do tédio profundo e da atenção contemplativa — e o cansaço fundamental de Handke como caminho de reconciliação.",
     "tags": [
       "Filosofia",
@@ -634,7 +634,7 @@
     "id": "assim-falou-zaratustra",
     "title": "Assim Falou Zaratustra",
     "author": "Friedrich Nietzsche",
-    "coverUrl": "assets/assim-falou-zaratustra-cover.png",
+    "coverUrl": "assets/assim-falou-zaratustra-capa.png",
     "description": "Análise de 'Assim Falou Zaratustra' de Nietzsche (1883–1885): morte de Deus, o além-do-homem como sentido da Terra, as três metamorfoses (camelo→leão→criança), vontade de potência, eterno retorno, amor fati, ressentimento e transvaloração dos valores. Filosofia encenada em parábolas e símbolos.",
     "tags": [
       "Filosofia",
@@ -648,7 +648,7 @@
     "id": "mundo-de-sofia",
     "title": "O Mundo de Sofia",
     "author": "Jostein Gaarder",
-    "coverUrl": "assets/mundo-de-sofia-cover.png",
+    "coverUrl": "assets/mundo-de-sofia-capa.png",
     "description": "Romance filosófico de Jostein Gaarder que percorre a história da filosofia ocidental: dos pré-socráticos e o espanto originário, passando por Sócrates/Platão/Aristóteles, helenismo, Descartes, empiristas, Kant, Hegel, Marx/Darwin/Freud e Sartre, até a virada meta onde os personagens descobrem que são fictícios.",
     "tags": [
       "Filosofia",
@@ -662,7 +662,7 @@
     "id": "crime-e-castigo",
     "title": "Crime e Castigo",
     "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/crime-e-castigo-cover.png",
+    "coverUrl": "assets/crime-e-castigo-capa.png",
     "description": "Análise de Crime e Castigo de Dostoiévski: a teoria do homem extraordinário, o crime como experimento filosófico, a culpa como castigo interior, Sônia e o sofrimento redentor, o duelo psicológico com Porfiry, Svidrigáilov como duplo niilista e a ressurreição pelo amor no epílogo.",
     "tags": [
       "Literatura Clássica",
@@ -676,7 +676,7 @@
     "id": "irmaos-karamazov",
     "title": "Os Irmãos Karamázov",
     "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/irmaos-karamazov-cover.png",
+    "coverUrl": "assets/irmaos-karamazov-capa.png",
     "description": "Análise de Os Irmãos Karamázov de Dostoiévski: os três irmãos como facetas da alma, a tese de Ivan ('tudo é permitido'), A Lenda do Grande Inquisidor (liberdade × pão/segurança), o ancião Zóssima e o amor ativo, a teodiceia (sofrimento das crianças), o parricídio e a culpa difusa, a redenção pelo sofrimento aceito e a polifonia do romance.",
     "tags": [
       "Literatura Clássica",
@@ -690,7 +690,7 @@
     "id": "o-idiota",
     "title": "O Idiota",
     "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/o-idiota-cover.png",
+    "coverUrl": "assets/o-idiota-capa.png",
     "description": "Análise de O Idiota de Dostoiévski: Míchkin como figura de Cristo e a tragédia da bondade, Nastássia Filíppovna (beleza ferida), Rogójin (paixão possessiva), 'a beleza salvará o mundo', compaixão × paixão, a epilepsia e o êxtase, o Cristo morto de Holbein, e a estrutura circular trágica.",
     "tags": [
       "Literatura Clássica",
@@ -704,7 +704,7 @@
     "id": "memorias-do-subsolo",
     "title": "Memórias do Subsolo",
     "author": "Fiódor Dostoiévski",
-    "coverUrl": "assets/memorias-do-subsolo-cover.png",
+    "coverUrl": "assets/memorias-do-subsolo-capa.png",
     "description": "Análise de Memórias do Subsolo de Dostoiévski: o anti-herói e o estado do subsolo, a hiperconsciência que paralisa, o ataque ao palácio de cristal e ao utilitarismo de Tchernichévski, o livre-arbítrio e o capricho contra o determinismo, o jantar humilhante com Zvérkov, Liza e a incapacidade de amar, o narrador não confiável e o legado existencialista.",
     "tags": [
       "Literatura Clássica",
@@ -718,7 +718,7 @@
     "id": "o-principe",
     "title": "O Príncipe",
     "author": "Nicolau Maquiavel",
-    "coverUrl": "assets/o-principe-cover.png",
+    "coverUrl": "assets/o-principe-capa.png",
     "description": "O Príncipe de Maquiavel em cheat sheet: virtù × fortuna, temido vs. amado, raposa e leão, crueldade bem usada, armas próprias, evitar o ódio e o desprezo, lisonjeiros e reputação — os frameworks do poder real.",
     "tags": [
       "Poder",
@@ -732,7 +732,7 @@
     "id": "leis-da-natureza-humana",
     "title": "As Leis da Natureza Humana",
     "author": "Robert Greene",
-    "coverUrl": "assets/leis-da-natureza-humana-cover.png",
+    "coverUrl": "assets/leis-da-natureza-humana-capa.png",
     "description": "As 18 leis da natureza humana de Robert Greene em cheat sheet: irracionalidade, narcisismo vs. empatia, máscara e caráter, desejo evasivo, perspectiva, defensividade, autossabotagem, A Sombra, inveja, grandiosidade, propósito, conformismo, agressão e a finitude — frameworks para ler o outro e a si mesmo.",
     "tags": [
       "Psicologia",
@@ -746,7 +746,7 @@
     "id": "arte-da-seducao",
     "title": "A Arte da Sedução",
     "author": "Robert Greene",
-    "coverUrl": "assets/arte-da-seducao-cover.png",
+    "coverUrl": "assets/arte-da-seducao-capa.png",
     "description": "A Arte da Sedução de Robert Greene em cheat sheet: os 9 tipos de sedutor (Sereia, Libertino, Amante Ideal, Dândi, Natural, Coquete, Encantador, Carismático, Estrela), o Anti-Sedutor, as vítimas e as 4 fases (separar, penetrar, precipitar, o tombo) — frameworks de influência e atração.",
     "tags": [
       "Poder",
@@ -760,7 +760,7 @@
     "id": "jogos-da-vida",
     "title": "Os Jogos da Vida",
     "author": "Eric Berne",
-    "coverUrl": "assets/jogos-da-vida-cover.png",
+    "coverUrl": "assets/jogos-da-vida-capa.png",
     "description": "Os Jogos da Vida de Eric Berne em cheat sheet: estados de ego P-A-C, transações complementares/cruzadas/ulteriores, carícias e fome de reconhecimento, a Fórmula J (Isca+Fraqueza→Resposta→Virada→Confusão→Recompensa), os jogos clássicos ('Sim mas', 'Se não fosse por você', 'Chuta-me', 'Tribunal') e a saída pela autonomia.",
     "tags": [
       "Psicologia",
@@ -774,7 +774,7 @@
     "id": "nunca-divida-a-diferenca",
     "title": "Nunca Divida a Diferença",
     "author": "Chris Voss",
-    "coverUrl": "assets/nunca-divida-a-diferenca-cover.png",
+    "coverUrl": "assets/nunca-divida-a-diferenca-capa.png",
     "description": "O manual de negociação de Chris Voss, ex-negociador de reféns do FBI: empatia tática, espelhamento, rotulação, auditoria de acusações, o poder do 'não', o 'é isso mesmo', perguntas calibradas com 'como/o quê', o método Ackerman e a caça aos cisnes negros.",
     "tags": [
       "Negociação",
@@ -788,7 +788,7 @@
     "id": "conversas-cruciais",
     "title": "Conversas Cruciais",
     "author": "Kerry Patterson, Joseph Grenny, Ron McMillan & Al Switzler",
-    "coverUrl": "assets/conversas-cruciais-cover.png",
+    "coverUrl": "assets/conversas-cruciais-capa.png",
     "description": "O método de Patterson, Grenny, McMillan e Switzler para conduzir conversas de alto risco: o Pool de Significado Comum, Começar pelo Coração, detectar silêncio × violência, Tornar Seguro (Contraste e CRIB), Dominar Minhas Histórias, o método STATE para falar, o AMPP para escutar e o WWWF para agir.",
     "tags": [
       "Comunicação",
@@ -802,7 +802,7 @@
     "id": "escute",
     "title": "Escute!",
     "author": "Kate Murphy",
-    "coverUrl": "assets/escute-cover.png",
+    "coverUrl": "assets/escute-capa.png",
     "description": "O guia de Kate Murphy para a habilidade de escutar: ouvir ≠ escutar, a resposta de deslocamento vs. apoio, o egoísmo conversacional, escutar para compreender (não para responder), curiosidade genuína, viés da familiaridade, o celular que mata a escuta, o poder do silêncio e a lacuna fala-pensamento.",
     "tags": [
       "Comunicação",
@@ -816,7 +816,7 @@
     "id": "obrigado-pelo-feedback",
     "title": "Obrigado pelo Feedback",
     "author": "Douglas Stone & Sheila Heen",
-    "coverUrl": "assets/obrigado-pelo-feedback-cover.png",
+    "coverUrl": "assets/obrigado-pelo-feedback-capa.png",
     "description": "O método de Stone e Heen para receber feedback: os 3 tipos (apreciação, orientação, avaliação) e seus desencontros; os 3 gatilhos (verdade, relacionamento, identidade); pontos cegos e intenção × impacto; diferença de mapas e o sistema; identidade complexa e mentalidade de crescimento; e os 3 limites legítimos.",
     "tags": [
       "Feedback",
@@ -830,7 +830,7 @@
     "id": "poder-dos-quietos",
     "title": "O Poder dos Quietos",
     "author": "Susan Cain",
-    "coverUrl": "assets/poder-dos-quietos-cover.png",
+    "coverUrl": "assets/poder-dos-quietos-capa.png",
     "description": "O guia de Susan Cain sobre introversão e poder silencioso. O Ideal da Extroversão e seu custo, a biologia da alta reatividade (Kagan), a teoria do elástico e dos traços livres com nichos restauradores, o mito do brainstorming em grupo, a liderança introvertida e como prosperar sendo quieto.",
     "tags": [
       "Introversão",
@@ -844,7 +844,7 @@
     "id": "segredos-da-mente-milionaria",
     "title": "Os Segredos da Mente Milionária",
     "author": "T. Harv Eker",
-    "coverUrl": "assets/segredos-da-mente-milionaria-cover.png",
+    "coverUrl": "assets/segredos-da-mente-milionaria-capa.png",
     "description": "O método de T. Harv Eker para reprogramar a mentalidade financeira. O modelo de dinheiro (money blueprint) instalado na infância, a cadeia P→S→A→R, os 4 passos da mudança, as declarações de poder e os 17 Arquivos de Riqueza — protagonismo, visão grande, gestão do patrimônio, coragem e crescimento contínuo.",
     "tags": [
       "Mentalidade Financeira",
@@ -858,7 +858,7 @@
     "id": "investidor-inteligente",
     "title": "O Investidor Inteligente",
     "author": "Benjamin Graham",
-    "coverUrl": "assets/investidor-inteligente-cover.png",
+    "coverUrl": "assets/investidor-inteligente-capa.png",
     "description": "A bíblia do value investing de Benjamin Graham. Investidor vs. especulador, a alegoria do Sr. Mercado, a margem de segurança, o investidor defensivo (50/50 e dollar-cost averaging), o empreendedor e as net-nets, preço vs. valor, inflação, temperamento e os critérios quantitativos de seleção de ações.",
     "tags": [
       "Value Investing",
@@ -872,7 +872,7 @@
     "id": "do-mil-ao-milhao",
     "title": "Do Mil ao Milhão",
     "author": "Thiago Nigro (Primo Rico)",
-    "coverUrl": "assets/do-mil-ao-milhao-cover.png",
+    "coverUrl": "assets/do-mil-ao-milhao-capa.png",
     "description": "O guia de educação financeira de Thiago Nigro (Primo Rico). Os três pilares da riqueza (gastar bem, investir melhor, ganhar mais), o mito do cafezinho, orçamento e padrão de vida, tipos de gasto, como sair das dívidas, renda fixa vs. variável, juros compostos, o erro da poupança e o caminho até o primeiro milhão.",
     "tags": [
       "Educação Financeira",
@@ -886,7 +886,7 @@
     "id": "quem-pensa-enriquece",
     "title": "Quem Pensa, Enriquece",
     "author": "Napoleon Hill",
-    "coverUrl": "assets/quem-pensa-enriquece-cover.png",
+    "coverUrl": "assets/quem-pensa-enriquece-capa.png",
     "description": "Os 13 princípios de Napoleon Hill para transmutar desejo em riqueza: os 6 Passos do desejo ardente, fé como estado induzido, autossugestão, imaginação sintética e criativa, planejamento organizado, decisão rápida, persistência, Mastermind, transmutação e os 6 fantasmas do medo.",
     "tags": [
       "Mentalidade",
@@ -900,7 +900,7 @@
     "id": "psicopolitica",
     "title": "Psicopolítica",
     "author": "Byung-Chul Han",
-    "coverUrl": "assets/psicopolitica-cover.png",
+    "coverUrl": "assets/psicopolitica-capa.png",
     "description": "Byung-Chul Han analisa a passagem do biopoder (controle dos corpos) para a psicopolítica neoliberal (controle da psique e do desejo). Smart power, emocionalização, Big Data, transparência como controle e o idiotismo como resistência.",
     "tags": [
       "Filosofia",
@@ -914,7 +914,7 @@
     "id": "realismo-capitalista",
     "title": "Realismo Capitalista",
     "author": "Mark Fisher",
-    "coverUrl": "assets/realismo-capitalista-cover.png",
+    "coverUrl": "assets/realismo-capitalista-capa.png",
     "description": "Mark Fisher analisa o realismo capitalista — a convicção de que não há alternativa ao capitalismo. Precorporação, os três Reais, privatização do estresse, impotência reflexiva, stalinismo de mercado, disavowal e a Supernanny marxista como saída.",
     "tags": [
       "Filosofia",
@@ -928,7 +928,7 @@
     "id": "geracao-ansiosa",
     "title": "A Geração Ansiosa",
     "author": "Jonathan Haidt",
-    "coverUrl": "assets/geracao-ansiosa-cover.png",
+    "coverUrl": "assets/geracao-ansiosa-capa.png",
     "description": "Jonathan Haidt analisa a epidemia de ansiedade e depressão na Geração Z causada pela Grande Reconfiguração da Infância (~2010-2015). Os 4 danos fundamentais, antifragilidade, modo descoberta vs. defesa, assimetria meninas-meninos, dilema do prisioneiro dos pais e as 4 normas para reverter o dano.",
     "tags": [
       "Saúde Mental",
@@ -942,7 +942,7 @@
     "id": "1984",
     "title": "1984",
     "author": "George Orwell",
-    "coverUrl": "assets/1984-cover.png",
+    "coverUrl": "assets/1984-capa.png",
     "description": "O romance distópico de George Orwell sobre o totalitarismo e a destruição da verdade. Grande Irmão, duplipensar, Novafala, crime de pensamento, o controle do passado e a fórmula '2+2=5' — analisados como ferramentas de poder e alertas permanentes sobre vigilância e manipulação.",
     "tags": [
       "Distopia",
@@ -956,7 +956,7 @@
     "id": "admiravel-mundo-novo",
     "title": "Admirável Mundo Novo",
     "author": "Aldous Huxley",
-    "coverUrl": "assets/admiravel-mundo-novo-cover.png",
+    "coverUrl": "assets/admiravel-mundo-novo-capa.png",
     "description": "O romance distópico de Aldous Huxley sobre o controle pelo prazer. Processo Bokanovsky, castas, hipnopedia, soma e o grande debate liberdade × felicidade — analisados como o avesso de 1984 e como profecia assombrosa da cultura do consumo e do entretenimento permanente.",
     "tags": [
       "Distopia",
@@ -970,7 +970,7 @@
     "id": "21-licoes",
     "title": "21 Lições para o Século 21",
     "author": "Yuval Noah Harari",
-    "coverUrl": "assets/21-licoes-cover.png",
+    "coverUrl": "assets/21-licoes-capa.png",
     "description": "Yuval Noah Harari analisa os grandes desafios do presente: o vazio de narrativa, a classe inútil criada pela automação, o hackeamento humano via Big Data, a desigualdade biológica emergente, o terrorismo como teatro, e a meditação como defesa pessoal num mundo que quer te hackear.",
     "tags": [
       "Política",
@@ -984,7 +984,7 @@
     "id": "amor-liquido",
     "title": "Amor Líquido",
     "author": "Zygmunt Bauman",
-    "coverUrl": "assets/amor-liquido-cover.png",
+    "coverUrl": "assets/amor-liquido-capa.png",
     "description": "Ensaio de Zygmunt Bauman sobre a fragilidade dos laços humanos na modernidade líquida. Amor como consumo, conexões × relações, segurança × liberdade, mixofobia × mixofilia, humanos refugados e o convívio desmantelado. Diagnóstico sociológico dos vínculos contemporâneos.",
     "tags": [
       "Sociologia",
@@ -998,7 +998,7 @@
     "id": "sete-saberes",
     "title": "Os Sete Saberes Necessários à Educação do Futuro",
     "author": "Edgar Morin",
-    "coverUrl": "assets/sete-saberes-cover.png",
+    "coverUrl": "assets/sete-saberes-capa.png",
     "description": "Os Sete Saberes de Edgar Morin para a UNESCO: bússola filosófica que aponta os buracos fatais da educação — das cegueiras do conhecimento à antropoética. Frameworks: conhecimento pertinente, ecologia da ação, estratégia × programa, unitas multiplex, compreensão × explicação, cidadania terrena.",
     "tags": [
       "Educação",
@@ -1012,7 +1012,7 @@
     "id": "cabeca-bem-feita",
     "title": "A Cabeça Bem-Feita",
     "author": "Edgar Morin",
-    "coverUrl": "assets/cabeca-bem-feita-cover.png",
+    "coverUrl": "assets/cabeca-bem-feita-capa.png",
     "description": "Edgar Morin cita Montaigne para diagnosticar a educação moderna: cabeça bem-cheia (acúmulo) versus bem-feita (aptidão para organizar). Frameworks: conhecimento pertinente, os 3 desafios, ecologia da ação, transdisciplinaridade, reforma circular pensamento ⇄ ensino, Eros do professor.",
     "tags": [
       "Educação",
@@ -1026,7 +1026,7 @@
     "id": "pensamento-complexo",
     "title": "Introdução ao Pensamento Complexo",
     "author": "Edgar Morin",
-    "coverUrl": "assets/pensamento-complexo-cover.png",
+    "coverUrl": "assets/pensamento-complexo-capa.png",
     "description": "O guia essencial de Edgar Morin para pensar a complexidade sem mutilá-la. Os dois paradigmas (simplificação × complexidade), os três princípios operadores (dialógico, recursão organizacional e hologramático), o tetragrama ordem-desordem-interações-organização, e o imperativo de religar o que o saber clássico separou.",
     "tags": [
       "Filosofia",
@@ -1040,7 +1040,7 @@
     "id": "coisa-de-rico",
     "title": "Coisa de Rico",
     "author": "Michel Alcoforado",
-    "coverUrl": "assets/coisa-de-rico-cover.png",
+    "coverUrl": "assets/coisa-de-rico-capa.png",
     "description": "Antropologia etnográfica da elite brasileira: os códigos sociais que separam quem pertence de quem só tem dinheiro. Operação da diferença, quiet luxury, ocupados desocupados, riqueza como relação, consumo conspícuo e a insegurança estrutural da elite — com as lentes de Bourdieu e Veblen.",
     "tags": [
       "Sociologia",
@@ -1054,7 +1054,7 @@
     "id": "insustentavel-leveza-do-ser",
     "title": "A Insustentável Leveza do Ser",
     "author": "Milan Kundera",
-    "coverUrl": "assets/insustentavel-leveza-do-ser-cover.png",
+    "coverUrl": "assets/insustentavel-leveza-do-ser-capa.png",
     "description": "Romance filosófico de Milan Kundera: a oposição fundadora leveza × peso, o eterno retorno de Nietzsche, 'einmal ist keinmal' (uma vez é nenhuma vez), o kitsch como negação da morte, 'es muss sein!', os seis acasos, o corpo × a alma, a Grande Marcha e o idílio de Karenin. Com Tomáš, Tereza, Sabina e Franz.",
     "tags": [
       "Literatura",
@@ -1068,7 +1068,7 @@
     "id": "7-habitos",
     "title": "Os 7 Hábitos das Pessoas Altamente Eficazes",
     "author": "Stephen R. Covey",
-    "coverUrl": "assets/7-habitos-cover.png",
+    "coverUrl": "assets/7-habitos-capa.png",
     "description": "Clássico de Stephen R. Covey sobre efetividade baseada em caráter (de dentro para fora). Os 7 hábitos: ser proativo, começar com o fim em mente, primeiro o mais importante (matriz do tempo), ganha-ganha, compreender antes de ser compreendido, sinergia e afinar o instrumento. Mais a Conta Bancária Emocional e o continuum dependência→independência→interdependência.",
     "tags": [
       "Desenvolvimento Pessoal",
@@ -1082,7 +1082,7 @@
     "id": "poder-do-habito",
     "title": "O Poder do Hábito",
     "author": "Charles Duhigg",
-    "coverUrl": "assets/poder-do-habito-cover.png",
+    "coverUrl": "assets/poder-do-habito-capa.png",
     "description": "Investigação de Charles Duhigg sobre a ciência dos hábitos. O loop (deixa, rotina, recompensa) e o craving que o move, a Regra de Ouro da mudança, os hábitos angulares, a força de vontade como músculo, e como hábitos governam organizações e movimentos sociais. Por que fazemos o que fazemos — e como mudar.",
     "tags": [
       "Comportamento",
@@ -1096,7 +1096,7 @@
     "id": "trabalho-focado",
     "title": "Trabalho Focado",
     "author": "Cal Newport",
-    "coverUrl": "assets/trabalho-focado-cover.png",
+    "coverUrl": "assets/trabalho-focado-capa.png",
     "description": "Manifesto e manual de Cal Newport sobre foco na economia do conhecimento. Trabalho profundo × superficial, o foco como superpoder raro e valioso, a lei da produtividade (foco = tempo × intensidade) e as 4 regras: trabalhe profundamente (4 ritmos, rituais, fim de expediente), abrace o tédio, abandone as redes sociais e drene o raso.",
     "tags": [
       "Produtividade",
@@ -1110,7 +1110,7 @@
     "id": "a-unica-coisa",
     "title": "A Única Coisa",
     "author": "Gary Keller & Jay Papasan",
-    "coverUrl": "assets/a-unica-coisa-cover.png",
+    "coverUrl": "assets/a-unica-coisa-capa.png",
     "description": "Guia de foco e produtividade de Gary Keller e Jay Papasan. A Pergunta Focal, o efeito dominó (sucesso sequencial), as 6 mentiras do sucesso, o 80/20, os 4 ladrões da produtividade, os blocos de tempo e a corrente propósito → prioridade → produtividade.",
     "tags": [
       "Produtividade",
@@ -1124,7 +1124,7 @@
     "id": "comece-pelo-porque",
     "title": "Comece pelo Porquê",
     "author": "Simon Sinek",
-    "coverUrl": "assets/comece-pelo-porque-cover.png",
+    "coverUrl": "assets/comece-pelo-porque-capa.png",
     "description": "Modelo de liderança e comunicação de Simon Sinek. O Círculo Dourado (Porquê → Como → O Quê), a biologia da decisão (sistema límbico × neocórtex), manipulação × inspiração, o Teste do Aipo, a Lei da Difusão da Inovação e o ponto de inflexão, e o desafio da sucessão (a Cisão do Porquê). Com Apple, irmãos Wright e Martin Luther King.",
     "tags": [
       "Liderança",
@@ -1138,7 +1138,7 @@
     "id": "de-zero-a-um",
     "title": "De Zero a Um",
     "author": "Peter Thiel com Blake Masters",
-    "coverUrl": "assets/de-zero-a-um-cover.png",
+    "coverUrl": "assets/de-zero-a-um-capa.png",
     "description": "Ensaio de Peter Thiel (com Blake Masters) sobre startups e inovação: progresso vertical (0→1) × horizontal (1→n), a pergunta contrária, monopólio criativo × concorrência, lei de potência, segredos, fundações, distribuição e as 7 perguntas de toda startup. Manual contrário de como criar o novo.",
     "tags": [
       "Empreendedorismo",
@@ -1152,7 +1152,7 @@
     "id": "startup-enxuta",
     "title": "A Startup Enxuta",
     "author": "Eric Ries",
-    "coverUrl": "assets/startup-enxuta-cover.png",
+    "coverUrl": "assets/startup-enxuta-capa.png",
     "description": "Manual de gestão empreendedora de Eric Ries. O ciclo Construir-Medir-Aprender, o Produto Mínimo Viável (MVP), o aprendizado validado, as hipóteses de valor e de crescimento, pivô × perseverar, a contabilidade da inovação (métricas acionáveis × de vaidade), os 3 motores de crescimento, lotes pequenos e os 5 porquês. A produção enxuta da Toyota aplicada a startups.",
     "tags": [
       "Empreendedorismo",
@@ -1166,7 +1166,7 @@
     "id": "trabalhe-4-horas",
     "title": "Trabalhe 4 Horas por Semana",
     "author": "Tim Ferriss",
-    "coverUrl": "assets/trabalhe-4-horas-cover.png",
+    "coverUrl": "assets/trabalhe-4-horas-capa.png",
     "description": "Manual de estilo de vida e produtividade de Tim Ferriss. Os Novos Ricos trocam o acúmulo de dinheiro por tempo e mobilidade. O processo DEAL — Definição (dreamlining, fear-setting), Eliminação (Pareto 80/20 + Parkinson, dieta de baixa informação), Automação (a musa, terceirização, regra de não-decidir) e Libertação (trabalho remoto, mini-aposentadorias) — mais a distinção eficácia × eficiência.",
     "tags": [
       "Produtividade",
@@ -1180,7 +1180,7 @@
     "id": "inteligencia-emocional",
     "title": "Inteligência Emocional",
     "author": "Daniel Goleman",
-    "coverUrl": "assets/inteligencia-emocional-cover.png",
+    "coverUrl": "assets/inteligencia-emocional-capa.png",
     "description": "Clássico de Daniel Goleman sobre inteligência emocional. As 5 competências (autoconsciência, autocontrole, automotivação, empatia, habilidades sociais), o sequestro da amígdala, QE × QI, o teste do marshmallow, o fluxo e as aplicações no casamento, na liderança, na saúde e na educação emocional.",
     "tags": [
       "Psicologia",
@@ -1194,7 +1194,7 @@
     "id": "mindset",
     "title": "Mindset",
     "author": "Carol S. Dweck",
-    "coverUrl": "assets/mindset-cover.png",
+    "coverUrl": "assets/mindset-capa.png",
     "description": "Síntese de 'Mindset' de Carol Dweck. Mentalidade fixa × de crescimento, o poder do 'ainda', elogiar o processo e não o talento, fracasso como informação × identidade, a doença do CEO, mentalidade no esporte/negócios/amor/educação, os passos para mudar e a 'falsa mentalidade de crescimento'.",
     "tags": [
       "Psicologia",
@@ -1208,7 +1208,7 @@
     "id": "garra",
     "title": "Garra",
     "author": "Angela Duckworth",
-    "coverUrl": "assets/garra-cover.png",
+    "coverUrl": "assets/garra-capa.png",
     "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",
     "tags": [
       "Psicologia",
@@ -1222,7 +1222,7 @@
     "id": "flow",
     "title": "Flow",
     "author": "Mihaly Csikszentmihalyi",
-    "coverUrl": "assets/flow-cover.png",
+    "coverUrl": "assets/flow-capa.png",
     "description": "Obra fundadora da psicologia positiva. A felicidade como condição que se constrói controlando a consciência; o flow (experiência ótima) e suas 8 características; entropia psíquica × ordem na consciência; o canal de flow (ansiedade × tédio); prazer × fruição; a personalidade autotélica; transformar trabalho e lazer em flow; e o sentido como o flow que unifica a vida toda.",
     "tags": [
       "Psicologia",
@@ -1236,7 +1236,7 @@
     "id": "corpo-guarda-as-marcas",
     "title": "O Corpo Guarda as Marcas",
     "author": "Bessel van der Kolk",
-    "coverUrl": "assets/corpo-guarda-as-marcas-cover.png",
+    "coverUrl": "assets/corpo-guarda-as-marcas-capa.png",
     "description": "Síntese clínico-educacional de 'O Corpo Guarda as Marcas' (Bessel van der Kolk) sobre como o trauma se inscreve em corpo e cérebro. Amígdala/alarme × pré-frontal/torre, janela de tolerância, teoria polivagal, interocepção e dissociação, memória traumática × narrativa, apego e trauma do desenvolvimento, e as vias de cura (EMDR, yoga, neurofeedback, IFS, ritmo/teatro).",
     "tags": [
       "Psicologia",
@@ -1250,7 +1250,7 @@
     "id": "busca-de-sentido",
     "title": "Em Busca de Sentido",
     "author": "Viktor E. Frankl",
-    "coverUrl": "assets/busca-de-sentido-cover.png",
+    "coverUrl": "assets/busca-de-sentido-capa.png",
     "description": "Memória dos campos de concentração e tratado de logoterapia de Viktor Frankl. A vontade de sentido como força primária, a última das liberdades humanas, os três caminhos para o sentido, o sofrimento com sentido, o vazio existencial, a neurose noogênica e as técnicas (intenção paradoxal, dereflexão). Um sim à vida apesar de tudo.",
     "tags": [
       "Psicologia",
@@ -1264,7 +1264,7 @@
     "id": "sapiens",
     "title": "Sapiens",
     "author": "Yuval Noah Harari",
-    "coverUrl": "assets/sapiens-cover.png",
+    "coverUrl": "assets/sapiens-capa.png",
     "description": "Grande história de Yuval Noah Harari sobre o passado da humanidade. As 3 revoluções (Cognitiva ~70 mil anos, Agrícola ~12 mil, Científica ~500 anos); o poder das ficções compartilhadas; a Revolução Agrícola como 'a maior fraude da história'; dinheiro, império e religião como as 3 ordens unificadoras; o casamento ciência-império-capital; o capitalismo e o crédito; a (in)felicidade do Sapiens; e o fim do Homo sapiens.",
     "tags": [
       "História",
@@ -1278,7 +1278,7 @@
     "id": "homo-deus",
     "title": "Homo Deus",
     "author": "Yuval Noah Harari",
-    "coverUrl": "assets/homo-deus-cover.png",
+    "coverUrl": "assets/homo-deus-capa.png",
     "description": "Ensaio de história especulativa de Yuval Noah Harari sobre o futuro da humanidade. A nova agenda (imortalidade, felicidade, divindade), o humanismo como religião, o Sapiens como algoritmo bioquímico, o desacoplamento inteligência × consciência, o fim do livre-arbítrio e do indivíduo, a classe inútil × os super-humanos, e o dataísmo. Terceira parte da trilogia Sapiens / Homo Deus / 21 Lições.",
     "tags": [
       "História",
@@ -1292,7 +1292,7 @@
     "id": "gene-egoista",
     "title": "O Gene Egoísta",
     "author": "Richard Dawkins",
-    "coverUrl": "assets/gene-egoista-cover.png",
+    "coverUrl": "assets/gene-egoista-capa.png",
     "description": "Clássico de divulgação científica de Richard Dawkins (1976). A visão centrada no gene: replicador × veículo, máquinas de sobrevivência, seleção de parentesco e a regra de Hamilton (rB>C), estratégias evolutivamente estáveis (EEE) e teoria dos jogos (falcão × pomba), altruísmo recíproco e o dilema do prisioneiro iterado, e o meme como replicador cultural. Descrever a lógica do gene não é prescrevê-la como ética.",
     "tags": [
       "Biologia Evolutiva",
@@ -1306,7 +1306,7 @@
     "id": "cisne-negro",
     "title": "A Lógica do Cisne Negro",
     "author": "Nassim Nicholas Taleb",
-    "coverUrl": "assets/cisne-negro-cover.png",
+    "coverUrl": "assets/cisne-negro-capa.png",
     "description": "Ensaio de Nassim Taleb sobre o evento Cisne Negro: raro, de impacto extremo e previsível só em retrospecto. Mediocristão × Extremistão, falácia narrativa, problema da indução (o peru de Russell), evidência silenciosa, falácia lúdica, arrogância epistêmica, a fraude da curva de sino e a robustez (estratégia barbell) diante do imprevisível.",
     "tags": [
       "Incerteza",
@@ -1320,7 +1320,7 @@
     "id": "antifragil",
     "title": "Antifrágil",
     "author": "Nassim Nicholas Taleb",
-    "coverUrl": "assets/antifragil-cover.png",
+    "coverUrl": "assets/antifragil-capa.png",
     "description": "Ensaio de Nassim Taleb sobre como prosperar na desordem. A tríade frágil/robusto/antifrágil, opcionalidade, a estratégia barbell, via negativa, pele em jogo, o efeito Lindy, hormese, iatrogenia e a crítica à previsão. Quarto volume do Incerto, na linha de 'O Cisne Negro'.",
     "tags": [
       "Incerteza",
@@ -1334,7 +1334,7 @@
     "id": "meditacoes",
     "title": "Meditações",
     "author": "Marco Aurélio",
-    "coverUrl": "assets/meditacoes-cover.png",
+    "coverUrl": "assets/meditacoes-capa.png",
     "description": "Caderno pessoal estoico de Marco Aurélio. A dicotomia do controle, as três disciplinas (assentimento, desejo, ação), 'não é a coisa que perturba mas o juízo sobre ela', amor fati, o obstáculo é o caminho, memento mori, a cidadela interior, a visão do alto e o convívio com pessoas difíceis. Síntese organizada por temas — não reproduz o texto.",
     "tags": [
       "Filosofia",
@@ -1348,7 +1348,7 @@
     "id": "axiomas-de-zurique",
     "title": "Os Axiomas de Zurique",
     "author": "Max Gunther",
-    "coverUrl": "assets/axiomas-de-zurique-cover.png",
+    "coverUrl": "assets/axiomas-de-zurique-capa.png",
     "description": "Manual de especulação consciente de Max Gunther: os 12 Grandes Axiomas + os menores. Risco como saúde, realizar o lucro cedo, cortar perdas pequenas, imprevisibilidade do mercado, padrões ilusórios, mobilidade do capital, intuição explicável, fim da mística, confiança × otimismo, ignorar o consenso, anti-teimosia e o perigo dos planos longos. Disciplina sobre emoção.",
     "tags": [
       "Finanças",
@@ -1362,7 +1362,7 @@
     "id": "milionario-mora-ao-lado",
     "title": "O Milionário Mora ao Lado",
     "author": "Thomas J. Stanley & William D. Danko",
-    "coverUrl": "assets/milionario-mora-ao-lado-cover.png",
+    "coverUrl": "assets/milionario-mora-ao-lado-capa.png",
     "description": "Estudo de Thomas Stanley e William Danko sobre os milionários reais dos EUA. Os 7 fatores comuns de quem acumula riqueza, viver muito abaixo das posses, a fórmula da riqueza esperada (idade × renda /10), PAW × UAW, ataque × defesa, a Assistência Econômica Externa que enfraquece os filhos, achar o nicho e a escolha da profissão. Mais frugalidade que renda alta.",
     "tags": [
       "Finanças Pessoais",
@@ -1376,7 +1376,7 @@
     "id": "revolucao-dos-bichos",
     "title": "A Revolução dos Bichos",
     "author": "George Orwell",
-    "coverUrl": "assets/revolucao-dos-bichos-cover.png",
+    "coverUrl": "assets/revolucao-dos-bichos-capa.png",
     "description": "Fábula satírica de George Orwell (1945) sobre a corrupção do poder. Alegoria da Revolução Russa: Napoleão (Stálin), Bola-de-Neve (Trótski), a propaganda de Garganta, os cães (polícia secreta) e o cavalo Sansão, o trabalhador traído. Os Sete Mandamentos reescritos, o culto ao líder e a reescrita da história, até os porcos se tornarem indistinguíveis dos humanos.",
     "tags": [
       "Ficção",
@@ -1390,7 +1390,7 @@
     "id": "pequeno-principe",
     "title": "O Pequeno Príncipe",
     "author": "Antoine de Saint-Exupéry",
-    "coverUrl": "assets/pequeno-principe-cover.png",
+    "coverUrl": "assets/pequeno-principe-capa.png",
     "description": "Fábula poética e filosófica de Saint-Exupéry. O essencial é invisível aos olhos, cativar = criar laços, a responsabilidade pelo que se ama, a crítica ao mundo dos adultos, a rosa única, a raposa, os seis planetas e seus tipos humanos, a serpente e a partida. Um clássico sobre amor, amizade e o olhar que se perde ao crescer.",
     "tags": [
       "Ficção",
@@ -1404,7 +1404,7 @@
     "id": "metamorfose",
     "title": "A Metamorfose",
     "author": "Franz Kafka",
-    "coverUrl": "assets/metamorfose-cover.png",
+    "coverUrl": "assets/metamorfose-capa.png",
     "description": "Síntese de 'A Metamorfose' de Franz Kafka. Gregor Samsa transformado em inseto; alienação e desumanização pelo trabalho; o absurdo aceito (o 'kafkiano'); corpo × identidade × humanidade; a maçã encravada (a ferida do pai); a inversão de papéis (a família revive enquanto Gregor morre); de Grete cuidadora à sentença; isolamento, culpa e a morte como alívio dos vivos.",
     "tags": [
       "Ficção",
@@ -1418,7 +1418,7 @@
     "id": "o-alquimista",
     "title": "O Alquimista",
     "author": "Paulo Coelho",
-    "coverUrl": "assets/o-alquimista-cover.png",
+    "coverUrl": "assets/o-alquimista-capa.png",
     "description": "Fábula alegórica de Paulo Coelho. O pastor Santiago segue um sonho até as Pirâmides em busca de um tesouro. Temas: a Lenda Pessoal, 'o universo conspira a seu favor', os sinais e a Linguagem do Mundo, a Alma do Mundo, Maktub, o medo de sofrer como maior obstáculo, e o tesouro que estava no começo.",
     "tags": [
       "Ficção",
@@ -1432,7 +1432,7 @@
     "id": "dom-casmurro",
     "title": "Dom Casmurro",
     "author": "Machado de Assis",
-    "coverUrl": "assets/dom-casmurro-cover.png",
+    "coverUrl": "assets/dom-casmurro-capa.png",
     "description": "Romance realista de Machado de Assis (1899) narrado em 1ª pessoa por Bento Santiago. O narrador não-confiável, a ambiguidade proposital sobre o adultério de Capitu, os 'olhos de ressaca', o ciúme como tema central, a paternidade incerta de Ezequiel, a promessa do seminário, José Dias e o leitor convertido em júri. Não conclui a culpa — expõe o debate.",
     "tags": [
       "Literatura Brasileira",
@@ -1446,7 +1446,7 @@
     "id": "habitos-atomicos",
     "title": "Hábitos Atômicos",
     "author": "James Clear",
-    "coverUrl": "assets/habitos-atomicos-cover.png",
+    "coverUrl": "assets/habitos-atomicos-capa.png",
     "description": "O método prático de James Clear para construir bons hábitos e abandonar os ruins. O 1% melhor por dia, os sistemas acima das metas, a mudança baseada em identidade, o loop do hábito e as quatro leis — tornar óbvio, atraente, fácil e satisfatório — com a regra dos 2 minutos e o rastreador de hábitos.",
     "tags": [
       "Hábitos",

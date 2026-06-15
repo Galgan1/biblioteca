@@ -232,7 +232,7 @@ def update_books_json(B):
     path = os.path.join(BASE, "books.json")
     data = json.load(open(path, encoding="utf-8"))
     entry = {"id": B["slug"], "title": B["title"], "author": B["author"],
-             "coverUrl": B.get("cover", f'assets/{B["slug"]}-cover.png'),
+             "coverUrl": f'assets/{B["slug"]}-capa.png',
              "description": B["description"], "tags": B.get("tags", []),
              "progress": B.get("progress", f'{B["_n"]} Capítulos'),
              "url": f'{B["slug"]}.html'}
