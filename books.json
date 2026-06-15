@@ -2039,28 +2039,6 @@
     ]
   },
   {
-    "id": "axiomas-de-zurique",
-    "title": "Os Axiomas de Zurique",
-    "author": "Max Gunther",
-    "coverUrl": "assets/axiomas-de-zurique-cover.png",
-    "description": "Manual de especulação consciente de Max Gunther: os 12 Grandes Axiomas + os menores. Risco como saúde, realizar o lucro cedo, cortar perdas pequenas, imprevisibilidade do mercado, padrões ilusórios, mobilidade do capital, intuição explicável, fim da mística, confiança × otimismo, ignorar o consenso, anti-teimosia e o perigo dos planos longos. Disciplina sobre emoção.",
-    "tags": [
-      "Finanças",
-      "Risco",
-      "Especulação"
-    ],
-    "progress": "6 Capítulos",
-    "url": "axiomas-de-zurique.html",
-    "amazon": "https://www.amazon.com.br/s?k=Os+Axiomas+de+Zurique+Max+Gunther&tag=andregalgani-20",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/s?k=Os+Axiomas+de+Zurique+Max+Gunther&tag=andregalgani-20"
-      }
-    ]
-  },
-  {
     "id": "milionario-mora-ao-lado",
     "title": "O Milionário Mora ao Lado",
     "author": "Thomas J. Stanley & William D. Danko",
@@ -2189,6 +2167,28 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/s?k=Dom+Casmurro+Machado+de+Assis&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "axiomas-de-zurique",
+    "title": "Os Axiomas de Zurique",
+    "author": "Max Gunther",
+    "coverUrl": "assets/axiomas-de-zurique-cover.png",
+    "description": "Manual de especulação consciente de Max Gunther: os 12 Grandes Axiomas + os menores. Risco como saúde, realizar o lucro cedo, cortar perdas pequenas, imprevisibilidade do mercado, padrões ilusórios, mobilidade do capital, intuição explicável, fim da mística, confiança × otimismo, ignorar o consenso, anti-teimosia e o perigo dos planos longos. Disciplina sobre emoção.",
+    "tags": [
+      "Finanças",
+      "Risco",
+      "Especulação"
+    ],
+    "progress": "6 Capítulos",
+    "url": "axiomas-de-zurique.html",
+    "amazon": "https://www.amazon.com.br/s?k=Os+Axiomas+de+Zurique+Max+Gunther&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Os+Axiomas+de+Zurique+Max+Gunther&tag=andregalgani-20"
       }
     ]
   }

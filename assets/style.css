@@ -269,7 +269,12 @@ body {
 }
 .grid > .card-wide {
     column-span: all;
+    /* No multicol, o card normal acima não passa o margin-bottom ao span:all,
+       então as bordas tracejadas encostam. O respiro é dado AQUI (o span:all
+       respeita margin-top); o card imediatamente acima zera o seu mb p/ não dobrar. */
+    margin-top: 2rem;
 }
+.grid > *:has(+ .card-wide) { margin-bottom: 0; }
 /* Lições fluem dentro das colunas (reparentadas pelo script.js), como no PDF */
 .grid > .lessons {
     margin-bottom: 2rem;
