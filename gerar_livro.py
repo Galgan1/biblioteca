@@ -275,6 +275,13 @@ def main(slug):
         print(f"     + kit: {ncap} capítulos de carrossel emitidos (assets/kit/{slug}/)")
     except Exception as e:
         print(f"     [!] kit não emitido para {slug}: {e}")
+    # Kit de Divulgação: peças estáticas (ideia/citação/capa/mapa/thumb) + manifest.
+    try:
+        import gerar_dados_kit as _gdk
+        npg = _gdk.emit(slug)
+        print(f"     + kit: {len(npg)} peças estáticas + manifest (assets/kit/_tpl/{slug}/)")
+    except Exception as e:
+        print(f"     [!] peças estáticas não emitidas para {slug}: {e}")
 
 
 if __name__ == "__main__":

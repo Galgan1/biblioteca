@@ -16,9 +16,42 @@ Uso:
 import importlib, json, sys, os, re, glob
 from pathlib import Path
 import gerar_carrossel as gc
+import gerar_infografico as gi
+import tokens
 
 BASE = Path(__file__).parent
 TPL = BASE / 'assets' / 'kit' / '_tpl'
+
+# CSS do MAPA (infográfico LISTA): fontes via @import (não base64) p/ o server. ----
+MAPA_CSS = tokens.FONTS + gi.BASE_CSS.replace('__FONT_FACE__', '') + gi.ARCH_CSS['lista']
+
+# CSS da thumbnail do YouTube (16:9, alto contraste, legível em miniatura). ----
+THUMB_CSS = tokens.TOKENS + """
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.thumb{width:1280px;height:720px;color:var(--ink);padding:70px 84px;display:flex;flex-direction:column;
+  justify-content:space-between;position:relative;overflow:hidden;
+  background:
+   radial-gradient(120% 95% at 104% 110%, oklch(26% 0.05 152 / .9) 0%, transparent 46%),
+   radial-gradient(110% 70% at 0% -10%, oklch(27% 0.05 152) 0%, transparent 58%),
+   linear-gradient(165deg, var(--bg) 0%, var(--bg2) 100%);}
+.thumb::after{content:'';position:absolute;inset:30px;border:2px dashed var(--green);border-radius:28px;opacity:.34;pointer-events:none}
+.thumb>*{position:relative;z-index:1}
+.thumb .ghost{position:absolute;right:30px;bottom:-90px;font-weight:900;font-size:520px;line-height:.7;
+  color:transparent;-webkit-text-stroke:2px oklch(74% 0.09 152 / .12);z-index:0;letter-spacing:-.05em}
+.thumb .top{display:inline-flex;align-items:center;gap:14px;font-weight:900;font-size:30px;
+  letter-spacing:.04em;text-transform:uppercase}
+.thumb .top .seal{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;
+  background:var(--green);color:var(--on-green);box-shadow:0 8px 22px oklch(60% 0.14 152 / .4)}
+.thumb .top .seal svg{width:30px;height:30px;color:var(--on-green)} .thumb .top b{color:var(--green)}
+.thumb .eyebrow{font-weight:800;font-size:30px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+.thumb h1{font-weight:900;font-size:118px;line-height:.9;text-transform:uppercase;letter-spacing:-.022em;text-wrap:balance;max-width:1040px}
+.thumb h1 .lt{color:var(--green);text-shadow:0 0 60px oklch(72% 0.14 152 / .4)} .thumb h1 .bd{color:var(--ink)}
+.thumb .foot{display:flex;align-items:center;gap:24px}
+.thumb .foot .num{font-weight:900;font-size:96px;line-height:.8;color:var(--gold);text-shadow:0 0 50px oklch(84% 0.12 92 / .4)}
+.thumb .foot .lbl{font-weight:800;font-size:44px;line-height:1.02;color:var(--ink);text-transform:uppercase}
+.thumb .foot .lbl span{display:block;color:var(--muted);font-size:30px;font-weight:600;text-transform:none}
+"""
 
 # CSS extra das peças estáticas (override de tamanho do .slide; reusa todo o resto). ----
 IDEIA_CSS = """
@@ -33,13 +66,13 @@ IDEIA_CSS = """
 """
 
 
-def _page(fragment, w, h, css_extra=''):
-    """Página HTML autônoma (fontes + tokens + CSS do carrossel + extra) que o
-    server fotografa no viewport w×h. Uma só .slide/.story dentro."""
+def _page(fragment, w, h, css_extra='', css=None):
+    """Página HTML autônoma (fontes + tokens + CSS + extra) que o server
+    fotografa no viewport w×h. Uma só .slide/.story dentro."""
     return (
         '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8">'
         '<title>kit · minuto real</title>'
-        f'<style>{gc.CSS}{css_extra}</style></head>'
+        f'<style>{css or gc.CSS}{css_extra}</style></head>'
         f'<body style="width:{w}px;height:{h}px">{fragment}</body></html>')
 
 
@@ -76,9 +109,36 @@ def _ideia_fragment(book, card):
     return f'<div class="slide ideia">{inner}</div>'
 
 
+def _resolve_book(slug, data):
+    """Dict do livro robusto: BOOK do _data.py + campos do books.json; deriva
+    header_light/header_bold a partir do título quando faltam."""
+    book = dict(getattr(data, 'BOOK', None) or {})
+    for k, v in (_books_json().get(slug) or {}).items():
+        book.setdefault(k, v)
+    if not book.get('header_light'):
+        words = (book.get('title') or slug.replace('-', ' ')).split()
+        cut = (len(words) + 1) // 2
+        book['header_light'] = ' '.join(words[:cut])
+        book['header_bold'] = ' '.join(words[cut:]) or book['header_light']
+    book.setdefault('author', '—')
+    book.setdefault('title', book['header_light'])
+    return book
+
+
+def _thumb_fragment(book, data):
+    n = len(book.get('overview_cards') or []) or sum(len(ch.get('cards', [])) for ch in data.CHAPTERS)
+    return (
+        f'<div class="thumb"><div class="ghost">{n}</div>'
+        f'<div class="top"><span class="seal">{gc._svg("book")}</span>Minuto<b>Real</b></div>'
+        '<div><div class="eyebrow">o livro em ~5 min</div>'
+        f'<h1><span class="lt">{book["header_light"]}</span> <span class="bd">{book["header_bold"]}</span></h1></div>'
+        f'<div class="foot"><span class="num">{n}</span>'
+        '<span class="lbl">ideias<span>que ficam com você</span></span></div></div>')
+
+
 def emit(slug):
     data = importlib.import_module(slug.replace('-', '_') + '_data')
-    book = getattr(data, 'BOOK', None) or _books_json().get(slug, {})
+    book = _resolve_book(slug, data)
     out = TPL / slug
     out.mkdir(parents=True, exist_ok=True)
     pages = {}
@@ -90,9 +150,61 @@ def emit(slug):
     quotes = gc._best_quotes(slug, book, data, want=1)
     if quotes:
         pages['quote.html'] = _page(gc._quote_card(quotes[0], book, 1, 1), 1080, 1350)
+        # citação 9:16 (story) — mesma frase, layout vertical
+        pages['quote-story.html'] = _page(gc._story_quote(quotes[0], book), 1080, 1920, css=gc.STORY_CSS)
+    # capa 9:16 (story) — anúncio do livro com nº de ideias
+    n = len(book.get('overview_cards') or []) or sum(len(ch.get('cards', [])) for ch in data.CHAPTERS)
+    pages['capa-story.html'] = _page(gc._story_teaser(book, n), 1080, 1920, css=gc.STORY_CSS)
+    # MAPA DO LIVRO 4:5 (infográfico LISTA, universal) — só se houver BOOK+CHAPTERS
+    try:
+        frag = gi.build_lista(data)
+        if frag:
+            pages['mapa.html'] = _page(frag, 1080, 1350, css=MAPA_CSS)
+    except Exception as e:
+        print(f'  [mapa pulado] {slug}: {e}')
+    # thumbnail YouTube 16:9
+    pages['thumb.html'] = _page(_thumb_fragment(book, data), 1280, 720, css=THUMB_CSS)
     for name, html in pages.items():
         (out / name).write_text(html, encoding='utf-8', newline='\n')
+    _write_manifest(slug, book, pages)
     return list(pages)
+
+
+# tipo de peça → metadados p/ a pílula da UI (id casa com KIT_TPL no server.js)
+ASSET_META = {
+    'ideia':         {'tpl': 'ideia.html',       'icon': 'idea',   'label': 'Ideia-chave',        'rede': 'Instagram', 'fmt': '1:1'},
+    'mapa':          {'tpl': 'mapa.html',        'icon': 'idea',   'label': 'Mapa do livro',      'rede': 'Instagram', 'fmt': '4:5'},
+    'citacao-feed':  {'tpl': 'quote.html',       'icon': 'quote',  'label': 'Citação (feed)',     'rede': 'Instagram', 'fmt': '4:5'},
+    'citacao-story': {'tpl': 'quote-story.html', 'icon': 'quote',  'label': 'Citação (story)',    'rede': 'Stories',   'fmt': '9:16'},
+    'capa-story':    {'tpl': 'capa-story.html',  'icon': 'cover',  'label': 'Capa (story)',       'rede': 'Stories',   'fmt': '9:16'},
+    'thumb':         {'tpl': 'thumb.html',       'icon': 'cover',  'label': 'Thumbnail YouTube',  'rede': 'YouTube',   'fmt': '16:9'},
+}
+# ordem de exibição na UI (carrossel do livro entra primeiro, à parte)
+ASSET_ORDER = ['mapa', 'ideia', 'citacao-feed', 'citacao-story', 'capa-story', 'thumb']
+
+
+def _write_manifest(slug, book, pages):
+    """manifest.json do kit do LIVRO (lido pela página de visão geral). Lista o
+    carrossel do livro (tipo carousel) + as peças estáticas geradas (tipo image)."""
+    tpls = set(pages)
+    assets = [{'id': 'overview', 'type': 'carousel', 'icon': 'carousel',
+               'label': 'Carrossel do livro', 'rede': 'Instagram', 'fmt': '4:5',
+               'pill': 'IG · carrossel · 4:5'}]
+    for fid in ASSET_ORDER:
+        m = ASSET_META[fid]
+        if m['tpl'] not in tpls:
+            continue
+        assets.append({'id': fid, 'type': 'image', 'icon': m['icon'], 'label': m['label'],
+                       'rede': m['rede'], 'fmt': m['fmt'], 'pill': f"{m['rede']} · {m['fmt']}"})
+    manifest = {
+        'title': 'Kit de Divulgação', 'ondemand': True,
+        'intro': 'Peças no padrão da Biblioteca, geradas na hora. Gerar conta como um curtir — '
+                 'os livros mais pedidos entram na esteira de produção.',
+        'assets': assets,
+    }
+    (BASE / 'assets' / 'kit' / slug).mkdir(parents=True, exist_ok=True)
+    (BASE / 'assets' / 'kit' / slug / 'manifest.json').write_text(
+        json.dumps(manifest, ensure_ascii=False), encoding='utf-8', newline='\n')
 
 
 _BJ = None
@@ -110,7 +222,8 @@ def proof(slug):
     out.mkdir(parents=True, exist_ok=True)
     from playwright.sync_api import sync_playwright
     sizes = {'ideia.html': (1080, 1080), 'quote.html': (1080, 1350),
-             'quote-story.html': (1080, 1920), 'capa-story.html': (1080, 1920)}
+             'quote-story.html': (1080, 1920), 'capa-story.html': (1080, 1920),
+             'mapa.html': (1080, 1350), 'thumb.html': (1280, 720)}
     made = []
     with sync_playwright() as p:
         b = p.chromium.launch()
@@ -120,7 +233,7 @@ def proof(slug):
             pg.goto((TPL / slug / name).as_uri(), wait_until='networkidle')
             pg.wait_for_timeout(500)
             png = out / name.replace('.html', '.png')
-            pg.locator('.slide, .story').first.screenshot(path=str(png))
+            pg.locator('.slide, .story, .thumb').first.screenshot(path=str(png))
             made.append(png); pg.close()
         b.close()
     print('proof:', ', '.join(str(m) for m in made))
@@ -134,7 +247,8 @@ def main():
     if args and args[0] != '--all':
         slugs = [args[0]]
     else:
-        slugs = [os.path.basename(f)[:-8].replace('_', '-') for f in glob.glob(str(BASE / '*_data.py'))]
+        slugs = [b['id'] for b in _books_json().values()
+                 if os.path.exists(BASE / (b['id'].replace('-', '_') + '_data.py'))]
     ok = err = 0
     for slug in slugs:
         try:

@@ -725,7 +725,26 @@ const KIT_TPL = {
   'citacao-story': { tpl: 'quote-story.html', w: 1080, h: 1920 },
   'ideia':         { tpl: 'ideia.html',       w: 1080, h: 1080 },
   'capa-story':    { tpl: 'capa-story.html',  w: 1080, h: 1920 },
+  'mapa':          { tpl: 'mapa.html',        w: 1080, h: 1350 },
+  'thumb':         { tpl: 'thumb.html',       w: 1280, h: 720  },
 };
+
+// Encolhe os blocos densos só quando estouram a caixa (livros de título/texto
+// longo). Não toca no que já cabe — blinda qualquer livro atual/futuro.
+const KIT_FIT = `() => {
+  const root = document.querySelector('.slide, .story, .thumb');
+  if (!root) return;
+  const fitV = (sel, floor) => { for (const el of root.querySelectorAll(sel)) {
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (root.scrollHeight > root.clientHeight && fs > floor && g < 160) { fs -= 2; el.style.fontSize = fs + 'px'; g++; }
+  }};
+  const fitW = (sel, floor) => { for (const el of root.querySelectorAll(sel)) {
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (el.scrollWidth > el.clientWidth && fs > floor && g < 160) { fs -= 2; el.style.fontSize = fs + 'px'; g++; }
+  }};
+  fitW('.ed-title, h1, .phrase', 40);
+  fitV('.ed-body', 26); fitV('.phrase', 40); fitV('.ed-title, h1', 44); fitV('.rows', 26);
+}`;
 const KIT_STATIC = { 'capa': (b) => `${b}-capa.png`, 'og': (b) => `${b}-og.png` };
 
 async function renderKitAsset(book, fmt) {
@@ -743,7 +762,8 @@ async function renderKitAsset(book, fmt) {
     await page.setViewport({ width: spec.w, height: spec.h, deviceScaleFactor: 2 });
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
     await page.evaluateHandle('document.fonts.ready');
-    const el = await page.$('.slide');
+    await page.evaluate(KIT_FIT);
+    const el = await page.$('.slide, .story, .thumb');
     const buffer = await (el || page).screenshot({ type: 'png' });
     fsp.writeFile(cacheFile, buffer).catch(() => {});
     return { buffer, cached: false };
