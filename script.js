@@ -161,9 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const bookEl = book.comingSoon ? document.createElement('div') : document.createElement('a');
         bookEl.className = book.comingSoon ? 'card card-soon' : 'card';
         if (!book.comingSoon) bookEl.href = book.url;
+        const webpUrl = book.coverUrl.replace(/\.png$/i, '.webp');
         bookEl.innerHTML = `
             <div class="card-cover">
-                <img src="${book.coverUrl}" alt="Capa do livro ${book.title}" loading="lazy">
+                <picture>
+                    <source srcset="${webpUrl}" type="image/webp">
+                    <img src="${book.coverUrl}" alt="Capa do livro ${book.title}" loading="lazy" width="800" height="1200">
+                </picture>
             </div>
             <div class="card-content">
                 <div class="card-title">${book.title}</div>

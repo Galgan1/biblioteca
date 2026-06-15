@@ -1,73 +1,208 @@
 # -*- coding: utf-8 -*-
-"""Capa tipográfica (fallback) no verde da biblioteca, quando não há capa real do PDF.
-Uso:  python gerar_capa.py <slug> "Título do Livro" "Autor"
-Saída: assets/<slug>-cover.png  (800x1200)
+"""Capa de estante da Biblioteca — HÍBRIDA: arte ORIGINAL do livro (reconhecimento)
+dentro de uma moldura de MARCA uniforme (coesão). Lê `marca.py`.
+
+Estante coesa SEM perder o reconhecimento da capa real. Saída em `-capa.png`
+(preserva o original `-cover.png/.jpg`, que segue como fonte da arte).
+
+  framed(slug, art)      -> arte real emoldurada
+  typographic(slug,t,a)  -> fallback tipográfico (itens sem capa real)
+
+Uso:  python gerar_capa.py <slug> <art.png>            # híbrida
+      python gerar_capa.py <slug> --typo "Título" "Autor"
+Saída: assets/<slug>-capa.png (800x1200, 2:3)
 """
-import sys, os
-from PIL import Image, ImageDraw, ImageFont
+import sys
+from pathlib import Path
+from PIL import Image, ImageDraw
+import marca
 
-BASE = os.path.dirname(os.path.abspath(__file__))
+BASE = Path(__file__).parent
 W, H = 800, 1200
-GREEN = (35, 158, 90)
-PAPER = (247, 248, 245)
-INK = (24, 28, 24)
 
 
-def font(sz, bold=True):
-    for name in (("Hanken Grotesk", "ariblk.ttf"), ("arialbd.ttf",), ("arial.ttf",)):
-        for f in name:
-            try:
-                return ImageFont.truetype(f"C:/Windows/Fonts/{f}", sz)
-            except Exception:
-                continue
-    return ImageFont.load_default()
+def radial_glow(img, cx, cy, r, color, amax):
+    ov = Image.new('RGBA', img.size, (0, 0, 0, 0))
+    od = ImageDraw.Draw(ov)
+    for i in range(44, 0, -1):
+        rr = int(r * i / 44)
+        a = int(amax * (1 - i / 44) ** 1.8)
+        od.ellipse([cx - rr, cy - rr, cx + rr, cy + rr], fill=color + (a,))
+    img.alpha_composite(ov)
 
 
-def wrap(d, text, fnt, maxw):
-    words, lines, cur = text.split(), [], ""
-    for w in words:
-        t = (cur + " " + w).strip()
+def dashed_rect(d, box, color, w=3, dash=14, gap=11):
+    x0, y0, x1, y1 = box
+    x = x0
+    while x < x1:
+        d.line([(x, y0), (min(x + dash, x1), y0)], fill=color, width=w)
+        d.line([(x, y1), (min(x + dash, x1), y1)], fill=color, width=w)
+        x += dash + gap
+    y = y0
+    while y < y1:
+        d.line([(x0, y), (x0, min(y + dash, y1))], fill=color, width=w)
+        d.line([(x1, y), (x1, min(y + dash, y1))], fill=color, width=w)
+        y += dash + gap
+
+
+def _wrap(d, text, fnt, maxw):
+    words, lines, cur = text.split(), [], ''
+    for wd in words:
+        t = (cur + ' ' + wd).strip()
         if d.textlength(t, font=fnt) <= maxw:
             cur = t
         else:
-            lines.append(cur); cur = w
+            if cur:
+                lines.append(cur)
+            cur = wd
     if cur:
         lines.append(cur)
     return lines
 
 
-def main(slug, title, author):
-    img = Image.new("RGB", (W, H), PAPER)
+def _tracked(d, text, fnt, fill, tr, cx, y):
+    tw = sum(d.textlength(c, font=fnt) + tr for c in text) - (tr if text else 0)
+    x = cx - tw / 2
+    for ch in text:
+        d.text((x, y), ch, font=fnt, fill=fill)
+        x += d.textlength(ch, font=fnt) + tr
+
+
+def _chrome(img, d):
+    """Moldura de marca comum a todas as capas: glow + traço tracejado + wordmark."""
+    verde, ouro, dim = marca.rgb('verde'), marca.rgb('ouro'), marca.rgb('tinta-fraca')
+    radial_glow(img, W // 2, int(H * 0.30), 560, verde, 22)
+    radial_glow(img, W // 2, int(H * 0.03), 340, ouro, 9)
+    dashed_rect(d, (40, 40, W - 40, H - 40), verde + (255,), 3)
+    _tracked(d, 'BIBLIOTECA', marca.font('display', 30, 'ExtraBold'), verde, 7, W // 2, 80)
+    d.rectangle([(W // 2 - 58, 124), (W // 2 + 58, 130)], fill=ouro)
+    _tracked(d, 'RESUMO · UMA PÁGINA', marca.font('display', 23, 'Bold'), dim, 6, W // 2, H - 150)
+
+
+def framed(slug, art_path):
+    """Arte real do livro emoldurada na marca."""
+    img = Image.new('RGBA', (W, H), marca.rgb('papel') + (255,))
     d = ImageDraw.Draw(img)
-    d.rectangle([0, 0, W, 130], fill=GREEN)            # faixa superior
-    d.rectangle([0, H - 90, W, H], fill=GREEN)          # faixa inferior
-    # moldura tracejada
-    for x in range(40, W - 40, 22):
-        d.line([(x, 170), (x + 12, 170)], fill=GREEN, width=3)
-        d.line([(x, H - 130), (x + 12, H - 130)], fill=GREEN, width=3)
-    for y in range(170, H - 130, 22):
-        d.line([(40, y), (40, y + 12)], fill=GREEN, width=3)
-        d.line([(W - 40, y), (W - 40, y + 12)], fill=GREEN, width=3)
-    d.text((50, 44), "BIBLIOTECA", font=font(34), fill=PAPER)
-    # título centralizado
-    ft = font(86)
-    lines = wrap(d, title.upper(), ft, W - 160)
-    while len(lines) > 4 and ft.size > 48:
-        ft = font(ft.size - 6); lines = wrap(d, title.upper(), ft, W - 160)
-    y = H // 2 - len(lines) * int(ft.size * 0.58)
+    _chrome(img, d)
+    WIN_T, WIN_B, WIN_W = 176, 1052, 612
+    win_h = WIN_B - WIN_T
+    art = Image.open(art_path).convert('RGB')
+    s = min(WIN_W / art.width, win_h / art.height)
+    aw, ah = max(1, int(art.width * s)), max(1, int(art.height * s))
+    art = art.resize((aw, ah), Image.LANCZOS)
+    ax, ay = (W - aw) // 2, WIN_T + (win_h - ah) // 2
+    d.rectangle([(ax - 3, ay - 3), (ax + aw + 2, ay + ah + 2)], outline=marca.rgb('ouro'), width=2)
+    img.paste(art, (ax, ay))
+    out = BASE / 'assets' / f'{slug}-capa.png'
+    img.convert('RGB').save(out, quality=92)
+    print(f'OK framed -> assets/{slug}-capa.png')
+
+
+def typographic(slug, title, author):
+    """Fallback p/ itens sem capa real (não-livros)."""
+    img = Image.new('RGBA', (W, H), marca.rgb('papel') + (255,))
+    d = ImageDraw.Draw(img)
+    _chrome(img, d)
+    ink, ouro = marca.rgb('tinta'), marca.rgb('ouro')
+    ft = marca.font('display', 92, 'Black')
+    lines = _wrap(d, title.upper(), ft, W - 210)
+    while len(lines) > 4 and ft.size > 50:
+        ft = marca.font('display', ft.size - 6, 'Black')
+        lines = _wrap(d, title.upper(), ft, W - 210)
+    lh = int(ft.size * 1.05)
+    y = (H - len(lines) * lh) // 2 - 24
     for ln in lines:
-        w = d.textlength(ln, font=ft)
-        d.text(((W - w) // 2, y), ln, font=ft, fill=INK)
-        y += int(ft.size * 1.12)
-    d.rectangle([(W // 2 - 60, y + 30), (W // 2 + 60, y + 38)], fill=GREEN)
-    fa = font(40, bold=False)
-    wa = d.textlength(author, font=fa)
-    d.text(((W - wa) // 2, y + 70), author, font=fa, fill=GREEN)
-    os.makedirs(os.path.join(BASE, "assets"), exist_ok=True)
-    out = os.path.join(BASE, "assets", f"{slug}-cover.png")
-    img.save(out, quality=95)
-    print(f"OK -> assets/{slug}-cover.png")
+        lw = d.textlength(ln, font=ft)
+        d.text(((W - lw) // 2, y), ln, font=ft, fill=ink)
+        y += lh
+    d.rectangle([(W // 2 - 46, y + 28), (W // 2 + 46, y + 34)], fill=ouro)
+    _tracked(d, author.upper(), marca.font('display', 33, 'SemiBold'), marca.rgb('ouro-soft'), 4, W // 2, y + 64)
+    out = BASE / 'assets' / f'{slug}-capa.png'
+    img.convert('RGB').save(out, quality=92)
+    print(f'OK typo -> assets/{slug}-capa.png')
 
 
-if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2], sys.argv[3])
+def banner(slug, title, author, art_path=None):
+    """OG banner 1200×630 (1.91:1) para compartilhamento social.
+    Saída: assets/{slug}-og.png
+    """
+    BW, BH = 1200, 630
+    PAD = 60
+
+    # fundo escuro da marca
+    bg = marca.rgb('papel')   # dark hex (#08080c) — usamos o hex escuro direto
+    ink = marca.rgb('tinta')  # claro no canvas escuro (#f2f2f5)
+    verde = marca.rgb('verde')
+    ouro = marca.rgb('ouro')
+    dim = marca.rgb('tinta-fraca')
+
+    img = Image.new('RGB', (BW, BH), bg)
+    d = ImageDraw.Draw(img)
+
+    # --- área do livro: direita ---
+    COVER_X = 680
+    COVER_W = BW - COVER_X - PAD
+    COVER_H = BH - PAD * 2
+    if art_path and Path(art_path).exists():
+        art = Image.open(art_path).convert('RGB')
+        s = min(COVER_W / art.width, COVER_H / art.height)
+        aw, ah = max(1, int(art.width * s)), max(1, int(art.height * s))
+        art = art.resize((aw, ah), Image.LANCZOS)
+        ax = COVER_X + (COVER_W - aw) // 2
+        ay = (BH - ah) // 2
+        img.paste(art, (ax, ay))
+        # sombra leve à esquerda da capa
+        ov = Image.new('RGBA', (BW, BH), (0, 0, 0, 0))
+        od = ImageDraw.Draw(ov)
+        for i in range(60):
+            alpha = int(80 * (1 - i / 60) ** 1.5)
+            od.line([(ax - i, 0), (ax - i, BH)], fill=(0, 0, 0, alpha))
+        img = Image.alpha_composite(img.convert('RGBA'), ov).convert('RGB')
+        d = ImageDraw.Draw(img)
+
+    # --- área de texto: esquerda ---
+    TX = PAD + 10
+
+    # wordmark BIBLIOTECA
+    ft_brand = marca.font('display', 26, 'ExtraBold')
+    _tracked(d, 'BIBLIOTECA', ft_brand, verde, 6, TX + 120, PAD + 2)
+    # traço dourado
+    d.rectangle([(TX, PAD + 42), (TX + 240, PAD + 46)], fill=ouro)
+
+    # título — font grande, quebra em linhas
+    ft_title = marca.font('display', 76, 'Black')
+    lines = _wrap(d, title.upper(), ft_title, 620 - TX)
+    while len(lines) > 4 and ft_title.size > 44:
+        ft_title = marca.font('display', ft_title.size - 8, 'Black')
+        lines = _wrap(d, title.upper(), ft_title, 620 - TX)
+    lh = int(ft_title.size * 1.08)
+    text_block_h = len(lines) * lh
+    ty = (BH - text_block_h) // 2 - 20
+    for ln in lines:
+        d.text((TX, ty), ln, font=ft_title, fill=ink)
+        ty += lh
+
+    # autor
+    ft_author = marca.font('display', 28, 'SemiBold')
+    d.text((TX, ty + 16), author.upper(), font=ft_author, fill=ouro)
+
+    # tagline em baixo
+    ft_tag = marca.font('display', 20, 'Bold')
+    _tracked(d, 'RESUMO · UMA PÁGINA', ft_tag, dim, 4, TX + 140, BH - PAD - 22)
+
+    out = BASE / 'assets' / f'{slug}-og.png'
+    img.save(out, quality=92)
+    print(f'OK banner -> assets/{slug}-og.png')
+
+
+if __name__ == '__main__':
+    if len(sys.argv) >= 4 and sys.argv[2] == '--typo':
+        typographic(sys.argv[1], sys.argv[3], sys.argv[4])
+    elif len(sys.argv) >= 3 and sys.argv[2] == '--banner':
+        art = sys.argv[3] if len(sys.argv) >= 4 else None
+        import json
+        books = {b['id']: b for b in json.load(open(BASE / 'books.json', encoding='utf-8'))}
+        b = books[sys.argv[1]]
+        banner(sys.argv[1], b['title'], b['author'], art)
+    else:
+        framed(sys.argv[1], sys.argv[2])
