@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const shelf = document.getElementById('bookshelf');
     const searchInput = document.getElementById('searchInput');
     const statusToggle = document.getElementById('statusToggle');
-    const tagChipsEl = document.getElementById('tagChips');
+    const trilhasChipsEl = document.getElementById('trilhasChips');
 
     const CART_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M3 4h2.5l2 11h10l2-8H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
@@ -18,8 +18,14 @@ document.addEventListener('DOMContentLoaded', () => {
         + '<path d="M7 10l4-7a2 2 0 0 1 3.7 1.4L14 9h4.6a2 2 0 0 1 2 2.5l-1.7 7A2 2 0 0 1 17 22H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
         + '</svg>';
 
+    const TRILHAS = [
+        ['Mente & Dinheiro', ['habitos-atomicos', 'psicologia-financeira', 'pai-rico-pai-pobre', 'homem-mais-rico-babilonia', 'investidor-inteligente', 'quem-pensa-enriquece', 'do-mil-ao-milhao', 'segredos-da-mente-milionaria']],
+        ['Comunicação', ['armas-da-persuasao', 'comunicacao-nao-violenta', 'nunca-divida-a-diferenca', 'conversas-cruciais', 'escute', 'obrigado-pelo-feedback', 'como-fazer-amigos', 'coragem-de-nao-agradar']],
+        ['Clássicos & Ficção', ['1984', 'admiravel-mundo-novo', 'crime-e-castigo', 'irmaos-karamazov', 'assim-falou-zaratustra', 'amor-liquido', 'hora-da-estrela', 'dom-casmurro']],
+    ];
+
     let allBooks = [];
-    const state = { status: 'tudo', tag: null, query: '' };
+    const state = { status: 'tudo', trilha: null, query: '' };
 
     // voto do próprio visitante (localStorage): { slug: 'up' | 'down' }
     const MYKEY = 'bib:meus-votos';
@@ -40,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (searchInput) searchInput.placeholder = 'Pesquisar nas ' + books.length + ' obras — título ou autor…';
         buildStatusToggle();
-        buildTagChips();
+        buildTrilhas();
         render();
     }).catch(error => {
         console.error('Erro ao carregar books.json:', error);
@@ -70,25 +76,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function buildTagChips() {
-        if (!tagChipsEl) return;
-        // conta livros por tag, ordena por frequência
-        const freq = {};
-        allBooks.forEach(b => (b.tags || []).forEach(t => { freq[t] = (freq[t] || 0) + 1; }));
-        const tags = Object.entries(freq).sort((a, b) => b[1] - a[1]).map(([t]) => t);
-        tagChipsEl.innerHTML = '';
-        tags.forEach(tag => {
+    function buildTrilhas() {
+        if (!trilhasChipsEl) return;
+        const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
+        trilhasChipsEl.innerHTML = '';
+        TRILHAS.forEach(([name, ids], i) => {
+            const count = ids.filter(id => byId[id]).length;
+            if (!count) return;
             const btn = document.createElement('button');
             btn.type = 'button';
-            btn.className = 'tag-chip';
-            btn.setAttribute('aria-pressed', state.tag === tag);
-            btn.textContent = tag + ' (' + freq[tag] + ')';
+            btn.className = 'trilha-chip';
+            btn.setAttribute('aria-pressed', state.trilha === i);
+            btn.textContent = name + ' · ' + count;
             btn.addEventListener('click', () => {
-                state.tag = (state.tag === tag) ? null : tag;
-                buildTagChips();
+                state.trilha = (state.trilha === i) ? null : i;
+                buildTrilhas();
                 render();
             });
-            tagChipsEl.appendChild(btn);
+            trilhasChipsEl.appendChild(btn);
         });
     }
 
@@ -108,12 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
         shelf.innerHTML = '';
 
-        const tagOk = b => !state.tag || (b.tags || []).includes(state.tag);
-        let books = allBooks.filter(statusOk).filter(queryOk).filter(tagOk);
+        if (state.trilha !== null) {
+            const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
+            const [name, ids] = TRILHAS[state.trilha];
+            const books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk).filter(queryOk);
+            if (!books.length) { shelf.innerHTML = msg('Nenhum livro nesta trilha com esse filtro.'); return; }
+            renderSection(name, books);
+            return;
+        }
+        let books = allBooks.filter(statusOk).filter(queryOk);
         if (!books.length) { shelf.innerHTML = msg('Nenhum livro encontrado.'); return; }
         books = books.slice().sort(rankSort);
         const title = q ? 'Resultados'
-            : state.tag ? state.tag
             : state.status === 'pronto' ? 'Resumos prontos'
             : state.status === 'embreve' ? 'Em breve'
             : 'Acervo · do mais curtido ao menos';

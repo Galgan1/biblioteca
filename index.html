@@ -679,8 +679,13 @@
         <div class="library-controls animate-entrance" style="--i: 0">
             <input type="search" id="searchInput" class="search-input" placeholder="Pesquisar livros por título ou autor..." aria-label="Pesquisar livros">
             <div class="status-toggle" id="statusToggle" role="group" aria-label="Filtrar por status"></div>
-            <div class="tag-chips" id="tagChips" role="group" aria-label="Filtrar por tema"></div>
         </div>
+
+        <!-- Trilhas de leitura — seção discreta e colapsável -->
+        <details class="trilhas-section animate-entrance" style="--i: 1" id="trilhasSection">
+            <summary class="trilhas-toggle">Trilhas de leitura <span class="trilhas-arrow">▾</span></summary>
+            <div class="trilhas-row" id="trilhasChips" role="group" aria-label="Trilhas de leitura"></div>
+        </details>
 
         <!-- Estante: lista única ranqueada por likes, injetada pelo script.js -->
         <main class="library" id="bookshelf">
