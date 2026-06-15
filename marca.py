@@ -26,8 +26,8 @@ FONTS = DIR / '_fonts'
 # ---------------------------------------------------------------------------
 TOKENS = {
     'verde':       ('oklch(52% 0.14 152)',  'oklch(70% 0.13 152)',  '#3faf76'),
-    'verde-deep':  ('oklch(40% 0.12 152)',  'oklch(77% 0.11 152)',  '#5cc28a'),
-    'verde-soft':  ('oklch(86% 0.06 152)',  'oklch(85% 0.10 152)',  '#a9e6c4'),
+    'verde-deep':  ('oklch(40% 0.12 152)',  'oklch(76% 0.11 152)',  '#5cc28a'),
+    'verde-soft':  ('oklch(95% 0.03 152)',  'oklch(28% 0.04 152)',  '#a9e6c4'),  # matches --green-light in style.css
     'ouro':        ('oklch(60% 0.10 83)',   'oklch(76% 0.105 83)',  '#d8a64a'),
     'ouro-soft':   ('oklch(72% 0.09 83)',   'oklch(86% 0.075 83)',  '#ecca8c'),
     'alerta':      ('oklch(55% 0.17 30)',   'oklch(72% 0.16 30)',   '#e8744f'),
@@ -36,11 +36,17 @@ TOKENS = {
     'papel':       ('oklch(99% 0.002 152)', 'oklch(16% 0.01 152)',  '#08080c'),
 }
 
-# token -> nome canonico da variavel CSS (o que o site e o carrossel passam a usar)
+# token -> nome canonico da variavel CSS (vocabulario do site — style.css e fonte de verdade)
 _CSS_VARMAP = {
-    'verde': '--green', 'verde-deep': '--green-deep', 'verde-soft': '--green-soft',
-    'ouro': '--gold', 'ouro-soft': '--gold-soft', 'alerta': '--alert',
-    'tinta': '--ink', 'tinta-fraca': '--ink-dim', 'papel': '--bg',
+    'verde':       '--green',
+    'verde-deep':  '--green-dark',    # site usa --green-dark (semantico)
+    'verde-soft':  '--green-light',   # site usa --green-light
+    'ouro':        '--gold',
+    'ouro-soft':   '--gold-soft',
+    'alerta':      '--dislike',       # site usa --dislike (contexto de voto)
+    'tinta':       '--black',         # site usa --black
+    'tinta-fraca': '--gray-dark',     # site usa --gray-dark
+    'papel':       '--paper-bg',      # site usa --paper-bg
 }
 
 # ---------------------------------------------------------------------------

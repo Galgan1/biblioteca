@@ -44,6 +44,27 @@
     /* Animation Easing */
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
     --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Type Scale — razão ~1.25; substitui 17 tamanhos ad-hoc */
+    --text-xs: 0.75rem;
+    --text-sm: 0.82rem;
+    --text-base: 1rem;
+    --text-md: 1.05rem;
+    --text-lg: 1.15rem;
+    --text-xl: 1.4rem;
+    --text-display: clamp(2rem, 4vw + 1rem, 3.2rem);
+
+    /* Spacing Scale — substitui 15 valores ad-hoc */
+    --sp-xs: 0.5rem;
+    --sp-sm: 0.75rem;
+    --sp-md: 1.25rem;
+    --sp-lg: 2rem;
+    --sp-xl: 3rem;
+
+    /* Depth — camada de card + sombras */
+    --surface: var(--paper-bg);
+    --shadow-card: 0 1px 3px oklch(0% 0 0 / 0.06), 0 1px 2px oklch(0% 0 0 / 0.04);
+    --shadow-card-hover: 0 4px 12px oklch(0% 0 0 / 0.10), 0 2px 4px oklch(0% 0 0 / 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,7 +75,7 @@
         --gold: oklch(76% 0.105 83);
         --gold-soft: oklch(86% 0.075 83);
         --black: oklch(95% 0.01 152);
-        --gray-dark: oklch(72% 0.01 152);
+        --gray-dark: oklch(82% 0.01 152);
         --gray-light: oklch(38% 0.01 152);
         --paper-bg: oklch(21% 0.005 152);
         --body-bg: oklch(16% 0.01 152);
@@ -65,6 +86,9 @@
         --dislike: oklch(72% 0.16 30);
         --dislike-dark: oklch(78% 0.14 30);
         --on-dislike: oklch(18% 0.02 30);
+        --surface: oklch(24% 0.008 152);
+        --shadow-card: 0 1px 3px oklch(0% 0 0 / 0.30), 0 1px 2px oklch(0% 0 0 / 0.18);
+        --shadow-card-hover: 0 4px 16px oklch(0% 0 0 / 0.50), 0 2px 6px oklch(0% 0 0 / 0.30);
     }
 }
 
@@ -94,7 +118,7 @@ html {
 body {
     font-family: var(--font-body);
     color: var(--black);
-    line-height: 1.55;
+    line-height: 1.65;
     display: flex;
     justify-content: center;
     background: var(--body-bg);
@@ -133,7 +157,7 @@ body {
 .page {
     background: var(--paper-bg);
     width: 100%;
-    max-width: 950px;
+    max-width: 1100px;
     padding: max(3.5rem, env(safe-area-inset-top)) max(3.5rem, env(safe-area-inset-right)) max(3.5rem, env(safe-area-inset-bottom)) max(3.5rem, env(safe-area-inset-left));
     animation: fade-in 800ms var(--ease-out-quart) forwards;
 }
@@ -186,8 +210,8 @@ body {
 /* --- Header --- */
 .header {
     text-align: center;
-    padding: 0 0 3rem 0;
-    margin-bottom: 3rem;
+    padding: 0 0 2rem 0;
+    margin-bottom: 2rem;
     border-bottom: 3px solid var(--green);
 }
 
@@ -231,6 +255,7 @@ body {
 }
 
 .header-intro {
+    font-family: var(--font-serif);
     font-size: 1.05rem;
     max-width: 58ch;
     margin: 0 auto;
@@ -285,7 +310,7 @@ body {
 .shelf-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .grid-message {
@@ -401,7 +426,7 @@ body {
     color: var(--on-green);
 }
 
-.shelf-section { margin-bottom: 3rem; }
+.shelf-section { margin-bottom: 4rem; }
 .section-title {
     font-family: var(--font-display);
     font-size: 1.15rem;
@@ -807,7 +832,7 @@ blockquote {
     font-size: 1.05rem;
     font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.06em;
     line-height: 1.32;
     text-wrap: balance;
     background: var(--green);
@@ -827,9 +852,11 @@ blockquote {
 }
 
 .card-body {
+    font-family: var(--font-serif);
     font-size: 1rem;
     color: var(--black);
     margin-bottom: 0.5rem;
+    max-width: 68ch;
 }
 .card-body strong { font-weight: 700; }
 
@@ -898,6 +925,7 @@ blockquote {
 }
 
 .lessons-list {
+    font-family: var(--font-serif);
     list-style-type: square;
     margin-left: 1.25rem;
     color: var(--black);
@@ -1003,10 +1031,11 @@ blockquote {
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
+        animation: none !important;
         transition-duration: 0.01ms !important;
-        animation-delay: 0ms !important;
+    }
+    .animate-entrance, .animate-sequence {
+        opacity: 1 !important;
     }
 }
 
@@ -1028,11 +1057,32 @@ blockquote {
     a.card:hover {
         transform: translateY(-2px);
         border-color: var(--green-dark);
+        box-shadow: var(--shadow-card-hover);
     }
     a.card:hover .card-cover img {
         transform: scale(1.02);
     }
 }
+
+/* Dark mode: card elevation + focus ring melhora */
+@media (prefers-color-scheme: dark) {
+    a.card {
+        background: var(--surface);
+        box-shadow: var(--shadow-card);
+    }
+    a.card:hover {
+        box-shadow: var(--shadow-card-hover);
+    }
+    *:focus-visible {
+        outline-color: var(--black);
+        outline-width: 3px;
+    }
+}
+
+/* Active feedback (toque / teclado) */
+.vote-btn:active { opacity: 0.7; transform: scale(0.94); transition-duration: 80ms; }
+.trilha-chip:active { transform: scale(0.95); transition-duration: 80ms; }
+.status-toggle button:active { opacity: 0.75; transition-duration: 80ms; }
 
 /* Touch Devices */
 @media (hover: none) {
@@ -1106,6 +1156,7 @@ a.card {
     transition: transform 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart);
 }
 .card-cover {
+    position: relative;
     width: 100%;
     aspect-ratio: 2 / 3; /* capa de livro inteira — nunca cortar o título */
     overflow: hidden;
@@ -1118,6 +1169,14 @@ a.card {
     object-fit: cover;
     object-position: center;
     transition: transform 300ms var(--ease-out-quart);
+}
+/* Sombra de profundidade na capa — simula espessura do livro */
+.card-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 5px 0 10px oklch(0% 0 0 / 0.12), inset -2px 0 6px oklch(0% 0 0 / 0.06);
 }
 a.card .card-content {
     padding: 1.5rem;
@@ -1180,7 +1239,6 @@ a.card-soon:hover .card-cover img { transform: none; }
 }
 
 h1, h2, h3, h4 {
-    text-transform: uppercase;
     font-weight: 800;
     font-family: var(--font-display);
 }
