@@ -1,0 +1,148 @@
+1984: 9 capítulos integrados | import OK
+21-licoes: 9 capítulos integrados | import OK
+7-habitos: 9 capítulos integrados | import OK
+a-unica-coisa: 6 capítulos integrados | import OK
+amor-liquido: 4 capítulos integrados | import OK
+antifragil: 7 capítulos integrados | import OK
+  [!] arte-da-seducao/ch02-tipos-sedutores: não casou
+  [!] arte-da-seducao/ch03-as-vitimas: não casou
+  [!] arte-da-seducao/ch04-processo-separar-despertar: não casou
+  [!] arte-da-seducao/ch05-processo-desorientar-tencionar: não casou
+  [!] arte-da-seducao/ch06-processo-climax-fechamento: não casou
+arte-da-seducao: 1 capítulos integrados | 5 falharam | import OK
+assim-falou-zaratustra: 9 capítulos integrados | import OK
+audiovisao: 8 capítulos integrados | import OK
+axiomas-de-zurique: 6 capítulos integrados | import OK
+busca-de-sentido: 4 capítulos integrados | import OK
+cabeca-bem-feita: 9 capítulos integrados | import OK
+cisne-negro: 8 capítulos integrados | import OK
+coisa-de-rico: 5 capítulos integrados | import OK
+comece-pelo-porque: 4 capítulos integrados | import OK
+  [!] conversas-cruciais/ch01-o-que-e-conversa-crucial: não casou
+  [!] conversas-cruciais/ch02-dominar-as-historias: não casou
+  [!] conversas-cruciais/ch03-seguranca: não casou
+  [!] conversas-cruciais/ch04-falar-sem-ofender: não casou
+  [!] conversas-cruciais/ch05-explorar-as-historias-dos-outros: não casou
+  [!] conversas-cruciais/ch06-da-conversa-a-acao: não casou
+conversas-cruciais: 0 capítulos integrados | 6 falharam | import OK
+corpo-guarda-as-marcas: 12 capítulos integrados | import OK
+crime-e-castigo: 9 capítulos integrados | import OK
+de-zero-a-um: 14 capítulos integrados | import OK
+design-do-dia-a-dia: 10 capítulos integrados | import OK
+do-mil-ao-milhao: 9 capítulos integrados | import OK
+dom-casmurro: 8 capítulos integrados | import OK
+flow: 10 capítulos integrados | import OK
+futebol-brasileiro: 5 capítulos integrados | import OK
+garra: 7 capítulos integrados | import OK
+gene-egoista: 4 capítulos integrados | import OK
+geracao-ansiosa: 7 capítulos integrados | import OK
+  [!] habitos-atomicos/cards: não casou
+habitos-atomicos: 0 capítulos integrados | 1 falharam | import OK
+homem-mais-rico-babilonia: 9 capítulos integrados | import OK
+homo-deus: 9 capítulos integrados | import OK
+hora-da-estrela: 4 capítulos integrados | import OK
+inteligencia-emocional: 8 capítulos integrados | import OK
+  [!] investidor-inteligente/ch01-investimento-especulacao: não casou
+investidor-inteligente: 10 capítulos integrados | 1 falharam | import OK
+irmaos-karamazov: 10 capítulos integrados | import OK
+jogos-da-vida: 9 capítulos integrados | import OK
+jornada-do-escritor: 10 capítulos integrados | import OK
+  [!] mais-esperto-que-o-diabo/cards: não casou
+mais-esperto-que-o-diabo: 0 capítulos integrados | 1 falharam | import OK
+meditacoes: 8 capítulos integrados | import OK
+memorias-do-subsolo: 8 capítulos integrados | import OK
+  [!] metamorfose/ch01-o-absurdo-da-rotina-e-o-provedor: não casou
+  [!] metamorfose/ch02-a-animalizacao-e-a-perda-da-humanidade: não casou
+  [!] metamorfose/ch03-o-sacrificio-e-o-renascimento-da-familia: não casou
+metamorfose: 0 capítulos integrados | 3 falharam | import OK
+mindset: 8 capítulos integrados | import OK
+mulheres-que-correm-com-os-lobos: 9 capítulos integrados | import OK
+mundo-de-sofia: 9 capítulos integrados | import OK
+nacao-dopamina: 9 capítulos integrados | import OK
+  [!] nao-me-faca-pensar/ch02-como-usamos-web: não casou
+  [!] nao-me-faca-pensar/ch03-arquitetura-informacao: não casou
+  [!] nao-me-faca-pensar/ch04-testes-usabilidade: não casou
+nao-me-faca-pensar: 1 capítulos integrados | 3 falharam | import OK
+  [!] noites-brancas/ch04-noite-quarta-ilusao-desilusao: não casou
+  [!] noites-brancas/ch05-a-manha-o-despertar: não casou
+noites-brancas: 3 capítulos integrados | 2 falharam | import OK
+nunca-divida-a-diferenca: 9 capítulos integrados | import OK
+o-alquimista: 9 capítulos integrados | import OK
+  [!] o-idiota/ch01-a-chegada-de-mishkin-e-a-sociedade-russa: não casou
+  [!] o-idiota/ch02-nastassia-filippovna-e-rogojin-a-paixao-destrutiva: não casou
+o-idiota: 0 capítulos integrados | 2 falharam | import OK
+o-principe: 9 capítulos integrados | import OK
+obrigado-pelo-feedback: 9 capítulos integrados | import OK
+padrao-bitcoin: 10 capítulos integrados | import OK
+pai-rico-pai-pobre: 10 capítulos integrados | import OK
+  [!] pensamento-complexo/ch01-cegueira-conhecimento: não casou
+  [!] pensamento-complexo/ch02-conhecimento-pertinente: não casou
+  [!] pensamento-complexo/ch03-condicao-humana: não casou
+  [!] pensamento-complexo/ch04-identidade-terrena: não casou
+  [!] pensamento-complexo/ch05-enfrentar-incertezas: não casou
+  [!] pensamento-complexo/ch06-compreensao: não casou
+pensamento-complexo: 0 capítulos integrados | 6 falharam | import OK
+  [!] pequeno-principe/ch01-infancia-mundo-adulto: não casou
+  [!] pequeno-principe/ch02-viagem-planetas: não casou
+  [!] pequeno-principe/ch03-raposa-cativar: não casou
+  [!] pequeno-principe/ch04-despedida-significado: não casou
+pequeno-principe: 0 capítulos integrados | 4 falharam | import OK
+  [!] poder-do-habito/ch03-a-regra-de-ouro-da-mudanca: não casou
+  [!] poder-do-habito/ch05-starbucks-o-habito-do-sucesso: não casou
+  [!] poder-do-habito/ch06-o-poder-de-uma-crise: não casou
+  [!] poder-do-habito/ch07-como-a-target-sabe-o-que-voce-quer: não casou
+poder-do-habito: 3 capítulos integrados | 4 falharam | import OK
+poder-dos-quietos: 9 capítulos integrados | import OK
+ponerologia: 10 capítulos integrados | import OK
+  [!] psicopolitica/ch01-o-poder-inteligente-e-a-crise-da-liberdade: não casou
+  [!] psicopolitica/ch02-o-big-data-e-o-fim-da-teoria: não casou
+psicopolitica: 0 capítulos integrados | 2 falharam | import OK
+quatro-compromissos: 8 capítulos integrados | import OK
+quebrando-o-habito: 10 capítulos integrados | import OK
+quem-mexeu-no-queijo: 7 capítulos integrados | import OK
+  [!] quem-pensa-enriquece/ch01-o-poder-do-pensamento: não casou
+  [!] quem-pensa-enriquece/ch02-o-desejo: não casou
+  [!] quem-pensa-enriquece/ch03-fe-e-autossugestao: não casou
+  [!] quem-pensa-enriquece/ch04-conhecimento-especializado: não casou
+  [!] quem-pensa-enriquece/ch05-imaginacao: não casou
+  [!] quem-pensa-enriquece/ch06-planejamento-organizado: não casou
+  [!] quem-pensa-enriquece/ch07-decisao-e-procrastinacao: não casou
+  [!] quem-pensa-enriquece/ch08-persistencia-e-mastermind: não casou
+quem-pensa-enriquece: 0 capítulos integrados | 8 falharam | import OK
+  [!] realismo-capitalista/ch01-alternativa-inexistente: não casou
+  [!] realismo-capitalista/ch02-e-se-tiver-festa: não casou
+  [!] realismo-capitalista/ch03-capitalismo-e-bipolar: não casou
+  [!] realismo-capitalista/ch05-burocracia-invisivel: não casou
+  [!] realismo-capitalista/ch06-tudo-e-agora: não casou
+realismo-capitalista: 1 capítulos integrados | 5 falharam | import OK
+  [!] revolucao-dos-bichos/ch01-sonho-velho-major: não casou
+  [!] revolucao-dos-bichos/ch03-ascensao-dos-porcos: não casou
+  [!] revolucao-dos-bichos/ch04-napoleao-contra-bola-de-neve: não casou
+  [!] revolucao-dos-bichos/ch05-revisao-do-passado: não casou
+  [!] revolucao-dos-bichos/ch06-sansao-fim-da-esperanca: não casou
+revolucao-dos-bichos: 1 capítulos integrados | 5 falharam | import OK
+  [!] sapiens/ch02-o-cacador-coletor: não casou
+sapiens: 12 capítulos integrados | 1 falharam | import OK
+save-the-cat: 8 capítulos integrados | import OK
+segredos-da-mente-milionaria: 9 capítulos integrados | import OK
+  [!] sete-saberes/ch01-as-cegueiras-do-conhecimento-e-os-principios-do-conhecimento-pertinente: não casou
+  [!] sete-saberes/ch02-ensinar-a-condicao-humana-e-a-identidade-terrena: não casou
+sete-saberes: 0 capítulos integrados | 2 falharam | import OK
+sociedade-do-cansaco: 8 capítulos integrados | import OK
+sound-design: 8 capítulos integrados | import OK
+  [!] startup-enxuta/ch01-o-que-e-uma-startup: não casou
+  [!] startup-enxuta/ch02-aprendizado-validado: não casou
+  [!] startup-enxuta/ch03-o-ciclo-construir-medir-aprender: não casou
+  [!] startup-enxuta/ch04-o-produto-minimo-viavel-mvp: não casou
+  [!] startup-enxuta/ch05-inovacao-contabil-metricas: não casou
+  [!] startup-enxuta/ch06-pivotar-ou-perseverar: não casou
+  [!] startup-enxuta/ch07-os-motores-de-crescimento: não casou
+startup-enxuta: 0 capítulos integrados | 7 falharam | import OK
+  [!] trabalhe-4-horas/ch01-definicao-novo-rico: não casou
+  [!] trabalhe-4-horas/ch02-eliminacao-do-tempo: não casou
+  [!] trabalhe-4-horas/ch03-automacao: não casou
+  [!] trabalhe-4-horas/ch04-liberacao: não casou
+trabalhe-4-horas: 0 capítulos integrados | 4 falharam | import OK
+trabalho-focado: 3 capítulos integrados | import OK
+
+54/74 livros integrados sem falhas

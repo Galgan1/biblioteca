@@ -1,1 +1,1 @@
-python dump_batches.py
+python merge_gemini_out.py
