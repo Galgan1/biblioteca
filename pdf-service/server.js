@@ -22,6 +22,9 @@ const express = require('express');
 const puppeteer = require('puppeteer-core');
 const QRCode = require('qrcode');
 const { PDFDocument } = require('pdf-lib');
+const makeAuth = require('./auth');                 // login multiusuário + papéis
+const instagram = require('./instagram');           // publicação IG via Graph API
+const publishAssets = require('./publish_assets');  // mídia + legenda do post
 
 const PORT = Number(process.env.PORT) || 3008;
 const SITE_ROOT = process.env.SITE_ROOT || '/var/www/andregalgani/biblioteca';
@@ -692,6 +695,11 @@ const pdf = express.Router();
 app.use('/pdf', pdf);            // produção (nginx faz proxy de /biblioteca/pdf/ → /pdf/)
 app.use('/biblioteca/pdf', pdf); // espelho local sem nginx
 
+// login/usuários (mesmas montagens do pdf → /pdf/auth/* e /biblioteca/pdf/auth/*)
+const auth = makeAuth(SECRET);
+app.use('/pdf', auth.router);
+app.use('/biblioteca/pdf', auth.router);
+
 // ------------------------------------------------------------- estatísticas
 // beacon de visita (sendBeacon do script.js): ?book=<slug> ou ?book=_estante
 pdf.post('/hit', (req, res) => {
@@ -747,13 +755,14 @@ const KIT_FIT = `() => {
 }`;
 const KIT_STATIC = { 'capa': (b) => `${b}-capa.png`, 'og': (b) => `${b}-og.png` };
 
-async function renderKitAsset(book, fmt) {
+async function renderKitAsset(book, fmt, ext = 'png') {
   const spec = KIT_TPL[fmt];
+  const type = ext === 'jpg' ? 'jpeg' : 'png';  // IG exige JPEG; PNG p/ download
   const tplFile = path.join(SITE_ROOT, 'assets', 'kit', '_tpl', book, spec.tpl);
   const st = await fsp.stat(tplFile);
   const hash = crypto.createHash('sha1')
     .update(`kit|v${VERSION}|${book}|${fmt}|${st.mtimeMs}|${st.size}`).digest('hex').slice(0, 16);
-  const cacheFile = path.join(CACHE_DIR, `kit-${book}-${fmt}-${hash}.png`);
+  const cacheFile = path.join(CACHE_DIR, `kit-${book}-${fmt}-${hash}.${ext}`);
   try { return { buffer: await fsp.readFile(cacheFile), cached: true }; } catch {}
   const url = `http://127.0.0.1:${PORT}/biblioteca/assets/kit/_tpl/${book}/${spec.tpl}`;
   const browser = await getBrowser();
@@ -764,7 +773,8 @@ async function renderKitAsset(book, fmt) {
     await page.evaluateHandle('document.fonts.ready');
     await page.evaluate(KIT_FIT);
     const el = await page.$('.slide, .story, .thumb');
-    const buffer = await (el || page).screenshot({ type: 'png' });
+    const shot = type === 'jpeg' ? { type: 'jpeg', quality: 90 } : { type: 'png' };
+    const buffer = await (el || page).screenshot(shot);
     fsp.writeFile(cacheFile, buffer).catch(() => {});
     return { buffer, cached: false };
   } finally { await page.close().catch(() => {}); }
@@ -792,6 +802,25 @@ pdf.get('/asset/:book/:fmt.png', async (req, res) => {
   } catch (err) {
     if (err.code === 'ENOENT') return res.status(404).send('não encontrado');
     console.error('[kit-asset]', err.message);
+    res.status(500).send('erro ao gerar asset');
+  }
+});
+
+// variante JPEG (Instagram exige JPEG p/ image/story; só os formatos de template)
+pdf.get('/asset/:book/:fmt.jpg', async (req, res) => {
+  const book = String(req.params.book);
+  const fmt = String(req.params.fmt);
+  if (!SLUG_RE.test(book)) return res.status(400).send('inválido');
+  if (!KIT_TPL[fmt]) return res.status(404).send('formato sem jpg');
+  try {
+    const { buffer, cached } = await enqueue(() => renderKitAsset(book, fmt, 'jpg'));
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('X-Kit-Cache', cached ? 'hit' : 'miss');
+    res.setHeader('Cache-Control', 'public, max-age=300');
+    return res.end(buffer);
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.status(404).send('não encontrado');
+    console.error('[kit-asset-jpg]', err.message);
     res.status(500).send('erro ao gerar asset');
   }
 });
@@ -886,8 +915,10 @@ async function renderCarousel(book, cap) {
       const n = String(i + 1).padStart(2, '0');
       const png = await els[i].screenshot({ type: 'png' });
       const webp = await els[i].screenshot({ type: 'webp', quality: 72 });
+      const jpg = await els[i].screenshot({ type: 'jpeg', quality: 90 }); // p/ Instagram
       await fsp.writeFile(path.join(outDir, n + '.png'), png);
       await fsp.writeFile(path.join(outDir, n + '.webp'), webp);
+      await fsp.writeFile(path.join(outDir, n + '.jpg'), jpg);
       pngEntries.push({ name: `${book}-${cap}-${n}.png`, data: png });
       slides.push(`assets/kit/${book}/caps/${cap}/${n}.png`);
       view.push(`assets/kit/${book}/caps/${cap}/${n}.webp`);
@@ -910,6 +941,55 @@ pdf.get('/carrossel/:book/:cap.json', async (req, res) => {
     if (err.code === 'ENOENT') return res.status(404).json({ error: 'capítulo sem carrossel' });
     console.error('[kit-carrossel]', err.message);
     res.status(500).json({ error: 'erro ao gerar carrossel' });
+  }
+});
+
+// ----- ADMIN: disparo de publicação no Instagram (a partir da VPS) -----
+// Protegido por requireAdmin. IG_DRYRUN=1 monta o contêiner mas NÃO publica.
+pdf.get('/admin/instagram/options', auth.requireAdmin, (req, res) => {
+  const book = String(req.query.book || '');
+  if (!SLUG_RE.test(book)) return res.status(400).json({ error: 'inválido' });
+  try {
+    const o = publishAssets.optionsFor(book);
+    // adapta {types, options:{tipo:[...]}} → [{type, selectors:[...]}] (forma da UI)
+    const options = o.types.map((t) => ({ type: t, selectors: o.options[t] }));
+    res.json({ book, options, captionPreview: o.captionPreview });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+});
+
+pdf.post('/admin/instagram/publish', auth.requireAdmin, async (req, res) => {
+  const { book, type, selector, caption, confirm } = req.body || {};
+  if (!SLUG_RE.test(String(book || ''))) return res.status(400).json({ error: 'livro inválido' });
+  if (!confirm) return res.status(400).json({ error: 'confirmação ausente' });
+  const dryRun = String(process.env.IG_DRYRUN || '') === '1';
+  try {
+    let media, cap;
+    if (type === 'carrossel') {
+      // gera os slides (png+webp+jpg) e monta as URLs JPEG públicas do manifesto
+      const { manifest } = await enqueue(() => renderCarousel(book, String(selector)));
+      media = manifest.slides.map((s) => `${publishAssets.PUB}/biblioteca/${s.replace(/\.png$/, '.jpg')}`);
+      cap = caption !== undefined ? caption : publishAssets.captionFor(book);
+    } else {
+      const r = publishAssets.resolve(book, type, selector); // valida selector
+      media = r.media;
+      cap = caption !== undefined ? caption : r.caption;
+      // pré-aquece o JPEG p/ o IG buscar sem timeout (feed/story)
+      if (type === 'feed' || type === 'story') {
+        await enqueue(() => renderKitAsset(book, String(selector), 'jpg'));
+      }
+    }
+    let result;
+    if (type === 'feed') result = await instagram.publishImage(media[0], cap, { dryRun });
+    else if (type === 'story') result = await instagram.publishStory(media[0], { dryRun });
+    else if (type === 'carrossel') result = await instagram.publishCarousel(media, cap, { dryRun });
+    else if (type === 'reels') result = await instagram.publishReel(media[0], cap, { dryRun });
+    else return res.status(400).json({ error: 'tipo inválido' });
+    res.json({ ok: true, dryRun, mediaId: result.id || result.containerId, permalink: result.permalink || null });
+  } catch (err) {
+    console.error('[ig-publish]', err.message);
+    res.status(500).json({ error: err.message });
   }
 });
 
