@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(prefix + 'pdf/vote?book=' + encodeURIComponent(book) + '&from=' + from + '&to=up', { method: 'POST' }).catch(() => {});
     }
     function buildKit() {
-        if (!isOverview) return;             // o kit vive na página principal do livro
+        // aparece na visão geral E nos capítulos (o prefix resolve os caminhos)
         fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/manifest.json')
             .then(r => (r.ok ? r.json() : null))
             .then(m => { if (m && Array.isArray(m.assets) && m.assets.length) renderKit(m); })
