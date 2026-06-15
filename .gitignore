@@ -58,6 +58,9 @@ analytics/dashboard.html
 _remote_books.json
 _ssh_err.txt
 
+# ===== Auto-git — log do versionamento automático =====
+_autogit.log
+
 # ===== Logs e sondas de diagnóstico (regeneráveis) =====
 *.log
 _probe_*
