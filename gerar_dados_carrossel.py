@@ -33,6 +33,12 @@ def emit(slug):
     data = importlib.import_module(slug.replace('-', '_') + '_data')
     book = data.BOOK
     chapters, counts = {}, {}
+    # carrossel do LIVRO (visão geral) — usa overview_cards (cap "overview", sem underscore p/ passar no SLUG_RE)
+    ov_cards = book.get('overview_cards') or (data.CHAPTERS[0]['cards'] if data.CHAPTERS else [])
+    if ov_cards:
+        ov = {'slug': 'overview', 'sub': '', 'cards': ov_cards}
+        chapters['overview'] = _chapter_slides(book, ov)
+        counts['overview'] = len(chapters['overview'])
     for ch in data.CHAPTERS:
         sl = _chapter_slides(book, ch)
         chapters[ch['slug']] = sl

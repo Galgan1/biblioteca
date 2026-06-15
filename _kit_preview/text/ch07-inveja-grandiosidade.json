@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "eye",
+      "t": "A Inveja Vem de Máscara",
+      "emph": "de Máscara",
+      "b": "A inveja é universal e quase nunca aparece de cara: ela ataca por baixo de quem mais se compara com você. Leia os sinais — a microexpressão de desprezo, o elogio que vem com farpa, a frieza no seu sucesso, a alegria discreta com o seu tropeço. <strong>O “amigo” que celebra cada queda sua é o suspeito.</strong>",
+      "tip": "<strong>Como aplicar:</strong> não inflame a comparação à toa — discrição protege; e desconfie do elogio que dói disfarçadamente."
+    },
+    {
+      "ic": "triangle",
+      "t": "A Grandiosidade Precede a Queda",
+      "emph": "a Queda",
+      "b": "O sucesso embriaga: infla a autoimagem e corta o fio com a realidade. A grandiosidade nega limites; a confiança realista os usa como mapa. Greene mostra líderes que, tomados pelo próprio mito, perderam o senso de limite e despencaram. <strong>O auge é o momento mais perigoso para o ego.</strong>",
+      "tip": "<strong>Sinal de alerta:</strong> quanto maior a vitória, mais aterre a autoimagem em feedback real — não na fantasia que ela alimenta.",
+      "warn": true
+    },
+    {
+      "ic": "scale",
+      "t": "Cultive a Grandiosidade Prática",
+      "emph": "Prática",
+      "b": "A alternativa não é a humildade que paralisa, mas <strong>ambição alta ancorada em trabalho e feedback constante</strong>. Conheça seus limites de verdade — não para se contentar com menos, e sim para saber onde colocar o esforço e empurrar a fronteira de propósito, com os pés no chão.",
+      "tip": "<strong>Modelo mental:</strong> grandiosidade prática = visão grande + feedback real + limite honestamente conhecido."
+    }
+  ]
+}

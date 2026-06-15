@@ -1041,28 +1041,6 @@
     ]
   },
   {
-    "id": "leis-da-natureza-humana",
-    "title": "As Leis da Natureza Humana",
-    "author": "Robert Greene",
-    "coverUrl": "assets/leis-da-natureza-humana-capa.png",
-    "description": "As 18 leis da natureza humana de Robert Greene em cheat sheet: irracionalidade, narcisismo vs. empatia, máscara e caráter, desejo evasivo, perspectiva, defensividade, autossabotagem, A Sombra, inveja, grandiosidade, propósito, conformismo, agressão e a finitude — frameworks para ler o outro e a si mesmo.",
-    "tags": [
-      "Psicologia",
-      "Poder",
-      "Autoconhecimento"
-    ],
-    "progress": "11 Capítulos",
-    "url": "leis-da-natureza-humana.html",
-    "amazon": "https://www.amazon.com.br/dp/6555353686/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6555353686/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "arte-da-seducao",
     "title": "A Arte da Sedução",
     "author": "Robert Greene",
@@ -2167,5 +2145,19 @@
     ],
     "progress": "7 Capítulos",
     "url": "garra.html"
+  },
+  {
+    "id": "leis-da-natureza-humana",
+    "title": "As Leis da Natureza Humana",
+    "author": "Robert Greene",
+    "coverUrl": "assets/leis-da-natureza-humana-capa.png",
+    "description": "As 18 leis da natureza humana de Robert Greene em cheat sheet: irracionalidade, narcisismo vs. empatia, máscara e caráter, desejo evasivo, perspectiva, defensividade, autossabotagem, A Sombra, inveja, grandiosidade, propósito, conformismo, agressão e a finitude — frameworks para ler o outro e a si mesmo.",
+    "tags": [
+      "Psicologia",
+      "Poder",
+      "Autoconhecimento"
+    ],
+    "progress": "11 Capítulos",
+    "url": "leis-da-natureza-humana.html"
   }
 ]

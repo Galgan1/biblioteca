@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "bubble",
+      "t": "Não Empurre — Abra a Porta",
+      "emph": "Abra a Porta",
+      "b": "A resistência não é teimosia: é o ego se defendendo de quem o faz sentir-se inferior ou controlado. Argumentar de frente só endurece a muralha. O persuasor hábil primeiro concorda, espelha valores, valida — e só então conduz, fazendo a conclusão <strong>parecer descoberta do próprio convencido</strong>.",
+      "tip": "<strong>Como aplicar:</strong> baixe a guarda antes de pedir qualquer coisa — adote a perspectiva do outro e confirme “a decisão é sua”."
+    },
+    {
+      "ic": "spiral",
+      "t": "A Profecia que se Cumpre",
+      "emph": "se Cumpre",
+      "b": "Você não vê o mundo como ele é, mas como sua atitude o pinta — e age de um jeito que confirma a tinta. A pessoa hostil lê tudo como ataque, afasta aliados e prova seu isolamento; a expansiva lê o revés como informação e atrai oportunidades. <strong>Mesma realidade, dois destinos opostos.</strong>",
+      "tip": "<strong>Modelo mental:</strong> sua atitude é o software; a realidade que você relata é a saída dele."
+    },
+    {
+      "ic": "target",
+      "t": "Escolha a Atitude Expansiva",
+      "emph": "Expansiva",
+      "b": "Greene separa os filtros que envenenam — hostil, ansioso, evitador, ressentido — da atitude expansiva: curiosidade, abertura ao novo, tolerância à ambiguidade, resiliência. Não é um traço de nascença: é <strong>uma escolha renovada todo dia</strong>, e tratar a adversidade como dado, não como sentença.",
+      "tip": "<strong>Sinal de alerta:</strong> quando o “azar” se repete e os padrões ruins voltam, suspeite do filtro interno, não do mundo.",
+      "warn": true
+    }
+  ]
+}

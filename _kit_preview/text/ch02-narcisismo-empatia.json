@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"spiral","t":"Um Poço que Não Enche","emph":"Poço","b":"Todo mundo tem um núcleo narcísico — a fome de ser visto. No saudável, ele repousa numa autoestima própria e sobra energia para o outro. No profundo, falta um “eu” por dentro: a pessoa vive do reflexo alheio, transforma toda conversa em palco e <strong>devora atenção sem nunca se saciar</strong>.","tip":"<strong>Sinal de alerta:</strong> o vazio do narcisista profundo não tem fundo — não tente preenchê-lo, recue cedo.","warn":true},
+    {"ic":"bubble","t":"Sair de Si para Ler o Outro","emph":"Sair de Si","b":"Empatia não é sentimento mole — é a habilidade social suprema, e se treina como músculo. Quatro camadas: <strong>querer entender; sentir o estado pelo corpo e pelo tom; estudar a história quando o instinto falha; corrigir pela reação real</strong>. Tudo nasce de uma decisão: calar a própria fala antes de respondê-la.","tip":"<strong>Como aplicar:</strong> ouça para entender, não para responder — a atitude vem antes da técnica."},
+    {"ic":"eye","t":"O Espelho que Engana","emph":"Espelho","b":"O erro fatal da empatia é se projetar no outro: presumir que ele sente o que <strong>você</strong> sentiria no lugar dele. Aí você não escuta a pessoa, escuta a si mesmo disfarçado nela. A virada é tratar o outro como enigma, não como cópia — coletar sinais reais em vez de confirmar palpites.","tip":"<strong>Modelo mental:</strong> empatia é espionagem benigna — você colhe pistas do outro, não eco de si."}
+  ]
+}
