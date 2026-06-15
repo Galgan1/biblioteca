@@ -1,0 +1,261 @@
+# -*- coding: utf-8 -*-
+"""Conteúdo (pt-BR) de 'A Startup Enxuta' (The Lean Startup) de Eric Ries."""
+
+BOOK = {
+  "title": "A Startup Enxuta",
+  "author": "Eric Ries",
+  "header_light": "A STARTUP",
+  "header_bold": "ENXUTA",
+  "subtitle": "VISÃO GERAL · O MÉTODO CIENTÍFICO PARA EMPREENDER NA INCERTEZA",
+  "intro": "Empreender deixou de ser sorte ou genialidade: virou disciplina. Eric Ries propõe gerir a startup como um experimento contínuo — construir um produto mínimo, medir o que clientes reais fazem e aprender rápido o bastante para decidir entre pivotar e perseverar. O objetivo é eliminar o pior desperdício de todos: construir, com esforço, algo que ninguém quer.",
+  "description": "Manual de gestão empreendedora de Eric Ries. O ciclo Construir-Medir-Aprender, o Produto Mínimo Viável (MVP), o aprendizado validado, as hipóteses de valor e de crescimento, pivô × perseverar, a contabilidade da inovação (métricas acionáveis × de vaidade), os 3 motores de crescimento, lotes pequenos e os 5 porquês. A produção enxuta da Toyota aplicada a startups.",
+  "tags": ["Empreendedorismo", "Gestão", "Inovação"],
+  "progress": "14 Capítulos",
+  "cover": "assets/startup-enxuta-cover.png",
+  "overview_cards": [
+    {"ic":"spiral","t":"Construir-Medir-Aprender","b":"O motor da obra: ideias viram <strong>hipóteses</strong> → você constrói um MVP → mede o que clientes reais fazem → aprende e decide. A meta é <strong>minimizar o tempo de cada volta completa</strong> do laço.","tip":"<strong>Modelo mental:</strong> planeje o loop ao contrário (o que aprender → o que medir → o que construir) e execute a favor.","warn":True},
+    {"ic":"target","t":"Aprendizado Validado","b":"A unidade de progresso da startup não é código entregue nem horas trabalhadas, mas a <strong>prova empírica, com dados de clientes reais</strong>, de uma verdade sobre o negócio. Tudo que não gera aprendizado é desperdício.","tip":"<strong>Para refletir:</strong> esforço heroico no produto errado é desperdício, por melhor que seja a execução."},
+    {"ic":"fork","t":"Pivô × Perseverar","b":"A decisão mais difícil da startup. O <strong>pivô</strong> muda a estratégia mantendo a visão — não é fracasso. <strong>Perseverar</strong> é afinar o motor quando há tração. A pista (runway) = nº de pivôs que ainda dá para fazer.","tip":"<strong>Regra:</strong> métricas estagnam apesar da afinação → pivote; melhoram de fato → persevere."},
+  ],
+}
+
+CHAPTERS = [
+  {
+    "slug": "ch01-comecar",
+    "sub": "CAPÍTULO 1: Começar (Visão)",
+    "intro": "Empreendedorismo é uma forma de gestão. A Startup Enxuta é um método científico para criar negócios sob incerteza extrema — não basta uma boa ideia tocada 'pelo coração'; é preciso uma disciplina nova, distinta tanto do caos quanto da gestão tradicional.",
+    "cards": [
+      {"ic":"spark","t":"O Que É uma Startup","b":"'Uma <strong>instituição humana</strong> projetada para criar um novo produto ou serviço sob condições de <strong>extrema incerteza</strong>.' Tamanho, setor e idade não importam — o que define é a incerteza.","tip":"<strong>Como aplicar:</strong> se você não sabe quem é o cliente nem o que ele quer, está numa startup — mesmo dentro de uma grande empresa.","warn":True},
+      {"ic":"wrench","t":"Empreendedorismo É Gestão","b":"A startup precisa de uma gestão <strong>própria</strong>, calibrada para a incerteza — nem a gestão de execução das empresas maduras, nem a ausência de método ('é só fazer'). O vácuo de gestão é tão fatal quanto o excesso.","tip":"<strong>Modelo mental:</strong> disciplina não mata a criatividade; canaliza-a para o aprendizado."},
+      {"ic":"layers","t":"As Cinco Raízes","b":"O método bebe da <strong>produção enxuta</strong> (Toyota), do <em>design thinking</em>, do <strong>desenvolvimento de clientes</strong> (Steve Blank) e do pensamento ágil. Empreendedores estão por toda parte — da garagem à multinacional.","tip":"<strong>Para refletir:</strong> o sucesso de uma startup pode ser ensinado e aprendido — não é só sorte."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 1",
+    "lessons": [
+      "Startup = instituição + novo produto + extrema incerteza (as três partes importam).",
+      "O sucesso empreendedor pode ser aprendido; não é genialidade nem sorte.",
+      "Empreendedorismo precisa de gestão própria — o vácuo de método é tão perigoso quanto o excesso.",
+      "O caos do 'apenas faça' e o plano rígido da gestão tradicional falham igualmente na incerteza.",
+    ],
+  },
+  {
+    "slug": "ch02-definir",
+    "sub": "CAPÍTULO 2: Definir (Visão)",
+    "intro": "Empreendedor é um cargo em qualquer empresa que cria produtos sob extrema incerteza — inclusive a grande corporação. A inovação interna precisa das mesmas práticas da startup de garagem, mas dentro de um espaço protegido.",
+    "cards": [
+      {"ic":"person","t":"Empreendedor Como Cargo","b":"Qualquer pessoa, em qualquer organização, que cria um novo produto sob extrema incerteza — o <strong>intraempreendedor</strong> incluído. Inovar não é monopólio das startups jovens.","tip":"<strong>Para refletir:</strong> a desculpa de que 'só garagens inovam' impede a empresa grande de criar seu próprio espaço de experimentação."},
+      {"ic":"mountain","t":"O Porto Seguro da Inovação","b":"A inovação interna exige três coisas: <strong>recursos escassos porém seguros</strong>, <strong>autoridade independente</strong> para tocar o negócio e <strong>participação pessoal</strong> no resultado.","tip":"<strong>Como aplicar:</strong> dê à equipe um espaço protegido onde experimentar sem ser esmagada pela máquina de execução.","warn":True},
+      {"ic":"layers","t":"Portfólio de Inovação","b":"Veja a empresa madura como um portfólio de <strong>execução</strong> e de <strong>experimentos</strong> — e proteja os experimentos da lógica (processos, métricas, prazos) do negócio maduro.","tip":"<strong>Modelo mental:</strong> inovação é capacidade contínua, não projeto pontual."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 2",
+    "lessons": [
+      "O empreendedor existe em qualquer organização; inovação não é exclusiva de startups jovens.",
+      "Inovar dentro da empresa exige recursos seguros, autoridade e pele em jogo.",
+      "As mesmas práticas enxutas servem à garagem e à multinacional.",
+      "Asfixiar a inovação com os processos do negócio maduro é o erro mais comum.",
+    ],
+  },
+  {
+    "slug": "ch03-aprender",
+    "sub": "CAPÍTULO 3: Aprender (Visão)",
+    "intro": "A unidade de progresso de uma startup não é código entregue nem horas trabalhadas: é o aprendizado validado — a demonstração empírica, com dados de clientes reais, de que se descobriu uma verdade valiosa sobre o negócio.",
+    "cards": [
+      {"ic":"target","t":"Aprendizado Validado","b":"Demonstrar <strong>empiricamente</strong>, com dados de clientes reais, que se descobriu algo verdadeiro sobre o presente e o futuro do negócio. É a métrica do progresso real — não 'entregamos o recurso X'.","tip":"<strong>Como aplicar:</strong> pergunte de cada atividade — 'que aprendizado isto produz?'. Se a resposta é 'nenhum', é desperdício.","warn":True},
+      {"ic":"key","t":"As Duas Perguntas","b":"Para todo plano, separe '<strong>Este produto PODE ser construído?</strong>' de '<strong>DEVEMOS construí-lo?</strong>' e 'há um <strong>negócio sustentável</strong> em torno dele?'. A engenharia heroica responde à primeira e ignora as outras duas.","tip":"<strong>Para refletir:</strong> a pergunta certa quase nunca é 'podemos?', mas 'devemos, e há negócio aqui?'."},
+      {"ic":"lens","t":"O Caso IMVU","b":"Ries gastou meses construindo integração com mensageiros existentes, supondo que os usuários só adotariam o avatar se usassem com amigos antigos. Eles queriam <strong>fazer novos amigos</strong> — todo o esforço foi <strong>desperdício</strong>.","tip":"<strong>Modelo mental:</strong> 'aprendemos muito' sem dados de cliente é racionalização de fracasso, não aprendizado validado."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 3",
+    "lessons": [
+      "Aprendizado validado é a unidade de progresso da startup — apoiado em dados de clientes reais.",
+      "Esforço heroico no produto errado é desperdício, por melhor que seja a execução.",
+      "A pergunta não é 'podemos construir?', mas 'devemos, e há negócio sustentável aqui?'.",
+      "Chamar de 'aprendizado' a racionalização de um fracasso é autoengano.",
+    ],
+  },
+  {
+    "slug": "ch04-experimentar",
+    "sub": "CAPÍTULO 4: Experimentar (Visão)",
+    "intro": "Cada recurso de produto é uma hipótese a ser testada. A startup deve transformar seu plano de negócios num conjunto de experimentos guiados pelo método científico, em vez de 'construir e rezar'.",
+    "cards": [
+      {"ic":"scale","t":"As Duas Hipóteses","b":"Todo plano repousa sobre <strong>saltos de fé</strong>. A <strong>hipótese de valor</strong> testa se o produto entrega valor real ao ser usado; a <strong>hipótese de crescimento</strong> testa como novos clientes o descobrem e o espalham.","tip":"<strong>Como aplicar:</strong> liste as suposições, ordene por risco e teste primeiro a mais arriscada.","warn":True},
+      {"ic":"spark","t":"A Startup É um Experimento","b":"Trate o plano como <strong>teste de hipóteses</strong>, não como execução. 'Quem é o cliente?' e 'o que ele considera valor?' se respondem <strong>empiricamente</strong> — pense grande, mas comece pelo experimento mais barato.","tip":"<strong>Para refletir:</strong> confie no que o cliente FAZ, não no que ele DIZ numa pesquisa de opinião."},
+      {"ic":"steps","t":"O Caso Zappos","b":"Antes de ter estoque, Nick Swinmurn <strong>fotografou sapatos de lojas reais</strong> e os vendeu online; quando alguém comprava, ele ia à loja e enviava. Um experimento barato testou a hipótese de valor ('as pessoas comprarão sapatos pela internet?').","tip":"<strong>Modelo mental:</strong> um experimento é um produto — rode-o cedo, barato, com clientes reais."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 4",
+    "lessons": [
+      "Todo plano de negócios repousa sobre saltos de fé — identifique-os e teste-os primeiro.",
+      "As duas hipóteses fundamentais são a de valor e a de crescimento.",
+      "Um experimento é um produto: rode-o cedo, barato e com clientes reais.",
+      "Confie no comportamento do cliente, não na opinião declarada.",
+    ],
+  },
+  {
+    "slug": "ch05-saltar",
+    "sub": "CAPÍTULO 5: Saltar (Dirigir)",
+    "intro": "Toda startup repousa sobre suposições de salto de fé. A tarefa do empreendedor é identificá-las e testá-las o mais rápido possível, fundamentando a estratégia em observação direta do cliente.",
+    "cards": [
+      {"ic":"scale","t":"Suposições de Salto de Fé","b":"As duas mais importantes são a <strong>hipótese de valor</strong> e a <strong>hipótese de crescimento</strong>. São o ponto de partida da estratégia: a suposição mais arriscada da qual <strong>tudo o mais depende</strong>.","tip":"<strong>Como aplicar:</strong> ordene as suposições por risco e teste primeiro a que, se falsa, derruba o negócio.","warn":True},
+      {"ic":"eye","t":"Genchi Gembutsu","b":"O princípio da Toyota: '<strong>vá e veja por si mesmo</strong>'. Fundamente a estratégia em conhecimento de primeira mão do cliente, não em relatórios de segunda mão. <strong>Saia do prédio</strong> (Steve Blank).","tip":"<strong>Para refletir:</strong> estratégia de gabinete, sem nunca observar um cliente real, é fé disfarçada de plano."},
+      {"ic":"link","t":"Analogias e Antílogos","b":"Para sustentar saltos de fé, identifique o que outra empresa <strong>provou</strong> (analogia) e o que ela deliberadamente <strong>não fez</strong> (antílogo) — isolando a pergunta de fé que ainda resta sem resposta.","tip":"<strong>Modelo mental:</strong> copiar o sucesso alheio sem isolar a hipótese não testada é confundir analogia com prova."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 5",
+    "lessons": [
+      "Identifique as suposições de salto de fé antes de qualquer outra coisa.",
+      "Vá e veja por si mesmo: conhecimento de primeira mão vence relatórios.",
+      "Analogias e antílogos ajudam a isolar a verdadeira pergunta de fé.",
+      "Teste primeiro a suposição mais arriscada — a que sustenta todo o resto.",
+    ],
+  },
+  {
+    "slug": "ch06-testar",
+    "sub": "CAPÍTULO 6: Testar (Dirigir)",
+    "intro": "O Produto Mínimo Viável (MVP) é a versão do produto que permite dar uma volta completa no ciclo Construir-Medir-Aprender com o mínimo de esforço e tempo. Seu objetivo é aprender, não impressionar.",
+    "cards": [
+      {"ic":"spark","t":"Produto Mínimo Viável (MVP)","b":"'A versão de um novo produto que permite coletar o <strong>máximo de aprendizado validado</strong> com o <strong>menor esforço</strong>.' Existe para aprender — corte tudo que não serve ao aprendizado de agora.","tip":"<strong>Como aplicar:</strong> recurso polido que o cliente não usa não é qualidade — é desperdício.","warn":True},
+      {"ic":"eye","t":"MVP de Vídeo (Dropbox)","b":"Drew Houston gravou um <strong>vídeo de 3 minutos</strong> mostrando como o produto funcionaria, antes de construí-lo. A lista de espera saltou de <strong>5 mil para 75 mil</strong> em uma noite — validação suficiente para justificar a construção.","tip":"<strong>Modelo mental:</strong> o vídeo testou a hipótese de valor sem escrever o produto inteiro."},
+      {"ic":"person","t":"Conserje e Mágico de Oz","b":"No <strong>MVP conserje</strong>, o serviço é entregue <strong>manualmente</strong>, um cliente por vez, sem automação. No <strong>Mágico de Oz</strong>, o cliente pensa interagir com um produto automatizado, mas há humanos 'atrás da cortina'.","tip":"<strong>Para refletir:</strong> não escala — de propósito; máximo aprendizado por cliente antes de codar."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 6",
+    "lessons": [
+      "O MVP existe para iniciar o aprendizado, não para terminar o produto.",
+      "Remova qualquer recurso ou esforço que não contribua para o aprendizado buscado agora.",
+      "Vídeo, conserje e Mágico de Oz testam hipóteses com pouquíssimo código.",
+      "O medo de soltar cedo (concorrentes, marca, moral) quase sempre importa menos do que parece.",
+    ],
+  },
+  {
+    "slug": "ch07-medir",
+    "sub": "CAPÍTULO 7: Medir (Dirigir)",
+    "intro": "A contabilidade da inovação substitui os marcos tradicionais por um método rigoroso de medir progresso quando o resultado financeiro ainda é zero — ancorada em métricas acionáveis, não de vaidade.",
+    "cards": [
+      {"ic":"steps","t":"Contabilidade da Inovação","b":"Três passos: (1) use um MVP para estabelecer o <strong>baseline</strong> real; (2) <strong>afine o motor</strong> com experimentos rumo ao ideal; (3) decida <strong>pivotar ou perseverar</strong>. É como saber se a startup faz progresso real.","tip":"<strong>Como aplicar:</strong> defina a meta de melhoria ANTES; se os experimentos não a movem, a estratégia está furada.","warn":True},
+      {"ic":"eye","t":"Acionáveis × de Vaidade","b":"<strong>Vaidade:</strong> números brutos que sobem com o tempo e agradam (total de usuários, hits), mas não orientam decisão. <strong>Acionáveis:</strong> demonstram causa→efeito claros. Boa métrica = <strong>3 As</strong>: Acionável, Acessível, Auditável.","tip":"<strong>Sinal de alerta:</strong> o gráfico que 'só sobe' costuma esconder a estagnação real."},
+      {"ic":"layers","t":"Coorte e Teste A/B","b":"A <strong>análise de coorte</strong> mede cada grupo de clientes que entrou no mesmo período (cadastro → uso → retorno → pagamento), revelando a verdade que os totais escondem. O <strong>teste A/B</strong> isola o efeito de uma mudança.","tip":"<strong>Modelo mental:</strong> coortes mostram se o produto melhora de fato, não só se cresce o número bruto."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 7",
+    "lessons": [
+      "Sem contabilidade da inovação, não há como saber se a startup faz progresso real.",
+      "Prefira métricas acionáveis, acessíveis e auditáveis (3 As) às de vaidade.",
+      "Análise de coorte e teste A/B revelam a verdade que os números acumulados escondem.",
+      "Defina a meta de melhoria antes de rodar o experimento.",
+    ],
+  },
+  {
+    "slug": "ch08-pivotar-ou-perseverar",
+    "sub": "CAPÍTULO 8: Pivotar (ou Perseverar) (Dirigir)",
+    "intro": "A decisão mais difícil e mais importante de uma startup é pivotar ou perseverar. Um pivô é uma mudança estruturada de rumo para testar uma nova hipótese fundamental — não desistir, mas mudar de estratégia mantendo a visão.",
+    "cards": [
+      {"ic":"fork","t":"O Pivô","b":"'Uma <strong>correção estruturada de curso</strong> para testar uma nova hipótese fundamental sobre o produto, a estratégia e o motor de crescimento.' Muda a <strong>estratégia</strong>, mantém a <strong>visão</strong> — e não é admissão de fracasso.","tip":"<strong>Como aplicar:</strong> mantenha reuniões regulares de pivotar-ou-perseverar guiadas por dados, não por opinião.","warn":True},
+      {"ic":"cards","t":"O Catálogo de Pivôs","b":"Tipos: <strong>zoom-in</strong> (um recurso vira o produto), <strong>zoom-out</strong> (o produto vira recurso de algo maior), segmento de cliente, necessidade, plataforma, arquitetura de negócio, <strong>captura de valor</strong> (monetização), motor de crescimento, canal e tecnologia.","tip":"<strong>Modelo mental:</strong> pivô não é mudar tudo no pânico — é trocar UMA hipótese, com clareza."},
+      {"ic":"pin","t":"A Pista É o Nº de Pivôs","b":"Redefina a <strong>pista (runway)</strong>: não 'dinheiro restante', mas o <strong>número de pivôs que ainda dá para fazer</strong>. Acelerar o ciclo aumenta a pista sem mais capital. Cuidado com a <strong>'terra dos mortos-vivos'</strong>.","tip":"<strong>Sinal de alerta:</strong> crescer o bastante para sobreviver, mas não para validar nem encerrar — falta pivotar."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 8",
+    "lessons": [
+      "Pivô é mudança de estratégia, não de visão — e não é fracasso.",
+      "Mantenha reuniões regulares de pivotar-ou-perseverar guiadas por dados.",
+      "Meça a pista em número de pivôs possíveis; ciclos rápidos compram mais tentativas.",
+      "Não pivotar a tempo, agarrado a métricas de vaidade, leva à 'terra dos mortos-vivos'.",
+    ],
+  },
+  {
+    "slug": "ch09-lotes",
+    "sub": "CAPÍTULO 9: Lotes (Acelerar)",
+    "intro": "Trabalhar em lotes pequenos, e não grandes, acelera o aprendizado, expõe problemas mais cedo e reduz o desperdício — o coração da produção enxuta da Toyota aplicado à startup.",
+    "cards": [
+      {"ic":"steps","t":"Lotes Pequenos","b":"Mover <strong>uma unidade de trabalho por vez</strong> pelo fluxo (single-piece flow) vence o lote grande: feedback mais rápido, defeitos detectados cedo, menos retrabalho — mesmo parecendo contraintuitivo.","tip":"<strong>Como aplicar:</strong> implantação contínua leva mudanças pequenas à produção muitas vezes ao dia.","warn":True},
+      {"ic":"spark","t":"O Cordão Andon","b":"Na Toyota, qualquer operário <strong>puxa o cordão (andon) para parar a linha</strong> ao ver um defeito. Qualidade é <strong>construída na fonte</strong>, não inspecionada no fim — quando o custo de corrigir é máximo.","tip":"<strong>Modelo mental:</strong> pare a linha cedo; o defeito barato de hoje é o desastre caro de amanhã."},
+      {"ic":"wave","t":"Puxar, Não Empurrar","b":"Como na fábrica enxuta, a produção é <strong>puxada pela demanda</strong> e pelo aprendizado real — não <strong>empurrada por um plano</strong>. O experimento dos envelopes prova: a carta completa, uma por vez, termina antes do lote.","tip":"<strong>Para refletir:</strong> no lote grande, o erro só aparece no fim — com 100 unidades para refazer."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 9",
+    "lessons": [
+      "Lotes pequenos parecem mais lentos, mas entregam aprendizado e produto mais rápido.",
+      "Pare a linha ao ver o defeito (andon): construa qualidade na fonte.",
+      "Puxar pela demanda real vence empurrar por um plano.",
+      "Grandes lotes adiam o feedback e multiplicam o retrabalho quando surge um erro.",
+    ],
+  },
+  {
+    "slug": "ch10-crescer",
+    "sub": "CAPÍTULO 10: Crescer (Acelerar)",
+    "intro": "O crescimento sustentável segue uma regra: novos clientes vêm das ações dos clientes antigos. Existem três motores de crescimento, e cada startup deve focar em um por vez, medindo o que o impulsiona.",
+    "cards": [
+      {"ic":"spiral","t":"Motor Recorrente (Pegajoso)","b":"Cresce <strong>retendo clientes</strong>. A métrica-mestra é a <strong>taxa de atrito (churn)</strong>: se a aquisição supera o cancelamento, o produto cresce. Foque em retenção.","tip":"<strong>Sinal de alerta:</strong> total de usuários sobe mas churn > aquisição = encolhendo em segredo.","warn":True},
+      {"ic":"link","t":"Motor Viral","b":"Cresce porque o <strong>uso normal do produto</strong> o espalha entre novos clientes. A métrica é o <strong>coeficiente viral</strong> — quantos usuários cada usuário traz. Acima de <strong>1,0</strong> = crescimento exponencial.","tip":"<strong>Modelo mental:</strong> ciclo viral vem do produto em uso, não de uma campanha de marketing."},
+      {"ic":"scale","t":"Motor Pago","b":"Cresce <strong>reinvestindo a receita</strong> em aquisição. Funciona enquanto o <strong>valor do tempo de vida do cliente (LTV)</strong> for maior que o <strong>custo de aquisição (CPA)</strong>; a margem entre eles financia o crescimento.","tip":"<strong>Regra:</strong> foque em UM motor por vez — misturar alavancas embaralha as métricas."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 10",
+    "lessons": [
+      "Crescimento sustentável vem das ações dos clientes antigos — escolha o motor que captura isso.",
+      "Cada motor tem sua métrica: churn (pegajoso), coeficiente viral (viral), LTV×CPA (pago).",
+      "Foque em um motor por vez e otimize sua alavanca específica.",
+      "Crescimento de vaidade (usuários totais) pode mascarar um motor parado.",
+    ],
+  },
+  {
+    "slug": "ch11-adaptar",
+    "sub": "CAPÍTULO 11: Adaptar (Acelerar)",
+    "intro": "A startup precisa de uma organização adaptativa que ajuste o próprio ritmo conforme cresce — usando os 5 porquês para investir em prevenção de forma proporcional aos problemas, transformando crises em aprendizado.",
+    "cards": [
+      {"ic":"spiral","t":"Os 5 Porquês","b":"Diante de um problema, pergunte '<strong>por quê?</strong>' cinco vezes para ir da causa sintomática (técnica) à <strong>causa-raiz</strong> (quase sempre humana/de processo). Cada 'porquê' desce um nível.","tip":"<strong>Como aplicar:</strong> servidor caiu → ... → 'o gerente acha que não há tempo para treinar' — a raiz é a política de onboarding, não o engenheiro.","warn":True},
+      {"ic":"scale","t":"Investimento Proporcional","b":"Gaste em correção <strong>na medida da gravidade</strong> do sintoma: pequenos problemas, pequenas correções. Isso evita tanto a <strong>burocracia excessiva</strong> quanto a negligência que deixa o erro voltar.","tip":"<strong>Para refletir:</strong> reagir a um problema pequeno com uma reforma gigante é overdose de processo."},
+      {"ic":"person","t":"Mire o Sistema, Não a Pessoa","b":"A regra de ouro: comece com <strong>tolerância</strong> e mire o processo. 'Se você comete um erro e é humilhado, aprende a <strong>esconder erros</strong>.' Os '5 porquês' viram '<strong>5 culpados</strong>' quando usados para apontar dedos.","tip":"<strong>Modelo mental:</strong> a organização adaptativa regula seu ritmo de processo conforme cresce — nem caos, nem burocracia."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 11",
+    "lessons": [
+      "Os 5 porquês levam do sintoma técnico à causa-raiz humana/de processo.",
+      "Faça investimento proporcional à gravidade — nem demais, nem de menos.",
+      "Mire o sistema, não a pessoa; comece tolerante, ou o aprendizado some.",
+      "A organização adaptativa equilibra velocidade e disciplina à medida que cresce.",
+    ],
+  },
+  {
+    "slug": "ch12-inovar",
+    "sub": "CAPÍTULO 12: Inovar (Acelerar)",
+    "intro": "A inovação sustentável exige uma estrutura que dê às equipes empreendedoras um espaço protegido para experimentar — o porto seguro (sandbox) — sem ser esmagada pela organização que executa, e com responsabilidade clara pelos resultados.",
+    "cards": [
+      {"ic":"mountain","t":"Os Três Requisitos","b":"Toda equipe de inovação precisa de: (1) <strong>recursos escassos porém seguros</strong>; (2) <strong>autoridade independente</strong> para tocar o negócio; (3) <strong>participação pessoal</strong> (pele em jogo) no resultado.","tip":"<strong>Como aplicar:</strong> uma equipe pequena, multifuncional e dedicada, dona do experimento inteiro.","warn":True},
+      {"ic":"target","t":"O Sandbox de Experimentação","b":"Um espaço delimitado com <strong>regras claras</strong>: cada experimento atende um nº limitado de clientes, dura um tempo definido, mede métricas acionáveis fixas, e a <strong>mesma equipe</strong> acompanha o resultado de ponta a ponta.","tip":"<strong>Modelo mental:</strong> o sandbox protege a empresa (do risco) e a equipe (da máquina de execução)."},
+      {"ic":"layers","t":"Gestão de Portfólio","b":"Empresas maduras precisam gerir, ao mesmo tempo, a <strong>inovação disruptiva</strong> e a <strong>execução do negócio existente</strong> — com lideranças e métricas distintas. Inovação é capacidade contínua, não evento.","tip":"<strong>Sinal de alerta:</strong> experimentar sem que alguém responda pelo aprendizado é inovação sem responsabilidade."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 12",
+    "lessons": [
+      "Inovação interna precisa de recursos seguros, autoridade e pele em jogo.",
+      "O sandbox protege a empresa e a equipe, permitindo experimentos reais com clientes.",
+      "Organizações maduras gerem inovação e execução como portfólios distintos.",
+      "Inovação é capacidade contínua, conduzida pela mesma equipe do início ao fim.",
+    ],
+  },
+  {
+    "slug": "ch13-epilogo-nao-desperdice",
+    "sub": "CAPÍTULO 13: Epílogo — Não Desperdice (Acelerar)",
+    "intro": "A grande oportunidade do nosso tempo é eliminar o desperdício mais profundo de todos: construir, com esforço e disciplina, produtos que ninguém quer. A Startup Enxuta é um movimento para tornar o trabalho mais produtivo.",
+    "cards": [
+      {"ic":"leaf","t":"Eliminar o Desperdício","b":"Na herança da produção enxuta, desperdício é tudo que <strong>não cria valor</strong> para o cliente — e o pior é a <strong>energia humana</strong> gasta no produto errado. Cada esforço deve passar no teste do aprendizado validado.","tip":"<strong>Para refletir:</strong> ser ótimo a construir algo que não deveria existir é eficiência no lugar errado.","warn":True},
+      {"ic":"target","t":"Produtividade Real","b":"Em startups, mede-se não por <strong>quanto se produz</strong>, mas por <strong>quanto aprendizado validado</strong> se gera. A abundância de ideias não é o gargalo — falta o método que filtra quais merecem ser construídas.","tip":"<strong>Modelo mental:</strong> o método enxuto é esse filtro contra o desperdício de ideias."},
+      {"ic":"lens","t":"Honestidade Científica","b":"Aplique o método com rigor honesto, <strong>sem usar dados para confirmar</strong> o que já se queria fazer. A Startup Enxuta é um <strong>movimento em evolução</strong>, não um ritual fechado de autoengano.","tip":"<strong>Sinal de alerta:</strong> 'experimentos' desenhados para confirmar a decisão já tomada são ciência de fachada."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 13",
+    "lessons": [
+      "O maior desperdício é construir bem o produto errado.",
+      "Produtividade real = aprendizado validado por esforço, não volume de entrega.",
+      "Aplique o método com honestidade científica, não como ritual de confirmação.",
+      "O gargalo não é a falta de ideias, mas o método que separa as que merecem ser construídas.",
+    ],
+  },
+  {
+    "slug": "ch14-juntar-se-ao-movimento",
+    "sub": "CAPÍTULO 14: Junte-se ao Movimento (Acelerar)",
+    "intro": "A Startup Enxuta é mais que técnicas: é um movimento de gestão empreendedora cujo objetivo é uma economia que desperdice menos talento humano. O ciclo Construir-Medir-Aprender é o motor que torna isso possível em qualquer organização.",
+    "cards": [
+      {"ic":"spiral","t":"O Ciclo Como Cultura","b":"A meta não é rodar o ciclo uma vez, mas torná-lo o <strong>sistema operacional</strong> da organização — minimizando o tempo total de cada volta de Construir-Medir-Aprender.","tip":"<strong>Como aplicar:</strong> internalize o laço; cada decisão vira hipótese a testar, não aposta a defender.","warn":True},
+      {"ic":"book","t":"Princípios, Não Receitas","b":"Técnicas específicas (MVP de vídeo, conserje, 5 porquês) <strong>envelhecem</strong>; os <strong>princípios</strong> (aprendizado validado, experimentação rigorosa, contabilidade da inovação) permanecem e devem ser <strong>adaptados</strong> ao seu contexto.","tip":"<strong>Sinal de alerta:</strong> aplicar uma ferramenta fora de contexto, ignorando o princípio, é culto à técnica."},
+      {"ic":"clock","t":"Gestão de Longo Prazo","b":"Empresas que pensam em <strong>décadas</strong> precisam de estruturas que recompensem o <strong>aprendizado contínuo</strong>, não só o resultado trimestral. O objetivo final: uma economia que desperdice menos talento humano.","tip":"<strong>Para refletir:</strong> medir só o trimestre sufoca a inovação que rende em anos."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 14",
+    "lessons": [
+      "O objetivo final é uma economia que desperdice menos talento humano.",
+      "Internalize os princípios; adapte (não copie) as técnicas ao seu contexto.",
+      "Faça do ciclo Construir-Medir-Aprender o sistema operacional da organização.",
+      "Estruturas de longo prazo premiam o aprendizado sustentável sobre o trimestre.",
+    ],
+  },
+]
