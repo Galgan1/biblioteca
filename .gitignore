@@ -54,6 +54,10 @@ pipeline/state/
 analytics/custos.json
 analytics/dashboard.html
 
+# ===== Deploy — arquivos temporários de sincronização =====
+_remote_books.json
+_ssh_err.txt
+
 # ===== Logs e sondas de diagnóstico (regeneráveis) =====
 *.log
 _probe_*
