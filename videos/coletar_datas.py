@@ -10,6 +10,7 @@ Uso:  python coletar_datas.py
 """
 import sys, os, json
 from pathlib import Path
+from datetime import datetime, timezone, timedelta
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
@@ -215,30 +216,87 @@ except Exception as e:
     print('  ' + msg)
     resultado['erros'].append(msg)
 
-# ---------------- Site (visitas por pagina via logs do nginx) ----------------
+# ---------------- Site (visitas via logs do nginx) ----------------
+# Conta TODO o trafego de /biblioteca: visao geral do livro, paginas de capitulo
+# (rolam no slug do livro) e a estante (chave especial "_estante"). O periodo e
+# medido pelas datas reais dos logs, nao chutado (o /biblioteca e' recente).
 import subprocess
 try:
-    agg = (r"zcat -f /var/log/nginx/access.log* 2>/dev/null | "
-           r"grep -oE 'GET /biblioteca/[a-z0-9-]+\.html' | "
-           r"sed 's#GET /biblioteca/##;s#\.html##' | sort | uniq -c")
+    # Ancorado em "GET " para nao casar URLs no campo Referer. Captura o path ate
+    # o espaco/'?'. Secao COUNTS = paths brutos; secao DATES = dias distintos.
+    agg = (r"L='/var/log/nginx/access.log*'; "
+           r"echo '##COUNTS##'; "
+           r"zcat -f $L 2>/dev/null | grep -oE 'GET /biblioteca/[^ ?]*' | sort | uniq -c; "
+           r"echo '##DATES##'; "
+           r"zcat -f $L 2>/dev/null | grep -F 'GET /biblioteca/' | "
+           r"grep -oE '[0-9]{2}/[A-Za-z]{3}/[0-9]{4}' | sort -u")
     cmd = (['bash', '-lc', agg] if os.environ.get('MR_LOCAL_LOGS')
            else ['ssh', 'root@andregalgani.com.br', agg])
     out = subprocess.run(cmd, capture_output=True, text=True, timeout=90)
-    vis = {}
+
+    vis, dates, section = {}, [], None
     for line in out.stdout.splitlines():
-        line = line.strip()
-        if not line:
-            continue
-        n, _, slug = line.partition(' ')
+        s = line.strip()
+        if s == '##COUNTS##':
+            section = 'counts'; continue
+        if s == '##DATES##':
+            section = 'dates'; continue
+        if section == 'counts':
+            n, _, req = s.partition(' ')
+            try:
+                n = int(n)
+            except ValueError:
+                continue
+            path = req.strip().replace('GET /biblioteca/', '', 1)  # foo.html | foo/ch01.html | '' | index.html | assets/x.css
+            if path in ('', 'index.html'):
+                key = '_estante'
+            elif path.endswith('.html'):
+                key = path[:-5].split('/')[0]      # overview e capitulo -> slug do livro
+            else:
+                continue                            # ignora css/js/imagens
+            vis[key] = vis.get(key, 0) + n
+        elif section == 'dates' and s:
+            dates.append(s)
+
+    # Periodo real medido pelas datas dos logs (sem depender de locale no %b)
+    _MES = {'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+            'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12}
+    parsed = []
+    for d in dates:
         try:
-            vis[slug.strip()] = int(n)
-        except ValueError:
+            dd, mon, yyyy = d.split('/')
+            parsed.append(datetime(int(yyyy), _MES[mon], int(dd)))
+        except (ValueError, KeyError):
             pass
+    if parsed:
+        d0, d1 = min(parsed), max(parsed)
+        dias = (d1 - d0).days + 1
+        periodo = f"{d0.strftime('%d/%m')}–{d1.strftime('%d/%m')}, {dias} dia{'s' if dias != 1 else ''}"
+    else:
+        periodo = 'sem dados de log'
+
     resultado['site_visitas'] = vis
-    resultado['site_periodo'] = 'ultimos ~14 dias (retencao dos logs nginx)'
-    print(f"  Site: {len(vis)} paginas com visita | total {sum(vis.values())} hits")
+    resultado['site_periodo'] = periodo
+    estante = vis.get('_estante', 0)
+    livros = {k: v for k, v in vis.items() if k != '_estante'}
+    print(f"  Site: {len(livros)} livros com visita | estante {estante} | "
+          f"total {sum(vis.values())} hits | periodo {periodo}")
 except Exception as e:
     resultado['erros'].append(f'Site visitas: {str(e)[:160]}')
+
+# ---------------- Facebook (Página Minuto Real — read-only) ----------------
+try:
+    import facebook_insights
+    fb = facebook_insights.coletar()
+    resultado['facebook_account'] = fb.get('facebook_account', {})
+    resultado['facebook_posts'] = fb.get('facebook_posts', [])
+    for e in fb.get('erros', []):
+        resultado['erros'].append(f'Facebook: {e}')
+    acc = resultado['facebook_account']
+    print(f"  Facebook: {acc.get('name','?')} | seguidores={acc.get('followers_count',0)} "
+          f"| {len(resultado['facebook_posts'])} posts")
+except Exception as e:
+    resultado['erros'].append(f'Facebook falhou: {str(e)[:160]}')
 
 # ---------------- Amazon (vendas — opcional, colado pelo usuario) ----------------
 # Sem API: PA-API exige 3 vendas; relatorio so no painel Associados. Se existir
@@ -246,7 +304,6 @@ except Exception as e:
 av = BASE / 'amazon_vendas.json'
 resultado['amazon_vendas'] = json.loads(av.read_text(encoding='utf-8')) if av.exists() else {}
 
-from datetime import datetime, timezone, timedelta
 resultado['coletado_em'] = datetime.now(timezone.utc).isoformat()
 
 # ---------------- Historico (serie temporal p/ tendencias) ----------------

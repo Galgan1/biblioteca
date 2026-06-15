@@ -168,6 +168,26 @@ def run_carrossel(slug: str, dry_run: bool) -> dict:
     return r
 
 
+def run_facebook(slug: str, dry_run: bool) -> dict:
+    """Facebook — vídeo longo NATIVO + CTA no 1º comentário (doutrina premium).
+    Depende de 'uploaded' (precisa do video_id do YouTube p/ o link no comentário)."""
+    if ps.is_done(slug, 'facebook'):
+        return {'status': 'skipped', 'stage': 'facebook'}
+    state = ps.get_state(slug)
+    video_id = state.get('uploaded', {}).get('data', {}).get('video_id', '')
+    if not video_id and not dry_run:
+        reason = 'video_id ausente em pipeline_state — rode uploaded primeiro'
+        ps.mark_blocked(slug, 'facebook', reason)
+        return {'status': 'error', 'stage': 'facebook', 'stderr': reason}
+    cmd = [sys.executable, 'facebook_publicar.py', slug, video_id or '<video_id>']
+    if dry_run:
+        cmd.append('--dry-run')
+    r = _run(cmd, ROOT_VIDEOS, 'facebook', slug, dry_run)
+    if r['status'] == 'done':
+        ps.mark_done(slug, 'facebook')
+    return r
+
+
 # ---------------------------------------------------------------------------
 # Mapa stage → função runner
 # ---------------------------------------------------------------------------
@@ -178,10 +198,11 @@ RUNNERS = {
     'uploaded':    run_upload,
     'shorts':      run_shorts,
     'instagram':   run_carrossel,
+    'facebook':    run_facebook,
 }
 
 # Stages sem runner próprio no orquestrador (feitos manualmente ou por outro script)
-UNMANAGED = {'skill', 'scheduled', 'tiktok', 'facebook'}
+UNMANAGED = {'skill', 'scheduled', 'tiktok'}
 
 
 # ---------------------------------------------------------------------------

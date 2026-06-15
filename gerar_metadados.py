@@ -787,7 +787,7 @@ footer code {{ font-size: .72rem; color: var(--green-dark); background: var(--gr
 
   <div class="kpis">
     <div class="kpi"><b>{len(books)}</b><span>livros no acervo</span></div>
-    <div class="kpi k-prox"><b>{tot_visitas}</b><span>visitas no site (~14d)</span></div>
+    <div class="kpi k-prox"><b>{tot_visitas}</b><span>visitas no site ({SITE_PERIODO})</span></div>
     <div class="kpi"><b>{kpi['livros']}</b><span>com v&iacute;deo</span></div>
     <div class="kpi k-age"><b>{kpi['no_ar']}</b><span>no ar (YouTube)</span></div>
     <div class="kpi k-view"><b>{kpi['views']}</b><span>views YouTube{delta_html}</span></div>

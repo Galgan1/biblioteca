@@ -1,0 +1,72 @@
+{
+  "_doc": "Cadência de publicação do Facebook do canal Minuto Real, em sincronia com os demais canais (wave-sync). 1 livro novo por semana vira: 1 vídeo nativo (do longo), 3 Reels (cenas-herói) e 1 carrossel — tudo conteúdo NATIVO que reaproveita ativos JÁ produzidos. O Facebook NUNCA posta link no corpo: quando há link, ele vai no 1º comentário.",
+  "_updated": "2026-06-15",
+  "versao": 1,
+  "canal": "Minuto Real",
+  "fuso": "America/Sao_Paulo",
+  "descricao": "Reaproveitamento nativo da produção semanal de um livro no Facebook, espalhado de segunda a sábado para não despejar tudo de uma vez. Cada slot consome um ativo que já existe na pasta videos/ (longo, _shorts/<slug>_NN.mp4, carrossel do Instagram). Os slots usam o mesmo <slug> da semana definido no canal-state.json.",
+  "principios": [
+    "Prioridade ao conteúdo NATIVO (vídeo nativo, Reels, carrossel) — o algoritmo do Facebook penaliza posts que tiram o usuário da plataforma.",
+    "Link só esporádico (no máximo 1x/semana) e SEMPRE no 1º comentário, nunca no corpo do post.",
+    "Espalhar os formatos ao longo da semana — um formato por dia, sem dois vídeos no mesmo dia.",
+    "Cada peça nativa reaproveita um ativo JÁ produzido para outro canal (Short→Reel, carrossel→carrossel, longo→vídeo nativo). Nada é re-renderizado só para o Facebook.",
+    "A onda do Facebook acompanha a grade do YouTube (longo qua/qui 19h) empurrando alcance ao longo da semana."
+  ],
+  "slots": [
+    {
+      "dia": "segunda",
+      "hora": "20:00",
+      "formato": "video_nativo",
+      "fonte": "<slug>.mp4",
+      "descricao": "Vídeo-resumo (longo) subido como vídeo nativo do Facebook, não como link do YouTube. Abre a semana do livro.",
+      "cta_comentario": true,
+      "link_no_comentario": true
+    },
+    {
+      "dia": "terca",
+      "hora": "12:00",
+      "formato": "reel",
+      "fonte": "_shorts/<slug>_01.mp4",
+      "descricao": "1ª cena-herói publicada como Reel nativo (mesmo vertical do Short do YouTube).",
+      "cta_comentario": true,
+      "link_no_comentario": false
+    },
+    {
+      "dia": "quarta",
+      "hora": "19:00",
+      "formato": "reel",
+      "fonte": "_shorts/<slug>_02.mp4",
+      "descricao": "2ª cena-herói como Reel, alinhada ao horário do longo no YouTube (qua 19h) para reforçar a onda.",
+      "cta_comentario": true,
+      "link_no_comentario": false
+    },
+    {
+      "dia": "quinta",
+      "hora": "12:00",
+      "formato": "carrossel",
+      "fonte": "carrossel/<slug>/",
+      "descricao": "Carrossel (mesmo conjunto de imagens do Instagram) publicado nativamente como álbum/carrossel do Facebook.",
+      "cta_comentario": true,
+      "link_no_comentario": false
+    },
+    {
+      "dia": "sexta",
+      "hora": "19:00",
+      "formato": "reel",
+      "fonte": "_shorts/<slug>_03.mp4",
+      "descricao": "3ª cena-herói como Reel — pico de engajamento de fim de semana.",
+      "cta_comentario": true,
+      "link_no_comentario": false
+    }
+  ],
+  "regras": [
+    "Link sempre no 1º comentário, nunca no corpo do post.",
+    "No máximo 1 slot por semana usa link (o do vídeo nativo de segunda); os demais são puramente nativos.",
+    "1 formato por dia; nunca dois vídeos no mesmo dia.",
+    "Os ativos referenciados em 'fonte' já devem existir antes do agendamento — o orquestrador não gera nada novo aqui, só reaproveita.",
+    "Substituir <slug> pelo slug da semana (mesmo de canal-state.json e dos roteiros).",
+    "Os números dos Reels (_01, _02, _03) são posições na lista de cenas-herói do livro, não os índices brutos de cena (que variam por livro em _shorts/<slug>_NN.mp4); o orquestrador mapeia as 3 primeiras cenas-herói disponíveis.",
+    "Legenda nativa em pt-BR, sem URL no corpo; CTA convida ao 1º comentário ('link no comentário fixado').",
+    "Se a peça do dia ainda não estiver pronta, o slot é pulado (não posta link de substituição)."
+  ]
+}
