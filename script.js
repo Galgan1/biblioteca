@@ -9,6 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusToggle = document.getElementById('statusToggle');
     const trilhasChipsEl = document.getElementById('trilhasChips');
 
+    // estilo dos ícones de follow do canal (IG/YouTube) ao lado do like/deslike nos cards
+    (function injetarEstiloFollow() {
+        const st = document.createElement('style');
+        st.textContent =
+            '.card-vote .follow-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--gray-light);border-radius:8px;color:var(--gray-dark);background:var(--paper-bg);transition:color .15s,border-color .15s}'
+            + '.card-vote .follow-btn svg{width:18px;height:18px}'
+            + '.card-vote .follow-btn:hover{border-color:var(--green);color:var(--green)}';
+        document.head.appendChild(st);
+    })();
+
     const CART_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M3 4h2.5l2 11h10l2-8H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
         + '<circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg>';
@@ -204,6 +214,31 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', () => vote(book, dir, wrap));
             wrap.appendChild(btn);
         });
+
+        // follow do canal (mesmo destino p/ todos os cards) — ao lado do like/deslike
+        const FOLLOWS = [
+            ['ig', 'https://www.instagram.com/minutoreal1701', 'Seguir no Instagram', '_seguir_ig',
+                '<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>'],
+            ['yt', 'https://www.youtube.com/channel/UC2N5xZ-gyCU3hNvH1QqNahA?sub_confirmation=1', 'Inscrever-se no YouTube', '_youtube_sub',
+                '<rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="2"/><path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor"/>'],
+        ];
+        FOLLOWS.forEach(([key, url, label, beacon, glyph]) => {
+            const a = document.createElement('a');
+            a.className = 'follow-btn follow-' + key;
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            a.title = label;
+            a.setAttribute('aria-label', label);
+            a.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' + glyph + '</svg>';
+            a.addEventListener('click', () => {
+                if (location.hostname.endsWith('andregalgani.com.br')) {
+                    try { navigator.sendBeacon('pdf/hit?book=' + beacon); } catch (e) { /* sem beacon */ }
+                }
+            });
+            wrap.appendChild(a);
+        });
+
         return wrap;
     }
 

@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---------- botões ----------
     const nav = document.createElement('nav');
     nav.className = 'pdf-actions';
-    nav.setAttribute('aria-label', 'Download em PDF');
+    nav.setAttribute('aria-label', 'Ações: baixar em PDF e seguir o canal');
     items.forEach(([page, label]) => {
         const a = document.createElement('a');
         a.className = 'pdf-btn';
@@ -144,5 +144,42 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         nav.appendChild(a);
     });
+
+    // botão "Seguir" no Instagram do canal (@minutoreal1701) — ao lado dos PDFs.
+    // Link direto (clicável) é o lever real de seguidores; clique medido via beacon.
+    const IG_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
+        + '<rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/>'
+        + '<circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>'
+        + '<circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>';
+    const seguir = document.createElement('a');
+    seguir.className = 'pdf-btn';
+    seguir.href = 'https://www.instagram.com/minutoreal1701';
+    seguir.target = '_blank';
+    seguir.rel = 'noopener';
+    seguir.innerHTML = IG_ICON + '<span>Seguir no Instagram</span>';
+    seguir.addEventListener('click', () => {
+        if (location.hostname.endsWith('andregalgani.com.br')) {
+            try { navigator.sendBeacon(prefix + 'pdf/hit?book=_seguir_ig'); } catch (e) { /* sem beacon, sem contagem */ }
+        }
+    });
+    nav.appendChild(seguir);
+
+    // botão "Inscreva-se" no YouTube (Minuto Real); sub_confirmation=1 abre o popup de inscrição
+    const YT_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
+        + '<rect x="2" y="5" width="20" height="14" rx="4" stroke="currentColor" stroke-width="2"/>'
+        + '<path d="M10 9.2l5 2.8-5 2.8z" fill="currentColor"/></svg>';
+    const youtube = document.createElement('a');
+    youtube.className = 'pdf-btn';
+    youtube.href = 'https://www.youtube.com/channel/UC2N5xZ-gyCU3hNvH1QqNahA?sub_confirmation=1';
+    youtube.target = '_blank';
+    youtube.rel = 'noopener';
+    youtube.innerHTML = YT_ICON + '<span>Inscreva-se no YouTube</span>';
+    youtube.addEventListener('click', () => {
+        if (location.hostname.endsWith('andregalgani.com.br')) {
+            try { navigator.sendBeacon(prefix + 'pdf/hit?book=_youtube_sub'); } catch (e) { /* sem beacon, sem contagem */ }
+        }
+    });
+    nav.appendChild(youtube);
+
     header.insertAdjacentElement('afterend', nav);
 });
