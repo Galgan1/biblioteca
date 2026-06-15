@@ -1,3 +1,20 @@
+// Fallback defensivo: se busca.js não carregar (ex.: um deploy do index.html sem a
+// tag <script src="busca.js">), recria um Busca mínimo com o filtro antigo — a estante
+// degrada graciosamente (sem fuzzy/realce/sugestão) em vez de quebrar.
+if (typeof window.Busca === 'undefined') {
+    window.Busca = {
+        buscar: function (livros, q) {
+            var s = (q || '').trim().toLowerCase();
+            if (!s) return livros.slice();
+            return livros.filter(function (b) {
+                return b.title.toLowerCase().includes(s) || b.author.toLowerCase().includes(s);
+            });
+        },
+        realcar: function (texto) { return texto; },
+        sugerir: function () { return null; },
+    };
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     // contagem de visita da estante — beacon anônimo, só em produção
     if (location.hostname.endsWith('andregalgani.com.br')) {
