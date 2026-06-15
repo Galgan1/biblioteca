@@ -1,1 +1,2 @@
-python map_books.py
+@echo off
+python generate.py

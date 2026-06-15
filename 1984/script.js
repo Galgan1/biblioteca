@@ -202,8 +202,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // visualizador C3: palco + trilho de miniaturas, navegação por teclado, baixar
     function openCarousel(m) {
-        const slides = (m.slides || []).map(s => prefix + s);
-        const total = slides.length;
+        const view = (m.view || m.slides || []).map(s => prefix + s);  // webp leve p/ exibir
+        const full = (m.slides || []).map(s => prefix + s);            // png cheio p/ baixar
+        const total = view.length;
         if (!total) return;
         const pad = n => (n < 10 ? '0' : '') + n;
         let idx = 0;
@@ -212,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         overlay.setAttribute('role', 'dialog');
         overlay.setAttribute('aria-modal', 'true');
         overlay.setAttribute('aria-label', 'Carrossel do capítulo');
-        const rail = slides.map((s, i) => '<button class="cv-thumb" data-i="' + i + '">'
+        const rail = view.map((s, i) => '<button class="cv-thumb" data-i="' + i + '">'
             + '<img src="' + s + '" loading="lazy" alt="Miniatura do slide ' + (i + 1) + '">'
             + '<span class="cv-thumb-n">' + pad(i + 1) + '</span></button>').join('');
         const ZIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7l2 2h7v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M12 11v5m0 0l-2-2m2 2l2-2"/></svg>';
@@ -222,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             + '<button class="cv-close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>'
             + '<div class="cv-stage"><button class="cv-nav" data-prev aria-label="Slide anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>'
             + '<figure class="cv-frame"><span class="cv-counter"><b class="cv-cur">01</b> / ' + pad(total) + '</span>'
-            + '<img class="cv-stage-img" src="' + slides[0] + '" alt="Slide 1 do carrossel"></figure>'
+            + '<img class="cv-stage-img" src="' + view[0] + '" alt="Slide 1 do carrossel"></figure>'
             + '<button class="cv-nav" data-next aria-label="Próximo slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>'
             + '<nav class="cv-rail" aria-label="Miniaturas">' + rail + '</nav>'
             + '<div class="cv-actions"><button class="cv-btn cv-btn--ghost" data-dl-slide>' + DL_ICON + 'Baixar este slide</button>'
@@ -234,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const thumbs = overlay.querySelectorAll('.cv-thumb');
         function go(i) {
             idx = (i + total) % total;
-            stageImg.src = slides[idx];
+            stageImg.src = view[idx];
             stageImg.alt = 'Slide ' + (idx + 1) + ' do carrossel';
             curEl.textContent = pad(idx + 1);
             thumbs.forEach(t => t.classList.toggle('is-active', Number(t.dataset.i) === idx));
@@ -245,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         thumbs.forEach(t => t.addEventListener('click', () => go(Number(t.dataset.i))));
         overlay.querySelector('[data-dl-slide]').addEventListener('click', () => {
             const a = document.createElement('a');
-            a.href = slides[idx];
+            a.href = full[idx];
             a.download = BIBLIOTECA_BOOK + '-' + (m.chapter || 'cap') + '-' + pad(idx + 1) + '.png';
             document.body.appendChild(a); a.click(); a.remove();
         });

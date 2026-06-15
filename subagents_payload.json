@@ -1,0 +1,52 @@
+[
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 1",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- acker-diotima-de-mantineia\n- adluri-initiation-mysteries-plato\n- agostinho-confissoes\n- ambury-philosophy-as-a-way-of-life\n- apolodoro-library-of-greek-mythology\n- aristofanes-birds-lysistrata-thesmophoria\n- aristofanes-vespas-aves-ras\n- aristoteles-constituicao-dos-atenienses\n- aristoteles-elencos-sofisticos\n- aristoteles-historia-animais-vii-x\n- aristoteles-partes-dos-animais\n- aristoteles-problemata\n- armstrong-ancient-pieties-greek-world\n- ateneu-deipnosophists\n- attali-pascal\n- barbieri-hinos-antigos\n- barres-angoisse-de-pascal\n- beckwith-greek-buddha\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 2",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- bergson-pensamento-movente\n- bernabe-hieros-logos\n- bernabe-platao-e-o-orfismo\n- bernabe-redefining-dionysus\n- betegh-derveni-papyrus\n- betz-greek-magical-papyri-translation\n- bowden-mystery-cults-ancient-world\n- bremmer-initiation-mysteries\n- brisson-filosofia-do-mito\n- brochard-ceticos-gregos\n- budge-book-of-the-dead\n- burkert-ancient-mystery-cults\n- burkert-babylon-memphis-persepolis\n- burkert-greek-religion\n- buxton-from-myth-to-reason\n- campbell-hero-thousand-faces\n- campbell-inner-reaches-outer-space\n- campbell-masks-of-god\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 3",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- campbell-o-poder-do-mito\n- carter-tomb-tutankhamen-vol3\n- chase-did-socrates-meditate-2022\n- chase-hadot-critics-2024\n- chase-observations-pierre-hadot\n- chaui-filosofia-modo-de-vida\n- cicero-nature-gods-academics\n- colli-nascimento-da-filosofia\n- colli-sabedoria-grega\n- colli-sabedoria-grega-ii\n- collins-magic-ancient-greek\n- cooper-pursuits-of-wisdom\n- cornelli-on-pythagoreanism\n- cornford-principium-sapientiae\n- descartes-discurso-do-metodo\n- detienne-mestres-da-verdade\n- detienne-pensee-religieuse-philosophique\n- dienstag-pessimism\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 4",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- diodoro-library-of-history\n- diogenes-lives-of-eminent-philosophers\n- diogenes-vidas-e-doutrinas\n- eliade-shamanism\n- eliade-yoga\n- epicuro-cartas-maximas\n- epiteto-complete-works\n- estrabao-geography\n- euripides-as-bacantes\n- euripides-fragments\n- faivre-western-esotericism\n- faustino-filosofia-forma-de-vida-ensaios\n- faustino-late-foucault\n- fiordalis-buddhist-spiritual-practices\n- foucault-hermeneutica-do-sujeito\n- foucault-historia-da-sexualidade-2\n- foucault-technologies-of-the-self\n- franz-sonhos-estudo\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 5",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- freud-conferencias-introdutorias\n- gazzinelli-fragmentos-orficos\n- gazzinelli-vida-cetica-pirro\n- goenka-vipassana-discourse\n- goldmann-le-dieu-cache\n- gouhier-pascal-conversao\n- graf-magic-ancient-world\n- graves-difficult-questions-easy-answers\n- griffith-rig-veda\n- grimal-dicionario-mitologia\n- grof-adventure-self-discovery\n- guthrie-orpheus-greek-religion\n- guthrie-pythagorean-sourcebook\n- hadot-discours-mode-vie\n- hadot-exercices-spirituels\n- hadot-inner-citadel\n- hadot-maniere-de-vivre\n- hadot-marius-victorinus\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 6",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- hadot-philosophie-antique\n- hadot-plotino-simplicidade\n- hadot-selected-writings-practice\n- hadot-wittgenstein-limites\n- hanegraaff-hermetic-spirituality\n- harari-21-licoes\n- harari-homo-deus\n- harari-sapiens\n- hegel-fenomenologia-do-espirito\n- hesiodo-trabalhos-e-dias\n- homero-iliada\n- homero-odisseia\n- huxley-doors-of-perception\n- huxley-perennial-philosophy\n- inwood-poem-of-empedocles\n- jaeger-theology-early-greek-philosophers\n- jamblico-vie-de-pythagore\n- jung-alchemical-studies\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 7",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- jung-mysterium-coniunctionis\n- jung-psychology-and-religion\n- jung-symbols-of-transformation\n- kardec-livro-dos-espiritos\n- killen-mycenaean-greek\n- kingsley-ancient-philosophy-mystery-magic\n- kingsley-dark-places-of-wisdom\n- kingsley-reality\n- kingsley-story-waiting-to-pierce-you\n- koyre-mundo-fechado-universo-infinito\n- krenak-a-vida-nao-e-util\n- laberge-rheingold-lucid-dreaming\n- laks-most-derveni-papyrus\n- leite-psiconautas\n- long-sedley-hellenistic-philosophers\n- lucrecio-sobre-a-natureza-das-coisas\n- magee-western-mysticism-esotericism\n- marco-aurelio-meditacoes\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 8",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- martin-velasco-greek-philosophy\n- maximo-tiro-philosophical-orations\n- mayer-nag-hammadi\n- mcevilley-shape-ancient-thought\n- mckenna-food-of-the-gods\n- mckirahan-filosofia-antes-socrates\n- mcnamara-cognitive-neuroscience-religious\n- mills-zend-avesta\n- morgan-platonic-piety\n- muraresku-immortality-key\n- naddaf-greek-concept-nature\n- nietzsche-a-gaia-ciencia\n- nietzsche-alem-do-bem-e-do-mal\n- nietzsche-ecce-homo\n- nietzsche-genealogia-da-moral\n- nietzsche-o-nascimento-da-tragedia\n- nussbaum-therapy-of-desire\n- ogden-greek-roman-necromancy\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 9",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- origenes-contra-celso\n- otto-idea-of-the-holy\n- padmasambhava-tibetan-book-of-the-dead\n- palmer-parmenides\n- pascal-pensamentos\n- pausanias-description-greece\n- platao-carta-vii\n- platao-o-banquete\n- plinio-natural-history-vol-ix\n- plutarco-banquete-sete-sabios\n- plutarco-de-isis-e-osiris\n- plutarco-vidas-paralelas-solon-publicola\n- pollan-how-to-change-your-mind\n- porfirio-abstinence-killing-animals\n- porfirio-life-of-pythagoras\n- ribeiro-jr-hinos-homericos\n- ribeiro-oraculo-da-noite\n- rinella-pharmakon\n"
+  },
+  {
+    "TypeName": "drdolabela_book_to_skill_applier",
+    "Role": "BookToSkill Lote 10",
+    "Prompt": "Crie a estrutura /book-to-skill (arquivos chXX na pasta chapters) para as seguintes skills:\n- rothschild-paul-in-athens\n- rousseau-discours-inegalite\n- rousseau-reveries-promeneur\n- schopenhauer-essays-aphorisms\n- schopenhauer-mundo-vontade-representacao-tomo-ii\n- seaford-money-early-greek-mind\n- sellars-art-of-living-stoics\n- seneca-cartas-a-lucilio\n- seneca-natural-questions\n- shaw-theurgy-soul-iamblichus\n- sin-leqi-unninni-epopeia-gilgamesh\n- sjostedt-h-noumenautics\n- stein-ecstatic-experience\n- stein-persephone-unveiled\n- taylor-atomists-leucippus-democritus\n- teofrasto-enquiry-into-plants\n- totelin-hippocratic-recipes\n"
+  }
+]

@@ -10,5 +10,12 @@
     "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/05.png"
   ],
   "count": 5,
-  "zip": "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/carrossel.zip"
+  "zip": "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/carrossel.zip",
+  "view": [
+    "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/01.webp",
+    "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/02.webp",
+    "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/03.webp",
+    "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/04.webp",
+    "assets/kit/1984/caps/ch01-oceania-grande-irmao-ingsoc/05.webp"
+  ]
 }
