@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>W3 — Painel tátil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Literata:ital,opsz,wght@1,7..72,500;1,7..72,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
+  --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
+  --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
+  --gold: oklch(76% 0.105 83);
+  --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+/* ---------- base do slide: profundidade em camadas ---------- */
+.slide{width:1080px;height:1350px;color:var(--ink);padding:92px 90px 150px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  background:
+   radial-gradient(135% 95% at 102% 108%, oklch(24% 0.045 152 / .85) 0%, transparent 48%),
+   radial-gradient(115% 72% at 50% -12%, oklch(27% 0.05 152) 0%, transparent 60%),
+   radial-gradient(150% 125% at 50% 48%, transparent 52%, oklch(5% 0.012 152 / .6) 100%),
+   linear-gradient(177deg, var(--bg) 0%, var(--bg2) 100%);}
+/* textura: grade de pontos finos (fade do topo) */
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(oklch(78% 0.07 152 / .055) 1.1px, transparent 1.3px);
+  background-size:36px 36px;background-position:center;
+  -webkit-mask-image:radial-gradient(125% 105% at 50% -5%, #000 50%, transparent 100%);}
+/* moldura tracejada (DNA cheat sheet) — emoldura o cartão */
+.slide::after{content:'';position:absolute;inset:38px;border:2px dashed var(--green);
+  border-radius:32px;opacity:.38;pointer-events:none;
+  box-shadow:inset 0 0 90px oklch(70% 0.13 152 / .05)}
+.slide>*{position:relative;z-index:1}
+
+/* indicador de progresso */
+.dots{position:absolute;left:0;right:0;bottom:74px;display:flex;gap:13px;
+  justify-content:center;align-items:center;z-index:2}
+.dots i{width:11px;height:11px;border-radius:999px;background:var(--hair);display:block}
+.dots i.on{width:38px;background:var(--green);box-shadow:0 0 18px oklch(72% 0.14 152 / .55)}
+.wm{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-weight:800;
+  letter-spacing:.26em;font-size:21px;color:var(--ink-dim);text-transform:uppercase;z-index:2}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:center}
+.brandmark{display:inline-flex;align-items:center;gap:12px;font-weight:900;
+  letter-spacing:.03em;font-size:28px;color:var(--ink);text-transform:uppercase}
+.brandmark .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto}
+.brandmark .seal svg{width:28px;height:28px;color:var(--on-green)}
+.brandmark b{color:var(--green);font-weight:900}
+.count{display:inline-flex;align-items:baseline;gap:4px;font-weight:800;
+  font-size:26px;letter-spacing:.04em;color:var(--green-soft)}
+.count b{font-size:34px;color:var(--green)} .count .sl{color:var(--hair);font-weight:700}
+
+/* =================================================================
+   W3 — PAINEL TÁTIL
+   O conteúdo deixa de flutuar no vazio e vira um CARTÃO físico:
+   cor própria + borda + dupla sombra (elevação) + brilho-de-borda.
+   O fundo escuro vira moldura; o cartão respira luz quente.
+   ================================================================= */
+.panel{
+  position:relative;
+  margin-top:54px;flex:1;display:flex;flex-direction:column;
+  border-radius:34px;padding:56px 52px 50px;
+  /* superfície do cartão: leve gradiente esverdeado, ganha "matéria" */
+  background:
+    linear-gradient(158deg,
+      oklch(24% 0.035 152) 0%,
+      oklch(19% 0.028 152) 56%,
+      oklch(16.5% 0.024 152) 100%);
+  border:1.5px solid oklch(72% 0.06 152 / .26);
+  /* elevação: sombra profunda do objeto + halo quente que ele projeta */
+  box-shadow:
+    0 38px 80px -28px oklch(0% 0 0 / .72),
+    0 14px 30px -18px oklch(0% 0 0 / .55),
+    0 0 120px -30px oklch(70% 0.14 152 / .22),
+    inset 0 1.5px 0 oklch(92% 0.1 152 / .14),
+    inset 0 0 0 1px oklch(70% 0.13 152 / .04);
+}
+/* topo do cartão com lâmina de luz dourada (filete quente) */
+.panel::before{content:'';position:absolute;left:52px;right:52px;top:0;height:4px;border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg, transparent, var(--gold) 18%, var(--green-soft) 82%, transparent);
+  opacity:.7;box-shadow:0 0 22px oklch(76% 0.105 83 / .35);pointer-events:none}
+/* brilho de canto (luz quente raspando a superfície) */
+.panel::after{content:'';position:absolute;inset:1.5px;border-radius:33px;pointer-events:none;
+  background:radial-gradient(80% 55% at 18% 0%, oklch(78% 0.1 152 / .10), transparent 60%)}
+
+/* cabeçalho do cartão: ícone + eyebrow (integrados, não soltos) */
+.p-head{display:flex;align-items:center;gap:24px;position:relative;z-index:1}
+.p-icon{width:96px;height:96px;border-radius:24px;flex:0 0 auto;display:flex;
+  align-items:center;justify-content:center;
+  background:linear-gradient(160deg, oklch(70% 0.14 152 / .22), oklch(70% 0.14 152 / .05));
+  border:2px solid oklch(72% 0.08 152 / .4);
+  box-shadow:0 12px 28px -12px oklch(0% 0 0 / .6), inset 0 1px 0 oklch(90% 0.1 152 / .18),
+    0 0 40px oklch(70% 0.14 152 / .14)}
+.p-icon svg{width:50px;height:50px;color:var(--green-soft);
+  filter:drop-shadow(0 0 10px oklch(85% 0.105 152 / .5))}
+.p-eyebrow{font-size:23px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold)}
+
+/* título: dentro do cartão, claro e quente (não mais bloco verde frio) */
+.p-title{position:relative;z-index:1;font-size:62px;line-height:1.06;font-weight:900;
+  text-transform:uppercase;text-wrap:balance;margin-top:30px;letter-spacing:-.008em;
+  color:var(--ink)}
+.p-title b{color:var(--green-soft);font-weight:900;
+  text-shadow:0 0 38px oklch(85% 0.105 152 / .28)}
+
+/* corpo: respira dentro do cartão */
+.p-body{position:relative;z-index:1;font-size:42px;line-height:1.42;color:var(--ink);
+  margin-top:30px;font-weight:500;text-wrap:pretty}
+.p-body strong{color:var(--green-soft);font-weight:800}
+
+/* TIP integrado: chip quente dentro do cartão, ouro discreto */
+.p-tip{position:relative;z-index:1;margin-top:auto;display:flex;gap:22px;align-items:flex-start;
+  padding:28px 30px;border-radius:22px;
+  background:linear-gradient(150deg, oklch(76% 0.105 83 / .12), oklch(76% 0.105 83 / .03));
+  border:1.5px solid oklch(76% 0.105 83 / .34);
+  box-shadow:inset 0 1px 0 oklch(90% 0.08 83 / .1), 0 10px 26px -16px oklch(0% 0 0 / .55)}
+.p-tip .tipic{flex:0 0 auto;width:48px;height:48px;border-radius:14px;display:flex;
+  align-items:center;justify-content:center;background:oklch(76% 0.105 83 / .16);
+  border:1.5px solid oklch(76% 0.105 83 / .4);color:var(--gold)}
+.p-tip .tipic svg{width:28px;height:28px}
+.p-tip .tiptxt{font-size:30px;line-height:1.34;color:var(--green-soft);font-weight:500;text-wrap:pretty}
+.p-tip .tiptxt b{color:var(--gold);font-weight:800;letter-spacing:.02em;text-transform:uppercase;
+  font-size:25px;display:inline-block;margin-right:4px}
+.p-tip .tiptxt strong{color:var(--gold);font-weight:800}
+</style>
+</head>
+<body>
+<div class="slide concept">
+
+  <!-- topbar: wordmark + contador -->
+  <div class="topbar">
+    <div class="brandmark">
+      <span class="seal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4.5C4 3.7 4.7 3 5.5 3H12v17.5l-1.2-.8a4 4 0 0 0-2.2-.7H5.5A1.5 1.5 0 0 1 4 17.5z"/>
+          <path d="M20 4.5C20 3.7 19.3 3 18.5 3H12v17.5l1.2-.8a4 4 0 0 1 2.2-.7h3.1A1.5 1.5 0 0 0 20 17.5z"/>
+        </svg>
+      </span>
+      <span>Minuto<b>Real</b></span>
+    </div>
+    <div class="count"><b>04</b><span class="sl">/</span>04</div>
+  </div>
+
+  <!-- CARTÃO TÁTIL: o conteúdo vira objeto -->
+  <div class="panel">
+
+    <div class="p-head">
+      <span class="p-icon">
+        <!-- ícone do conceito: a "fresta" entre duas chaves/portas que se abre -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 3v18"/>
+          <path d="M15 3v18"/>
+          <path d="M9 12H4"/>
+          <path d="M20 12h-5"/>
+          <circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <span class="p-eyebrow">O Intervalo</span>
+    </div>
+
+    <h2 class="p-title">A liberdade mora <b>no intervalo</b></h2>
+
+    <p class="p-body">
+      Entre o que te acontece e o que você faz existe uma fresta — e é nela
+      que cabe toda a sua liberdade. Uma pausa, nomear a emoção, olhar-se
+      como olharia um estranho: cada gesto <strong>alarga a fresta</strong> e
+      devolve o comando ao Adulto, tirando-o da Criança e do Pai que reagem
+      por impulso.
+    </p>
+
+    <div class="p-tip">
+      <span class="tipic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <path d="M12 7v5l3 2"/>
+        </svg>
+      </span>
+      <span class="tiptxt"><b>Regra ·</b> quando a intensidade for alta, <strong>espere 24h</strong>. Pressa emocional quase nunca decide bem.</span>
+    </div>
+
+  </div>
+
+  <!-- rodapé: dots + wordmark -->
+  <div class="dots"><i></i><i></i><i></i><i class="on"></i></div>
+  <div class="wm">Minuto Real</div>
+
+</div>
+</body>
+</html>

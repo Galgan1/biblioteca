@@ -151,6 +151,42 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .warn .card-tip{color:var(--warn);border-color:oklch(75% 0.16 38 / .5)}
 .warn .card-tip .tipic{color:var(--warn)} .warn .card-tip strong{color:var(--warn)}
 
+/* ---------- conceito EDITORIAL (padrão quente W2) ---------- */
+.ed{flex:1;display:flex;flex-direction:column;margin-top:30px}
+.ed-head{display:flex;align-items:flex-end;gap:34px;margin-bottom:8px}
+.ed-num{font-family:'Literata',Georgia,serif;font-weight:600;font-size:300px;line-height:.72;
+  color:transparent;-webkit-text-stroke:2.5px oklch(74% 0.11 152 / .55);letter-spacing:-.04em;
+  flex:0 0 auto;text-shadow:0 0 70px oklch(72% 0.14 152 / .12)}
+.warn .ed-num{-webkit-text-stroke-color:oklch(75% 0.16 38 / .5)}
+.ed-meta{flex:1;padding-bottom:22px}
+.ed-kicker{font-weight:800;font-size:23px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+.warn .ed-kicker{color:var(--warn)}
+.ed-rule{height:0;border-top:2px dashed var(--green);opacity:.7;margin-bottom:18px}
+.warn .ed-rule{border-color:var(--warn)}
+.ed-source{font-family:'Literata',Georgia,serif;font-style:italic;font-weight:400;font-size:27px;line-height:1.3;color:var(--muted)}
+.ed-source b{color:var(--green-soft);font-style:normal;font-weight:600}
+.ed-title{font-family:'Literata',Georgia,serif;font-weight:700;font-size:80px;line-height:1.04;color:var(--ink);letter-spacing:-.018em;text-wrap:balance;margin:18px 0 6px}
+.ed-title em{font-style:italic;font-weight:600;color:var(--green)}
+.warn .ed-title em{color:var(--warn)}
+.ed-body{font-family:'Literata',Georgia,serif;font-weight:400;font-size:44px;line-height:1.5;color:var(--ink);text-wrap:pretty;margin-top:30px;padding-top:34px;border-top:2px solid var(--hair2);position:relative}
+.ed-body::before{content:'';position:absolute;top:-1px;left:0;width:120px;height:0;border-top:3px solid var(--green)}
+.warn .ed-body::before{border-color:var(--warn)}
+.ed-body strong{font-weight:700;color:var(--green-soft)}
+.warn .ed-body strong{color:var(--warn)}
+.ed-body .dc{float:left;font-family:'Literata',Georgia,serif;font-weight:600;font-size:138px;line-height:.78;color:var(--green);margin:8px 22px -6px 0;text-shadow:0 0 44px oklch(72% 0.14 152 / .3)}
+.warn .ed-body .dc{color:var(--warn)}
+.ed-tip{margin-top:auto;display:flex;gap:26px;align-items:flex-start;background:linear-gradient(150deg, oklch(70% 0.14 152 / .14), oklch(70% 0.14 152 / .035));border:2px solid var(--hair);border-left:6px solid var(--green);border-radius:22px;padding:34px 38px;box-shadow:0 16px 44px oklch(8% 0.02 152 / .45), inset 0 1px 0 oklch(90% 0.1 152 / .08)}
+.warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 38 / .14), oklch(75% 0.16 38 / .035))}
+.ed-tip .tipic{flex:0 0 auto;width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--green);color:var(--on-green);box-shadow:0 8px 22px oklch(60% 0.14 152 / .4)}
+.warn .ed-tip .tipic{background:var(--warn)}
+.ed-tip .tipic svg{width:34px;height:34px;color:var(--on-green)}
+.ed-tip .tiptext{flex:1}
+.ed-tip .tiplabel{font-weight:900;font-size:20px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:9px}
+.warn .ed-tip .tiplabel{color:var(--warn)}
+.ed-tip .tipbody{font-size:31px;line-height:1.36;color:var(--green-soft);font-weight:500;text-wrap:pretty}
+.ed-tip .tipbody strong{color:var(--green);font-weight:800}
+.warn .ed-tip .tipbody{color:oklch(82% 0.08 38)} .warn .ed-tip .tipbody strong{color:var(--warn)}
+
 /* ---------- capa ---------- */
 .cover{justify-content:center;text-align:center;align-items:center}
 /* wordmark = ASSINATURA forte do canal (a marca para o dedo) */
@@ -276,23 +312,62 @@ def _cover(book, n, pos, total):
         'cover')
 
 
-def _concept(c, i, total_cards, pos, total):
+def _ed_title(t):
+    """Título editorial: última palavra significativa em itálico verde (acento)."""
+    words = t.split()
+    if len(words) >= 2:
+        return ' '.join(words[:-1]) + f' <em>{words[-1]}</em>'
+    return f'<em>{t}</em>'
+
+
+def _ed_source(ch):
+    """'Capítulo N · <título>' a partir do sub do capítulo."""
+    sub = (ch or {}).get('sub', '') if ch else ''
+    if not sub:
+        return ''
+    m = re.match(r'\s*CAP[IÍ]TULO\s*(\d+)\s*[:\-–·]\s*(.+)', sub, re.IGNORECASE)
+    if m:
+        return f'Capítulo {m.group(1)} &middot; <b>{m.group(2).strip()}</b>'
+    return f'<b>{sub.strip()}</b>'
+
+
+def _concept(c, i, total_cards, pos, total, book=None, ch=None):
     cls = 'concept' + (' warn' if c.get('warn') else '')
-    tip = ''
+    kicker = ''
+    if book:
+        kicker = f"{book.get('header_light','')} {book.get('header_bold','')}".strip()
+    kicker = kicker or 'MINUTO REAL'
+    # corpo com capitular (drop-cap) na 1ª letra visível (tolera tag inicial)
+    body = c['b']
+    mdc = re.match(r'^(\s*(?:<[^>]+>)*)([A-Za-zÀ-ÿ])(.*)$', body, re.DOTALL)
+    body_html = (mdc.group(1) + f'<span class="dc">{mdc.group(2)}</span>' + mdc.group(3)) if mdc else body
+    # tip vira caixa editorial: rótulo (do <strong>…:</strong>) + corpo
+    tip_html = ''
     if c.get('tip'):
-        tipic = _svg('spark') if not c.get('warn') else _svg('shield')
-        tip = f'<div class="card-tip"><span class="tipic">{tipic}</span><span>{c["tip"]}</span></div>'
+        mt = re.match(r'\s*<strong>(.*?)</strong>\s*(.*)', c['tip'], re.DOTALL)
+        if mt:
+            label = re.sub(r'[:：]\s*$', '', mt.group(1)).strip()
+            tipbody = mt.group(2).strip()
+        else:
+            label, tipbody = ('Cuidado' if c.get('warn') else 'Dica'), c['tip']
+        tipic = _svg('shield') if c.get('warn') else _svg('spark')
+        tip_html = (f'<div class="ed-tip"><span class="tipic">{tipic}</span>'
+                    f'<div class="tiptext"><div class="tiplabel">{label}</div>'
+                    f'<div class="tipbody">{tipbody}</div></div></div>')
     return _slide(
         f'<div class="topbar"><span class="brandmark">'
         f'<span class="seal">{_svg("book")}</span>Minuto<b>Real</b></span>'
         f'<span class="count"><b>{i:02d}</b><span class="sl">/</span>{total_cards:02d}</span></div>'
-        f'{icon(c["ic"])}'
-        f'<div class="card-title">{c["t"]}</div>'
-        f'<div class="card-body">{c["b"]}</div>'
-        f'{tip}'
+        f'<div class="ed">'
+        f'<div class="ed-head"><div class="ed-num">{i}</div>'
+        f'<div class="ed-meta"><div class="ed-kicker">{kicker}</div>'
+        f'<div class="ed-rule"></div><div class="ed-source">{_ed_source(ch)}</div></div></div>'
+        f'<h1 class="ed-title">{_ed_title(c["t"])}</h1>'
+        f'<p class="ed-body">{body_html}</p>'
+        f'{tip_html}'
+        f'</div>'
         f'{_dots(pos, total)}',
-        cls,
-        ghost=_ghost('top:118px;right:60px;font-size:330px', f'{i:02d}'))
+        cls)
 
 
 def _cta(book, pos, total):
@@ -481,6 +556,7 @@ def _render(slides, out, scale=2, w=W, h=H, css=None):
 def build(slug, cap=None):
     data = importlib.import_module(slug.replace('-', '_') + '_data')
     book = data.BOOK
+    ch = None
     if cap:
         ch = next((c for c in data.CHAPTERS if c['slug'] == cap or c['slug'].startswith(cap)), None)
         if not ch:
@@ -493,7 +569,7 @@ def build(slug, cap=None):
     n = len(cards)
     total = n + 2  # capa + conceitos + cta
     slides = [_cover(book, n, 1, total)]
-    slides += [_concept(c, i, n, i + 1, total) for i, c in enumerate(cards, 1)]
+    slides += [_concept(c, i, n, i + 1, total, book, ch) for i, c in enumerate(cards, 1)]
     slides.append(_cta(book, total, total))
     out = _render(slides, OUT_ROOT / f'{slug}_{part}')
     qs = _best_quotes(slug, book, data, want=1)

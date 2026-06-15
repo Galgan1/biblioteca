@@ -24,7 +24,7 @@ def _chapter_slides(book, ch):
     n = len(cards)
     total = n + 2  # capa + conceitos + cta
     slides = [gc._cover(book, n, 1, total)]
-    slides += [gc._concept(c, i, n, i + 1, total) for i, c in enumerate(cards, 1)]
+    slides += [gc._concept(c, i, n, i + 1, total, book, ch) for i, c in enumerate(cards, 1)]
     slides.append(gc._cta(book, total, total))
     return slides
 

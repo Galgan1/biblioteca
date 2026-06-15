@@ -89,6 +89,42 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .warn .card-tip{color:var(--warn);border-color:oklch(75% 0.16 38 / .5)}
 .warn .card-tip .tipic{color:var(--warn)} .warn .card-tip strong{color:var(--warn)}
 
+/* ---------- conceito EDITORIAL (padrão quente W2) ---------- */
+.ed{flex:1;display:flex;flex-direction:column;margin-top:30px}
+.ed-head{display:flex;align-items:flex-end;gap:34px;margin-bottom:8px}
+.ed-num{font-family:'Literata',Georgia,serif;font-weight:600;font-size:300px;line-height:.72;
+  color:transparent;-webkit-text-stroke:2.5px oklch(74% 0.11 152 / .55);letter-spacing:-.04em;
+  flex:0 0 auto;text-shadow:0 0 70px oklch(72% 0.14 152 / .12)}
+.warn .ed-num{-webkit-text-stroke-color:oklch(75% 0.16 38 / .5)}
+.ed-meta{flex:1;padding-bottom:22px}
+.ed-kicker{font-weight:800;font-size:23px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+.warn .ed-kicker{color:var(--warn)}
+.ed-rule{height:0;border-top:2px dashed var(--green);opacity:.7;margin-bottom:18px}
+.warn .ed-rule{border-color:var(--warn)}
+.ed-source{font-family:'Literata',Georgia,serif;font-style:italic;font-weight:400;font-size:27px;line-height:1.3;color:var(--muted)}
+.ed-source b{color:var(--green-soft);font-style:normal;font-weight:600}
+.ed-title{font-family:'Literata',Georgia,serif;font-weight:700;font-size:80px;line-height:1.04;color:var(--ink);letter-spacing:-.018em;text-wrap:balance;margin:18px 0 6px}
+.ed-title em{font-style:italic;font-weight:600;color:var(--green)}
+.warn .ed-title em{color:var(--warn)}
+.ed-body{font-family:'Literata',Georgia,serif;font-weight:400;font-size:44px;line-height:1.5;color:var(--ink);text-wrap:pretty;margin-top:30px;padding-top:34px;border-top:2px solid var(--hair2);position:relative}
+.ed-body::before{content:'';position:absolute;top:-1px;left:0;width:120px;height:0;border-top:3px solid var(--green)}
+.warn .ed-body::before{border-color:var(--warn)}
+.ed-body strong{font-weight:700;color:var(--green-soft)}
+.warn .ed-body strong{color:var(--warn)}
+.ed-body .dc{float:left;font-family:'Literata',Georgia,serif;font-weight:600;font-size:138px;line-height:.78;color:var(--green);margin:8px 22px -6px 0;text-shadow:0 0 44px oklch(72% 0.14 152 / .3)}
+.warn .ed-body .dc{color:var(--warn)}
+.ed-tip{margin-top:auto;display:flex;gap:26px;align-items:flex-start;background:linear-gradient(150deg, oklch(70% 0.14 152 / .14), oklch(70% 0.14 152 / .035));border:2px solid var(--hair);border-left:6px solid var(--green);border-radius:22px;padding:34px 38px;box-shadow:0 16px 44px oklch(8% 0.02 152 / .45), inset 0 1px 0 oklch(90% 0.1 152 / .08)}
+.warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 38 / .14), oklch(75% 0.16 38 / .035))}
+.ed-tip .tipic{flex:0 0 auto;width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--green);color:var(--on-green);box-shadow:0 8px 22px oklch(60% 0.14 152 / .4)}
+.warn .ed-tip .tipic{background:var(--warn)}
+.ed-tip .tipic svg{width:34px;height:34px;color:var(--on-green)}
+.ed-tip .tiptext{flex:1}
+.ed-tip .tiplabel{font-weight:900;font-size:20px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);margin-bottom:9px}
+.warn .ed-tip .tiplabel{color:var(--warn)}
+.ed-tip .tipbody{font-size:31px;line-height:1.36;color:var(--green-soft);font-weight:500;text-wrap:pretty}
+.ed-tip .tipbody strong{color:var(--green);font-weight:800}
+.warn .ed-tip .tipbody{color:oklch(82% 0.08 38)} .warn .ed-tip .tipbody strong{color:var(--warn)}
+
 /* ---------- capa ---------- */
 .cover{justify-content:center;text-align:center;align-items:center}
 /* wordmark = ASSINATURA forte do canal (a marca para o dedo) */
