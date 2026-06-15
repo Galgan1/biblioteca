@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     try { myVotes = JSON.parse(localStorage.getItem(MYKEY)) || {}; } catch (e) { myVotes = {}; }
     const saveMyVotes = () => { try { localStorage.setItem(MYKEY, JSON.stringify(myVotes)); } catch (e) { /* ignora */ } };
 
+    shelf.setAttribute('aria-busy', 'true');
     shelf.innerHTML = '<div class="skeleton skeleton-card"></div><div class="skeleton skeleton-card"></div>';
 
     // carrega o catálogo e as contagens de votos (ranking global) em paralelo
@@ -47,10 +48,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (searchInput) searchInput.placeholder = 'Pesquisar nas ' + books.length + ' obras — título ou autor…';
         buildStatusToggle();
         buildTrilhas();
+        // Trilhas fechadas por padrão no mobile — livros aparecem acima da dobra
+        const trilhasSection = document.getElementById('trilhasSection');
+        if (trilhasSection && window.innerWidth < 768) trilhasSection.removeAttribute('open');
+        shelf.removeAttribute('aria-busy');
         render();
     }).catch(error => {
-        console.error('Erro ao carregar books.json:', error);
-        shelf.innerHTML = msg('Não foi possível carregar os livros. Verifique se a página está sendo servida por HTTP (ex: Live Server), não via file://.');
+        console.error('Erro ao carregar livros:', error);
+        shelf.removeAttribute('aria-busy');
+        shelf.innerHTML = msg('Não foi possível carregar os livros. Tente recarregar a página.');
     });
 
     function msg(text) {
@@ -117,17 +123,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
             const [name, ids] = TRILHAS[state.trilha];
             const books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk).filter(queryOk);
-            if (!books.length) { shelf.innerHTML = msg('Nenhum livro nesta trilha com esse filtro.'); return; }
+            if (!books.length) { shelf.innerHTML = msg(q ? 'Nenhum livro nesta trilha para "' + q + '".' : 'Nenhum livro nesta trilha com esse filtro.'); return; }
             renderSection(name, books);
             return;
         }
         let books = allBooks.filter(statusOk).filter(queryOk);
-        if (!books.length) { shelf.innerHTML = msg('Nenhum livro encontrado.'); return; }
+        if (!books.length) { shelf.innerHTML = msg(q ? 'Nenhum resultado para "' + q + '". Tente outro título ou autor.' : 'Nenhum livro encontrado.'); return; }
         books = books.slice().sort(rankSort);
         const title = q ? 'Resultados'
             : state.status === 'pronto' ? 'Resumos prontos'
             : state.status === 'embreve' ? 'Em breve'
-            : 'Acervo · do mais curtido ao menos';
+            : 'Acervo · mais relevantes';
         renderSection(title, books);
     }
 
@@ -151,9 +157,8 @@ document.addEventListener('DOMContentLoaded', () => {
         item.className = 'shelf-item animate-entrance';
         item.style.setProperty('--i', index);
 
-        const bookEl = document.createElement('a');
-        // "Em breve": card ainda sem página de resumo — não navega (sem href);
-        // só o chip "Comprar" (afiliado) leva à Amazon.
+        // "Em breve": div (sem href) evita falsa affordance de link navegável
+        const bookEl = book.comingSoon ? document.createElement('div') : document.createElement('a');
         bookEl.className = book.comingSoon ? 'card card-soon' : 'card';
         if (!book.comingSoon) bookEl.href = book.url;
         bookEl.innerHTML = `

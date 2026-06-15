@@ -119,7 +119,7 @@ FOOT = '''        <footer class="footer">
             <p class="footer-credit">{credit}</p>
         </footer>
     </div>
-    <script src="{script}"></script>
+    <script defer src="{script}"></script>
 </body>
 </html>
 '''
