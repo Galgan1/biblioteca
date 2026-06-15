@@ -11,7 +11,7 @@ A Fase 1 do estúdio lê `analytics/aprendizados.json` antes do empacotamento.
 """
 import sys, json
 from pathlib import Path
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timezone
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
@@ -196,7 +196,7 @@ def gerar(verbose=False):
 def _print_report(r):
     c = r['canal']
     print(f"\n{'='*60}")
-    print(f"RELATÓRIO DE DESEMPENHO · Canal Minuto Real")
+    print("RELATÓRIO DE DESEMPENHO · Canal Minuto Real")
     print(f"Coletado: {c.get('coletado_em', '')[:10]} | Tendência: {c['tendencia_7d']}")
     print(f"Views total: {c['total_views']:,} | CTR médio: {c['ctr_medio_canal']}% | Retenção média: {c['retencao_media_canal']}%")
     print(f"{'='*60}")

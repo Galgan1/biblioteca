@@ -6,7 +6,7 @@ Pipeline 100% local: edge-tts (narração) + Pillow (slides) + ffmpeg (montagem)
 Uso:  python gerar_video.py roteiros/arte-da-guerra.json
 Saída: videos/<slug>.mp4
 """
-import sys, json, subprocess, wave, struct
+import sys, json, subprocess, wave
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 import imageio_ffmpeg

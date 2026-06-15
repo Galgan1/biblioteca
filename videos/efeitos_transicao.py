@@ -199,7 +199,7 @@ def main(roteiro_path):
 
     kn_len = len(_knock())
     buf = np.zeros(int(total * SR) + kn_len * 4, dtype=np.float64)
-    for b, (k, g) in zip(bounds, plano):
+    for b, (k, g) in zip(bounds, plano, strict=False):
         _place(buf, float(b), k, g)
     buf = buf[:int(total * SR)]
     try:                                                # cadeia premium: sala curta + calor/ar (bumbo segue seco)

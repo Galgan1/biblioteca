@@ -54,7 +54,7 @@ def main(slug, longo_id, ddmm):
     agendar(yt, longo_id, dia, f'LONGO · {slug} ({DOW[dia.weekday()]})')
     st = ROOT / '_shorts' / f'{slug}_upload_state.json'
     shorts = list(json.loads(st.read_text()).values()) if st.exists() else []
-    for vid, (dias, hora) in zip(shorts, SLOTS_SHORTS):
+    for vid, (dias, hora) in zip(shorts, SLOTS_SHORTS, strict=False):
         alvo = (dia + timedelta(days=dias)).replace(hour=hora)
         agendar(yt, vid, alvo, f'SHORT · {slug} ({DOW[alvo.weekday()]})')
 

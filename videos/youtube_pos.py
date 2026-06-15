@@ -78,7 +78,7 @@ def build_srt(cenas, durs, tail):
     Aproximação honesta (as pausas SSML já estão embutidas na dur real da cena)."""
     starts = _starts(durs)
     cues = []
-    for cena, dur, start in zip(cenas, durs, starts):
+    for cena, dur, start in zip(cenas, durs, starts, strict=False):
         fala = max(0.5, dur - tail)              # tira o respiro final do TAIL
         sents = _sentencas(cena.get('narracao'))
         if not sents:
@@ -109,7 +109,7 @@ def build_chapters(cenas, durs, min_gap=10.0):
     starts = _starts(durs)
     rotulos = {'abertura': 'Introdução', 'encerramento': 'Conclusão'}
     linhas, last = [], -min_gap
-    for cena, ts in zip(cenas, starts):
+    for cena, ts in zip(cenas, starts, strict=False):
         label = rotulos.get(cena.get('tipo', 'conceito')) or (cena.get('titulo') or '').strip()
         if not label:
             continue

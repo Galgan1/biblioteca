@@ -193,7 +193,7 @@ def _report(posts, followers):
             print('  (sem dados suficientes)')
         print()
 
-    print(f'\n=== Instagram Analytics — @minutoreal1701 ===')
+    print('\n=== Instagram Analytics — @minutoreal1701 ===')
     _top5('save_rate')
     _top5('share_rate')
 

@@ -19,7 +19,7 @@ Saída:
   videos/_carrossel/<slug>_<parte>/01.png ... NN.png   (capa + conceitos + CTA)
   videos/_carrossel/<slug>_citacoes/01.png ... NN.png  (cards de citação)
 """
-import sys, os, re, json, importlib
+import sys, re, json, importlib
 from pathlib import Path
 
 BASE = Path(__file__).parent

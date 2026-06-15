@@ -3,7 +3,6 @@
 header + cards especificos (icone variado + titulo + body + card-tip + details)
 + licoes-chave + navegacao. Fonte: skill sun-tzu-arte-da-guerra."""
 from pathlib import Path
-import html
 
 OUT = Path(__file__).parent / 'arte-da-guerra'
 

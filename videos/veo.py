@@ -42,7 +42,7 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
         op = json.load(urllib.request.urlopen(req))
     except urllib.error.HTTPError as e:
         # Erros 4xx/5xx no start → falha real (circuit breaker conta)
-        raise RuntimeError(f'Veo start: HTTP {e.code} {e.read().decode()[:300]}')
+        raise RuntimeError(f'Veo start: HTTP {e.code} {e.read().decode()[:300]}') from e
 
     poll = f"{BASE}/{op['name']}?key={KEY}"
     for _ in range(90):  # até 15 min
@@ -50,7 +50,7 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
         try:
             st = json.load(urllib.request.urlopen(poll))
         except urllib.error.HTTPError as e:
-            raise RuntimeError(f'Veo poll: HTTP {e.code} {e.read().decode()[:300]}')
+            raise RuntimeError(f'Veo poll: HTTP {e.code} {e.read().decode()[:300]}') from e
         if st.get('done'):
             if 'error' in st:
                 # Erro da operação (ex: prompt bloqueado) — não abre circuit
