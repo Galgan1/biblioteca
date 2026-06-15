@@ -1284,85 +1284,40 @@ h1, h2, h3, h4 {
     max-width: 60ch;
     margin: 1.1rem 0 1.25rem;
 }
-.kit-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1rem;
-}
-.kit-card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    text-decoration: none;
-    color: inherit;
-    font: inherit;
-    cursor: pointer;
-    padding: 0;
-    background: none;
+/* Pílulas compactas (porte do .pdf-btn) — fileira que quebra linha */
+.kit-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.kit-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
     border: 2px dashed var(--green);
     border-radius: var(--radius);
-    overflow: hidden;
-    transition: transform 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart), box-shadow 200ms var(--ease-out-quart);
-}
-.kit-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--green-dark);
-    box-shadow: var(--shadow-card-hover);
-}
-.kit-thumb {
-    display: block;
-    width: 100%;
-    aspect-ratio: 4 / 5; /* fallback; o JS define a proporção real por asset */
-    background: oklch(12% 0.012 152);
-    overflow: hidden;
-}
-.kit-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-/* on-demand: thumb vazio com chamada "Gerar" até a 1ª geração */
-.kit-thumb--empty {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--surface-hover);
+    background: none;
     color: var(--green-dark);
-}
-.kit-gen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.4rem;
     font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart), transform 200ms var(--ease-out-quart);
 }
-.kit-gen svg { width: 30px; height: 30px; }
-.kit-card.is-generating { pointer-events: none; }
-.kit-card.is-generating .kit-gen svg { animation: kit-spin 900ms linear infinite; }
+.kit-pill:hover { background: var(--surface-hover); border-color: var(--green-dark); transform: translateY(-1px); }
+.kit-pill:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.kit-pill svg { width: 18px; height: 18px; flex-shrink: 0; }
+.kit-pill__label { white-space: nowrap; }
+.kit-pill__fmt {
+    font-weight: 600;
+    font-size: 0.74rem;
+    color: var(--gray-dark);
+    white-space: nowrap;
+}
+.kit-pill:hover .kit-pill__fmt { color: var(--green-dark); }
+.kit-pill.is-generating { pointer-events: none; }
+.kit-pill.is-generating svg { animation: kit-spin 900ms linear infinite; }
+.kit-pill.is-generated { border-style: solid; }
 @keyframes kit-spin { to { transform: rotate(360deg); } }
-.kit-info { display: flex; flex-direction: column; gap: 0.15rem; padding: 0.7rem 0.8rem 0.85rem; }
-.kit-label { font-family: var(--font-display); font-weight: 800; color: var(--black); font-size: 0.95rem; }
-.kit-sub { font-size: 0.78rem; color: var(--gray-dark); }
-.kit-dl {
-    position: absolute;
-    top: 0.5rem;
-    right: 0.5rem;
-    width: 34px;
-    height: 34px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--green);
-    color: var(--on-green);
-    border-radius: 999px;
-    opacity: 0;
-    transform: translateY(-4px);
-    transition: opacity 180ms var(--ease-out-quart), transform 180ms var(--ease-out-quart);
-}
-.kit-dl svg { width: 18px; height: 18px; }
-.kit-card:hover .kit-dl, .kit-card:focus-visible .kit-dl { opacity: 1; transform: translateY(0); }
-@media (hover: none) { .kit-dl { opacity: 0.95; transform: none; } }
 
 /* Lightbox do kit: apresenta o asset no browser */
 .kit-overlay {

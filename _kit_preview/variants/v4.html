@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de Divulgação — V4 · Linha de menu compacta</title>
+<!-- Tokens reais do site -->
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  body {
+    margin: 0;
+    background: var(--paper-bg);
+    color: var(--black);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Container estreito — é uma lista, não uma grade */
+  .kit-demo {
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  /* Cabeçalho discreto, na marca */
+  .kit-demo__head { margin-bottom: 1rem; }
+  .kit-demo__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 0.35rem;
+  }
+  .kit-demo__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--black);
+  }
+  .kit-demo__hint {
+    margin: 0.3rem 0 0;
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+  }
+
+  /* O menu: um único bloco enquadrado, leve, com o filete tracejado verde por dentro */
+  .kit-menu {
+    margin-top: 1.1rem;
+    border: 1.5px dashed var(--green);
+    border-radius: var(--radius);
+    background: var(--paper-bg);
+    overflow: hidden;
+  }
+
+  /* Cada linha ~40px — densa e escaneável, sem thumbnail */
+  .kit-row {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 44px;
+    padding: 0.45rem 0.85rem;
+    background: transparent;
+    border: 0;
+    /* filete tracejado verde sutil entre as linhas */
+    border-top: 1px dashed color-mix(in oklch, var(--green) 38%, transparent);
+    text-align: left;
+    text-decoration: none;
+    color: var(--black);
+    font-family: var(--font-display);
+    cursor: pointer;
+    transition: background-color 160ms var(--ease-out-quart, ease);
+  }
+  .kit-row:first-child { border-top: 0; }
+  .kit-row:hover,
+  .kit-row:focus-visible {
+    background: var(--surface-hover);
+    outline: none;
+  }
+  .kit-row:focus-visible { box-shadow: inset 3px 0 0 var(--green); }
+
+  /* Ícone de tipo (linha), em verde */
+  .kit-row__icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: var(--green-dark);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Bloco de texto: rótulo + tag de formato esmaecida na mesma faixa */
+  .kit-row__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .kit-row__label {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--black);
+    white-space: nowrap;
+  }
+  .kit-row__fmt {
+    font-weight: 600;
+    font-size: 0.74rem;
+    letter-spacing: 0.02em;
+    color: var(--gray-dark);
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .kit-row:hover .kit-row__fmt { color: var(--green-dark); }
+
+  /* Micro-ação à direita: baixar + chevron, discretos até o hover */
+  .kit-row__act {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+    color: var(--gray-dark);
+  }
+  .kit-row__act svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .kit-row__act .kit-chev {
+    width: 14px;
+    height: 14px;
+    opacity: 0.55;
+    transition: transform 160ms ease, opacity 160ms ease;
+  }
+  .kit-row:hover .kit-row__act { color: var(--green-dark); }
+  .kit-row:hover .kit-row__act .kit-chev { transform: translateX(2px); opacity: 1; }
+
+  /* Rodapé minúsculo: baixar tudo, no mesmo tom de menu */
+  .kit-menu__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 40px;
+    padding: 0.4rem 0.85rem;
+    border-top: 1px dashed color-mix(in oklch, var(--green) 38%, transparent);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 160ms ease;
+  }
+  .kit-menu__foot:hover { background: var(--surface-hover); }
+  .kit-menu__foot svg {
+    width: 15px; height: 15px;
+    stroke: currentColor; stroke-width: 2; fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+</style>
+</head>
+<body>
+  <div class="kit-demo">
+    <div class="kit-demo__head">
+      <span class="kit-demo__eyebrow">Para compartilhar</span>
+      <h2 class="kit-demo__title">Kit de Divulgação</h2>
+      <p class="kit-demo__hint">Escolha a peça e o formato. Geramos e baixamos na medida certa de cada destino.</p>
+    </div>
+
+    <div class="kit-menu" role="menu" aria-label="Peças do kit de divulgação">
+
+      <!-- 1. Citação · Instagram Feed — 1080×1350 — 4:5 -->
+      <a class="kit-row" role="menuitem" href="#" aria-label="Citação para Instagram Feed, 1080 por 1350, proporção 4 por 5. Gerar e baixar.">
+        <svg class="kit-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 7h4v4c0 2-1 3-3 4M13 7h4v4c0 2-1 3-3 4"/>
+        </svg>
+        <span class="kit-row__text">
+          <span class="kit-row__label">Citação</span>
+          <span class="kit-row__fmt">Instagram · Feed — 1080×1350 · 4:5</span>
+        </span>
+        <span class="kit-row__act" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+          <svg class="kit-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- 2. Citação · Stories — 1080×1920 — 9:16 -->
+      <a class="kit-row" role="menuitem" href="#" aria-label="Citação para Stories, 1080 por 1920, proporção 9 por 16. Gerar e baixar.">
+        <svg class="kit-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 7h4v4c0 2-1 3-3 4M13 7h4v4c0 2-1 3-3 4"/>
+        </svg>
+        <span class="kit-row__text">
+          <span class="kit-row__label">Citação</span>
+          <span class="kit-row__fmt">Stories — 1080×1920 · 9:16</span>
+        </span>
+        <span class="kit-row__act" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+          <svg class="kit-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- 3. Ideia-chave · Feed Quadrado — 1080×1080 — 1:1 -->
+      <a class="kit-row" role="menuitem" href="#" aria-label="Ideia-chave para Feed Quadrado, 1080 por 1080, proporção 1 por 1. Gerar e baixar.">
+        <svg class="kit-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.7-1 1.2-1 2.5H9c0-1.3-.3-1.8-1-2.5A6 6 0 0 1 12 3Z"/>
+        </svg>
+        <span class="kit-row__text">
+          <span class="kit-row__label">Ideia-chave</span>
+          <span class="kit-row__fmt">Feed · Quadrado — 1080×1080 · 1:1</span>
+        </span>
+        <span class="kit-row__act" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+          <svg class="kit-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- 4. Capa · Stories — 1080×1920 — 9:16 -->
+      <a class="kit-row" role="menuitem" href="#" aria-label="Capa para Stories, 1080 por 1920, proporção 9 por 16. Gerar e baixar.">
+        <svg class="kit-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/>
+          <path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>
+        </svg>
+        <span class="kit-row__text">
+          <span class="kit-row__label">Capa</span>
+          <span class="kit-row__fmt">Stories — 1080×1920 · 9:16</span>
+        </span>
+        <span class="kit-row__act" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+          <svg class="kit-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- 5. Capa do livro · Geral — 800×1200 — 2:3 -->
+      <a class="kit-row" role="menuitem" href="#" aria-label="Capa do livro, uso geral, 800 por 1200, proporção 2 por 3. Gerar e baixar.">
+        <svg class="kit-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/>
+          <path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>
+        </svg>
+        <span class="kit-row__text">
+          <span class="kit-row__label">Capa do livro</span>
+          <span class="kit-row__fmt">Geral — 800×1200 · 2:3</span>
+        </span>
+        <span class="kit-row__act" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+          <svg class="kit-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- 6. Banner de link · Facebook · WhatsApp — 1200×630 — 1.91:1 -->
+      <a class="kit-row" role="menuitem" href="#" aria-label="Banner de link para Facebook e WhatsApp, 1200 por 630, proporção 1,91 por 1. Gerar e baixar.">
+        <svg class="kit-row__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M9.5 14.5 14.5 9.5"/>
+          <path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/>
+          <path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>
+        </svg>
+        <span class="kit-row__text">
+          <span class="kit-row__label">Banner de link</span>
+          <span class="kit-row__fmt">Facebook · WhatsApp — 1200×630 · 1.91:1</span>
+        </span>
+        <span class="kit-row__act" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+          <svg class="kit-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+
+      <!-- Rodapé: baixar o kit inteiro -->
+      <a class="kit-menu__foot" href="#" aria-label="Baixar todas as seis peças do kit">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"/></svg>
+        Baixar o kit inteiro
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -46,12 +46,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Clicar ABRE a imagem no browser (lightbox); de lá pode baixar. Abrir conta
     // como um curtir daquele visitante (1 por usuário, igual ao joinha da estante)
     // — é o sinal de demanda que promove o livro à esteira.
-    const EXPAND_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
-        + '<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" '
-        + 'stroke-linecap="round" stroke-linejoin="round"/></svg>';
-    const SPARK_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
-        + '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" stroke="currentColor" '
-        + 'stroke-width="1.8" stroke-linejoin="round"/></svg>';
+    // ícones de linha por tipo de peça (na gramática da marca, traço 2)
+    const _SVG = (inner) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+        + 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + '</svg>';
+    const KIT_ICONS = {
+        quote: _SVG('<path d="M7 7h4v4c0 2-1 3-3 4M13 7h4v4c0 2-1 3-3 4"/>'),
+        idea: _SVG('<path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.7-1 1.2-1 2.5H9c0-1.3-.3-1.8-1-2.5A6 6 0 0 1 12 3Z"/>'),
+        cover: _SVG('<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>'),
+        link: _SVG('<path d="M9.5 14.5 14.5 9.5"/><path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/><path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>'),
+    };
     const DL_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M12 4v10m0 0l-4-4m4 4l4-4M5 20h14" stroke="currentColor" stroke-width="2" '
         + 'stroke-linecap="round" stroke-linejoin="round"/></svg>';
@@ -88,67 +91,46 @@ document.addEventListener('DOMContentLoaded', () => {
             p.textContent = m.intro;
             sec.appendChild(p);
         }
-        const grid = document.createElement('div');
-        grid.className = 'kit-grid';
+        // V1 — pílulas compactas (porte do botão de PDF): ícone + rótulo + formato esmaecido
+        const pills = document.createElement('div');
+        pills.className = 'kit-pills';
         const ondemand = !!m.ondemand;
         m.assets.forEach(a => {
-            const card = document.createElement('button');
-            card.type = 'button';
-            card.className = 'kit-card';
-            const thumb = document.createElement('span');
-            thumb.className = 'kit-thumb';
-            if (a.w && a.h) thumb.style.aspectRatio = a.w + ' / ' + a.h;
-            const info = document.createElement('span');
-            info.className = 'kit-info';
-            info.innerHTML = '<span class="kit-label">' + a.label + '</span>'
-                + '<span class="kit-sub">' + a.rede + ' · ' + a.fmt + '</span>';
-            const corner = document.createElement('span');
-            corner.className = 'kit-dl';
-            if (ondemand) {
-                card.title = 'Gerar ' + a.label + ' (' + a.fmt + ')';
-                thumb.classList.add('kit-thumb--empty');
-                thumb.innerHTML = '<span class="kit-gen">' + SPARK_ICON + '<span class="kit-gen-label">Gerar</span></span>';
-                corner.innerHTML = SPARK_ICON;
-                card.append(thumb, info, corner);
-                card.addEventListener('click', () => genAndShow(a, card));
-            } else {
-                card.title = 'Abrir ' + a.label + ' (' + a.fmt + ')';
-                thumb.innerHTML = '<img src="' + prefix + (a.thumb || a.href) + '" loading="lazy" alt="' + a.label + ' — ' + a.fmt + '">';
-                corner.innerHTML = EXPAND_ICON;
-                card.append(thumb, info, corner);
-                card.addEventListener('click', () => openKitLightbox(a, prefix + a.href));
-            }
-            grid.appendChild(card);
+            const pill = document.createElement('button');
+            pill.type = 'button';
+            pill.className = 'kit-pill';
+            pill.title = (ondemand ? 'Gerar ' : 'Abrir ') + a.label + ' — ' + a.rede + ' · ' + a.fmt;
+            pill.innerHTML = (KIT_ICONS[a.icon] || KIT_ICONS.quote)
+                + '<span class="kit-pill__label">' + a.label + '</span>'
+                + '<span class="kit-pill__fmt">· ' + (a.pill || (a.rede + ' · ' + a.fmt)) + '</span>';
+            if (ondemand) pill.addEventListener('click', () => genAndShow(a, pill));
+            else pill.addEventListener('click', () => openKitLightbox(a, prefix + a.href));
+            pills.appendChild(pill);
         });
-        sec.appendChild(grid);
+        sec.appendChild(pills);
         const anchor = document.querySelector('.pdf-actions') || header;
         anchor.insertAdjacentElement('afterend', sec);
     }
     // chama a "função de geração" do formato no servidor (gera no 1º clique;
     // depois serve o cache) e apresenta o resultado. Gerar = curtir.
-    function genAndShow(a, card) {
-        if (card.classList.contains('is-generating')) return;
+    function genAndShow(a, pill) {
+        if (pill.classList.contains('is-generating')) return;
         registerKitLike(BIBLIOTECA_BOOK);
         const url = prefix + 'pdf/asset/' + BIBLIOTECA_BOOK + '/' + a.id + '.png';
-        const label = card.querySelector('.kit-gen-label');
-        card.classList.add('is-generating');
-        if (label) label.textContent = 'Gerando…';
+        const fmt = pill.querySelector('.kit-pill__fmt');
+        const orig = fmt ? fmt.textContent : '';
+        pill.classList.add('is-generating');
+        if (fmt) fmt.textContent = '· Gerando…';
         const img = new Image();
         img.onload = () => {
-            card.classList.remove('is-generating');
-            card.classList.add('is-generated');
-            const thumb = card.querySelector('.kit-thumb');
-            thumb.classList.remove('kit-thumb--empty');
-            thumb.innerHTML = '';
-            const t = new Image(); t.src = url; t.alt = a.label + ' — ' + a.fmt;
-            thumb.appendChild(t);
-            const corner = card.querySelector('.kit-dl');
-            if (corner) corner.innerHTML = EXPAND_ICON;
+            pill.classList.remove('is-generating');
+            pill.classList.add('is-generated');
+            if (fmt) fmt.textContent = orig;
             openKitLightbox(a, url);
         };
         img.onerror = () => {
-            card.classList.remove('is-generating');
-            if (label) label.textContent = 'Erro — tente de novo';
+            pill.classList.remove('is-generating');
+            if (fmt) fmt.textContent = '· erro, tente de novo';
         };
         img.src = url;
     }

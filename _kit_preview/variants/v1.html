@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de Divulgação — V1 · Pílulas de formato</title>
+<!-- Tokens reais do site -->
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  body {
+    margin: 0;
+    background: var(--paper-bg);
+    color: var(--black);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .kit-demo {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+
+  /* Título da seção, discreto e na marca */
+  .kit-demo__head {
+    margin-bottom: 1.25rem;
+  }
+  .kit-demo__eyebrow {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    margin-bottom: 0.35rem;
+  }
+  .kit-demo__title {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: var(--black);
+  }
+  .kit-demo__hint {
+    margin: 0.3rem 0 0;
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+  }
+
+  /* Uma única fileira que quebra linha */
+  .kit-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
+  }
+
+  /* Pílula = praticamente o .pdf-btn, com toque tracejado verde da marca */
+  .kit-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.5rem 1.1rem;
+    border: 1.5px dashed var(--green);
+    border-radius: var(--radius);
+    background: var(--paper-bg);
+    text-decoration: none;
+    color: var(--green-dark);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  }
+  .kit-pill:hover {
+    background: var(--surface-hover);
+    border-color: var(--green-dark);
+    transform: translateY(-1px);
+  }
+  .kit-pill:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+
+  .kit-pill svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: currentColor;
+  }
+
+  .kit-pill__label {
+    white-space: nowrap;
+  }
+  /* Formato sutil: sufixo pequeno e esmaecido dentro da pílula */
+  .kit-pill__fmt {
+    font-weight: 600;
+    font-size: 0.74rem;
+    color: var(--gray-dark);
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+  .kit-pill:hover .kit-pill__fmt { color: var(--green-dark); }
+</style>
+</head>
+<body>
+  <div class="kit-demo">
+    <div class="kit-demo__head">
+      <span class="kit-demo__eyebrow">Para compartilhar</span>
+      <h2 class="kit-demo__title">Kit de Divulgação</h2>
+      <p class="kit-demo__hint">Gere e baixe a peça no formato certo para cada destino.</p>
+    </div>
+
+    <div class="kit-pills">
+
+      <!-- 1. Citação · Feed — 1080×1350 — 4:5 -->
+      <a class="kit-pill" href="#" role="button" aria-label="Citação para Instagram Feed, 1080 por 1350, proporção 4 por 5">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 7h4v4c0 2-1 3-3 4M13 7h4v4c0 2-1 3-3 4"/>
+        </svg>
+        <span class="kit-pill__label">Citação</span>
+        <span class="kit-pill__fmt">· Feed&nbsp;·&nbsp;4:5</span>
+      </a>
+
+      <!-- 2. Citação · Story — 1080×1920 — 9:16 -->
+      <a class="kit-pill" href="#" role="button" aria-label="Citação para Stories, 1080 por 1920, proporção 9 por 16">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 7h4v4c0 2-1 3-3 4M13 7h4v4c0 2-1 3-3 4"/>
+        </svg>
+        <span class="kit-pill__label">Citação</span>
+        <span class="kit-pill__fmt">· Story&nbsp;·&nbsp;9:16</span>
+      </a>
+
+      <!-- 3. Ideia-chave · Quadrado — 1080×1080 — 1:1 -->
+      <a class="kit-pill" href="#" role="button" aria-label="Ideia-chave para Feed Quadrado, 1080 por 1080, proporção 1 por 1">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.7-1 1.2-1 2.5H9c0-1.3-.3-1.8-1-2.5A6 6 0 0 1 12 3Z"/>
+        </svg>
+        <span class="kit-pill__label">Ideia-chave</span>
+        <span class="kit-pill__fmt">· Quadrado&nbsp;·&nbsp;1:1</span>
+      </a>
+
+      <!-- 4. Capa · Story — 1080×1920 — 9:16 -->
+      <a class="kit-pill" href="#" role="button" aria-label="Capa para Stories, 1080 por 1920, proporção 9 por 16">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/>
+          <path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>
+        </svg>
+        <span class="kit-pill__label">Capa</span>
+        <span class="kit-pill__fmt">· Story&nbsp;·&nbsp;9:16</span>
+      </a>
+
+      <!-- 5. Capa do livro · Geral — 800×1200 — 2:3 -->
+      <a class="kit-pill" href="#" role="button" aria-label="Capa do livro, uso geral, 800 por 1200, proporção 2 por 3">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/>
+          <path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>
+        </svg>
+        <span class="kit-pill__label">Capa do livro</span>
+        <span class="kit-pill__fmt">· Geral&nbsp;·&nbsp;2:3</span>
+      </a>
+
+      <!-- 6. Banner de link · Facebook · WhatsApp — 1200×630 — 1.91:1 -->
+      <a class="kit-pill" href="#" role="button" aria-label="Banner de link para Facebook e WhatsApp, 1200 por 630, proporção 1,91 por 1">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9.5 14.5 14.5 9.5"/>
+          <path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/>
+          <path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>
+        </svg>
+        <span class="kit-pill__label">Banner de link</span>
+        <span class="kit-pill__fmt">· FB&nbsp;·&nbsp;WhatsApp&nbsp;·&nbsp;1.91:1</span>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>

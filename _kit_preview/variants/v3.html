@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de Divulgação — V3 (Agrupado por destino)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  /* ---- Página de preview (fundo claro, papel) ---- */
+  body {
+    margin: 0;
+    background: var(--body-bg);
+    font-family: var(--font-body);
+    color: var(--black);
+  }
+  .kit-demo {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 2rem 2.25rem 2.5rem;
+    background: var(--paper-bg);
+    border: var(--border-solid);
+    border-radius: var(--radius);
+  }
+
+  /* ---- Cabeçalho do kit ---- */
+  .kit-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.35rem;
+  }
+  .kit-title {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.01em;
+    margin: 0;
+    color: var(--black);
+  }
+  .kit-sub {
+    font-size: 0.82rem;
+    color: var(--gray-dark);
+    margin: 0 0 1.75rem;
+  }
+
+  /* ---- Clusters por destino ---- */
+  .kit-clusters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.25rem;
+    align-items: flex-start;
+  }
+  .kit-cluster {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .cluster-label {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    opacity: 0.7;
+    padding-left: 0.15rem;
+  }
+
+  /* ---- Controle segmentado (mini-botões colados) ---- */
+  .seg {
+    display: inline-flex;
+    align-items: stretch;
+    border: var(--border-solid);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--paper-bg);
+    width: fit-content;
+  }
+  .seg-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    min-height: 44px;
+    padding: 0.4rem 0.9rem;
+    background: transparent;
+    border: 0;
+    border-left: var(--border-solid);
+    color: var(--green-dark);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.82rem;
+    line-height: 1.1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 200ms var(--ease-out-quart), color 200ms var(--ease-out-quart);
+  }
+  .seg-btn:first-child { border-left: 0; }
+  .seg-btn:hover {
+    background-color: var(--surface-hover);
+  }
+  .seg-btn:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: -2px;
+  }
+  .seg-btn svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    stroke: currentColor;
+  }
+  .seg-btn .seg-text {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.05rem;
+  }
+  .seg-btn .seg-name { white-space: nowrap; }
+  .seg-btn .seg-ratio {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--gray-dark);
+    opacity: 0.85;
+  }
+</style>
+</head>
+<body>
+  <div class="kit-demo">
+    <div class="kit-head">
+      <h2 class="kit-title">Kit de Divulgação</h2>
+    </div>
+    <p class="kit-sub">Gere e baixe a peça pronta — agrupada por onde ela vai.</p>
+
+    <div class="kit-clusters">
+
+      <!-- FEED -->
+      <div class="kit-cluster">
+        <span class="cluster-label">Feed</span>
+        <div class="seg">
+          <a class="seg-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 8h7M7 12h5"/>
+              <path d="M5 4h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9l-4 3V5a1 1 0 0 1 1-1z"/>
+            </svg>
+            <span class="seg-text">
+              <span class="seg-name">Citação</span>
+              <span class="seg-ratio">4:5 · 1080×1350</span>
+            </span>
+          </a>
+          <a class="seg-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 18h6"/>
+              <path d="M10 21h4"/>
+              <path d="M12 3a6 6 0 0 0-3.6 10.8c.6.45.9.95.95 1.65l.05.55h5.1l.05-.55c.05-.7.35-1.2.95-1.65A6 6 0 0 0 12 3z"/>
+            </svg>
+            <span class="seg-text">
+              <span class="seg-name">Ideia-chave</span>
+              <span class="seg-ratio">1:1 · 1080×1080</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- STORIES -->
+      <div class="kit-cluster">
+        <span class="cluster-label">Stories</span>
+        <div class="seg">
+          <a class="seg-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 8h7M7 12h5"/>
+              <path d="M5 4h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9l-4 3V5a1 1 0 0 1 1-1z"/>
+            </svg>
+            <span class="seg-text">
+              <span class="seg-name">Citação</span>
+              <span class="seg-ratio">9:16 · 1080×1920</span>
+            </span>
+          </a>
+          <a class="seg-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M7 3h7l4 4v14a0 0 0 0 1 0 0H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/>
+              <path d="M14 3v4h4"/>
+            </svg>
+            <span class="seg-text">
+              <span class="seg-name">Capa</span>
+              <span class="seg-ratio">9:16 · 1080×1920</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- GERAL -->
+      <div class="kit-cluster">
+        <span class="cluster-label">Geral</span>
+        <div class="seg">
+          <a class="seg-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 4h11a1 1 0 0 1 1 1v15l-3-2-3 2V5a1 1 0 0 0-1-1z"/>
+              <path d="M6 4a1 1 0 0 0-1 1v13"/>
+            </svg>
+            <span class="seg-text">
+              <span class="seg-name">Capa do livro</span>
+              <span class="seg-ratio">2:3 · 800×1200</span>
+            </span>
+          </a>
+          <a class="seg-btn" href="#">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M10 14a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1"/>
+              <path d="M14 10a3.5 3.5 0 0 0-5 0L6.5 12.5a3.5 3.5 0 0 0 5 5l1-1"/>
+            </svg>
+            <span class="seg-text">
+              <span class="seg-name">Banner de link</span>
+              <span class="seg-ratio">1.91:1 · 1200×630</span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

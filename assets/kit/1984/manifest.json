@@ -1,14 +1,14 @@
 {
   "book": "1984",
   "title": "Kit de Divulgação",
-  "intro": "Gere a imagem que quiser — no padrão da Biblioteca, no formato ideal de cada rede. Gerar conta como um curtir.",
+  "intro": "Gere a peça no formato certo para cada destino — no padrão da Biblioteca. Gerar conta como um curtir.",
   "ondemand": true,
   "assets": [
-    { "id": "citacao-feed", "label": "Citação", "rede": "Instagram · Feed", "fmt": "1080×1350", "w": 1080, "h": 1350, "thumb": "assets/kit/1984/thumbs/citacao-feed.webp", "href": "assets/kit/1984/citacao-feed.png" },
-    { "id": "citacao-story", "label": "Citação", "rede": "Stories", "fmt": "1080×1920", "w": 1080, "h": 1920, "thumb": "assets/kit/1984/thumbs/citacao-story.webp", "href": "assets/kit/1984/citacao-story.png" },
-    { "id": "ideia", "label": "Ideia-chave", "rede": "Feed · Quadrado", "fmt": "1080×1080", "w": 1080, "h": 1080, "thumb": "assets/kit/1984/thumbs/ideia.webp", "href": "assets/kit/1984/ideia.png" },
-    { "id": "capa-story", "label": "Capa", "rede": "Stories", "fmt": "1080×1920", "w": 1080, "h": 1920, "thumb": "assets/kit/1984/thumbs/capa-story.webp", "href": "assets/kit/1984/capa-story.png" },
-    { "id": "capa", "label": "Capa do livro", "rede": "Geral", "fmt": "800×1200", "w": 800, "h": 1200, "thumb": "assets/kit/1984/thumbs/capa.webp", "href": "assets/1984-capa.png" },
-    { "id": "og", "label": "Banner de link", "rede": "Facebook · WhatsApp", "fmt": "1200×630", "w": 1200, "h": 630, "thumb": "assets/kit/1984/thumbs/og.webp", "href": "assets/1984-og.png" }
+    { "id": "citacao-feed", "label": "Citação", "icon": "quote", "pill": "Feed · 4:5", "rede": "Instagram · Feed", "fmt": "1080×1350", "w": 1080, "h": 1350, "href": "assets/kit/1984/citacao-feed.png" },
+    { "id": "citacao-story", "label": "Citação", "icon": "quote", "pill": "Story · 9:16", "rede": "Stories", "fmt": "1080×1920", "w": 1080, "h": 1920, "href": "assets/kit/1984/citacao-story.png" },
+    { "id": "ideia", "label": "Ideia-chave", "icon": "idea", "pill": "Quadrado · 1:1", "rede": "Feed · Quadrado", "fmt": "1080×1080", "w": 1080, "h": 1080, "href": "assets/kit/1984/ideia.png" },
+    { "id": "capa-story", "label": "Capa", "icon": "cover", "pill": "Story · 9:16", "rede": "Stories", "fmt": "1080×1920", "w": 1080, "h": 1920, "href": "assets/kit/1984/capa-story.png" },
+    { "id": "capa", "label": "Capa do livro", "icon": "cover", "pill": "Geral · 2:3", "rede": "Geral", "fmt": "800×1200", "w": 800, "h": 1200, "href": "assets/1984-capa.png" },
+    { "id": "og", "label": "Banner de link", "icon": "link", "pill": "FB · WhatsApp · 1.91:1", "rede": "Facebook · WhatsApp", "fmt": "1200×630", "w": 1200, "h": 630, "href": "assets/1984-og.png" }
   ]
 }
