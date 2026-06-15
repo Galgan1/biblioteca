@@ -21,6 +21,13 @@ SHRINK = """() => {
     let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
     while (el.getBoundingClientRect().width > avail && fs > 50 && g < 120) { fs -= 3; el.style.fontSize = fs+'px'; g++; }
   }
+  for (const slide of document.querySelectorAll('.slide.concept')) {
+    const body = slide.querySelector('.ed-body'); if (!body) continue;
+    const last = slide.querySelector('.ed-tip') || body;
+    const safeBottom = slide.getBoundingClientRect().bottom - 128;
+    let fs = parseFloat(getComputedStyle(body).fontSize), g = 0;
+    while (last.getBoundingClientRect().bottom > safeBottom && fs > 40 && g < 80) { fs -= 1; body.style.fontSize = fs+'px'; g++; }
+  }
 }"""
 
 slugs = sys.argv[1:]

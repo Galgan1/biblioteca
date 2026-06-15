@@ -27,6 +27,7 @@ sys.path.insert(0, str(BASE))
 sys.path.insert(0, str(BASE / 'videos'))
 from gerar_livro import icon  # reaproveita os ícones de linha reais
 from instagram_post import _afiliado_block  # rodapé único de afiliado/disclosure
+import tokens  # fonte única de tokens (fontes + cores) — Diretor de Design
 
 OUT_ROOT = BASE / 'videos' / '_carrossel'
 ROTEIROS = BASE / 'videos' / 'roteiros'
@@ -60,16 +61,7 @@ def _svg(name):
     return f'<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">{inner}</svg>'
 
 
-CSS = """
-@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Literata:ital,opsz,wght@1,7..72,500;1,7..72,600&display=swap');
-:root{
-  --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
-  --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
-  --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
-  --gold: oklch(76% 0.105 83);
-  --warn: oklch(72% 0.16 30); --on-warn: oklch(16% 0.03 30);
-  --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
-}
+CSS = tokens.TOKENS + """
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
@@ -312,12 +304,12 @@ def _cover(book, n, pos, total):
         'cover')
 
 
-def _ed_title(t):
-    """Título editorial: última palavra significativa em itálico verde (acento)."""
-    words = t.split()
-    if len(words) >= 2:
-        return ' '.join(words[:-1]) + f' <em>{words[-1]}</em>'
-    return f'<em>{t}</em>'
+def _ed_title(t, emph=None):
+    """Título editorial: realça em itálico verde a palavra-chave CURADA (campo
+    `emph` do card). Sem emph → título limpo, sem itálico posicional. (Diretor de Design)"""
+    if emph and emph in t:
+        return t.replace(emph, f'<em>{emph}</em>', 1)
+    return t
 
 
 def _ed_source(ch):
@@ -362,7 +354,7 @@ def _concept(c, i, total_cards, pos, total, book=None, ch=None):
         f'<div class="ed-head"><div class="ed-num">{i}</div>'
         f'<div class="ed-meta"><div class="ed-kicker">{kicker}</div>'
         f'<div class="ed-rule"></div><div class="ed-source">{_ed_source(ch)}</div></div></div>'
-        f'<h1 class="ed-title">{_ed_title(c["t"])}</h1>'
+        f'<h1 class="ed-title">{_ed_title(c["t"], c.get("emph"))}</h1>'
         f'<p class="ed-body">{body_html}</p>'
         f'{tip_html}'
         f'</div>'
@@ -539,6 +531,13 @@ def _render(slides, out, scale=2, w=W, h=H, css=None):
             while (el.getBoundingClientRect().width > avail && fs > 50 && guard < 120) {
               fs -= 3; el.style.fontSize = fs + 'px'; guard++;
             }
+          }
+          for (const slide of document.querySelectorAll('.slide.concept')) {
+            const body = slide.querySelector('.ed-body'); if (!body) continue;
+            const last = slide.querySelector('.ed-tip') || body;
+            const safeBottom = slide.getBoundingClientRect().bottom - 128;
+            let fs = parseFloat(getComputedStyle(body).fontSize), g = 0;
+            while (last.getBoundingClientRect().bottom > safeBottom && fs > 40 && g < 80) { fs -= 1; body.style.fontSize = fs + 'px'; g++; }
           }
         }""")
         paths = []
