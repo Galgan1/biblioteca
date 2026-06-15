@@ -17,8 +17,11 @@ BOOK = {
 CHAPTERS = [ {"slug","sub","intro","cards":[...],"lessons_title","lessons":[...]} ]
 """
 import os, sys, json, shutil, importlib
+from datetime import date
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+SITE_URL = 'https://www.andregalgani.com.br/biblioteca/'
+TODAY = date.today().isoformat()
 
 ICONS = {
     "masks": '<path d="M10 14h18v14a9 9 0 0 1-18 0z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M15 20h3M22 20h1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M14 26a5 4 0 0 0 10 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M36 18h18v14a9 9 0 0 1-18 0z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M41 24h3M48 24h1" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M40 32a5 4 0 0 1 10 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>',
@@ -77,21 +80,40 @@ def card(c):
     return "\n".join(parts)
 
 
-HEAD = '''<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{title}</title>
-    <meta name="theme-color" content="#ffffff">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{css}">
-</head>
-<body>
-    <a href="#conteudo" class="skip-link">Ir para o conteúdo</a>
-    <div class="page">'''
+def _og_img_url(slug):
+    """Usa og banner por-livro se existir (Fase 5), senão cai no genérico."""
+    per_book = os.path.join(BASE, 'assets', f'{slug}-og.png')
+    name = f'{slug}-og.png' if os.path.exists(per_book) else 'og-banner.png'
+    return SITE_URL + 'assets/' + name
+
+
+def head(title, css, og_title='', og_desc='', og_type='article', og_url='', og_img=''):
+    og = ''
+    if og_title:
+        og = (f'    <meta property="og:type" content="{og_type}">\n'
+              f'    <meta property="og:locale" content="pt_BR">\n'
+              f'    <meta property="og:site_name" content="Biblioteca André Galgani">\n'
+              f'    <meta property="og:title" content="{og_title}">\n'
+              f'    <meta property="og:description" content="{og_desc}">\n'
+              f'    <meta property="og:image" content="{og_img}">\n'
+              f'    <meta property="og:image:width" content="1200">\n'
+              f'    <meta property="og:image:height" content="630">\n'
+              f'    <meta property="og:url" content="{og_url}">\n'
+              f'    <meta name="twitter:card" content="summary_large_image">\n')
+    return (f'<!DOCTYPE html>\n<html lang="pt-BR">\n<head>\n'
+            f'    <meta charset="UTF-8">\n'
+            f'    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+            f'    <title>{title}</title>\n'
+            f'    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fcfdfc">\n'
+            f'    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1f1d">\n'
+            f'{og}'
+            f'    <link rel="preconnect" href="https://fonts.googleapis.com">\n'
+            f'    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+            f'    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">\n'
+            f'    <link rel="stylesheet" href="{css}">\n'
+            f'</head>\n<body>\n'
+            f'    <a href="#conteudo" class="skip-link">Ir para o conteúdo</a>\n'
+            f'    <div class="page">')
 
 FOOT = '''        <footer class="footer">
             <p class="footer-credit">{credit}</p>
@@ -120,7 +142,17 @@ def chapter_page(B, ch, prev_href, prev_label, next_href, next_label):
     cards_html = "\n".join(card({**c, "i": i + 1}) for i, c in enumerate(ch["cards"]))
     lessons_html = "\n".join(f"<li>{x}</li>" for x in ch.get("lessons", []))
     li = len(ch["cards"]) + 1
-    html = HEAD.format(title=f'{ch["sub"]} | {B["title"]} | Biblioteca', css="../assets/style.css")
+    page_title = f'{ch["sub"]} | {B["title"]} | Biblioteca'
+    og_title = (f'{ch["sub"]} · {B["title"]}')[:65]
+    og_desc = ch.get("intro", B.get("description", ""))[:155]
+    og_url = SITE_URL + f'{B["slug"]}/{ch["slug"]}.html'
+    jsonld = (f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Article",'
+              f'"headline":{json.dumps(og_title)},"description":{json.dumps(og_desc)},'
+              f'"author":{{"@type":"Person","name":{json.dumps(B["author"])}}},'
+              f'"datePublished":"{TODAY}","dateModified":"{TODAY}","inLanguage":"pt-BR"}}</script>')
+    html = head(page_title, "../assets/style.css",
+                og_title=og_title, og_desc=og_desc, og_type='article',
+                og_url=og_url, og_img=_og_img_url(B["slug"])) + '\n' + jsonld
     html += f'''
         <nav class="crumbs" aria-label="Trilha de navegação">
             <a class="crumbs-home" href="../index.html">Biblioteca</a>
@@ -144,8 +176,8 @@ def chapter_page(B, ch, prev_href, prev_label, next_href, next_label):
             </section>'''
     html += f'''
             <nav aria-label="Navegação entre capítulos" class="chapter-nav">
-                <a href="{prev_href}" class="chapter-nav-link">{prev_label}</a>
-                <a href="{next_href}" class="chapter-nav-link">{next_label}</a>
+                <a href="{prev_href}" class="chapter-nav-link" rel="prev">{prev_label}</a>
+                <a href="{next_href}" class="chapter-nav-link" rel="next">{next_label}</a>
             </nav>
         </main>
 '''
@@ -157,7 +189,16 @@ def overview_page(B, chapters):
     links = "\n".join(
         f'                            <a href="{B["slug"]}/{ch["slug"]}.html" class="chapter-link">{ch["sub"].replace("CAPÍTULO", "Cap.").replace("Capítulo", "Cap.")} <span class="arrow" aria-hidden="true">&rarr;</span></a>'
         for ch in chapters)
-    html = HEAD.format(title=f'Visão Geral: {B["title"]} | Biblioteca', css="assets/style.css")
+    og_title = f'{B["title"]} · Resumo Completo'
+    og_desc = B.get("description", "")[:155]
+    og_url = SITE_URL + f'{B["slug"]}.html'
+    jsonld = (f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"Book",'
+              f'"name":{json.dumps(B["title"])},"author":{{"@type":"Person","name":{json.dumps(B["author"])}}},'
+              f'"description":{json.dumps(og_desc)},'
+              f'"inLanguage":"pt-BR","datePublished":"{TODAY}","dateModified":"{TODAY}"}}</script>')
+    html = head(f'Visão Geral: {B["title"]} | Biblioteca', "assets/style.css",
+                og_title=og_title, og_desc=og_desc, og_type='book',
+                og_url=og_url, og_img=_og_img_url(B["slug"])) + '\n' + jsonld
     html += f'''
         <nav class="crumbs" aria-label="Trilha de navegação">
             <a class="crumbs-home" href="index.html">Biblioteca</a>
