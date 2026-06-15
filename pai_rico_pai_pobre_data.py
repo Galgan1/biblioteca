@@ -24,6 +24,33 @@ BOOK = {
  ],
 }
 
+# Infografico de Instagram (Diretor de Design) — arquetipo COMPARA (gerar_infografico.py)
+COMPARA = {
+ "kicker": "PAI RICO, PAI POBRE · KIYOSAKI",
+ "title": 'Pai <span class="hi">pobre</span> × pai <span class="hi">rico</span>',
+ "left": {
+   "ic": "spiral", "tag": "Pai pobre", "label": "Trabalha por dinheiro",
+   "items": [
+     'Diz <b>"não posso pagar"</b> — a frase que fecha a mente',
+     "Compra <b>passivos</b> achando que são ativos (tiram do bolso)",
+     "Sobe o padrão a cada aumento: a <b>corrida dos ratos</b>",
+     "Ganha → é taxado → gasta o que <b>sobra</b>",
+   ],
+ },
+ "right": {
+   "ic": "mountain", "tag": "Pai rico", "label": "Faz o dinheiro trabalhar",
+   "items": [
+     'Pergunta <b>"como posso pagar?"</b> — ativa a solução',
+     "Compra <b>ativos</b> que põem dinheiro no bolso todo mês",
+     "<b>Paga-se primeiro</b>: investe antes de pagar contas",
+     "Trabalha para <b>aprender</b>, não pelo salário",
+   ],
+ },
+ "verdict_ic": "scale",
+ "verdict": 'A Regra nº1: antes de comprar, pergunte <b>"isto traz ou leva '
+            'dinheiro?"</b>. Só é ativo o que gera fluxo de caixa entrante.',
+}
+
 CHAPTERS = [
  {"slug":"ch01-dois-pais","sub":"CAPÍTULO 1: A Parábola dos Dois Pais",
   "intro":"Duas mentes opostas moldaram o autor: o Pai Pobre (instruído, valoriza emprego e diploma) e o Pai Rico (empreendedor, pensa em ativos). Inteligência acadêmica não é inteligência financeira — a escola não ensina dinheiro.",

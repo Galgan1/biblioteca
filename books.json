@@ -939,20 +939,6 @@
     "url": "geracao-ansiosa.html"
   },
   {
-    "id": "1984",
-    "title": "1984",
-    "author": "George Orwell",
-    "coverUrl": "assets/1984-capa.png",
-    "description": "O romance distópico de George Orwell sobre o totalitarismo e a destruição da verdade. Grande Irmão, duplipensar, Novafala, crime de pensamento, o controle do passado e a fórmula '2+2=5' — analisados como ferramentas de poder e alertas permanentes sobre vigilância e manipulação.",
-    "tags": [
-      "Distopia",
-      "Política",
-      "Totalitarismo"
-    ],
-    "progress": "9 Capítulos",
-    "url": "1984.html"
-  },
-  {
     "id": "admiravel-mundo-novo",
     "title": "Admirável Mundo Novo",
     "author": "Aldous Huxley",
@@ -1455,5 +1441,19 @@
     ],
     "progress": "8 Capítulos",
     "url": "habitos-atomicos.html"
+  },
+  {
+    "id": "1984",
+    "title": "1984",
+    "author": "George Orwell",
+    "coverUrl": "assets/1984-capa.png",
+    "description": "O romance distópico de George Orwell sobre o totalitarismo e a destruição da verdade. Grande Irmão, duplipensar, Novafala, crime de pensamento, o controle do passado e a fórmula '2+2=5' — analisados como ferramentas de poder e alertas permanentes sobre vigilância e manipulação.",
+    "tags": [
+      "Distopia",
+      "Política",
+      "Totalitarismo"
+    ],
+    "progress": "9 Capítulos",
+    "url": "1984.html"
   }
 ]

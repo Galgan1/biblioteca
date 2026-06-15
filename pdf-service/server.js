@@ -716,6 +716,66 @@ pdf.post('/vote', (req, res) => {
   res.json(applyVote(book, from, to));
 });
 
+// ----- Kit de Divulgação: assets de redes on-demand (gera-ou-serve-cache) -----
+// Cada formato = um template HTML servido estaticamente, renderizado pelo mesmo
+// Chrome dos PDFs e cacheado em disco. 1º pedido gera; os próximos servem o
+// cache. 'capa'/'og' já são estáticos (gerados antes) — só servidos.
+const KIT_TPL = {
+  'citacao-feed':  { tpl: 'quote.html',       w: 1080, h: 1350 },
+  'citacao-story': { tpl: 'quote-story.html', w: 1080, h: 1920 },
+  'ideia':         { tpl: 'ideia.html',       w: 1080, h: 1080 },
+  'capa-story':    { tpl: 'capa-story.html',  w: 1080, h: 1920 },
+};
+const KIT_STATIC = { 'capa': (b) => `${b}-capa.png`, 'og': (b) => `${b}-og.png` };
+
+async function renderKitAsset(book, fmt) {
+  const spec = KIT_TPL[fmt];
+  const tplFile = path.join(SITE_ROOT, 'assets', 'kit', '_tpl', book, spec.tpl);
+  const st = await fsp.stat(tplFile);
+  const hash = crypto.createHash('sha1')
+    .update(`kit|v${VERSION}|${book}|${fmt}|${st.mtimeMs}|${st.size}`).digest('hex').slice(0, 16);
+  const cacheFile = path.join(CACHE_DIR, `kit-${book}-${fmt}-${hash}.png`);
+  try { return { buffer: await fsp.readFile(cacheFile), cached: true }; } catch {}
+  const url = `http://127.0.0.1:${PORT}/biblioteca/assets/kit/_tpl/${book}/${spec.tpl}`;
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  try {
+    await page.setViewport({ width: spec.w, height: spec.h, deviceScaleFactor: 2 });
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
+    await page.evaluateHandle('document.fonts.ready');
+    const el = await page.$('.slide');
+    const buffer = await (el || page).screenshot({ type: 'png' });
+    fsp.writeFile(cacheFile, buffer).catch(() => {});
+    return { buffer, cached: false };
+  } finally { await page.close().catch(() => {}); }
+}
+
+pdf.get('/asset/:book/:fmt.png', async (req, res) => {
+  const book = String(req.params.book);
+  const fmt = String(req.params.fmt);
+  if (!SLUG_RE.test(book)) return res.status(400).send('inválido');
+  try {
+    if (KIT_TPL[fmt]) {
+      const { buffer, cached } = await enqueue(() => renderKitAsset(book, fmt));
+      res.setHeader('Content-Type', 'image/png');
+      res.setHeader('X-Kit-Cache', cached ? 'hit' : 'miss');
+      res.setHeader('Cache-Control', 'public, max-age=300');
+      return res.end(buffer);
+    }
+    if (KIT_STATIC[fmt]) {
+      const f = path.join(SITE_ROOT, 'assets', KIT_STATIC[fmt](book));
+      await fsp.access(f);
+      res.setHeader('X-Kit-Cache', 'static');
+      return res.sendFile(f);
+    }
+    return res.status(404).send('formato desconhecido');
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.status(404).send('não encontrado');
+    console.error('[kit-asset]', err.message);
+    res.status(500).send('erro ao gerar asset');
+  }
+});
+
 // ----- refinador (DEV, só com REFINADOR=1): render fresco, sem cache, com -----
 // um `tune` ad-hoc. Devolve o PDF cru + o diagnóstico do fit no header X-Fit-Diag.
 // Em produção o env não está setado, então estas rotas nem existem.

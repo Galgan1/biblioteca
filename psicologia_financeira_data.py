@@ -21,6 +21,23 @@ BOOK = {
  ],
 }
 
+# Infografico de Instagram (Diretor de Design) — arquetipo NUMEROS (gerar_infografico.py)
+NUMEROS = {
+ "kicker": "O LIVRO EM NÚMEROS", "tag": "DADOS",
+ "stats": [
+   {"ic":"clock","pre":"US$","num":"84,2","unit":"bi","star":True,"lbl":"depois dos 50 anos",
+    "ctx":"Dos <b>US$ 84,5 bi</b> de Buffett, quase tudo veio após os 50 — o segredo foi o tempo."},
+   {"ic":"spiral","pre":"~","num":"75","unit":"anos","lbl":"no jogo, compondo",
+    "ctx":"Buffett investe há <b>~75 anos</b>. Tempo &gt; retorno: maximize o horizonte, não a taxa."},
+   {"ic":"wave","pre":"~","num":"1","unit":"%","lbl":"de acertos bastou",
+    "ctx":"Berggruen errou quase tudo; <b>~1% das obras</b> fez a fortuna. As caudas vencem."},
+ ],
+ "viz": {"type":"bar","frac":0.0036,"left":"AT&Eacute; OS 50 ANOS","right":"DOS 50 EM DIANTE",
+         "title":"De onde veio a fortuna de Buffett","note":"tempo no jogo &rarr; <b>99,6%</b>"},
+ "foot": {"ic":"clock","text":"<strong>Sobreviva e fique no jogo.</strong> Não busque o retorno do ano "
+          "— deixe os juros compostos trabalharem por décadas."},
+}
+
 CHAPTERS = [
  {"slug":"ch01-ninguem-e-doido","sub":"CAPÍTULO 1: Ninguém é Doido",
   "intro":"As pessoas não tomam decisões financeiras malucas — tomam decisões que fazem sentido para elas, dada a história e a geração que viveram. Sucesso com dinheiro é mais comportamento do que conhecimento.",

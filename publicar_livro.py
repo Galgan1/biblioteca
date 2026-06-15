@@ -79,22 +79,38 @@ def run(cmd, cwd=None):
         fail(f"falhou: {' '.join(cmd)}")
 
 
+def _repoint_cover(slug):
+    """Aponta o coverUrl do livro no books.json para a capa HIBRIDA de estante."""
+    import json
+    p = os.path.join(BASE, "books.json")
+    data = json.load(open(p, encoding="utf-8"))
+    for b in data:
+        if b.get("id") == slug:
+            b["coverUrl"] = f"assets/{slug}-capa.png"
+    json.dump(data, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
+    print(f"OK: books.json coverUrl -> assets/{slug}-capa.png (hibrida)")
+
+
 def ensure_cover(B, slug):
-    # Padrao da biblioteca: capa ORIGINAL (arte real do livro). A tipografica
-    # so e' ultimo recurso para itens que NAO sao livros publicados.
+    # DOUTRINA HIBRIDA (Diretor de Design, 14/jun): a arte ORIGINAL e' obrigatoria
+    # (reconhecimento), MAS a capa da ESTANTE e' a HIBRIDA — arte original emoldurada
+    # na marca (le marca.py) -> assets/<slug>-capa.png; books.json aponta p/ ela.
+    # O original -cover.png segue como fonte da arte + OG. Assim a estante fica COESA.
+    import gerar_capa
     cover = B.get("cover", f"assets/{slug}-cover.png")
-    if os.path.exists(os.path.join(BASE, cover)):
-        print(f"OK: capa existe: {cover}")
-        return
-    print(f"... capa ausente — buscando ORIGINAL no Open Library para '{slug}'")
-    cmd = [sys.executable, "buscar_capa.py", slug, B["title"], B["author"]]
-    if B.get("isbn"):
-        cmd.append(str(B["isbn"]))
-    if subprocess.run(cmd, cwd=BASE).returncode == 0:
-        return
-    print("AVISO: capa original NAO encontrada — gerando tipografica PROVISORIA. "
-          "Substitua por uma capa original (a tipografica so vale p/ nao-livros, ex.: provimento juridico).")
-    run([sys.executable, "gerar_capa.py", slug, B["title"], B["author"]], cwd=BASE)
+    cover_path = os.path.join(BASE, cover)
+    if not os.path.exists(cover_path):
+        print(f"... capa original ausente — buscando no Open Library para '{slug}'")
+        cmd = [sys.executable, "buscar_capa.py", slug, B["title"], B["author"]]
+        if B.get("isbn"):
+            cmd.append(str(B["isbn"]))
+        subprocess.run(cmd, cwd=BASE)
+    if os.path.exists(cover_path):
+        gerar_capa.framed(slug, cover_path)              # arte real emoldurada na marca
+    else:
+        print("AVISO: sem capa original — tipografica de marca (so vale p/ nao-livros).")
+        gerar_capa.typographic(slug, B["title"], B["author"])
+    _repoint_cover(slug)
 
 
 def verify(slug, CH):
@@ -117,8 +133,8 @@ def deploy(slug, CH):
          f"{VPS}:{REMOTE}/"], cwd=BASE)
     files = [os.path.join(slug, f"{c['slug']}.html") for c in CH] + [os.path.join(slug, "script.js")]
     run(["scp", *files, f"{VPS}:{REMOTE}/{slug}/"], cwd=BASE)
-    run(["scp", "assets/style.css", f"assets/{slug}-cover.png", "assets/favicon.svg",
-         f"{VPS}:{REMOTE}/assets/"], cwd=BASE)
+    run(["scp", "assets/style.css", f"assets/{slug}-cover.png", f"assets/{slug}-capa.png",
+         "assets/favicon.svg", f"{VPS}:{REMOTE}/assets/"], cwd=BASE)
     # corrige a permissao da pasta nova (senao o nginx da 404 — o bug classico)
     run(["ssh", VPS, f"chmod 755 {REMOTE}/{slug} && chmod 644 {REMOTE}/{slug}/*"])
     print(f"OK: no ar -> https://www.andregalgani.com.br/biblioteca/{slug}.html")

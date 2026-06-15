@@ -1,0 +1,2172 @@
+[
+  {
+    "bib": {
+      "author": "Agostinho",
+      "year": "2017",
+      "title": "Confissões",
+      "is_book": true,
+      "full_line": "Agostinho. 2017. Confissões. Tradução de Lorenzo Mammi. São Paulo: Companhia das Letras."
+    },
+    "skill": "agostinho-confissoes"
+  },
+  {
+    "bib": {
+      "author": "Ambury, James M.; Irani, Tushar & Wallace, Kathleen (eds.)",
+      "year": "2021",
+      "title": "Philosophy as a Way of Life: Historical, Contemporary and Pedagogical Perspectives",
+      "is_book": true,
+      "full_line": "Ambury, James M.; Irani, Tushar & Wallace, Kathleen (eds.). 2021. Philosophy as a Way of Life: Historical, Contemporary and Pedagogical Perspectives. John Wiley & Sons, Inc."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Apolodoro",
+      "year": "2008",
+      "title": "The Library of Greek Mythology",
+      "is_book": true,
+      "full_line": "Apolodoro. 2008. The Library of Greek Mythology. Translated by Robin Hard. Oxford: Oxford University Press."
+    },
+    "skill": "apolodoro-library-of-greek-mythology"
+  },
+  {
+    "bib": {
+      "author": "Apolônio de Rôdes",
+      "year": "2021",
+      "title": "Argonáuticas",
+      "is_book": true,
+      "full_line": "Apolônio de Rôdes. 2021. Argonáuticas. Tradução de Fernando Rodrigues Júnior. São Paulo: Perspectiva."
+    },
+    "skill": "acker-diotima-de-mantineia"
+  },
+  {
+    "bib": {
+      "author": "Aristófanes",
+      "year": "2000",
+      "title": "Birds",
+      "is_book": true,
+      "full_line": "Aristófanes. 2000. Birds. Lysistrata. Women at the Thesmophoria. Translated by Jeffrey Henderson. Cambridge: Harvard University Press."
+    },
+    "skill": "aristofanes-birds-lysistrata-thesmophoria"
+  },
+  {
+    "bib": {
+      "author": "Aristófanes",
+      "year": "2004",
+      "title": "As Vespas; As Aves; As Rãs",
+      "is_book": true,
+      "full_line": "Aristófanes. 2004. As Vespas; As Aves; As Rãs. Tradução de Mário da Gama Kury. Rio de Janeiro: Jorge Zahar."
+    },
+    "skill": "aristofanes-vespas-aves-ras"
+  },
+  {
+    "bib": {
+      "author": "Armstrong, A",
+      "year": "H",
+      "title": "(ed.)",
+      "is_book": true,
+      "full_line": "Armstrong, A. H. (ed.). 1986. Classical Mediterranean Spirituality: Egyptian, Greek, Roman. New York:  Crossroad."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Armstrong, Karen",
+      "year": "2022",
+      "title": "Sacred Nature: Restoring Our Ancient Bond with the Natural World",
+      "is_book": true,
+      "full_line": "Armstrong, Karen. 2022. Sacred Nature: Restoring Our Ancient Bond with the Natural World. Toronto: Alfred A. Knopf."
+    },
+    "skill": "armstrong-ancient-pieties-greek-world"
+  },
+  {
+    "bib": {
+      "author": "Aristóteles",
+      "year": "1927",
+      "title": "Problemata",
+      "is_book": true,
+      "full_line": "Aristóteles. 1927. Problemata. Translated by E. S. Forster. Oxford: Clarendon Press."
+    },
+    "skill": "aristoteles-problemata"
+  },
+  {
+    "bib": {
+      "author": "Aristóteles",
+      "year": "1986",
+      "title": "Elencos Sofísticos",
+      "is_book": true,
+      "full_line": "Aristóteles. 1986. Elencos Sofísticos. Tradução de Pinharanda Gomes. Lisboa: Guimarães Editores."
+    },
+    "skill": "aristoteles-elencos-sofisticos"
+  },
+  {
+    "bib": {
+      "author": "Aristóteles",
+      "year": "2003",
+      "title": "Constituição dos Atenienses",
+      "is_book": true,
+      "full_line": "Aristóteles. 2003. Constituição dos Atenienses. Tradução de Delfim Leão. Lisboa: Fundação Calouste Gulbenkian."
+    },
+    "skill": "aristoteles-constituicao-dos-atenienses"
+  },
+  {
+    "bib": {
+      "author": "Aristóteles",
+      "year": "2008",
+      "title": "História dos Animais, Livros VII-X",
+      "is_book": true,
+      "full_line": "Aristóteles. 2008. História dos Animais, Livros VII-X. Tradução de Maria de Fátima Silva. Lisboa: Imprensa Nacional-Casa da Moeda."
+    },
+    "skill": "aristoteles-historia-animais-vii-x"
+  },
+  {
+    "bib": {
+      "author": "Aristóteles",
+      "year": "2010",
+      "title": "Partes dos animais",
+      "is_book": true,
+      "full_line": "Aristóteles. 2010. Partes dos animais. Tradução de Maria Silva. Lisboa: Centro de Filosofia da Universidade de Lisboa."
+    },
+    "skill": "aristoteles-partes-dos-animais"
+  },
+  {
+    "bib": {
+      "author": "Aristóteles",
+      "year": "2024",
+      "title": "Ética a Nicômaco",
+      "is_book": true,
+      "full_line": "Aristóteles. 2024. Ética a Nicômaco. Tradução de Vinícius Chichurra. Petrópolis: Vozes."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Ateneu",
+      "year": "1927-1941",
+      "title": "Deipnosophists",
+      "is_book": true,
+      "full_line": "Ateneu. 1927-1941. Deipnosophists. Translated by Charles Gulick. Cambridge: Harvard University Press, URL = https://topostext.org/work/218/"
+    },
+    "skill": "ateneu-deipnosophists"
+  },
+  {
+    "bib": {
+      "author": "Attali, Jacques",
+      "year": "2003",
+      "title": "Blaise Pascal ou o Gênio Francês",
+      "is_book": true,
+      "full_line": "Attali, Jacques. 2003. Blaise Pascal ou o Gênio Francês. Bauru: EDUSC."
+    },
+    "skill": "attali-pascal"
+  },
+  {
+    "bib": {
+      "author": "Barbieri, Pedro et al",
+      "year": "2024",
+      "title": "Hinos Antigos: Homéricos, Calímaco, Órficos, Proclo",
+      "is_book": true,
+      "full_line": "Barbieri, Pedro et al. 2024. Hinos Antigos: Homéricos, Calímaco, Órficos, Proclo. São Paulo: Madamu."
+    },
+    "skill": "barbieri-hinos-antigos"
+  },
+  {
+    "bib": {
+      "author": "Barrès, Maurice",
+      "year": "1918",
+      "title": "L’angoisse de Pascal",
+      "is_book": true,
+      "full_line": "Barrès, Maurice. 1918. L’angoisse de Pascal. Paris: Georges Crès."
+    },
+    "skill": "barres-angoisse-de-pascal"
+  },
+  {
+    "bib": {
+      "author": "Beckwith, Christopher",
+      "year": "2015",
+      "title": "Greek Buddha: Pyrrho’s Encounter with Early Buddhism in Central Asia",
+      "is_book": true,
+      "full_line": "Beckwith, Christopher. 2015. Greek Buddha: Pyrrho’s Encounter with Early Buddhism in Central Asia. Princeton; Oxford: Princeton University Press."
+    },
+    "skill": "beckwith-greek-buddha"
+  },
+  {
+    "bib": {
+      "author": "Bergson, Henri",
+      "year": "2006",
+      "title": "O pensamento e o movente",
+      "is_book": true,
+      "full_line": "Bergson, Henri. 2006. O pensamento e o movente. Tradução de Bento Neto. São Paulo: Martins Fontes."
+    },
+    "skill": "bergson-pensamento-movente"
+  },
+  {
+    "bib": {
+      "author": "Bernabé, Alberto; Jáuregui, Miguel; Cristóbal, Ana & Hernández, Raquel (eds.)",
+      "year": "2013",
+      "title": "Redefining Dionysus",
+      "is_book": true,
+      "full_line": "Bernabé, Alberto; Jáuregui, Miguel; Cristóbal, Ana & Hernández, Raquel (eds.). 2013. Redefining Dionysus. Boston: De Gruyter."
+    },
+    "skill": "bernabe-redefining-dionysus"
+  },
+  {
+    "bib": {
+      "author": "Bernabé, Alberto",
+      "year": "2011",
+      "title": "Platão e o orfismo: diálogos entre religião e filosofia",
+      "is_book": true,
+      "full_line": "Bernabé, Alberto. 2011. Platão e o orfismo: diálogos entre religião e filosofia. Tradução de Dennys Garcia Xavier. São Paulo: Annablume."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Bernabé, Alberto",
+      "year": "2012",
+      "title": "Hieros logos: poesia órfica sobre os deuses, a alma e o além",
+      "is_book": true,
+      "full_line": "Bernabé, Alberto. 2012. Hieros logos: poesia órfica sobre os deuses, a alma e o além. São Paulo: Paulos."
+    },
+    "skill": "bernabe-hieros-logos"
+  },
+  {
+    "bib": {
+      "author": "Betegh, Gábor",
+      "year": "2004",
+      "title": "The Derveni Papyrus: Cosmology, Theology and Interpretation",
+      "is_book": true,
+      "full_line": "Betegh, Gábor. 2004. The Derveni Papyrus: Cosmology, Theology and Interpretation. Cambridge: Cambridge University Press."
+    },
+    "skill": "betegh-derveni-papyrus"
+  },
+  {
+    "bib": {
+      "author": "Betz, Hans Dieter (ed.)",
+      "year": "1985",
+      "title": "The Greek Magical Papyri in Translation, Including the Demotic Spells, Vol",
+      "is_book": true,
+      "full_line": "Betz, Hans Dieter (ed.). 1985. The Greek Magical Papyri in Translation, Including the Demotic Spells, Vol. 1: Texts. Chicago: University of Chicago Press."
+    },
+    "skill": "betz-greek-magical-papyri-translation"
+  },
+  {
+    "bib": {
+      "author": "Bowden, Hugh",
+      "year": "2023",
+      "title": "Mystery Cults in the Ancient World",
+      "is_book": true,
+      "full_line": "Bowden, Hugh. 2023. Mystery Cults in the Ancient World. London: Thames & Hudson."
+    },
+    "skill": "bowden-mystery-cults-ancient-world"
+  },
+  {
+    "bib": {
+      "author": "Bremmer, Jan N",
+      "year": "2014",
+      "title": "Initiation into the Mysteries of the Ancient World",
+      "is_book": true,
+      "full_line": "Bremmer, Jan N. 2014. Initiation into the Mysteries of the Ancient World. Berlin: De Gruyter."
+    },
+    "skill": "bremmer-initiation-mysteries"
+  },
+  {
+    "bib": {
+      "author": "Brisson, Luc",
+      "year": "2014",
+      "title": "Introdução à filosofia do mito",
+      "is_book": true,
+      "full_line": "Brisson, Luc. 2014. Introdução à filosofia do mito. Tradução de José Carlos Baracat Junior. São Paulo: Paulos."
+    },
+    "skill": "brisson-filosofia-do-mito"
+  },
+  {
+    "bib": {
+      "author": "Brochard, Victor",
+      "year": "2009",
+      "title": "Os céticos gregos",
+      "is_book": true,
+      "full_line": "Brochard, Victor. 2009. Os céticos gregos. Tradução de Jaimir Conte. São Paulo: Editora Odysseus."
+    },
+    "skill": "brochard-ceticos-gregos"
+  },
+  {
+    "bib": {
+      "author": "Budge, E",
+      "year": "A",
+      "title": "Wallis",
+      "is_book": true,
+      "full_line": "Budge, E. A. Wallis. 1895. The Book of the Dead: The Papyrus of Ani in the British Museum. The Egyptian text with interlinear transliteration and translation, a running translation, introduction, etc. London: British Museum, Oxford University Press."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Burkert, Walter",
+      "year": "1972",
+      "title": "Lore and Science in Ancient Pythagoreanism",
+      "is_book": true,
+      "full_line": "Burkert, Walter. 1972. Lore and Science in Ancient Pythagoreanism. Cambridge: Harvard University Press."
+    },
+    "skill": "burkert-ancient-mystery-cults"
+  },
+  {
+    "bib": {
+      "author": "Burkert, Walter",
+      "year": "1985",
+      "title": "Greek Religion",
+      "is_book": true,
+      "full_line": "Burkert, Walter. 1985. Greek Religion. Translated by John Raffan. Cambridge, MA: Harvard University Press."
+    },
+    "skill": "burkert-greek-religion"
+  },
+  {
+    "bib": {
+      "author": "Burkert, Walter",
+      "year": "1987",
+      "title": "Ancient Mystery Cults",
+      "is_book": true,
+      "full_line": "Burkert, Walter. 1987. Ancient Mystery Cults. Cambridge: Harvard University Press."
+    },
+    "skill": "burkert-ancient-mystery-cults"
+  },
+  {
+    "bib": {
+      "author": "Burkert, Walter",
+      "year": "2004",
+      "title": "Babylon, Memphis, Persepolis: Eastern Contexts of Greek Culture",
+      "is_book": true,
+      "full_line": "Burkert, Walter. 2004. Babylon, Memphis, Persepolis: Eastern Contexts of Greek Culture. Cambridge: Harvard University Press."
+    },
+    "skill": "burkert-babylon-memphis-persepolis"
+  },
+  {
+    "bib": {
+      "author": "Buxton, R",
+      "year": "(ed.) 1999",
+      "title": "From Myth to Reason? Studies in the Development of Greek Thought",
+      "is_book": true,
+      "full_line": "Buxton, R. (ed.) 1999. From Myth to Reason? Studies in the Development of Greek Thought.  Oxford: Oxford University Press."
+    },
+    "skill": "buxton-from-myth-to-reason"
+  },
+  {
+    "bib": {
+      "author": "Campbell, Joseph",
+      "year": "1968",
+      "title": "The Masks of God: Creative Mythology",
+      "is_book": true,
+      "full_line": "Campbell, Joseph. 1968. The Masks of God: Creative Mythology. New York: Penguin Compass."
+    },
+    "skill": "campbell-masks-of-god"
+  },
+  {
+    "bib": {
+      "author": "Campbell, Joseph",
+      "year": "1990",
+      "title": "O poder do mito",
+      "is_book": true,
+      "full_line": "Campbell, Joseph. 1990. O poder do mito. Tradução de Carlos Felipe Moisés. São Paulo: Palas Athena."
+    },
+    "skill": "campbell-o-poder-do-mito"
+  },
+  {
+    "bib": {
+      "author": "Campbell, Joseph",
+      "year": "2002",
+      "title": "The Inner Reaches of Outer Space: Metaphor as Myth and as Religion",
+      "is_book": true,
+      "full_line": "Campbell, Joseph. 2002. The Inner Reaches of Outer Space: Metaphor as Myth and as Religion. Novato: New World Library."
+    },
+    "skill": "campbell-inner-reaches-outer-space"
+  },
+  {
+    "bib": {
+      "author": "Campbell, Joseph",
+      "year": "2004",
+      "title": "The Hero with a Thousand Faces",
+      "is_book": true,
+      "full_line": "Campbell, Joseph. 2004. The Hero with a Thousand Faces. Princeton: Princeton University Press."
+    },
+    "skill": "campbell-hero-thousand-faces"
+  },
+  {
+    "bib": {
+      "author": "Cardeña, E",
+      "year": "& Winkelman, M",
+      "title": "(eds)",
+      "is_book": true,
+      "full_line": "Cardeña, E. & Winkelman, M. (eds). 2011. Altering Consciousness: Multidisciplinary Perspectives. Santa Barbara: Praeger."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Carter, Howard",
+      "year": "1933",
+      "title": "The Tomb of Tut.ankh.Amen, vol",
+      "is_book": true,
+      "full_line": "Carter, Howard. 1933. The Tomb of Tut.ankh.Amen, vol. 3. London: Cassell and Company."
+    },
+    "skill": "carter-tomb-tutankhamen-vol3"
+  },
+  {
+    "bib": {
+      "author": "Chase, Michael; Clark, Stephen R",
+      "year": "L",
+      "title": "& McGhee, Michael (eds.)",
+      "is_book": true,
+      "full_line": "Chase, Michael; Clark, Stephen R. L. & McGhee, Michael (eds.). 2013. Philosophy as a way of life: Ancients and Moderns. Essays in honor of Pierre Hadot. Wiley Blackwell."
+    },
+    "skill": "chase-did-socrates-meditate-2022"
+  },
+  {
+    "bib": {
+      "author": "Chaui, Marilena",
+      "year": "2025",
+      "title": "Filosofia, um modo de vida",
+      "is_book": true,
+      "full_line": "Chaui, Marilena. 2025. Filosofia, um modo de vida. São Paulo: Planeta."
+    },
+    "skill": "chaui-filosofia-modo-de-vida"
+  },
+  {
+    "bib": {
+      "author": "Cícero",
+      "year": "1951",
+      "title": "On the nature of the gods; Academics",
+      "is_book": true,
+      "full_line": "Cícero. 1951. On the nature of the gods; Academics. Translated by H. Hackam. Cambridge: Harvard University Press."
+    },
+    "skill": "cicero-nature-gods-academics"
+  },
+  {
+    "bib": {
+      "author": "Colli, Giorgio",
+      "year": "2012",
+      "title": "A sabedoria grega I: Dioniso, Apolo, Elêusis, Orfeu, Museu, Hiperbóreos, Enigma",
+      "is_book": true,
+      "full_line": "Colli, Giorgio. 2012. A sabedoria grega I: Dioniso, Apolo, Elêusis, Orfeu, Museu, Hiperbóreos, Enigma. Tradução de Renato Ambrósio. São Paulo: Paulus."
+    },
+    "skill": "colli-sabedoria-grega"
+  },
+  {
+    "bib": {
+      "author": "Colli, Giorgio",
+      "year": "2013",
+      "title": "A sabedoria grega II: Epimênides, Ferécides, Tales, Anaximandro, Anaxímenes, Onomácrito",
+      "is_book": true,
+      "full_line": "Colli, Giorgio. 2013. A sabedoria grega II: Epimênides, Ferécides, Tales, Anaximandro, Anaxímenes, Onomácrito. Tradução de Renato Ambrósio. São Paulo: Paulus."
+    },
+    "skill": "colli-sabedoria-grega-ii"
+  },
+  {
+    "bib": {
+      "author": "Colli, Giorgio",
+      "year": "2019",
+      "title": "O Nascimento da Filosofia",
+      "is_book": true,
+      "full_line": "Colli, Giorgio. 2019. O Nascimento da Filosofia. Tradução de Arthur Mourão. Lisboa: Edições 70."
+    },
+    "skill": "colli-nascimento-da-filosofia"
+  },
+  {
+    "bib": {
+      "author": "Collins, Derek",
+      "year": "2008",
+      "title": "Magic in the Ancient Greek World",
+      "is_book": true,
+      "full_line": "Collins, Derek. 2008. Magic in the Ancient Greek World. Malden, MA: Wiley-Blackwell"
+    },
+    "skill": "collins-magic-ancient-greek"
+  },
+  {
+    "bib": {
+      "author": "Cooper, John",
+      "year": "2012",
+      "title": "Pursuits of Wisdom: six ways of life from Socrates to Plotinus",
+      "is_book": true,
+      "full_line": "Cooper, John. 2012. Pursuits of Wisdom: six ways of life from Socrates to Plotinus. New Jersey: Princeton University Press."
+    },
+    "skill": "cooper-pursuits-of-wisdom"
+  },
+  {
+    "bib": {
+      "author": "Cornelli, Gabriele; McKirahan, Richard & Macris, Constantinos (eds.)",
+      "year": "2013",
+      "title": "On Pythagoreanism",
+      "is_book": true,
+      "full_line": "Cornelli, Gabriele; McKirahan, Richard & Macris, Constantinos (eds.). 2013. On Pythagoreanism. Boston: De Gruyter."
+    },
+    "skill": "cornelli-on-pythagoreanism"
+  },
+  {
+    "bib": {
+      "author": "Cornford, Francis M",
+      "year": "1952",
+      "title": "Principium Sapientiae: the Origins of Greek Philosophical Thought",
+      "is_book": true,
+      "full_line": "Cornford, Francis M. 1952. Principium Sapientiae: the Origins of Greek Philosophical Thought. Cambridge: Cambridge University Press."
+    },
+    "skill": "cornford-principium-sapientiae"
+  },
+  {
+    "bib": {
+      "author": "Descartes, René",
+      "year": "2005",
+      "title": "Meditações metafísicas",
+      "is_book": true,
+      "full_line": "Descartes, René. 2005. Meditações metafísicas. Tradução de Maria Galvão. São Paulo: Martins Fontes."
+    },
+    "skill": "descartes-discurso-do-metodo"
+  },
+  {
+    "bib": {
+      "author": "Descartes, René",
+      "year": "2009",
+      "title": "Discurso do método",
+      "is_book": true,
+      "full_line": "Descartes, René. 2009. Discurso do método. Tradução de Maria Galvão. São Paulo: Martins Fontes."
+    },
+    "skill": "descartes-discurso-do-metodo"
+  },
+  {
+    "bib": {
+      "author": "Detienne, Marcel",
+      "year": "2013",
+      "title": "Os Mestres da Verdade na Grécia Arcaica",
+      "is_book": true,
+      "full_line": "Detienne, Marcel. 2013. Os Mestres da Verdade na Grécia Arcaica. Tradução de Inove C. Benedetti. São Paulo: Martins Fontes."
+    },
+    "skill": "detienne-mestres-da-verdade"
+  },
+  {
+    "bib": {
+      "author": "Detienne, Marcel",
+      "year": "1963",
+      "title": "De la pensée religieuse à la pensée philosophique: la notion de daïmôn dans le pythagorisme ancien",
+      "is_book": true,
+      "full_line": "Detienne, Marcel. 1963. De la pensée religieuse à la pensée philosophique: la notion de daïmôn dans le pythagorisme ancien. Paris: Les Belles Lettres."
+    },
+    "skill": "detienne-pensee-religieuse-philosophique"
+  },
+  {
+    "bib": {
+      "author": "Dienstag, Joshua Foa",
+      "year": "2006",
+      "title": "Pessimism: Philosophy, Ethics and Spirit",
+      "is_book": true,
+      "full_line": "Dienstag, Joshua Foa. 2006. Pessimism: Philosophy, Ethics and Spirit. Nova Jersey: Princeton."
+    },
+    "skill": "dienstag-pessimism"
+  },
+  {
+    "bib": {
+      "author": "Diodoro Sículo",
+      "year": "1933",
+      "title": "Library of History",
+      "is_book": true,
+      "full_line": "Diodoro Sículo. 1933. Library of History. Translated by Charles Oldfather. Cambridge, MA: Harvard University Press; London: William Heinemann, URL = https://topostext.org/work/133/; https://topostext.org/work/134/"
+    },
+    "skill": "diodoro-library-of-history"
+  },
+  {
+    "bib": {
+      "author": "Diógenes Laércio",
+      "year": "2014",
+      "title": "Vidas e Doutrinas dos Filósofos Ilustres",
+      "is_book": true,
+      "full_line": "Diógenes Laércio. 2014. Vidas e Doutrinas dos Filósofos Ilustres. Tradução de Mário da Gama Cury. Brasília: Editora Universidade de Brasília."
+    },
+    "skill": "diogenes-vidas-e-doutrinas"
+  },
+  {
+    "bib": {
+      "author": "Diógenes Laércio",
+      "year": "2018",
+      "title": "Lives of Eminent Philosophers",
+      "is_book": true,
+      "full_line": "Diógenes Laércio. 2018. Lives of Eminent Philosophers. Translated by Pamela Mensch. New York: Oxford University Press."
+    },
+    "skill": "diogenes-lives-of-eminent-philosophers"
+  },
+  {
+    "bib": {
+      "author": "Dodds, E",
+      "year": "R",
+      "title": "1951",
+      "is_book": true,
+      "full_line": "Dodds, E. R. 1951. The Greeks and the Irrational. Berkeley: University of California Press."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Eliade, Mircea",
+      "year": "1972",
+      "title": "Zalmoxis, The Vanishing God: Comparative studies in the religions and folklore of Dacia and Eastern Europe",
+      "is_book": true,
+      "full_line": "Eliade, Mircea. 1972. Zalmoxis, The Vanishing God: Comparative studies in the religions and folklore of Dacia and Eastern Europe. Chicago: The University of Chicago Press."
+    },
+    "skill": "budge-book-of-the-dead"
+  },
+  {
+    "bib": {
+      "author": "Eliade, Mircea",
+      "year": "2004",
+      "title": "Shamanism: Archaic Techniques of Ecstasy",
+      "is_book": true,
+      "full_line": "Eliade, Mircea. 2004. Shamanism: Archaic Techniques of Ecstasy. New Jersey: Princeton University Press."
+    },
+    "skill": "eliade-shamanism"
+  },
+  {
+    "bib": {
+      "author": "Eliade, Mircea",
+      "year": "2011",
+      "title": "História das crenças e das ideias religiosas, vol",
+      "is_book": true,
+      "full_line": "Eliade, Mircea. 2011. História das crenças e das ideias religiosas, vol. II. Tradução de Roberto Lacerda. Rio de Janeiro: Zahar."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Eliade, Mircea",
+      "year": "2012",
+      "title": "Yoga: imortalidade e liberdade",
+      "is_book": true,
+      "full_line": "Eliade, Mircea. 2012. Yoga: imortalidade e liberdade. Tradução de Teresa Veloso. São Paulo: Palas Athena."
+    },
+    "skill": "eliade-yoga"
+  },
+  {
+    "bib": {
+      "author": "Estrabão",
+      "year": "1903-1924",
+      "title": "Geography",
+      "is_book": true,
+      "full_line": "Estrabão. 1903-1924. Geography. Books 1-5 translated by Hamilton & Falconer; books 6-14 by Horace Jones. London: George Bell & Sons; Cambridge, MA: Harvard University Press; London: William Heinemann, URL = https://topostext.org/work/144/"
+    },
+    "skill": "estrabao-geography"
+  },
+  {
+    "bib": {
+      "author": "Epicuro",
+      "year": "2021",
+      "title": "Cartas & Máximas Principais",
+      "is_book": true,
+      "full_line": "Epicuro. 2021. Cartas & Máximas Principais. Tradução de Maria Cecília Gomes dos Reis. São Paulo: Companhia das Letras."
+    },
+    "skill": "epicuro-cartas-maximas"
+  },
+  {
+    "bib": {
+      "author": "Epiteto",
+      "year": "2022",
+      "title": "The Complete Works: Handbook, Discourses, and Fragments",
+      "is_book": true,
+      "full_line": "Epiteto. 2022. The Complete Works: Handbook, Discourses, and Fragments. Translated by Robin Waterfield. Chicago: University of Chicago Press."
+    },
+    "skill": "epiteto-complete-works"
+  },
+  {
+    "bib": {
+      "author": "Eurípides",
+      "year": "2019",
+      "title": "As Bacantes",
+      "is_book": true,
+      "full_line": "Eurípides. 2019. As Bacantes. Tradução de Trajano Vieira. São Paulo: Perspectiva."
+    },
+    "skill": "euripides-as-bacantes"
+  },
+  {
+    "bib": {
+      "author": "Eurípides",
+      "year": "2008",
+      "title": "Fragments: Oedipus-Chrysippus; Other Fragments",
+      "is_book": true,
+      "full_line": "Eurípides. 2008. Fragments: Oedipus-Chrysippus; Other Fragments. Edited and translated by Christopher Collard and Martin Cropp. Loeb Classical Library 506 (Euripides VIII). London: Harvard University Press."
+    },
+    "skill": "euripides-fragments"
+  },
+  {
+    "bib": {
+      "author": "Faivre, Antoine",
+      "year": "2010",
+      "title": "Western Esotericism: A Concise History",
+      "is_book": true,
+      "full_line": "Faivre, Antoine. 2010. Western Esotericism: A Concise History. Albany: State University of New York Press."
+    },
+    "skill": "faivre-western-esotericism"
+  },
+  {
+    "bib": {
+      "author": "Faraone, Christopher A",
+      "year": "& Obbink, Dirk (eds.)",
+      "title": "1991",
+      "is_book": true,
+      "full_line": "Faraone, Christopher A. & Obbink, Dirk (eds.). 1991. Magika Hiera: Ancient Greek Magic and Religion. New York; Oxford: Oxford University Press."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Faustino, Marta & Ferraro, Gianfranco (eds.)",
+      "year": "2020",
+      "title": "The Late Foucault: Ethical and Political Questions",
+      "is_book": true,
+      "full_line": "Faustino, Marta & Ferraro, Gianfranco (eds.). 2020. The Late Foucault: Ethical and Political Questions. London: Bloomsbury Academic."
+    },
+    "skill": "faustino-late-foucault"
+  },
+  {
+    "bib": {
+      "author": "Faustino, Marta & Telo, Helder (eds.) 2024",
+      "year": "Hadot and Foucault on Ancient Philosophy: Critical Assessments",
+      "title": "Leiden: Brill.",
+      "is_book": true,
+      "full_line": "Faustino, Marta & Telo, Helder (eds.) 2024. Hadot and Foucault on Ancient Philosophy: Critical Assessments. Leiden: Brill."
+    },
+    "skill": "chase-hadot-critics-2024"
+  },
+  {
+    "bib": {
+      "author": "Faustino, Marta & Testa, Frederico (eds.)",
+      "year": "2022",
+      "title": "Filosofia como forma de vida: Ensaios escolhidos",
+      "is_book": true,
+      "full_line": "Faustino, Marta & Testa, Frederico (eds.). 2022. Filosofia como forma de vida: Ensaios escolhidos. Coimbra: Edições 70."
+    },
+    "skill": "faustino-filosofia-forma-de-vida-ensaios"
+  },
+  {
+    "bib": {
+      "author": "Fiordalis, David (ed.)",
+      "year": "2018",
+      "title": "Buddhist Spiritual Practices: Thinking with Pierre Hadot on Buddhism, Philosophy, and the Path",
+      "is_book": true,
+      "full_line": "Fiordalis, David (ed.). 2018. Buddhist Spiritual Practices: Thinking with Pierre Hadot on Buddhism, Philosophy, and the Path. Berkeley: Mangalam Press."
+    },
+    "skill": "fiordalis-buddhist-spiritual-practices"
+  },
+  {
+    "bib": {
+      "author": "Foucault, Michel",
+      "year": "2010",
+      "title": "A Hermenêutica do sujeito: Curso dado no Collège de France (1981-1982)",
+      "is_book": true,
+      "full_line": "Foucault, Michel. 2010. A Hermenêutica do sujeito: Curso dado no Collège de France (1981-1982). São Paulo: Martins Fontes."
+    },
+    "skill": "foucault-hermeneutica-do-sujeito"
+  },
+  {
+    "bib": {
+      "author": "Foucault, Michel",
+      "year": "2021a",
+      "title": "História da sexualidade II: O uso dos prazeres",
+      "is_book": true,
+      "full_line": "Foucault, Michel. 2021a. História da sexualidade II: O uso dos prazeres. Tradução de Maria Albuquerque. Rio de Janeiro: Paz & Terra."
+    },
+    "skill": "foucault-historia-da-sexualidade-2"
+  },
+  {
+    "bib": {
+      "author": "Foucault, Michel",
+      "year": "2021b",
+      "title": "História da sexualidade III: O cuidado de si",
+      "is_book": true,
+      "full_line": "Foucault, Michel. 2021b. História da sexualidade III: O cuidado de si. Tradução de Maria Albuquerque. Rio de Janeiro: Paz & Terra."
+    },
+    "skill": "foucault-historia-da-sexualidade-2"
+  },
+  {
+    "bib": {
+      "author": "Franz, Marie-Louise von",
+      "year": "2011",
+      "title": "Sonhos: um estudo dos sonhos de Descartes, Sócrates e outras figuras históricas",
+      "is_book": true,
+      "full_line": "Franz, Marie-Louise von. 2011. Sonhos: um estudo dos sonhos de Descartes, Sócrates e outras figuras históricas. Tradução de Reinaldo Orth. Petrópolis: Vozes."
+    },
+    "skill": "franz-sonhos-estudo"
+  },
+  {
+    "bib": {
+      "author": "Freud, Sigmund",
+      "year": "2014",
+      "title": "Conferências Introdutórias à Psicanálise, Obras Completas vol",
+      "is_book": true,
+      "full_line": "Freud, Sigmund. 2014. Conferências Introdutórias à Psicanálise, Obras Completas vol. 13. Tradução de Paulo Cézar de Sousa. São Paulo: Companhia das Letras."
+    },
+    "skill": "freud-conferencias-introdutorias"
+  },
+  {
+    "bib": {
+      "author": "Gazzinelli, Gabriela (ed.)",
+      "year": "2007",
+      "title": "Fragmentos Órficos",
+      "is_book": true,
+      "full_line": "Gazzinelli, Gabriela (ed.). 2007. Fragmentos Órficos. Belo Horizonte: Editora UFMG."
+    },
+    "skill": "gazzinelli-fragmentos-orficos"
+  },
+  {
+    "bib": {
+      "author": "Gazzinelli, Gabriela",
+      "year": "2009",
+      "title": "A vida cética de Pirro",
+      "is_book": true,
+      "full_line": "Gazzinelli, Gabriela. 2009. A vida cética de Pirro. São Paulo: Edições Loyola."
+    },
+    "skill": "gazzinelli-vida-cetica-pirro"
+  },
+  {
+    "bib": {
+      "author": "Goenka, S",
+      "year": "N",
+      "title": "2012",
+      "is_book": true,
+      "full_line": "Goenka, S. N. 2012. The Discourse Summaries: Talks from a Ten-Day Course in Vipassana Meditation. Onalaska: Vipassana Research Publications."
+    },
+    "skill": "goenka-vipassana-discourse"
+  },
+  {
+    "bib": {
+      "author": "Goldmann, Lucien",
+      "year": "1959",
+      "title": "Le Dieu Caché",
+      "is_book": true,
+      "full_line": "Goldmann, Lucien. 1959. Le Dieu Caché. Paris: Éditions Gallimard."
+    },
+    "skill": "goldmann-le-dieu-cache"
+  },
+  {
+    "bib": {
+      "author": "Gouhier, Henri",
+      "year": "2006",
+      "title": "Blaise Pascal: Conversão e Apologética",
+      "is_book": true,
+      "full_line": "Gouhier, Henri. 2006. Blaise Pascal: Conversão e Apologética. Tradução de E. Itokazu e H. Santiago. São Paulo: Discurso Editorial."
+    },
+    "skill": "gouhier-pascal-conversao"
+  },
+  {
+    "bib": {
+      "author": "Graf, Fritz",
+      "year": "2003",
+      "title": "Magic in the Ancient World",
+      "is_book": true,
+      "full_line": "Graf, Fritz. 2003. Magic in the Ancient World. Translated by Franklin Philip. Cambridge, MA: Harvard University Press."
+    },
+    "skill": "graf-magic-ancient-world"
+  },
+  {
+    "bib": {
+      "author": "Graves, Robert",
+      "year": "1972",
+      "title": "Difficult Questions, Easy Answers",
+      "is_book": true,
+      "full_line": "Graves, Robert. 1972. Difficult Questions, Easy Answers. London: Cassell."
+    },
+    "skill": "graves-difficult-questions-easy-answers"
+  },
+  {
+    "bib": {
+      "author": "Griffith, Ralph T",
+      "year": "H",
+      "title": "1896",
+      "is_book": true,
+      "full_line": "Griffith, Ralph T. H. 1896. The Rig Veda. Translated by Ralph T. H. Griffith. URL = https://sacred-texts.com/hin/rigveda/index.htm/"
+    },
+    "skill": "griffith-rig-veda"
+  },
+  {
+    "bib": {
+      "author": "Grimal, Pierre",
+      "year": "2011",
+      "title": "Dicionário da mitologia grega e romana",
+      "is_book": true,
+      "full_line": "Grimal, Pierre. 2011. Dicionário da mitologia grega e romana. Rio de Janeiro: Bertrand."
+    },
+    "skill": "grimal-dicionario-mitologia"
+  },
+  {
+    "bib": {
+      "author": "Grof, Stanislav",
+      "year": "1988",
+      "title": "The Adventure of Self-Discovery: Dimensions of Consciousness and New Perspectives in Psychotherapy and Inner Exploration",
+      "is_book": true,
+      "full_line": "Grof, Stanislav. 1988. The Adventure of Self-Discovery: Dimensions of Consciousness and New Perspectives in Psychotherapy and Inner Exploration. Albany: State University of New York Press."
+    },
+    "skill": "grof-adventure-self-discovery"
+  },
+  {
+    "bib": {
+      "author": "Guthrie, Kenneth",
+      "year": "1987",
+      "title": "The Pythagorean Sourcebook and Library: An Anthology of Ancient Writings Which Relate to Pythagoras and Pythagorean Philosophy",
+      "is_book": true,
+      "full_line": "Guthrie, Kenneth. 1987. The Pythagorean Sourcebook and Library: An Anthology of Ancient Writings Which Relate to Pythagoras and Pythagorean Philosophy. Grand Rapids: Phanes Press."
+    },
+    "skill": "guthrie-pythagorean-sourcebook"
+  },
+  {
+    "bib": {
+      "author": "Guthrie, W",
+      "year": "K",
+      "title": "C",
+      "is_book": true,
+      "full_line": "Guthrie, W. K. C. 1952. Orpheus and Greek Religion: A Study of the Orphic Movement. London: Methuen."
+    },
+    "skill": "guthrie-orpheus-greek-religion"
+  },
+  {
+    "bib": {
+      "author": "Han, Byung-Chul",
+      "year": "2018",
+      "title": "Psicopolítica: o neoliberalismo e as novas técnicas de poder",
+      "is_book": true,
+      "full_line": "Han, Byung-Chul. 2018. Psicopolítica: o neoliberalismo e as novas técnicas de poder. Belo Horizonte: Editora Âiyné."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "1971",
+      "title": "Marius Victorinus: Recherches sur sa vie et ses œuvres",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 1971. Marius Victorinus: Recherches sur sa vie et ses œuvres. Paris: Collection des Études Augustiniennes."
+    },
+    "skill": "hadot-marius-victorinus"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "1992",
+      "title": "La citadelle intérieure",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 1992. La citadelle intérieure. Introduction aux Pensées de Marc Aurèle. Paris: Fayard."
+    },
+    "skill": "chase-observations-pierre-hadot"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "1995",
+      "title": "Qu’est ce que la Philosophie Antique? Paris: Gallimard.",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 1995. Qu’est ce que la Philosophie Antique? Paris: Gallimard."
+    },
+    "skill": "hadot-philosophie-antique"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "1998",
+      "title": "The Inner Citadel: The Meditations of Marcus Aurelius",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 1998. The Inner Citadel: The Meditations of Marcus Aurelius. Translated by Michael Chase. Harvard: Harvard University."
+    },
+    "skill": "hadot-inner-citadel"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2001",
+      "title": "La philosophie comme manière de vivre",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2001. La philosophie comme manière de vivre. Paris: Albin Michel."
+    },
+    "skill": "hadot-maniere-de-vivre"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2002",
+      "title": "Exercices spirituels et la philosophie antique",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2002. Exercices spirituels et la philosophie antique. Paris: Albin Michel."
+    },
+    "skill": "hadot-exercices-spirituels"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2006",
+      "title": "O véu de Ísis: Ensaio sobre a história da ideia de natureza",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2006. O véu de Ísis: Ensaio sobre a história da ideia de natureza. São Paulo: Edições Loyola."
+    },
+    "skill": "lucrecio-sobre-a-natureza-das-coisas"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2014",
+      "title": "Wittgenstein e os limites da linguagem",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2014. Wittgenstein e os limites da linguagem. Tradução de Flávio F. Loque e Lorraine Oliveira. São Paulo: É Realizações."
+    },
+    "skill": "hadot-wittgenstein-limites"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2014b",
+      "title": "Discours et mode de vie philosophique",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2014b. Discours et mode de vie philosophique. Paris: Les Belles Lettres."
+    },
+    "skill": "hadot-discours-mode-vie"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2019",
+      "title": "Plotino ou a simplicidade do olhar",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2019. Plotino ou a simplicidade do olhar. Tradução de Flávio F. Loque e Lorraine Oliveira. São Paulo: É Realizações."
+    },
+    "skill": "hadot-plotino-simplicidade"
+  },
+  {
+    "bib": {
+      "author": "Hadot, Pierre",
+      "year": "2020",
+      "title": "The selected writings of Pierre Hadot: Philosophy as practice",
+      "is_book": true,
+      "full_line": "Hadot, Pierre. 2020. The selected writings of Pierre Hadot: Philosophy as practice. Translated by Matthew Sharpe and Federico Testa. London: Bloomsbury Academic."
+    },
+    "skill": "hadot-selected-writings-practice"
+  },
+  {
+    "bib": {
+      "author": "Hanegraaff, Wouter J",
+      "year": "2022",
+      "title": "Hermetic Spirituality and the Historical Imagination: Altered States of Knowledge in Late Antiquity",
+      "is_book": true,
+      "full_line": "Hanegraaff, Wouter J. 2022. Hermetic Spirituality and the Historical Imagination: Altered States of Knowledge in Late Antiquity. New York: Bloomsbury."
+    },
+    "skill": "hanegraaff-hermetic-spirituality"
+  },
+  {
+    "bib": {
+      "author": "Hahn, Robert",
+      "year": "2001",
+      "title": "Anaximander and the Architects: The Contributions of Egyptian and Greek Architectural Technologies to the Origins of Greek Philosophy",
+      "is_book": true,
+      "full_line": "Hahn, Robert. 2001. Anaximander and the Architects: The Contributions of Egyptian and Greek Architectural Technologies to the Origins of Greek Philosophy. Albany: State University of New York Press."
+    },
+    "skill": "foucault-technologies-of-the-self"
+  },
+  {
+    "bib": {
+      "author": "Harari, Yuval",
+      "year": "2012",
+      "title": "Sapiens: uma breve história da humanidade",
+      "is_book": true,
+      "full_line": "Harari, Yuval. 2012. Sapiens: uma breve história da humanidade. Tradução de Janaína Marcoantonio. São Paulo: L&PM."
+    },
+    "skill": "harari-sapiens"
+  },
+  {
+    "bib": {
+      "author": "Harari, Yuval",
+      "year": "2016",
+      "title": "Homo Deus: Uma breve história do amanhã",
+      "is_book": true,
+      "full_line": "Harari, Yuval. 2016. Homo Deus: Uma breve história do amanhã. Tradução de Paulo Geiger. São Paulo: Companhia das Letras."
+    },
+    "skill": "harari-homo-deus"
+  },
+  {
+    "bib": {
+      "author": "Harari, Yuval",
+      "year": "2018",
+      "title": "21 Lições para o Século XXI",
+      "is_book": true,
+      "full_line": "Harari, Yuval. 2018. 21 Lições para o Século XXI. Tradução de Paulo Geiger. São Paulo: Companhia das Letras."
+    },
+    "skill": "harari-21-licoes"
+  },
+  {
+    "bib": {
+      "author": "Harris, Annaka",
+      "year": "2019",
+      "title": "Conscious: A Brief Guide to the Fundamental Mystery of the Mind",
+      "is_book": true,
+      "full_line": "Harris, Annaka. 2019. Conscious: A Brief Guide to the Fundamental Mystery of the Mind. New York: Harper."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Hegel, G",
+      "year": "W",
+      "title": "F",
+      "is_book": true,
+      "full_line": "Hegel, G. W. F. 2003. Fenomenologia do espírito. Tradução de Paulo Meneses. Petrópolis: Editora Vozes."
+    },
+    "skill": "hegel-fenomenologia-do-espirito"
+  },
+  {
+    "bib": {
+      "author": "Hesíodo",
+      "year": "2011",
+      "title": "Teogonia: a origem dos deuses",
+      "is_book": true,
+      "full_line": "Hesíodo. 2011. Teogonia: a origem dos deuses. Tradução de Jaa Torrano. São Paulo: Iluminuras."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Hesíodo",
+      "year": "2013",
+      "title": "Trabalhos e dias",
+      "is_book": true,
+      "full_line": "Hesíodo. 2013. Trabalhos e dias. Tradução de Christian Werner. São Paulo: Hedra."
+    },
+    "skill": "hesiodo-trabalhos-e-dias"
+  },
+  {
+    "bib": {
+      "author": "Homero",
+      "year": "2008",
+      "title": "Ilíada",
+      "is_book": true,
+      "full_line": "Homero. 2008. Ilíada. Tradução de Christian Werner. São Paulo: Ubu Editora."
+    },
+    "skill": "homero-iliada"
+  },
+  {
+    "bib": {
+      "author": "Homero",
+      "year": "2014",
+      "title": "Odisseia",
+      "is_book": true,
+      "full_line": "Homero. 2014. Odisseia. Tradução de Christian Werner. São Paulo: Cosac Naify."
+    },
+    "skill": "homero-odisseia"
+  },
+  {
+    "bib": {
+      "author": "Huxley, Aldous",
+      "year": "1973",
+      "title": "Satânicos e Visionários",
+      "is_book": true,
+      "full_line": "Huxley, Aldous. 1973. Satânicos e Visionários. Tradução de J. L. Dantas. Rio de Janeiro: Ed. Americana."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Huxley, Aldous",
+      "year": "2004",
+      "title": "The Perennial Philosophy",
+      "is_book": true,
+      "full_line": "Huxley, Aldous. 2004. The Perennial Philosophy. New York: Harper Collins."
+    },
+    "skill": "huxley-perennial-philosophy"
+  },
+  {
+    "bib": {
+      "author": "Huxley, Aldous",
+      "year": "2009",
+      "title": "The Doors of Perception and Heaven and Hell",
+      "is_book": true,
+      "full_line": "Huxley, Aldous. 2009. The Doors of Perception and Heaven and Hell. New York: Harper Collins."
+    },
+    "skill": "huxley-doors-of-perception"
+  },
+  {
+    "bib": {
+      "author": "Inwood, Brad (ed.)",
+      "year": "2003",
+      "title": "The poem of Empedocles: a text and translation with an introduction",
+      "is_book": true,
+      "full_line": "Inwood, Brad (ed.). 2003. The poem of Empedocles: a text and translation with an introduction. Toronto: University of Toronto Press."
+    },
+    "skill": "inwood-poem-of-empedocles"
+  },
+  {
+    "bib": {
+      "author": "Jaeger, Werner",
+      "year": "1947",
+      "title": "The Theology of the Early Greek Philosophers: The Gifford Lectures 1936",
+      "is_book": true,
+      "full_line": "Jaeger, Werner. 1947. The Theology of the Early Greek Philosophers: The Gifford Lectures 1936. Translated by Edward S. Robinson. Oxford: Clarendon Press."
+    },
+    "skill": "jaeger-theology-early-greek-philosophers"
+  },
+  {
+    "bib": {
+      "author": "Jaeger, Werner",
+      "year": "2013",
+      "title": "Paidéia: a formação do homem grego",
+      "is_book": true,
+      "full_line": "Jaeger, Werner. 2013. Paidéia: a formação do homem grego. Tradução de Artur Parreira. São Paulo: Editora WMF Martins Fontes."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Jâmblico",
+      "year": "1996",
+      "title": "Vie de Pythagore",
+      "is_book": true,
+      "full_line": "Jâmblico. 1996. Vie de Pythagore. Traduction de Luc Brisson & Alain-Philippe Segonds. Paris: Les Belles Lettres."
+    },
+    "skill": "jamblico-vie-de-pythagore"
+  },
+  {
+    "bib": {
+      "author": "Jung, Carl Gustav",
+      "year": "1956",
+      "title": "Symbols of transformation",
+      "is_book": true,
+      "full_line": "Jung, Carl Gustav. 1956. Symbols of transformation. New York: Princeton University Press."
+    },
+    "skill": "jung-symbols-of-transformation"
+  },
+  {
+    "bib": {
+      "author": "Jung, Carl Gustav",
+      "year": "1966",
+      "title": "Psychology and Religion",
+      "is_book": true,
+      "full_line": "Jung, Carl Gustav. 1966. Psychology and Religion. New Haven: Yale University Press."
+    },
+    "skill": "jung-psychology-and-religion"
+  },
+  {
+    "bib": {
+      "author": "Jung, Carl Gustav",
+      "year": "1967",
+      "title": "Alchemical Studies",
+      "is_book": true,
+      "full_line": "Jung, Carl Gustav. 1967. Alchemical Studies. Translated by R. F. C. Hull. Princeton: Princeton University Press."
+    },
+    "skill": "jung-alchemical-studies"
+  },
+  {
+    "bib": {
+      "author": "Jung, Carl Gustav",
+      "year": "2011",
+      "title": "Mysterium Coniunctionis: pesquisas sobre a separação e a composição dos opostos psíquicos na alquimia",
+      "is_book": true,
+      "full_line": "Jung, Carl Gustav. 2011. Mysterium Coniunctionis: pesquisas sobre a separação e a composição dos opostos psíquicos na alquimia. Tradução de Valdemar do Amaral. Petrópolis: Vozes."
+    },
+    "skill": "jung-mysterium-coniunctionis"
+  },
+  {
+    "bib": {
+      "author": "Kardec, Allan",
+      "year": "2019",
+      "title": "O livro dos espíritos",
+      "is_book": true,
+      "full_line": "Kardec, Allan. 2019. O livro dos espíritos. Tradução de Guillon Ribeiro. Brasília: FEB."
+    },
+    "skill": "kardec-livro-dos-espiritos"
+  },
+  {
+    "bib": {
+      "author": "Kerényi, Carl",
+      "year": "1967",
+      "title": "Eleusis: Archetypal Image of Mother and Daughter",
+      "is_book": true,
+      "full_line": "Kerényi, Carl. 1967. Eleusis: Archetypal Image of Mother and Daughter. Translated by Ralph Manheim. Princeton: Princeton University Press."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Killen, John (ed.)",
+      "year": "2024",
+      "title": "The New Documents in Mycenaean Greek",
+      "is_book": true,
+      "full_line": "Killen, John (ed.). 2024. The New Documents in Mycenaean Greek. Volume Two: Selected Tablets, Transcription, Translation, Commentary. Cambridge: Cambridge University Press."
+    },
+    "skill": "killen-mycenaean-greek"
+  },
+  {
+    "bib": {
+      "author": "Kingsley, Peter",
+      "year": "1995",
+      "title": "Ancient Philosophy, Mystery and Magic: Empedocles and Pythagorean Tradition. Oxford: Oxford University Press.",
+      "is_book": true,
+      "full_line": "Kingsley, Peter. 1995. Ancient Philosophy, Mystery and Magic: Empedocles and Pythagorean Tradition. Oxford: Oxford University Press."
+    },
+    "skill": "kingsley-ancient-philosophy-mystery-magic"
+  },
+  {
+    "bib": {
+      "author": "Kingsley, Peter",
+      "year": "1999",
+      "title": "In the Dark Places of Wisdom",
+      "is_book": true,
+      "full_line": "Kingsley, Peter. 1999. In the Dark Places of Wisdom. Point Reyes: The Golden Sufi Center."
+    },
+    "skill": "kingsley-dark-places-of-wisdom"
+  },
+  {
+    "bib": {
+      "author": "Kingsley, Peter",
+      "year": "2003",
+      "title": "Reality",
+      "is_book": true,
+      "full_line": "Kingsley, Peter. 2003. Reality. Inverness: The Golden Sufi Center."
+    },
+    "skill": "kingsley-reality"
+  },
+  {
+    "bib": {
+      "author": "Kingsley, Peter",
+      "year": "2010",
+      "title": "A Story Waiting to Pierce You: Mongolia, Tibet and the Destiny of the Western World",
+      "is_book": true,
+      "full_line": "Kingsley, Peter. 2010. A Story Waiting to Pierce You: Mongolia, Tibet and the Destiny of the Western World. Point Reyes: The Golden Sufi Center."
+    },
+    "skill": "kingsley-story-waiting-to-pierce-you"
+  },
+  {
+    "bib": {
+      "author": "Koyré, Alexandre",
+      "year": "2006",
+      "title": "Do mundo fechado ao universo infinito",
+      "is_book": true,
+      "full_line": "Koyré, Alexandre. 2006. Do mundo fechado ao universo infinito. Tradução de Donaldson Garschagen. Rio de Janeiro: Forense Universitária."
+    },
+    "skill": "koyre-mundo-fechado-universo-infinito"
+  },
+  {
+    "bib": {
+      "author": "Krenak, Ailton",
+      "year": "2020",
+      "title": "A vida não é útil",
+      "is_book": true,
+      "full_line": "Krenak, Ailton. 2020. A vida não é útil. São Paulo: Companhia das Letras."
+    },
+    "skill": "krenak-a-vida-nao-e-util"
+  },
+  {
+    "bib": {
+      "author": "LaBerge, Stephan & Rheingold, Howard",
+      "year": "1990",
+      "title": "Exploring the World of Lucid Dreaming",
+      "is_book": true,
+      "full_line": "LaBerge, Stephan & Rheingold, Howard. 1990. Exploring the World of Lucid Dreaming. New York: Ballantine."
+    },
+    "skill": "laberge-rheingold-lucid-dreaming"
+  },
+  {
+    "bib": {
+      "author": "Laks, André & Most, G",
+      "year": "W",
+      "title": "(eds.)",
+      "is_book": true,
+      "full_line": "Laks, André & Most, G. W. (eds.). 1997. Studies on the Derveni Papyrus. Oxford: Claredon Press."
+    },
+    "skill": "laks-most-derveni-papyrus"
+  },
+  {
+    "bib": {
+      "author": "Leite, Marcelo",
+      "year": "2021",
+      "title": "Psiconautas: Viagens com a ciência psicodélica brasileira",
+      "is_book": true,
+      "full_line": "Leite, Marcelo. 2021. Psiconautas: Viagens com a ciência psicodélica brasileira. São Paulo: Fósforo."
+    },
+    "skill": "leite-psiconautas"
+  },
+  {
+    "bib": {
+      "author": "Long, A",
+      "year": "A",
+      "title": "& Sedley, D",
+      "is_book": true,
+      "full_line": "Long, A. A. & Sedley, D. N. 1987. The Hellenistic Philosophers, volume I. London: Cambridge University Press."
+    },
+    "skill": "long-sedley-hellenistic-philosophers"
+  },
+  {
+    "bib": {
+      "author": "Lucrécio",
+      "year": "2021",
+      "title": "Sobre a natureza das coisas",
+      "is_book": true,
+      "full_line": "Lucrécio. 2021. Sobre a natureza das coisas. Tradução de Rodrigo Tadeu Gonçalves. Belo Horizonte: Autêntica."
+    },
+    "skill": "lucrecio-sobre-a-natureza-das-coisas"
+  },
+  {
+    "bib": {
+      "author": "Magee, Gleen Alexander (ed.)",
+      "year": "2016",
+      "title": "The Cambridge Handbook of Western Mysticism and Esotericism",
+      "is_book": true,
+      "full_line": "Magee, Gleen Alexander (ed.). 2016. The Cambridge Handbook of Western Mysticism and Esotericism. New York: Cambridge University Press."
+    },
+    "skill": "magee-western-mysticism-esotericism"
+  },
+  {
+    "bib": {
+      "author": "Marco Aurélio",
+      "year": "2023",
+      "title": "Meditações",
+      "is_book": true,
+      "full_line": "Marco Aurélio. 2023. Meditações. Tradução de Aldo Dinucci. São Paulo: Penguin-Companhia."
+    },
+    "skill": "marco-aurelio-meditacoes"
+  },
+  {
+    "bib": {
+      "author": "Marcondes, Danilo",
+      "year": "2019",
+      "title": "Raízes da dúvida: Ceticismo e filosofia moderna",
+      "is_book": true,
+      "full_line": "Marcondes, Danilo. 2019. Raízes da dúvida: Ceticismo e filosofia moderna. Rio de Janeiro: Zahar."
+    },
+    "skill": "colli-nascimento-da-filosofia"
+  },
+  {
+    "bib": {
+      "author": "Martín-Velasco, M",
+      "year": "J",
+      "title": "& Blanco, M",
+      "is_book": true,
+      "full_line": "Martín-Velasco, M. J. & Blanco, M. J. García (eds.) 2017. Greek Philosophy and Mystery Cults. Cambridge Scholars Publishing."
+    },
+    "skill": "martin-velasco-greek-philosophy"
+  },
+  {
+    "bib": {
+      "author": "Máximo de Tiro",
+      "year": "1997",
+      "title": "The Philosophical Orations",
+      "is_book": true,
+      "full_line": "Máximo de Tiro. 1997. The Philosophical Orations. Translated by M. B. Trapp. Oxford: Oxford University Press."
+    },
+    "skill": "maximo-tiro-philosophical-orations"
+  },
+  {
+    "bib": {
+      "author": "Mayer, Marvin (ed.)",
+      "year": "2007",
+      "title": "The Nag Hammadi Scriptures: The International Edition",
+      "is_book": true,
+      "full_line": "Mayer, Marvin (ed.). 2007. The Nag Hammadi Scriptures: The International Edition. New York: HarperOne."
+    },
+    "skill": "mayer-nag-hammadi"
+  },
+  {
+    "bib": {
+      "author": "Mayhew, Robert & Mirhady, David C",
+      "year": "(eds.)",
+      "title": "2022",
+      "is_book": true,
+      "full_line": "Mayhew, Robert & Mirhady, David C. (eds.). 2022. Clearchus of Soli: Text, Translation, and Discussion. London; New York: Routledge."
+    },
+    "skill": "chase-did-socrates-meditate-2022"
+  },
+  {
+    "bib": {
+      "author": "McEvilley, Thomas",
+      "year": "2002",
+      "title": "The Shape of Ancient Thought",
+      "is_book": true,
+      "full_line": "McEvilley, Thomas. 2002. The Shape of Ancient Thought. New York: Allworth Press."
+    },
+    "skill": "mcevilley-shape-ancient-thought"
+  },
+  {
+    "bib": {
+      "author": "McKirahan, Richard",
+      "year": "2013",
+      "title": "Filosofia antes de Sócrates: uma introdução com textos e comentários",
+      "is_book": true,
+      "full_line": "McKirahan, Richard. 2013. Filosofia antes de Sócrates: uma introdução com textos e comentários. São Paulo: Paulus."
+    },
+    "skill": "mckirahan-filosofia-antes-socrates"
+  },
+  {
+    "bib": {
+      "author": "McNamara, Patrick",
+      "year": "2022",
+      "title": "The Cognitive Neuroscience of Religious Experience: Decentering and the Self",
+      "is_book": true,
+      "full_line": "McNamara, Patrick. 2022. The Cognitive Neuroscience of Religious Experience: Decentering and the Self. New York: Cambridge University Press."
+    },
+    "skill": "mcnamara-cognitive-neuroscience-religious"
+  },
+  {
+    "bib": {
+      "author": "McKenna, Terence",
+      "year": "1993",
+      "title": "Food of the Gods: The Search for the Original Tree of Knowledge",
+      "is_book": true,
+      "full_line": "McKenna, Terence. 1993. Food of the Gods: The Search for the Original Tree of Knowledge. London: Rider."
+    },
+    "skill": "mckenna-food-of-the-gods"
+  },
+  {
+    "bib": {
+      "author": "Mills, L",
+      "year": "H",
+      "title": "1887",
+      "is_book": true,
+      "full_line": "Mills, L. H. 1887. The Zend-Avesta. Part III: The Yasna, Visparad, Âfrînagân, Gâhs and Miscellaneous Fragments. Oxford: Clarendon Press. Sacred Books of the East, v. 31, URL = https://sacred-texts.com/zor/sbe31/index.htm."
+    },
+    "skill": "mills-zend-avesta"
+  },
+  {
+    "bib": {
+      "author": "Morgan, Michael L",
+      "year": "1990",
+      "title": "Platonic Piety: Philosophy and Ritual in Fourth-Century Athens",
+      "is_book": true,
+      "full_line": "Morgan, Michael L. 1990. Platonic Piety: Philosophy and Ritual in Fourth-Century Athens. Yale University Press."
+    },
+    "skill": "morgan-platonic-piety"
+  },
+  {
+    "bib": {
+      "author": "Morgan, Kathryn A",
+      "year": "2000",
+      "title": "Myth and Philosophy from the Presocratics to Plato",
+      "is_book": true,
+      "full_line": "Morgan, Kathryn A. 2000. Myth and Philosophy from the Presocratics to Plato. Cambridge: Cambridge University Press."
+    },
+    "skill": "buxton-from-myth-to-reason"
+  },
+  {
+    "bib": {
+      "author": "Muraresku, Brian",
+      "year": "2020",
+      "title": "The Immortality Key: The Secret History Of The Religion With No Name",
+      "is_book": true,
+      "full_line": "Muraresku, Brian. 2020. The Immortality Key: The Secret History Of The Religion With No Name. New York: St. Martin’s Press."
+    },
+    "skill": "muraresku-immortality-key"
+  },
+  {
+    "bib": {
+      "author": "Naddaf, Gerard",
+      "year": "2005",
+      "title": "The Greek Concept of Nature",
+      "is_book": true,
+      "full_line": "Naddaf, Gerard. 2005. The Greek Concept of Nature. Albany: State University of New York Press."
+    },
+    "skill": "naddaf-greek-concept-nature"
+  },
+  {
+    "bib": {
+      "author": "Nietzsche, Friedrich",
+      "year": "2005",
+      "title": "Além do bem e do mal",
+      "is_book": true,
+      "full_line": "Nietzsche, Friedrich. 2005. Além do bem e do mal. Tradução de Paulo Cézar de Sousa. São Paulo: Companhia das Letras."
+    },
+    "skill": "nietzsche-alem-do-bem-e-do-mal"
+  },
+  {
+    "bib": {
+      "author": "Nietzsche, Friedrich",
+      "year": "2008",
+      "title": "Ecce Homo: como alguém se torna o que é",
+      "is_book": true,
+      "full_line": "Nietzsche, Friedrich. 2008. Ecce Homo: como alguém se torna o que é. Tradução de Paulo César de Souza. São Paulo: Companhia das Letras."
+    },
+    "skill": "nietzsche-ecce-homo"
+  },
+  {
+    "bib": {
+      "author": "Nietzsche, Friedrich",
+      "year": "2009",
+      "title": "Genealogia da moral",
+      "is_book": true,
+      "full_line": "Nietzsche, Friedrich. 2009. Genealogia da moral. Tradução de Paulo Cézar de Sousa. São Paulo: Companhia das Letras."
+    },
+    "skill": "nietzsche-genealogia-da-moral"
+  },
+  {
+    "bib": {
+      "author": "Nietzsche, Friedrich",
+      "year": "2010",
+      "title": "O nascimento da tragédia",
+      "is_book": true,
+      "full_line": "Nietzsche, Friedrich. 2010. O nascimento da tragédia. Tradução de Paulo Cézar de Sousa. São Paulo: Companhia das Letras."
+    },
+    "skill": "nietzsche-o-nascimento-da-tragedia"
+  },
+  {
+    "bib": {
+      "author": "Nietzsche, Friedrich",
+      "year": "2012",
+      "title": "A gaia ciência",
+      "is_book": true,
+      "full_line": "Nietzsche, Friedrich. 2012. A gaia ciência. Tradução de Paulo Cézar de Sousa. São Paulo: Companhia das Letras."
+    },
+    "skill": "nietzsche-a-gaia-ciencia"
+  },
+  {
+    "bib": {
+      "author": "Nietzsche, Friedrich",
+      "year": "2017. Crepúsculo dos ídolos",
+      "title": "Tradução de Paulo Cézar de Sousa",
+      "is_book": true,
+      "full_line": "Nietzsche, Friedrich. 2017. Crepúsculo dos ídolos. Tradução de Paulo Cézar de Sousa. São Paulo: Companhia das Letras."
+    },
+    "skill": "acker-diotima-de-mantineia"
+  },
+  {
+    "bib": {
+      "author": "Nussbaum, Martha",
+      "year": "1994",
+      "title": "The Therapy of Desire",
+      "is_book": true,
+      "full_line": "Nussbaum, Martha. 1994. The Therapy of Desire. Princeton: Princeton University Press."
+    },
+    "skill": "nussbaum-therapy-of-desire"
+  },
+  {
+    "bib": {
+      "author": "Ogden, Daniel",
+      "year": "2001",
+      "title": "Greek and Roman Necromancy",
+      "is_book": true,
+      "full_line": "Ogden, Daniel. 2001. Greek and Roman Necromancy. Princeton: Princeton University Press."
+    },
+    "skill": "ogden-greek-roman-necromancy"
+  },
+  {
+    "bib": {
+      "author": "Orígenes",
+      "year": "2014",
+      "title": "Contra Celso",
+      "is_book": true,
+      "full_line": "Orígenes. 2014. Contra Celso. Tradução de Roque Frangiotti. São Paulo: Paulus."
+    },
+    "skill": "origenes-contra-celso"
+  },
+  {
+    "bib": {
+      "author": "Otto, Rudolf",
+      "year": "1958 (1915)",
+      "title": "The Idea of the Holy",
+      "is_book": true,
+      "full_line": "Otto, Rudolf. 1958 (1915). The Idea of the Holy. Translated by John W. Harvey. London: Oxford University Press."
+    },
+    "skill": "otto-idea-of-the-holy"
+  },
+  {
+    "bib": {
+      "author": "Padmasambhava",
+      "year": "2005",
+      "title": "The Tibetan Book of the Dead",
+      "is_book": true,
+      "full_line": "Padmasambhava. 2005. The Tibetan Book of the Dead. Translated by Gyurme Dorje. New York: Penguin."
+    },
+    "skill": "padmasambhava-tibetan-book-of-the-dead"
+  },
+  {
+    "bib": {
+      "author": "Palmer, John",
+      "year": "2009",
+      "title": "Parmenides and Presocratic Philosophy",
+      "is_book": true,
+      "full_line": "Palmer, John. 2009. Parmenides and Presocratic Philosophy. Oxford: Oxford University Press."
+    },
+    "skill": "palmer-parmenides"
+  },
+  {
+    "bib": {
+      "author": "Pascal, Blaise",
+      "year": "2005",
+      "title": "Pensamentos",
+      "is_book": true,
+      "full_line": "Pascal, Blaise. 2005. Pensamentos. Tradução de Mário Laranjeira. São Paulo: Martins Fontes."
+    },
+    "skill": "pascal-pensamentos"
+  },
+  {
+    "bib": {
+      "author": "Pausânias",
+      "year": "1918",
+      "title": "Description of Greece",
+      "is_book": true,
+      "full_line": "Pausânias. 1918. Description of Greece. Translated by W. Jones & H. Ormerod. Cambridge, MA: Harvard University Press; London: William Heinemann, URL = https://topostext.org/work/213/"
+    },
+    "skill": "pausanias-description-greece"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "1980",
+      "title": "Leis",
+      "is_book": true,
+      "full_line": "Platão. 1980. Leis. Tradução de Carlos Alberto Nunes. Belém: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2008",
+      "title": "Carta VII",
+      "is_book": true,
+      "full_line": "Platão. 2008. Carta VII. Tradução de José dos Santos e Juvino Maia Jr.. Rio de Janeiro: Edições Loyola."
+    },
+    "skill": "platao-carta-vii"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2010",
+      "title": "Teeteto",
+      "is_book": true,
+      "full_line": "Platão. 2010. Teeteto. Tradução de Adriana Nogueira e Marcelo Boeri. Lisboa: Fundação Calouste Gulbenkian."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2011",
+      "title": "Fédon",
+      "is_book": true,
+      "full_line": "Platão. 2011. Fédon. Tradução de Carlos Alberto Nunes. Pará: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2011b",
+      "title": "Fedro",
+      "is_book": true,
+      "full_line": "Platão. 2011b. Fedro. Tradução de Carlos Alberto Nunes. Pará: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2011c",
+      "title": "O Banquete",
+      "is_book": true,
+      "full_line": "Platão. 2011c. O Banquete. Tradução de Carlos Alberto Nunes. Pará: Ed. UFPA."
+    },
+    "skill": "platao-o-banquete"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2012",
+      "title": "A República",
+      "is_book": true,
+      "full_line": "Platão. 2012. A República. Tradução de J. Guinsburg. São Paulo: Perspectiva."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2012b",
+      "title": "Timeu-Crítias",
+      "is_book": true,
+      "full_line": "Platão. 2012b. Timeu-Crítias. Tradução de Rodolfo Lopes. São Paulo: Annablume."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2013",
+      "title": "Apologia de Sócrates",
+      "is_book": true,
+      "full_line": "Platão. 2013. Apologia de Sócrates. Tradução de André Malta. Porto Alegre: L&PM."
+    },
+    "skill": "acker-diotima-de-mantineia"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2014",
+      "title": "Crátilo, ou sobre a correção dos nomes",
+      "is_book": true,
+      "full_line": "Platão. 2014. Crátilo, ou sobre a correção dos nomes. Tradução de Celso Oliveira. São Paulo: Paulus."
+    },
+    "skill": "lucrecio-sobre-a-natureza-das-coisas"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2015",
+      "title": "Primeiro Alcibíades",
+      "is_book": true,
+      "full_line": "Platão. 2015. Primeiro Alcibíades. Segundo Alcibíades. Tradução de Carlos Alberto Nunes. Belém: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2021",
+      "title": "Górgias-Protágoras",
+      "is_book": true,
+      "full_line": "Platão. 2021. Górgias-Protágoras. Tradução de Carlos Alberto Nunes. Belém: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2024",
+      "title": "Teeteto-Crátilo",
+      "is_book": true,
+      "full_line": "Platão. 2024. Teeteto-Crátilo. Tradução de Carlos Alberto Nunes. Belém: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Platão",
+      "year": "2024b",
+      "title": "Político-Sofista",
+      "is_book": true,
+      "full_line": "Platão. 2024b. Político-Sofista. Tradução de Carlos Alberto Nunes. Belém: Ed. UFPA."
+    },
+    "skill": "adluri-initiation-mysteries-plato"
+  },
+  {
+    "bib": {
+      "author": "Píndaro",
+      "year": "2018",
+      "title": "Epinícios e Fragmentos",
+      "is_book": true,
+      "full_line": "Píndaro. 2018. Epinícios e Fragmentos. Tradução de Roosevelt Rocha. Curitiba: Kotter Editorial."
+    },
+    "skill": "bernabe-platao-e-o-orfismo"
+  },
+  {
+    "bib": {
+      "author": "Plínio",
+      "year": "1952",
+      "title": "Natural History, Vol",
+      "is_book": true,
+      "full_line": "Plínio. 1952. Natural History, Vol. IX: libri XXXIII-XXXV. Translated by H. Rackham. Cambridge, MA: Harvard University Press; London: William Heinemann."
+    },
+    "skill": "plinio-natural-history-vol-ix"
+  },
+  {
+    "bib": {
+      "author": "Plínio",
+      "year": "1962",
+      "title": "Natural History, Vol",
+      "is_book": true,
+      "full_line": "Plínio. 1962. Natural History, Vol. X: libri XXXVI-XXXVII, Translated by D. E. Eichholz. Cambridge, MA: Harvard University Press; London: William Heinemann"
+    },
+    "skill": "plinio-natural-history-vol-ix"
+  },
+  {
+    "bib": {
+      "author": "Plutarco",
+      "year": "2008",
+      "title": "O Banquete dos Sete Sábios",
+      "is_book": true,
+      "full_line": "Plutarco. 2008. O Banquete dos Sete Sábios. Tradução de Delfim Leão. Coimbra: Universidade de Coimbra."
+    },
+    "skill": "plutarco-banquete-sete-sabios"
+  },
+  {
+    "bib": {
+      "author": "Plutarco",
+      "year": "2012",
+      "title": "Vidas Paralelas: Sólon e Publícola",
+      "is_book": true,
+      "full_line": "Plutarco. 2012. Vidas Paralelas: Sólon e Publícola. Tradução de Delfim Leão e José Brandão. Coimbra: Universidade de Coimbra."
+    },
+    "skill": "plutarco-vidas-paralelas-solon-publicola"
+  },
+  {
+    "bib": {
+      "author": "Plutarco",
+      "year": "2022",
+      "title": "De Ísis e Osíris",
+      "is_book": true,
+      "full_line": "Plutarco. 2022. De Ísis e Osíris. Tradução de Maria Aparecida de Oliveira Silva. São Paulo: Edição bilingue da tradutora."
+    },
+    "skill": "plutarco-de-isis-e-osiris"
+  },
+  {
+    "bib": {
+      "author": "Pollan, Michel",
+      "year": "2018",
+      "title": "How to change your mind: what the new science of psychedelics teaches us about consciousness, dying, addiction, depression, and transcendence",
+      "is_book": true,
+      "full_line": "Pollan, Michel. 2018. How to change your mind: what the new science of psychedelics teaches us about consciousness, dying, addiction, depression, and transcendence. New York: Penguin Press."
+    },
+    "skill": "pollan-how-to-change-your-mind"
+  },
+  {
+    "bib": {
+      "author": "Porfírio",
+      "year": "2000",
+      "title": "On Abstinence from killing animals",
+      "is_book": true,
+      "full_line": "Porfírio. 2000. On Abstinence from killing animals. Translated by Gilliam Clark. London: Bloomsbury."
+    },
+    "skill": "porfirio-abstinence-killing-animals"
+  },
+  {
+    "bib": {
+      "author": "Ribeiro, Sidarta",
+      "year": "2019",
+      "title": "O oráculo da noite: a história e a ciência do sonho",
+      "is_book": true,
+      "full_line": "Ribeiro, Sidarta. 2019. O oráculo da noite: a história e a ciência do sonho. São Paulo: Companhia das Letras."
+    },
+    "skill": "ribeiro-oraculo-da-noite"
+  },
+  {
+    "bib": {
+      "author": "Ribeiro Jr., Wilson (ed.)",
+      "year": "2010",
+      "title": "Hinos homéricos: tradução, notas e estudo",
+      "is_book": true,
+      "full_line": "Ribeiro Jr., Wilson (ed.). 2010. Hinos homéricos: tradução, notas e estudo. São Paulo: Editora UNESP."
+    },
+    "skill": "ribeiro-jr-hinos-homericos"
+  },
+  {
+    "bib": {
+      "author": "Riedweg, Christoph",
+      "year": "2005",
+      "title": "Pythagoras: His Life, Teaching, and Influence",
+      "is_book": true,
+      "full_line": "Riedweg, Christoph. 2005. Pythagoras: His Life, Teaching, and Influence. Translated by Steven Rendall. Ithaca: Cornell University Press."
+    },
+    "skill": "porfirio-life-of-pythagoras"
+  },
+  {
+    "bib": {
+      "author": "Rinella, Michael Anthony",
+      "year": "2010",
+      "title": "Pharmakon: Plato, drug culture, and identity in Ancient Athens",
+      "is_book": true,
+      "full_line": "Rinella, Michael Anthony. 2010. Pharmakon: Plato, drug culture, and identity in Ancient Athens. Lanham: Lexington Books."
+    },
+    "skill": "rinella-pharmakon"
+  },
+  {
+    "bib": {
+      "author": "Rohde, Erwin",
+      "year": "2019 (1925)",
+      "title": "Psyche: the Cult of Souls & Belief in Immortality Among the Greeks",
+      "is_book": true,
+      "full_line": "Rohde, Erwin. 2019 (1925). Psyche: the Cult of Souls & Belief in Immortality Among the Greeks. Eastford: Martino Fine."
+    },
+    "skill": "budge-book-of-the-dead"
+  },
+  {
+    "bib": {
+      "author": "Rothschild, Clare K",
+      "year": "2014",
+      "title": "Paul in Athens: The Popular Religious Context of Acts 17",
+      "is_book": true,
+      "full_line": "Rothschild, Clare K. 2014. Paul in Athens: The Popular Religious Context of Acts 17. Tübingen: Mohr Siebeck."
+    },
+    "skill": "rothschild-paul-in-athens"
+  },
+  {
+    "bib": {
+      "author": "Rousseau, Jean-Jacques",
+      "year": "1969",
+      "title": "Discours sur l’origine et les fondements de l’inegalité parmi les hommes",
+      "is_book": true,
+      "full_line": "Rousseau, Jean-Jacques. 1969. Discours sur l’origine et les fondements de l’inegalité parmi les hommes. Paris: Gallimard."
+    },
+    "skill": "rousseau-discours-inegalite"
+  },
+  {
+    "bib": {
+      "author": "Rousseau, Jean-Jacques",
+      "year": "1972",
+      "title": "Les rêveries du Promeneur solitaire",
+      "is_book": true,
+      "full_line": "Rousseau, Jean-Jacques. 1972. Les rêveries du Promeneur solitaire. Paris: Gallimard."
+    },
+    "skill": "rousseau-reveries-promeneur"
+  },
+  {
+    "bib": {
+      "author": "Schopenhauer, Arthur",
+      "year": "2004",
+      "title": "Essays and aphorisms",
+      "is_book": true,
+      "full_line": "Schopenhauer, Arthur. 2004. Essays and aphorisms. Translated by R. J. Hollingdale. London: Penguin."
+    },
+    "skill": "schopenhauer-essays-aphorisms"
+  },
+  {
+    "bib": {
+      "author": "Schopenhauer, Arthur",
+      "year": "2015",
+      "title": "O mundo como vontade e como representação, Tomo II",
+      "is_book": true,
+      "full_line": "Schopenhauer, Arthur. 2015. O mundo como vontade e como representação, Tomo II. Traduzido por Jair Barboza. São Paulo: Editora Unesp."
+    },
+    "skill": "schopenhauer-mundo-vontade-representacao-tomo-ii"
+  },
+  {
+    "bib": {
+      "author": "Seaford, Richard",
+      "year": "2004",
+      "title": "Money and the Early Greek Mind",
+      "is_book": true,
+      "full_line": "Seaford, Richard. 2004. Money and the Early Greek Mind. Cambridge: Cambridge University Press."
+    },
+    "skill": "seaford-money-early-greek-mind"
+  },
+  {
+    "bib": {
+      "author": "Sellars, John",
+      "year": "2003",
+      "title": "The Art of Living: The Stoics on the Nature of Philosophy",
+      "is_book": true,
+      "full_line": "Sellars, John. 2003. The Art of Living: The Stoics on the Nature of Philosophy. London: Bloomsbury Academic."
+    },
+    "skill": "sellars-art-of-living-stoics"
+  },
+  {
+    "bib": {
+      "author": "Sêneca",
+      "year": "2004",
+      "title": "Cartas a Lucílio",
+      "is_book": true,
+      "full_line": "Sêneca. 2004. Cartas a Lucílio. Tradução de J. A. Segurado e Campos. Lisboa: Fundação Calouste Gulbenkian."
+    },
+    "skill": "seneca-cartas-a-lucilio"
+  },
+  {
+    "bib": {
+      "author": "Sêneca",
+      "year": "2010",
+      "title": "Natural questions",
+      "is_book": true,
+      "full_line": "Sêneca. 2010. Natural questions. Translated by Harry M. Hine. Chicago: The University of Chicago Press."
+    },
+    "skill": "seneca-natural-questions"
+  },
+  {
+    "bib": {
+      "author": "Sharpe, Matthew & Ure, Michael",
+      "year": "2021",
+      "title": "Philosophy as a Way of Life: History, Dimensions, Directions",
+      "is_book": true,
+      "full_line": "Sharpe, Matthew & Ure, Michael. 2021. Philosophy as a Way of Life: History, Dimensions, Directions. London: Bloomsbury Academic."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Sharpe, Matthew (ed.)",
+      "year": "2026",
+      "title": "Philosophy as a way of life: new research directions",
+      "is_book": true,
+      "full_line": "Sharpe, Matthew (ed.). 2026. Philosophy as a way of life: new research directions. Leiden: Brill."
+    },
+    "skill": "ambury-philosophy-as-a-way-of-life"
+  },
+  {
+    "bib": {
+      "author": "Shaw, Gregory",
+      "year": "2014",
+      "title": "Theurgy and the Soul: The Neoplatonism of Iamblichus",
+      "is_book": true,
+      "full_line": "Shaw, Gregory. 2014. Theurgy and the Soul: The Neoplatonism of Iamblichus. Angelico Press."
+    },
+    "skill": "shaw-theurgy-soul-iamblichus"
+  },
+  {
+    "bib": {
+      "author": "Sin-léqi-unnínni",
+      "year": "2021",
+      "title": "Ele que o abismo viu: epopeia de Gilgamesh",
+      "is_book": true,
+      "full_line": "Sin-léqi-unnínni. 2021. Ele que o abismo viu: epopeia de Gilgamesh. Tradução de Jacyntho Lins Brandão. Belo Horizonte: Autêntica."
+    },
+    "skill": "sin-leqi-unninni-epopeia-gilgamesh"
+  },
+  {
+    "bib": {
+      "author": "Sjöstedt-H, Peter",
+      "year": "2015",
+      "title": "Noumenautics: Metaphysics–Meta-ethics–Psychedelics",
+      "is_book": true,
+      "full_line": "Sjöstedt-H, Peter. 2015. Noumenautics: Metaphysics–Meta-ethics–Psychedelics. London: Psychedelic Press."
+    },
+    "skill": "sjostedt-h-noumenautics"
+  },
+  {
+    "bib": {
+      "author": "Souza, José Cavalcanti de",
+      "year": "(ed.) 1996",
+      "title": "Os Pré-Socráticos",
+      "is_book": true,
+      "full_line": "Souza, José Cavalcanti de. (ed.) 1996. Os Pré-Socráticos. São Paulo: Nova Cultural."
+    },
+    "skill": "acker-diotima-de-mantineia"
+  },
+  {
+    "bib": {
+      "author": "Stein, Charles",
+      "year": "2006",
+      "title": "Persephone Unveiled: Seeing the Goddess and Freeing your Soul",
+      "is_book": true,
+      "full_line": "Stein, Charles. 2006. Persephone Unveiled: Seeing the Goddess and Freeing your Soul. Berkeley: North Atlantic Books."
+    },
+    "skill": "stein-persephone-unveiled"
+  },
+  {
+    "bib": {
+      "author": "Stein, Diana; Costello, Sarah K",
+      "year": "& Foster, Karen P",
+      "title": "(eds.)",
+      "is_book": true,
+      "full_line": "Stein, Diana; Costello, Sarah K. & Foster, Karen P. (eds.). 2022. The Routledge Companion to Ecstatic Experience in the Ancient World. New York: Routledge."
+    },
+    "skill": "stein-ecstatic-experience"
+  },
+  {
+    "bib": {
+      "author": "Taylor, C",
+      "year": "C",
+      "title": "W",
+      "is_book": true,
+      "full_line": "Taylor, C. C. W. 1999. The Atomists: Leucippus and Democritus. Fragments: A Text and Translation with a Commentary. London: University of Toronto Press."
+    },
+    "skill": "taylor-atomists-leucippus-democritus"
+  },
+  {
+    "bib": {
+      "author": "Teofrasto",
+      "year": "1916",
+      "title": "Enquiry into Plants and Minor Works on Odours and Weather Signs",
+      "is_book": true,
+      "full_line": "Teofrasto. 1916. Enquiry into Plants and Minor Works on Odours and Weather Signs. Translated by Sir Arthur Hort. London: William Heinemann; New York: G. P. Putnam’s Sons"
+    },
+    "skill": "teofrasto-enquiry-into-plants"
+  },
+  {
+    "bib": {
+      "author": "Totelin, Laurence M",
+      "year": "V",
+      "title": "2009",
+      "is_book": true,
+      "full_line": "Totelin, Laurence M. V. 2009. Hippocratic Recipes: Oral and Written Transmission of Pharmacological Knowledge in Fifth- and Fourth-Century Greece. Leiden; Boston: Brill."
+    },
+    "skill": "totelin-hippocratic-recipes"
+  }
+]

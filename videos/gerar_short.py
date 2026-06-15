@@ -77,6 +77,52 @@ def make_overlay(cena, accent, hook, out_png):
     img.save(out_png)
 
 
+def make_cover(cena, accent, cfg, out_png, bg_src=None):
+    """Frame de CAPA de marca p/ a VITRINE do Instagram (grid de Reels).
+    Aberto no início do Reel e segurado ≥2s p/ o thumb_offset@1500ms SEMPRE cair
+    nele (nunca no fade-in preto). Billboard-proof: legível no tamanho de unha.
+    Fundo escuro da marca (papel) com a imagem do short escurecida ao estilo
+    billboard, wordmark "MINUTO REAL" + fio de ouro, KICKER (topo) e TÍTULO
+    (centro/baixo) em Hanken Black."""
+    ac = gv.hex_rgb(accent)
+    ouro = gv.marca.rgb('ouro')
+    papel = gv.marca.rgb('papel')
+    img = Image.new('RGB', (W, H), papel)
+    # fundo billboard: a imagem do short bem escurecida (some graciosamente se não houver)
+    if bg_src and Path(bg_src).exists():
+        bg = cover(bg_src).convert('RGBA')
+        veil = Image.new('RGBA', (W, H), papel + (215,))
+        bg = Image.alpha_composite(bg, veil)
+        img.paste(bg.convert('RGB'))
+    d = ImageDraw.Draw(img)
+    # WORDMARK (topo): "MINUTO REAL" tracked + fio de ouro
+    fwm = gv.F_BLACK(48)
+    gv.tracked(d, (70, 96), 'MINUTO REAL', fwm, gv.marca.rgb('tinta'), 6)
+    d.rectangle([(70, 168), (70 + 150, 176)], fill=ouro)   # fio de ouro (acento, parcimônia)
+    # KICKER (logo abaixo do wordmark)
+    kicker = (cena.get('kicker', '') or '').strip()
+    if kicker:
+        fk = gv.F_UI_B(40)
+        yy = 230
+        for ln in gv.wrap(d, kicker.upper(), fk, W - 150):
+            gv.tracked(d, (70, yy), ln, fk, ac, 2)
+            yy += int(fk.size * 1.2)
+    # TÍTULO grande (centro/baixo) em Hanken Black — o billboard
+    titulo = cena.get('titulo') or cfg['titulo']
+    ft = gv.F_BLACK(132)
+    lines = gv.wrap(d, titulo, ft, W - 140)
+    th = len(lines) * int(ft.size * 1.04)
+    ty = int(H * 0.60) - th // 2
+    for ln in lines:
+        d.text((70, ty), ln, font=ft, fill=gv.marca.rgb('tinta'))
+        ty += int(ft.size * 1.04)
+    # rodapé: o livro + handle, ancorando a marca
+    d.text((70, H - 220), cfg['titulo'].upper(), font=gv.F_UI_B(40),
+           fill=gv.marca.rgb('tinta-fraca'))
+    d.text((70, H - 150), HANDLE, font=gv.F_UI_B(44), fill=ac)
+    img.save(out_png)
+
+
 def main(slug, idx):
     cfg = json.loads((ROOT / 'roteiros' / f'{slug}.json').read_text(encoding='utf-8'))
     cena = cfg['cenas'][idx]
@@ -92,7 +138,8 @@ def main(slug, idx):
         gv.tts(cena['narracao'], cfg.get('voz', 'pt-BR-Chirp3-HD-Iapetus'),
                mp3, rate=cfg.get('tts_rate', 1.0))
 
-    LEAD = 0.45   # respiro de entrada: a 1ª palavra só entra DEPOIS do fade-in do vídeo
+    COVER = 2.4    # capa de marca segurada na ABERTURA p/ a vitrine do IG (thumb_offset@1500ms cai aqui)
+    LEAD = 0.45   # respiro de entrada: a 1ª palavra só entra DEPOIS do fade-in da cena
     dur = LEAD + MP3(mp3).info.length + 0.6
     nf = max(2, int(dur * 30))
     fo = max(0.1, dur - 0.4)
@@ -102,18 +149,25 @@ def main(slug, idx):
     ov_png = SH / f'{slug}_{idx:02d}_ov.png'
     hook = (cena.get('kicker', '').split('·')[-1].strip()) or cfg['titulo']
     make_overlay(cena, accent, hook, ov_png)
+    cv_png = SH / f'{slug}_{idx:02d}_cover.png'
+    make_cover(cena, accent, cfg, cv_png, bg_src)
 
     out = SH / f'{slug}_{idx:02d}.mp4'
+    # [3] = frame de capa de marca, segurado COVER s na abertura (vitrine do IG),
+    # depois concatena a cena animada. O áudio só começa após a capa + o respiro.
     vf = (f"[0:v]scale=1188:2112,zoompan=z='min(zoom+0.0008,1.12)':d={nf}:"
           f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30[z];"
-          f"[z][1:v]overlay=0:0,fade=t=in:st=0:d=0.4,fade=t=out:st={fo:.2f}:d=0.4[v];"
-          f"[2:a]adelay={int(LEAD*1000)}:all=1[a]")   # 1ª palavra entra após o respiro
+          f"[z][1:v]overlay=0:0,fade=t=in:st=0:d=0.4,fade=t=out:st={fo:.2f}:d=0.4[scene];"
+          f"[3:v]scale=1080:1920,fps=30,trim=duration={COVER:.2f},setpts=PTS-STARTPTS,"
+          f"fade=t=out:st={COVER-0.3:.2f}:d=0.3[cov];"
+          f"[cov][scene]concat=n=2:v=1:a=0[v];"
+          f"[2:a]adelay={int((COVER+LEAD)*1000)}:all=1[a]")   # voz após a capa + o respiro
     subprocess.run([FF, '-y', '-loop', '1', '-i', str(bg_png), '-loop', '1', '-i', str(ov_png),
-                    '-i', str(mp3), '-filter_complex', vf,
-                    '-map', '[v]', '-map', '[a]', '-t', f'{dur:.2f}',
+                    '-i', str(mp3), '-loop', '1', '-i', str(cv_png), '-filter_complex', vf,
+                    '-map', '[v]', '-map', '[a]', '-t', f'{COVER + dur:.2f}',
                     '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100',
                     '-shortest', str(out)], check=True, capture_output=True)
-    print(f'OK -> {out}  ({dur:.1f}s, 1080x1920)')
+    print(f'OK -> {out}  ({COVER + dur:.1f}s, 1080x1920, capa de marca {COVER:.1f}s)')
 
 
 if __name__ == '__main__':

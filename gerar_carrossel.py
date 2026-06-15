@@ -91,11 +91,12 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .slide::after{content:'';position:absolute;inset:38px;border:2px dashed var(--green);
   border-radius:32px;opacity:.38;pointer-events:none;
   box-shadow:inset 0 0 90px oklch(70% 0.13 152 / .05)}
-/* numeral-fantasma de fundo */
+/* numeral-fantasma de fundo (contido pela moldura p/ não virar artefato) */
 .slide>*{position:relative;z-index:1}
 .slide>.ghost{position:absolute;font-family:'Hanken Grotesk';font-weight:900;line-height:.74;
-  color:transparent;-webkit-text-stroke:2px oklch(74% 0.09 152 / .12);
-  pointer-events:none;letter-spacing:-.05em;z-index:0;-webkit-user-select:none}
+  color:transparent;-webkit-text-stroke:2px oklch(74% 0.09 152 / .10);
+  pointer-events:none;letter-spacing:-.05em;z-index:0;-webkit-user-select:none;overflow:hidden;
+  -webkit-mask-image:radial-gradient(120% 120% at 50% 50%, #000 60%, transparent 100%)}
 /* indicador de progresso */
 .dots{position:absolute;left:0;right:0;bottom:74px;display:flex;gap:13px;
   justify-content:center;align-items:center;z-index:2}
@@ -108,20 +109,23 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 
 /* ---------- topbar (slides de conceito) ---------- */
 .topbar{display:flex;justify-content:space-between;align-items:center}
-.brandmark{display:inline-flex;align-items:center;gap:13px;font-weight:800;
-  letter-spacing:.16em;font-size:25px;color:var(--green);text-transform:uppercase}
-.brandmark svg{width:30px;height:30px;color:var(--green)}
+.brandmark{display:inline-flex;align-items:center;gap:12px;font-weight:900;
+  letter-spacing:.03em;font-size:28px;color:var(--ink);text-transform:uppercase}
+.brandmark .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto}
+.brandmark .seal svg{width:28px;height:28px;color:var(--on-green)}
+.brandmark b{color:var(--green);font-weight:900}
 .count{display:inline-flex;align-items:baseline;gap:4px;font-weight:800;
   font-size:26px;letter-spacing:.04em;color:var(--green-soft)}
 .count b{font-size:34px;color:var(--green)} .count .sl{color:var(--hair);font-weight:700}
 
 /* ---------- selo do ícone ---------- */
-.card-icon{width:116px;height:116px;border-radius:28px;display:flex;align-items:center;
-  justify-content:center;margin:56px 0 34px;
+.card-icon{width:108px;height:108px;border-radius:26px;display:flex;align-items:center;
+  justify-content:center;margin:46px 0 28px;
   background:linear-gradient(160deg, oklch(70% 0.14 152 / .16), oklch(70% 0.14 152 / .04));
   border:2px solid var(--hair);
   box-shadow:0 0 48px oklch(70% 0.14 152 / .14), inset 0 1px 0 oklch(90% 0.1 152 / .12)}
-.card-icon svg{width:62px;height:62px;color:var(--green);
+.card-icon svg{width:58px;height:58px;color:var(--green);
   filter:drop-shadow(0 0 12px oklch(72% 0.14 152 / .45))}
 .warn .card-icon{background:linear-gradient(160deg, oklch(75% 0.16 38 / .16), oklch(75% 0.16 38 / .04));
   border-color:oklch(75% 0.16 38 / .42);box-shadow:0 0 48px oklch(75% 0.16 38 / .14)}
@@ -134,12 +138,12 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   box-shadow:0 14px 40px oklch(60% 0.14 152 / .3)}
 .warn .card-title{background:var(--warn);color:var(--on-warn);
   box-shadow:0 14px 40px oklch(65% 0.16 38 / .3)}
-.card-body{font-size:45px;line-height:1.4;color:var(--ink);margin-top:34px;
+.card-body{font-size:45px;line-height:1.4;color:var(--ink);margin-top:28px;
   font-weight:500;text-wrap:pretty}
 .card-body strong{color:var(--green-soft);font-weight:800}
 .warn .card-body strong{color:var(--warn)}
 .card-tip{display:flex;gap:20px;align-items:flex-start;font-size:31px;line-height:1.36;
-  color:var(--green-soft);margin-top:auto;border-top:2px dashed var(--green);
+  color:var(--green-soft);margin-top:auto;margin-bottom:8px;border-top:2px dashed var(--green);
   padding-top:30px;font-weight:500;text-wrap:pretty}
 .card-tip .tipic{flex:0 0 auto;width:42px;height:42px;margin-top:2px;color:var(--green)}
 .card-tip .tipic svg{width:42px;height:42px}
@@ -149,31 +153,41 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 
 /* ---------- capa ---------- */
 .cover{justify-content:center;text-align:center;align-items:center}
-.cover .badge{display:inline-flex;align-items:center;gap:14px;
-  border:2px solid var(--hair);border-radius:999px;padding:13px 28px 13px 22px;
-  color:var(--green);font-weight:800;letter-spacing:.14em;font-size:24px;text-transform:uppercase;
-  background:oklch(70% 0.14 152 / .07)}
-.cover .badge svg{width:32px;height:32px;color:var(--green)}
-.cover .kicker{font-size:24px;color:var(--muted);font-weight:800;letter-spacing:.16em;
-  text-transform:uppercase;margin-top:54px;max-width:780px;line-height:1.4}
-.cover h1{font-size:118px;line-height:.94;font-weight:900;text-transform:uppercase;
-  margin:24px 0 0;text-wrap:balance;letter-spacing:-.018em}
-.cover h1 .lt{color:var(--green);text-shadow:0 0 60px oklch(72% 0.14 152 / .35)}
+/* wordmark = ASSINATURA forte do canal (a marca para o dedo) */
+.cover .wordmark{position:absolute;top:74px;left:0;right:0;display:flex;
+  align-items:center;justify-content:center;gap:16px;z-index:2}
+.cover .wordmark .seal{width:62px;height:62px;border-radius:18px;display:flex;
+  align-items:center;justify-content:center;background:var(--green);color:var(--on-green);
+  box-shadow:0 10px 30px oklch(60% 0.14 152 / .4)}
+.cover .wordmark .seal svg{width:38px;height:38px;color:var(--on-green)}
+.cover .wordmark .name{font-weight:900;letter-spacing:.04em;font-size:40px;
+  color:var(--ink);text-transform:uppercase;line-height:1}
+.cover .wordmark .name b{color:var(--green)}
+.cover .kicker{display:inline-block;font-size:21px;color:var(--green-soft);font-weight:800;
+  letter-spacing:.2em;text-transform:uppercase;margin-top:0;max-width:680px;line-height:1.35;
+  border:1.5px solid var(--hair);border-radius:999px;padding:11px 26px;
+  background:oklch(70% 0.14 152 / .06)}
+.cover h1{font-size:124px;line-height:.92;font-weight:900;text-transform:uppercase;
+  margin:30px 0 0;text-wrap:balance;letter-spacing:-.022em}
+.cover h1 .lt{color:var(--green);text-shadow:0 0 60px oklch(72% 0.14 152 / .4)}
 .cover h1 .bd{color:var(--ink)}
-.cover .author{font-size:36px;color:var(--muted);margin-top:28px;font-weight:700;letter-spacing:.01em}
-.cover .hook{display:flex;align-items:center;justify-content:center;gap:26px;
-  margin-top:62px;border-top:3px dashed var(--green);border-bottom:3px dashed var(--green);
-  padding:30px 0;max-width:820px}
-.cover .hook .num{font-size:120px;font-weight:900;line-height:.8;color:var(--gold);
-  letter-spacing:-.04em;text-shadow:0 0 50px oklch(84% 0.12 92 / .3)}
-.cover .hook .lbl{font-size:46px;font-weight:800;color:var(--ink);text-align:left;
-  line-height:1.06;text-transform:uppercase;text-wrap:balance}
+.cover .author{font-size:34px;color:var(--muted);margin-top:30px;font-weight:700;letter-spacing:.01em}
+.cover .hook{display:flex;align-items:center;justify-content:center;gap:28px;
+  margin-top:58px;border-top:3px dashed var(--green);border-bottom:3px dashed var(--green);
+  padding:32px 0;max-width:820px}
+.cover .hook .num{font-size:128px;font-weight:900;line-height:.76;color:var(--gold);
+  letter-spacing:-.04em;text-shadow:0 0 50px oklch(84% 0.12 92 / .35)}
+.cover .hook .lbl{font-size:48px;font-weight:800;color:var(--ink);text-align:left;
+  line-height:1.04;text-transform:uppercase;text-wrap:balance}
 .cover .hook .lbl span{color:var(--green)}
-.cover .swipe{position:absolute;bottom:118px;left:0;right:0;font-weight:800;
-  letter-spacing:.22em;font-size:29px;color:var(--green);text-transform:uppercase;
-  display:flex;align-items:center;justify-content:center;gap:18px;z-index:2}
-.cover .swipe .arrow{display:inline-flex;width:40px;height:40px}
-.cover .swipe .arrow svg{width:40px;height:40px;color:var(--green)}
+/* swipe = affordance principal: pill verde, grande, perto do polegar */
+.cover .swipe{position:absolute;bottom:120px;left:50%;transform:translateX(-50%);
+  font-weight:800;letter-spacing:.16em;font-size:30px;color:var(--on-green);
+  text-transform:uppercase;display:inline-flex;align-items:center;justify-content:center;
+  gap:18px;z-index:2;background:var(--green);padding:20px 44px;border-radius:999px;
+  box-shadow:0 16px 44px oklch(60% 0.14 152 / .42);white-space:nowrap}
+.cover .swipe .arrow{display:inline-flex;width:38px;height:38px}
+.cover .swipe .arrow svg{width:38px;height:38px;color:var(--on-green)}
 
 /* ---------- cta ---------- */
 .cta{justify-content:center;text-align:center;align-items:center;padding-top:110px}
@@ -192,8 +206,8 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   color:var(--on-green);font-weight:800;font-size:40px;padding:24px 52px;border-radius:20px;
   text-transform:uppercase;box-shadow:0 18px 50px oklch(60% 0.14 152 / .4)}
 .cta .save svg{width:44px;height:44px;flex:0 0 auto}
-.cta .handle{position:absolute;bottom:118px;left:0;right:0;font-weight:800;letter-spacing:.2em;
-  font-size:27px;color:var(--green);text-transform:uppercase;z-index:2}
+.cta .handle{position:absolute;bottom:116px;left:0;right:0;font-weight:900;letter-spacing:.12em;
+  font-size:30px;color:var(--green-soft);text-transform:uppercase;z-index:2}
 
 /* ---------- citação ---------- */
 .quote{justify-content:center;align-items:flex-start;text-align:left;padding-top:120px}
@@ -211,12 +225,13 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .quote .attr{margin-top:50px;padding-top:32px;border-top:3px dashed var(--green);
   font-size:34px;line-height:1.34;color:var(--green-soft);font-weight:800;letter-spacing:.01em}
 .quote .attr .book{color:var(--muted);font-weight:600;font-style:italic}
-.quote .foot{position:absolute;left:90px;right:90px;bottom:108px;display:flex;
+.quote .foot{position:absolute;left:90px;right:90px;bottom:104px;display:flex;
   align-items:center;justify-content:space-between;z-index:2}
-.quote .foot .handle{font-weight:800;letter-spacing:.16em;font-size:26px;color:var(--green);text-transform:uppercase}
-.quote .foot .cta-min{font-weight:700;letter-spacing:.04em;font-size:24px;color:var(--muted);
-  text-transform:uppercase;display:inline-flex;align-items:center;gap:12px}
-.quote .foot .cta-min svg{width:32px;height:32px;color:var(--green)}
+.quote .foot .handle{font-weight:900;letter-spacing:.08em;font-size:28px;color:var(--green-soft);text-transform:uppercase}
+.quote .foot .cta-min{font-weight:800;letter-spacing:.02em;font-size:25px;color:var(--on-green);
+  text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;background:var(--green);
+  padding:14px 26px;border-radius:999px;box-shadow:0 10px 30px oklch(60% 0.14 152 / .35)}
+.quote .foot .cta-min svg{width:30px;height:30px;color:var(--on-green)}
 """
 
 
@@ -236,18 +251,26 @@ def _dots(pos, total):
             + '</div>')
 
 
+def _kicker_text(book):
+    """Kicker curto e escaneável (Krug: omita palavras). Tira o prefixo
+    'VISÃO GERAL · ' redundante p/ não competir com o título; cai nas tags se vazio."""
+    k = book.get('subtitle', '') or ' · '.join(book.get('tags', [])[:3]).upper()
+    k = re.sub(r'^\s*VIS[ÃA]O GERAL\s*[·\-—]\s*', '', k, flags=re.IGNORECASE)
+    return k.strip()
+
+
 def _cover(book, n, pos, total):
-    book_svg = _svg('book')
-    kicker = book.get('subtitle', '') or ' · '.join(book.get('tags', [])[:3]).upper()
+    kicker = _kicker_text(book)
     kicker_html = f'<div class="kicker">{kicker}</div>' if kicker else ''
     return _slide(
-        f'<div class="badge">{book_svg}<span>Minuto Real · Resumo</span></div>'
+        f'<div class="wordmark"><span class="seal">{_svg("book")}</span>'
+        f'<span class="name">Minuto<b>Real</b></span></div>'
         f'{kicker_html}'
         f'<h1><span class="lt">{book["header_light"]}</span> <span class="bd">{book["header_bold"]}</span></h1>'
         f'<div class="author">por {book["author"]}</div>'
         f'<div class="hook"><span class="num">{n}</span>'
         f'<span class="lbl">ideias<br>que <span>ficam</span></span></div>'
-        f'<div class="swipe"><span>arraste</span>'
+        f'<div class="swipe"><span>arrasta</span>'
         f'<span class="arrow">{_svg("arrow")}</span></div>'
         f'{_dots(pos, total)}',
         'cover')
@@ -260,7 +283,8 @@ def _concept(c, i, total_cards, pos, total):
         tipic = _svg('spark') if not c.get('warn') else _svg('shield')
         tip = f'<div class="card-tip"><span class="tipic">{tipic}</span><span>{c["tip"]}</span></div>'
     return _slide(
-        f'<div class="topbar"><span class="brandmark">{_svg("book")}Minuto Real</span>'
+        f'<div class="topbar"><span class="brandmark">'
+        f'<span class="seal">{_svg("book")}</span>Minuto<b>Real</b></span>'
         f'<span class="count"><b>{i:02d}</b><span class="sl">/</span>{total_cards:02d}</span></div>'
         f'{icon(c["ic"])}'
         f'<div class="card-title">{c["t"]}</div>'
@@ -268,7 +292,7 @@ def _concept(c, i, total_cards, pos, total):
         f'{tip}'
         f'{_dots(pos, total)}',
         cls,
-        ghost=_ghost('top:-18px;left:46px;font-size:300px', f'{i:02d}'))
+        ghost=_ghost('top:118px;right:60px;font-size:330px', f'{i:02d}'))
 
 
 def _cta(book, pos, total):
@@ -286,7 +310,7 @@ def _cta(book, pos, total):
         '<div class="handle">@minutoreal1701</div>'
         f'{_dots(pos, total)}',
         'cta',
-        ghost=_ghost('bottom:-80px;right:-30px;font-size:400px', '+'))
+        ghost=_ghost('bottom:150px;right:40px;font-size:300px', '+'))
 
 
 # ---------- modo citação ----------
@@ -403,7 +427,7 @@ def _quote_card(q, book, k, total):
     foot = (
         '<div class="foot">'
         '<span class="handle">@minutoreal1701</span>'
-        f'<span class="cta-min">{_svg("play")}cheat sheet: link na bio</span>'
+        f'<span class="cta-min">{_svg("bookmark")}salve esta</span>'
         '</div>')
     attr = f'<div class="attr">{book["author"]}<br><span class="book">{book["title"]}</span></div>'
     qcount = (f'<div class="qcount"><b>{k:02d}</b><span class="sl">/</span>{total:02d}</div>'
@@ -414,7 +438,7 @@ def _quote_card(q, book, k, total):
         f'<div class="phrase">{_emph(q)}</div>'
         f'{attr}{foot}',
         'quote',
-        ghost=_ghost('bottom:-90px;right:-20px;font-size:440px', '&rdquo;'))
+        ghost=_ghost('bottom:150px;right:24px;font-size:320px', '&rdquo;'))
 
 
 def _render(slides, out, scale=2, w=W, h=H, css=None):
@@ -428,6 +452,20 @@ def _render(slides, out, scale=2, w=W, h=H, css=None):
         pg.set_content(html, wait_until='networkidle')
         pg.evaluate('document.fonts.ready')
         pg.wait_for_timeout(500)
+        # auto-encolhe titulos que estouram a caixa (palavra unica longa: METAMORFOSE,
+        # COMUNICACAO, INSUSTENTAVEL...). Duravel: blinda qualquer titulo futuro sem
+        # tocar nos que ja cabem. O h1 e flex-item centralizado (encolhe no proprio
+        # texto), entao medimos contra a CAIXA DE CONTEUDO do contentor, nao o h1.
+        pg.evaluate("""() => {
+          for (const el of document.querySelectorAll('.cover h1, .st h1')) {
+            const box = el.parentElement, cs = getComputedStyle(box);
+            const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+            let fs = parseFloat(getComputedStyle(el).fontSize), guard = 0;
+            while (el.getBoundingClientRect().width > avail && fs > 50 && guard < 120) {
+              fs -= 3; el.style.fontSize = fs + 'px'; guard++;
+            }
+          }
+        }""")
         paths = []
         for i, el in enumerate(pg.query_selector_all('.slide, .story'), 1):
             fp = out / f'{i:02d}.png'
@@ -549,13 +587,18 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
   border-radius:40px;opacity:.32;pointer-events:none}
 .story>*{position:relative;z-index:1}
 .story>.ghost{position:absolute;font-family:'Hanken Grotesk';font-weight:900;line-height:.74;
-  color:transparent;-webkit-text-stroke:2px oklch(74% 0.09 152 / .12);pointer-events:none;
-  letter-spacing:-.05em;z-index:0}
-.badge{position:absolute;top:226px;left:50%;transform:translateX(-50%);
-  display:inline-flex;align-items:center;gap:14px;border:2px solid var(--hair);border-radius:999px;
-  padding:15px 32px 15px 26px;color:var(--green);font-weight:800;letter-spacing:.15em;font-size:27px;
-  text-transform:uppercase;background:oklch(70% 0.14 152 / .07);white-space:nowrap}
-.badge svg{width:34px;height:34px;color:var(--green)}
+  color:transparent;-webkit-text-stroke:2px oklch(74% 0.09 152 / .10);pointer-events:none;
+  letter-spacing:-.05em;z-index:0;overflow:hidden;
+  -webkit-mask-image:radial-gradient(120% 120% at 50% 50%, #000 60%, transparent 100%)}
+/* wordmark de story = selo cheio + nome (assinatura forte do canal) */
+.badge{position:absolute;top:218px;left:50%;transform:translateX(-50%);
+  display:inline-flex;align-items:center;gap:16px;white-space:nowrap}
+.badge .seal{width:58px;height:58px;border-radius:17px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto;
+  box-shadow:0 10px 28px oklch(60% 0.14 152 / .4)}
+.badge .seal svg{width:36px;height:36px;color:var(--on-green)}
+.badge .name{font-weight:900;letter-spacing:.03em;font-size:38px;color:var(--ink);text-transform:uppercase}
+.badge .name b{color:var(--green)}
 .foot{position:absolute;bottom:236px;left:80px;right:80px;text-align:center}
 .foot .tap{display:inline-flex;align-items:center;gap:14px;font-weight:800;font-size:36px;
   letter-spacing:.02em;color:var(--on-green);background:var(--green);padding:24px 46px;border-radius:999px;
@@ -603,14 +646,15 @@ def _story(inner, cls='', ghost=''):
 
 def _story_teaser(book, n):
     return _story(
-        f'<div class="badge">{_svg("book")}<span>Minuto Real · Novo</span></div>'
-        '<div class="eyebrow">resumo da semana</div>'
+        f'<div class="badge"><span class="seal">{_svg("book")}</span>'
+        f'<span class="name">Minuto<b>Real</b></span></div>'
+        '<div class="eyebrow">novo · resumo da semana</div>'
         f'<h1><span class="lt">{book["header_light"]}</span><br>'
         f'<span class="bd">{book["header_bold"]}</span></h1>'
         f'<div class="hook"><span class="num">{n}</span> ideias que ficam</div>'
         f'<div class="foot"><span class="tap">toque no link da bio {_svg("arrow")}</span>'
         '<span class="handle">@minutoreal1701</span></div>',
-        'st', ghost=_ghost('top:140px;right:-20px;font-size:540px', f'{n}'))
+        'st', ghost=_ghost('top:430px;right:70px;font-size:440px', f'{n}'))
 
 
 def _story_quote(quote, book):
@@ -620,7 +664,7 @@ def _story_quote(quote, book):
         f'<div class="attr">{book["author"]}<span class="book">{book["title"]}</span></div>'
         f'<div class="foot"><span class="tap">resumo no YouTube {_svg("play")}</span>'
         '<span class="handle">link na bio</span></div>',
-        'sq', ghost=_ghost('bottom:60px;right:-20px;font-size:520px', '&rdquo;'))
+        'sq', ghost=_ghost('bottom:330px;right:40px;font-size:420px', '&rdquo;'))
 
 
 def _story_cta(book):
@@ -636,7 +680,7 @@ def _story_cta(book):
         '</div>'
         f'<div class="foot"><span class="tap">link na bio {_svg("arrow")}</span>'
         '<span class="handle">@minutoreal1701</span></div>',
-        'sc', ghost=_ghost('top:150px;left:-20px;font-size:480px', '+'))
+        'sc', ghost=_ghost('top:430px;left:60px;font-size:400px', '+'))
 
 
 def build_stories(slug):

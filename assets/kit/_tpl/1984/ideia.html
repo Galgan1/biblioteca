@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>kit · card de ideia-chave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,600;1,7..72,500;1,7..72,600&display=swap');
+:root{
+  --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
+  --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
+  --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
+  --gold: oklch(76% 0.105 83);
+  --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+/* ---------- base do slide (mesma gramática do carrossel) ---------- */
+.slide{width:1080px;height:1080px;color:var(--ink);padding:110px 100px 130px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  background:
+   radial-gradient(135% 95% at 102% 108%, oklch(24% 0.045 152 / .85) 0%, transparent 48%),
+   radial-gradient(115% 72% at 50% -12%, oklch(27% 0.05 152) 0%, transparent 60%),
+   radial-gradient(150% 125% at 50% 48%, transparent 52%, oklch(5% 0.012 152 / .6) 100%),
+   linear-gradient(177deg, var(--bg) 0%, var(--bg2) 100%);}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(oklch(78% 0.07 152 / .055) 1.1px, transparent 1.3px);
+  background-size:36px 36px;background-position:center;
+  -webkit-mask-image:radial-gradient(125% 105% at 50% -5%, #000 50%, transparent 100%);}
+.slide::after{content:'';position:absolute;inset:38px;border:2px dashed var(--green);
+  border-radius:32px;opacity:.38;pointer-events:none;
+  box-shadow:inset 0 0 90px oklch(70% 0.13 152 / .05)}
+.slide>*{position:relative;z-index:1}
+
+/* wordmark topo */
+.wordmark{display:inline-flex;align-items:center;gap:16px;align-self:center;margin-bottom:auto}
+.wordmark .seal{width:62px;height:62px;border-radius:18px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);
+  box-shadow:0 10px 30px oklch(60% 0.14 152 / .4)}
+.wordmark .seal svg{width:38px;height:38px;color:var(--on-green)}
+.wordmark .wm-text{font-weight:900;letter-spacing:.04em;font-size:34px;text-transform:uppercase;color:var(--ink)}
+.wordmark .wm-text b{color:var(--green)}
+
+/* bloco do conceito, centralizado verticalmente */
+.concept{margin:auto 0;display:flex;flex-direction:column;align-items:flex-start;gap:44px}
+
+/* título em pílula verde */
+.pill{align-self:flex-start;background:var(--green);color:var(--on-green);
+  font-family:'Hanken Grotesk';font-weight:800;font-size:42px;line-height:1;
+  text-transform:uppercase;letter-spacing:.02em;border-radius:16px;
+  padding:26px 40px;box-shadow:0 12px 34px oklch(60% 0.14 152 / .35)}
+
+/* corpo do conceito */
+.body{font-family:'Hanken Grotesk';font-weight:500;font-size:46px;line-height:1.35;
+  text-wrap:pretty;color:var(--ink);text-align:left}
+.body strong{color:var(--green-soft);font-weight:800}
+
+/* rodapé / handle */
+.handle{position:absolute;left:0;right:0;bottom:54px;text-align:center;font-weight:800;
+  letter-spacing:.22em;font-size:22px;color:var(--ink-dim);text-transform:uppercase;z-index:2}
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <div class="wordmark">
+    <span class="seal" aria-hidden="true">
+      <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14 12h36v40H14z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M14 24h36M14 38h36M24 12v12M40 24v14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </svg>
+    </span>
+    <span class="wm-text">BIBLIO<b>TECA</b></span>
+  </div>
+
+  <div class="concept">
+    <div class="pill">Vigilância Possível</div>
+    <p class="body">A vigilância <strong>possível</strong> governa mais que a vigilância constante &mdash; basta saber que se PODE estar sendo vigiado para a pessoa se autocensurar.</p>
+  </div>
+
+  <div class="handle">andregalgani.com.br/biblioteca</div>
+</div>
+</body>
+</html>

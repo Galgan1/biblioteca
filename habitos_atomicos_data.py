@@ -25,6 +25,61 @@ BOOK = {
  ],
 }
 
+# Infografico de Instagram (Diretor de Design) — arquetipo FLUXO (gerar_infografico.py)
+FLUXO = {
+ "kicker": "O LOOP DO HÁBITO EM 4 LEIS",
+ "steps": [
+   {"n":"1","ic":"eye","lbl":"Deixa","law":"1ª Lei · Torne Óbvio",
+    "sub":"O gatilho do ambiente que dispara o comportamento. Deixe-o à vista."},
+   {"n":"2","ic":"spark","lbl":"Desejo","law":"2ª Lei · Torne Atraente",
+    "sub":"A expectativa da recompensa que motiva. Agrupe-o com algo prazeroso."},
+   {"n":"3","ic":"leaf","lbl":"Resposta","law":"3ª Lei · Torne Fácil",
+    "sub":"A ação em si. Reduza o atrito: comece na versão de <strong>2 minutos</strong>."},
+   {"n":"4","ic":"key","lbl":"Recompensa","law":"4ª Lei · Torne Satisfatório",
+    "sub":"O prazer que ensina o cérebro a repetir. Feche o loop com satisfação imediata.","gold":True},
+ ],
+ "na_pratica": "Empilhe UM novo hábito num que já existe — “depois de [rotina], "
+               "vou [hábito]” — na versão de <strong>2 minutos</strong>.",
+}
+
+# Infografico de Instagram (Diretor de Design) — arquetipo NUMEROS (gerar_infografico.py)
+NUMEROS = {
+ "kicker": "O LIVRO EM NÚMEROS", "tag": "DADOS",
+ "stats": [
+   {"ic":"spark","num":"37","unit":"×","star":True,"lbl":"em um ano",
+    "ctx":"Melhorar <b>1% por dia</b> compõe ~37 vezes em 12 meses. 1% pior tende a zero."},
+   {"ic":"clock","pre":"≤","num":"2","unit":"min","lbl":"a regra de começar",
+    "ctx":"Todo hábito novo começa numa versão de <b>2 minutos</b>. Domine a arte de aparecer."},
+   {"ic":"layers","num":"3","lbl":"níveis de mudança",
+    "ctx":"Resultados → processos → <b>identidade</b>. O durável muda de dentro para fora."},
+ ],
+ "viz": {"type":"curve","title":"Os juros compostos do comportamento","note":"1% ao dia &rarr; <b>37&times;</b> / ano"},
+ "foot": {"ic":"spark","text":"Esqueça a meta: projete o <strong>sistema diário</strong>. "
+          "Comece pela versão de 2 minutos e deixe o 1% compor."},
+}
+
+# Infografico de Instagram (Diretor de Design) — arquetipo ANATOMIA (anel/ciclo)
+ANATOMIA = {
+ "eyebrow": "Anatomia · Hábitos Atômicos",
+ "h1": '<span class="lt">Anatomia</span> de um hábito',
+ "sub": "Todo hábito gira num ciclo de quatro estágios — e cada um tem uma Lei "
+        "que o cria (ou, invertida, o quebra).",
+ "hub": {"l1": "O LOOP", "l2": "DO HÁBITO", "note": "O MOTOR DE TODO HÁBITO"},
+ "nodes": [
+   {"ic":"eye","law":"1ª Lei · Torne Óbvio","lbl":"A Deixa",
+    "exp":"O gatilho que <b>dispara</b> o hábito. À vista p/ criar; invisível p/ largar."},
+   {"ic":"spark","law":"2ª Lei · Torne Atraente","lbl":"O Desejo",
+    "exp":"A <b>antecipação</b> da recompensa — é ela que motiva, não a ação."},
+   {"ic":"steps","law":"3ª Lei · Torne Fácil","lbl":"A Resposta",
+    "exp":"O hábito feito. Vence o <b>menor atrito</b> — frequência &gt; intensidade."},
+   {"ic":"key","law":"4ª Lei · Torne Satisfatório","lbl":"A Recompensa",
+    "exp":"O prazer <b>imediato</b> fecha o loop e ensina o cérebro a repetir."},
+ ],
+ "practice": {"kicker":"Na prática · a regra dos 2 minutos","ic":"clock",
+   "text":"Comece pela versão <b>≤ 2 minutos</b> do hábito (“ler” = 1 página). "
+          "Domine a arte de aparecer; escale depois."},
+}
+
 CHAPTERS = [
  {"slug":"ch01-1porcento-sistemas","sub":"CAPÍTULO 1: O 1% e os Sistemas",
   "intro":"Resultados extraordinários não vêm de uma virada heroica, mas do acúmulo de pequenas melhoras. E o que decide o progresso não é a meta — é o sistema que você repete.",
