@@ -10,7 +10,7 @@ BASE = Path(__file__).parent
 ASSETS = BASE / 'assets'
 QUALITY = 82
 
-capas = sorted(ASSETS.glob('*-capa.png'))
+capas = sorted(ASSETS.glob('*-capa.png')) + sorted(ASSETS.glob('*-cover.png'))
 total_before = total_after = 0
 converted = skipped = 0
 
@@ -31,4 +31,4 @@ for png in capas:
 
 print(f'\nConvertidos: {converted}  Pulados: {skipped}')
 if total_before:
-    print(f'Total: {total_before//1024}KB → {total_after//1024}KB  (-{(1-total_after/total_before)*100:.0f}%)')
+    print(f'Total: {total_before//1024}KB -> {total_after//1024}KB  (-{(1-total_after/total_before)*100:.0f}%)')
