@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "clock",
+      "t": "Três Gatilhos do Raro",
+      "emph": "Raro",
+      "b": "Damos mais valor ao que escasseia — e o desejo acende por três alavancas: a quantidade limitada (“últimas unidades”), o prazo (“só hoje”, a contagem regressiva) e a censura (o proibido brilha mais). <strong>A raridade não muda o quanto a coisa serve, só o quanto a queremos</strong> — e confundir as duas é metade do trabalho de fechar.",
+      "tip": "<strong>Como se defender:</strong> separe “querer ter” de “ser útil” — raridade mexe no desejo, nunca no valor de uso.",
+      "wide": true
+    },
+    {
+      "ic": "spiral",
+      "t": "O Proibido Seduz",
+      "emph": "Seduz",
+      "b": "Quando a liberdade de ter ou escolher é ameaçada, desejamos ainda mais aquilo que poderíamos perder — é a reatância de Brehm. Perder dói mais do que ganhar agrada, e a ameaça de ficar sem distorce o juízo. <strong>Proibir um livro é o melhor anúncio que ele pode ter</strong>; restringir uma opção é a forma mais limpa de torná-la irresistível.",
+      "tip": "<strong>Sinal de alerta:</strong> querer algo só porque foi restringido ou proibido é a reatância assumindo o comando.",
+      "warn": true
+    },
+    {
+      "ic": "target",
+      "t": "Escassez Mais Competição",
+      "emph": "Competição",
+      "b": "Junte “só resta uma” a “outro cliente já voltou para buscá-la” e o impulso de fechar na hora dispara no pico. A raridade nova vale mais que a antiga, e a disputa vira urgência física — o coração acelera, a posse parece escapar. <strong>Essa onda de excitação é o alarme, não a evidência</strong> de que você precisa do item.",
+      "tip": "<strong>Como se defender:</strong> use a própria adrenalina como gatilho de pausa — pare e pergunte “útil, ou só raro?”."
+    }
+  ]
+}

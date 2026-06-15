@@ -322,182 +322,6 @@
     ]
   },
   {
-    "id": "poder-de-delegar",
-    "title": "O Poder de Delegar",
-    "author": "Donna M. Genett",
-    "coverUrl": "assets/poder-de-delegar-capa.png",
-    "description": "O clássico de Donna Genett que vira do avesso o ditado 'se quer bem feito, faça você mesmo'. Pela parábola dos primos James e Jones, ensina os seis passos da delegação eficaz — preparar, discutir, prazo, nível de autoridade, checkpoints e debriefing — para o líder se multiplicar sem se afogar.",
-    "tags": [
-      "Liderança",
-      "Gestão",
-      "Produtividade"
-    ],
-    "progress": "8 Capítulos",
-    "url": "poder-de-delegar.html",
-    "amazon": "https://www.amazon.com.br/dp/8576840669/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8576840669/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "psicologia-financeira",
-    "title": "A Psicologia Financeira",
-    "author": "Morgan Housel",
-    "coverUrl": "assets/psicologia-financeira-capa.png",
-    "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade. Por que o comportamento vence a matemática nas finanças: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver para deixar o tempo compor, a cauda longa, a liberdade como maior dividendo, a riqueza invisível e a margem de segurança.",
-    "tags": [
-      "Finanças",
-      "Comportamento",
-      "Investimento"
-    ],
-    "progress": "11 Capítulos",
-    "url": "psicologia-financeira.html",
-    "amazon": "https://www.amazon.com.br/dp/6555111100/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6555111100/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "comunicacao-nao-violenta",
-    "title": "Comunicação Não-Violenta",
-    "author": "Marshall B. Rosenberg",
-    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
-    "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
-    "tags": [
-      "Comunicação",
-      "Empatia",
-      "Relacionamentos"
-    ],
-    "progress": "11 Capítulos",
-    "url": "comunicacao-nao-violenta.html",
-    "amazon": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "coragem-de-nao-agradar",
-    "title": "A Coragem de Não Agradar",
-    "author": "Ichiro Kishimi & Fumitake Koga",
-    "coverUrl": "assets/coragem-de-nao-agradar-capa.png",
-    "description": "O fenômeno japonês de Kishimi e Koga que popularizou Alfred Adler pelo mundo. Em forma de diálogo, vira do avesso a ideia de que somos reféns do trauma: vivemos por objetivos, não por causas. Ensina a separação de tarefas, a sair da armadilha do reconhecimento e a sustentar a felicidade na tríade autoaceitação, confiança e contribuição — a verdadeira coragem de não agradar.",
-    "tags": [
-      "Psicologia",
-      "Adler",
-      "Autoconhecimento"
-    ],
-    "progress": "9 Capítulos",
-    "url": "coragem-de-nao-agradar.html",
-    "amazon": "https://www.amazon.com.br/dp/8543105692/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543105692/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "como-fazer-amigos",
-    "title": "Como Fazer Amigos e Influenciar Pessoas",
-    "author": "Dale Carnegie",
-    "coverUrl": "assets/como-fazer-amigos-capa.png",
-    "description": "Publicado em 1936 e nunca mais saído de moda, é o clássico definitivo sobre influência honesta. Em quatro partes — as 3 técnicas fundamentais, as 6 maneiras de cair nas graças, as 12 maneiras de convencer e as 9 maneiras de liderar sem ofender — Carnegie mostra que influência é atração, não imposição. O fio condutor: pense pelo ponto de vista do outro, reconheça seu valor com sinceridade e desperte nele o desejo de agir.",
-    "tags": [
-      "Comunicação",
-      "Relacionamentos",
-      "Influência"
-    ],
-    "progress": "11 Capítulos",
-    "url": "como-fazer-amigos.html",
-    "amazon": "https://www.amazon.com.br/dp/8504018024/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8504018024/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "essencialismo",
-    "title": "Essencialismo",
-    "author": "Greg McKeown",
-    "coverUrl": "assets/essencialismo-capa.png",
-    "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
-    "tags": [
-      "Produtividade",
-      "Foco",
-      "Prioridades"
-    ],
-    "progress": "12 Capítulos",
-    "url": "essencialismo.html",
-    "amazon": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "rapido-e-devagar",
-    "title": "Rápido e Devagar: Duas Formas de Pensar",
-    "author": "Daniel Kahneman",
-    "coverUrl": "assets/rapido-e-devagar-capa.png",
-    "description": "O mapa da mente de Daniel Kahneman, vencedor do Nobel de Economia. Os dois sistemas de pensamento (rápido/intuitivo e lento/deliberado), o princípio WYSIATI, as heurísticas e vieses que enganam o julgamento (ancoragem, disponibilidade, representatividade, falácia da conjunção, taxa-base, regressão à média), o excesso de confiança e o pré-mortem, a Teoria do Prospecto (aversão à perda, ponto de referência, enquadramento) e os dois eus — o que experiencia e o que recorda.",
-    "tags": [
-      "Psicologia",
-      "Decisão",
-      "Vieses Cognitivos"
-    ],
-    "progress": "12 Capítulos",
-    "url": "rapido-e-devagar.html",
-    "amazon": "https://www.amazon.com.br/dp/853900383X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/853900383X/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "armas-da-persuasao",
-    "title": "As Armas da Persuasão",
-    "author": "Robert B. Cialdini",
-    "coverUrl": "assets/armas-da-persuasao-capa.png",
-    "description": "O clássico de Robert Cialdini sobre a psicologia do consentimento. Os padrões fixos de ação (o 'clique, zumm'), o contraste perceptivo e os 6 princípios universais da influência — reciprocidade, compromisso e coerência, aprovação/prova social, afeição, autoridade e escassez (mais a unidade como 7º). Para cada princípio: como funciona e como se proteger da manipulação.",
-    "tags": [
-      "Persuasão",
-      "Influência",
-      "Psicologia"
-    ],
-    "progress": "8 Capítulos",
-    "url": "armas-da-persuasao.html",
-    "amazon": "https://www.amazon.com.br/dp/8575428098/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8575428098/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "pai-rico-pai-pobre",
     "title": "Pai Rico, Pai Pobre",
     "author": "Robert T. Kiyosaki",
@@ -2119,5 +1943,117 @@
     ],
     "progress": "7 Capítulos",
     "url": "quem-mexeu-no-queijo.html"
+  },
+  {
+    "id": "poder-de-delegar",
+    "title": "O Poder de Delegar",
+    "author": "Donna M. Genett",
+    "coverUrl": "assets/poder-de-delegar-capa.png",
+    "description": "O clássico de Donna Genett que vira do avesso o ditado 'se quer bem feito, faça você mesmo'. Pela parábola dos primos James e Jones, ensina os seis passos da delegação eficaz — preparar, discutir, prazo, nível de autoridade, checkpoints e debriefing — para o líder se multiplicar sem se afogar.",
+    "tags": [
+      "Liderança",
+      "Gestão",
+      "Produtividade"
+    ],
+    "progress": "8 Capítulos",
+    "url": "poder-de-delegar.html"
+  },
+  {
+    "id": "psicologia-financeira",
+    "title": "A Psicologia Financeira",
+    "author": "Morgan Housel",
+    "coverUrl": "assets/psicologia-financeira-capa.png",
+    "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade. Por que o comportamento vence a matemática nas finanças: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver para deixar o tempo compor, a cauda longa, a liberdade como maior dividendo, a riqueza invisível e a margem de segurança.",
+    "tags": [
+      "Finanças",
+      "Comportamento",
+      "Investimento"
+    ],
+    "progress": "11 Capítulos",
+    "url": "psicologia-financeira.html"
+  },
+  {
+    "id": "comunicacao-nao-violenta",
+    "title": "Comunicação Não-Violenta",
+    "author": "Marshall B. Rosenberg",
+    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
+    "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
+    "tags": [
+      "Comunicação",
+      "Empatia",
+      "Relacionamentos"
+    ],
+    "progress": "11 Capítulos",
+    "url": "comunicacao-nao-violenta.html"
+  },
+  {
+    "id": "coragem-de-nao-agradar",
+    "title": "A Coragem de Não Agradar",
+    "author": "Ichiro Kishimi & Fumitake Koga",
+    "coverUrl": "assets/coragem-de-nao-agradar-capa.png",
+    "description": "O fenômeno japonês de Kishimi e Koga que popularizou Alfred Adler pelo mundo. Em forma de diálogo, vira do avesso a ideia de que somos reféns do trauma: vivemos por objetivos, não por causas. Ensina a separação de tarefas, a sair da armadilha do reconhecimento e a sustentar a felicidade na tríade autoaceitação, confiança e contribuição — a verdadeira coragem de não agradar.",
+    "tags": [
+      "Psicologia",
+      "Adler",
+      "Autoconhecimento"
+    ],
+    "progress": "9 Capítulos",
+    "url": "coragem-de-nao-agradar.html"
+  },
+  {
+    "id": "como-fazer-amigos",
+    "title": "Como Fazer Amigos e Influenciar Pessoas",
+    "author": "Dale Carnegie",
+    "coverUrl": "assets/como-fazer-amigos-capa.png",
+    "description": "Publicado em 1936 e nunca mais saído de moda, é o clássico definitivo sobre influência honesta. Em quatro partes — as 3 técnicas fundamentais, as 6 maneiras de cair nas graças, as 12 maneiras de convencer e as 9 maneiras de liderar sem ofender — Carnegie mostra que influência é atração, não imposição. O fio condutor: pense pelo ponto de vista do outro, reconheça seu valor com sinceridade e desperte nele o desejo de agir.",
+    "tags": [
+      "Comunicação",
+      "Relacionamentos",
+      "Influência"
+    ],
+    "progress": "11 Capítulos",
+    "url": "como-fazer-amigos.html"
+  },
+  {
+    "id": "essencialismo",
+    "title": "Essencialismo",
+    "author": "Greg McKeown",
+    "coverUrl": "assets/essencialismo-capa.png",
+    "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
+    "tags": [
+      "Produtividade",
+      "Foco",
+      "Prioridades"
+    ],
+    "progress": "12 Capítulos",
+    "url": "essencialismo.html"
+  },
+  {
+    "id": "rapido-e-devagar",
+    "title": "Rápido e Devagar: Duas Formas de Pensar",
+    "author": "Daniel Kahneman",
+    "coverUrl": "assets/rapido-e-devagar-capa.png",
+    "description": "O mapa da mente de Daniel Kahneman, vencedor do Nobel de Economia. Os dois sistemas de pensamento (rápido/intuitivo e lento/deliberado), o princípio WYSIATI, as heurísticas e vieses que enganam o julgamento (ancoragem, disponibilidade, representatividade, falácia da conjunção, taxa-base, regressão à média), o excesso de confiança e o pré-mortem, a Teoria do Prospecto (aversão à perda, ponto de referência, enquadramento) e os dois eus — o que experiencia e o que recorda.",
+    "tags": [
+      "Psicologia",
+      "Decisão",
+      "Vieses Cognitivos"
+    ],
+    "progress": "12 Capítulos",
+    "url": "rapido-e-devagar.html"
+  },
+  {
+    "id": "armas-da-persuasao",
+    "title": "As Armas da Persuasão",
+    "author": "Robert B. Cialdini",
+    "coverUrl": "assets/armas-da-persuasao-capa.png",
+    "description": "O clássico de Robert Cialdini sobre a psicologia do consentimento. Os padrões fixos de ação (o 'clique, zumm'), o contraste perceptivo e os 6 princípios universais da influência — reciprocidade, compromisso e coerência, aprovação/prova social, afeição, autoridade e escassez (mais a unidade como 7º). Para cada princípio: como funciona e como se proteger da manipulação.",
+    "tags": [
+      "Persuasão",
+      "Influência",
+      "Psicologia"
+    ],
+    "progress": "8 Capítulos",
+    "url": "armas-da-persuasao.html"
   }
 ]

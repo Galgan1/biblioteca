@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "shield",
+      "t": "Empatia Primeiro, Defesa Depois",
+      "emph": "Primeiro",
+      "b": "Quando a crítica aterrissa em você, o corpo já prepara a defesa — e contra-argumentar antes do outro se sentir ouvido só escala a briga. A ordem é o segredo: escute até a pessoa sentir que foi compreendida e só então apresente o seu lado. <strong>Quem se sente ouvido finalmente consegue ouvir; a sequência invertida acende o pavio.</strong>",
+      "tip": "<strong>Como aplicar:</strong> em conflito, segure o impulso de explicar; a sua vez chega — e chega melhor — depois da empatia."
+    },
+    {
+      "ic": "key",
+      "t": "O Ataque é um “Obrigado” Mal-Embrulhado",
+      "emph": "Mal-Embrulhado",
+      "b": "Por trás de toda agressão grita uma necessidade não atendida. O cliente que xinga, o parceiro que acusa — ambos pedem algo, da pior forma. Quem revida responde à embalagem; quem escuta a necessidade muda o jogo. <strong>Ao se sentir reconhecida, a raiva do outro costuma baixar sozinha — e só então a solução cabe na conversa.</strong>",
+      "tip": "<strong>Modelo mental:</strong> traduza o chacal do outro em sentimento mais necessidade — “você esperava que já estivesse resolvido?”."
+    },
+    {
+      "ic": "scale",
+      "t": "Dizer “Não” é Dizer “Sim” a uma Necessidade",
+      "emph": "“Não”",
+      "b": "O “não” seco fere e o “não” afogado em desculpas alimenta a sensação de rejeição. O “não” empático faz outra coisa: nomeia a necessidade que ele protege. “Vou dizer não a isto porque preciso de descanso” recusa sem romper o vínculo. <strong>Todo “não” honesto é, no fundo, um “sim” a algo que importa para você.</strong>",
+      "tip": "<strong>Cuidado:</strong> recusar sem dizer o que você protege deixa o outro só com a rejeição, sem a razão por trás dela.",
+      "warn": true
+    }
+  ]
+}

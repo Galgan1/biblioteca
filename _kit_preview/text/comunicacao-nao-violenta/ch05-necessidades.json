@@ -1,0 +1,25 @@
+{
+  "cards": [
+    {
+      "ic": "target",
+      "t": "A Necessidade é a Causa, o Outro é o Estímulo",
+      "emph": "Causa",
+      "b": "“Você me faz sentir isso” é a frase que entrega o seu poder de bandeja. O ato do outro é só o estímulo; a causa do que você sente é uma necessidade sua — atendida, vem o agradável; frustrada, vem a dor. <strong>Diga “sinto X porque preciso de Z”, nunca “porque você fez Y”</strong>: a primeira versão devolve sua vida emocional às suas mãos.",
+      "tip": "<strong>Como aplicar:</strong> depois de nomear o sentimento, pergunte “que necessidade minha está por trás disto?” antes de qualquer acusação."
+    },
+    {
+      "ic": "layers",
+      "t": "Os Quatro Modos de Receber uma Farpa",
+      "emph": "Quatro Modos",
+      "b": "Diante de uma mensagem dura, há quatro lugares para levar a atenção: culpar a si (engolir o chacal, vem a culpa), culpar o outro (revidar, vem a briga), sentir as próprias necessidades (auto-empatia) ou sentir as do outro (empatia). <strong>A CNV vive nos dois últimos — e qual você escolhe é o ponto de virada da conversa.</strong>",
+      "tip": "<strong>Regra:</strong> a escolha não é automática; respire e decida conscientemente para onde a atenção vai antes de reagir."
+    },
+    {
+      "ic": "fork",
+      "t": "Não Confunda Necessidade com Estratégia",
+      "emph": "Estratégia",
+      "b": "A necessidade é abstrata e universal — conexão, segurança, respeito — e não exige pessoa ou ato específico. A estratégia é só um dos meios de atendê-la. A briga nasce de confundir as duas: discute-se “me ligue todo dia” em vez de “preciso de conexão”. <strong>Cravar uma única solução fecha portas que a necessidade deixaria abertas.</strong>",
+      "tip": "<strong>Modelo mental:</strong> ache a necessidade primeiro; muitas estratégias diferentes podem servir à mesma, e isso destrava o acordo."
+    }
+  ]
+}

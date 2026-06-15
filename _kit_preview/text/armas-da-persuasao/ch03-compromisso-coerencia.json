@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "steps",
+      "t": "O Pé na Porta",
+      "emph": "na Porta",
+      "b": "Um “sim” trivial não custa nada — e é por isso que é a alavanca. O adesivo de “motorista cuidadoso” reescreve quem você acha que é; depois, você cede o jardim ao outdoor enorme e feio, pois já virou “o cidadão engajado”. <strong>O pedido cresce em etapas, e cada passo parece coerente com o anterior</strong> — ninguém recua do que declarou ser.",
+      "tip": "<strong>Como aplicar:</strong> repare em qual “sim” pequeno você assinou antes do grande — é a alavanca escondida."
+    },
+    {
+      "ic": "key",
+      "t": "O que Faz o Compromisso Pegar",
+      "emph": "Pegar",
+      "b": "Nem todo “sim” gruda igual. O compromisso fixa quando é ativo, público, voluntário e trabalhoso — porque aí a pessoa cria sozinha as próprias “pernas”, que seguram a decisão sem o motivo original. <strong>O que escrevemos de próprio punho e diante dos outros passa a nos governar</strong> — o esforço que custou vira prova de que valeu.",
+      "tip": "<strong>Modelo mental:</strong> compromisso por escrito e diante de testemunhas cria âncoras que decidem por você depois.",
+      "wide": true
+    },
+    {
+      "ic": "eye",
+      "t": "A Bola Baixa",
+      "emph": "Baixa",
+      "b": "Ofereça uma vantagem boa demais, deixe a decisão ser tomada e então remova a vantagem — a decisão fica de pé, porque já criou apoios próprios. É o desconto que “acabou” depois do “sim”, o carro cujo preço sobe na assinatura. <strong>A escolha sobrevive ao incentivo que a gerou, sustentada por razões que você mesmo inventou.</strong>",
+      "tip": "<strong>Como se defender:</strong> escute o estômago (“estou sendo coagido?”) e o coração (“decidiria assim de novo, agora?”).",
+      "warn": true
+    }
+  ]
+}

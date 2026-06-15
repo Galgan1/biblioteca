@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "spiral",
+      "t": "Não se Dá Empatia de Tanque Vazio",
+      "emph": "Tanque Vazio",
+      "b": "A CNV mais importante é a que você dirige a si mesmo. Antes de acolher alguém, aplique os quatro passos por dentro: o que observo em mim, o que sinto, de que preciso, o que peço a mim. <strong>Quem chega esgotado a uma conversa difícil derrama a própria reatividade no outro</strong> — uma auto-empatia relâmpago evita o transbordo.",
+      "tip": "<strong>Como aplicar:</strong> antes de ajudar alguém em crise, faça os quatro passos consigo — só assim a presença que você oferece é limpa."
+    },
+    {
+      "ic": "pivot",
+      "t": "Traduza Cada “Deveria”",
+      "emph": "“Deveria”",
+      "b": "A tirania do “eu deveria ter…” é só o chacal voltado para dentro: pune sem atender necessidade nenhuma e gera culpa, não mudança. Cada “deveria” esconde algo de que você precisava. Troque “deveria ter feito X” por “queria ter feito X porque preciso de ___”. <strong>“Como pude ser tão burro” paralisa; a necessidade nomeada liberta.</strong>",
+      "tip": "<strong>Sinal de alerta:</strong> autocrítica em forma de xingamento é chacal mal traduzido — por baixo dela há uma necessidade pedindo atenção.",
+      "warn": true
+    },
+    {
+      "ic": "leaf",
+      "t": "Luto e Autoperdão no Lugar da Culpa",
+      "emph": "Autoperdão",
+      "b": "Errar pede duas coisas, e nenhuma é culpa. O luto CNV é sentir a dor ligada à necessidade que seu erro não atendeu; o autoperdão é acolher a necessidade que você buscava atender ao agir como agiu. <strong>Energia limpa nasce da necessidade que a ação serve, não da vergonha</strong> — quem age por culpa ou medo carrega resistência junto.",
+      "tip": "<strong>Modelo mental:</strong> a necessidade (“valorizo cuidado nas relações”) substitui o veredito (“sou uma pessoa horrível”)."
+    }
+  ]
+}

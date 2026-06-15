@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "constellation",
+      "t": "Incerteza e Semelhança",
+      "emph": "Semelhança",
+      "b": "Na dúvida, decidimos o que é certo olhando o que os outros fazem — e o atalho pesa mais quando estamos incertos (não sei agir, então copio) e diante de gente parecida comigo (são como eu, devem saber). <strong>Daí o poder do “mais vendido”, da fila e do depoimento de alguém igual a você</strong>: provam pela quantidade, não pelo mérito.",
+      "tip": "<strong>Como se defender:</strong> muitos errados não fazem um certo — cheque os fatos, não o tamanho da manada.",
+      "wide": true
+    },
+    {
+      "ic": "person",
+      "t": "Ninguém Ajuda Porque Ninguém Ajuda",
+      "emph": "Ninguém Ajuda",
+      "b": "Numa emergência cheia de gente, cada um lê a calma do vizinho como “então não é grave” — e a multidão congela na ignorância pluralística. Quanto mais testemunhas, menos socorro: a responsabilidade se dilui até evaporar. <strong>A fumaça entra na sala e o sujeito sozinho corre; cercado de indiferentes fingidos, fica parado por minutos.</strong>",
+      "tip": "<strong>Como se defender:</strong> caído na rua, aponte UMA pessoa — “você, de camisa azul, chame a ambulância”."
+    },
+    {
+      "ic": "wave",
+      "t": "O Efeito Werther",
+      "emph": "Werther",
+      "b": "A prova social no extremo trágico: depois da ampla cobertura de um suicídio, ondas de imitação sobem nos dias seguintes — a versão mais sombria de “se outros fizeram, talvez eu também”. É o mesmo mecanismo da fila, só que letal. <strong>A manada arrasta tanto para a compra quanto para o abismo</strong>, e nem sempre o número que a infla é real.",
+      "tip": "<strong>Sinal de alerta:</strong> desconfie de prova social fabricada — avaliações falsas, plateia paga, números inflados.",
+      "warn": true
+    }
+  ]
+}

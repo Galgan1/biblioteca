@@ -4,14 +4,14 @@
       "ic": "link",
       "t": "Não Há Sofrimento numa Ilha Deserta",
       "emph": "Ilha Deserta",
-      "b": "Solidão, vergonha, ansiedade, inferioridade — nenhum desses tormentos existiria num universo de uma só pessoa. Eles só ganham forma porque <strong>existem outros</strong> diante de quem nos medimos. Adler vai ao extremo: todo problema humano é, no fundo, um problema de relação. E é uma boa notícia — pois a saída para a dor também mora exatamente ali, nas relações.",
+      "b": "Solidão, vergonha, ansiedade, inferioridade — nenhum desses tormentos existiria num universo de uma só pessoa. Só ganham forma porque <strong>existem outros</strong> diante de quem nos medimos. Adler vai ao extremo: todo problema humano é, no fundo, de relação. E é boa notícia — pois a saída para a dor mora exatamente ali, nas relações.",
       "tip": "<strong>Modelo mental:</strong> se a ferida nasce no entre-nós, é no entre-nós que ela se cura — não no isolamento."
     },
     {
       "ic": "layers",
       "t": "Inferioridade é Gasolina — o Complexo é o Álibi",
       "emph": "o Álibi",
-      "b": "Sentir-se aquém de um ideal é subjetivo, universal e <strong>saudável</strong>: é o combustível que empurra o crescimento. O complexo de inferioridade é outra coisa — é pegar esse sentimento e transformá-lo em desculpa para não tentar: “se eu não fosse baixo, conseguiria amar”. A altura é só um fato neutro; quem casa feliz também é baixo. O que trava não é o fato — é o uso que se faz dele.",
+      "b": "Sentir-se aquém de um ideal é universal e <strong>saudável</strong>: é o combustível do crescimento. O complexo de inferioridade é outra coisa — pegar esse sentimento e torná-lo desculpa para não tentar: “se eu não fosse baixo, conseguiria amar”. Mas a altura é fato neutro; gente baixa casa feliz. O que trava não é o fato — é o uso que se faz dele.",
       "tip": "<strong>Como aplicar:</strong> desconfie de toda frase no formato “A, então não posso B” — quase sempre é álibi, não causa.",
       "wide": true
     },
@@ -19,7 +19,7 @@
       "ic": "mask",
       "t": "Quem Se Gaba Está Escondendo",
       "emph": "Escondendo",
-      "b": "Quando a inferioridade não é enfrentada, ela vira fachada: a pessoa se finge superior — exibe poder, conquistas, marcas. Há uma versão mais sutil e perversa: exibir as próprias <strong>desgraças</strong>, “ninguém sofre como eu”, usando a dor como cetro para mandar na relação. Vanglória e vitimismo são a mesma máscara — duas formas de fugir de um buraco que ninguém quis encarar.",
+      "b": "A inferioridade não enfrentada vira fachada: a pessoa se finge superior, exibe poder, conquistas, marcas. Há uma versão mais perversa — exibir as próprias <strong>desgraças</strong>, “ninguém sofre como eu”, usando a dor como cetro para mandar na relação. Vanglória e vitimismo são a mesma máscara: duas fugas do buraco que ninguém quis encarar.",
       "tip": "<strong>Sinal de alerta:</strong> quanto mais alguém ostenta — sucesso ou sofrimento — mais insegurança costuma estar tapando.",
       "warn": true
     },
@@ -27,7 +27,7 @@
       "ic": "target",
       "t": "A Única Régua Legítima É Você de Ontem",
       "emph": "Você de Ontem",
-      "b": "A meta sadia não é superar os outros, é superar o <strong>eu de ontem</strong>. Medir-se contra os demais fabrica inimigos onde poderia haver companheiros, e converte cada conquista alheia numa ferida sua. Basta caminhar para frente, no seu passo. Quem corre olhando para o lado tropeça — e ainda chega cansado de uma corrida que ninguém pediu para disputar.",
+      "b": "A meta sadia não é superar os outros, é superar o <strong>eu de ontem</strong>. Medir-se contra os demais fabrica inimigos onde poderia haver companheiros, e converte cada conquista alheia numa ferida sua. Basta caminhar para frente, no seu passo. Quem corre olhando para o lado tropeça — e numa corrida que ninguém pediu para disputar.",
       "tip": "<strong>Regra:</strong> a comparação só é fértil quando o adversário é a sua própria versão de ontem."
     }
   ]

@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "scale",
+      "t": "O Pedido se Revela no “Não”",
+      "emph": "“Não”",
+      "b": "A diferença entre pedido e exigência não está nas palavras nem no tom doce — está no que você faz quando ouve “não”. Se a recusa gera culpa, castigo, silêncio ou só uma cara feia, aquilo nunca foi pedido: era exigência embrulhada em gentileza. <strong>Pedido de verdade deixa o “não” em aberto, sem cobrar pedágio pela recusa.</strong>",
+      "tip": "<strong>Como aplicar:</strong> peça com leveza, mas observe sua própria reação ao “não” — é ela que denuncia o que você fez de fato.",
+      "warn": true
+    },
+    {
+      "ic": "target",
+      "t": "Positivo, Concreto e no Presente",
+      "emph": "Concreto",
+      "b": "“Pare de me ignorar” diz o que evitar e deixa o outro sem saber o que fazer; “quero trinta minutos de conversa sem celular hoje” entrega uma ação possível agora. Bom pedido diz o que fazer, não o que parar, e descreve algo observável. <strong>“Seja mais carinhoso” é vago demais para virar ação — ninguém sabe por onde começar.</strong>",
+      "tip": "<strong>Regra:</strong> se o pedido não cabe num gesto que dá para filmar hoje, ele ainda é vago demais para ser atendido."
+    },
+    {
+      "ic": "link",
+      "t": "Peça o Reflexo de Volta",
+      "emph": "Reflexo",
+      "b": "Em mensagens que importam, peça que o outro repita o que entendeu — e como se sente com aquilo. Não para testá-lo, mas para flagrar o ruído antes que vire conflito. Enquadre como cuidado seu: “pra eu ter certeza de que me expressei bem”. <strong>Confirmar o que chegou previne metade das brigas, que nascem de mensagens pela metade.</strong>",
+      "tip": "<strong>Como aplicar:</strong> peça o reflexo (“o que você ouviu?”) e a honestidade (“como você se sente com isto?”) lado a lado."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "bubble",
+      "t": "Cinco Atalhos para Gostar",
+      "emph": "Gostar",
+      "b": "Dizemos sim a quem gostamos — e gostamos por gatilhos rápidos demais para notar: a atratividade (o belo parece bom, é o efeito halo), a semelhança (“também sou de Minas!”), o elogio (até a bajulação funciona), a familiaridade e a associação. <strong>O vendedor não precisa do melhor produto; precisa que você goste dele antes de decidir.</strong>",
+      "tip": "<strong>Como se defender:</strong> ao gostar rápido e demais de quem vende, pergunte “por quê?” e isole a pessoa da oferta.",
+      "wide": true
+    },
+    {
+      "ic": "link",
+      "t": "Associação é Contágio",
+      "emph": "Contágio",
+      "b": "Transferimos sentimento por mera vizinhança: o produto colado à modelo bonita ou ao atleta vencedor herda o brilho do que está ao lado. Por isso o homem do tempo apanha pela chuva que só anunciou — ligamos o mensageiro à mensagem. <strong>O que está perto da coisa “cola” nela, e a publicidade vive de escolher essa companhia.</strong>",
+      "tip": "<strong>Modelo mental:</strong> repare no que penduraram ao lado da oferta — beleza, fama, vitória — e desconte o empréstimo de brilho."
+    },
+    {
+      "ic": "mask",
+      "t": "O Vendedor que é seu Amigo",
+      "emph": "seu Amigo",
+      "b": "No método Tupperware quem vende é uma amiga, na sua casa, entre amigas — e a oferta vem empilhada sobre reciprocidade e compromisso público. Recusar o produto vira recusar a anfitriã. <strong>Quando o afeto e o negócio se fundem de propósito, dizer “não” ao item parece dizer “não” à pessoa</strong> — e é esse atrito que fecha a venda.",
+      "tip": "<strong>Como se defender:</strong> separe o sentimento pela pessoa da decisão sobre o negócio — “gosto dela, mas isto vale o preço?”.",
+      "warn": true
+    }
+  ]
+}

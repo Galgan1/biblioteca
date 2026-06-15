@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "layers",
+      "t": "Três Símbolos Bastam",
+      "emph": "Símbolos",
+      "b": "Somos treinados desde a infância a obedecer a quem sabe — mas o atalho dispara diante de três sinais do saber, não do saber em si: títulos (Dr., Professor), roupas (jaleco, uniforme) e adereços (o carro de luxo). <strong>Todos são fáceis de alegar e difíceis de checar</strong>, e por isso o impostor prefere a casca da autoridade ao seu miolo.",
+      "tip": "<strong>Como se defender:</strong> pergunte “esta autoridade é mesmo especialista NISTO?” — ela só vale dentro da área dela.",
+      "wide": true
+    },
+    {
+      "ic": "eye",
+      "t": "O Jaleco Não é o Médico",
+      "emph": "Não é o Médico",
+      "b": "O gatilho é o símbolo, não a competência real — e o símbolo se falsifica em minutos. O ator que diz “não sou médico, mas faço um na TV” vende remédio com a credibilidade emprestada de um avental. <strong>Cedemos à aparência de saber muito antes de verificar se há saber por baixo</strong> — e quase nunca paramos para conferir.",
+      "tip": "<strong>Como se defender:</strong> some uma segunda pergunta — “quão sincera ela está sendo aqui?”, ou seja, qual é o interesse dela."
+    },
+    {
+      "ic": "person",
+      "t": "Milgram e a Bota da Obediência",
+      "emph": "Milgram",
+      "b": "Pessoas comuns aplicaram o que criam ser choques cada vez mais fortes em outra só porque um “cientista” de jaleco mandava prosseguir — e a maioria foi até o fim, contra o próprio horror. Não eram monstros: era obediência automática ao símbolo. <strong>A autoridade não precisa forçar; basta vestir-se dela para a vontade alheia se dobrar.</strong>",
+      "tip": "<strong>Sinal de alerta:</strong> obedecer a quem só VESTE a autoridade — título alegado, uniforme, jaleco — é onde mora o risco.",
+      "warn": true
+    }
+  ]
+}

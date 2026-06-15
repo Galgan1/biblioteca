@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "scale",
+      "t": "Uma Pergunta Desembaraça Quase Tudo",
+      "emph": "Uma Pergunta",
+      "b": "Antes de se meter em qualquer conflito, faça a única pergunta que importa: <strong>“de quem é esta tarefa?”</strong>. O critério é frio — quem arca, no fim, com as consequências? Esse é o dono. A conduta então é só uma: faça a sua parte, não invada a do outro, não deixe invadirem a sua. Quase toda dor interpessoal nasce de cruzar essa fronteira.",
+      "tip": "<strong>Como aplicar:</strong> rastreie a consequência até o seu dono — é ele, não você, quem deve carregar e decidir aquela tarefa.",
+      "wide": true
+    },
+    {
+      "ic": "leaf",
+      "t": "Você Leva o Cavalo à Água — Não o Obriga a Beber",
+      "emph": "à Água",
+      "b": "Separar tarefas não é abandono. Você pode oferecer ajuda e deixar claro que está disponível — mas a decisão e a execução pertencem ao <strong>dono</strong>. O pai que vigia, cobra e briga porque o filho não estuda só estraga a relação e carrega um peso que não é seu. Respeitar a fronteira é o gesto mais amoroso: ajudar quando se pede.",
+      "tip": "<strong>Cuidado:</strong> não confunda separar tarefas com largar mão — é fincar o limite e seguir presente para quando chamarem.",
+      "warn": true
+    },
+    {
+      "ic": "key",
+      "t": "O Que Pensam de Você É Tarefa Deles",
+      "emph": "Deles",
+      "b": "O juízo que os outros fazem de você não está sob seu controle — e, por não estar, <strong>não é seu para carregar</strong>. Aprovar ou reprovar é tarefa deles; viver com retidão é a sua. Esta é a dobradiça de toda a obra: solte o veredito alheio e abre-se a porta da liberdade — a coragem de, eventualmente, ser desprezado sem desabar.",
+      "tip": "<strong>Regra:</strong> faça a sua tarefa com integridade e devolva ao outro a tarefa dele — o que ele acha de você."
+    }
+  ]
+}
