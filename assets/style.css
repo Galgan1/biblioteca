@@ -310,8 +310,9 @@ body {
 #bookshelf { margin-bottom: 3rem; }
 .shelf-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 1.25rem;
+    align-items: stretch;
 }
 
 .grid-message {
@@ -658,6 +659,7 @@ body {
 
 /* --- Estante: link de compra discreto por card (aparece no hover) --- */
 .shelf-item { position: relative; display: flex; flex-direction: column; }
+.shelf-item > .card { flex: 1; }
 .card-buy {
     position: absolute;
     top: 0.55rem;
