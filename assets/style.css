@@ -351,54 +351,32 @@ body {
 .vote-down[aria-pressed="true"] { background: var(--dislike); color: var(--on-dislike); }
 .vote-down svg { transform: scaleY(-1); }
 
-.trilhas { margin-bottom: 2.5rem; }
-.trilhas-head { margin-bottom: 1rem; }
-.trilhas-head h2 {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--black);
+.tag-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    width: 100%;
 }
-.trilhas-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 1rem;
-}
-.trilha-card {
-    text-align: left;
+.tag-chip {
     cursor: pointer;
     background: transparent;
-    border: 2px dashed var(--green);
-    border-radius: var(--radius);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: background 160ms var(--ease-out-quart), border-color 160ms var(--ease-out-quart);
-}
-.trilha-card:hover { background: var(--surface-hover); }
-.trilha-card[aria-pressed="true"] { border-color: var(--green-dark); background: var(--surface-hover); }
-.trilha-name {
-    align-self: flex-start;
-    background: var(--green);
-    color: var(--on-green);
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 0.82rem;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    padding: 0.25rem 0.7rem;
+    border: 1.5px dashed var(--green);
     border-radius: 999px;
-}
-.trilha-titles { color: var(--gray-dark); font-size: 0.85rem; line-height: 1.45; }
-.trilha-count {
-    color: var(--green-dark);
+    padding: 0.2rem 0.65rem;
+    font-family: var(--font-display);
     font-size: 0.76rem;
     font-weight: 700;
+    color: var(--green-dark);
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.03em;
+    transition: background 120ms var(--ease-out-quart), border-color 120ms var(--ease-out-quart), color 120ms;
+    white-space: nowrap;
+}
+.tag-chip:hover { background: var(--surface-hover); }
+.tag-chip[aria-pressed="true"] {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--on-green);
 }
 
 .shelf-section { margin-bottom: 3rem; }

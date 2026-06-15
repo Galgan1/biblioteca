@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const shelf = document.getElementById('bookshelf');
     const searchInput = document.getElementById('searchInput');
     const statusToggle = document.getElementById('statusToggle');
-    const trilhasEl = document.getElementById('trilhas');
+    const tagChipsEl = document.getElementById('tagChips');
 
     const CART_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M3 4h2.5l2 11h10l2-8H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
@@ -18,17 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
         + '<path d="M7 10l4-7a2 2 0 0 1 3.7 1.4L14 9h4.6a2 2 0 0 1 2 2.5l-1.7 7A2 2 0 0 1 17 22H7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'
         + '</svg>';
 
-    // Trilhas de leitura — curadoria editorial (por id, na ordem de leitura sugerida)
-    const TRILHAS = [
-        ['Ofício do roteirista', ['aristoteles-poetica', 'story-mckee', 'save-the-cat', 'jornada-do-escritor']],
-        ['Mente & dinheiro', ['psicologia-financeira', 'homem-mais-rico-babilonia', 'pai-rico-pai-pobre', 'do-mil-ao-milhao', 'padrao-bitcoin']],
-        ['Comunicação que convence', ['smith-assertividade', 'comunicacao-nao-violenta', 'armas-da-persuasao', 'nunca-divida-a-diferenca', 'conversas-cruciais']],
-        ['Despertar & presença', ['poder-do-silencio', 'experiencia-psicodelica', 'quatro-compromissos', 'nacao-dopamina']],
-        ['Distopias do controle', ['1984', 'admiravel-mundo-novo', 'psicopolitica', 'realismo-capitalista', 'maquiavel-pedagogo']],
-    ];
-
     let allBooks = [];
-    const state = { status: 'tudo', trilha: null, query: '' };
+    const state = { status: 'tudo', tag: null, query: '' };
 
     // voto do próprio visitante (localStorage): { slug: 'up' | 'down' }
     const MYKEY = 'bib:meus-votos';
@@ -49,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (searchInput) searchInput.placeholder = 'Pesquisar nas ' + books.length + ' obras — título ou autor…';
         buildStatusToggle();
-        buildTrilhas();
+        buildTagChips();
         render();
     }).catch(error => {
         console.error('Erro ao carregar books.json:', error);
@@ -79,30 +70,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function buildTrilhas() {
-        if (!trilhasEl) return;
-        const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
-        trilhasEl.innerHTML = '<div class="trilhas-head"><h2>Trilhas de leitura</h2></div>';
-        const grid = document.createElement('div');
-        grid.className = 'trilhas-grid';
-        TRILHAS.forEach(([name, ids], i) => {
-            const books = ids.map(id => byId[id]).filter(Boolean);
-            if (!books.length) return;
-            const card = document.createElement('button');
-            card.type = 'button';
-            card.className = 'trilha-card';
-            card.setAttribute('aria-pressed', state.trilha === i);
-            card.innerHTML = '<span class="trilha-name">' + name + '</span>'
-                + '<span class="trilha-titles">' + books.map(b => b.title).join(' · ') + '</span>'
-                + '<span class="trilha-count">' + books.length + ' livros</span>';
-            card.addEventListener('click', () => {
-                state.trilha = (state.trilha === i) ? null : i;
-                buildTrilhas();
+    function buildTagChips() {
+        if (!tagChipsEl) return;
+        // conta livros por tag, ordena por frequência
+        const freq = {};
+        allBooks.forEach(b => (b.tags || []).forEach(t => { freq[t] = (freq[t] || 0) + 1; }));
+        const tags = Object.entries(freq).sort((a, b) => b[1] - a[1]).map(([t]) => t);
+        tagChipsEl.innerHTML = '';
+        tags.forEach(tag => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'tag-chip';
+            btn.setAttribute('aria-pressed', state.tag === tag);
+            btn.textContent = tag + ' (' + freq[tag] + ')';
+            btn.addEventListener('click', () => {
+                state.tag = (state.tag === tag) ? null : tag;
+                buildTagChips();
                 render();
             });
-            grid.appendChild(card);
+            tagChipsEl.appendChild(btn);
         });
-        trilhasEl.appendChild(grid);
     }
 
     // ranking: mais curtidos primeiro; empata por menos desjoinhas, depois prontos, depois título
@@ -121,20 +108,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         shelf.innerHTML = '';
 
-        // Vista de trilha: livros na ordem de leitura, sem reordenar por likes
-        if (state.trilha !== null) {
-            const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
-            const [name, ids] = TRILHAS[state.trilha];
-            const books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk).filter(queryOk);
-            if (!books.length) { shelf.innerHTML = msg('Nenhum livro nesta trilha com esse filtro.'); return; }
-            renderSection('Trilha · ' + name, books);
-            return;
-        }
-
-        let books = allBooks.filter(statusOk).filter(queryOk);
+        const tagOk = b => !state.tag || (b.tags || []).includes(state.tag);
+        let books = allBooks.filter(statusOk).filter(queryOk).filter(tagOk);
         if (!books.length) { shelf.innerHTML = msg('Nenhum livro encontrado.'); return; }
         books = books.slice().sort(rankSort);
         const title = q ? 'Resultados'
+            : state.tag ? state.tag
             : state.status === 'pronto' ? 'Resumos prontos'
             : state.status === 'embreve' ? 'Em breve'
             : 'Acervo · do mais curtido ao menos';
