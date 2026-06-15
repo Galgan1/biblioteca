@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
             '#bookshelf mark{background:var(--green-light);color:var(--green-dark);padding:0 .12em;border-radius:3px;font-weight:inherit}'
             + '.search-suggest{background:none;border:0;border-bottom:2px solid var(--green);color:var(--green-dark);font:inherit;font-weight:700;cursor:pointer;padding:0}'
             // dropdown de autocomplete
+            // a .library-controls ganha transform pela animação de entrada (= stacking context),
+            // o que prenderia o dropdown ATRÁS das trilhas; z-index próprio eleva o bloco todo
+            + '.library-controls{position:relative;z-index:40}'
             + '.search-box{position:relative;flex:1}'
             + '.search-box .search-input{width:100%;box-sizing:border-box}'
             + '.search-ac{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;margin:0;padding:.3rem;list-style:none;background:var(--paper-bg);border:1px solid var(--green);border-radius:var(--radius);box-shadow:0 14px 32px rgba(0,0,0,.14);max-height:60vh;overflow:auto}'
