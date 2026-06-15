@@ -9,6 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusToggle = document.getElementById('statusToggle');
     const trilhasEl = document.getElementById('trilhas');
 
+    // estilo do realce de busca + sugestão (on-brand; injetado p/ a feature ser self-contained)
+    (function injetarEstiloBusca() {
+        const st = document.createElement('style');
+        st.textContent =
+            '#bookshelf mark{background:var(--green-light);color:var(--green-dark);padding:0 .12em;border-radius:3px;font-weight:inherit}'
+            + '.search-suggest{background:none;border:0;border-bottom:2px solid var(--green);color:var(--green-dark);font:inherit;font-weight:700;cursor:pointer;padding:0}';
+        document.head.appendChild(st);
+    })();
+
     const CART_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M3 4h2.5l2 11h10l2-8H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
         + '<circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg>';
@@ -115,33 +124,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function render() {
-        const q = state.query.trim().toLowerCase();
+        const q = state.query.trim();
         const statusOk = b => state.status === 'tudo' || (state.status === 'pronto' ? !b.comingSoon : !!b.comingSoon);
-        const queryOk = b => !q || b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q);
 
         shelf.innerHTML = '';
 
-        // Vista de trilha: livros na ordem de leitura, sem reordenar por likes
+        // Vista de trilha: ordem de leitura (ou por relevância quando há busca)
         if (state.trilha !== null) {
             const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
             const [name, ids] = TRILHAS[state.trilha];
-            const books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk).filter(queryOk);
-            if (!books.length) { shelf.innerHTML = msg('Nenhum livro nesta trilha com esse filtro.'); return; }
-            renderSection('Trilha · ' + name, books);
+            let books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk);
+            if (q) books = Busca.buscar(books, q);
+            if (!books.length) { semResultado(q, 'nesta trilha'); return; }
+            renderSection('Trilha · ' + name, books, q);
             return;
         }
 
-        let books = allBooks.filter(statusOk).filter(queryOk);
-        if (!books.length) { shelf.innerHTML = msg('Nenhum livro encontrado.'); return; }
-        books = books.slice().sort(rankSort);
+        let books = allBooks.filter(statusOk);
+        // com busca: ordena por RELEVÂNCIA (Busca.buscar); sem busca: ranking de likes
+        books = q ? Busca.buscar(books, q) : books.slice().sort(rankSort);
+        if (!books.length) { semResultado(q); return; }
         const title = q ? 'Resultados'
             : state.status === 'pronto' ? 'Resumos prontos'
             : state.status === 'embreve' ? 'Em breve'
             : 'Acervo · do mais curtido ao menos';
-        renderSection(title, books);
+        renderSection(title, books, q);
     }
 
-    function renderSection(title, books) {
+    // estado vazio com sugestão "você quis dizer" (busca tolerante a erro de digitação)
+    function semResultado(q, onde) {
+        const qLimpo = (q || '').replace(/[&<>"]/g, '');
+        let html = 'Nenhum livro encontrado' + (onde ? ' ' + onde : '') + (qLimpo ? ' para “' + qLimpo + '”.' : '.');
+        const sug = q ? Busca.sugerir(allBooks, q) : null;
+        if (sug) html += ' Você quis dizer <button type="button" class="search-suggest">' + sug + '</button>?';
+        shelf.innerHTML = msg(html);
+        const sb = shelf.querySelector('.search-suggest');
+        if (sb) sb.addEventListener('click', () => {
+            if (searchInput) searchInput.value = sug;
+            state.query = sug;
+            render();
+        });
+    }
+
+    function renderSection(title, books, q) {
         const sec = document.createElement('section');
         sec.className = 'shelf-section';
         const h = document.createElement('h2');
@@ -150,12 +175,12 @@ document.addEventListener('DOMContentLoaded', () => {
         sec.appendChild(h);
         const grid = document.createElement('div');
         grid.className = 'shelf-grid';
-        books.forEach((book, i) => grid.appendChild(makeCard(book, i)));
+        books.forEach((book, i) => grid.appendChild(makeCard(book, i, q)));
         sec.appendChild(grid);
         shelf.appendChild(sec);
     }
 
-    function makeCard(book, index) {
+    function makeCard(book, index, q) {
         // wrapper: card + chip de compra + voto, sem aninhar <a>/<button> dentro do card
         const item = document.createElement('div');
         item.className = 'shelf-item animate-entrance';
@@ -166,13 +191,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // só o chip "Comprar" (afiliado) leva à Amazon.
         bookEl.className = book.comingSoon ? 'card card-soon' : 'card';
         if (!book.comingSoon) bookEl.href = book.url;
+        const tit = q ? Busca.realcar(book.title, q) : book.title;
+        const aut = q ? Busca.realcar(book.author, q) : book.author;
         bookEl.innerHTML = `
             <div class="card-cover">
                 <img src="${book.coverUrl}" alt="Capa do livro ${book.title}" loading="lazy">
             </div>
             <div class="card-content">
-                <div class="card-title">${book.title}</div>
-                <p class="card-author">${book.author}</p>
+                <div class="card-title">${tit}</div>
+                <p class="card-author">${aut}</p>
                 <p class="card-progress">${book.progress}</p>
             </div>
         `;
