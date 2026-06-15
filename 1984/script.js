@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         idea: _SVG('<path d="M9 18h6M10 21h4M12 3a6 6 0 0 1 4 10.5c-.7.7-1 1.2-1 2.5H9c0-1.3-.3-1.8-1-2.5A6 6 0 0 1 12 3Z"/>'),
         cover: _SVG('<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>'),
         link: _SVG('<path d="M9.5 14.5 14.5 9.5"/><path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/><path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>'),
+        carousel: _SVG('<rect x="8" y="6" width="8" height="12" rx="1.5"/><path d="M5 8v8M19 8v8"/>'),
     };
     const DL_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M12 4v10m0 0l-4-4m4 4l4-4M5 20h14" stroke="currentColor" stroke-width="2" '
@@ -69,11 +70,20 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(prefix + 'pdf/vote?book=' + encodeURIComponent(book) + '&from=' + from + '&to=up', { method: 'POST' }).catch(() => {});
     }
     function buildKit() {
-        // aparece na visão geral E nos capítulos (o prefix resolve os caminhos)
-        fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/manifest.json')
-            .then(r => (r.ok ? r.json() : null))
-            .then(m => { if (m && Array.isArray(m.assets) && m.assets.length) renderKit(m); })
-            .catch(() => { /* sem manifesto, sem kit */ });
+        if (isOverview) {
+            // visão geral → kit do livro (pílulas)
+            fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/manifest.json')
+                .then(r => (r.ok ? r.json() : null))
+                .then(m => { if (m && Array.isArray(m.assets) && m.assets.length) renderKit(m); })
+                .catch(() => { /* sem manifesto, sem kit */ });
+        } else if (chapterMatch) {
+            // capítulo → carrossel daquele capítulo
+            const cap = chapterMatch[1];
+            fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/caps/' + cap + '/manifest.json')
+                .then(r => (r.ok ? r.json() : null))
+                .then(m => { if (m && Array.isArray(m.slides) && m.slides.length) renderChapterKit(m); })
+                .catch(() => { /* capítulo sem carrossel */ });
+        }
     }
     function renderKit(m) {
         // dropdown nativo, FECHADO por padrão — não pesa o topo da página
@@ -156,6 +166,95 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(overlay);
         function close() { document.removeEventListener('keydown', onKey); overlay.remove(); }
         function onKey(e) { if (e.key === 'Escape') close(); }
+        document.addEventListener('keydown', onKey);
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay || (e.target.closest && e.target.closest('[data-close]'))) close();
+        });
+    }
+    // capítulo: dropdown com o carrossel daquele capítulo (abre o visualizador C3)
+    function renderChapterKit(m) {
+        const sec = document.createElement('details');
+        sec.className = 'kit-section';
+        const sum = document.createElement('summary');
+        sum.className = 'kit-summary';
+        sum.innerHTML = '<span class="kit-summary-text">Kit de Divulgação'
+            + '<span class="kit-summary-count">carrossel do capítulo</span></span>'
+            + '<span class="kit-arrow" aria-hidden="true">▾</span>';
+        sec.appendChild(sum);
+        const p = document.createElement('p');
+        p.className = 'kit-intro';
+        p.textContent = 'Um carrossel pronto sobre este capítulo — ' + m.count + ' slides no padrão da Biblioteca. Abrir conta como um curtir.';
+        sec.appendChild(p);
+        const pills = document.createElement('div');
+        pills.className = 'kit-pills';
+        const pill = document.createElement('button');
+        pill.type = 'button';
+        pill.className = 'kit-pill';
+        pill.title = 'Ver o carrossel do capítulo (' + m.count + ' slides)';
+        pill.innerHTML = KIT_ICONS.carousel
+            + '<span class="kit-pill__label">Carrossel do capítulo</span>'
+            + '<span class="kit-pill__fmt">· ' + m.count + ' slides · 4:5</span>';
+        pill.addEventListener('click', () => { registerKitLike(BIBLIOTECA_BOOK); openCarousel(m); });
+        pills.appendChild(pill);
+        sec.appendChild(pills);
+        const anchor = document.querySelector('.pdf-actions') || header;
+        anchor.insertAdjacentElement('afterend', sec);
+    }
+    // visualizador C3: palco + trilho de miniaturas, navegação por teclado, baixar
+    function openCarousel(m) {
+        const slides = (m.slides || []).map(s => prefix + s);
+        const total = slides.length;
+        if (!total) return;
+        const pad = n => (n < 10 ? '0' : '') + n;
+        let idx = 0;
+        const overlay = document.createElement('div');
+        overlay.className = 'cv-overlay';
+        overlay.setAttribute('role', 'dialog');
+        overlay.setAttribute('aria-modal', 'true');
+        overlay.setAttribute('aria-label', 'Carrossel do capítulo');
+        const rail = slides.map((s, i) => '<button class="cv-thumb" data-i="' + i + '">'
+            + '<img src="' + s + '" loading="lazy" alt="Miniatura do slide ' + (i + 1) + '">'
+            + '<span class="cv-thumb-n">' + pad(i + 1) + '</span></button>').join('');
+        const ZIP = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h7l2 2h7v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M12 11v5m0 0l-2-2m2 2l2-2"/></svg>';
+        overlay.innerHTML =
+            '<header class="cv-head"><div class="cv-title"><span class="cv-dot"></span><h2>Carrossel do capítulo</h2>'
+            + '<span class="cv-sub">· ' + total + ' slides · 1080×1350</span></div>'
+            + '<button class="cv-close" data-close aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>'
+            + '<div class="cv-stage"><button class="cv-nav" data-prev aria-label="Slide anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>'
+            + '<figure class="cv-frame"><span class="cv-counter"><b class="cv-cur">01</b> / ' + pad(total) + '</span>'
+            + '<img class="cv-stage-img" src="' + slides[0] + '" alt="Slide 1 do carrossel"></figure>'
+            + '<button class="cv-nav" data-next aria-label="Próximo slide"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button></div>'
+            + '<nav class="cv-rail" aria-label="Miniaturas">' + rail + '</nav>'
+            + '<div class="cv-actions"><button class="cv-btn cv-btn--ghost" data-dl-slide>' + DL_ICON + 'Baixar este slide</button>'
+            + (m.zip ? '<a class="cv-btn cv-btn--solid" href="' + prefix + m.zip + '" download>' + ZIP + 'Baixar carrossel (.zip)</a>' : '')
+            + '</div>';
+        document.body.appendChild(overlay);
+        const stageImg = overlay.querySelector('.cv-stage-img');
+        const curEl = overlay.querySelector('.cv-cur');
+        const thumbs = overlay.querySelectorAll('.cv-thumb');
+        function go(i) {
+            idx = (i + total) % total;
+            stageImg.src = slides[idx];
+            stageImg.alt = 'Slide ' + (idx + 1) + ' do carrossel';
+            curEl.textContent = pad(idx + 1);
+            thumbs.forEach(t => t.classList.toggle('is-active', Number(t.dataset.i) === idx));
+        }
+        go(0);
+        overlay.querySelector('[data-prev]').addEventListener('click', () => go(idx - 1));
+        overlay.querySelector('[data-next]').addEventListener('click', () => go(idx + 1));
+        thumbs.forEach(t => t.addEventListener('click', () => go(Number(t.dataset.i))));
+        overlay.querySelector('[data-dl-slide]').addEventListener('click', () => {
+            const a = document.createElement('a');
+            a.href = slides[idx];
+            a.download = BIBLIOTECA_BOOK + '-' + (m.chapter || 'cap') + '-' + pad(idx + 1) + '.png';
+            document.body.appendChild(a); a.click(); a.remove();
+        });
+        function close() { document.removeEventListener('keydown', onKey); overlay.remove(); }
+        function onKey(e) {
+            if (e.key === 'ArrowLeft') go(idx - 1);
+            else if (e.key === 'ArrowRight') go(idx + 1);
+            else if (e.key === 'Escape') close();
+        }
         document.addEventListener('keydown', onKey);
         overlay.addEventListener('click', (e) => {
             if (e.target === overlay || (e.target.closest && e.target.closest('[data-close]'))) close();
