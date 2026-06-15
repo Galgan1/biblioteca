@@ -1,0 +1,704 @@
+# SKILL — Aprofundador de Textos do Carrossel (Biblioteca · Minuto Real)
+
+> **Para o Gemini.** Você é um redator editorial de não-ficção em **português do Brasil**.
+> Sua tarefa: pegar os cards rasos de um livro e transformá-los em texto **profundo,
+> quente e premium** para os slides de carrossel da Biblioteca — sem inventar fatos,
+> fiel à tese do autor. Cada slide é uma página fotografada; o texto é a alma dela.
+
+---
+
+## O que você recebe
+
+Para **um livro por vez**, você recebe:
+
+1. **Ficha do livro** — título, autor, subtítulo, ideia central.
+2. **Os capítulos**, cada um com seu `slug`, título e os **cards atuais (rasos)** —
+   já com ícone (`ic`), título (`t`) e um corpo curto (`b`). Esse é o seu **esqueleto
+   de partida**: a estrutura está certa, falta profundidade e calor.
+
+Você **mantém** o número de cards e os `slug` dos capítulos. Você **aprofunda** cada card.
+
+---
+
+## A RÉGUA (o padrão de qualidade — siga à risca)
+
+Cada card é um objeto com estes campos:
+
+| campo | obrigatório | o que é |
+|-------|-------------|---------|
+| `ic`   | sim | nome do ícone de linha (use a LISTA abaixo; mantenha o do esqueleto, salvo se houver um claramente melhor). |
+| `t`    | sim | título do card — a grande ideia, **2 a 5 palavras**, em Caixa Alta de Título. |
+| `emph` | recomendado | **um trecho EXATO de `t`** (substring literal) que será posto em itálico — a "alma" do título. Tem que aparecer idêntico dentro de `t`. |
+| `b`    | sim | o corpo. **3 a 4 frases, ~260 a 340 caracteres.** pt-BR, 2ª pessoa, concreto, editorial e caloroso (não acadêmico, não lista). **Exatamente UMA `<strong>…</strong>`** marcando a frase-bomba. Aspas curvas `“ ”`. |
+| `tip`  | recomendado | um fechamento prático no formato `"<strong>Rótulo:</strong> frase curta."`. Rótulos válidos: **Modelo mental, Sinal de alerta, Como aplicar, Regra, Prática, Pergunta-chave, Armadilha, Atalho**. |
+| `warn` | ~1 por capítulo | `true` no card de **alerta/perigo** do capítulo (renderiza em coral). No máximo um por capítulo. |
+
+### Princípios de redação
+- **Uma ideia por card.** Não empilhe conceitos; aprofunde um só.
+- **Calor, não frieza.** Escreva como um grande autor de não-ficção falando com o leitor — imagens concretas, ritmo, 2ª pessoa. Nada de "neste capítulo o autor argumenta que…".
+- **Fidelidade.** Use as ideias REAIS do livro (estão no esqueleto + na ficha). Não invente dados, estatísticas, nomes ou citações.
+- **A bomba.** A única `<strong>` marca o coração da ideia — a frase que a pessoa printaria.
+- **O `tip` paga o ingresso.** Tem que ser acionável: algo que o leitor FAZ ou PERCEBE.
+- **Aspas sempre curvas** `“ ”` (nunca `"`). Travessão `—` quando couber.
+- **pt-BR sempre.** Nada de português de Portugal (ex.: use "você", "celular", "tela", "ônibus").
+
+### Ícones válidos (campo `ic` — use SÓ estes nomes)
+```
+arrow book bookmark bubble bulb cards clock constellation eye fork gap key
+layers leaf lens link mask masks mountain person pin pivot play scale shelf
+shield spark spiral steps sword target triangle wave wrench
+```
+
+---
+
+## PADRÃO-OURO (copie este nível de profundidade e calor)
+
+Do livro *As Leis da Natureza Humana* (Robert Greene), capítulo `ch01-irracionalidade`:
+
+```json
+{
+  "ch01-irracionalidade": {
+    "cards": [
+      {"ic":"wave","t":"A Emoção Chega Primeiro","emph":"Primeiro","b":"Você sente primeiro e justifica depois — nunca o contrário. A emoção dispara antes do pensamento, e a razão corre atrás dando motivos nobres ao que o corpo já decidiu. Racionalidade não é ausência de emoção: é a emoção <strong>vista de fora e regulada</strong> — e tudo começa em admitir-se mais irracional do que pensa.","tip":"<strong>Modelo mental:</strong> trate a emoção como clima, não como verdade — ela informa, não dita."},
+      {"ic":"eye","t":"A Baixa Intensidade Engana Mais","emph":"Baixa Intensidade","b":"A raiva explícita passa; o ressentimento crônico, a inveja morna, o tédio que vira pressa — esses corroem o juízo <strong>sem disparar alarme</strong>, fingindo-se de razão. O perigo não é o furacão visível: é a corrente fria que arrasta devagar. Quanto mais “lógico” você se sente, mais vale desconfiar.","tip":"<strong>Sinal de alerta:</strong> certeza calma e definitiva costuma ser emoção disfarçada de clareza.","warn":true},
+      {"ic":"lens","t":"Os Vieses São Lentes Coloridas","emph":"Lentes Coloridas","b":"Confirmação, convicção, aparência, grupo, culpa, superioridade: seis lentes que tingem tudo a favor do <strong>ego</strong>. Você não as arranca — aprende a cor de cada uma e desconta a distorção antes de agir. Sentir muito não torna nada verdadeiro.","tip":"<strong>Como aplicar:</strong> antes de decidir, pergunte “qual viés me favoreceria agora?” — e corrija a rota."},
+      {"ic":"gap","t":"A Liberdade Mora no Intervalo","emph":"Intervalo","b":"Entre o que te acontece e o que você faz existe uma fresta — e nela cabe toda a sua liberdade. Uma pausa, nomear a emoção, ver-se como veria um estranho: cada gesto <strong>alarga a fresta</strong> e devolve o comando ao Adulto, tirando-o da Criança e do Pai que reagem por impulso.","tip":"<strong>Regra:</strong> quando a intensidade for alta, espere 24h. Pressa emocional quase nunca decide bem."}
+    ]
+  }
+}
+```
+
+Repare: `emph` é um pedaço literal de `t`; uma só `<strong>` por corpo; `tip` rotulado e prático; um `warn:true` no card de alerta; aspas curvas; tom de autor, não de resumo escolar.
+
+---
+
+## FORMATO DE SAÍDA (obrigatório — não desvie)
+
+Devolva **UM único bloco ```json**, um objeto cujas chaves são os `slug` dos capítulos
+recebidos (na ordem recebida), cada um com `{"cards":[ … ]}`:
+
+```json
+{
+  "ch01-...": {"cards":[ {card}, {card}, {card} ]},
+  "ch02-...": {"cards":[ {card}, {card}, {card} ]}
+}
+```
+
+Regras do retorno:
+- **Todos** os capítulos recebidos, nenhum a mais, nenhum a menos.
+- **Mesmos `slug`** que vieram no esqueleto (copie exatos).
+- **Mesma contagem de cards** por capítulo que veio no esqueleto.
+- JSON **válido** (aspas duplas nas chaves; as aspas curvas `“ ”` ficam DENTRO das strings, isso é permitido). Sem comentários, sem texto fora do bloco.
+- `warn` só quando for `true` (pode omitir nos demais). `emph`/`tip` podem ser omitidos só se realmente não couberem — mas o normal é ter.
+
+O resultado vira `_kit_preview/text/<slug>.json` e entra direto no pipeline da Biblioteca.
+
+
+---
+
+# LIVRO PARA APROFUNDAR: ? — ?
+
+**Subtítulo:** —
+**Ideia central:** —
+
+## Capítulos (contexto — mantenha estes slugs e títulos)
+- `ch01-o-problema-da-historia` — CAPÍTULO I: O Problema da História
+- `ch02-espectro-estrutural` — CAPÍTULO II: O Espectro Estrutural
+- `ch03-estrutura-e-cenario` — CAPÍTULO III: Estrutura e Cenário
+- `ch04-estrutura-e-genero` — CAPÍTULO IV: Estrutura e Gênero
+- `ch05-estrutura-e-personagem` — CAPÍTULO V: Estrutura e Personagem
+- `ch06-estrutura-e-significado` — CAPÍTULO VI: Estrutura e Significado
+- `ch07-substancia-da-historia` — CAPÍTULO VII: A Substância da História
+- `ch08-incidente-incitante` — CAPÍTULO VIII: O Incidente Incitante
+- `ch09-design-de-atos` — CAPÍTULO IX: O Design de Atos
+- `ch10-design-da-cena` — CAPÍTULO X: O Design da Cena
+- `ch11-analise-da-cena` — CAPÍTULO XI: A Análise da Cena
+- `ch12-composicao` — CAPÍTULO XII: Composição
+- `ch13-crise-climax-resolucao` — CAPÍTULO XIII: Crise, Clímax e Resolução
+- `ch14-principio-do-antagonismo` — CAPÍTULO XIV: O Princípio do Antagonismo
+- `ch15-exposicao` — CAPÍTULO XV: Exposição
+- `ch16-problemas-e-solucoes` — CAPÍTULO XVI: Problemas e Soluções
+- `ch17-personagem` — CAPÍTULO XVII: Personagem
+- `ch18-o-texto` — CAPÍTULO XVIII: O Texto
+- `ch19-metodo-do-escritor` — CAPÍTULO XIX: O Método do Escritor
+
+## ESQUELETO (aprofunde os corpos; devolva no FORMATO DE SAÍDA da skill)
+
+```json
+{
+ "ch01-o-problema-da-historia": {
+  "cards": [
+   {
+    "ic": "book",
+    "t": "Boa História, Bem Contada",
+    "b": "O imperativo é duplo: uma <strong>substância única e verdadeira</strong> (uma verdade sobre a vida) casada com uma <strong>forma habilmente construída</strong>. Talento literário — bom diálogo, descrição bonita — não salva uma história estruturalmente falha.",
+    "tip": "<strong>Teste de viabilidade:</strong> se a estrutura é oca, nenhum diretor, ator ou efeito a salva. A estrutura vem primeiro."
+   },
+   {
+    "ic": "masks",
+    "t": "História vs. Vida",
+    "b": "A vida é um borrão de horas em fuga; a história <strong>dá forma à vida</strong>, abstraindo-a para revelar seus padrões e significados. Vamos ao cinema não para fugir da vida, mas para <strong>encontrá-la</strong> — sentir com segurança triunfos e tragédias.",
+    "tip": "<strong>Modelo mental:</strong> pense na história como “equipamento para viver” — um ensaio emocional da existência."
+   },
+   {
+    "ic": "wrench",
+    "t": "A Perda do Ofício",
+    "b": "A crença equivocada de que absorver filmes inconscientemente substitui o <strong>estudo rigoroso e formal</strong> dos princípios. Experiência é superestimada; o que forma o escritor é o autoconhecimento (experiência + reflexão) somado ao domínio do ofício.",
+    "tip": "<strong>Regra:</strong> o domínio consciente do ofício é o que libera o subconsciente a entregar seu material mais original."
+   },
+   {
+    "ic": "target",
+    "t": "Substância sobre Espetáculo",
+    "b": "Apoiar-se em efeitos milionários, atuação histriônica e som avassalador para mascarar uma narrativa oca e cheia de clichês. A plateia é <strong>extremamente inteligente</strong> — é preciso todo o ofício para ficar à frente de suas antecipações.",
+    "tip": "<strong>Sinal de alerta:</strong> a “história pessoal” sem protagonista, conflito ou desejo confunde minúcia realista com verdade dramática."
+   }
+  ]
+ },
+ "ch02-espectro-estrutural": {
+  "cards": [
+   {
+    "ic": "triangle",
+    "t": "O Triângulo das Tramas",
+    "b": "<strong>Arquitrama</strong> é o ápice (a vasta maioria do cinema global): protagonista ativo, conflito externo, tempo contínuo, realidade consistente, final fechado. Descendo o triângulo rumo à <strong>Minitrama</strong> e à <strong>Antitrama</strong>, a plateia potencial encolhe.",
+    "tip": "<strong>Regra:</strong> quanto mais longe do design clássico, menor o público — porque você se afasta da experiência humana universal."
+   },
+   {
+    "ic": "target",
+    "t": "Arquitrama (Design Clássico)",
+    "b": "Um <strong>protagonista ativo</strong> luta contra forças de antagonismo sobretudo externas, em tempo contínuo e realidade causalmente conectada, rumo a um <strong>final fechado</strong> de mudança absoluta e irreversível.",
+    "tip": "<strong>Quando usar:</strong> para o público mais amplo, em narrativas épicas, heroicas ou dinâmicas."
+   },
+   {
+    "ic": "person",
+    "t": "Minitrama (Minimalismo)",
+    "b": "Conserva o suficiente do clássico para satisfazer, mas reduz seus traços: <strong>final aberto</strong>, conflito interno, protagonista passivo ou múltiplos protagonistas. A mudança é profunda, mas em escala íntima.",
+    "tip": "<strong>Quando usar:</strong> dramas intimistas, centrados em personagem. Final aberto resolve o conflito primário e deixa uma pergunta secundária no ar."
+   },
+   {
+    "ic": "spiral",
+    "t": "Antitrama (Anti-estrutura)",
+    "b": "Inverte deliberadamente os princípios clássicos para afirmar o absurdo da vida: <strong>coincidência, tempo não-linear, realidades inconsistentes</strong>. Só funciona como subversão hábil e proposital do clássico.",
+    "tip": "<strong>Sinal de alerta:</strong> misturar Arquitrama e Antitrama sem razão temática aliena os dois públicos — o “meio confuso”."
+   },
+   {
+    "ic": "book",
+    "t": "Consistência, Não Realidade",
+    "b": "O mundo não precisa ser o mundo real, mas precisa ser uma <strong>realidade consistente</strong>. Estabelecidas as regras (mesmo “a gravidade falha às terças”), você deve obedecê-las à risca. <strong>Quebrar as próprias regras é Antitrama.</strong>",
+    "tip": "<strong>Como aplicar:</strong> defina as leis internas de probabilidade do seu mundo e nunca as viole — a plateia se sente traída."
+   }
+  ]
+ },
+ "ch03-estrutura-e-cenario": {
+  "cards": [
+   {
+    "ic": "pin",
+    "t": "As 4 Dimensões do Cenário",
+    "b": "Especifique as quatro antes de inventar eventos: <strong>Época</strong> (lugar no tempo), <strong>Duração</strong> (extensão no tempo), <strong>Local</strong> (lugar no espaço) e <strong>Nível de Conflito</strong> (interno, pessoal, institucional, ambiental).",
+    "tip": "<strong>Como aplicar:</strong> o elenco e seus níveis de conflito fazem parte do cenário — defina-os antes dos eventos."
+   },
+   {
+    "ic": "triangle",
+    "t": "O Princípio da Limitação Criativa",
+    "b": "Quanto <strong>maior</strong> o mundo, mais diluído o conhecimento do escritor, menos escolhas, mais clichê. Quanto <strong>menor</strong> o mundo, mais completo o conhecimento e maiores as escolhas criativas.",
+    "tip": "<strong>Regra:</strong> crie um mundo pequeno e conhecível. A limitação inspira — escreva dentro do que você domina."
+   },
+   {
+    "ic": "book",
+    "t": "As 3 Pesquisas",
+    "b": "Contra o bloqueio (“você travou porque não tem o que dizer”): <strong>Memória</strong> — escreva o que você viveu (você não sabe que sabe até escrever); <strong>Imaginação</strong> — viva a vida do personagem hora a hora até dar déjà vu; <strong>Fato</strong> — vá à biblioteca, a pesquisa confirma e expande.",
+    "tip": "<strong>Cuidado:</strong> estudo é alimento da imaginação, nunca um fim. Pesquisa não é procrastinação."
+   },
+   {
+    "ic": "masks",
+    "t": "Criatividade é Dez para Um",
+    "b": "Invente <strong>dez ou vinte versões</strong> de cada cena, depois escolha a mais verdadeira ao personagem e ao mundo que nunca esteve assim na tela. O gênio não está só em criar, mas no <strong>gosto e na vontade de exterminar banalidades</strong>.",
+    "tip": "<strong>Sinal de alerta:</strong> a primeira ideia que vem à cabeça costuma ser um clichê emprestado de todo filme que você já viu. Durma sobre ela."
+   }
+  ]
+ },
+ "ch04-estrutura-e-genero": {
+  "cards": [
+   {
+    "ic": "masks",
+    "t": "Convenção, Não Clichê",
+    "b": "Convenções são os cenários, papéis, eventos e valores que definem cada gênero. O desafio: <strong>manter a convenção, evitar o clichê</strong>. Rapaz-conhece-moça é convenção; conhecer-se do jeito que sempre se conhecem é o clichê.",
+    "tip": "<strong>Como aplicar:</strong> chame as convenções “como velhas amigas” — a luta para cumpri-las de forma única é o que eleva a história."
+   },
+   {
+    "ic": "lens",
+    "t": "O Método de Estudo de Gênero",
+    "b": "(1) Liste obras como a sua — êxitos <strong>e</strong> fracassos; (2) estude os filmes com os roteiros, quebrando cada um em cenário, papel, evento e valor; (3) empilhe as análises e olhe através delas: <strong>o que histórias do meu gênero sempre fazem?</strong>",
+    "tip": "<strong>Regra:</strong> até descobrir as respostas, a plateia está à sua frente. Achar que conhece o gênero por ter visto filmes é como achar que compõe sinfonias por ter ouvido Beethoven."
+   },
+   {
+    "ic": "target",
+    "t": "Posicionar a Plateia",
+    "b": "Fixe o tipo de história na mente do público para que cheguem “aquecidos e focados, com um apetite que pretendemos saciar”. Shakespeare titulou <em>A Tragédia de Hamlet</em> para o Globe saber que ia chorar.",
+    "tip": "<strong>Sinal de alerta:</strong> prometer um gênero no título/marketing e entregar outro mata a obra pelo boca a boca."
+   },
+   {
+    "ic": "spiral",
+    "t": "Gêneros Evoluem",
+    "b": "Gêneros são janelas para a realidade; quando a realidade muda, eles dobram ou petrificam. Misturar gêneros é invenção — com 25+ gêneros, o cruzamento cria filmes que o mundo nunca viu.",
+    "tip": "<strong>Cuidado:</strong> omitir uma convenção obrigatória (o herói à mercê do vilão, na Ação) deixa a plateia insatisfeita."
+   },
+   {
+    "ic": "book",
+    "t": "Arte vs. “Filme de Arte”",
+    "b": "Hitchcock trabalhou puramente dentro da Arquitrama (o design clássico) e da convenção, para o grande público, e está no topo do panteão. <strong>Não há contradição necessária entre arte e sucesso popular</strong>, nem ligação necessária entre arte e “Filme de Arte”.",
+    "tip": "<strong>Modelo mental:</strong> convenção é a rima do contador de histórias — Frost: verso livre é tênis com a rede abaixada."
+   }
+  ]
+ },
+ "ch05-estrutura-e-personagem": {
+  "cards": [
+   {
+    "ic": "mask",
+    "t": "Personagem vs. Caracterização",
+    "b": "<strong>Caracterização</strong> é a soma de todas as qualidades observáveis (idade, profissão, aparência, maneirismos). <strong>Personagem verdadeiro</strong> se revela nas <strong>escolhas sob pressão</strong> — quanto maior a pressão, mais verdadeira a revelação.",
+    "tip": "<strong>Regra:</strong> escreva os papéis principais para que NÃO sejam, no fundo, o que parecem na superfície."
+   },
+   {
+    "ic": "steps",
+    "t": "O Arco de Personagem",
+    "b": "A melhor escrita não só revela o personagem verdadeiro — ela o <strong>transforma</strong>. Cinco passos: (1) exiba a caracterização; (2) revele a natureza por escolha; (3) contraponha o interior à máscara; (4) aplique pressão crescente; (5) no clímax, as escolhas mudaram o personagem profundamente.",
+    "tip": "<strong>Como aplicar:</strong> a longevidade vive na contradição — Bond dura 20 filmes porque cada um re-revela o matador sob o galã."
+   },
+   {
+    "ic": "gap",
+    "t": "O Travamento (Interlock)",
+    "b": "Mude o design de eventos e você mudou o personagem; reinvente o personagem profundo e terá de reinventar a história. <strong>Inverta uma ação decisiva</strong> (de quem diz a verdade para quem mente) e, sem tocar na caracterização, você criou um personagem inteiramente novo.",
+    "tip": "<strong>Modelo mental:</strong> personagem mudado precisa viver A história dele. Toque um, e você toca os dois."
+   },
+   {
+    "ic": "clock",
+    "t": "Guarde o Melhor para o Fim",
+    "b": "O cinema é primo da música, da dança e da poesia — arte <strong>temporal</strong>. O primeiro mandamento: “guardarás o melhor para o fim”. ~75% do trabalho vai no design, e 75% disso no <strong>clímax do último ato</strong>.",
+    "tip": "<strong>Regra:</strong> filmes são sobre seus últimos vinte minutos. Até criar o clímax, você não tem uma história."
+   },
+   {
+    "ic": "masks",
+    "t": "O Sacrifício de Aristóteles",
+    "b": "Qualquer traço de caracterização que mine a credibilidade da ação final <strong>deve ser sacrificado</strong>: trama acima de caracterização. No clímax, o personagem precisa poder e querer fazer o que faz.",
+    "tip": "<strong>Sinal de alerta:</strong> proteger uma caracterização charmosa às custas da credibilidade do clímax destrói a história."
+   }
+  ]
+ },
+ "ch06-estrutura-e-significado": {
+  "cards": [
+   {
+    "ic": "bulb",
+    "t": "A Ideia de Controle",
+    "b": "Substitui o vago “tema”. Uma frase = <strong>Valor + Causa</strong>. O <em>valor</em> é a carga (positiva/negativa) do valor crítico no clímax final; a <em>causa</em> é a principal razão de ele chegar lá. (“A justiça se restaura <strong>porque</strong> um forasteiro percebe a verdade.”)",
+    "tip": "<strong>Como aplicar:</strong> a história te diz o significado — crie o clímax primeiro, depois pergunte que valor ele traz e qual sua causa. Extraia a ideia da ação, nunca o contrário."
+   },
+   {
+    "ic": "scale",
+    "t": "Ideia vs. Contra-Ideia",
+    "b": "Sequência a sequência, a Ideia positiva e a Contra-Ideia negativa discutem (“o crime compensa!” / “o crime não compensa!”), ganhando intensidade até colidirem na Crise. <strong>Quem vence o clímax final vira a Ideia de Controle.</strong>",
+    "tip": "<strong>Regra:</strong> progressões se constroem movendo-se dinamicamente entre as cargas positiva e negativa dos valores em jogo."
+   },
+   {
+    "ic": "masks",
+    "t": "As 3 Visões",
+    "b": "<strong>Idealista</strong> — final para cima, a vida como desejamos; <strong>Pessimista</strong> — final para baixo, a vida como tememos; <strong>Irônica</strong> — para cima e para baixo ao mesmo tempo, a vida em sua forma mais completa.",
+    "tip": "<strong>Modelo mental:</strong> a ironia (amor é prazer e dor) é “a vida no seu estado mais completo” — a visão mais difícil e mais rica."
+   },
+   {
+    "ic": "sword",
+    "t": "Arme a Oposição",
+    "b": "A prova da sua visão não é o quão bem você afirma a Ideia de Controle, mas a <strong>vitória dela sobre as forças poderosíssimas que você reúne contra ela</strong>. Os filmes antiguerra de Kubrick funcionam porque admitem que os homens amam a guerra.",
+    "tip": "<strong>Sinal de alerta:</strong> nunca explique — dramatize. Mestres narradores não explicam. Didatismo é sermão disfarçado."
+   }
+  ]
+ },
+ "ch07-substancia-da-historia": {
+  "cards": [
+   {
+    "ic": "gap",
+    "t": "A Lacuna (The Gap)",
+    "b": "O protagonista age esperando um certo resultado. O mundo (interno, pessoal ou extrapessoal) <strong>reage diferente do esperado</strong>, abrindo uma lacuna. Isso o força a se recompor e tomar uma ação nova e mais difícil, atravessando a lacuna.",
+    "tip": "<strong>Regra:</strong> nunca deixe uma ação ter o êxito exato planejado — exceto na resolução final. Sempre abra uma lacuna."
+   },
+   {
+    "ic": "target",
+    "t": "O Protagonista",
+    "b": "Um personagem de <strong>vontade</strong>, com desejo consciente (e/ou inconsciente), capacidade de persegui-lo de forma convincente e ao menos uma <strong>chance</strong> de alcançá-lo. Como um míssil teleguiado: travado no objeto, não para até alcançá-lo ou ser destruído.",
+    "tip": "<strong>Sinal de alerta:</strong> se o personagem pode desistir facilmente, não é um protagonista de verdade."
+   },
+   {
+    "ic": "mask",
+    "t": "Desejo Consciente vs. Inconsciente",
+    "b": "<strong>Consciente</strong>: o que o personagem sabe que quer e enuncia (“quero o dinheiro”). <strong>Inconsciente</strong>: uma necessidade mais profunda, muitas vezes contraditória, que o move sem que ele perceba (“quero ser punido”).",
+    "tip": "<strong>Como aplicar:</strong> o choque entre os dois desejos cria a personagem mais rica e o conflito interno mais forte."
+   },
+   {
+    "ic": "person",
+    "t": "Empatia vs. Simpatia",
+    "b": "Simpatia é ser querido (“eu me importo com ele”). <strong>Empatia é identificação</strong> (“eu o compreendo; sou como ele”). O protagonista <strong>precisa</strong> ser empático, mas não precisa ser simpático — vide Macbeth.",
+    "tip": "<strong>Regra:</strong> um protagonista sem empatia mata a história. A plateia precisa ver uma humanidade compartilhada."
+   }
+  ]
+ },
+ "ch08-incidente-incitante": {
+  "cards": [
+   {
+    "ic": "spark",
+    "t": "O Fósforo que Acende",
+    "b": "A vida do protagonista é uma pilha de lenha seca; o Incidente Incitante é a faísca. Uma vez aceso, o fogo (a história) <strong>não se apaga até o clímax</strong>. Deve <strong>acontecer na tela</strong> e atingir o protagonista.",
+    "tip": "<strong>Regra:</strong> tem de ocorrer na tela — não na <em>história pregressa</em> (backstory) — para a plateia sentir o impacto emocional do desequilíbrio."
+   },
+   {
+    "ic": "fork",
+    "t": "Causal vs. Coincidente",
+    "b": "<strong>Causal</strong>: uma escolha ativa de um personagem desequilibra a vida (a esposa decide partir). <strong>Coincidente</strong>: um evento aleatório e sem causa (um disco voador pousa no quintal). Ambos servem — desde que forcem o desejo.",
+    "tip": "<strong>Como aplicar:</strong> equilibre o Setup — cedo demais, a plateia não entende o impacto; tarde demais, ela se entedia."
+   },
+   {
+    "ic": "target",
+    "t": "A Espinha (Through-line)",
+    "b": "O desejo profundo de restaurar o equilíbrio cria a <strong>espinha</strong> da história. Toda ação do protagonista, do Incidente Incitante ao Clímax, deve ser <strong>unificada por essa única busca</strong>.",
+    "tip": "<strong>Sinal de alerta:</strong> se o protagonista pode ignorar o evento, não é o Incidente Incitante — é falso."
+   },
+   {
+    "ic": "target",
+    "t": "A Promessa da Cena Obrigatória",
+    "b": "No instante em que ocorre, o Incidente faz uma promessa: “haverá um confronto final para resolver isto”. Essa é a <strong>Cena Obrigatória</strong> (a Crise). Se o seu incidente não aponta claramente para um clímax necessário, é o incidente errado.",
+    "tip": "<strong>Exemplo:</strong> em <em>Tubarão</em>, o tubarão come um banhista (coincidente) → a cidade não está mais segura → matar o tubarão (a espinha) → enfrentá-lo no mar (a promessa)."
+   }
+  ]
+ },
+ "ch09-design-de-atos": {
+  "cards": [
+   {
+    "ic": "layers",
+    "t": "Complicação vs. Complexidade",
+    "b": "<strong>Complicação</strong> = conflito em apenas UM dos três níveis (só extrapessoal → Ação; só pessoal → novela). <strong>Complexidade</strong> = conflito nos <strong>três níveis ao mesmo tempo</strong>. Conselho: histórias “relativamente simples, mas complexas”.",
+    "tip": "<strong>Como aplicar:</strong> não multiplique personagens nem locações — gaste a disciplina em complexidade rica."
+   },
+   {
+    "ic": "steps",
+    "t": "O Pântano do Segundo Ato",
+    "b": "Ato Um ≈ 25%; o último ato é o <strong>mais curto</strong> (aceleração ao clímax); sobra um Ato Dois longo — o “pântano”. Duas curas: <strong>adicionar subtramas</strong> (suas reviravoltas caem entre os clímaxes) ou <strong>adicionar atos</strong> (clímax do meio).",
+    "tip": "<strong>Cuidado:</strong> cada ato extra exige outra cena brilhante (convida ao clichê) e divide pela metade o impacto do clímax."
+   },
+   {
+    "ic": "pivot",
+    "t": "O Ritmo dos Atos (Alternância)",
+    "b": "Os dois últimos clímaxes são as cenas mais fortes e ficam a 10–15 min um do outro — <strong>não podem repetir a mesma carga</strong>. Não se monta final positivo com positivo (“estava ótimo… e ficou ainda melhor!”).",
+    "tip": "<strong>Regra:</strong> se o clímax é irônico, veja para que lado a ironia pende — e contradiga esse lado no clímax penúltimo."
+   },
+   {
+    "ic": "link",
+    "t": "As 4 Relações de Subtrama",
+    "b": "A subtrama pode <strong>(1) contradizer</strong> a Ideia de Controle (gera ironia), <strong>(2) ressoá-la</strong> (variações de tema), <strong>(3) preparar</strong> uma trama central tardia, ou <strong>(4) complicar</strong> a trama central (a mais importante: antagonismo adicional).",
+    "tip": "<strong>Sinal de alerta:</strong> subtrama que não contradiz, ressoa, prepara nem complica racha a história ao meio."
+   },
+   {
+    "ic": "masks",
+    "t": "O Falso Final",
+    "b": "Uma cena tão completa que a plateia pensa que o filme acabou (E.T. morto; o duplo falso final de <em>O Exterminador do Futuro</em>) — útil sobretudo na Ação. Na maioria, o penúltimo clímax deve <strong>intensificar a Pergunta Dramática</strong>: “E agora?”",
+    "tip": "<strong>Exemplo-modelo:</strong> <em>Kramer vs. Kramer</em> — quatro reviravoltas memoráveis em três atos: ideal para a maioria dos escritores, dá complexidade e evita repetição."
+   }
+  ]
+ },
+ "ch10-design-da-cena": {
+  "cards": [
+   {
+    "ic": "pivot",
+    "t": "Plantar e Colher (Setup / Payoff)",
+    "b": "Toda revelação numa reviravolta deve ter sido <strong>plantada antes</strong>. O <em>plantio</em> (setup) insere o conhecimento com um sentido aparente; a <em>colheita</em> (payoff) entrega seu segundo sentido, mais verdadeiro. Plante firme o bastante para ser lembrado, sutil o bastante para não entregar.",
+    "tip": "<strong>Regra:</strong> reviravoltas falham quando se prepara demais o óbvio e de menos o inusitado. Um payoff vira o setup da próxima virada."
+   },
+   {
+    "ic": "bulb",
+    "t": "Lógica Retroativa",
+    "b": "“Na narrativa, a lógica é retroativa.” Pense o impensável <strong>primeiro</strong>; depois volte e plante os setups que o tornam racional. A imaginação é primária e pré-condicional; a razão é secundária e pós-criativa.",
+    "tip": "<strong>Como aplicar:</strong> nove em dez ideias loucas serão inúteis — mas uma pode pôr borboletas no estômago. Pense primeiro, justifique depois."
+   },
+   {
+    "ic": "scale",
+    "t": "A Lei dos Retornos Decrescentes",
+    "b": "Quanto mais repetimos uma emoção, menos efeito ela tem. Três cenas trágicas seguidas: lágrimas, fungadas, depois riso. <strong>Alterne cargas positivas e negativas.</strong> A exceção: repetir só funciona quando o contraste é tão grande que o primeiro evento ganha matiz oposto.",
+    "tip": "<strong>Sinal de alerta:</strong> emoção por decoração (lágrimas brilhantes, música raivosa) não substitui a experiência que a causa."
+   },
+   {
+    "ic": "fork",
+    "t": "Escolha Verdadeira = Dilema",
+    "b": "Escolher entre bem e mal não é escolha — todo personagem escolhe o “bem” como ele o percebe. A escolha real está entre <strong>bens irreconciliáveis</strong> (quer os dois, só pode um) ou o <strong>mal menor</strong> (não quer nenhum, tem de levar um).",
+    "tip": "<strong>Como aplicar:</strong> use o design triangular — conflito de dois lados não tem fim; adicione um terceiro vértice e escolher B significa sacrificar C, e esse preço encerra a história."
+   },
+   {
+    "ic": "masks",
+    "t": "Emoção vs. Sentimento (Mood)",
+    "b": "Emoção é curta e explode (só existem duas: prazer e dor); <strong>sentimento</strong> (no cinema, o <em>clima</em>) é o pano de fundo de longo prazo que torna a emoção <strong>específica</strong>. O arco da cena dá a emoção; o clima (luz, ritmo, elenco, trilha) a colore.",
+    "tip": "<strong>Modelo mental:</strong> a mesma cena de amantes e uma arma, em luz de verão, é comédia; nos mesmos beats em sombras noturnas, é thriller."
+   }
+  ]
+ },
+ "ch11-analise-da-cena": {
+  "cards": [
+   {
+    "ic": "layers",
+    "t": "Texto vs. Subtexto",
+    "b": "<strong>Texto</strong> é a superfície sensorial (imagens, diálogo, ação). <strong>Subtexto</strong> é a vida sob a superfície — pensamentos e sentimentos ocultos pelo comportamento. A lei de Hollywood: <strong>“se a cena é sobre o que a cena é sobre, você está em apuros”</strong>.",
+    "tip": "<strong>Regra:</strong> escrever “na cara” põe o subtexto no texto e não deixa nada para o ator atuar."
+   },
+   {
+    "ic": "lens",
+    "t": "A Análise em 5 Passos",
+    "b": "Rode-a em qualquer cena que “cai dura”: <strong>(1)</strong> defina o conflito (desejo no infinitivo) e o do antagonista — em conflito direto; <strong>(2)</strong> anote o valor de abertura e sua carga; <strong>(3)</strong> quebre em beats; <strong>(4)</strong> compare o valor de fechamento; <strong>(5)</strong> ache a Reviravolta.",
+    "tip": "<strong>Como aplicar:</strong> mesma carga na abertura e no fechamento = <strong>não-evento</strong>. Pode ter passado exposição, mas nada aconteceu."
+   },
+   {
+    "ic": "pivot",
+    "t": "O Beat",
+    "b": "Um beat é <strong>uma troca de ação/reação</strong>. Nomeie a ação <em>subtextual</em> com um gerúndio emotivo (“Implorando a seus pés” / “Ignorando a súplica”). Um novo beat começa só quando o comportamento muda claramente.",
+    "tip": "<strong>Diagnóstico:</strong> trace os gerúndios e ache o instante exato em que a grande lacuna se abre — ali está a reviravolta."
+   },
+   {
+    "ic": "mask",
+    "t": "O Teste do Lunático",
+    "b": "Atores criam a partir do subtexto, não do texto. Pessoas que dizem e fazem exatamente o que pensam e sentem não são honestas — <strong>são insanas</strong>. A máscara pública é a condição humana que o escritor deve dramatizar.",
+    "tip": "<strong>Como aplicar:</strong> escreva a cena de amor como uma troca de pneu — que o diálogo seja macaco e chave de roda, e o romance jogue por baixo."
+   }
+  ]
+ },
+ "ch12-composicao": {
+  "cards": [
+   {
+    "ic": "spiral",
+    "t": "As 4 Progressões",
+    "b": "<strong>Social</strong> — alargue o impacto das ações para a sociedade; <strong>Pessoal</strong> — aprofunde nos laços íntimos e na vida interior; <strong>Ascensão Simbólica</strong> — vá do particular ao universal; <strong>Ascensão Irônica</strong> — gire a progressão na ironia (a lacuna entre o que parece e o que é).",
+    "tip": "<strong>Como aplicar:</strong> se o cenário não pode ir mais amplo, vá mais fundo — aos segredos por trás da máscara pública."
+   },
+   {
+    "ic": "link",
+    "t": "O Princípio da Transição",
+    "b": "Entre cada duas cenas, ache o <strong>terceiro elemento</strong> — algo em comum ou em contraponto: um traço, uma ação, um objeto, uma palavra, uma qualidade de luz, um som, uma ideia. A dobradiça mantém a plateia fluindo pelos cortes.",
+    "tip": "<strong>Exemplo:</strong> criança birrenta → adulto infantil; estufa → bosque. A ligação carrega o espectador através do corte."
+   },
+   {
+    "ic": "mountain",
+    "t": "Ascensão Simbólica",
+    "b": "Comece com cenários e papéis que representam só a si mesmos; deixe-os <strong>acumular carga arquetípica</strong>. Em <em>O Franco Atirador</em>: operário → guerreiro → “O Caçador”, com a crise no topo da montanha.",
+    "tip": "<strong>Regra de ouro:</strong> o símbolo só funciona enquanto não é notado. Rotule-o e ele morre — deixe-o agir abaixo da consciência."
+   },
+   {
+    "ic": "pivot",
+    "t": "Largo E Profundo ao Mesmo Tempo",
+    "b": "<em>Chinatown</em> se espalha como uma mancha de óleo (um divórcio → a prefeitura → toda Los Angeles) e, simultaneamente, mergulha para dentro (espancamentos, assassinato, incesto, o passado trágico se repetindo). A dupla progressão elegante.",
+    "tip": "<strong>Sinal de alerta:</strong> repetição episódica — cenas que mudam de local mas não de essência — não é progressão; é geografia."
+   }
+  ]
+ },
+ "ch13-crise-climax-resolucao": {
+  "cards": [
+   {
+    "ic": "fork",
+    "t": "A Crise (Cena Obrigatória)",
+    "b": "O ideograma chinês: <strong>Perigo/Oportunidade</strong>. Esgotadas todas as ações menos uma, o protagonista encara as forças de antagonismo mais concentradas de sua vida. Deve ser <strong>dilema verdadeiro</strong>: bens irreconciliáveis ou mal menor.",
+    "tip": "<strong>Regra:</strong> a decisão da Crise é um momento deliberadamente estático — nunca fora de cena. Represe a energia e deixe explodir no Clímax."
+   },
+   {
+    "ic": "spark",
+    "t": "O Clímax",
+    "b": "Uma <strong>revolução de valores</strong> — do positivo ao negativo ou vice-versa, com ou sem ironia — uma virada de carga máxima, <strong>absoluta e irreversível</strong>. A ação deve ser pura e autoevidente: <strong>nada de diálogo explicativo</strong>.",
+    "tip": "<strong>Como aplicar:</strong> escreva de trás para frente — do clímax à causa. Se uma cena pode ser cortada sem perturbar o final, ela deve ser cortada."
+   },
+   {
+    "ic": "target",
+    "t": "A Lei de Goldman",
+    "b": "Dê à plateia o que ela quer — <strong>mas não do jeito que ela espera</strong>. E o que ela quer não é um final feliz, e sim <strong>satisfação emocional</strong>: a emoção que a narração prometeu. Aristóteles: o final deve ser “inevitável e inesperado”.",
+    "tip": "<strong>Sinal de alerta:</strong> final feliz = dar tudo a todos; final triste = matar todos. Sem a revelação retida, é amadorismo."
+   },
+   {
+    "ic": "mountain",
+    "t": "A Imagem-Chave",
+    "b": "Uma imagem dentro da ação climática que <strong>concentra todo o significado e emoção</strong> (Truffaut: “Espetáculo e Verdade”). Decisões custam mais que ações — por isso a Crise, não a luta, é onde o personagem se revela mais fundo.",
+    "tip": "<strong>Modelo mental:</strong> ação trivial, significado avassalador — o clímax de <em>Gente como a Gente</em> é uma mulher arrumando uma mala."
+   },
+   {
+    "ic": "book",
+    "t": "A Resolução",
+    "b": "Três usos: (1) dar clímax a uma subtrama que não pôde resolver antes; (2) mostrar o <strong>espalhamento dos efeitos</strong> do clímax pelo elenco; (3) sempre, a <strong>cortina lenta</strong> — segundos para a plateia recobrar o fôlego e sair do cinema com dignidade.",
+    "tip": "<strong>Cuidado:</strong> cortar da Crise para outro material antes do Clímax drena a energia represada — emende Crise e Clímax num corte direto."
+   }
+  ]
+ },
+ "ch14-principio-do-antagonismo": {
+  "cards": [
+   {
+    "ic": "sword",
+    "t": "Fortaleça o Vilão, Não Enfraqueça o Herói",
+    "b": "A natureza humana é conservadora: ninguém faz mais do que precisa. Só uma oposição avassaladora força o personagem (e o escritor) à realização plena. O protagonista deve ser um <strong>azarão com apenas uma chance</strong>.",
+    "tip": "<strong>Regra:</strong> não encolha o dragão; faça crescer o herói. “Forças de antagonismo” não é um vilão — é a soma de tudo que se opõe ao desejo."
+   },
+   {
+    "ic": "scale",
+    "t": "A Declinação Negativa em 4 Estágios",
+    "b": "Mapeie os graus de negatividade do valor central: <strong>Positivo → Contrário → Contraditório → Negação da Negação</strong>. Ex.: Justiça → injustiça branda → injustiça → <strong>tirania</strong> (o crime “legal”, onde quem faz a lei tem poder ilimitado).",
+    "tip": "<strong>Como aplicar:</strong> use a declinação como gráfico de autocrítica. Parou no Contraditório? É sólido, mas não no limite. Grandes histórias chegam à Negação da Negação."
+   },
+   {
+    "ic": "layers",
+    "t": "Os Negativos Qualitativos",
+    "b": "Dois negativos não viram um positivo: na vida, as coisas “pioram, pioram e pioram”. Os negativos mais fundos são qualitativos: <strong>a mentira dentro do amor</strong> (ódio disfarçado de amor), a tirania dentro da lei, o inimigo dentro de si.",
+    "tip": "<strong>Exemplo:</strong> o ódio mascarado de amor é o que eleva <em>Gente como a Gente</em> — “como uma criança se defende disso?”"
+   },
+   {
+    "ic": "target",
+    "t": "O Problema do Super-Herói",
+    "b": "Como fazer de um deus um azarão? O design de Puzo para o Superman: dois foguetes em direções opostas (mal menor: qual costa salvar?), depois Lois morta, depois a lei sagrada do pai contra a mulher que ama (bens irreconciliáveis). <strong>Desenhar o antagonismo É desenhar o herói.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> confundir um vilão com o antagonismo — a soma das forças inclui a própria natureza do protagonista, seus íntimos, instituições e o ambiente."
+   }
+  ]
+ },
+ "ch15-exposicao": {
+  "cards": [
+   {
+    "ic": "sword",
+    "t": "Exposição como Munição",
+    "b": "Sempre que fatos precisarem chegar à plateia, os personagens usam o que sabem para <strong>atacar, defender, persuadir</strong> — nunca para informar o espectador. Se ambos já sabem e não precisam usar como arma, a plateia não ouve.",
+    "tip": "<strong>Como aplicar:</strong> esconda a exposição dentro de uma briga — a plateia absorve fatos só enquanto está emocionalmente engajada no conflito."
+   },
+   {
+    "ic": "clock",
+    "t": "A Regra do Ritmo",
+    "b": "Revele apenas o que a plateia <strong>precisa</strong>, quando precisa — e <strong>guarde a exposição mais importante para o fim</strong>. Revelações tardias carregam poder de reviravolta; os fatos mais profundos da <strong>história pregressa</strong> (backstory) viram reviravoltas no terceiro ato.",
+    "tip": "<strong>Sinal de alerta:</strong> a “cena de informação” — dois personagens contando um ao outro o que ambos já sabem — mata a cena."
+   },
+   {
+    "ic": "clock",
+    "t": "As 2 Regras do Flashback",
+    "b": "(1) <strong>Dramatize o flashback</strong> — faça dele uma mini-história com arco próprio, não um despejo de informação. (2) <strong>Nunca volte no tempo antes de criar a necessidade e o desejo de saber</strong> (Casablanca só nos leva a Paris depois de acender a curiosidade).",
+    "tip": "<strong>Truque:</strong> abrir na <em>descoberta</em> do crime (não no crime) dispara a curiosidade em duas direções — passado (como/por quê?) e futuro (quem?)."
+   },
+   {
+    "ic": "bubble",
+    "t": "O Teste da Narração",
+    "b": "Pergunte: “se eu tirar a narração, a história ainda é bem contada?” Se <strong>não</strong> — reescreva até ficar, e então corte. Se <strong>sim</strong> — guarde-a só pela única boa razão: <strong>contraponto</strong> (a ironia e o humor que nenhuma cena faria).",
+    "tip": "<strong>Cuidado:</strong> narração explicativa o filme inteiro vira “audiolivro milionário, ilustrado”."
+   }
+  ]
+ },
+ "ch16-problemas-e-solucoes": {
+  "cards": [
+   {
+    "ic": "target",
+    "t": "Interesse: Curiosidade + Compaixão",
+    "b": "<strong>Curiosidade</strong> (intelecto): abra perguntas e faça a plateia esperar. <strong>Compaixão</strong> (emoção): a plateia procura o <strong>Centro do Bem</strong> — o foco positivo de empatia, no mínimo no protagonista. O “bem” é relativo a um fundo mais escuro.",
+    "tip": "<strong>Exemplo:</strong> a lealdade dos Corleone entre clãs traiçoeiros; a inteligência e a calma de Lecter contra um mundo brutal e mentiroso."
+   },
+   {
+    "ic": "eye",
+    "t": "As 3 Relações com a Plateia",
+    "b": "<strong>Mistério</strong>: a plateia sabe MENOS que os personagens (só curiosidade). <strong>Suspense</strong>: sabem o MESMO (curiosidade + compaixão — ~90% dos filmes). <strong>Ironia Dramática</strong>: a plateia sabe MAIS (compaixão pura — pavor e dó).",
+    "tip": "<strong>Como aplicar:</strong> misturar enriquece — Casablanca joga o flashback de Paris em ironia, depois vira a Crise de Rick em mistério para o choque."
+   },
+   {
+    "ic": "spark",
+    "t": "Surpresa e Coincidência",
+    "b": "<strong>Surpresa verdadeira</strong> = a lacuna entre expectativa e resultado seguida de um <strong>jorro de revelação</strong> (não o susto barato). Coincidência: traga-a <strong>cedo</strong> para ganhar sentido, <strong>nunca após o meio</strong>, e <strong>jamais para virar o final</strong> (o <em>deus ex machina</em>: a salvação improvável que cai do céu).",
+    "tip": "<strong>Regra:</strong> o deus ex machina é “o maior pecado do escritor” — exceto na Antitrama (significa “a vida é absurda”) e na Comédia (se o herói sofreu enormemente)."
+   },
+   {
+    "ic": "masks",
+    "t": "Comédia e Melodrama",
+    "b": "O comediante é um <strong>idealista raivoso</strong> atacando uma instituição — ache o que te enfurece. Já o melodrama “não vem do excesso de expressão, mas da <strong>submotivação</strong>”: o poder de um evento deve igualar a soma de suas causas.",
+    "tip": "<strong>Como aplicar:</strong> não encolha a cena — aumente o desejo que a move. O teste de comédia: conte a história sem citar uma única piada."
+   },
+   {
+    "ic": "wrench",
+    "t": "O Problema dos Furos",
+    "b": "Se tapar a lógica exige uma cena que só serve para explicar, pergunte: a plateia vai notar? Se sim, <strong>exponha o furo e o negue</strong> — um personagem admite “não sei por que faço isto…”, e o mundo joga a lógica no lixo, feliz.",
+    "tip": "<strong>Adaptação:</strong> cada meio domina um nível — romance = interno, teatro = pessoal, cinema = extrapessoal. “Quanto mais puro o romance, pior o filme.” Esteja disposto a reinventar."
+   }
+  ]
+ },
+ "ch17-personagem": {
+  "cards": [
+   {
+    "ic": "target",
+    "t": "Personagem Verdadeiro pelo Desejo",
+    "b": "“O personagem verdadeiro só se expressa pela escolha em dilema.” A chave é o desejo: pergunte <strong>o que ele quer? agora? em breve? no geral? consciente? inconscientemente?</strong> Com respostas claras vem o domínio do papel.",
+    "tip": "<strong>Como aplicar:</strong> pressão revela, escolha define. Pense o motivo a fundo — depois deixe mistério, espaço para a experiência da plateia."
+   },
+   {
+    "ic": "mask",
+    "t": "Dimensão = Contradição",
+    "b": "Uma dimensão é uma <strong>contradição consistente</strong> — dentro do personagem profundo (Macbeth: ambição vs. culpa) ou entre caracterização e profundidade (um ladrão charmoso). <strong>Traços não são dimensões</strong> (perito em finanças + faixa-preta + saxofonista = “plano como uma mesa”).",
+    "tip": "<strong>Regra:</strong> o protagonista deve ser o personagem mais dimensional do elenco — senão o <strong>Centro do Bem</strong> (o foco de empatia da plateia) se desloca (Blade Runner)."
+   },
+   {
+    "ic": "constellation",
+    "t": "O Design do Elenco (Sistema Solar)",
+    "b": "O protagonista é o sol; os coadjuvantes são planetas; os figurantes, satélites — todos existem <strong>pela relação que travam com o protagonista</strong>, cada um desenhado para revelar uma contradição diferente (A provoca seu cinismo, B sua esperança, C sua coragem).",
+    "tip": "<strong>Cuidado:</strong> figurantes são deliberadamente planos, mas não enfadonhos — um traço bem observado, nada mais."
+   },
+   {
+    "ic": "masks",
+    "t": "O Personagem Cômico",
+    "b": "Atribua uma <strong>mania que o personagem não consegue ver</strong> (o Avarento de Molière; a ilusão de detetive perfeito de Clouseau). No instante em que ele <strong>enxerga</strong> a própria obsessão, a comédia acaba.",
+    "tip": "<strong>Modelo mental:</strong> ame todos os seus personagens, sobretudo os maus — “se não consegue amá-los, não os escreva”. Vilões acham que são bons."
+   }
+  ]
+ },
+ "ch18-o-texto": {
+  "cards": [
+   {
+    "ic": "bubble",
+    "t": "Disciplina do Diálogo",
+    "b": "Diálogo NÃO é conversa — é ação comprimida e proposital em palavras. Diga o máximo nas mínimas; mantenha falas curtas e naturais (“ninguém fala assim” é fatal). Use a <strong>frase periódica</strong>: adie a palavra que carrega o sentido para o fim da linha.",
+    "tip": "<strong>Regra:</strong> menos é mais — a atriz que oferece a xícara não precisa de “Você quer este café, querido?”. A xícara, o gesto e o sentimento já dizem tudo."
+   },
+   {
+    "ic": "eye",
+    "t": "Descrição: a Cena-Mestra (Master Scene)",
+    "b": "Escreva no <strong>presente vívido</strong>, só o que é filmável. Em vez de marcar ângulos de câmera, quebre a descrição em <strong>miniparágrafos separados por espaço em branco</strong> — cada unidade sugere sutilmente um plano (geral / movimento / close / inserto).",
+    "tip": "<strong>Como aplicar:</strong> lê-se como assistir ao filme, deixando ao diretor e ao ator o trabalho criativo deles."
+   },
+   {
+    "ic": "spiral",
+    "t": "Sistemas de Imagens",
+    "b": "Uma estratégia de motivos que se repete em imagem e som do início ao fim, com persistência e variação, mas com igual sutileza. <strong>Imagem Externa</strong> importa um símbolo pronto (bandeira = pátria) — “a marca do filme de estudante”. <strong>Imagem Interna</strong> dá a uma categoria um sentido único deste filme.",
+    "tip": "<strong>Exemplo:</strong> <em>As Diabólicas</em> satura tudo de água e <strong>inverte</strong> seu simbolismo de vida para morte e terror."
+   },
+   {
+    "ic": "book",
+    "t": "Mantenha o Símbolo Invisível",
+    "b": "“A consciência de um símbolo o transforma numa curiosidade intelectual neutra, impotente e quase sem sentido.” Como a trilha sonora, o simbolismo só funciona <strong>abaixo da cognição</strong>.",
+    "tip": "<strong>Sinal de alerta:</strong> rotular símbolos (o laço de Buñuel, que à quinta repetição fez a plateia gritar “Símbolo!”) os mata. Titular é nomear o que está de fato na história."
+   }
+  ]
+ },
+ "ch19-metodo-do-escritor": {
+  "cards": [
+   {
+    "ic": "cards",
+    "t": "De Dentro para Fora",
+    "b": "De um roteiro de seis meses, gaste ~quatro meses <strong>antes</strong> do roteiro. O pipeline: <strong>Escaleta em fichas → Pitch (contar a história em voz alta) → Tratamento (com subtexto, sem diálogo) → Roteiro</strong>. O diálogo escrito por último é o melhor que você fará.",
+    "tip": "<strong>Regra:</strong> estrutura primeiro, palavras por último. Descubra o Clímax antes de escrever uma linha de diálogo."
+   },
+   {
+    "ic": "cards",
+    "t": "A Escaleta (Step-Outline)",
+    "b": "A história contada em passos em fichas 3×5, uma pilha por ato. Cada ficha: uma ou duas frases do que acontece e como a cena vira; no verso, a <strong>função estrutural</strong>. Fique meses nas fichas <strong>para destruir</strong>: “90% de tudo que você escreve é medíocre na melhor das hipóteses”.",
+    "tip": "<strong>Como aplicar:</strong> esboce cada cena de doze jeitos, jogue fora sequências e atos inteiros; descubra o Clímax e reescreva de trás para frente."
+   },
+   {
+    "ic": "bubble",
+    "t": "O Teste do Pitch",
+    "b": "Nunca mostre a escaleta — <strong>conte a história em dez minutos</strong> e veja-a acontecer numa pessoa. “Se a história não funciona em dez minutos, como funcionará em 110? Não melhora ao ficar maior.”",
+    "tip": "<strong>Marca de aprovação:</strong> os ouvintes sussurram “Uau” e ficam em silêncio. Até a maioria reagir com esse entusiasmo, não avance."
+   },
+   {
+    "ic": "book",
+    "t": "O Tratamento e o Roteiro",
+    "b": "Expanda cada passo a um parágrafo no presente, momento a momento, <strong>com subtexto completo e sem diálogo</strong> (“ele quer que ela faça isto, mas ela recusa”). Um tratamento real tem 60–90+ páginas. Só então o roteiro flui — “uma alegria” a 5–10 páginas por dia.",
+    "tip": "<strong>Modelo mental:</strong> a Fábula da Lacraia — estude o ofício membro a membro até o instinto virar conhecimento; aí, então, você dança. O que o mundo pede, além de imaginação e técnica, é <strong>coragem</strong>."
+   }
+  ]
+ }
+}
+```

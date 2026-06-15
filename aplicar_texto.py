@@ -26,16 +26,27 @@ def card_lit(c):
     return '{' + ','.join(p) + '}'
 
 
-def apply_book(slug):
+def _load_items(slug):
+    """(cap, cards) de duas fontes: arquivo combinado <slug>.json (saída do Gemini:
+    {cap: {"cards":[...]}}) ou pasta <slug>/ com um <cap>.json cada (saída de agente)."""
+    combined = BASE / '_kit_preview' / 'text' / (slug + '.json')
+    if combined.is_file():
+        obj = json.loads(combined.read_text(encoding='utf-8'))
+        return [(cap, (v.get('cards', []) if isinstance(v, dict) else v)) for cap, v in obj.items()]
     tdir = BASE / '_kit_preview' / 'text' / slug
-    if not tdir.is_dir():
-        print(f'{slug}: SEM pasta de texto ({tdir})'); return False
+    if tdir.is_dir():
+        return [(jf.stem, json.loads(jf.read_text(encoding='utf-8')).get('cards', [])) for jf in sorted(tdir.glob('*.json'))]
+    return None
+
+
+def apply_book(slug):
+    items = _load_items(slug)
+    if items is None:
+        print(f'{slug}: SEM texto (_kit_preview/text/{slug}.json ou /{slug}/)'); return False
     src_path = BASE / (slug.replace('-', '_') + '_data.py')
     src = src_path.read_text(encoding='utf-8')
     patched = missed = 0
-    for jf in sorted(tdir.glob('*.json')):
-        cap = jf.stem
-        cards = json.loads(jf.read_text(encoding='utf-8')).get('cards', [])
+    for cap, cards in items:
         if not cards:
             continue
         middle = '\n      ' + ',\n      '.join(card_lit(c) for c in cards) + ',\n    '
