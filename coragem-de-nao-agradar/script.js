@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cover: _SVG('<path d="M5 4.5A1.5 1.5 0 0 1 6.5 3H18a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H6.5A1.5 1.5 0 0 1 5 19.5Z"/><path d="M5 17.5A1.5 1.5 0 0 1 6.5 16H19"/>'),
         link: _SVG('<path d="M9.5 14.5 14.5 9.5"/><path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/><path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>'),
         carousel: _SVG('<rect x="8" y="6" width="8" height="12" rx="1.5"/><path d="M5 8v8M19 8v8"/>'),
+        pdf: _SVG('<path d="M6 3h8l4 4v14a0 0 0 0 1 0 0H6a0 0 0 0 1 0 0V3z"/><path d="M14 3v4h4"/><path d="M9 13v4M9 13h1.5a1.5 1.5 0 0 1 0 3H9"/>'),
     };
     const DL_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M12 4v10m0 0l-4-4m4 4l4-4M5 20h14" stroke="currentColor" stroke-width="2" '
@@ -69,27 +70,47 @@ document.addEventListener('DOMContentLoaded', () => {
         try { localStorage.setItem(VOTEKEY, JSON.stringify(votes)); } catch (e) { /* ignora */ }
         fetch(prefix + 'pdf/vote?book=' + encodeURIComponent(book) + '&from=' + from + '&to=up', { method: 'POST' }).catch(() => {});
     }
-    function buildKit() {
+    function buildKit(items) {
         if (isOverview) {
-            // visão geral → kit do livro (pílulas)
+            // visão geral → kit do livro (pílulas) + PDFs no mesmo container
             fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/manifest.json')
                 .then(r => (r.ok ? r.json() : null))
-                .then(m => { if (m && Array.isArray(m.assets) && m.assets.length) renderKit(m); })
-                .catch(() => { /* sem manifesto, sem kit */ });
+                .then(m => {
+                    if (m && Array.isArray(m.assets) && m.assets.length) renderKit(m, items);
+                    else renderPdfNav(items);
+                })
+                .catch(() => renderPdfNav(items));
         } else if (chapterMatch) {
             // capítulo → carrossel daquele capítulo (índice leve decide se há kit;
-            // a geração das imagens é sob demanda, no clique).
+            // a geração das imagens é sob demanda, no clique) + PDF no mesmo container.
             const cap = chapterMatch[1];
             fetch(prefix + 'assets/kit/' + BIBLIOTECA_BOOK + '/caps.json')
                 .then(r => (r.ok ? r.json() : null))
                 .then(idx => {
                     const count = idx && idx.chapters && idx.chapters[cap];
-                    if (count) renderChapterKit(cap, count);
+                    if (count) renderChapterKit(cap, count, items);
+                    else renderPdfNav(items);
                 })
-                .catch(() => { /* capítulo sem carrossel */ });
+                .catch(() => renderPdfNav(items));
+        } else {
+            renderPdfNav(items);
         }
     }
-    function renderKit(m) {
+    // pílula de PDF dentro do dropdown do kit (mesmo container — pedido #5)
+    function pdfPill(page, label) {
+        const el = document.createElement(PAYWALL ? 'button' : 'a');
+        el.className = 'kit-pill kit-pill--pdf';
+        if (PAYWALL) { el.type = 'button'; el.addEventListener('click', () => openPixModal(page)); }
+        else { el.href = prefix + 'pdf/' + BIBLIOTECA_BOOK + '/' + page + '.pdf'; el.target = '_blank'; el.rel = 'noopener'; }
+        el.title = label;
+        el.innerHTML = KIT_ICONS.pdf + '<span class="kit-pill__label">' + label + '</span>'
+            + '<span class="kit-pill__fmt">· PDF</span>';
+        return el;
+    }
+    function addPdfPills(pillsEl, items) {
+        (items || []).forEach(([page, label]) => pillsEl.appendChild(pdfPill(page, label)));
+    }
+    function renderKit(m, items) {
         // dropdown nativo, FECHADO por padrão — não pesa o topo da página
         const sec = document.createElement('details');
         sec.className = 'kit-section';
@@ -117,13 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
             pill.innerHTML = (KIT_ICONS[a.icon] || KIT_ICONS.quote)
                 + '<span class="kit-pill__label">' + a.label + '</span>'
                 + '<span class="kit-pill__fmt">· ' + (a.pill || (a.rede + ' · ' + a.fmt)) + '</span>';
-            if (ondemand) pill.addEventListener('click', () => genAndShow(a, pill));
+            if (a.type === 'carousel') pill.addEventListener('click', () => genCarousel(a.id, pill));
+            else if (ondemand) pill.addEventListener('click', () => genAndShow(a, pill));
             else pill.addEventListener('click', () => openKitLightbox(a, prefix + a.href));
             pills.appendChild(pill);
         });
+        addPdfPills(pills, items);   // PDFs no mesmo container dropável (#5)
         sec.appendChild(pills);
-        const anchor = document.querySelector('.pdf-actions') || header;
-        anchor.insertAdjacentElement('afterend', sec);
+        header.insertAdjacentElement('afterend', sec);
     }
     // chama a "função de geração" do formato no servidor (gera no 1º clique;
     // depois serve o cache) e apresenta o resultado. Gerar = curtir.
@@ -176,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     // capítulo: dropdown com o carrossel daquele capítulo (abre o visualizador C3)
-    function renderChapterKit(cap, count) {
+    function renderChapterKit(cap, count, items) {
         const sec = document.createElement('details');
         sec.className = 'kit-section';
         const sum = document.createElement('summary');
@@ -200,9 +222,9 @@ document.addEventListener('DOMContentLoaded', () => {
             + '<span class="kit-pill__fmt">· ' + count + ' slides · 4:5</span>';
         pill.addEventListener('click', () => genCarousel(cap, pill));
         pills.appendChild(pill);
+        addPdfPills(pills, items);   // PDF do capítulo no mesmo container dropável (#5)
         sec.appendChild(pills);
-        const anchor = document.querySelector('.pdf-actions') || header;
-        anchor.insertAdjacentElement('afterend', sec);
+        header.insertAdjacentElement('afterend', sec);
     }
     // clique → o servidor gera o carrossel do capítulo no 1º acesso (e armazena);
     // depois serve o cache. Gerar = curtir.
@@ -286,16 +308,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.target === overlay || (e.target.closest && e.target.closest('[data-close]'))) close();
         });
     }
-    buildKit();
-
     const items = [];
     if (isOverview) {
         items.push(['visao-geral', 'Visão geral em PDF']);
         items.push(['livro-completo', 'Resumo completo em PDF']);
     } else if (chapterMatch) {
-        items.push([chapterMatch[1], 'Baixar em PDF']);
+        items.push([chapterMatch[1], 'Baixar capítulo em PDF']);
     }
-    if (!items.length) return;
+    buildKit(items);
 
     // ---------- modal Pix ----------
     function openPixModal(page) {
@@ -374,22 +394,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---------- botões ----------
-    const nav = document.createElement('nav');
-    nav.className = 'pdf-actions';
-    nav.setAttribute('aria-label', 'Download em PDF');
-    items.forEach(([page, label]) => {
-        const a = document.createElement('a');
-        a.className = 'pdf-btn';
-        a.href = prefix + 'pdf/' + BIBLIOTECA_BOOK + '/' + page + '.pdf';
-        a.innerHTML = ICON + '<span>' + label + '</span>';
-        if (PAYWALL) {
-            a.addEventListener('click', (e) => { e.preventDefault(); openPixModal(page); });
-        } else {
-            a.target = '_blank';
-            a.rel = 'noopener';
-        }
-        nav.appendChild(a);
-    });
-    header.insertAdjacentElement('afterend', nav);
+    // ---------- botões de PDF (fallback): só quando NÃO há dropdown de kit ----------
+    function renderPdfNav(items) {
+        if (!items || !items.length) return;
+        const nav = document.createElement('nav');
+        nav.className = 'pdf-actions';
+        nav.setAttribute('aria-label', 'Download em PDF');
+        items.forEach(([page, label]) => {
+            const a = document.createElement('a');
+            a.className = 'pdf-btn';
+            a.href = prefix + 'pdf/' + BIBLIOTECA_BOOK + '/' + page + '.pdf';
+            a.innerHTML = ICON + '<span>' + label + '</span>';
+            if (PAYWALL) {
+                a.addEventListener('click', (e) => { e.preventDefault(); openPixModal(page); });
+            } else {
+                a.target = '_blank';
+                a.rel = 'noopener';
+            }
+            nav.appendChild(a);
+        });
+        header.insertAdjacentElement('afterend', nav);
+    }
 });
