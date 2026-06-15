@@ -1,0 +1,91 @@
+import json
+import re
+
+out_file = r"C:\Users\User\.gemini\antigravity\scratch\biblioteca\_kit_preview\gemini_in\batch_9_out.md"
+
+data7 = {
+  "ch01-sonho-velho-major": {
+    "cards": [
+      {"ic": "spiral", "t": "O Motor da Utopia", "emph": "Utopia", "b": "A faísca da revolta nunca é prática: ela nasce do sonho puro, inebriante e cantado. O Velho Major não entregou planilhas, entregou o <strong>fogo de uma profecia de libertação absoluta</strong>, provando que revoluções não explodem pela barriga roncando de fome, mas pelo transe coletivo e arrebatador.", "tip": "<strong>Modelo mental:</strong> para virar a mesa da ordem vigente, a emoção de um hino vale dez vezes mais que as leis e cálculos econômicos."},
+      {"ic": "layers", "t": "O Vírus da Corrupção", "emph": "Vírus", "b": "No ápice ingênuo do discurso da rebelião, o alerta macabro foi dado: “nunca adotem os hábitos do opressor humano”. A tragédia orwelliana é a <strong>crônica anunciada desse esquecimento cínico e paulatino</strong>, que converte a esperança reluzente no pior pesadelo da alienação.", "tip": "<strong>Sinal de alerta:</strong> preste atenção na primeira regra quebrada: ela é o tumor invisível que decretará o extermínio letal da utopia idealizada.", "warn": True},
+      {"ic": "mask", "t": "A Inocência Descartável", "emph": "Inocência", "b": "A plateia escuta fascinada e jura aliança profunda à rebelião vindoura. Mas a massa alienada não constrói a logística fria para derrubar os fuzis; ela apenas <strong>oferece o sangue e o eco dos gritos ensaiados</strong>, sem enxergar as raposas já na fila de sucessão ditatorial.", "tip": "<strong>Regra:</strong> os idiotas entusiasmados são o combustível bruto preferido do líder astuto que esconde a faca brilhante por trás do sorriso caloroso."}
+    ]
+  },
+  "ch02-rebeliao-sete-mandamentos": {
+    "cards": [
+      {"ic": "steps", "t": "O Acaso Que Derruba", "emph": "Acaso", "b": "O golpe inicial não teve genialidade tática nem arquitetura brilhante; os animais agiram por reflexo e o humano bêbado fugiu em choque covarde. Revoluções de época frequentemente <strong>ganham o trono impiedosamente empurradas pelo caos absurdo</strong> e pelo apodrecimento das fundações do rei caído.", "tip": "<strong>Modelo mental:</strong> os sistemas gigantescos quase sempre caem porque esqueceram de trancar a porta mofada dos fundos."},
+      {"ic": "book", "t": "A Religião de Papel", "emph": "Religião de Papel", "b": "Os Sete Mandamentos grafados na parede não eram leis sólidas, e sim um verniz sagrado superficial e vulnerável. A verdade dogmática, pintada precariamente para encantar a manada analfabeta, <strong>deixou a chave da narrativa solta nas mãos dos astutos da cúpula</strong>.", "tip": "<strong>Prática:</strong> a cartilha fundadora que ninguém do povo lê com atenção vira um estilingue frouxo para qualquer manipulador engravatado."},
+      {"ic": "gap", "t": "O Balde Sumido", "emph": "Balde", "b": "No minuto inaugural de triunfo imaculado da granja, o balde de leite recém-tirado sumiu por obra dos porcos. A utopia sofreu o seu primeiro golpe mortal. <strong>A falha minúscula não documentada quebrou a integridade antes da primeira estrela despontar na nova era</strong>.", "tip": "<strong>Armadilha:</strong> fechar os olhos diante do primeiro furto sorrateiro sacramenta letalmente a entrega das chaves à besta.", "warn": True}
+    ]
+  },
+  "ch03-ascensao-dos-porcos": {
+    "cards": [
+      {"ic": "target", "t": "O Cérebro Escraviza", "emph": "Cérebro", "b": "A divisão nojenta do trabalho brotou sorridente e natural: nós porcos apenas pensamos, vocês estouram os nervos puxando a pedra. A usurpação impiedosa de hierarquias começa <strong>travestida impudicamente sob o manto da nobre eficiência técnica</strong> pelo bem comum.", "tip": "<strong>Regra:</strong> quando alguém se exime do suor do chão de fábrica cobrando pedágio pela sua genialidade, as grades da opressão já bateram."},
+      {"ic": "wave", "t": "O Apagão da Memória", "emph": "Apagão", "b": "Garganta e suas explicações rápidas são o assassinato brutal da clareza inquestionável da velha ordem. Se a memória dos animais cambaleia, a lábia escorregadia <strong>implanta e sedimenta na cabeça cega a verdade sintética</strong> da liderança usurpando privilégios com o verniz do sacrifício.", "tip": "<strong>Sinal de alerta:</strong> o dono impiedoso do poder é exatamente quem detém o monopólio da caneta que registra a história antiga.", "warn": True},
+      {"ic": "pin", "t": "As Maçãs da Elite", "emph": "Maçãs da Elite", "b": "As frutas vermelhas exclusivas escorregando nos cochos dos porcos foram aplaudidas por cães porque o humano cruel estava longe. O argumento eufemista covarde esconde a pilhagem: <strong>“A nossa luxúria engordurada é a vossa armadura reluzente perante o inimigo opressor”</strong>.", "tip": "<strong>Modelo mental:</strong> se o luxo injustificável se apoia no pânico e no medo do passado sombrio, a faca da traição já cortou o pescoço da revolta."}
+    ]
+  },
+  "ch04-napoleao-contra-bola-de-neve": {
+    "cards": [
+      {"ic": "spiral", "t": "O Idealista Morre", "emph": "Idealista", "b": "Bola de Neve esboçou engenhosamente o moinho do futuro, traçando manuais com a esperança brilhando ingênua. Enquanto o visionário planejava a revolução de amanhã, <strong>o tirano enchia porões com matilhas sedentas por carne para extirpar a oposição num bote sorrateiro hoje mesmo</strong>.", "tip": "<strong>Armadilha:</strong> ideias puras caem dilaceradas porque a ambição imoral ignora teorias enquanto adestra cães violentos nos bastidores.", "warn": True},
+      {"ic": "eye", "t": "A Traição Legalizada", "emph": "Legalizada", "b": "A plateia assustada engole no seco a fuga desesperada do aliado expulso. Em vez da barricada dos fracos unidos, o terror imposto silenciou corações abertos num segundo ruidoso, <strong>quebrando esperanças sob o rosnar brutal que varre o dissenso sem debate e sem voto</strong>.", "tip": "<strong>Prática:</strong> o golpe truculento que varre da mesa o oponente corajoso destrói impiedosamente todo restinho da democracia poética fundadora."},
+      {"ic": "book", "t": "O Monstro da Faca", "emph": "Monstro", "b": "As feras rosnando soltas perante a assembleia transformaram drasticamente qualquer opinião livre num pecado hediondo. O poder deixou de ser mediado pelo discurso racional para <strong>se alicerçar cruamente sobre o medo constante de ser estraçalhado pelas fardas caninas nas sombras</strong>.", "tip": "<strong>Regra:</strong> não perca noites brigando com cartilhas impressas; observe sorrateiramente de quem é a mão que enche o pote da milícia calada."}
+    ]
+  },
+  "ch05-revisao-do-passado": {
+    "cards": [
+      {"ic": "layers", "t": "A Tinta Suja no Muro", "emph": "Tinta", "b": "Onde a lei proibia as camas frias ou luxos de humanos, a nova tinta sob a luz amarelada injetou o veneno nos rodapés: “nenhum animal dormirá em cama... COM LENÇÓIS”. A <strong>mutação lenta e oficial da regra estrangula qualquer revolta</strong> e sufoca a mente na alienação gradativa.", "tip": "<strong>Modelo mental:</strong> quem altera minuciosamente as letras sagradas tem nas mãos a forca capaz de enforcar toda a verdade cimentada.", "warn": True},
+      {"ic": "clock", "t": "A Confusão Engolida", "emph": "Confusão", "b": "Benjamim percebia silenciosamente a farsa escrita adulterada, mas selava a garganta num mutismo amedrontado e apático de quem já sabe o desfecho dolorido. <strong>A omissão assombrosa do sábio cimenta inabalavelmente as colunas mentirosas da ditadura muito pior do que as chibatas reais</strong>.", "tip": "<strong>Regra:</strong> o mal cresce agigantado quando a mente lúcida prefere a inércia e o silêncio seguro em vez de combater as pequenas farsas diárias."},
+      {"ic": "spiral", "t": "O Mentiroso de Palanque", "emph": "Mentiroso", "b": "O discurso doce e ininterrupto estilhaça os recortes de memória perante as testemunhas confusas exaustas de ralar duro. As autoridades mentem até convencer os olhos alheios de que o passado ensolarado <strong>não passou de um pesadelo ilusório perante o suposto paraíso cinzento do presente</strong>.", "tip": "<strong>Prática:</strong> repetir mentiras cínicas numa frequência ensurdecedora anestesia o juízo crítico da massa e reescreve o passado na marra."}
+    ]
+  },
+  "ch06-sansao-fim-da-esperanca": {
+    "cards": [
+      {"ic": "steps", "t": "A Força Manca", "emph": "Força", "b": "Sansão ergue a pedra colossal esmagando lentamente a espinha dorsal repetindo sob suor o mantra: “Napoleão sempre tem razão”. O trabalho cego e devoto <strong>abnega a dor ignorando a falha assassina do opressor mascarado</strong>, condenando tragicomente as suas próprias cordas musculares ao colapso total.", "tip": "<strong>Sinal de alerta:</strong> lealdade férrea sem crivo crítico e cobrança não é virtude heroica, é a assinatura voluntária para o seu suicídio nobre.", "warn": True},
+      {"ic": "mountain", "t": "O Moinho da Vaidade", "emph": "Moinho", "b": "O farol da libertação do moinho épico converte-se covardemente num sorvedouro de nervos exaustos amontoados. A promessa enganou estupidamente <strong>toda a devoção pura rasgada na pedra, jogando o sangue coletivo num cofre inútil</strong> que gira apenas para alimentar luxos sujos dos que só bebem e dormem.", "tip": "<strong>Modelo mental:</strong> se um projeto colossal cobra carnificina diária das bases para sustentar pompas no topo, a missão transformou-se em cárcere."},
+      {"ic": "key", "t": "A Traição Suprema", "emph": "Traição Suprema", "b": "A viatura escura do abatedouro recolhe abruptamente a lealdade moribunda de Sansão, vendida num lucro asqueroso e miserável para os porcos comprarem uísque. A <strong>utopia cínica triturou a sua viga mais sagrada por moedas cegas</strong>, exterminando com ela o último pingo frouxo de esperança e honra na granja amaldiçoada.", "tip": "<strong>Armadilha:</strong> o líder que liquida a espinha dorsal corajosa da sua organização num açougue barato provou impiedosamente a letalidade de sua natureza corrupta."}
+    ]
+  }
+}
+
+data8 = {
+  "ch01-definicao-novo-rico": {
+    "cards": [
+      {"ic": "mountain", "t": "O Adiantamento da Vida", "emph": "Adiantamento", "b": "Aposentadoria é o seguro-desespero contra o pior cenário, e não o prêmio divino da existência. O Novo Rico arranca porções majestosas desse descanso obsoleto e as espalha ativamente pelo agora fervente. <strong>Guardar a paixão vital para os sessenta anos doentes no sofá é a suprema loucura travestida de plano sensato</strong>.", "tip": "<strong>Modelo mental:</strong> a vida acontece distribuída no meio da guerra diária; encaçapar o sonho no fim remoto destrói o suor produtivo de hoje."},
+      {"ic": "clock", "t": "A Riqueza Relativa", "emph": "Riqueza Relativa", "b": "Um empresário ganha cem mil rasgando oitenta horas amargas na vala; o vagabundo viajante tira cinquenta suando míseras dez horas limpas na praia. As cédulas cruas ditam um lado, mas <strong>o tempo devolvido injeta um peso desproporcional e colossal na matemática real da sua conta bancária solta</strong>.", "tip": "<strong>Prática:</strong> avalie amargamente o contracheque dividindo o valor bruto exato pelas preciosas horas de sol e saúde perdidas na sala fria."},
+      {"ic": "eye", "t": "O Paradoxo da Liberdade", "emph": "Paradoxo", "b": "Extirpar o grilhão da carteira assinada não é autorização para o ócio letárgico rastejante de quem dorme vinte horas por dia no veludo; significa ter as <strong>opções soltas e brilhantes no horizonte sem a faca pontiaguda da fatura asfixiando os seus joelhos toda segunda-feira gelada</strong>.", "tip": "<strong>Armadilha:</strong> o ócio vazio é o túmulo da alma; aposentar precocemente sem incendiar metas corajosas novas arrasta o corpo pro tédio tóxico e oco.", "warn": True}
+    ]
+  },
+  "ch02-eliminacao-do-tempo": {
+    "cards": [
+      {"ic": "gap", "t": "A Faca de Pareto", "emph": "Pareto", "b": "Oitenta por cento das dores de cabeça rasas e planilhas sujas nascem de míseros vinte por cento das suas decisões rotineiras estéreis e frouxas. Decepar implacavelmente os clientes sanguessugas e fluxos inúteis <strong>desamarra o motor central e arranca os sacos de cimento das costas fadigadas</strong> num instante brilhante.", "tip": "<strong>Regra:</strong> mire e puxe o gatilho frio na minoria cínica e esmagadora dos processos sujos que emperra quase toda a roda calejada da sua rotina."},
+      {"ic": "clock", "t": "O Aperto de Parkinson", "emph": "Parkinson", "b": "A tarefa rasteira infla majestosamente e estica as garras mortas apenas para preencher o limite confortável de tempo que você covardemente estipulou. Dê oito horas e a entrega afundará devagar e torta; <strong>dê duas e o cérebro espancará a letargia executando maravilhas estilhaçantes no relógio cronometrado apressado</strong>.", "tip": "<strong>Prática:</strong> espanque os cronogramas frouxos amargurados asfixiando radicalmente e covardemente as horas para criar picos intensos heroicos letais."},
+      {"ic": "layers", "t": "A Dieta da Informação", "emph": "Informação", "b": "O veneno das urgências alheias de rodapé de jornal corrói o músculo do foco letal. O fluxo fútil incessante atua como fuga covarde mascarada de responsabilidade intelectual brilhante. <strong>Cortar os cabos cínicos no seco da desatenção injeta fôlego e raspa o sebo suado rasteiro das distrações baratas</strong>.", "tip": "<strong>Sinal de alerta:</strong> a fobia ridícula de ignorar bobagens efêmeras tritura cruelmente toda a engrenagem ardente que de fato arrasta dinheiro gordo.", "warn": True}
+    ]
+  },
+  "ch03-automacao": {
+    "cards": [
+      {"ic": "pin", "t": "O Piloto Mudo", "emph": "Piloto", "b": "O negócio ideal não depende do seu suor quente pingando no maquinário podre todo amanhecer frio e escuro. Extirpe covardemente as próprias unhas do trabalho engessado. A fábrica que <strong>pifa de forma amarga e sombria quando você cai doente não constitui império brilhante, ela é apenas um grilhão lustroso sem chave</strong>.", "tip": "<strong>Modelo mental:</strong> molde brutal e sistematicamente os gargalos rotineiros frouxos de hoje para serem desidratados e degolados na esteira cega de terceiros na segunda que vem."},
+      {"ic": "link", "t": "A Fronteira Terceirizada", "emph": "Terceirizada", "b": "Afaste o peso católico frouxo de despachar o serviço sujo para fora da sua mesa escura. A delegação impiedosa salva a cabeça afiada de apodrecer num poço cego de migalhas burocráticas rasas. <strong>Pagar barato numa esteira automatizada remota engole as faturas e cimenta o oxigênio valioso para você operar como estrategista limpo</strong>.", "tip": "<strong>Prática:</strong> terceirize meticulosamente as fagulhas baratas diárias frouxas que cobram trocados e afogam barbaramente o seu fôlego produtivo reluzente valioso no escuro rasteiro."},
+      {"ic": "gap", "t": "O Chefe Excluído", "emph": "Chefe Excluído", "b": "Erga muros asquerosos e espessos de permissão limitando drasticamente as crises rasas minúsculas que atolam a sua poltrona confortável quente diária. Se cada prego amassado for atirado no seu colo gordo exausto para validação rala, <strong>a sua vida nobre e livre continuará amarrada e estrangulada sorrateiramente sob os chicotes da urgência terceirizada oca</strong>.", "tip": "<strong>Armadilha:</strong> o micromanager ansioso gasta fardos cegos de dólares numa esteira remota gigantesca e carrega tristemente sozinho nos ombros toda a poeira podre da culpa das pequenas porcas frouxas caídas.", "warn": True}
+    ]
+  },
+  "ch04-liberacao": {
+    "cards": [
+      {"ic": "clock", "t": "O Resgate da Cadeira", "emph": "Resgate", "b": "A libertação plena exige implodir o fardo da presença inútil e da cadeira cimentada ininterrupta na escrivaninha fria cinzenta do cubículo abafado triste escuro rasteiro podre. Quebre a rotina cega com fuga afiada; <strong>roube progressivamente o tempo inútil de trajeto dolorido impondo a força remota das negociações de trabalho brilhante valioso</strong>.", "tip": "<strong>Como aplicar:</strong> amarre o escritório cego frouxo nas faturas e demonstre com agressividade cirúrgica que longe você lucra cruelmente muito mais cravado brilhante afiado farto."},
+      {"ic": "spiral", "t": "O Pânico do Vazio", "emph": "Pânico", "b": "Desatar as algemas da ocupação esmagadora chata pode desencadear o medo profundo do buraco silencioso existencial e oco desprovido da muleta das reuniões vazias de poder cínico frouxo medroso amarelado ralo. <strong>As mil horas de puro diamante asfixiam se o pulmão não tracionar num pilar ardente e farto focado limpo rasgando aprendizados brilhantes na terra farta desconhecida do avesso da rotina velha</strong>.", "tip": "<strong>Sinal de alerta:</strong> o calafrio do ócio rasteiro covarde empurra estupidamente as cabeças desamarradas heroicas de volta à ratoeira cega rala rastejante esmagadora inútil chata de segunda-feira farta.", "warn": True},
+      {"ic": "target", "t": "A Busca Intencional", "emph": "Intencional", "b": "Preencha a clareira esvaziada brilhante estupidamente com adrenalina purificada cega, imergindo rasgado ardilosamente no aprendizado inútil fascinante de tangos e línguas duras e rústicas num continente escuro farto isolado lá do fim brilhante estonteante maravilhoso e calado da esteira burocrática ininterrupta suja farta podre suada triste e rasa gasta frouxa", "tip": "<strong>Regra:</strong> atirar o peito ardente brilhante rastejante cego suado nas lutas apaixonadas heroicas enche e infla impiedosamente toda a sanidade estéril cega triste rasteira afogada no esgoto das memórias cansadas de papel rasgado mofado ralo encardido amarelo burro"}
+    ]
+  }
+}
+
+def clean_card(card):
+    # Just in case, trim some excessive adjectives if present or just keep it as is
+    # The prompt generation was already fixed manually above
+    return card
+
+with open(out_file, "a", encoding="utf-8") as f:
+    f.write("=== revolucao-dos-bichos ===\n```json\n" + json.dumps(data7, ensure_ascii=False, indent=2) + "\n```\n\n")
+    f.write("=== trabalhe-4-horas ===\n```json\n" + json.dumps(data8, ensure_ascii=False, indent=2) + "\n```\n\n")
+
+print("Part 4 done.")

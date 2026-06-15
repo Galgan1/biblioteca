@@ -1,0 +1,130 @@
+{
+ "ch04-esporte-a-mentalidade-de-um-campeao": {
+  "cards": [
+   {
+    "ic": "target",
+    "t": "A Base Escondida",
+    "emph": "Base",
+    "b": "A glória no pódio é vendida como mágica, mas a lenda de todo campeão se ergue sobre o cimento do treino invisível. <strong>O ouro não coroa quem nasceu pronto, mas quem suportou a repetição exaustiva quando ninguém estava olhando</strong>.",
+    "tip": "<strong>Modelo mental:</strong> o talento inato é só o bilhete de entrada. O campeonato se vence com a teimosia do esforço diário."
+   },
+   {
+    "ic": "mountain",
+    "t": "O Choque do Fracasso",
+    "emph": "Fracasso",
+    "b": "A mente fixa entra em pânico com o nocaute porque lê a derrota como atestado de mediocridade definitiva. Na ótica do crescimento, <strong>a dor de cair na lona é apenas um diagnóstico claro revelando a engrenagem exata que você precisa ajustar</strong>.",
+    "tip": "<strong>Pergunta-chave:</strong> quando a derrota bater, você vai culpar a arbitragem ou mapear o erro para a próxima rodada?"
+   },
+   {
+    "ic": "pivot",
+    "t": "O Sucesso é Transitório",
+    "emph": "Transitório",
+    "b": "Vencer a partida hoje não garante o seu trono eterno. Atletas que acreditam ser deuses natos param de treinar e desabam no campeonato seguinte. <strong>O campeão de longo prazo é o aprendiz faminto que trata toda vitória como um marco passageiro</strong>.",
+    "tip": "<strong>Regra:</strong> não confie no troféu de ontem. A evolução contínua é a única defesa contra o declínio."
+   }
+  ]
+ },
+ "ch05-negocios-mentalidade-e-lideranca": {
+  "cards": [
+   {
+    "ic": "eye",
+    "t": "O Líder no Pedestal",
+    "emph": "Pedestal",
+    "b": "O chefe de mente fixa governa pelo ego, silenciando críticas e exigindo bajulação para proteger a própria imagem de gênio. <strong>Empresas apodrecem quando a liderança foca em parecer infalível em vez de encarar os dados reais da crise</strong>.",
+    "tip": "<strong>Sinal de alerta:</strong> líderes que demitem quem traz más notícias estão apenas comprando passagens para o próprio naufrágio.",
+    "warn": true
+   },
+   {
+    "ic": "constellation",
+    "t": "A Guerra Estéril",
+    "emph": "Guerra",
+    "b": "Organizações que premiam apenas o talento nato geram um ambiente tóxico onde esfaquear o colega é a única forma de subir. <strong>A cultura do crescimento premia o risco, a colaboração e a coragem de assumir o erro como degrau de aprendizado coletivo</strong>.",
+    "tip": "<strong>Modelo mental:</strong> um time só inova quando o fracasso tático é tratado como pesquisa de campo, não como sentença de morte."
+   },
+   {
+    "ic": "bulb",
+    "t": "A Frieza dos Dados",
+    "emph": "Frieza",
+    "b": "O líder lendário não teme a verdade dolorosa. Ele arranca as ilusões de controle e encara a realidade nua, por pior que seja. <strong>Enfrentar relatórios brutais de frente, sem culpar o mercado, é a essência do comando executivo maduro</strong>.",
+    "tip": "<strong>Prática:</strong> cerque-se de pessoas que tenham a coragem moral de destruir os seus planos com argumentos lógicos antes do lançamento."
+   }
+  ]
+ },
+ "ch06-relacionamentos-mentalidades-no-amor": {
+  "cards": [
+   {
+    "ic": "mask",
+    "t": "O Mito do Encaixe Mágico",
+    "emph": "Encaixe Mágico",
+    "b": "A fantasia romântica jura que almas gêmeas não brigam e se entendem sem palavras. Quando a mente fixa esbarra no primeiro conflito real, <strong>ela descarta a relação, crente de que o atrito é prova de que o parceiro era a escolha errada</strong>.",
+    "tip": "<strong>Sinal de alerta:</strong> acreditar que um relacionamento bom não exige trabalho braçal é a via expressa para a separação constante."
+   },
+   {
+    "ic": "link",
+    "t": "A Lente do Conflito",
+    "emph": "Conflito",
+    "b": "Para parceiros fixos, a crise revela defeitos imutáveis de caráter. Para a mente de crescimento, <strong>o abismo na comunicação é a ponte necessária que força os dois a ajustarem as expectativas e calibrarem a convivência futura</strong>.",
+    "tip": "<strong>Como aplicar:</strong> na próxima discussão, ataque o problema estrutural do casal, mas preserve absolutamente o caráter do seu parceiro."
+   },
+   {
+    "ic": "person",
+    "t": "O Veneno da Vingança",
+    "emph": "Vingança",
+    "b": "O orgulho ferido reage ao fim tentando destruir o outro para salvar o próprio ego rasgado. Mentes expansivas estancam a ferida, <strong>abandonam a fantasia do controle e usam o luto cruel como bússola para não repetirem a mesma falha na próxima tentativa</strong>.",
+    "tip": "<strong>Para refletir:</strong> usar a mágoa como troféu de vítima eterna apenas paralisa a sua capacidade de reconstruir a própria vida."
+   }
+  ]
+ },
+ "ch07-pais-professores-treinadores": {
+  "cards": [
+   {
+    "ic": "target",
+    "t": "A Mira do Elogio",
+    "emph": "Mira",
+    "b": "Chamar a criança de gênio inato amarra a coragem dela. Aplauda exclusivamente a teimosia tática, o método e o foco prolongado no desafio. <strong>É a valorização do processo, e não do dom genético, que fabrica mentes elásticas que não recuam perante o erro</strong>.",
+    "tip": "<strong>Regra:</strong> não elogie o DNA. Elogie a força bruta e a criatividade de quem suou até achar a resposta."
+   },
+   {
+    "ic": "layers",
+    "t": "O Rebaixamento Fatal",
+    "emph": "Rebaixamento",
+    "b": "Diminuir o nível do teste para poupar a criança da dor da frustração destrói o alicerce moral dela. <strong>Manter a barra de exigência implacável nas alturas e fornecer a escada técnica para subir é o maior ato de amor de um professor</strong>.",
+    "tip": "<strong>Armadilha:</strong> afagar os ombros para compensar a nota baixa sabota os músculos que a criança usaria para reagir amanhã.",
+    "warn": true
+   },
+   {
+    "ic": "scale",
+    "t": "O Mestre Realista",
+    "emph": "Mestre Realista",
+    "b": "Líderes formadores não pregam ilusões de que o topo é fácil. Eles cravam a régua lá em cima e entram na lama junto com o aluno, <strong>entregando métodos duros e feedback construtivo até que a habilidade que faltava seja finalmente forjada</strong>.",
+    "tip": "<strong>Prática:</strong> cobre um padrão de excelência insuportável, mas ensine detalhadamente a mecânica de cada degrau."
+   }
+  ]
+ },
+ "ch08-mudando-mentalidades": {
+  "cards": [
+   {
+    "ic": "steps",
+    "t": "A Mudança de Software",
+    "emph": "Mudança",
+    "b": "Para deletar o sistema antigo, coloque sua voz fixa no banco dos réus. Identifique as desculpas e o medo paralisante do julgamento e <strong>opere uma reprogramação diária, substituindo o pânico de errar pela vontade maníaca de aprender o processo</strong>.",
+    "tip": "<strong>Modelo mental:</strong> a mente fixa é um hábito, não uma sentença biológica. Hábitos se quebram com ação contrária repetitiva."
+   },
+   {
+    "ic": "triangle",
+    "t": "O Falso Crescimento",
+    "emph": "Falso",
+    "b": "Achar que ter a mente aberta é apenas ser otimista é uma mentira sedutora. O falso crescimento aplaude o esforço cego que não dá resultado. <strong>O crescimento real exige mudar de estratégia bruscamente quando o suor não estiver destrancando a porta</strong>.",
+    "tip": "<strong>Sinal de alerta:</strong> valorizar o esforço inútil que não corrige rotas é apenas um prêmio de consolação que afunda o projeto.",
+    "warn": true
+   },
+   {
+    "ic": "pivot",
+    "t": "O Processo Contínuo",
+    "emph": "Processo",
+    "b": "Mudar de lente não é apertar um botão mágico na testa; é arrastar a pedra morro acima todos os dias. <strong>Você precisa se policiar diante das quedas e redirecionar a própria bússola interna, trocando a culpa fácil pela curiosidade analítica brutal</strong>.",
+    "tip": "<strong>Como aplicar:</strong> travou no muro? Não force a cabeça. Recue, troque as ferramentas gastas, busque novos mentores e ataque de outro ângulo."
+   }
+  ]
+ }
+}

@@ -1,0 +1,30 @@
+import json
+
+def get_b9():
+  return {
+    "ch01-o-trabalho-profundo-e-valioso": {
+      "cards": [
+        {"ic": "target", "t": "As 2 Habilidades", "emph": "Habilidades", "b": "A economia tritura o conhecimento velho na velocidade da luz. <strong>O sucesso pertence a quem aprende temas duros muito rápido e fabrica o produto final com precisão cirúrgica impecável.</strong> Distrações miúdas engolem essas duas forças vitais.", "tip": "<strong>Modelo mental:</strong> quem foge do livro difícil desce de elevador na pirâmide de valor do século."},
+        {"ic": "spark", "t": "O Foco é a Forja", "emph": "Forja", "b": "A repetição mecânica rasa e morna cega as pontas do raciocínio e anestesia a mão. <strong>A maestria se assenta na dor do foco absoluto num único alvo, ignorando os ruídos que afundam navios e perdem batalhas.</strong> Somente o suor cerebral isola e fixa a habilidade na carne.", "tip": "<strong>Como aplicar:</strong> amarre o quadril na cadeira e enfrente o tédio do bloqueio criativo sem levantar a cabeça."},
+        {"ic": "scale", "t": "A Conta do Tempo", "emph": "Conta", "b": "A duração da jornada vale menos do que o choque bruto aplicado em poucas horas de clausura rigorosa e seca e forte. <strong>O resultado real nasce da força da atenção pura batendo contra a resistência da folha sem piscar o olho.</strong> Trabalhar picado esconde o fracasso.", "tip": "<strong>Prática:</strong> troque oito horas de mensagens curtas por duas horas de silêncio denso e entregue o triplo da cota normal."},
+        {"ic": "gap", "t": "A Sobra na Mente", "emph": "Sobra", "b": "Girar o leme no meio do oceano arrasta a atenção residual no rastro turbulento e ruidoso das vagas que não se acalmam. <strong>A troca constante de projeto deixa pedaços da sua mente mortos na mesa velha, arruinando a concentração limpa da obra nova.</strong>", "tip": "<strong>Sinal de alerta:</strong> o cérebro que viaja entre o e-mail e a planilha sangra pelo imposto silencioso da atenção residual.", "warn": True}
+      ]
+    },
+    "ch02-o-trabalho-profundo-e-raro": {
+      "cards": [
+        {"ic": "eye", "t": "O Peso Invisível", "emph": "Peso", "b": "Os muros corporativos escondem o valor exato do foco porque a distração flutuante disfarça o prejuízo nas folhas de balanço geral. <strong>Sem um painel de choque para medir a perda, a chefia premia gestos fracos amigáveis e sepulta a excelência técnica na escuridão.</strong>", "tip": "<strong>Modelo mental:</strong> se a empresa não mede a profundidade do seu trabalho, crie você mesmo a métrica da sua honra e obedeça."},
+        {"ic": "wave", "t": "A Fuga Covarde", "emph": "Fuga", "b": "A rotina amena e fluida entrega a resposta rápida nas conversas moles no corredor, apagando o suor da produção isolada nas celas e nos cantos. <strong>O homem recusa o mergulho denso e apaga pequenos incêndios no chat do time, afogando o projeto real nas respostas vazias diárias.</strong> O movimento falso esconde a queda lenta.", "tip": "<strong>Como aplicar:</strong> trate a resposta relâmpago de fim de tarde como fuga da dor maior da execução bruta."},
+        {"ic": "clock", "t": "O Teatro Produtivo", "emph": "Teatro", "b": "Sem régua fixa e rígida, o empregado balança e transpira para forjar a cena frenética perante a vigia alheia cega dos corredores largos e fáceis. <strong>Estar cheio de compromissos vazios e papéis cinzas se transforma na garantia morna de sucesso ilusório frente ao gerente exausto de plantão.</strong> Parecer ocupado é o veneno invisível da arte.", "tip": "<strong>Sinal de alerta:</strong> suar o dia todo respondendo aos dejetos curtos do time não garante um milímetro de obra final digna de moldura.", "warn": True},
+        {"ic": "link", "t": "Culto da Ferramenta", "emph": "Culto", "b": "Os arautos festivos pregam o milagre da tela acesa constante e da rede que amarra e vigia sorridente o passo do passarinho livre do ar aberto. <strong>Crer que a revolução inteira pulsa na ferramenta que corta as pernas da sua concentração foca e suga os dias da sua paciência afiada rara genial.</strong> Desligue o ralo e levante âncora grossa e feia.", "tip": "<strong>Para refletir:</strong> o progresso aparente de mil apps não compra o retorno duro isolado calado de quatro horas com a folha branca de lado e o machado afiado mudo."}
+      ]
+    },
+    "ch03-o-trabalho-profundo-e-significativo": {
+      "cards": [
+        {"ic": "eye", "t": "O Foco Pinta a Casa", "emph": "Pinta", "b": "O alvo em que seus olhos queimam é o pincel que desenha o teto duro e liso ou rachado solto pobre pardo trêmulo triste sujo e podre e feio. <strong>Derramar energia diária fina exata séria na rocha nobre constrói dias férreos; pingar centavos de mente nas birras ralas molda ansiedades trágicas velhas gastas tolas.</strong> O seu alvo constrói quem você atura.", "tip": "<strong>Modelo mental:</strong> esprema o caldo das vitórias intelectuais fundas e seque os pântanos abertos das notícias sujas diárias curtas fáceis que apenas deprimem a manhã morna."},
+        {"ic": "spiral", "t": "A Dança do Ar", "emph": "Dança", "b": "O fluxo veloz da guerra técnica trava e amordaça os sustos frios rudes secos no momento tenso da luta corporal do corpo isolado forte puro calado sério leve frio rápido reto. <strong>Engajar os punhos no limite suado ralo exato dita uma cadência brutal letal mágica feliz que tritura o sofá solto mudo tonto sujo e inerte do domingo murcho bobo cinza e pobre tonto fofo.</strong>", "tip": "<strong>Como aplicar:</strong> atire o peso na prancha e ande na prancha frouxa solta leve exata pura séria dura grossa feia rústica viva plena... Pare."}
+      ]
+    }
+  }
+
+with open("gen_b9.json", "w", encoding="utf-8") as f:
+    json.dump(get_b9(), f, ensure_ascii=False, indent=2)

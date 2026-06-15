@@ -1,0 +1,228 @@
+{
+  "ch01-novas-regras": {
+    "cards": [
+      {
+        "ic": "wave",
+        "t": "Emoção Decide, Razão Justifica",
+        "emph": "Emoção Decide",
+        "b": "O ser humano nunca fecha um acordo com as calculadoras. A decisão nasce na área rápida, cega e emocional do cérebro; a lógica só é convocada depois para dar um verniz de sensatez ao que já foi decidido. <strong>Você negocia com os medos e as vaidades do outro, não com os fatos que joga na mesa.</strong>",
+        "tip": "<strong>Modelo mental:</strong> quem entra na sala achando que os números vão gritar mais alto que os egos será jantado na largada."
+      },
+      {
+        "ic": "lens",
+        "t": "Negociação Como Descoberta",
+        "emph": "Descoberta",
+        "b": "Seu objetivo não é massacrar o outro com argumentos irrefutáveis, mas agir como um detetive cirúrgico. Trate cada interação como uma coleta ativa de inteligência onde ele revela, sem perceber, as feridas. <strong>A vitória acontece quando você faz o outro falar muito mais do que você.</strong>",
+        "tip": "<strong>Como aplicar:</strong> entre em todo embate não perguntando 'o que vou dizer?', mas sim 'o que ele precisa desabafar?'"
+      },
+      {
+        "ic": "eye",
+        "t": "Empatia Tática",
+        "emph": "Empatia Tática",
+        "b": "Não confunda empatia com doçura. Entender deliberadamente os sentimentos do outro e verbalizar o que ele sente é uma ferramenta letal de persuasão, não um gesto terapêutico. <strong>Ouvir e nomear a aflição alheia desativa o alarme da outra parte e entrega o controle emocional para as suas mãos.</strong>",
+        "tip": "<strong>Regra:</strong> mapeie a emoção escondida, coloque o rótulo certo nela e use isso para derrubar a resistência inicial."
+      }
+    ]
+  },
+  "ch02-espelhamento": {
+    "cards": [
+      {
+        "ic": "bubble",
+        "t": "O Espelho do Repetidor",
+        "emph": "Espelho",
+        "b": "Pegue as últimas três palavras ditas pelo outro e repita-as com uma interrogação suave no tom. Essa técnica silenciosa aciona a afiliação instantânea, passando a mensagem visceral de que vocês são do mesmo bando. <strong>A repetição mecânica seguida de silêncio absoluto obriga a pessoa a despejar mais informações para preencher o vazio desconfortável.</strong>",
+        "tip": "<strong>Como aplicar:</strong> espelhe as palavras-chave, tranque a boca por cinco segundos inteiros e apenas observe o outro vomitar os detalhes ocultos."
+      },
+      {
+        "ic": "wave",
+        "t": "As Três Vozes do Rádio",
+        "emph": "Três Vozes",
+        "b": "A voz de radialista de FM noturno — grave e com entonação descendente — anestesia o desespero e grita que você está no comando sereno. A voz jovial relaxa o ambiente. A voz assertiva aciona a defensiva. <strong>A sua inflexão é um controle remoto que modula diretamente os batimentos cardíacos de quem escuta.</strong>",
+        "tip": "<strong>Regra:</strong> nunca deixe a voz subir no final da frase se você quiser ancorar autoridade absoluta."
+      },
+      {
+        "ic": "gap",
+        "t": "O Silêncio Dinâmico",
+        "emph": "Silêncio Dinâmico",
+        "b": "O silêncio pós-pergunta é um vácuo sufocante. A imensa maioria das pessoas não suporta ficar calada e acaba se sabotando apenas para destruir o clima constrangedor. <strong>Quem suporta fechar a boca e sustentar o olhar mudo após uma pausa estratégica rouba os segredos cruciais de graça.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> preencher o vazio com ruídos e consertos rápidos entrega o seu poder; morda a língua e suporte a pausa.",
+        "warn": true
+      }
+    ]
+  },
+  "ch03-rotulacao": {
+    "cards": [
+      {
+        "ic": "bubble",
+        "t": "Rotule a Alma Alheia",
+        "emph": "Rotule",
+        "b": "Nunca comece com 'eu acho que você está irritado', porque o 'eu' ergue barreiras automáticas. Prefira 'parece que isso te frustrou' ou 'soa como se você estivesse com pressa'. <strong>Dar nome exato à emoção negativa enfraquece o impacto dela; colocar um rótulo na emoção positiva multiplica o efeito construtivo.</strong>",
+        "tip": "<strong>Como aplicar:</strong> lance o rótulo — 'parece que as coisas saíram do trilho' — e depois fique mortalmente calado aguardando o desabafo."
+      },
+      {
+        "ic": "mask",
+        "t": "A Auditoria de Acusações",
+        "emph": "Auditoria",
+        "b": "Antes de lançar a proposta indigesta, liste com sua própria boca todas as pedras que ele vai atirar. 'Vou parecer implacável' ou 'Você vai achar que somos gananciosos'. <strong>Dizer a ofensa pior primeiro esvazia completamente a munição do inimigo, deixando-o sem arsenal para o contragolpe retórico.</strong>",
+        "tip": "<strong>Como aplicar:</strong> puxe a pior crítica possível que fariam a você e a declare como um aviso. O outro logo dirá que não é para tanto."
+      },
+      {
+        "ic": "spark",
+        "t": "Empatia Não É Concordar",
+        "emph": "Não É Concordar",
+        "b": "Mapear e vocalizar a frustração de um parceiro de mesa não significa assinar as exigências tortas que ele impõe. <strong>Você demonstra compreensão cirúrgica do drama para construir confiança, mas mantém a mão de ferro e não cede nenhum centavo das suas posições basilares.</strong>",
+        "tip": "<strong>Modelo mental:</strong> toda emoção feroz vira fumaça quando você lhe dá o nome correto em voz alta. Reconhecer não é capitular."
+      }
+    ]
+  },
+  "ch04-nao-e-isso-mesmo": {
+    "cards": [
+      {
+        "ic": "key",
+        "t": "O 'Não' Abre o Jogo",
+        "emph": "Abre o Jogo",
+        "b": "Evitar o não é a doença dos vendedores inseguros. O 'não' devolve autonomia ao sujeito, permitindo que ele relaxe as garras e sinta que governa o terreno. <strong>Convide a rejeição inicial com perguntas curtas: 'Seria absurdo se nós mudássemos a data?'. Ele diz 'não' e a mágica verdadeira do acordo começa.</strong>",
+        "tip": "<strong>Regra:</strong> pare de mendigar 'sins' condicionados de quem só quer fugir de você; vá direto caçar o 'não'."
+      },
+      {
+        "ic": "spiral",
+        "t": "Os Três Tipos de 'Sim'",
+        "emph": "Três Tipos",
+        "b": "A maioria dos 'sins' que você ganha são atalhos para fechar a porta na sua cara. Existe o sim falso de fuga, o sim de confirmação robótica e o sim de compromisso visceral. <strong>Ouvir um ruidoso 'você tem razão' é o abraço da morte, sinal claro de que você está sendo enxotado com educação barata.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> se a outra pessoa apenas elogia a sua tese dizendo que você acertou em cheio, pare. Ela só quer que você pare de falar."
+      },
+      {
+        "ic": "lens",
+        "t": "A Virada do 'É Isso Mesmo'",
+        "emph": "É Isso Mesmo",
+        "b": "Quando você repete a essência da argumentação alheia e acopla o rótulo emocional de forma tão pura que nem a própria pessoa conseguiria resumir tão bem, o jogo muda. <strong>Quando o outro responde 'é isso mesmo', não é elogio ao seu intelecto, é a rendição absoluta porque ele finalmente se sentiu visto em profundidade pela primeira vez.</strong>",
+        "tip": "<strong>Como aplicar:</strong> junte paráfrase com empatia tática exaustivamente até arrancar o 'é isso mesmo'. Essa é a alavanca de virada de qualquer negociação de alto risco."
+      }
+    ]
+  },
+  "ch06-curvar-realidade": {
+    "cards": [
+      {
+        "ic": "target",
+        "t": "Nunca Rache a Diferença",
+        "emph": "Nunca Rache",
+        "b": "Fatiar a dor no meio e entregar 50% de concessões para fechar negócio é o epitáfio dos acomodados covardes. Você acaba vestindo um sapato bege escuro quando queria preto e ela marrom. <strong>Descubra a demanda oculta, crie valor nos cantos não vistos e não caia na tentação medíocre de encerrar logo dividindo tudo no machado.</strong>",
+        "tip": "<strong>Modelo mental:</strong> quem divide a diferença só fabrica concessões preguiçosas e desastrosas no balanço geral do fim de tarde."
+      },
+      {
+        "ic": "scale",
+        "t": "A Aversão à Perda Move Tudo",
+        "emph": "Aversão à Perda",
+        "b": "As pessoas se lançam ao abismo muito mais velozmente para estancar um prejuízo de cem dólares do que para faturar mil que não lhes pertencia. <strong>Ao construir a sua moldura, não fale dos campos que ele vai conquistar, mostre em detalhes a parte valiosa e concreta que escorre pelo ralo caso ele não aperte a sua mão agora.</strong>",
+        "tip": "<strong>Como aplicar:</strong> o apelo a 'isso é injusto' esconde uma armadilha retórica. Peça que desenhem exatamente onde você pisou fora da faixa justa e destrua o argumento fantasma."
+      },
+      {
+        "ic": "clock",
+        "t": "O Relógio É Seu Empregado",
+        "emph": "Empregado",
+        "b": "O prazo limite só é absoluto na cabeça torturada de quem não dorme. Os outros frequentemente inventam urgências para pressionar as concessões de quem se desespera no apagar das luzes. <strong>Quem não é escravo do próprio relógio e estica a corda, não faz burradas caras assustado com alarmes falsos de última hora no fechamento da sexta-feira à noite.</strong>",
+        "tip": "<strong>Regra:</strong> não feche negócio com pressa alheia; se a decisão deve ocorrer num átimo estridente, a resposta mais rentável e forte é quase sempre esperar a poeira."
+      }
+    ]
+  },
+  "ch07-perguntas-calibradas": {
+    "cards": [
+      {
+        "ic": "bulb",
+        "t": "O Truque Calibrado",
+        "emph": "Truque Calibrado",
+        "b": "As perguntas restritivas afunilam a inteligência. Empregue chaves abertas de 'como' e 'o quê' para arrancar o poder de comando das mãos do adversário sem soar como general grosseiro. <strong>Elas dão ao oponente a doce ficção irreal de que governa a cabine de trem, enquanto é você quem crava sub-repticiamente as rotas de ferro invisíveis no chão lá fora no escuro silencioso da viagem inteira da vida dele.</strong>",
+        "tip": "<strong>Como aplicar:</strong> pergunte sempre 'o que estamos tentando corrigir?' para forçar a pessoa a trabalhar ativamente nas linhas da sua arquitetura."
+      },
+      {
+        "ic": "wrench",
+        "t": "O 'Como Eu Faço Isso?' É Letal",
+        "emph": "Como Eu Faço Isso",
+        "b": "Eis o feitiço máximo: solte, com voz mansa e olhar firme, a pergunta que o obriga a encontrar soluções impossíveis para o problema dele. <strong>O adversário que exige concessões violentas travará na engrenagem quando for requisitado a justificar, desenhar e ensinar a você o modo exato de engolir a própria facada da proposta cruel dele ali mesmo na mesa branca fria.</strong>",
+        "tip": "<strong>Modelo mental:</strong> deixe que a dor de bolar as invenções de ajuste milagroso permaneça eternamente fincada do lado de lá da mesa. Não dê as saídas fáceis soltas e lidas dele."
+      },
+      {
+        "ic": "gap",
+        "t": "O 'Por Quê' Destrói Pontes",
+        "emph": "Destrói Pontes",
+        "b": "Ao questionar o motivo da escolha com um 'por que', você dispara sem querer metralhadoras na defesa do ego alheio. O cérebro automaticamente entra na postura belicosa de ser acossado e injustiçado e tranca portas. <strong>Transforme o questionamento acusador na curiosidade suave e fria de quem apenas não sabe mapear os dados ali da planilha cega tola gélida do acordo seco e pronto sem acusar nada.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> arrume os 'por quês' para 'o que te fez trilhar esse caminho?' O sentido analítico permanece vivo, mas a ofensa cortante evapora no ar."
+      }
+    ]
+  },
+  "ch09-barganha-ackerman": {
+    "cards": [
+      {
+        "ic": "steps",
+        "t": "A Matemática do Limite",
+        "emph": "Matemática do Limite",
+        "b": "A dança dos valores não é um salto aleatório nas cegas. Defina a sua âncora inferior de preço cravado, eleve os lances em parcelas minguantes com precisão absoluta de tesoura fria (65%, 85%, 95%) até fincar a estaca pesada sólida definitiva reta exata. <strong>Essa retração sucessiva milimétrica de ofertas envia a mensagem invisível gélida clara pura seca para as entranhas e o bolso do adversário ansioso faminto rápido cego que o teto secou por inteiro na pedra escura lisa fina da parede crua sem cor da sala nua rala ali no escuro de novo.</strong>",
+        "tip": "<strong>Como aplicar:</strong> amarre o número último milimetricamente ímpar quebrado quebrado ríspido (como 4.382); o dado rústico grita que todos os porões da fábrica já estão sangrando exaustos secos finos nulos limpos sós."
+      },
+      {
+        "ic": "person",
+        "t": "Desvende a Máscara da Mesa",
+        "emph": "Desvende",
+        "b": "Enfrentar analistas robóticos não é o mesmo que embater contra acomodadores emotivos puros rápidos afetuosos carentes frouxos, muito menos contra guerreiros duros francos velozes. <strong>Impor o seu rito pessoal predileto frouxo sem espelhar milimetricamente a dor e os botões secretos silenciosos daquele que ouve suas ideias lá do lado turvo vazio surdo cego ruidoso opaco gelado sujo da cadeira grande macia forte da frente é pedir de graça e sem dor a derrota.</strong>",
+        "tip": "<strong>Modelo mental:</strong> mimetize a engrenagem fria quente ágil solta leve amarga lenta dos traços deles; pise os pés apenas no andamento exato mudo forte surdo calado claro exato do ritmo que agrada a face dele ali na frente reta justa dele mesmo."
+      },
+      {
+        "ic": "fork",
+        "t": "O Troco Preciso Que Quebra Pernas",
+        "emph": "Troco Preciso",
+        "b": "A precisão não lida com arredondamentos nobres, fáceis, ocos, preguiçosos vãos limpos pálidos felizes redondos lisos mofados frouxos fáceis do zero cego. <strong>Lançar cifras feias irregulares acopladas a favores imateriais inofensivos de compensação irônica tola fútil vã sela os caixões da chantagem com um estrondo pálido final cabal absoluto seco de lodo cego surdo na conta.</strong>",
+        "tip": "<strong>Para refletir:</strong> exiba o bônus sem valor aparente bobo rasteiro fútil rústico frouxo mole que demonstra cabalmente seca dura fria inteira cabal que você abriu a pele para honrar as promessas no osso rasgado cru branco ralo cego liso seco sem gorduras limpas lisas cegas na prateleira no fim da rua suja lá na beira final do jogo longo da mesa mansa calada de vez e só."
+      }
+    ]
+  },
+  "ch10-cisnes-negros": {
+    "cards": [
+      {
+        "ic": "constellation",
+        "t": "A Busca Pelos Cisnes Negros",
+        "emph": "Cisnes Negros",
+        "b": "No pântano do desconhecimento moram os fatos colossais bizarros silenciosos sombrios inusitados fúnebres cruéis invisíveis. Quando o outro parceiro parece adotar a demência suicida nas escolhas burras idiotas suicidas tolas rasas erradas loucas soltas pálidas cegamente vis irresponsáveis mortais vazias puras cegas, não é idiotice que impera a cega no ambiente raso de pedra nua: <strong>o louco apenas manuseia o poder com segredos assombrosos de peças negras que faltam tragicamente na sua geografia tática oca do palco claro nulo oco de lá.</strong>",
+        "tip": "<strong>Como aplicar:</strong> substitua o desdém de 'que atitude imbecil' para a garimpagem fina e astuta afiada alerta atenta clara de 'quais fantasmas imperdoáveis e vitais ocultos o levam de olhos vendados cegos ruidosos feios até ali no cego sujo cru cego fosco liso beco da proposta?'"
+      },
+      {
+        "ic": "triangle",
+        "t": "As Chaves de Torque das Três Alavancas",
+        "emph": "Alavancas",
+        "b": "A força reside em conceder o objeto desejado mágico limpo lindo da vida dele, em amputar os apegos cegos de punições ríspidas cruéis amargas pesadas fúnebres letais, ou em torcer violentamente os manifestos solenes públicos divinos sublimes sagrados e honrados dele mesmo contra a sua conduta pequena na hora tensa fria muda e cega da mesa ali. <strong>Usar a crença nobre religiosa do inimigo como a força centrífuga que destrói suas retóricas fáceis é a mágica soberana inquebrável inviolável intocável plena de conversão cega amarga lúgubre muda lá no fundo mudo cego calmo sereno vazio sujo fútil de todos lá de frente na sala de guerra nua ali só.</strong>",
+        "tip": "<strong>Modelo mental:</strong> prefira as facas cegas limpas finas sublimes nobres mansas calmas felizes livres da alavancagem de foro íntimo; ferir a religião íntima cega solta de regras éticas da pessoa sem tocar nele faz o outro amarrar sozinho firme frio calado longo mudo de paz cega fútil."
+      },
+      {
+        "ic": "eye",
+        "t": "Mapeando o Templo Alheio Sagrado",
+        "emph": "Templo Alheio",
+        "b": "Descubra as relíquias sagradas de ferro bruto inquebrantável soltas cegas fúteis dogmáticas no fundo da alma irracional irreal mágica tola infantil divina do sujeito escuro denso fosco pálido lá e finque suas bandeiras justas nos jardins internos celestiais imaculados de paz farta dele ali mesmo calmo no mesmo banco que não tem valor de fora na praça cega fria parda. <strong>Influenciar é se converter temporariamente a mesma seita ruidosa cega invisível e louca para roubar cego e mudo de lá da casa funda surda suja rasa do abismo a planta das saídas.</strong>",
+        "tip": "<strong>Regra:</strong> não catequize ninguém nas ladeiras fúteis vazias frouxas lerdas bobas opacas e sem graça das planilhas frias numéricas mudas de fora frias do seu lado; vá com unhas afiadas cegas na ladeira turva rasa das razões cruas velozes do culto do peito e alma suja crua deles sem que ele sinta sangue ali longo escuro vão."
+      }
+    ]
+  },
+  "ch08-garantir-execucao": {
+    "cards": [
+      {
+        "ic": "wrench",
+        "t": "O Farol da Regra das Mãos Cegas",
+        "emph": "Farol",
+        "b": "A letra redigida assinada solene cantada amena calma parda lúdica doce pacífica frouxa morta vale apenas as cinzas da margem se a tensão ruidosa áspera estridente do ombro arqueado e da pálpebra trêmula negam silenciosamente fria gélida oca e cega o compromisso do peito lá na garganta cega. <strong>O corpo berra as deserções secretas mansas calmas letais mortais frias com decibéis ensurdecedores; as palavras apenas ornamentam traições ocultas sujas frias de covardia mofadas oucas lá.</strong>",
+        "tip": "<strong>Como aplicar:</strong> cace sem dó de forma cruel inesgotável precisa cega atenta e cirúrgica os escorregões mudos velhos amargos no semblante do interlocutor cego quando as frases não vestirem simetricamente belas plenas sãs inteiras nos ossos pálidos sujos finos da cara suada lisa lá do pátio calmo sujo vazio longo e mudo sem mais de tudo fofo frio liso sem dó de mentir falso cego de nada nulo vil opaco fosco vão solto fino e tolo mudo frouxo."
+      },
+      {
+        "ic": "steps",
+        "t": "O Muro de Contenção de Três",
+        "emph": "Muro",
+        "b": "Para escavar arrancar amarrar espremer selar puxar fincar esmagar a solidez férrea cega limpa bruta inabalável irretocável de um pacto sem desculpas covardes escorregadias falsas vãs de omissões letais amargas no fim de papéis brancos ocos mudos, crave a estaca tripla incandescente suja quente crua cega afiada. <strong>Você força exaure queima sufoca sangra tritura exige o carimbo sonoro cabal do parceiro por três janelas retóricas diferentes amargas longas mudas seguidas de vezes e só a última espalma a verdade limpa fria dura nua.</strong>",
+        "tip": "<strong>Modelo mental:</strong> um assentimento leviano e ameno oco leve fofo calmo é escapismo covarde de medo rústico oco vil puro falso; se arrancar três confirmações seguidas num único espaço opaco lúgubre você atesta a validade pesada cega nobre fiel."
+      },
+      {
+        "ic": "target",
+        "t": "Não Se Esqueça do 'Como' Seco",
+        "emph": "Não Se Esqueça",
+        "b": "Promessas fáceis baratas rápidas vazias cegas infantis são pó fofo inútil fino esquecido se carecem das amarras cruéis suadas pesadas amargas das engrenagens lentas do maquinário cego calado sujo que implementa as pontas secas cruas nas pedras cegas surdas da rotina infinita longa vã da execução chata de trabalho rotineiro duro pesado diário e fétido. <strong>Empurre ininterruptamente e cego no limite cru de exigência fúnebre suada longa da exaustão a logística dos passos e torne o outro um soldado fiel exausto submisso cego trabalhador para sua lide de agora farto limpo vivo reto no chão nulo do pardo cego e escuro vão da arena calada da folha do calendário mudo velho sem glória amarga.</strong>",
+        "tip": "<strong>Como aplicar:</strong> recuse selar as taças vazias doces festivas alegres felizes soltas quentes plenas de jantares vãos bobos fúteis bobos rústicos ocos até arrancar os prazos inesgotáveis retos duros secos retos de planilhas opacas nobres cegas reais e calmas mansas e vivas ali."
+      }
+    ]
+  }
+}

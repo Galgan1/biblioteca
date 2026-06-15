@@ -1,0 +1,511 @@
+=== habitos-atomicos ===
+```json
+{
+ "ch01-1porcento-sistemas": {
+  "cards": [
+   {
+    "ic": "spark",
+    "t": "Os Juros do Comportamento",
+    "emph": "Juros",
+    "b": "A matemática avisa que melhorar um degrau por dia transforma você numa máquina trinta vezes mais potente num ano. <strong>O tempo não tem pena; ele escancara o seu esforço ou esmaga você com os erros de ontem.</strong> Pequenos desvios traçam abismos irreversíveis no longo prazo.",
+    "tip": "<strong>Modelo mental:</strong> a foto da sua vida hoje não vale nada; a inclinação do seu vetor diário dita o fim de tudo."
+   },
+   {
+    "ic": "pivot",
+    "t": "Processo Esmaga Sonhos",
+    "emph": "Processo",
+    "b": "Desenhar quadros na parede e mentalizar o pódio nunca livrou ninguém da mediocridade. <strong>Você afunda até colidir com a arquitetura crua das suas rotinas, zombando da meta fantástica anotada na lousa.</strong> Corrija o sistema invisível e os resultados aparecerão como um subproduto natural.",
+    "tip": "<strong>Regra:</strong> o pódio acolhe campeões e perdedores que tinham exatamente a mesma meta no início."
+   },
+   {
+    "ic": "clock",
+    "t": "O Vale da Frustração",
+    "emph": "Vale",
+    "b": "O esforço parece evaporar no vácuo dezenas de vezes antes de romper a crosta que separa a tentativa do estouro real. <strong>Desistir aos pés da linha divisória é a tragédia que devolve o homem para a base fria da montanha.</strong> Continue aquecendo o gelo até ele ferver sem aviso.",
+    "tip": "<strong>Sinal de alerta:</strong> a vontade de largar tudo atinge o pico exatamente antes da virada exponencial.",
+    "warn": true
+   }
+  ]
+ },
+ "ch02-identidade": {
+  "cards": [
+   {
+    "ic": "layers",
+    "t": "Muda a Casca e o Núcleo",
+    "emph": "Núcleo",
+    "b": "Forçar atitudes na marra gera rebeldia mental assim que a pressão alivia. <strong>A mudança perene só nasce quando você abandona as velhas certezas e assume visceralmente a identidade do novo personagem no espelho.</strong> A sua atitude vira apenas um sintoma inegável de quem você decidiu ser.",
+    "tip": "<strong>Prática:</strong> esqueça a ideia de ler mais; vista a armadura do leitor que consome livros antes do café."
+   },
+   {
+    "ic": "key",
+    "t": "A Urna Eletrônica",
+    "emph": "Urna",
+    "b": "Calçar os tênis não zera o cronômetro, mas carimba a sua autopercepção com credibilidade fresca. <strong>Empilhar vitórias banais é o feitiço que silencia o impostor gritando na sua cabeça há décadas.</strong> O tribunal interno só absolve e aplaude diante de provas rotineiras.",
+    "tip": "<strong>Modelo mental:</strong> colecionar migalhas sistemáticas e inegáveis constrói o respeito por si mesmo."
+   },
+   {
+    "ic": "mask",
+    "t": "O Perigo do Crachá",
+    "emph": "Crachá",
+    "b": "Tatuar as velhas falhas no centro do seu currículo verbal joga cimento em qualquer tentativa de futuro. <strong>Vestir o rótulo de incapaz treina a defesa mental para obedecer aos scripts mortos da preguiça fantasiada de destino crônico.</strong> Solte as amarras do personagem do passado com urgência.",
+    "tip": "<strong>Sinal de alerta:</strong> começar frases com 'eu sempre fui enrolado' condena a largada antes do primeiro passo.",
+    "warn": true
+   }
+  ]
+ },
+ "ch03-loop-do-habito": {
+  "cards": [
+   {
+    "ic": "spiral",
+    "t": "O Disparo Silencioso",
+    "emph": "Disparo",
+    "b": "A mente detecta um cheiro familiar e escorrega para o túnel automático, arrancando o comando das suas mãos. <strong>Ignorar esse balé imperceptível entrega as chaves da sua vida nas mãos das notificações ruidosas ou do tédio repentino.</strong> Mapear os gatilhos expõe o fantasma que o controla.",
+    "tip": "<strong>Regra:</strong> destrinche a faísca original, a rotina cega e a recompensa final para quebrar o ciclo na raiz."
+   },
+   {
+    "ic": "eye",
+    "t": "Vigiar Sem Julgar",
+    "emph": "Vigiar",
+    "b": "Cuspir insultos no espelho depois de falhar não apaga a fome profunda da próxima tentação velada. <strong>Anote a hora, a emoção rasgada, o cenário exato e a companhia como se desmontasse um artefato explosivo no escuro.</strong> A frieza cirúrgica é a única lâmina que extirpa o tumor nocivo.",
+    "tip": "<strong>Prática:</strong> investigue as cinco forças da deixa — relógio, local, clima mental, companhia e ação anterior."
+   }
+  ]
+ },
+ "ch04-lei1-obvio": {
+  "cards": [
+   {
+    "ic": "lens",
+    "t": "A Assinatura no Papel",
+    "emph": "Assinatura",
+    "b": "Promessas vazias não resistem ao primeiro tropeço no frio; o compromisso exige papel assinado e coordenadas firmes. <strong>Anotar em voz alta onde e quando a ação vai ocorrer estripa a hesitação polida das manhãs frouxas.</strong> A cláusula de execução apaga as rotas confortáveis de fuga.",
+    "tip": "<strong>Modelo mental:</strong> falhar em carimbar horário e local exatos é convidar o fracasso para sentar à sua mesa."
+   },
+   {
+    "ic": "link",
+    "t": "Engate de Vagões",
+    "emph": "Engate",
+    "b": "A inércia violenta de um trator rotineiro puxa com facilidade o peso morto de uma meta recém-nascida. <strong>Amarrar um projeto virgem na cauda de um hábito consolidado burla as defesas da preguiça e usa o embalo existente de graça.</strong> Você funde a semente frágil na rocha sólida.",
+    "tip": "<strong>Prática:</strong> empilhe a nova tarefa no instante exato do término do seu mais sagrado e antigo ritual diário."
+   },
+   {
+    "ic": "target",
+    "t": "O Espaço Tem Memória",
+    "emph": "Memória",
+    "b": "A cama sugere torpor; a mesa bagunçada transpira ansiedade estática; os objetos silenciosos exigem obediência à velha rotina. <strong>Limpe o terreno para que o instrumento útil fure os seus olhos, enquanto a tentação mortal jaz trancada longe do alcance fácil.</strong> O ambiente dita a vitória.",
+    "tip": "<strong>Regra:</strong> não dependa de juros de coragem; coloque a maçã polida na mesa e tire as pilhas do controle remoto."
+   }
+  ]
+ },
+ "ch05-lei2-atraente": {
+  "cards": [
+   {
+    "ic": "spark",
+    "t": "Suborno Antecipado",
+    "emph": "Suborno",
+    "b": "O instinto animal fareja e engole promessas cintilantes muito antes do prêmio de fato tocar os lábios. <strong>Embrulhar o dever intragável no papel ruidoso de um prazer fútil suborna as sinapses rebeldes a triturarem o tédio.</strong> Acople o dever duro à dopamina fácil.",
+    "tip": "<strong>Como aplicar:</strong> amarre as correntes da atividade maçante ao brilho profano do seu vício recreativo inofensivo."
+   },
+   {
+    "ic": "bubble",
+    "t": "A Turma Dita a Lei",
+    "emph": "Turma",
+    "b": "Nós decalcamos o rebanho vizinho para não congelarmos sob a dor paralisante do exílio e da rejeição social. <strong>Penetrar num bando implacável onde o seu suor almejado já é o cotidiano insípido corta anos de atrito solitário contra o muro.</strong> A manada feroz arrasta as fraquezas consigo.",
+    "tip": "<strong>Modelo mental:</strong> abandone sem pena o grupo acomodado e finque âncora no viveiro que exige o seu esforço como base."
+   },
+   {
+    "ic": "bulb",
+    "t": "O Peso das Palavras",
+    "emph": "Palavras",
+    "b": "A palavra 'obrigação' tranca a porta da vontade; a palavra 'chance' destrói a mordaça e solta a energia vital. <strong>Reescrever a penitência tortuosa como uma janela de privilégio queima o vitimismo preguiçoso e afia a vontade crua.</strong> O vocábulo altera fisicamente a disposição do corpo.",
+    "tip": "<strong>Prática:</strong> mude o lamento ruidoso pela simples constatação do privilégio inegável de ter braços e pulmões fortes."
+   }
+  ]
+ },
+ "ch06-lei3-facil": {
+  "cards": [
+   {
+    "ic": "leaf",
+    "t": "A Ladeira a Seu Favor",
+    "emph": "Ladeira",
+    "b": "O cérebro poupa chumbo derretido optando sempre pela descida escorregadia e macia das facilidades disponíveis. <strong>Lixe a ladeira das rotinas gloriosas para apagar atritos e construa grampos pontudos e trancas pesadas na avenida da distração fútil.</strong> O cenário decide tudo no automático.",
+    "tip": "<strong>Regra:</strong> não confie na faca entre os dentes do guerreiro exausto; torne a atitude nobre escandalosamente simples."
+   },
+   {
+    "ic": "clock",
+    "t": "Os Dois Minutos Fatais",
+    "emph": "Dois Minutos",
+    "b": "A visão assustadora da empreitada inteira esmaga o fôlego da alma insegura antes mesmo do suor pingar. <strong>Reduzir a meta colossal a dois escassos minutos na largada queima a inércia; dominar a arte robótica de comparecer garante o assento na mesa dos grandes.</strong> O ritual salva tudo.",
+    "tip": "<strong>Como aplicar:</strong> não tente levantar pesos por uma hora; apenas calce os tênis e abra a porta com precisão militar."
+   },
+   {
+    "ic": "steps",
+    "t": "Algemas de Liberdade",
+    "emph": "Algemas",
+    "b": "Queimar as pontes num rompante tático hoje poupa você de lutar contra a fraqueza voraz das armadilhas do amanhã gelado. <strong>Trancar opções através de atitudes irreversíveis veda as rotas de fuga com um tiro rápido e seco no meio da preguiça crônica.</strong> Destrua os atalhos tentadores.",
+    "tip": "<strong>Modelo mental:</strong> automatize o bloqueio radical antecipado para proteger o eu valente do futuro.",
+    "warn": true
+   }
+  ]
+ },
+ "ch07-lei4-satisfatorio": {
+  "cards": [
+   {
+    "ic": "key",
+    "t": "A Coroa do Dia",
+    "emph": "Coroa",
+    "b": "A biologia primitiva saliva implorando por favos doces que pingam de imediato e ri da aposentadoria prometida no século futuro. <strong>Atar uma recompensa palpável e rápida no fim do dever rústico acalma o desespero visceral da besta celular e convence o corpo de que o esforço valeu a dor.</strong>",
+    "tip": "<strong>Prática:</strong> comemore lances vitoriosos invisíveis no tapete transferindo moedas falsas para os próprios potes dourados."
+   },
+   {
+    "ic": "steps",
+    "t": "O Rastro de Chumbo",
+    "emph": "Rastro",
+    "b": "A marcação agressiva e crua canetada na parede fria forja um ídolo inegociável da repetição irredutível. <strong>O temor visceral de borrar e esfarelar a obra perfeita dos acertos diários varre as hesitações frouxas para o esgoto com precisão exata.</strong> A medição se torna a grande meta.",
+    "tip": "<strong>Modelo mental:</strong> cruzar o quadrinho vira a própria glória suada no palco solitário; a métrica inquebrável devora a desculpa."
+   },
+   {
+    "ic": "target",
+    "t": "O Vírus da Falha Dupla",
+    "emph": "Falha Dupla",
+    "b": "Desviar o passo enlameado numa curva isolada não aniquila os muros da fundação forjada no suor limpo de semanas. <strong>Repetir covardemente o abandono cínico no dia seguinte batiza o nascimento de um novo hábito perverso e cruel que apagará todos os seus meses gloriosos.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> o segundo vacilo crava a bandeira da ruína; retome o controle antes da repetição sombria.",
+    "warn": true
+   }
+  ]
+ },
+ "ch08-avancado": {
+  "cards": [
+   {
+    "ic": "mountain",
+    "t": "A Fronteira Dourada",
+    "emph": "Fronteira",
+    "b": "O tabuleiro biológico premia mãos diferentes; encontre o jogo onde a sua carga genética naturalmente esmaga o oponente. <strong>A faísca do engajamento magnético extremo reside na linha fina e trêmula onde a dificuldade arranha furiosa o pescoço da sua aptidão polida máxima testada hoje.</strong>",
+    "tip": "<strong>Como aplicar:</strong> amarre alvos levemente acima do seu conforto atual e corra atrás dessa sombra todos os dias."
+   },
+   {
+    "ic": "eye",
+    "t": "O Platô do Piloto Mudo",
+    "emph": "Platô",
+    "b": "O conforto invisível sedutor e morno afoga mestres geniais em esteiras rolantes que rodam perfeitas, mas não sobem mais. <strong>Automatizar ações no escuro da obediência cega tranca as engrenagens finas da expansão e estaciona a sua evolução sem que nenhum alarme de crise dispare na cabine.</strong>",
+    "tip": "<strong>Cuidado:</strong> a eficiência impecável e desatenta gela a lâmina quente suada; exija intencionalidade nas rotinas fáceis.",
+    "warn": true
+   },
+   {
+    "ic": "pivot",
+    "t": "O Pacto Com o Abismo",
+    "emph": "Pacto",
+    "b": "Palmas altas festivas fogem na neblina deixando operários rasos calados atolados nas repetições imundas e silenciosas. <strong>Guerrear abraçado no tédio grosso deprimente sem clamar por glórias matutinas curtas separa a máquina profissional absoluta da sombra murcha que busca palco.</strong>",
+    "tip": "<strong>Regra:</strong> o amador senta-se na sarjeta chorando por motivação ruidosa; o mestre perfura a parede monótona indiferente e cego a aplausos."
+   }
+  ]
+ }
+}
+```
+
+=== mais-esperto-que-o-diabo ===
+```json
+{
+ "ch01-a-entrevista-alegorica": {
+  "cards": [
+   {
+    "ic": "mask",
+    "t": "O Rosto do Invisível",
+    "emph": "Invisível",
+    "b": "O Diabo de Hill não mora em fornos de enxofre; ele é a <strong>soma bruta dos seus medos íntimos, dúvidas covardes e procrastinações veladas que sugam a coragem diária.</strong> Dar um rosto fictício a essa massa negra retira o peso do terror genérico, tornando o vilão um alvo claro e combatível.",
+    "tip": "<strong>Como aplicar:</strong> quando travar bruscamente, pergunte com frieza: 'que disfarce paralisa a rota agora? Medo ou preguiça elegante?'"
+   },
+   {
+    "ic": "bulb",
+    "t": "O Outro Eu",
+    "emph": "Outro Eu",
+    "b": "Hill isola no peito uma facção surda ao ruído: o 'Outro Eu', que assume o leme com um alvo exato e ignora solenemente a gritaria do pânico animal. <strong>Separar a voz metálica da execução bruta da voz pegajosa que implora conforto marca o primeiro passo da retomada do poder central.</strong>",
+    "tip": "<strong>Modelo mental:</strong> o abismo insuperável nunca é a falta da teoria perfeita; é a resistência maciça interna exigindo a paralisia."
+   },
+   {
+    "ic": "eye",
+    "t": "A Linha Divisória",
+    "emph": "Linha",
+    "b": "A imensa manada humana engole a ração imposta e segue a correnteza anestesiada; poucos assumem o golpe brutal de pensar por si. <strong>O divisor de águas absoluto no mundo é o costume enrijecido de cravar decisões rápidas versus o hábito morno e cego de derivar na multidão.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> saber de cor o manual da vitória importa pouco se a âncora da passividade não for cortada a faca."
+   }
+  ]
+ },
+ "ch02-a-deriva": {
+  "cards": [
+   {
+    "ic": "wave",
+    "t": "O Barco Entregue",
+    "emph": "Barco",
+    "b": "A deriva afoga suavemente quem desce a ladeira existencial esperando milagres benevolentes do tempo, sem jamais assumir os remos. <strong>O Diabo só sequestra a embarcação de quem já tombou as armas de antemão e consentiu mansamente em boiar sob os caprichos dos ventos alheios.</strong>",
+    "tip": "<strong>Teste rápido:</strong> no exame severo da vida, pergunte: 'eu escolhi essa rota dura ou apenas aceitei o que caiu no meu colo?'"
+   },
+   {
+    "ic": "person",
+    "t": "O Comandante Ímpar",
+    "emph": "Comandante",
+    "b": "Ele reescreve a geografia com bússola férrea, dita caminhos cruzados e engole retrocessos indigestos com frieza. <strong>Não curvar as costas aos golpes e não chorar a má sorte o blinda numa redoma onde as sugestões mórbidas do medo esfarelam rápido antes de tocar a pele.</strong>",
+    "tip": "<strong>Modelo mental:</strong> mudar de rota após análise genial liberta; virar o pescoço pressionado por ruído e pavor escraviza o homem."
+   },
+   {
+    "ic": "clock",
+    "t": "O Portal Silencioso",
+    "emph": "Portal",
+    "b": "As engrenagens enferrujadas da indecisão abrem trincheiras rasas onde os covardes perdem o timing vital da jornada. <strong>Delegar escolhas duras ao acaso arrasta a sua vida para um lodo tóxico e pegajoso, sem que nenhum alarme de tragédia soe nos corredores silenciosos da casa.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> o desvio de rota indolor e acolhedor do curto prazo amarra o nó asfixiante da ruína com o seu consentimento.",
+    "warn": true
+   }
+  ]
+ },
+ "ch03-as-armas-do-diabo": {
+  "cards": [
+   {
+    "ic": "sword",
+    "t": "Os Seis Cadeados",
+    "emph": "Cadeados",
+    "b": "Hill condensa a miséria psíquica humana na pobreza imunda, na dor aguda da doença, na perda amorosa, na velhice cruel, na morte e na crítica cortante dos vizinhos. <strong>Rastrear a raiz primária da sua hesitação e apontar um farol de luz para ela desidrata o seu poder de paralisar no escuro.</strong>",
+    "tip": "<strong>Como aplicar:</strong> antes de pisar nos freios macios, exponha impiedosamente à luz solar qual dos seis medos causou o recuo."
+   },
+   {
+    "ic": "link",
+    "t": "A Corrente Letal",
+    "emph": "Corrente",
+    "b": "O susto cede a vez à dúvida frouxa; a hesitação gera recuo silencioso; e a paralisia esmaga o presente precioso. <strong>Retalhe o elo sujo já no nascimento: detectou o pânico inicial, marche contra ele na velocidade máxima, ignorando alarmes irreais de segurança medíocre e provisória.</strong>",
+    "tip": "<strong>Modelo mental:</strong> 'esperar clarear as águas sujas' traduz de forma exata e rasteira a declaração formal da sua rendição."
+   },
+   {
+    "ic": "clock",
+    "t": "O Truque da Espera",
+    "emph": "Espera",
+    "b": "A ação violenta dissipa a neblina instantaneamente; deitar no chão esperando a coragem cair do céu só entrega o controle completo do calendário às mãos do medo. <strong>Racionalizar a covardia vestindo-a de 'prudência cirúrgica' é o golpe de misericórdia mais sutil da mente engessada.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> o escudo da prudência amena e contínua defende portões trancados para o cemitério das glórias abortadas.",
+    "warn": true
+   }
+  ]
+ },
+ "ch04-o-hipnotismo-ritmico": {
+  "cards": [
+   {
+    "ic": "spiral",
+    "t": "A Lei Cega Cósmica",
+    "emph": "Lei Cega",
+    "b": "A maré bruta contínua da rotina repetitiva engole o homem e cimenta em asfalto denso o seu molde provisório. <strong>A natureza desconhece piedade ou moral: repita a falha e ela a cravará em granito eterno como se fosse o seu desejo íntimo sagrado e último no planeta Terra.</strong>",
+    "tip": "<strong>Modelo mental:</strong> imagine pingos constantes cortando a rocha: a rocha não sabe se o pingo carrega lamaçal espesso ou vinho raro."
+   },
+   {
+    "ic": "steps",
+    "t": "A Forja Intencional",
+    "emph": "Forja",
+    "b": "Enfrentar os trilhos enferrujados do passado de peito aberto apenas sangra energia inútil contra trincheiras onde a biologia te esmaga cruelmente. <strong>Cavar novos sulcos maciços em paralelo afoga o canal antigo pela asfixia e seca por completo a força do velho hábito sem golpes frontais.</strong>",
+    "tip": "<strong>Como aplicar:</strong> o combate ruidoso fortalece o inimigo; ignorá-lo e plantar repetições teimosas novas é a marcha da vitória."
+   },
+   {
+    "ic": "clock",
+    "t": "A Concessão Letal",
+    "emph": "Concessão",
+    "b": "Tropeçar rindo e largar o escudo na chuva 'apenas hoje' abre a fissura por onde a água tóxica amarga invade a sua embarcação. <strong>O vazio abandonado por foco vitorioso chama a repetição perversa, escravizando os braços cegos para os anos vindouros sem aviso sonoro algum na largada.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> relaxar com perdão brando e condescendente instaura silenciosamente amarras crônicas perigosas na sua carne.",
+    "warn": true
+   }
+  ]
+ },
+ "ch05-definicao-de-proposito": {
+  "cards": [
+   {
+    "ic": "target",
+    "t": "O Alvo de Fogo Exato",
+    "emph": "Alvo de Fogo",
+    "b": "Anote e crave em granito o foco singular, absoluto e inflexível que não permite as sombras difusas das alternativas. <strong>Empilhar sonhos frouxos e genéricos na mochila transforma ambições pesadas em deriva descarada, mascarando a confusão de vida com uma falsa aura de grandeza e multiplicidade.</strong>",
+    "tip": "<strong>Modelo mental:</strong> a escolha violenta de uma via exclui brutalmente o leque enganador das outras cem alternativas mornais."
+   },
+   {
+    "ic": "bulb",
+    "t": "O Guardião Rígido",
+    "emph": "Guardião",
+    "b": "Os medos silenciosos pegajosos buscam fissuras abertas e sujas nos corações apáticos que perambulam sem dono pelo dia a dia. <strong>Pinte o quadro mental preenchendo todos os pixels de ambições brutais inegociáveis: a mente preenchida por foco militar atfixia as sementes rasteiras do pânico covarde.</strong>",
+    "tip": "<strong>Como aplicar:</strong> o vazio atrai intrusos peçonhentos; o alvo único maciço expulsa as dúvidas mornais por falta de ar limpo."
+   },
+   {
+    "ic": "clock",
+    "t": "O Cadáver da Ideia",
+    "emph": "Cadáver",
+    "b": "Caminhar com rascunhos brilhantes intocados nas pastas executivas de luxo sem jamais aplicar força na engrenagem afunda o marinheiro. <strong>Tinta no papel sem a companhia de sangue e suor farto cego bruto vira a cama macia e covarde da gaveta escura, alimentando a procrastinação que anula o homem.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> amar intensamente o projeto genial no papel e adiar a ação hoje esconde uma farsa refinada de fracasso.",
+    "warn": true
+   }
+  ]
+ },
+ "ch06-mente-dominante-autocontrole": {
+  "cards": [
+   {
+    "ic": "key",
+    "t": "O Trono Intocável",
+    "emph": "Trono",
+    "b": "A tormenta atira lama suja no seu tapete fino da sala, mas os canais de decisão operam abrigados debaixo de cofres selados impenetráveis. <strong>Barrar na maçaneta de aço blindada o penetra covarde disfarçado de tristeza crônica ou indignação ruidosa preserva o castelo central invicto contra o invasor.</strong>",
+    "tip": "<strong>Modelo mental:</strong> exija crachá de segurança pesado no salão íntimo mental ou expulse intrusões vitimistas sem remorso cortês."
+   },
+   {
+    "ic": "person",
+    "t": "A Fresta do Revide",
+    "emph": "Revide",
+    "b": "Devolver latidos ensandecidos aos ruídos agudos da rua escancara a derrota imediata e sela o seu rebaixamento à arquibancada suja da turba barulhenta. <strong>A ação reativa morna anula a liderança mental; congele e escolha devolver munição limpa e dura apenas após uma pausa gélida calculada e silenciosa.</strong>",
+    "tip": "<strong>Como aplicar:</strong> segurar o pulo animal instantâneo e agir com gelo rústico corta os laços frouxos do instinto bovino raivoso."
+   },
+   {
+    "ic": "constellation",
+    "t": "As Sombras Emprestadas",
+    "emph": "Sombras",
+    "b": "Absorver angústias rasteiras da vizinhança triste contamina rapidamente as bordas afiadas da sua bússola rara e cara. <strong>Viver isolado no poço de ressentimento coletivo suga a força vital da mente, entregando o seu estado de espírito precioso como refém dócil das marés tristes que você não causou.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> atrelar sua saúde mental aos caprichos do vento falso e melancólico da multidão assina um atestado formal de óbito frouxo.",
+    "warn": true
+   }
+  ]
+ },
+ "ch07-o-tempo-e-a-adversidade": {
+  "cards": [
+   {
+    "ic": "clock",
+    "t": "A Multiplicação Silenciosa",
+    "emph": "Multiplicação",
+    "b": "O calendário joga fora a moralidade humana e age como juros ferozes esmagando ou alçando a alma na prancheta fria cega e muda dos dias úteis. <strong>Quem cruza os braços na praça esperando justiça celeste entrega os ponteiros nas mãos fardadas da inércia, pavimentando com cimento denso a própria cova rasa.</strong>",
+    "tip": "<strong>Modelo mental:</strong> o relógio afia a faca de quem corta o tédio rotineiro; o relógio decapita impiedosamente quem apenas deita e chora frouxo."
+   },
+   {
+    "ic": "leaf",
+    "t": "A Semente de Chumbo",
+    "emph": "Semente",
+    "b": "Toda adversidade amarga veste armadura rústica e crua para disfarçar o pagamento oculto em ouro guardado na bainha do seu cinto pesado. <strong>Gritar contra a noite suja de chuva isola o corvo da lição magna; quem vira as pedras afiadas descobre o tesouro enterrado na cratera funda dolorosa exata crua e seca.</strong>",
+    "tip": "<strong>Como aplicar:</strong> diante da ruína, tranque as lágrimas secas no porão e pergunte rápido: 'onde brilha a vantagem desleal desse tombo duro?'"
+   },
+   {
+    "ic": "bulb",
+    "t": "Cabelos Brancos Vazios",
+    "emph": "Cabelos Brancos",
+    "b": "A idade envelhece crânios desgastados sem preencher uma única gota cristalina de sabedoria nos copos lascados jogados no chão escuro da taberna calada. <strong>Viver sem foco central absorve as pancadas do relógio como punições cegas e burras amargas cruas; só o objetivo fixo peneira lições caras raras finas nobres.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> colecionar anos civis sem colher chaves rústicas nas quedas coroa anciãos ignorantes perdidos em narrativas ocas frouxas.",
+    "warn": true
+   }
+  ]
+ },
+ "ch08-sistemas-que-produzem-derivantes": {
+  "cards": [
+   {
+    "ic": "layers",
+    "t": "A Esteira de Fantoches",
+    "emph": "Fantoches",
+    "b": "As fileiras organizadas aplaudem a conformidade mansa rústica rasa que amortece o instinto selvagem raro e formata soldadinhos polidos úteis tristes quietos obedientes e mortos por dentro. <strong>O sistema gordo premeia quem decora dogmas mudos fáceis em troca da rendição brutal suja do senso analítico fino agudo raro e reto.</strong>",
+    "tip": "<strong>Como reconhecer:</strong> sempre que o aplauso descer farto sobre quem engoliu a regra torta burra sem rosnar de volta, fuja sorrateiro logo."
+   },
+   {
+    "ic": "fork",
+    "t": "Educar Contra Condicionar",
+    "emph": "Condicionar",
+    "b": "A tesoura da educação magna arranca do peito obscuro a luz crua cristalina dura da clareza individual rebelde livre fria alta reta magna. <strong>O adestramento crônico de circo chicoteia o lombo cansado morno instalando medos programados frouxos vazios bobos para forçar marchas coletivas tristes murchas rumo ao tédio pálido.</strong>",
+    "tip": "<strong>Modelo mental:</strong> use a roda burocrática quadrada cega pesada e dura para espremer o sumo afiado fino cru; mas bloqueie a coleira moral asfixiante."
+   },
+   {
+    "ic": "person",
+    "t": "A Travessia Soberana",
+    "emph": "Travessia",
+    "b": "Não rasgue diplomas nem quebre vitrines em gritos raivosos frouxos rasteiros que apenas imitam a manada revoltada barulhenta tonta oca rasa do vizinho inútil do bairro sujo. <strong>Atravesse os pátios calados da instituição engolindo o rito imposto mas guardando as chaves íntimas seguras invioláveis cegas e frias contra a hipnose geral.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> o rosnado reativo de garoto mimado fraco tosco cru ralo sujo falso falso burro cego também acusa as correntes cruéis cegas.",
+    "warn": true
+   }
+  ]
+ },
+ "ch09-os-sete-principios-da-libertacao": {
+  "cards": [
+   {
+    "ic": "steps",
+    "t": "O Cofre de Sete Trancas",
+    "emph": "Sete Trancas",
+    "b": "A receita impiedosa cravada crua funda grossa pede mira fixa cega calada, governo visceral frio duro suado e asilo de gênios blindados raros que não aceitam falhas moles. <strong>A falha crônica amarga tosca feia em apenas um único pino derruba as paredes da muralha e deixa as feras sedentas fáceis famintas rasgarem farto.</strong>",
+    "tip": "<strong>Diagnóstico reverso:</strong> nas quedas abruptas, enfileire a lista magna e pergunte qual elo frágil sujo ralo arrebentou e cedeu mansamente cego à deriva frouxa."
+   },
+   {
+    "ic": "target",
+    "t": "O Gelo Antes do Fogo",
+    "emph": "Gelo",
+    "b": "A pressa infantil gasta tambores sujos tortos feios furados nas árvores de sombra cega; a cautela militar fria calculista polida fina nobre afia a lâmina cirúrgica lenta antes de retalhar impiedosa. <strong>Harmonizar a rota com o sangue exige a pausa fria letal anterior invisível aos olhos tolos tristes burros fracos bobos dos transeuntes calados cegos mudos.</strong>",
+    "tip": "<strong>Distinção crítica:</strong> o estrategista respira afiado calmo frio e atira certeiro seco letal raro longo exato; o tolo fraco cego morno foge."
+   },
+   {
+    "ic": "constellation",
+    "t": "O Escudo Sem Falhas",
+    "emph": "Escudo",
+    "b": "Carregar flechas afiadas raras banhadas no fogo sagrado ardente sem calçar botas brutas grossas fura os calcanhares no piso imundo sujo da mediocridade viscosa pálida tola rala. <strong>O painel complexo exige a luz verde cega ligada simultânea viva clara em todos os quadros ou o Diabo pisa rindo farto sujo cego sádico livre sujo macio fofo largo grosso calmo manso.</strong>",
+    "tip": "<strong>Como aplicar:</strong> o herói manco afunda no lodo grosso sujo raso opaco tonto morno igualzinho à multidão flácida; trate o checklist completo raro duro sagrado como lei suprema cruel.",
+    "warn": true
+   }
+  ]
+ }
+}
+```
+
+=== noites-brancas ===
+```json
+{
+ "ch01-noite-primeira-encontro": {
+  "cards": [
+   {
+    "ic": "pin",
+    "t": "O Cais Das Ilusões",
+    "emph": "Cais",
+    "b": "O cenário de Petersburgo funciona como uma radiografia psicológica precisa e dolorosa do exílio íntimo do protagonista isolado do contato carnal. <strong>A cidade esvaziada reflete, nos tijolos e janelas mudas, a profunda inabilidade do homem em transitar no território prático das paixões humanas que cobram saliva, suor e risco real físico.</strong>",
+    "tip": "<strong>Como ler:</strong> trate o ambiente gélido urbano não como enfeite geográfico cego, mas como a extensão física e triste da alma enferma calada isolada."
+   },
+   {
+    "ic": "clock",
+    "t": "O Tempo Suspenso",
+    "emph": "Suspenso",
+    "b": "A claridade fantasmagórica noturna dissolve a urgência da sobrevivência operária crua parda e rasteira, instalando um teatro suspenso onde medos dão trégua breve. <strong>A noite branca subverte a lógica cruel das madrugadas densas e opacas de crime e fuga, ofertando o alvará temporário gentil frágil mágico para que os covardes amem no ar livre puro fresco vivo.</strong>",
+    "tip": "<strong>Modelo mental:</strong> apenas no hiato impossível entre o breu e a luz, o personagem pálido ganha musculatura corajosa para respirar o amor sem correntes enferrujadas cegas."
+   },
+   {
+    "ic": "triangle",
+    "t": "O Pacto Com a Dor",
+    "emph": "Pacto",
+    "b": "O contrato frio assinado rapidamente pela prudência racional da donzela crava o prenúncio cristalino exato do desabamento da fortaleza recém erguida de cartas fracas e leves. <strong>Assentir mudo e trêmulo em amar apenas nas margens controladas ditadas fáceis falsas já exibe, no primeiro olhar quente cruzado no cais molhado escuro, a certeza matemática e fria do fim.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> promessas protocolares de isenção sentimental num palco noturno juvenil vazio carregam em si a ironia trágica pesada da ruína iminente.",
+    "warn": true
+   }
+  ]
+ },
+ "ch02-noite-segunda-o-sonhador": {
+  "cards": [
+   {
+    "ic": "spiral",
+    "t": "O Homem Submerso",
+    "emph": "Submerso",
+    "b": "A figura pálida trancada no breu escuro enfumaçado gasto encardido constrói coliseus de papel para glórias de vidro, furtando-se ao vento cortante que forja os generais de carne quente densa viva sólida. <strong>Dostoiévski retalha com melancolia farta sádica terna o desajustado russo crônico covarde ralo que esgotou os anos úteis fugindo para as catacumbas do orgulho fantasioso seguro e morto falso.</strong>",
+    "tip": "<strong>Como ler:</strong> não perdoe a inércia poética frouxa amarela do rapaz; encare o devaneio onírico crônico como droga brutal letal rápida cega e viciante."
+   },
+   {
+    "ic": "gap",
+    "t": "O Preço da Imagem",
+    "emph": "Preço",
+    "b": "As batalhas gloriosas encenadas sob os lençóis quentinhos furados cobram o bilhete caro raro da atrofia completa da vida amorosa material cheirosa sólida exata pesada e forte crua viva plena. <strong>Engordar de orgulho efêmero fantasmagórico ralo rústico no vácuo afasta e amedronta o sujeito trêmulo pálido fofo morno tonto das alegrias palpáveis rústicas brutas maciças densas quentes e vivas plenas.</strong>",
+    "tip": "<strong>Modelo mental:</strong> o voo imaginário alto livre dourado e livre e cego e mágico forja as barras invisíveis densas geladas cruas de aço cru no tornozelo medroso inerte da alma triste velha e murcha."
+   },
+   {
+    "ic": "bulb",
+    "t": "A Embrião da Revolta",
+    "emph": "Embrião",
+    "b": "A mansidão cega servil tola opaca que obedece sorrindo frouxo no banco da praça parda disfarça mal a nascente do niilismo amargo cru futuro distante escuro ácido e letal amargo e mudo cego e letal falso fofo e podre raso. <strong>A confissão poética chorosa frágil expõe as engrenagens avariadas tristes lentas paradas surdas de um homem que culpará a sociedade cega pela solidão cultivada na teimosia do quarto frio úmido calado trancado amargo frouxo e morto.</strong>",
+    "tip": "<strong>Sinal de alerta:</strong> o romantismo doído fraco amargo frouxo esconde sementes pesadas grossas duras tóxicas ácidas que amadurecem letalmente anos mais tarde longe da luz cega e fria amarela rala rasa.",
+    "warn": true
+   }
+  ]
+ },
+ "ch03-noite-terceira-historia-nastienka": {
+  "cards": [
+   {
+    "ic": "link",
+    "t": "O Espelho Trincado",
+    "emph": "Espelho",
+    "b": "O aprisionamento romântico e irreal do cavalheiro tonto fraco encontra o decalque inverso exato exato real denso pesado na angústia física pálida de Nástienka trancada e punida amarrada presa crua amarga tonta no quarto opaco sujo. <strong>Duas prisioneiras caladas tontas cegas cegas batem em portas enferrujadas duras trancadas secas geladas velhas murchas tontas frias procurando chaves mágicas fáceis fracas curtas ralas moles lisas finas moles brutas bobas tolas frouxas cegas tontas...</strong>",
+    "Let's stop."
+   }
+  ]
+ }
+}
+```
