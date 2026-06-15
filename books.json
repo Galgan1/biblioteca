@@ -1597,5 +1597,599 @@
         "url": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR"
       }
     ]
+  },
+  {
+    "id": "7-habitos",
+    "title": "Os 7 Hábitos das Pessoas Altamente Eficazes",
+    "author": "Stephen R. Covey",
+    "coverUrl": "assets/7-habitos-cover.png",
+    "description": "Clássico de Stephen R. Covey sobre efetividade baseada em caráter (de dentro para fora). Os 7 hábitos: ser proativo, começar com o fim em mente, primeiro o mais importante (matriz do tempo), ganha-ganha, compreender antes de ser compreendido, sinergia e afinar o instrumento. Mais a Conta Bancária Emocional e o continuum dependência→independência→interdependência.",
+    "tags": [
+      "Desenvolvimento Pessoal",
+      "Liderança",
+      "Produtividade"
+    ],
+    "progress": "9 Capítulos",
+    "url": "7-habitos.html",
+    "amazon": "https://www.amazon.com.br/s?k=Os+7+H%C3%A1bitos+das+Pessoas+Altamente+Eficazes+Stephen+R.+Covey&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Os+7+H%C3%A1bitos+das+Pessoas+Altamente+Eficazes+Stephen+R.+Covey&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "poder-do-habito",
+    "title": "O Poder do Hábito",
+    "author": "Charles Duhigg",
+    "coverUrl": "assets/poder-do-habito-cover.png",
+    "description": "Investigação de Charles Duhigg sobre a ciência dos hábitos. O loop (deixa, rotina, recompensa) e o craving que o move, a Regra de Ouro da mudança, os hábitos angulares, a força de vontade como músculo, e como hábitos governam organizações e movimentos sociais. Por que fazemos o que fazemos — e como mudar.",
+    "tags": [
+      "Comportamento",
+      "Psicologia",
+      "Produtividade"
+    ],
+    "progress": "9 Capítulos",
+    "url": "poder-do-habito.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Poder+do+H%C3%A1bito+Charles+Duhigg&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Poder+do+H%C3%A1bito+Charles+Duhigg&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "trabalho-focado",
+    "title": "Trabalho Focado",
+    "author": "Cal Newport",
+    "coverUrl": "assets/trabalho-focado-cover.png",
+    "description": "Manifesto e manual de Cal Newport sobre foco na economia do conhecimento. Trabalho profundo × superficial, o foco como superpoder raro e valioso, a lei da produtividade (foco = tempo × intensidade) e as 4 regras: trabalhe profundamente (4 ritmos, rituais, fim de expediente), abrace o tédio, abandone as redes sociais e drene o raso.",
+    "tags": [
+      "Produtividade",
+      "Foco",
+      "Carreira"
+    ],
+    "progress": "7 Capítulos",
+    "url": "trabalho-focado.html",
+    "amazon": "https://www.amazon.com.br/s?k=Trabalho+Focado+Cal+Newport&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Trabalho+Focado+Cal+Newport&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "a-unica-coisa",
+    "title": "A Única Coisa",
+    "author": "Gary Keller & Jay Papasan",
+    "coverUrl": "assets/a-unica-coisa-cover.png",
+    "description": "Guia de foco e produtividade de Gary Keller e Jay Papasan. A Pergunta Focal, o efeito dominó (sucesso sequencial), as 6 mentiras do sucesso, o 80/20, os 4 ladrões da produtividade, os blocos de tempo e a corrente propósito → prioridade → produtividade.",
+    "tags": [
+      "Produtividade",
+      "Foco",
+      "Hábitos"
+    ],
+    "progress": "6 Capítulos",
+    "url": "a-unica-coisa.html",
+    "amazon": "https://www.amazon.com.br/s?k=A+%C3%9Anica+Coisa+Gary+Keller+%26+Jay+Papasan&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=A+%C3%9Anica+Coisa+Gary+Keller+%26+Jay+Papasan&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "comece-pelo-porque",
+    "title": "Comece pelo Porquê",
+    "author": "Simon Sinek",
+    "coverUrl": "assets/comece-pelo-porque-cover.png",
+    "description": "Modelo de liderança e comunicação de Simon Sinek. O Círculo Dourado (Porquê → Como → O Quê), a biologia da decisão (sistema límbico × neocórtex), manipulação × inspiração, o Teste do Aipo, a Lei da Difusão da Inovação e o ponto de inflexão, e o desafio da sucessão (a Cisão do Porquê). Com Apple, irmãos Wright e Martin Luther King.",
+    "tags": [
+      "Liderança",
+      "Comunicação",
+      "Negócios"
+    ],
+    "progress": "14 Capítulos",
+    "url": "comece-pelo-porque.html",
+    "amazon": "https://www.amazon.com.br/s?k=Comece+pelo+Porqu%C3%AA+Simon+Sinek&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Comece+pelo+Porqu%C3%AA+Simon+Sinek&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "de-zero-a-um",
+    "title": "De Zero a Um",
+    "author": "Peter Thiel com Blake Masters",
+    "coverUrl": "assets/de-zero-a-um-cover.png",
+    "description": "Ensaio de Peter Thiel (com Blake Masters) sobre startups e inovação: progresso vertical (0→1) × horizontal (1→n), a pergunta contrária, monopólio criativo × concorrência, lei de potência, segredos, fundações, distribuição e as 7 perguntas de toda startup. Manual contrário de como criar o novo.",
+    "tags": [
+      "Empreendedorismo",
+      "Inovação",
+      "Estratégia"
+    ],
+    "progress": "14 Capítulos",
+    "url": "de-zero-a-um.html",
+    "amazon": "https://www.amazon.com.br/s?k=De+Zero+a+Um+Peter+Thiel+com+Blake+Masters&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=De+Zero+a+Um+Peter+Thiel+com+Blake+Masters&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "startup-enxuta",
+    "title": "A Startup Enxuta",
+    "author": "Eric Ries",
+    "coverUrl": "assets/startup-enxuta-cover.png",
+    "description": "Manual de gestão empreendedora de Eric Ries. O ciclo Construir-Medir-Aprender, o Produto Mínimo Viável (MVP), o aprendizado validado, as hipóteses de valor e de crescimento, pivô × perseverar, a contabilidade da inovação (métricas acionáveis × de vaidade), os 3 motores de crescimento, lotes pequenos e os 5 porquês. A produção enxuta da Toyota aplicada a startups.",
+    "tags": [
+      "Empreendedorismo",
+      "Gestão",
+      "Inovação"
+    ],
+    "progress": "14 Capítulos",
+    "url": "startup-enxuta.html",
+    "amazon": "https://www.amazon.com.br/s?k=A+Startup+Enxuta+Eric+Ries&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=A+Startup+Enxuta+Eric+Ries&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "trabalhe-4-horas",
+    "title": "Trabalhe 4 Horas por Semana",
+    "author": "Tim Ferriss",
+    "coverUrl": "assets/trabalhe-4-horas-cover.png",
+    "description": "Manual de estilo de vida e produtividade de Tim Ferriss. Os Novos Ricos trocam o acúmulo de dinheiro por tempo e mobilidade. O processo DEAL — Definição (dreamlining, fear-setting), Eliminação (Pareto 80/20 + Parkinson, dieta de baixa informação), Automação (a musa, terceirização, regra de não-decidir) e Libertação (trabalho remoto, mini-aposentadorias) — mais a distinção eficácia × eficiência.",
+    "tags": [
+      "Produtividade",
+      "Estilo de Vida",
+      "Empreendedorismo"
+    ],
+    "progress": "7 Capítulos",
+    "url": "trabalhe-4-horas.html",
+    "amazon": "https://www.amazon.com.br/s?k=Trabalhe+4+Horas+por+Semana+Tim+Ferriss&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Trabalhe+4+Horas+por+Semana+Tim+Ferriss&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "inteligencia-emocional",
+    "title": "Inteligência Emocional",
+    "author": "Daniel Goleman",
+    "coverUrl": "assets/inteligencia-emocional-cover.png",
+    "description": "Clássico de Daniel Goleman sobre inteligência emocional. As 5 competências (autoconsciência, autocontrole, automotivação, empatia, habilidades sociais), o sequestro da amígdala, QE × QI, o teste do marshmallow, o fluxo e as aplicações no casamento, na liderança, na saúde e na educação emocional.",
+    "tags": [
+      "Psicologia",
+      "Emoções",
+      "Desenvolvimento Pessoal"
+    ],
+    "progress": "8 Capítulos",
+    "url": "inteligencia-emocional.html",
+    "amazon": "https://www.amazon.com.br/s?k=Intelig%C3%AAncia+Emocional+Daniel+Goleman&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Intelig%C3%AAncia+Emocional+Daniel+Goleman&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "mindset",
+    "title": "Mindset",
+    "author": "Carol S. Dweck",
+    "coverUrl": "assets/mindset-cover.png",
+    "description": "Síntese de 'Mindset' de Carol Dweck. Mentalidade fixa × de crescimento, o poder do 'ainda', elogiar o processo e não o talento, fracasso como informação × identidade, a doença do CEO, mentalidade no esporte/negócios/amor/educação, os passos para mudar e a 'falsa mentalidade de crescimento'.",
+    "tags": [
+      "Psicologia",
+      "Sucesso",
+      "Educação"
+    ],
+    "progress": "8 Capítulos",
+    "url": "mindset.html",
+    "amazon": "https://www.amazon.com.br/s?k=Mindset+Carol+S.+Dweck&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Mindset+Carol+S.+Dweck&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "garra",
+    "title": "Garra",
+    "author": "Angela Duckworth",
+    "coverUrl": "assets/garra-cover.png",
+    "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",
+    "tags": [
+      "Psicologia",
+      "Sucesso",
+      "Hábitos"
+    ],
+    "progress": "7 Capítulos",
+    "url": "garra.html",
+    "amazon": "https://www.amazon.com.br/s?k=Garra+Angela+Duckworth&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Garra+Angela+Duckworth&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "flow",
+    "title": "Flow",
+    "author": "Mihaly Csikszentmihalyi",
+    "coverUrl": "assets/flow-cover.png",
+    "description": "Obra fundadora da psicologia positiva. A felicidade como condição que se constrói controlando a consciência; o flow (experiência ótima) e suas 8 características; entropia psíquica × ordem na consciência; o canal de flow (ansiedade × tédio); prazer × fruição; a personalidade autotélica; transformar trabalho e lazer em flow; e o sentido como o flow que unifica a vida toda.",
+    "tags": [
+      "Psicologia",
+      "Felicidade",
+      "Alto Desempenho"
+    ],
+    "progress": "10 Capítulos",
+    "url": "flow.html",
+    "amazon": "https://www.amazon.com.br/s?k=Flow+Mihaly+Csikszentmihalyi&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Flow+Mihaly+Csikszentmihalyi&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "corpo-guarda-as-marcas",
+    "title": "O Corpo Guarda as Marcas",
+    "author": "Bessel van der Kolk",
+    "coverUrl": "assets/corpo-guarda-as-marcas-cover.png",
+    "description": "Síntese clínico-educacional de 'O Corpo Guarda as Marcas' (Bessel van der Kolk) sobre como o trauma se inscreve em corpo e cérebro. Amígdala/alarme × pré-frontal/torre, janela de tolerância, teoria polivagal, interocepção e dissociação, memória traumática × narrativa, apego e trauma do desenvolvimento, e as vias de cura (EMDR, yoga, neurofeedback, IFS, ritmo/teatro).",
+    "tags": [
+      "Psicologia",
+      "Trauma",
+      "Neurociência"
+    ],
+    "progress": "12 Capítulos",
+    "url": "corpo-guarda-as-marcas.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Corpo+Guarda+as+Marcas+Bessel+van+der+Kolk&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Corpo+Guarda+as+Marcas+Bessel+van+der+Kolk&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "busca-de-sentido",
+    "title": "Em Busca de Sentido",
+    "author": "Viktor E. Frankl",
+    "coverUrl": "assets/busca-de-sentido-cover.png",
+    "description": "Memória dos campos de concentração e tratado de logoterapia de Viktor Frankl. A vontade de sentido como força primária, a última das liberdades humanas, os três caminhos para o sentido, o sofrimento com sentido, o vazio existencial, a neurose noogênica e as técnicas (intenção paradoxal, dereflexão). Um sim à vida apesar de tudo.",
+    "tags": [
+      "Psicologia",
+      "Logoterapia",
+      "Sentido da Vida"
+    ],
+    "progress": "7 Capítulos",
+    "url": "busca-de-sentido.html",
+    "amazon": "https://www.amazon.com.br/s?k=Em+Busca+de+Sentido+Viktor+E.+Frankl&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Em+Busca+de+Sentido+Viktor+E.+Frankl&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "sapiens",
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "coverUrl": "assets/sapiens-cover.png",
+    "description": "Grande história de Yuval Noah Harari sobre o passado da humanidade. As 3 revoluções (Cognitiva ~70 mil anos, Agrícola ~12 mil, Científica ~500 anos); o poder das ficções compartilhadas; a Revolução Agrícola como 'a maior fraude da história'; dinheiro, império e religião como as 3 ordens unificadoras; o casamento ciência-império-capital; o capitalismo e o crédito; a (in)felicidade do Sapiens; e o fim do Homo sapiens.",
+    "tags": [
+      "História",
+      "Antropologia",
+      "Civilização"
+    ],
+    "progress": "13 Capítulos",
+    "url": "sapiens.html",
+    "amazon": "https://www.amazon.com.br/s?k=Sapiens+Yuval+Noah+Harari&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Sapiens+Yuval+Noah+Harari&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "homo-deus",
+    "title": "Homo Deus",
+    "author": "Yuval Noah Harari",
+    "coverUrl": "assets/homo-deus-cover.png",
+    "description": "Ensaio de história especulativa de Yuval Noah Harari sobre o futuro da humanidade. A nova agenda (imortalidade, felicidade, divindade), o humanismo como religião, o Sapiens como algoritmo bioquímico, o desacoplamento inteligência × consciência, o fim do livre-arbítrio e do indivíduo, a classe inútil × os super-humanos, e o dataísmo. Terceira parte da trilogia Sapiens / Homo Deus / 21 Lições.",
+    "tags": [
+      "História",
+      "Futuro",
+      "Tecnologia & Sociedade"
+    ],
+    "progress": "9 Capítulos",
+    "url": "homo-deus.html",
+    "amazon": "https://www.amazon.com.br/s?k=Homo+Deus+Yuval+Noah+Harari&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Homo+Deus+Yuval+Noah+Harari&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "gene-egoista",
+    "title": "O Gene Egoísta",
+    "author": "Richard Dawkins",
+    "coverUrl": "assets/gene-egoista-cover.png",
+    "description": "Clássico de divulgação científica de Richard Dawkins (1976). A visão centrada no gene: replicador × veículo, máquinas de sobrevivência, seleção de parentesco e a regra de Hamilton (rB>C), estratégias evolutivamente estáveis (EEE) e teoria dos jogos (falcão × pomba), altruísmo recíproco e o dilema do prisioneiro iterado, e o meme como replicador cultural. Descrever a lógica do gene não é prescrevê-la como ética.",
+    "tags": [
+      "Biologia Evolutiva",
+      "Ciência",
+      "Comportamento"
+    ],
+    "progress": "4 Capítulos",
+    "url": "gene-egoista.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Gene+Ego%C3%ADsta+Richard+Dawkins&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Gene+Ego%C3%ADsta+Richard+Dawkins&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "cisne-negro",
+    "title": "A Lógica do Cisne Negro",
+    "author": "Nassim Nicholas Taleb",
+    "coverUrl": "assets/cisne-negro-cover.png",
+    "description": "Ensaio de Nassim Taleb sobre o evento Cisne Negro: raro, de impacto extremo e previsível só em retrospecto. Mediocristão × Extremistão, falácia narrativa, problema da indução (o peru de Russell), evidência silenciosa, falácia lúdica, arrogância epistêmica, a fraude da curva de sino e a robustez (estratégia barbell) diante do imprevisível.",
+    "tags": [
+      "Incerteza",
+      "Risco",
+      "Epistemologia"
+    ],
+    "progress": "8 Capítulos",
+    "url": "cisne-negro.html",
+    "amazon": "https://www.amazon.com.br/s?k=A+L%C3%B3gica+do+Cisne+Negro+Nassim+Nicholas+Taleb&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=A+L%C3%B3gica+do+Cisne+Negro+Nassim+Nicholas+Taleb&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "antifragil",
+    "title": "Antifrágil",
+    "author": "Nassim Nicholas Taleb",
+    "coverUrl": "assets/antifragil-cover.png",
+    "description": "Ensaio de Nassim Taleb sobre como prosperar na desordem. A tríade frágil/robusto/antifrágil, opcionalidade, a estratégia barbell, via negativa, pele em jogo, o efeito Lindy, hormese, iatrogenia e a crítica à previsão. Quarto volume do Incerto, na linha de 'O Cisne Negro'.",
+    "tags": [
+      "Incerteza",
+      "Risco",
+      "Filosofia Prática"
+    ],
+    "progress": "7 Capítulos",
+    "url": "antifragil.html",
+    "amazon": "https://www.amazon.com.br/s?k=Antifr%C3%A1gil+Nassim+Nicholas+Taleb&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Antifr%C3%A1gil+Nassim+Nicholas+Taleb&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "meditacoes",
+    "title": "Meditações",
+    "author": "Marco Aurélio",
+    "coverUrl": "assets/meditacoes-cover.png",
+    "description": "Caderno pessoal estoico de Marco Aurélio. A dicotomia do controle, as três disciplinas (assentimento, desejo, ação), 'não é a coisa que perturba mas o juízo sobre ela', amor fati, o obstáculo é o caminho, memento mori, a cidadela interior, a visão do alto e o convívio com pessoas difíceis. Síntese organizada por temas — não reproduz o texto.",
+    "tags": [
+      "Filosofia",
+      "Estoicismo",
+      "Ética"
+    ],
+    "progress": "8 Temas",
+    "url": "meditacoes.html",
+    "amazon": "https://www.amazon.com.br/s?k=Medita%C3%A7%C3%B5es+Marco+Aur%C3%A9lio&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Medita%C3%A7%C3%B5es+Marco+Aur%C3%A9lio&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "axiomas-de-zurique",
+    "title": "Os Axiomas de Zurique",
+    "author": "Max Gunther",
+    "coverUrl": "assets/axiomas-de-zurique-cover.png",
+    "description": "Manual de especulação consciente de Max Gunther: os 12 Grandes Axiomas + os menores. Risco como saúde, realizar o lucro cedo, cortar perdas pequenas, imprevisibilidade do mercado, padrões ilusórios, mobilidade do capital, intuição explicável, fim da mística, confiança × otimismo, ignorar o consenso, anti-teimosia e o perigo dos planos longos. Disciplina sobre emoção.",
+    "tags": [
+      "Finanças",
+      "Risco",
+      "Especulação"
+    ],
+    "progress": "6 Capítulos",
+    "url": "axiomas-de-zurique.html",
+    "amazon": "https://www.amazon.com.br/s?k=Os+Axiomas+de+Zurique+Max+Gunther&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Os+Axiomas+de+Zurique+Max+Gunther&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "milionario-mora-ao-lado",
+    "title": "O Milionário Mora ao Lado",
+    "author": "Thomas J. Stanley & William D. Danko",
+    "coverUrl": "assets/milionario-mora-ao-lado-cover.png",
+    "description": "Estudo de Thomas Stanley e William Danko sobre os milionários reais dos EUA. Os 7 fatores comuns de quem acumula riqueza, viver muito abaixo das posses, a fórmula da riqueza esperada (idade × renda /10), PAW × UAW, ataque × defesa, a Assistência Econômica Externa que enfraquece os filhos, achar o nicho e a escolha da profissão. Mais frugalidade que renda alta.",
+    "tags": [
+      "Finanças Pessoais",
+      "Riqueza",
+      "Comportamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "milionario-mora-ao-lado.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Milion%C3%A1rio+Mora+ao+Lado+Thomas+J.+Stanley+%26+William+D.+Danko&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Milion%C3%A1rio+Mora+ao+Lado+Thomas+J.+Stanley+%26+William+D.+Danko&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "revolucao-dos-bichos",
+    "title": "A Revolução dos Bichos",
+    "author": "George Orwell",
+    "coverUrl": "assets/revolucao-dos-bichos-cover.png",
+    "description": "Fábula satírica de George Orwell (1945) sobre a corrupção do poder. Alegoria da Revolução Russa: Napoleão (Stálin), Bola-de-Neve (Trótski), a propaganda de Garganta, os cães (polícia secreta) e o cavalo Sansão, o trabalhador traído. Os Sete Mandamentos reescritos, o culto ao líder e a reescrita da história, até os porcos se tornarem indistinguíveis dos humanos.",
+    "tags": [
+      "Ficção",
+      "Sátira Política",
+      "Distopia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "revolucao-dos-bichos.html",
+    "amazon": "https://www.amazon.com.br/s?k=A+Revolu%C3%A7%C3%A3o+dos+Bichos+George+Orwell&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=A+Revolu%C3%A7%C3%A3o+dos+Bichos+George+Orwell&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "pequeno-principe",
+    "title": "O Pequeno Príncipe",
+    "author": "Antoine de Saint-Exupéry",
+    "coverUrl": "assets/pequeno-principe-cover.png",
+    "description": "Fábula poética e filosófica de Saint-Exupéry. O essencial é invisível aos olhos, cativar = criar laços, a responsabilidade pelo que se ama, a crítica ao mundo dos adultos, a rosa única, a raposa, os seis planetas e seus tipos humanos, a serpente e a partida. Um clássico sobre amor, amizade e o olhar que se perde ao crescer.",
+    "tags": [
+      "Ficção",
+      "Fábula",
+      "Filosofia"
+    ],
+    "progress": "7 Movimentos",
+    "url": "pequeno-principe.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Pequeno+Pr%C3%ADncipe+Antoine+de+Saint-Exup%C3%A9ry&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Pequeno+Pr%C3%ADncipe+Antoine+de+Saint-Exup%C3%A9ry&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "metamorfose",
+    "title": "A Metamorfose",
+    "author": "Franz Kafka",
+    "coverUrl": "assets/metamorfose-cover.png",
+    "description": "Síntese de 'A Metamorfose' de Franz Kafka. Gregor Samsa transformado em inseto; alienação e desumanização pelo trabalho; o absurdo aceito (o 'kafkiano'); corpo × identidade × humanidade; a maçã encravada (a ferida do pai); a inversão de papéis (a família revive enquanto Gregor morre); de Grete cuidadora à sentença; isolamento, culpa e a morte como alívio dos vivos.",
+    "tags": [
+      "Ficção",
+      "Literatura Alemã",
+      "Absurdo"
+    ],
+    "progress": "3 Partes",
+    "url": "metamorfose.html",
+    "amazon": "https://www.amazon.com.br/s?k=A+Metamorfose+Franz+Kafka&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=A+Metamorfose+Franz+Kafka&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "o-alquimista",
+    "title": "O Alquimista",
+    "author": "Paulo Coelho",
+    "coverUrl": "assets/o-alquimista-cover.png",
+    "description": "Fábula alegórica de Paulo Coelho. O pastor Santiago segue um sonho até as Pirâmides em busca de um tesouro. Temas: a Lenda Pessoal, 'o universo conspira a seu favor', os sinais e a Linguagem do Mundo, a Alma do Mundo, Maktub, o medo de sofrer como maior obstáculo, e o tesouro que estava no começo.",
+    "tags": [
+      "Ficção",
+      "Fábula",
+      "Autoconhecimento"
+    ],
+    "progress": "9 Movimentos",
+    "url": "o-alquimista.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Alquimista+Paulo+Coelho&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Alquimista+Paulo+Coelho&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "dom-casmurro",
+    "title": "Dom Casmurro",
+    "author": "Machado de Assis",
+    "coverUrl": "assets/dom-casmurro-cover.png",
+    "description": "Romance realista de Machado de Assis (1899) narrado em 1ª pessoa por Bento Santiago. O narrador não-confiável, a ambiguidade proposital sobre o adultério de Capitu, os 'olhos de ressaca', o ciúme como tema central, a paternidade incerta de Ezequiel, a promessa do seminário, José Dias e o leitor convertido em júri. Não conclui a culpa — expõe o debate.",
+    "tags": [
+      "Literatura Brasileira",
+      "Realismo",
+      "Narrador Não-Confiável"
+    ],
+    "progress": "8 Movimentos",
+    "url": "dom-casmurro.html",
+    "amazon": "https://www.amazon.com.br/s?k=Dom+Casmurro+Machado+de+Assis&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Dom+Casmurro+Machado+de+Assis&tag=andregalgani-20"
+      }
+    ]
   }
 ]
