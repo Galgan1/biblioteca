@@ -14,7 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const st = document.createElement('style');
         st.textContent =
             '#bookshelf mark{background:var(--green-light);color:var(--green-dark);padding:0 .12em;border-radius:3px;font-weight:inherit}'
-            + '.search-suggest{background:none;border:0;border-bottom:2px solid var(--green);color:var(--green-dark);font:inherit;font-weight:700;cursor:pointer;padding:0}';
+            + '.search-suggest{background:none;border:0;border-bottom:2px solid var(--green);color:var(--green-dark);font:inherit;font-weight:700;cursor:pointer;padding:0}'
+            // dropdown de autocomplete
+            + '.search-box{position:relative;flex:1}'
+            + '.search-box .search-input{width:100%;box-sizing:border-box}'
+            + '.search-ac{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;margin:0;padding:.3rem;list-style:none;background:var(--paper-bg);border:1px solid var(--green);border-radius:var(--radius);box-shadow:0 14px 32px rgba(0,0,0,.14);max-height:60vh;overflow:auto}'
+            + '.search-ac[hidden]{display:none}'
+            + '.search-ac li{display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem;border-radius:4px;cursor:pointer}'
+            + '.search-ac li[aria-selected="true"]{background:var(--green-light)}'
+            + '.search-ac .ac-cover{width:34px;height:48px;flex:none;object-fit:cover;border-radius:3px;background:var(--surface-hover)}'
+            + '.search-ac .ac-text{min-width:0;display:flex;flex-direction:column;line-height:1.25}'
+            + '.search-ac .ac-title{font-weight:700;color:var(--green-dark);font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+            + '.search-ac .ac-author{color:var(--gray-dark);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+            + '.search-ac mark{background:transparent;color:var(--green);font-weight:800;padding:0}';
         document.head.appendChild(st);
     })();
 
@@ -270,7 +282,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => { state.query = e.target.value; render(); });
+        // --- Autocomplete: dropdown de sugestões sob a busca (estilo google) ---
+        const acBox = document.createElement('div');
+        acBox.className = 'search-box';
+        searchInput.parentNode.insertBefore(acBox, searchInput);
+        acBox.appendChild(searchInput);                 // move o input p/ dentro do wrapper relativo
+        const acList = document.createElement('ul');
+        acList.className = 'search-ac';
+        acList.id = 'search-ac';
+        acList.hidden = true;
+        acList.setAttribute('role', 'listbox');
+        acBox.appendChild(acList);
+        searchInput.setAttribute('role', 'combobox');
+        searchInput.setAttribute('aria-autocomplete', 'list');
+        searchInput.setAttribute('aria-controls', 'search-ac');
+        searchInput.setAttribute('aria-expanded', 'false');
+        searchInput.setAttribute('autocomplete', 'off');
+
+        let acData = [], acIndex = -1;
+
+        function fecharAc() {
+            acList.hidden = true;
+            acList.innerHTML = '';
+            acData = []; acIndex = -1;
+            searchInput.setAttribute('aria-expanded', 'false');
+            searchInput.removeAttribute('aria-activedescendant');
+        }
+
+        function abrirAc(q) {
+            acData = q.trim() ? Busca.buscar(allBooks, q).slice(0, 7) : [];
+            acIndex = -1;
+            if (!acData.length) { fecharAc(); return; }
+            acList.innerHTML = acData.map((b, i) =>
+                '<li role="option" id="ac-opt-' + i + '" aria-selected="false" data-i="' + i + '">'
+                + '<img class="ac-cover" src="' + b.coverUrl + '" alt="" loading="lazy">'
+                + '<span class="ac-text"><span class="ac-title">' + Busca.realcar(b.title, q) + '</span>'
+                + '<span class="ac-author">' + Busca.realcar(b.author, q) + '</span></span></li>'
+            ).join('');
+            acList.hidden = false;
+            searchInput.setAttribute('aria-expanded', 'true');
+            // mousedown (não click) dispara ANTES do blur do input, que fecharia o menu
+            acList.querySelectorAll('li').forEach(li => {
+                li.addEventListener('mousedown', (e) => { e.preventDefault(); escolherAc(+li.dataset.i); });
+            });
+        }
+
+        function marcarAc() {
+            acList.querySelectorAll('li').forEach((li, i) => {
+                const sel = i === acIndex;
+                li.setAttribute('aria-selected', sel ? 'true' : 'false');
+                if (sel) { li.scrollIntoView({ block: 'nearest' }); searchInput.setAttribute('aria-activedescendant', li.id); }
+            });
+            if (acIndex < 0) searchInput.removeAttribute('aria-activedescendant');
+        }
+
+        function escolherAc(i) {
+            const b = acData[i];
+            if (!b) return;
+            if (b.url && !b.comingSoon) { window.location.href = b.url; return; }  // vai p/ o livro
+            searchInput.value = b.title; state.query = b.title; fecharAc(); render(); // "Em breve": filtra a estante
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            state.query = e.target.value;
+            abrirAc(state.query);
+            render();
+        });
+
+        // navegação por teclado dentro do dropdown
+        searchInput.addEventListener('keydown', (e) => {
+            if (acList.hidden) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); acIndex = (acIndex + 1) % acData.length; marcarAc(); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); acIndex = (acIndex - 1 + acData.length) % acData.length; marcarAc(); }
+            else if (e.key === 'Enter' && acIndex >= 0) { e.preventDefault(); escolherAc(acIndex); }
+            else if (e.key === 'Escape') { fecharAc(); }
+        });
+
+        searchInput.addEventListener('blur', () => setTimeout(fecharAc, 150)); // delay p/ permitir o clique
+        document.addEventListener('click', (e) => { if (!acBox.contains(e.target)) fecharAc(); });
+
         // atalho "/" foca a busca, como em qualquer ferramenta séria
         document.addEventListener('keydown', (e) => {
             if (e.key === '/' && document.activeElement !== searchInput) {
