@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"spark","t":"O Piloto Automático Manda","emph":"Piloto Automático","b":"O Sistema 1 trabalha sem você pedir: lê o tom de uma frase, decide se confia numa cara, completa “pão com…” antes que você queira. É rápido, sem esforço, sem sensação de comando — e <strong>gera quase todas as suas impressões, intuições e impulsos do dia</strong>. Você acha que pilota; na maior parte do tempo, só assiste.","tip":"<strong>Modelo mental:</strong> trate a primeira resposta como palpite do S1 — quase sempre útil, às vezes traiçoeira.","wide":true},
+    {"ic":"clock","t":"O Sistema 2 Custa Caro","emph":"Custa Caro","b":"Multiplicar 17 por 24, comparar duas apólices, segurar a língua: tudo isso exige o Sistema 2, que aloca atenção, gasta energia e <strong>cansa como um músculo</strong>. Por ser caro, ele é convocado a contragosto — e só quando o S1 trava ou a aposta é alta o bastante para acordá-lo.","tip":"<strong>Regra:</strong> acione o S2 de propósito quando o tema for complexo ou caro errar — ele não vem sozinho."},
+    {"ic":"mask","t":"O Supervisor que Só Assina","emph":"Só Assina","b":"O Sistema 2 é o “eu” que você acredita ser — racional, no controle. Mas no dia a dia ele age mais como um <strong>supervisor preguiçoso que carimba o que o S1 entrega</strong>, sem reler. Você sente que decidiu pesando tudo; na verdade a intuição chegou pronta e a razão só assinou embaixo.","tip":"<strong>Cuidado:</strong> acreditar que “decidiu racionalmente” quando o S1 já tinha a resposta e o S2 apenas chancelou.","warn":true}
+  ]
+}

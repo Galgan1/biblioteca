@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "lens",
+      "t": "Todo Alvo Tem um Polegar",
+      "emph": "Polegar",
+      "b": "A Lei 33 diz que cada pessoa carrega uma fraqueza-mestra — uma insegurança, uma vaidade, uma carência — e quem a encontra acha a alavanca que move o resto. A vaidade, em especial, costuma ser a porta de entrada do manipulador. <strong>Por isso o uso sábio começa em casa: conheça o SEU polegar antes que alguém o aperte por você.</strong>",
+      "tip": "<strong>Defesa:</strong> mapeie a própria vaidade e a própria carência — o que você nega é exatamente por onde te pegam.",
+      "warn": true
+    },
+    {
+      "ic": "mask",
+      "t": "Parecer Inofensivo é Poder",
+      "emph": "Inofensivo",
+      "b": "As Leis 21 e 22 jogam com a percepção: fingir-se mais tolo que o alvo o desarma, porque o subestimado tem campo livre para agir sem despertar defesa. E ceder na hora certa — a tática da rendição — transforma fraqueza aparente em vantagem real, ganhando tempo enquanto o outro baixa a guarda. <strong>Quem parece sem perigo passa por todas as portas.</strong>",
+      "tip": "<strong>Modelo mental:</strong> humildade exibida pode ser camuflagem — não confunda quem se faz pequeno com quem é fraco."
+    },
+    {
+      "ic": "key",
+      "t": "Apele ao Interesse, Não à Gratidão",
+      "emph": "Interesse",
+      "b": "A Lei 13 desmonta o pedido ingênuo: lembrar favores passados ou apelar à gratidão pesa como cobrança e fecha portas. O sim vem fácil quando você mostra o que o OUTRO ganha — fale da vantagem de quem decide, nunca da sua necessidade. <strong>As pessoas se movem pelo próprio interesse, não pela sua carência.</strong> Vista o pedido com a roupa do aliado.",
+      "tip": "<strong>Como aplicar:</strong> antes de pedir, responda “o que isto resolve para ele?” — e comece a conversa por aí."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "cards": [
+    {
+      "ic": "link",
+      "t": "Seja o Nó que Sustenta",
+      "emph": "o Nó",
+      "b": "A Lei 11 é a forma mais durável de poder: quando sua falta dói, sua posição fica intocável. O favor avulso se esquece; a necessidade permanece. <strong>Seja o nó que, removido, derruba a estrutura</strong> — não por chantagem, mas por valor real. E não se esvazie entregando tudo de uma vez: quem dá todo o segredo vira descartável.",
+      "tip": "<strong>Como aplicar:</strong> construa dependência ética por competência, não dívidas — e retenha algo que só você resolve."
+    },
+    {
+      "ic": "target",
+      "t": "Faça o Outro Vir Até Você",
+      "emph": "Vir Até Você",
+      "b": "A Lei 8 dá o tabuleiro a quem força o adversário a se mover primeiro: a paciência vira ataque, e a isca faz o outro agir no terreno que você escolheu. Quem persegue se desgasta; quem atrai dita o ritmo. <strong>Mas a mesma isca é usada contra você</strong> — o que parece bom demais para te puxar costuma ser anzol disfarçado de oferta.",
+      "tip": "<strong>Defesa:</strong> quando algo é fácil e vantajoso demais para te atrair, desconfie — pode ser isca, não sorte."
+    },
+    {
+      "ic": "spark",
+      "t": "Vença pelo Fato, Não pela Briga",
+      "emph": "pelo Fato",
+      "b": "A Lei 9 corta o impulso de convencer no grito: a discussão gera ressentimento mesmo quando você tem razão, porque ferir o ego do outro custa um inimigo. O fato consumado convence sem inimizade — ninguém discute com o resultado entregue. <strong>Vencer o debate e perder a pessoa é derrota disfarçada de vitória.</strong>",
+      "tip": "<strong>Regra:</strong> prove com a obra, não com a retórica — o que se demonstra dispensa o que se argumenta."
+    }
+  ]
+}

@@ -168,28 +168,6 @@
     ]
   },
   {
-    "id": "aristoteles-poetica",
-    "title": "Poética",
-    "author": "Aristóteles",
-    "coverUrl": "assets/aristoteles-poetica-capa.png",
-    "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
-    "tags": [
-      "Filosofia",
-      "Narrativa",
-      "Dramaturgia"
-    ],
-    "progress": "7 Capítulos",
-    "url": "aristoteles-poetica.html",
-    "amazon": "https://www.amazon.com.br/dp/8572837590/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8572837590/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "save-the-cat",
     "title": "Save the Cat!",
     "author": "Blake Snyder",
@@ -322,28 +300,6 @@
     ]
   },
   {
-    "id": "quem-mexeu-no-queijo",
-    "title": "Quem Mexeu no Meu Queijo?",
-    "author": "Spencer Johnson",
-    "coverUrl": "assets/quem-mexeu-no-queijo-capa.png",
-    "description": "A parábola mais vendida sobre mudança. Spencer Johnson usa quatro personagens num labirinto para mostrar como antecipar, monitorar e se adaptar rápido quando o 'Queijo' — emprego, relação, segurança — sai do lugar.",
-    "tags": [
-      "Mudança",
-      "Carreira",
-      "Autodesenvolvimento"
-    ],
-    "progress": "7 Capítulos",
-    "url": "quem-mexeu-no-queijo.html",
-    "amazon": "https://www.amazon.com.br/dp/8501112062/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8501112062/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "nacao-dopamina",
     "title": "Nação Dopamina",
     "author": "Anna Lembke",
@@ -388,50 +344,6 @@
     ]
   },
   {
-    "id": "marketing-4-0",
-    "title": "Marketing 4.0",
-    "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
-    "coverUrl": "assets/marketing-4-0-capa.png",
-    "description": "O guia de Kotler para o marketing na era da conectividade. Apresenta a jornada dos Cinco As (Assimilação, Atração, Arguição, Ação, Apologia), os Quatro Cs que substituem os 4 Ps, as métricas PAR e BAR, o fator-F e o marketing humano, de conteúdo, omnichannel e de engajamento.",
-    "tags": [
-      "Marketing",
-      "Negócios",
-      "Digital"
-    ],
-    "progress": "8 Capítulos",
-    "url": "marketing-4-0.html",
-    "amazon": "https://www.amazon.com.br/dp/8543105331/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543105331/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "48-leis-do-poder",
-    "title": "As 48 Leis do Poder",
-    "author": "Robert Greene",
-    "coverUrl": "assets/48-leis-do-poder-capa.png",
-    "description": "O compêndio de Robert Greene sobre a dinâmica do poder, destilado de três mil anos de história. Apresentado em agrupamento temático e em chave defensiva: proteger a reputação, dominar as aparências, criar dependência, a tática da indireção, sedução e timing, a defesa contra manipulação e a lei suprema de ser informe.",
-    "tags": [
-      "Poder",
-      "Estratégia",
-      "Psicologia"
-    ],
-    "progress": "8 Capítulos",
-    "url": "48-leis-do-poder.html",
-    "amazon": "https://www.amazon.com.br/dp/6555320516/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6555320516/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "psicologia-financeira",
     "title": "A Psicologia Financeira",
     "author": "Morgan Housel",
@@ -472,28 +384,6 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "sutil-arte",
-    "title": "A Sutil Arte de Ligar o F*da-se",
-    "author": "Mark Manson",
-    "coverUrl": "assets/sutil-arte-capa.png",
-    "description": "O best-seller contraintuitivo de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), a tirania do excepcionalismo, os bons e maus valores, a diferença entre responsabilidade e culpa, e a morte como bússola do que importa.",
-    "tags": [
-      "Autodesenvolvimento",
-      "Filosofia",
-      "Comportamento"
-    ],
-    "progress": "8 Capítulos",
-    "url": "sutil-arte.html",
-    "amazon": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
@@ -2159,5 +2049,75 @@
     ],
     "progress": "11 Capítulos",
     "url": "leis-da-natureza-humana.html"
+  },
+  {
+    "id": "aristoteles-poetica",
+    "title": "Poética",
+    "author": "Aristóteles",
+    "coverUrl": "assets/aristoteles-poetica-capa.png",
+    "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
+    "tags": [
+      "Filosofia",
+      "Narrativa",
+      "Dramaturgia"
+    ],
+    "progress": "7 Capítulos",
+    "url": "aristoteles-poetica.html"
+  },
+  {
+    "id": "marketing-4-0",
+    "title": "Marketing 4.0",
+    "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
+    "coverUrl": "assets/marketing-4-0-capa.png",
+    "description": "O guia de Kotler para o marketing na era da conectividade. Apresenta a jornada dos Cinco As (Assimilação, Atração, Arguição, Ação, Apologia), os Quatro Cs que substituem os 4 Ps, as métricas PAR e BAR, o fator-F e o marketing humano, de conteúdo, omnichannel e de engajamento.",
+    "tags": [
+      "Marketing",
+      "Negócios",
+      "Digital"
+    ],
+    "progress": "8 Capítulos",
+    "url": "marketing-4-0.html"
+  },
+  {
+    "id": "48-leis-do-poder",
+    "title": "As 48 Leis do Poder",
+    "author": "Robert Greene",
+    "coverUrl": "assets/48-leis-do-poder-capa.png",
+    "description": "O compêndio de Robert Greene sobre a dinâmica do poder, destilado de três mil anos de história. Apresentado em agrupamento temático e em chave defensiva: proteger a reputação, dominar as aparências, criar dependência, a tática da indireção, sedução e timing, a defesa contra manipulação e a lei suprema de ser informe.",
+    "tags": [
+      "Poder",
+      "Estratégia",
+      "Psicologia"
+    ],
+    "progress": "8 Capítulos",
+    "url": "48-leis-do-poder.html"
+  },
+  {
+    "id": "sutil-arte",
+    "title": "A Sutil Arte de Ligar o F*da-se",
+    "author": "Mark Manson",
+    "coverUrl": "assets/sutil-arte-capa.png",
+    "description": "O best-seller contraintuitivo de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), a tirania do excepcionalismo, os bons e maus valores, a diferença entre responsabilidade e culpa, e a morte como bússola do que importa.",
+    "tags": [
+      "Autodesenvolvimento",
+      "Filosofia",
+      "Comportamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "sutil-arte.html"
+  },
+  {
+    "id": "quem-mexeu-no-queijo",
+    "title": "Quem Mexeu no Meu Queijo?",
+    "author": "Spencer Johnson",
+    "coverUrl": "assets/quem-mexeu-no-queijo-capa.png",
+    "description": "A parábola mais vendida sobre mudança. Spencer Johnson usa quatro personagens num labirinto para mostrar como antecipar, monitorar e se adaptar rápido quando o 'Queijo' — emprego, relação, segurança — sai do lugar.",
+    "tags": [
+      "Mudança",
+      "Carreira",
+      "Autodesenvolvimento"
+    ],
+    "progress": "7 Capítulos",
+    "url": "quem-mexeu-no-queijo.html"
   }
 ]

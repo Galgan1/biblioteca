@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"wave","t":"O que Lembra Fácil Parece Comum","emph":"Lembra Fácil","b":"Estimamos a frequência de algo pela <strong>facilidade com que exemplos saltam à memória</strong> — não pelos números. Um desastre aéreo recente, vívido e repetido na mídia, faz o avião parecer mais perigoso que o carro, quando é o contrário. O que é fácil de imaginar sequestra o lugar do que é estatisticamente provável.","tip":"<strong>Como aplicar:</strong> avalie o risco pela frequência real, não pela última manchete que te marcou.","wide":true},
+    {"ic":"constellation","t":"O Estereótipo no Lugar da Conta","emph":"Estereótipo","b":"A representatividade julga a que categoria algo pertence pela <strong>semelhança com o protótipo na sua cabeça</strong>, ignorando quão comum aquilo realmente é. Alguém tímido e organizado “tem cara” de bibliotecário — e esquecemos que há muito mais agricultores. O perfil grita; a taxa-base fica muda.","tip":"<strong>Regra:</strong> antes de cravar o caso, pergunte “quão comum isso é na população?” — só então ajuste."},
+    {"ic":"gap","t":"A Taxa-Base que Some","emph":"Taxa-Base","b":"O pecado por trás dos dois atalhos é o mesmo: <strong>ignorar a frequência de base ao julgar um caso isolado</strong>. “Parece o tipo” não é “é provável”. Sem ancorar primeiro em quão comum algo é na população, qualquer perfil convincente nos leva a apostar contra a estatística e a errar com confiança.","tip":"<strong>Cuidado:</strong> deixar o estereótipo do caso gritar mais alto do que a estatística da população.","warn":true}
+  ]
+}

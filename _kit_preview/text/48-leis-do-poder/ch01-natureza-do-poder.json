@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "scale",
+      "t": "Toda Mesa Tem um Jogo",
+      "emph": "Jogo",
+      "b": "Poder não é força bruta — é influência social, indireta e silenciosa, com regras que se repetem há séculos. Versalhes é o laboratório: o cortesão vence pela aparência e pelo cálculo, nunca pelo confronto cru. <strong>Até a conversa mais amigável carrega uma camada de poder por baixo</strong> — quem não a vê, joga sem saber que está em campo.",
+      "tip": "<strong>Modelo mental:</strong> antes de reagir, leia a jogada — toda interação tem uma camada de poder, mesmo a cordial."
+    },
+    {
+      "ic": "mask",
+      "t": "Um Mapa Amoral",
+      "emph": "Amoral",
+      "b": "Greene descreve o poder como ele <strong>é</strong>, não como deveria ser — e por isso o livro escandaliza: lido ao pé da letra, vira manual de manipulação. Mas o mapa não é a viagem. A mesma anatomia que arma o cínico blinda quem só quer não ser enganado. O tom é frio de propósito; o discernimento ético fica com você.",
+      "tip": "<strong>Regra do acervo:</strong> use como lente para enxergar o jogo, jamais como cartilha de vilania."
+    },
+    {
+      "ic": "eye",
+      "t": "A Ingenuidade Não Protege",
+      "emph": "Não Protege",
+      "b": "Recusar-se a entender o jogo não te mantém puro — te mantém peão. Quem ignora a tática apenas a entrega ao outro, que a usa à vontade. A leitura defensiva inverte isso com uma só pergunta diante de cada jogada: <strong>“quem está aplicando isto em mim?”</strong> — o elogio que precede o pedido, o presente que vem cedo demais.",
+      "tip": "<strong>Sinal de alerta:</strong> sentir que “não jogar” basta para se proteger costuma ser a porta de entrada do manipulador.",
+      "warn": true
+    }
+  ]
+}

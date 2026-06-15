@@ -1,0 +1,25 @@
+{
+  "cards": [
+    {
+      "ic": "mask",
+      "t": "Intenção Exposta é Arma Entregue",
+      "emph": "Arma Entregue",
+      "b": "As Leis 3 e 4 andam juntas: quem anuncia o plano vê o rival se preparar, e quem fala demais sob ansiedade entrega a mão. O poder vive na incerteza — mantenha o outro no escuro e ele reage tarde. <strong>Numa negociação, quem cala faz o outro preencher o silêncio com concessões</strong> que nenhum discurso arrancaria.",
+      "tip": "<strong>Como aplicar:</strong> revele intenções a conta-gotas e deixe o silêncio trabalhar por você."
+    },
+    {
+      "ic": "eye",
+      "t": "Atenção é Moeda",
+      "emph": "Moeda",
+      "b": "A Lei 6 é dura: a invisibilidade é a morte social. Ser notado e comentado pesa mais do que ter razão em silêncio, e a controvérsia que faz falar pode valer mais que o elogio morno que ninguém repete. <strong>Quem ninguém vê, ninguém lembra — e quem ninguém lembra não existe no jogo.</strong> A presença se cultiva, não se espera.",
+      "tip": "<strong>Modelo mental:</strong> atenção é moeda; circule-a com intenção, não por vaidade barata."
+    },
+    {
+      "ic": "spark",
+      "t": "Mostre o Efeito, Esconda o Suor",
+      "emph": "Esconda o Suor",
+      "b": "A Lei 7 ensina que a memória guarda a eficiência aparente, não o esforço escondido — quem exibe o resultado limpo parece mais capaz que quem mostra o trabalho suado. O lado sombrio é levar o crédito alheio; o lado defensivo é o que importa aqui: <strong>perceba quando estão colhendo a glória do que VOCÊ fez</strong> e proteja a autoria.",
+      "tip": "<strong>Defesa:</strong> documente a própria contribuição — o crédito some calado se você não o reivindicar."
+    }
+  ]
+}

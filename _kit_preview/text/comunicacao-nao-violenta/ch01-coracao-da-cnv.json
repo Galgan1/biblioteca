@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "steps",
+      "t": "Toda a CNV Cabe em Quatro Passos",
+      "emph": "Quatro Passos",
+      "b": "Rosenberg não pede que você fique gentil — pede que organize a fala numa ordem fixa: observar o fato sem julgar, nomear o que isso desperta em você, achar a necessidade por baixo e fazer um pedido concreto. <strong>Quando a conversa descarrila, é a esse trilho que se volta</strong>: o que observo, o que sinto, do que preciso, o que peço.",
+      "tip": "<strong>Como aplicar:</strong> “Quando ___ (fato), sinto ___, porque preciso de ___. Você toparia ___?”"
+    },
+    {
+      "ic": "link",
+      "t": "A Mesma Gramática nas Duas Direções",
+      "emph": "Duas Direções",
+      "b": "Os quatro passos não servem só para você se expor — servem para ler o outro por dentro. Numa direção você diz o que vive em si com honestidade; na outra, escuta o que vive no outro com empatia. <strong>É uma língua de mão dupla: fala-se e ouve-se com a mesma estrutura</strong> — e a escuta costuma ser a metade mais esquecida.",
+      "tip": "<strong>Modelo mental:</strong> antes de responder, pergunte qual dos dois lados a conversa pede agora — expressar ou receber."
+    },
+    {
+      "ic": "mask",
+      "t": "A Linguagem da Girafa e a do Chacal",
+      "emph": "Girafa",
+      "b": "Rosenberg batiza duas falas. O chacal julga, rotula, exige e pune; a girafa — o animal terrestre de maior coração — observa, sente, nomeia a necessidade e pede. Não são caráteres, são hábitos: aprendíveis e desaprendíveis. <strong>Mas recitar as quatro frases sem presença soa falso</strong> — o que faz funcionar é a intenção de conectar, não o roteiro.",
+      "tip": "<strong>Cuidado:</strong> CNV usada para conseguir o que se quer vira chacal de fantasia — a meta é conexão, não vitória.",
+      "warn": true
+    }
+  ]
+}

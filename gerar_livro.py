@@ -267,6 +267,14 @@ def main(slug):
     open(os.path.join(BASE, slug + ".html"), "w", encoding="utf-8", newline='\n').write(overview_page(B, CH))
     update_books_json(B)
     print(f"OK: {slug} — {n} capítulos + visão geral + script.js; books.json atualizado.")
+    # Kit de Divulgação: emite os dados do carrossel (slides.json + caps.json) p/ o
+    # serviço gerar sob demanda. Import tardio evita ciclo (gerar_carrossel→gerar_livro).
+    try:
+        import gerar_dados_carrossel as _gdc
+        ncap = _gdc.emit(slug)
+        print(f"     + kit: {ncap} capítulos de carrossel emitidos (assets/kit/{slug}/)")
+    except Exception as e:
+        print(f"     [!] kit não emitido para {slug}: {e}")
 
 
 if __name__ == "__main__":

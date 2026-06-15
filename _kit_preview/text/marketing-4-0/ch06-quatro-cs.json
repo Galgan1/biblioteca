@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"layers","t":"De 4 Ps a 4 Cs","emph":"4 Cs","b":"O mix clássico nasceu num mundo onde a marca decidia tudo. Na economia conectada, cada P vira um <strong>C que convida o cliente a participar</strong>: Produto → Co-criação, Preço → Moeda, Praça → Ativação comunitária, Promoção → Conversa. O cliente deixa a plateia e sobe ao palco.","tip":"<strong>Modelo mental:</strong> de monólogo para diálogo — o cliente agora entra na fábrica e na loja, não só no caixa.","wide":true},
+    {"ic":"link","t":"Co-criação e Ativação","emph":"Co-criação","b":"<strong>Co-criar</strong> é fazer do cliente coautor desde a ideação — mais acerto no produto e mais buy-in de quem ajudou a criar. <strong>Ativação comunitária</strong> é deixar a própria rede distribuir e vender (peer-to-peer): a “praça” deixa de ser o ponto físico e passa a ser a comunidade que recomenda.","tip":"<strong>Como aplicar:</strong> envolva a comunidade antes do lançamento — quem participa da criação defende o resultado."},
+    {"ic":"bubble","t":"Moeda e Conversa","emph":"Conversa","b":"<strong>Moeda</strong> troca a tabela fixa pelo preço dinâmico, por valor e por assinatura, que responde a demanda e momento. <strong>Conversa</strong> aposenta o anúncio unilateral: a promoção que vale é a que vira diálogo entre clientes. Falar sem escutar não gera apologia — gera ruído.","tip":"<strong>Sinal de alerta:</strong> uma promoção que só transmite e nunca responde trata o cliente como ouvinte, não como interlocutor.","warn":true}
+  ]
+}

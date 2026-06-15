@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "link",
+      "t": "Toda Dádiva Cria uma Dívida",
+      "emph": "uma Dívida",
+      "b": "Nenhuma sociedade humana sobreviveu sem a regra de retribuir — e ela é tão profunda que dispara mesmo com o favor que você não pediu. A amostra grátis, o cafezinho, o brinde: cada gentileza planta um desconforto surdo de “estou devendo”. <strong>Para sair da dívida aceitamos pagar mais do que recebemos</strong> — e é exatamente por isso que o “presente” chega antes do pedido.",
+      "tip": "<strong>Como se defender:</strong> aceite favores genuínos, mas redefina o ardil como ardil — a regra não obriga a retribuir um truque comercial.",
+      "wide": true
+    },
+    {
+      "ic": "pivot",
+      "t": "A Porta na Cara",
+      "emph": "na Cara",
+      "b": "Peça muito, ouça o “não” que você já esperava, e então recue para o pedido menor — o que sempre quis. Seu recuo é lido como concessão, e a regra cobra uma concessão de volta. O escoteiro oferece o ingresso caro, é recusado, e emenda “então leva umas barrinhas?” — e você compra chocolate que nem gosta. <strong>O segundo pedido não parece pequeno por ser pequeno: parece pequeno por contraste com o primeiro.</strong>",
+      "tip": "<strong>Sinal de alerta:</strong> pediram demais e “cederam” para um pedido menor? É a tática em ação, não generosidade.",
+      "warn": true
+    },
+    {
+      "ic": "gap",
+      "t": "O Presente que Não é Presente",
+      "emph": "Não é Presente",
+      "b": "A força da reciprocidade está em quem dá primeiro — porque dar primeiro escolhe o que será trocado e quanto pesará a dívida. O Hare Krishna entrega a flor antes de pedir o donativo; a flor custa centavos e a culpa custa caro. <strong>Quando o “mimo” chega cedo demais, ele raramente é cortesia: é um gancho lançado para fisgar o seu “sim”.</strong>",
+      "tip": "<strong>Modelo mental:</strong> antes de se sentir em dívida, pergunte quem deu primeiro — e por quê deu."
+    }
+  ]
+}

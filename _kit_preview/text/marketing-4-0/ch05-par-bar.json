@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"target","t":"PAR e BAR","emph":"PAR e BAR","b":"Duas razões simples medem a jornada. <strong>PAR</strong> (Taxa de Ação de Compra): dos que assimilaram a marca, quantos chegam à Ação — converter consciência em compra. <strong>BAR</strong> (Taxa de Defesa da Marca): dos que assimilaram, quantos chegam à Apologia. O BAR é a métrica-mestra da era conectada.","tip":"<strong>Como aplicar:</strong> defensores recrutam de graça — projete cada campanha para fazer o BAR subir, não só as impressões.","wide":true},
+    {"ic":"gap","t":"O Gargalo Revela Onde Agir","emph":"Gargalo","b":"A maior queda entre duas fases — por exemplo, muita Atração e pouca Arguição — aponta exatamente <strong>onde o marketing está vazando</strong>. Não adianta polir o que já vai bem; o ganho está em consertar o ponto que estrangula a passagem. Achar o gargalo já é metade da solução.","tip":"<strong>Regra:</strong> antes de investir, diagnostique a transição mais fraca — é ali, e não no que já brilha, que o dinheiro rende."},
+    {"ic":"scale","t":"Produtividade, Não Vaidade","emph":"Vaidade","b":"Alcance gigantesco com BAR baixo é <strong>ser visto e esquecido</strong> — furar o balde enquanto se despeja água no topo. As métricas de vaidade (impressões, alcance bruto) seduzem porque incham fácil, mas só a conversão entre fases revela se o marketing produz resultado ou apenas barulho.","tip":"<strong>Sinal de alerta:</strong> comemorar Assimilação altíssima com PAR e BAR rastejando é confundir movimento com progresso.","warn":true}
+  ]
+}

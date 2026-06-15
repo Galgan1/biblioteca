@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "fork",
+      "t": "“Por Quê?” Prende, “Para Quê?” Liberta",
+      "emph": "“Para Quê?”",
+      "b": "Freud explica pela causa que veio de trás: “você é assim por causa do que te aconteceu” — e, dito isso, o futuro já está fechado. Adler inverte a seta: “você age assim para alcançar um fim de agora”. O passado deixa de ser sentença e vira matéria-prima. <strong>Não é o que te aconteceu que decide a tua vida — é o objetivo que persegues neste instante.</strong>",
+      "tip": "<strong>Como aplicar:</strong> ao se flagrar num “não posso por causa de X”, pergunte “qual objetivo esse ‘não posso’ está me servindo?”."
+    },
+    {
+      "ic": "key",
+      "t": "Os Mesmos Tijolos, Casa ou Prisão",
+      "emph": "Casa ou Prisão",
+      "b": "A experiência crua não causa o destino: o que decide é o <strong>significado</strong> que você empresta a ela. Por isso duas pessoas com o mesmo passado de dor seguem rumos opostos — uma se fecha, a outra floresce. Os mesmos tijolos erguem uma cela ou um lar; quem assenta cada um é você, no presente, não a infância.",
+      "tip": "<strong>Modelo mental:</strong> o passado é material de construção, nunca a planta pronta — o sentido você assina agora."
+    },
+    {
+      "ic": "eye",
+      "t": "“O Trauma Não Existe” — o Que Isso Não Diz",
+      "emph": "Não Existe",
+      "b": "Adler não nega que coisas terríveis aconteçam, nem zomba da dor de ninguém. Ele nega que a dor nos <strong>obrigue</strong> a um destino. O recluso não fica trancado por causa do medo: ele fabrica o medo para ter licença de não enfrentar o mundo e seguir cuidado. Por trás de cada “não posso” mora um objetivo que o “não posso” protege.",
+      "tip": "<strong>Cuidado:</strong> “não existe” não quer dizer “não importa” — quer dizer “não te prende a um único destino”.",
+      "warn": true
+    }
+  ]
+}

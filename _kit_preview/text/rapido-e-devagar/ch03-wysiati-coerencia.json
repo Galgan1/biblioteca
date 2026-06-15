@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"eye","t":"O que Você Vê é Tudo que Há","emph":"Tudo que Há","b":"O Sistema 1 monta a história mais coerente que consegue com a informação que tem à mão — e a trata como o mundo inteiro. Ele não pergunta o que ficou de fora. Por isso a sua confiança mede a <strong>coerência da história, não a qualidade da evidência</strong>: quanto menos você sabe, mais fácil é a história fechar.","tip":"<strong>Como aplicar:</strong> pergunte “o que falta que eu não estou vendo — e mudaria a conclusão?”.","wide":true},
+    {"ic":"link","t":"O Halo que Contamina Tudo","emph":"Halo","b":"As ideias acendem ideias vizinhas em cascata, e uma narrativa fluida vira “verdade” sentida. Uma primeira impressão — um rosto simpático, uma resposta segura — <strong>contamina traços que você nem chegou a observar</strong>. Quem parece confiante no início ganha crédito antecipado em tudo o que disser depois.","tip":"<strong>Modelo mental:</strong> a confiança mede a coerência da história, não a quantidade de evidência por trás dela."},
+    {"ic":"bubble","t":"A Ilusão de Verdade por Repetição","emph":"Repetição","b":"O que é fácil de processar — familiar, claro, repetido — parece mais verdadeiro, bom e seguro. A mera <strong>repetição fabrica a sensação de verdade</strong>, mesmo numa frase falsa: ouvi-la três vezes a faz soar certa. Propaganda e boato exploram exatamente essa fluência sem precisar de um único argumento.","tip":"<strong>Cuidado:</strong> tomar a fluência — “soou claro, soou familiar” — como prova de que aquilo é verdade.","warn":true}
+  ]
+}

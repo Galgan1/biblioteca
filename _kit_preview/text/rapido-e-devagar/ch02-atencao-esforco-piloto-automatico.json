@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"leaf","t":"A Lei do Menor Esforço","emph":"Menor Esforço","b":"Entre dois caminhos para o mesmo destino, a mente escolhe sempre o <strong>que dói menos pensar</strong>. Pensar com cuidado é trabalhoso, então a regra padrão é pular a checagem deliberada e aceitar o palpite que já veio. Não é preguiça moral: é economia de um recurso de verdade escasso — a atenção.","tip":"<strong>Como aplicar:</strong> não conte com a força de vontade o dia todo; desenhe o ambiente para precisar menos dela.","wide":true},
+    {"ic":"scale","t":"O Mesmo Poço Esgotado","emph":"Mesmo Poço","b":"Autocontrole e raciocínio puxam da <strong>mesma reserva limitada</strong>: gastar num esvazia o outro. Quem resiste a um doce decide pior na sequência; quem decide o dia inteiro cede à tentação à noite. É o esgotamento do ego — e fome, cansaço e multitarefa entregam o volante de volta ao Sistema 1.","tip":"<strong>Regra:</strong> evite decisões importantes com fome, exausto ou fazendo três coisas ao mesmo tempo."},
+    {"ic":"eye","t":"O Gorila que Ninguém Vê","emph":"Gorila","b":"No experimento clássico, contando passes de basquete, <strong>metade das pessoas não vê uma figura fantasiada de gorila cruzar a tela</strong> e bater no peito. O foco intenso ilumina um ponto e apaga toda a periferia. Não vemos o óbvio — e, pior, ficamos cegos à própria cegueira.","tip":"<strong>Cuidado:</strong> supor que “estar prestando atenção” garante ver o que importa — o foco sempre cobra periferia.","warn":true}
+  ]
+}

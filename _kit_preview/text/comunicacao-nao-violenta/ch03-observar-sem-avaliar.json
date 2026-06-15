@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "eye",
+      "t": "O Que a Câmera Teria Gravado",
+      "emph": "Câmera",
+      "b": "O primeiro passo parece simples e é o mais traído: descrever só o fato, sem o veredito grudado nele. Observação é o que uma câmera registraria, ancorado em tempo e lugar — “ontem você chegou vinte minutos depois”. Tudo além disso é avaliação. <strong>Misture fato e juízo na mesma frase e o fato some atrás da crítica</strong>, e o outro só ouve o ataque.",
+      "tip": "<strong>Como aplicar:</strong> antes de falar, pergunte “o que uma câmera teria gravado aqui?” — e diga só isso primeiro."
+    },
+    {
+      "ic": "gap",
+      "t": "Troque o Rótulo Fixo pelo Fato Datado",
+      "emph": "Datado",
+      "b": "“Ele é preguiçoso” é uma sentença de prisão perpétua: trava a pessoa num traço que não muda. “Esta semana ele não entregou o relatório” é um fato com data, que abre porta para conversa. A linguagem estática condena; a de processo descreve. <strong>“Sempre” e “nunca” soam como acusação e convidam o outro direto para a defensiva.</strong>",
+      "tip": "<strong>Sinal de alerta:</strong> ao ouvir (ou dizer) “sempre” e “nunca”, suspeite — quase certamente é avaliação disfarçada de fato.",
+      "warn": true
+    },
+    {
+      "ic": "lens",
+      "t": "A Forma Mais Alta de Inteligência",
+      "emph": "Inteligência",
+      "b": "Rosenberg recorre a Krishnamurti: observar sem avaliar é a forma mais elevada de inteligência humana — e é raríssima, porque o cérebro classifica antes de perceber. Separar o que aconteceu do que aquilo significa para você é um ato de disciplina, não de frieza. <strong>Só o fato limpo abre o diálogo; o veredito o fecha antes de começar.</strong>",
+      "tip": "<strong>Modelo mental:</strong> “gasta demais” é juízo; “este mês gastou R$ 600 acima do orçado” é o fato que dá para conversar."
+    }
+  ]
+}
