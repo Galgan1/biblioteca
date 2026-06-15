@@ -9,6 +9,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusToggle = document.getElementById('statusToggle');
     const trilhasEl = document.getElementById('trilhas');
 
+    // estilo do realce de busca + sugestão (on-brand; injetado p/ a feature ser self-contained)
+    (function injetarEstiloBusca() {
+        const st = document.createElement('style');
+        st.textContent =
+            '#bookshelf mark{background:var(--green-light);color:var(--green-dark);padding:0 .12em;border-radius:3px;font-weight:inherit}'
+            + '.search-suggest{background:none;border:0;border-bottom:2px solid var(--green);color:var(--green-dark);font:inherit;font-weight:700;cursor:pointer;padding:0}'
+            // dropdown de autocomplete
+            + '.search-box{position:relative;flex:1}'
+            + '.search-box .search-input{width:100%;box-sizing:border-box}'
+            + '.search-ac{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:60;margin:0;padding:.3rem;list-style:none;background:var(--paper-bg);border:1px solid var(--green);border-radius:var(--radius);box-shadow:0 14px 32px rgba(0,0,0,.14);max-height:60vh;overflow:auto}'
+            + '.search-ac[hidden]{display:none}'
+            + '.search-ac li{display:flex;align-items:center;gap:.7rem;padding:.45rem .55rem;border-radius:4px;cursor:pointer}'
+            + '.search-ac li[aria-selected="true"]{background:var(--green-light)}'
+            + '.search-ac .ac-cover{width:34px;height:48px;flex:none;object-fit:cover;border-radius:3px;background:var(--surface-hover)}'
+            + '.search-ac .ac-text{min-width:0;display:flex;flex-direction:column;line-height:1.25}'
+            + '.search-ac .ac-title{font-weight:700;color:var(--green-dark);font-size:.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+            + '.search-ac .ac-author{color:var(--gray-dark);font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}'
+            + '.search-ac mark{background:transparent;color:var(--green);font-weight:800;padding:0}';
+        document.head.appendChild(st);
+    })();
+
     const CART_ICON = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">'
         + '<path d="M3 4h2.5l2 11h10l2-8H7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>'
         + '<circle cx="10" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg>';
@@ -115,33 +136,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function render() {
-        const q = state.query.trim().toLowerCase();
+        const q = state.query.trim();
         const statusOk = b => state.status === 'tudo' || (state.status === 'pronto' ? !b.comingSoon : !!b.comingSoon);
-        const queryOk = b => !q || b.title.toLowerCase().includes(q) || b.author.toLowerCase().includes(q);
 
         shelf.innerHTML = '';
 
-        // Vista de trilha: livros na ordem de leitura, sem reordenar por likes
+        // Vista de trilha: ordem de leitura (ou por relevância quando há busca)
         if (state.trilha !== null) {
             const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
             const [name, ids] = TRILHAS[state.trilha];
-            const books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk).filter(queryOk);
-            if (!books.length) { shelf.innerHTML = msg('Nenhum livro nesta trilha com esse filtro.'); return; }
-            renderSection('Trilha · ' + name, books);
+            let books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk);
+            if (q) books = Busca.buscar(books, q);
+            if (!books.length) { semResultado(q, 'nesta trilha'); return; }
+            renderSection('Trilha · ' + name, books, q);
             return;
         }
 
-        let books = allBooks.filter(statusOk).filter(queryOk);
-        if (!books.length) { shelf.innerHTML = msg('Nenhum livro encontrado.'); return; }
-        books = books.slice().sort(rankSort);
+        let books = allBooks.filter(statusOk);
+        // com busca: ordena por RELEVÂNCIA (Busca.buscar); sem busca: ranking de likes
+        books = q ? Busca.buscar(books, q) : books.slice().sort(rankSort);
+        if (!books.length) { semResultado(q); return; }
         const title = q ? 'Resultados'
             : state.status === 'pronto' ? 'Resumos prontos'
             : state.status === 'embreve' ? 'Em breve'
             : 'Acervo · do mais curtido ao menos';
-        renderSection(title, books);
+        renderSection(title, books, q);
     }
 
-    function renderSection(title, books) {
+    // estado vazio com sugestão "você quis dizer" (busca tolerante a erro de digitação)
+    function semResultado(q, onde) {
+        const qLimpo = (q || '').replace(/[&<>"]/g, '');
+        let html = 'Nenhum livro encontrado' + (onde ? ' ' + onde : '') + (qLimpo ? ' para “' + qLimpo + '”.' : '.');
+        const sug = q ? Busca.sugerir(allBooks, q) : null;
+        if (sug) html += ' Você quis dizer <button type="button" class="search-suggest">' + sug + '</button>?';
+        shelf.innerHTML = msg(html);
+        const sb = shelf.querySelector('.search-suggest');
+        if (sb) sb.addEventListener('click', () => {
+            if (searchInput) searchInput.value = sug;
+            state.query = sug;
+            render();
+        });
+    }
+
+    function renderSection(title, books, q) {
         const sec = document.createElement('section');
         sec.className = 'shelf-section';
         const h = document.createElement('h2');
@@ -150,12 +187,12 @@ document.addEventListener('DOMContentLoaded', () => {
         sec.appendChild(h);
         const grid = document.createElement('div');
         grid.className = 'shelf-grid';
-        books.forEach((book, i) => grid.appendChild(makeCard(book, i)));
+        books.forEach((book, i) => grid.appendChild(makeCard(book, i, q)));
         sec.appendChild(grid);
         shelf.appendChild(sec);
     }
 
-    function makeCard(book, index) {
+    function makeCard(book, index, q) {
         // wrapper: card + chip de compra + voto, sem aninhar <a>/<button> dentro do card
         const item = document.createElement('div');
         item.className = 'shelf-item animate-entrance';
@@ -166,13 +203,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // só o chip "Comprar" (afiliado) leva à Amazon.
         bookEl.className = book.comingSoon ? 'card card-soon' : 'card';
         if (!book.comingSoon) bookEl.href = book.url;
+        const tit = q ? Busca.realcar(book.title, q) : book.title;
+        const aut = q ? Busca.realcar(book.author, q) : book.author;
         bookEl.innerHTML = `
             <div class="card-cover">
                 <img src="${book.coverUrl}" alt="Capa do livro ${book.title}" loading="lazy">
             </div>
             <div class="card-content">
-                <div class="card-title">${book.title}</div>
-                <p class="card-author">${book.author}</p>
+                <div class="card-title">${tit}</div>
+                <p class="card-author">${aut}</p>
                 <p class="card-progress">${book.progress}</p>
             </div>
         `;
@@ -243,7 +282,85 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => { state.query = e.target.value; render(); });
+        // --- Autocomplete: dropdown de sugestões sob a busca (estilo google) ---
+        const acBox = document.createElement('div');
+        acBox.className = 'search-box';
+        searchInput.parentNode.insertBefore(acBox, searchInput);
+        acBox.appendChild(searchInput);                 // move o input p/ dentro do wrapper relativo
+        const acList = document.createElement('ul');
+        acList.className = 'search-ac';
+        acList.id = 'search-ac';
+        acList.hidden = true;
+        acList.setAttribute('role', 'listbox');
+        acBox.appendChild(acList);
+        searchInput.setAttribute('role', 'combobox');
+        searchInput.setAttribute('aria-autocomplete', 'list');
+        searchInput.setAttribute('aria-controls', 'search-ac');
+        searchInput.setAttribute('aria-expanded', 'false');
+        searchInput.setAttribute('autocomplete', 'off');
+
+        let acData = [], acIndex = -1;
+
+        function fecharAc() {
+            acList.hidden = true;
+            acList.innerHTML = '';
+            acData = []; acIndex = -1;
+            searchInput.setAttribute('aria-expanded', 'false');
+            searchInput.removeAttribute('aria-activedescendant');
+        }
+
+        function abrirAc(q) {
+            acData = q.trim() ? Busca.buscar(allBooks, q).slice(0, 7) : [];
+            acIndex = -1;
+            if (!acData.length) { fecharAc(); return; }
+            acList.innerHTML = acData.map((b, i) =>
+                '<li role="option" id="ac-opt-' + i + '" aria-selected="false" data-i="' + i + '">'
+                + '<img class="ac-cover" src="' + b.coverUrl + '" alt="" loading="lazy">'
+                + '<span class="ac-text"><span class="ac-title">' + Busca.realcar(b.title, q) + '</span>'
+                + '<span class="ac-author">' + Busca.realcar(b.author, q) + '</span></span></li>'
+            ).join('');
+            acList.hidden = false;
+            searchInput.setAttribute('aria-expanded', 'true');
+            // mousedown (não click) dispara ANTES do blur do input, que fecharia o menu
+            acList.querySelectorAll('li').forEach(li => {
+                li.addEventListener('mousedown', (e) => { e.preventDefault(); escolherAc(+li.dataset.i); });
+            });
+        }
+
+        function marcarAc() {
+            acList.querySelectorAll('li').forEach((li, i) => {
+                const sel = i === acIndex;
+                li.setAttribute('aria-selected', sel ? 'true' : 'false');
+                if (sel) { li.scrollIntoView({ block: 'nearest' }); searchInput.setAttribute('aria-activedescendant', li.id); }
+            });
+            if (acIndex < 0) searchInput.removeAttribute('aria-activedescendant');
+        }
+
+        function escolherAc(i) {
+            const b = acData[i];
+            if (!b) return;
+            if (b.url && !b.comingSoon) { window.location.href = b.url; return; }  // vai p/ o livro
+            searchInput.value = b.title; state.query = b.title; fecharAc(); render(); // "Em breve": filtra a estante
+        }
+
+        searchInput.addEventListener('input', (e) => {
+            state.query = e.target.value;
+            abrirAc(state.query);
+            render();
+        });
+
+        // navegação por teclado dentro do dropdown
+        searchInput.addEventListener('keydown', (e) => {
+            if (acList.hidden) return;
+            if (e.key === 'ArrowDown') { e.preventDefault(); acIndex = (acIndex + 1) % acData.length; marcarAc(); }
+            else if (e.key === 'ArrowUp') { e.preventDefault(); acIndex = (acIndex - 1 + acData.length) % acData.length; marcarAc(); }
+            else if (e.key === 'Enter' && acIndex >= 0) { e.preventDefault(); escolherAc(acIndex); }
+            else if (e.key === 'Escape') { fecharAc(); }
+        });
+
+        searchInput.addEventListener('blur', () => setTimeout(fecharAc, 150)); // delay p/ permitir o clique
+        document.addEventListener('click', (e) => { if (!acBox.contains(e.target)) fecharAc(); });
+
         // atalho "/" foca a busca, como em qualquer ferramenta séria
         document.addEventListener('keydown', (e) => {
             if (e.key === '/' && document.activeElement !== searchInput) {
