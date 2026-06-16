@@ -36,6 +36,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const chapterMatch = path.match(new RegExp('/' + BIBLIOTECA_BOOK + '/([a-z0-9-]+)\\.html$'));
     const prefix = isOverview ? '' : '../'; // base relativa até /biblioteca/
 
+    // ---------- carregador do painel admin (discreto) ----------
+    // Revela com #admin (uma vez) e fica lembrado no aparelho; visitante comum
+    // nunca baixa admin.js. O próprio admin.js trata login + checagem de papel.
+    try {
+        if (location.hash === '#admin') localStorage.setItem('bib:admin', '1');
+        if (localStorage.getItem('bib:admin') === '1') {
+            const aCss = document.createElement('link');
+            aCss.rel = 'stylesheet'; aCss.href = prefix + 'assets/admin.css';
+            document.head.appendChild(aCss);
+            const aJs = document.createElement('script');
+            aJs.src = prefix + 'assets/admin.js'; aJs.defer = true;
+            document.body.appendChild(aJs);
+        }
+    } catch (e) { /* sem localStorage → sem admin */ }
+
     // contagem de visita (geral + por livro) — beacon anônimo, só em produção
     if (location.hostname.endsWith('andregalgani.com.br')) {
         try { navigator.sendBeacon(prefix + 'pdf/hit?book=' + BIBLIOTECA_BOOK); } catch (e) { /* sem beacon, sem contagem */ }
