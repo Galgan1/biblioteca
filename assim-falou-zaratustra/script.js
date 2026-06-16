@@ -43,10 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (location.hash === '#admin') localStorage.setItem('bib:admin', '1');
         if (localStorage.getItem('bib:admin') === '1') {
             const aCss = document.createElement('link');
-            aCss.rel = 'stylesheet'; aCss.href = prefix + 'assets/admin.css';
+            aCss.rel = 'stylesheet'; aCss.href = prefix + 'assets/admin.css?v=2';
             document.head.appendChild(aCss);
             const aJs = document.createElement('script');
-            aJs.src = prefix + 'assets/admin.js'; aJs.defer = true;
+            aJs.src = prefix + 'assets/admin.js?v=2';
             document.body.appendChild(aJs);
         }
     } catch (e) { /* sem localStorage → sem admin */ }

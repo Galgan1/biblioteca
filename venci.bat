@@ -1,1 +1,1 @@
-python merge_gemini_out.py
+python ingerir_gemini.py

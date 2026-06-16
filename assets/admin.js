@@ -93,7 +93,14 @@
     function isStory(type) { return STORY_TYPES.has(String(type || '').toLowerCase()); }
 
     // ---------- ponto de entrada ----------
-    document.addEventListener('DOMContentLoaded', boot);
+    // Este script é injetado DINAMICAMENTE pelo script-livro.js, normalmente já
+    // depois do DOMContentLoaded — então, se o DOM já está pronto, chamamos boot()
+    // na hora (senão o boot nunca rodaria). Caso raro de carga antecipada: espera o evento.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+    } else {
+        boot();
+    }
 
     async function boot() {
         // checa a sessão; qualquer falha de rede ⇒ trata como deslogado (silencioso).
