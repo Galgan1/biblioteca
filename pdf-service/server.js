@@ -30,7 +30,7 @@ const PORT = Number(process.env.PORT) || 3008;
 const SITE_ROOT = process.env.SITE_ROOT || '/var/www/andregalgani/biblioteca';
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome';
 const CACHE_DIR = path.join(__dirname, 'cache');
-const VERSION = 10; // suba para invalidar todo o cache após mudar o layout
+const VERSION = 11; // suba para invalidar todo o cache após mudar o layout
 
 // ----------------------------------------------------------- paywall (Pix)
 // DESLIGADO por enquanto (downloads gratuitos enquanto os PDFs amadurecem).
@@ -737,21 +737,25 @@ const KIT_TPL = {
   'thumb':         { tpl: 'thumb.html',       w: 1280, h: 720  },
 };
 
-// Encolhe os blocos densos só quando estouram a caixa (livros de título/texto
-// longo). Não toca no que já cabe — blinda qualquer livro atual/futuro.
+// Auto-fit das peças do Kit. ESPELHA gerar_dados_kit._FIT_JS (o fit do caminho
+// --proof, em Playwright) — mantenha os dois em sincronia: a produção tem de bater
+// com a prova. Encolhe título que estoura a largura (.head h1/.ed-title/.thumb h1)
+// e o corpo .fitv (ex.: o mapa) que estoura a altura. Não toca no que já cabe.
+//
+// ATENÇÃO: o Puppeteer (≠ Playwright) NÃO invoca uma string em forma de função —
+// só AVALIA a expressão. Por isso o call site embrulha isto num IIFE; sem o IIFE a
+// função só seria criada e o fit nunca rodaria (era o motivo de não estar aplicando).
 const KIT_FIT = `() => {
-  const root = document.querySelector('.slide, .story, .thumb');
-  if (!root) return;
-  const fitV = (sel, floor) => { for (const el of root.querySelectorAll(sel)) {
+  for (const el of document.querySelectorAll('.head h1, .ed-title, .thumb h1')) {
+    const box = el.parentElement, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
     let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
-    while (root.scrollHeight > root.clientHeight && fs > floor && g < 160) { fs -= 2; el.style.fontSize = fs + 'px'; g++; }
-  }};
-  const fitW = (sel, floor) => { for (const el of root.querySelectorAll(sel)) {
+    while (el.scrollWidth > avail && fs > 40 && g < 120){ fs -= 3; el.style.fontSize = fs+'px'; g++; }
+  }
+  for (const el of document.querySelectorAll('.fitv')) {
     let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
-    while (el.scrollWidth > el.clientWidth && fs > floor && g < 160) { fs -= 2; el.style.fontSize = fs + 'px'; g++; }
-  }};
-  fitW('.ed-title, h1, .phrase', 40);
-  fitV('.ed-body', 26); fitV('.phrase', 40); fitV('.ed-title, h1', 44); fitV('.rows', 26);
+    while (el.scrollHeight > el.clientHeight + 1 && fs > 24 && g < 60){ fs -= 1; el.style.fontSize = fs+'px'; g++; }
+  }
 }`;
 const KIT_STATIC = { 'capa': (b) => `${b}-capa.png`, 'og': (b) => `${b}-og.png` };
 
@@ -771,7 +775,7 @@ async function renderKitAsset(book, fmt, ext = 'png') {
     await page.setViewport({ width: spec.w, height: spec.h, deviceScaleFactor: 2 });
     await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
     await page.evaluateHandle('document.fonts.ready');
-    await page.evaluate(KIT_FIT);
+    await page.evaluate(`(${KIT_FIT})()`);  // IIFE: Puppeteer avalia a string, não invoca a função (ver KIT_FIT)
     const el = await page.$('.slide, .story, .thumb');
     const shot = type === 'jpeg' ? { type: 'jpeg', quality: 90 } : { type: 'png' };
     const buffer = await (el || page).screenshot(shot);
