@@ -201,6 +201,10 @@
 .adm-pass-eye:hover { color: var(--adm-green); background: oklch(52% 0.14 152 / 0.12); }
 .adm-pass-eye svg { width: 20px; height: 20px; }
 
+/* nota de cota na confirmação */
+.adm-confirm-quota { font-size: 0.82rem; color: var(--adm-muted); margin: 0.1rem 0 0.7rem; }
+.adm-confirm-quota b { color: var(--adm-ink); }
+
 /* ----------------------------------------------------------------------
    Botões — solid (verde, ação principal), ghost (secundário), live (coral)
 ---------------------------------------------------------------------- */

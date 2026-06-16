@@ -209,6 +209,17 @@ async function refreshToken() {
   return r.access_token;
 }
 
+// Cota de publicação do IG (janela móvel de 24h). Carrossel/Reel contam como 1.
+// Devolve { used, total, remaining }. Erra "para cima" (total 50) se o IG omitir.
+async function publishingLimit() {
+  const uid = userId();
+  const r = await graphGet(`/${uid}/content_publishing_limit`, { fields: 'config,quota_usage' });
+  const row = (r && Array.isArray(r.data) && r.data[0]) || {};
+  const total = (row.config && Number(row.config.quota_total)) || 50;
+  const used = Number(row.quota_usage) || 0;
+  return { used: used, total: total, remaining: Math.max(0, total - used) };
+}
+
 module.exports = {
   loadToken,
   userId,
@@ -218,5 +229,6 @@ module.exports = {
   publishStory,
   publishCarousel,
   publishReel,
+  publishingLimit,
   refreshToken,
 };

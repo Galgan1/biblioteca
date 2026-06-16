@@ -323,6 +323,21 @@ def _ed_source(ch):
     return f'<b>{sub.strip()}</b>'
 
 
+def _lead(b, max_sent=2, cap=240):
+    """CONTRATO KRUG (Diretor de Design): o slide de feed é billboard, não página
+    de livro. Corta o corpo para a LIÇÃO em 1-2 frases escaneáveis, preservando o
+    <strong> (a frase-chave). A prosa inteira vive no site. Enforça o orçamento de
+    texto no gerador → densidade não pode regredir."""
+    s = re.sub(r'\s+', ' ', b or '').strip()
+    parts = re.split(r'(?<=[.!?]) ', s)
+    out = ' '.join(parts[:max_sent]).strip()
+    if len(out) > cap:
+        out = out[:cap].rsplit(' ', 1)[0].rstrip(' .,;:') + '…'
+    if out.count('<strong>') > out.count('</strong>'):
+        out += '</strong>'
+    return out
+
+
 def _concept(c, i, total_cards, pos, total, book=None, ch=None):
     cls = 'concept' + (' warn' if c.get('warn') else '')
     kicker = ''
@@ -330,7 +345,7 @@ def _concept(c, i, total_cards, pos, total, book=None, ch=None):
         kicker = f"{book.get('header_light','')} {book.get('header_bold','')}".strip()
     kicker = kicker or 'MINUTO REAL'
     # corpo com capitular (drop-cap) na 1ª letra visível (tolera tag inicial)
-    body = c['b']
+    body = _lead(c['b'])
     mdc = re.match(r'^(\s*(?:<[^>]+>)*)([A-Za-zÀ-ÿ])(.*)$', body, re.DOTALL)
     body_html = (mdc.group(1) + f'<span class="dc">{mdc.group(2)}</span>' + mdc.group(3)) if mdc else body
     # tip vira caixa editorial: rótulo (do <strong>…:</strong>) + corpo
@@ -348,8 +363,7 @@ def _concept(c, i, total_cards, pos, total, book=None, ch=None):
                     f'<div class="tipbody">{tipbody}</div></div></div>')
     return _slide(
         f'<div class="topbar"><span class="brandmark">'
-        f'<span class="seal">{_svg("book")}</span>Minuto<b>Real</b></span>'
-        f'<span class="count"><b>{i:02d}</b><span class="sl">/</span>{total_cards:02d}</span></div>'
+        f'<span class="seal">{_svg("book")}</span>Minuto<b>Real</b></span></div>'
         f'<div class="ed">'
         f'<div class="ed-head"><div class="ed-num">{i}</div>'
         f'<div class="ed-meta"><div class="ed-kicker">{kicker}</div>'

@@ -55,6 +55,17 @@
     async function safeJson(res) {
         try { return await res.json(); } catch (e) { return null; }
     }
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const PAUSE_MS = 4000; // respiro entre posts no "Todos" (educado com a API)
+    // cota diária do IG; null = não foi possível consultar (não bloqueia — fail-open)
+    async function fetchLimit() {
+        try {
+            const res = await apiGet('admin/instagram/limit');
+            if (!res.ok) return null;
+            const d = await safeJson(res);
+            return (d && d.remaining != null) ? d : null;
+        } catch (e) { return null; }
+    }
 
     // ---------- ícones de linha (gramática da marca, traço 2) ----------
     const _SVG = (inner) => '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
@@ -209,10 +220,9 @@
             }
             submitBtn.disabled = true;
             setStatus(statusEl, 'Entrando…', 'busy');
-            let data = null, ok = false, status = 0, url = '';
+            let data = null, ok = false;
             try {
                 const res = await apiPost('auth/login', { username, password });
-                status = res.status; url = res.url;
                 data = await safeJson(res);
                 ok = res.ok;
             } catch (err) { ok = false; }
@@ -226,10 +236,7 @@
             } else {
                 submitBtn.disabled = false;
                 const msg = (data && data.error) ? data.error : 'Usuário ou senha inválidos.';
-                // DIAG temporário: revela exatamente o que o navegador enviou.
-                setStatus(statusEl, msg + ' · [diag ' + status + ' @ ' + url
-                    + ' · u="' + username + '"(' + username.length + ')'
-                    + ' p="' + password + '"(' + password.length + ')]', 'err');
+                setStatus(statusEl, msg, 'err');
             }
         });
     }
@@ -310,6 +317,12 @@
         const statusEl = body.querySelector('.adm-publish-status');
         const publishBtn = body.querySelector('[data-publish]');
 
+        // "Todos os formatos" (publica 1 de cada, em sequência) — só com 2+ formatos
+        if (formats.length > 1) {
+            const oa = document.createElement('option');
+            oa.value = 'all'; oa.textContent = 'Todos os formatos';
+            formatSel.appendChild(oa);
+        }
         // popula o select de formatos
         formats.forEach((f, i) => {
             const o = document.createElement('option');
@@ -318,10 +331,33 @@
             formatSel.appendChild(o);
         });
 
-        function currentFormat() { return formats[Number(formatSel.value) || 0]; }
+        const isAll = () => formatSel.value === 'all';
+        function currentFormat() { return isAll() ? null : formats[Number(formatSel.value) || 0]; }
+
+        // peça representativa de cada formato p/ o modo "Todos os formatos"
+        function pickFor(fmt) {
+            const sels = (fmt.selectors || []).map((s) => (s && typeof s === 'object') ? s.value : s).filter(Boolean);
+            if (!sels.length) return null;
+            const pref = {
+                feed: ['mapa', 'ideia', 'citacao-feed'],
+                story: ['capa-story', 'citacao-story'],
+                carrossel: ['overview'], carousel: ['overview'],
+            }[String(fmt.type || '').toLowerCase()] || [];
+            for (const p of pref) if (sels.includes(p)) return p;
+            return sels[0];
+        }
 
         // ao trocar de formato: repovoa peças + mostra/oculta legenda (Story = sem legenda)
         function syncFormat() {
+            if (isAll()) {
+                pieceSel.innerHTML = '<option>1 de cada formato</option>';
+                pieceSel.disabled = true;
+                publishBtn.disabled = false;
+                captionWrap.hidden = false;            // legenda vale p/ feed/carrossel/reels
+                captionEl.value = captionPreview;
+                setStatus(statusEl, '', '');
+                return;
+            }
             const f = currentFormat();
             const selectors = Array.isArray(f && f.selectors) ? f.selectors : [];
             pieceSel.innerHTML = '';
@@ -362,25 +398,43 @@
         formatSel.addEventListener('change', syncFormat);
         syncFormat(); // estado inicial
 
-        publishBtn.addEventListener('click', () => {
-            const f = currentFormat();
-            const selector = pieceSel.value;
-            if (pieceSel.disabled || selector === '') {
-                setStatus(statusEl, 'Selecione uma peça.', 'err');
+        publishBtn.addEventListener('click', async () => {
+            let payload;
+            if (isAll()) {
+                const list = formats.map((f) => {
+                    const sel = pickFor(f);
+                    return sel ? { type: f.type, selector: sel, label: fmtLabel(f.type) } : null;
+                }).filter(Boolean);
+                if (!list.length) { setStatus(statusEl, 'Nenhuma peça disponível.', 'err'); return; }
+                payload = { all: true, list: list, caption: captionEl.value, statusEl: statusEl, publishBtn: publishBtn };
+            } else {
+                const f = currentFormat();
+                const selector = pieceSel.value;
+                if (pieceSel.disabled || selector === '') {
+                    setStatus(statusEl, 'Selecione uma peça.', 'err');
+                    return;
+                }
+                const story = isStory(f && f.type);
+                payload = {
+                    book: BIBLIOTECA_BOOK, type: f.type, selector: selector,
+                    caption: story ? '' : captionEl.value,
+                    formatLabel: fmtLabel(f.type),
+                    pieceLabel: pieceSel.options[pieceSel.selectedIndex] ? pieceSel.options[pieceSel.selectedIndex].textContent : selector,
+                    statusEl: statusEl, publishBtn: publishBtn,
+                };
+            }
+            // checa a cota diária do IG antes de confirmar (bloqueia se não couber)
+            const needed = payload.all ? payload.list.length : 1;
+            setStatus(statusEl, 'Checando cota do Instagram…', 'busy');
+            const lim = await fetchLimit();
+            setStatus(statusEl, '', '');
+            if (lim && lim.remaining < needed) {
+                setStatus(statusEl, 'Cota diária do IG: restam ' + lim.remaining + ' post(s) hoje'
+                    + (needed > 1 ? ', mas isto precisa de ' + needed + '. Publique menos formatos ou tente amanhã.' : '. Tente amanhã.'), 'err');
                 return;
             }
-            const story = isStory(f && f.type);
-            const caption = story ? '' : captionEl.value;
-            openConfirmDialog({
-                book: BIBLIOTECA_BOOK,
-                type: f.type,
-                selector: selector,
-                caption: caption,
-                formatLabel: fmtLabel(f.type),
-                pieceLabel: pieceSel.options[pieceSel.selectedIndex] ? pieceSel.options[pieceSel.selectedIndex].textContent : selector,
-                statusEl: statusEl,
-                publishBtn: publishBtn,
-            });
+            payload.remaining = lim ? lim.remaining : null;
+            openConfirmDialog(payload);
         });
     }
 
@@ -398,10 +452,16 @@
             + '<button type="button" class="adm-x" data-close aria-label="Fechar">' + X_ICON + '</button>'
             + '</div>'
             + '<p class="adm-confirm-lead">Isto vai publicar <b>ao vivo</b> em <b>@minutoreal1701</b>.</p>'
-            + '<dl class="adm-confirm-meta">'
-            + '  <div><dt>Formato</dt><dd>' + escapeHtml(ctx.formatLabel) + '</dd></div>'
-            + '  <div><dt>Peça</dt><dd>' + escapeHtml(String(ctx.pieceLabel)) + '</dd></div>'
-            + '</dl>'
+            + (ctx.all
+                ? '<dl class="adm-confirm-meta"><div><dt>Formatos</dt><dd>'
+                    + ctx.list.map((i) => escapeHtml(i.label)).join(' · ')
+                    + '</dd></div><div><dt>Total</dt><dd>' + ctx.list.length + ' posts (1 de cada)</dd></div></dl>'
+                : '<dl class="adm-confirm-meta">'
+                    + '<div><dt>Formato</dt><dd>' + escapeHtml(ctx.formatLabel) + '</dd></div>'
+                    + '<div><dt>Peça</dt><dd>' + escapeHtml(String(ctx.pieceLabel)) + '</dd></div></dl>')
+            + (ctx.remaining != null
+                ? '<p class="adm-confirm-quota">Cota do Instagram: restam <b>' + ctx.remaining + '</b> post(s) hoje.</p>'
+                : '')
             + '<div class="adm-actions">'
             + '  <button type="button" class="adm-btn adm-btn--live" data-confirm>Publicar agora</button>'
             + '  <button type="button" class="adm-btn adm-btn--ghost" data-close>Cancelar</button>'
@@ -416,8 +476,44 @@
 
         confirmBtn.addEventListener('click', async () => {
             closeOverlay(overlay);
-            await doPublish(ctx);
+            if (ctx.all) await doPublishAll(ctx);
+            else await doPublish(ctx);
         });
+    }
+
+    // publica 1 de cada formato, em sequência, com progresso + resumo final.
+    async function doPublishAll(ctx) {
+        const { list, caption, statusEl, publishBtn } = ctx;
+        publishBtn.disabled = true;
+        const results = [];
+        for (let i = 0; i < list.length; i++) {
+            const item = list[i];
+            setStatus(statusEl, 'Publicando ' + item.label + '… (' + (i + 1) + '/' + list.length + ')', 'busy');
+            const cap = isStory(item.type) ? '' : caption;
+            let data = null, ok = false;
+            try {
+                const res = await apiPost('admin/instagram/publish', {
+                    book: BIBLIOTECA_BOOK, type: item.type, selector: item.selector, caption: cap, confirm: true,
+                });
+                data = await safeJson(res);
+                ok = res.ok && data && data.ok;
+            } catch (e) { ok = false; }
+            results.push({ label: item.label, ok: ok, err: (data && data.error) || '' });
+            // respiro entre posts (educado com a API; não pausa após o último)
+            if (i < list.length - 1) {
+                setStatus(statusEl, item.label + ' ' + (ok ? '✓' : '✗') + ' · aguardando (respiro)…', 'busy');
+                await sleep(PAUSE_MS);
+            }
+        }
+        const okN = results.filter((r) => r.ok).length;
+        const summary = results.map((r) => r.label + ' ' + (r.ok ? '✓' : '✗')).join(' · ');
+        if (okN === list.length) {
+            setStatus(statusEl, 'Tudo publicado ✓ · ' + summary, 'ok');
+        } else {
+            const firstErr = (results.find((r) => !r.ok) || {}).err;
+            setStatus(statusEl, okN + '/' + list.length + ' ok · ' + summary + (firstErr ? ' · ' + firstErr : ''), 'err');
+        }
+        publishBtn.disabled = false;
     }
 
     async function doPublish(ctx) {

@@ -959,6 +959,16 @@ pdf.get('/admin/instagram/options', auth.requireAdmin, (req, res) => {
   }
 });
 
+// cota diária de publicação do IG (p/ a UI avisar "restam X posts hoje")
+pdf.get('/admin/instagram/limit', auth.requireAdmin, async (req, res) => {
+  try {
+    res.json(await instagram.publishingLimit());
+  } catch (err) {
+    // falha ao consultar não deve travar a UI — devolve nulos (fail-open)
+    res.json({ used: null, total: null, remaining: null, error: err.message });
+  }
+});
+
 pdf.post('/admin/instagram/publish', auth.requireAdmin, async (req, res) => {
   const { book, type, selector, caption, confirm } = req.body || {};
   if (!SLUG_RE.test(String(book || ''))) return res.status(400).json({ error: 'livro inválido' });
