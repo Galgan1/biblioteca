@@ -11,11 +11,13 @@
 const fs = require('fs');
 const path = require('path');
 
-// Raiz do projeto: este módulo vive em pdf-service/, o kit e books.json moram no pai.
-const ROOT = path.join(__dirname, '..');
+// Raiz do site — MESMO fallback do server.js (SITE_ROOT || prod). Em dev,
+// rode com SITE_ROOT apontando p/ o projeto. books.json, assets/kit e
+// assets/reels moram aqui.
+const ROOT = process.env.SITE_ROOT || '/var/www/andregalgani/biblioteca';
 const BOOKS_JSON = path.join(ROOT, 'books.json');
 const KIT_DIR = path.join(ROOT, 'assets', 'kit');
-// reels locais: assets/reels/<book>/ (URL pública mora em /biblioteca/reels/<book>/)
+// reels: assets/reels/<book>/ (público em /biblioteca/assets/reels/<book>/)
 const REELS_DIR = path.join(ROOT, 'assets', 'reels');
 
 const PUB = 'https://andregalgani.com.br';
@@ -213,7 +215,7 @@ function resolve(bookId, type, selector) {
       }
       return {
         kind: 'reels',
-        media: [`${PUB}/biblioteca/reels/${bookId}/${selector}`],
+        media: [`${PUB}/biblioteca/assets/reels/${bookId}/${selector}`],
         caption: captionFor(bookId),
       };
     }
