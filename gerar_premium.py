@@ -24,21 +24,35 @@ OUT = ROOT / 'videos' / '_premium'
 FONTS = ROOT / '_fonts'
 W, H = 1080, 1350
 
-# estilo visual unico da marca (todo prompt termina com isto -> coesao entre pecas)
-BASE_STYLE = (
-    "deep emerald green and antique gold color palette, cinematic chiaroscuro lighting, "
-    "painterly digital illustration, dramatic moody atmosphere, rich texture and detail, "
-    "dark empty negative space for text, premium editorial book-summary art, masterpiece, "
-    "absolutely no text of any kind, no words, no letters, no typography, no book titles, "
-    "no signage, no nameplates, no captions, no watermark")
+_NOTEXT = ("absolutely no text of any kind, no words, no letters, no typography, no book titles, "
+           "no signage, no nameplates, no captions, no watermark")
 
-# Cenas VISUAIS curadas (descritas sem as palavras do titulo -> a IA nao baked texto).
-# Override por slug; chaves: cover, c1..cN, cta. Sem curadoria -> cena automatica.
+# DIRECOES DE ARTE (estilos). Cada uma = prompt-base + scrim de composicao compativel.
+# Gera em pasta propria (videos/_premium/<slug>/<estilo>/) -> NUNCA sobrescreve outra,
+# pra ir comparando o que funciona. Adicione novos estilos aqui.
+STYLES = {
+    'vivido': {
+        'base': ("vivid luminous saturated colors, bright radiant daylight, lush emerald green and warm gold, "
+                 "airy uplifting joyful atmosphere, soft glowing rim light, painterly digital illustration, "
+                 "crisp vibrant detail, premium editorial book-summary art, masterpiece, " + _NOTEXT),
+        'scrim': ("linear-gradient(180deg, rgba(5,9,8,.42) 0%, rgba(5,9,8,0) 22%, rgba(5,9,8,0) 40%, "
+                  "rgba(5,9,8,.55) 64%, rgba(5,9,8,.92) 100%)"),
+    },
+    'morbido': {
+        'base': ("deep emerald green and antique gold palette, cinematic chiaroscuro lighting, "
+                 "dramatic moody dark atmosphere, painterly digital illustration, rich texture and detail, "
+                 "dark empty negative space, premium editorial book-summary art, masterpiece, " + _NOTEXT),
+        'scrim': ("linear-gradient(180deg, rgba(5,9,8,.80) 0%, rgba(5,9,8,.05) 25%, rgba(5,9,8,.02) 44%, "
+                  "rgba(5,9,8,.70) 72%, rgba(5,9,8,.95) 100%)"),
+    },
+}
+
+# Cenas VISUAIS curadas (sem palavras do titulo -> a IA nao baked texto; sem termos de
+# brilho -> o estilo decide claro/escuro). Override por slug; chaves cover, c1..cN, cta.
 CURATED = {
     '48-leis-do-poder': {
-        'c2': ("an elegant masked aristocrat in opulent baroque attire adjusting an ornate "
-               "golden theatrical mask before a candlelit gilded mirror, silhouetted onlookers "
-               "watching from the shadowed background, dramatic chiaroscuro, smoke and intrigue"),
+        'c2': ("an elegant masked aristocrat in opulent baroque attire adjusting an ornate golden "
+               "theatrical mask before a gilded mirror in a grand ballroom, graceful figures around"),
     },
 }
 
@@ -57,16 +71,16 @@ def _font_face():
     return '\n'.join(out)
 
 
-def _art(slug, key, scene, no_img=False, aspect='3:4'):
-    """Gera (ou reusa do cache) a ilustracao de IA p/ um slide."""
-    d = OUT / slug
+def _art(slug, style, key, scene, no_img=False, aspect='3:4'):
+    """Gera (ou reusa do cache) a ilustracao de IA p/ um slide, no estilo dado."""
+    d = OUT / slug / style
     d.mkdir(parents=True, exist_ok=True)
     p = d / f'art_{key}.png'
     if p.exists() or no_img:
         return p if p.exists() else None
     import imagen
-    prompt = f'{scene}. {BASE_STYLE}'
-    print(f'  [imagen-ultra-2K] {key}: {scene[:56]}...')
+    prompt = f"{scene}. {STYLES[style]['base']}"
+    print(f'  [imagen-ultra-2K · {style}] {key}: {scene[:48]}...')
     if not imagen.gen(prompt, str(p), aspect=aspect, tier='ultra', size='2K'):
         return None
     return p
@@ -88,12 +102,11 @@ __FF__
 *{margin:0;padding:0;box-sizing:border-box}
 .slide{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:'Hanken Grotesk',sans-serif;background:#05070a;color:#f3f5f4}
 .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.scrim{position:absolute;inset:0;background:
-  linear-gradient(180deg, rgba(5,9,8,.80) 0%, rgba(5,9,8,.05) 25%, rgba(5,9,8,.02) 44%, rgba(5,9,8,.70) 72%, rgba(5,9,8,.95) 100%)}
+.scrim{position:absolute;inset:0;background:__SCRIM__}
 .frame{position:absolute;inset:34px;border:2px dashed oklch(80% 0.12 152 / .42);border-radius:30px;pointer-events:none}
 .wrap{position:absolute;inset:0;padding:74px 76px 70px;display:flex;flex-direction:column}
 .top{display:flex;justify-content:space-between;align-items:center}
-.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em;font-size:27px;text-transform:uppercase}
+.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em;font-size:27px;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .brand .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:oklch(72% 0.16 152);color:#06140d;box-shadow:0 8px 26px rgba(0,0,0,.5)}
 .brand .seal svg{width:27px;height:27px}
 .brand b{color:oklch(82% 0.14 152)}
@@ -141,9 +154,10 @@ def _dots(pos, total):
     return '<div class="dots">' + ''.join(f'<i class="{"on" if k == pos else ""}"></i>' for k in range(total)) + '</div>'
 
 
-def _doc(inner):
+def _doc(inner, scrim):
+    css = BASE_CSS.replace('__FF__', _font_face()).replace('__SCRIM__', scrim)
     return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>'
-            + BASE_CSS.replace('__FF__', _font_face()) + '</style></head><body>' + inner + '</body></html>')
+            + css + '</style></head><body>' + inner + '</body></html>')
 
 
 def _slide(cls, art, body):
@@ -199,36 +213,37 @@ def cta_html(book, art, total):
         + '<div class="hand">@minutoreal1701 · link na bio</div>')
 
 
-def build(slug, no_img=False):
+def build(slug, style='vivido', no_img=False):
     data = __import__(slug.replace('-', '_') + '_data')
     book = data.BOOK
     chaps = _even_sample(getattr(data, 'CHAPTERS', []), 4)
     total = 1 + len(chaps) + 1                       # capa + conceitos + cta
-    out = OUT / slug
+    out = OUT / slug / style
     out.mkdir(parents=True, exist_ok=True)
 
     scenes = {**CURATED.get(slug, {}), **getattr(data, 'PREMIUM_SCENES', {})}
     slides = []
     # capa — cena TEMATICA (nunca o titulo do livro no prompt: isso faz a IA cravar texto borrado)
     _theme = ', '.join(book.get('tags', [])[:3]) or 'wisdom, insight, transformation'
-    art = _art(slug, 'cover', scenes.get('cover') or f"a grand cinematic atmospheric establishing scene evoking the themes of {_theme}", no_img)
+    art = _art(slug, style, 'cover', scenes.get('cover') or f"a grand cinematic establishing scene evoking the themes of {_theme}", no_img)
     slides.append(cover_html(book, art, len(chaps), total))
     # conceitos
     for i, ch in enumerate(chaps, 1):
-        sc = scenes.get(f'c{i}') or (f"a cinematic symbolic painterly scene evoking the concept of {_chapter_title(ch)}, "
+        sc = scenes.get(f'c{i}') or (f"a cinematic symbolic scene evoking the concept of {_chapter_title(ch)}, "
               "told purely through imagery, objects, figures and symbolism")
-        art = _art(slug, f'c{i}', sc, no_img)
+        art = _art(slug, style, f'c{i}', sc, no_img)
         slides.append(concept_html(book, ch, art, i, total))
     # cta
-    art = _art(slug, 'cta', scenes.get('cta') or "an atmospheric cinematic still life of an open antique book glowing with emerald-green light, floating dust, dark background", no_img)
+    art = _art(slug, style, 'cta', scenes.get('cta') or "an open antique book radiating light, glowing floating particles, a luminous still life", no_img)
     slides.append(cta_html(book, art, total))
 
+    scrim = STYLES[style]['scrim']
     from playwright.sync_api import sync_playwright
     with sync_playwright() as p:
         b = p.chromium.launch()
         pg = b.new_page(viewport={'width': W, 'height': H}, device_scale_factor=2)
         for i, html in enumerate(slides, 1):
-            pg.set_content(_doc(html), wait_until='networkidle')
+            pg.set_content(_doc(html, scrim), wait_until='networkidle')
             pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(350)
             fp = out / f'{i:02d}.png'
             pg.query_selector('.slide').screenshot(path=str(fp))
@@ -238,6 +253,7 @@ def build(slug, no_img=False):
 
 if __name__ == '__main__':
     a = [x for x in sys.argv[1:] if not x.startswith('--')]
+    style = next((x.split('=', 1)[1] for x in sys.argv if x.startswith('--style=')), 'vivido')
     if not a:
-        sys.exit('uso: python gerar_premium.py <slug> [--no-img]')
-    build(a[0], no_img='--no-img' in sys.argv)
+        sys.exit('uso: python gerar_premium.py <slug> [--style=vivido|morbido] [--no-img]')
+    build(a[0], style=style, no_img='--no-img' in sys.argv)
