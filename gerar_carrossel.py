@@ -107,9 +107,6 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto}
 .brandmark .seal svg{width:28px;height:28px;color:var(--on-green)}
 .brandmark b{color:var(--green);font-weight:900}
-.count{display:inline-flex;align-items:baseline;gap:4px;font-weight:800;
-  font-size:26px;letter-spacing:.04em;color:var(--green-soft)}
-.count b{font-size:34px;color:var(--green)} .count .sl{color:var(--hair);font-weight:700}
 
 /* ---------- selo do ícone ---------- */
 .card-icon{width:108px;height:108px;border-radius:26px;display:flex;align-items:center;
@@ -119,9 +116,9 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   box-shadow:0 0 48px oklch(70% 0.14 152 / .14), inset 0 1px 0 oklch(90% 0.1 152 / .12)}
 .card-icon svg{width:58px;height:58px;color:var(--green);
   filter:drop-shadow(0 0 12px oklch(72% 0.14 152 / .45))}
-.warn .card-icon{background:linear-gradient(160deg, oklch(75% 0.16 38 / .16), oklch(75% 0.16 38 / .04));
-  border-color:oklch(75% 0.16 38 / .42);box-shadow:0 0 48px oklch(75% 0.16 38 / .14)}
-.warn .card-icon svg{color:var(--warn);filter:drop-shadow(0 0 12px oklch(75% 0.16 38 / .45))}
+.warn .card-icon{background:linear-gradient(160deg, oklch(75% 0.16 30 / .16), oklch(75% 0.16 30 / .04));
+  border-color:oklch(75% 0.16 30 / .42);box-shadow:0 0 48px oklch(75% 0.16 30 / .14)}
+.warn .card-icon svg{color:var(--warn);filter:drop-shadow(0 0 12px oklch(75% 0.16 30 / .45))}
 
 /* ---------- conceito ---------- */
 .card-title{display:inline-block;background:var(--green);color:var(--on-green);
@@ -129,7 +126,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   text-transform:uppercase;text-wrap:balance;align-self:flex-start;letter-spacing:.004em;
   box-shadow:0 14px 40px oklch(60% 0.14 152 / .3)}
 .warn .card-title{background:var(--warn);color:var(--on-warn);
-  box-shadow:0 14px 40px oklch(65% 0.16 38 / .3)}
+  box-shadow:0 14px 40px oklch(65% 0.16 30 / .3)}
 .card-body{font-size:45px;line-height:1.4;color:var(--ink);margin-top:28px;
   font-weight:500;text-wrap:pretty}
 .card-body strong{color:var(--green-soft);font-weight:800}
@@ -140,7 +137,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .card-tip .tipic{flex:0 0 auto;width:42px;height:42px;margin-top:2px;color:var(--green)}
 .card-tip .tipic svg{width:42px;height:42px}
 .card-tip strong{color:var(--green);font-weight:800}
-.warn .card-tip{color:var(--warn);border-color:oklch(75% 0.16 38 / .5)}
+.warn .card-tip{color:var(--warn);border-color:oklch(75% 0.16 30 / .5)}
 .warn .card-tip .tipic{color:var(--warn)} .warn .card-tip strong{color:var(--warn)}
 
 /* ---------- conceito EDITORIAL (padrão quente W2) ---------- */
@@ -149,7 +146,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .ed-num{font-family:'Literata',Georgia,serif;font-weight:600;font-size:300px;line-height:.72;
   color:transparent;-webkit-text-stroke:2.5px oklch(74% 0.11 152 / .55);letter-spacing:-.04em;
   flex:0 0 auto;text-shadow:0 0 70px oklch(72% 0.14 152 / .12)}
-.warn .ed-num{-webkit-text-stroke-color:oklch(75% 0.16 38 / .5)}
+.warn .ed-num{-webkit-text-stroke-color:oklch(75% 0.16 30 / .5)}
 .ed-meta{flex:1;padding-bottom:22px}
 .ed-kicker{font-weight:800;font-size:23px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
 .warn .ed-kicker{color:var(--warn)}
@@ -168,7 +165,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .ed-body .dc{float:left;font-family:'Literata',Georgia,serif;font-weight:600;font-size:138px;line-height:.78;color:var(--green);margin:8px 22px -6px 0;text-shadow:0 0 44px oklch(72% 0.14 152 / .3)}
 .warn .ed-body .dc{color:var(--warn)}
 .ed-tip{margin-top:auto;display:flex;gap:26px;align-items:flex-start;background:linear-gradient(150deg, oklch(70% 0.14 152 / .14), oklch(70% 0.14 152 / .035));border:2px solid var(--hair);border-left:6px solid var(--green);border-radius:22px;padding:34px 38px;box-shadow:0 16px 44px oklch(8% 0.02 152 / .45), inset 0 1px 0 oklch(90% 0.1 152 / .08)}
-.warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 38 / .14), oklch(75% 0.16 38 / .035))}
+.warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 30 / .14), oklch(75% 0.16 30 / .035))}
 .ed-tip .tipic{flex:0 0 auto;width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--green);color:var(--on-green);box-shadow:0 8px 22px oklch(60% 0.14 152 / .4)}
 .warn .ed-tip .tipic{background:var(--warn)}
 .ed-tip .tipic svg{width:34px;height:34px;color:var(--on-green)}
@@ -204,7 +201,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   margin-top:58px;border-top:3px dashed var(--green);border-bottom:3px dashed var(--green);
   padding:32px 0;max-width:820px}
 .cover .hook .num{font-size:128px;font-weight:900;line-height:.76;color:var(--gold);
-  letter-spacing:-.04em;text-shadow:0 0 50px oklch(84% 0.12 92 / .35)}
+  letter-spacing:-.04em;text-shadow:0 0 50px oklch(84% 0.12 83 / .35)}
 .cover .hook .lbl{font-size:48px;font-weight:800;color:var(--ink);text-align:left;
   line-height:1.04;text-transform:uppercase;text-wrap:balance}
 .cover .hook .lbl span{color:var(--green)}
@@ -281,10 +278,21 @@ def _dots(pos, total):
 
 def _kicker_text(book):
     """Kicker curto e escaneável (Krug: omita palavras). Tira o prefixo
-    'VISÃO GERAL · ' redundante p/ não competir com o título; cai nas tags se vazio."""
+    'VISÃO GERAL · ' redundante, corta aposto entre parênteses e limita a ~4
+    palavras p/ não competir com o título; cai nas tags se vazio."""
     k = book.get('subtitle', '') or ' · '.join(book.get('tags', [])[:3]).upper()
     k = re.sub(r'^\s*VIS[ÃA]O GERAL\s*[·\-—]\s*', '', k, flags=re.IGNORECASE)
-    return k.strip()
+    k = re.sub(r'\s*\([^)]*\)', '', k)
+    k = re.sub(r'\s{2,}', ' ', k).strip(' ·-—')
+    words = k.split()
+    if len(words) > 4:
+        words = words[:4]
+    # nao pendura preposicao/artigo no fim do corte (Krug: evita "... SOCIAL DO")
+    _stop = {'de', 'do', 'da', 'dos', 'das', 'e', 'o', 'a', 'os', 'as',
+             'em', 'no', 'na', 'com', 'para', 'por', 'que', 'ao', 'à'}
+    while len(words) > 2 and words[-1].lower() in _stop:
+        words.pop()
+    return ' '.join(words).strip()
 
 
 def _cover(book, n, pos, total):
@@ -680,7 +688,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
   letter-spacing:-.05em;z-index:0;overflow:hidden;
   -webkit-mask-image:radial-gradient(120% 120% at 50% 50%, #000 60%, transparent 100%)}
 /* wordmark de story = selo cheio + nome (assinatura forte do canal) */
-.badge{position:absolute;top:218px;left:50%;transform:translateX(-50%);
+.badge{position:absolute;top:280px;left:50%;transform:translateX(-50%);
   display:inline-flex;align-items:center;gap:16px;white-space:nowrap}
 .badge .seal{width:58px;height:58px;border-radius:17px;display:flex;align-items:center;
   justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto;
@@ -688,7 +696,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
 .badge .seal svg{width:36px;height:36px;color:var(--on-green)}
 .badge .name{font-weight:900;letter-spacing:.03em;font-size:38px;color:var(--ink);text-transform:uppercase}
 .badge .name b{color:var(--green)}
-.foot{position:absolute;bottom:236px;left:80px;right:80px;text-align:center}
+.foot{position:absolute;bottom:280px;left:80px;right:80px;text-align:center}
 .foot .tap{display:inline-flex;align-items:center;gap:14px;font-weight:800;font-size:36px;
   letter-spacing:.02em;color:var(--on-green);background:var(--green);padding:24px 46px;border-radius:999px;
   text-transform:uppercase;box-shadow:0 18px 54px oklch(60% 0.14 152 / .42)}
@@ -704,7 +712,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
 .st .hook{margin-top:60px;font-size:60px;font-weight:800;color:var(--ink);text-transform:uppercase;
   display:inline-flex;align-items:center;gap:26px;border-top:3px dashed var(--green);padding-top:46px}
 .st .hook .num{font-size:140px;font-weight:900;color:var(--gold);line-height:.78;
-  text-shadow:0 0 56px oklch(84% 0.12 92 / .38)}
+  text-shadow:0 0 56px oklch(84% 0.12 83 / .38)}
 /* quote */
 .sq{align-items:flex-start;text-align:left}
 .sq .qmark{font-family:'Literata',Georgia,serif;font-style:italic;font-weight:600;font-size:300px;

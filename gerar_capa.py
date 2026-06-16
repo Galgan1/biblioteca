@@ -79,12 +79,38 @@ def _chrome(img, d):
     _tracked(d, 'RESUMO · UMA PÁGINA', marca.font('display', 23, 'Bold'), dim, 6, W // 2, H - 150)
 
 
-def framed(slug, art_path):
-    """Arte real do livro emoldurada na marca."""
+def _band(img, d, title, author, top, bottom):
+    """Faixa inferior de marca com titulo + autor proprios (legibilidade na miniatura,
+    independente da arte). Reaproveita o bloco de texto do `typographic`."""
+    ink, ouro = marca.rgb('tinta'), marca.rgb('ouro')
+    # backing solido na zona livre (cobre a tagline compartilhada, sela a base da faixa)
+    d.rectangle([(50, top), (W - 50, bottom)], fill=marca.rgb('papel'))
+    # hairline dourada separando a arte da faixa
+    d.rectangle([(W // 2 - 58, top + 8), (W // 2 + 58, top + 14)], fill=ouro)
+    # titulo (mesmo wrap/auto-fit do typographic, comprimido p/ a faixa)
+    ft = marca.font('display', 46, 'Black')
+    lines = _wrap(d, title.upper(), ft, W - 150)
+    while len(lines) > 2 and ft.size > 26:
+        ft = marca.font('display', ft.size - 4, 'Black')
+        lines = _wrap(d, title.upper(), ft, W - 150)
+    lines = lines[:2]
+    lh = int(ft.size * 1.04)
+    fa = marca.font('display', 24, 'SemiBold')
+    block_h = len(lines) * lh + 22 + fa.size
+    y = top + 24 + ((bottom - top - 24) - block_h) // 2
+    for ln in lines:
+        lw = d.textlength(ln, font=ft)
+        d.text(((W - lw) // 2, y), ln, font=ft, fill=ink)
+        y += lh
+    _tracked(d, author.upper(), fa, marca.rgb('ouro-soft'), 4, W // 2, y + 14)
+
+
+def framed(slug, art_path, title=None, author=None):
+    """Arte real do livro emoldurada na marca, com faixa inferior de titulo+autor."""
     img = Image.new('RGBA', (W, H), marca.rgb('papel') + (255,))
     d = ImageDraw.Draw(img)
     _chrome(img, d)
-    WIN_T, WIN_B, WIN_W = 176, 1052, 612
+    WIN_T, WIN_B, WIN_W = 176, 1010, 612
     win_h = WIN_B - WIN_T
     art = Image.open(art_path).convert('RGB')
     s = min(WIN_W / art.width, win_h / art.height)
@@ -93,6 +119,13 @@ def framed(slug, art_path):
     ax, ay = (W - aw) // 2, WIN_T + (win_h - ah) // 2
     d.rectangle([(ax - 3, ay - 3), (ax + aw + 2, ay + ah + 2)], outline=marca.rgb('ouro'), width=2)
     img.paste(art, (ax, ay))
+    if title is None or author is None:
+        import json
+        books = {b['id']: b for b in json.load(open(BASE / 'books.json', encoding='utf-8'))}
+        b = books.get(slug, {})
+        title = title or b.get('title', slug)
+        author = author or b.get('author', '')
+    _band(img, d, title, author, WIN_B + 8, H - 48)
     out = BASE / 'assets' / f'{slug}-capa.png'
     img.convert('RGB').save(out, quality=92)
     print(f'OK framed -> assets/{slug}-capa.png')

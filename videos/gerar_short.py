@@ -96,14 +96,15 @@ def make_cover(cena, accent, cfg, out_png, bg_src=None):
         img.paste(bg.convert('RGB'))
     d = ImageDraw.Draw(img)
     # WORDMARK (topo): "MINUTO REAL" tracked + fio de ouro
+    # safe-zone 9:16: o bloco do topo começa em >=260 (IG cobre ~250px no player)
     fwm = gv.F_BLACK(48)
-    gv.tracked(d, (70, 96), 'MINUTO REAL', fwm, gv.marca.rgb('tinta'), 6)
-    d.rectangle([(70, 168), (70 + 150, 176)], fill=ouro)   # fio de ouro (acento, parcimônia)
+    gv.tracked(d, (70, 260), 'MINUTO REAL', fwm, gv.marca.rgb('tinta'), 6)
+    d.rectangle([(70, 332), (70 + 150, 340)], fill=ouro)   # fio de ouro (acento, parcimônia)
     # KICKER (logo abaixo do wordmark)
     kicker = (cena.get('kicker', '') or '').strip()
     if kicker:
         fk = gv.F_UI_B(40)
-        yy = 230
+        yy = 394
         for ln in gv.wrap(d, kicker.upper(), fk, W - 150):
             gv.tracked(d, (70, yy), ln, fk, ac, 2)
             yy += int(fk.size * 1.2)
@@ -117,9 +118,15 @@ def make_cover(cena, accent, cfg, out_png, bg_src=None):
         d.text((70, ty), ln, font=ft, fill=gv.marca.rgb('tinta'))
         ty += int(ft.size * 1.04)
     # rodapé: o livro + handle, ancorando a marca
-    d.text((70, H - 220), cfg['titulo'].upper(), font=gv.F_UI_B(40),
-           fill=gv.marca.rgb('tinta-fraca'))
-    d.text((70, H - 150), HANDLE, font=gv.F_UI_B(44), fill=ac)
+    # safe-zone 9:16: o rodapé termina antes de ~y=1670 (IG cobre ~250px embaixo)
+    # se o título central já É o do livro, o rótulo vira o AUTOR (info nova, sem repetir)
+    rotulo = cfg['titulo']
+    if titulo.upper() == cfg['titulo'].upper():
+        rotulo = cfg.get('autor', '')
+    if rotulo:
+        d.text((70, H - 380), rotulo.upper(), font=gv.F_UI_B(40),
+               fill=gv.marca.rgb('tinta-fraca'))
+    d.text((70, H - 310), HANDLE, font=gv.F_UI_B(44), fill=ac)
     img.save(out_png)
 
 

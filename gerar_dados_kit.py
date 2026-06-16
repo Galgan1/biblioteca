@@ -48,9 +48,8 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
 .thumb h1{font-weight:900;font-size:118px;line-height:.9;text-transform:uppercase;letter-spacing:-.022em;text-wrap:balance;max-width:1040px}
 .thumb h1 .lt{color:var(--green);text-shadow:0 0 60px oklch(72% 0.14 152 / .4)} .thumb h1 .bd{color:var(--ink)}
 .thumb .foot{display:flex;align-items:center;gap:24px}
-.thumb .foot .num{font-weight:900;font-size:96px;line-height:.8;color:var(--gold);text-shadow:0 0 50px oklch(84% 0.12 92 / .4)}
+.thumb .foot .num{font-weight:900;font-size:96px;line-height:.8;color:var(--gold);text-shadow:0 0 50px oklch(84% 0.12 83 / .4)}
 .thumb .foot .lbl{font-weight:800;font-size:44px;line-height:1.02;color:var(--ink);text-transform:uppercase}
-.thumb .foot .lbl span{display:block;color:var(--muted);font-size:30px;font-weight:600;text-transform:none}
 """
 
 # CSS extra das peças estáticas (override de tamanho do .slide; reusa todo o resto). ----
@@ -64,6 +63,22 @@ IDEIA_CSS = """
   font-weight:600;font-size:24px;letter-spacing:.04em;color:var(--ink-dim)}
 .slide.ideia .idtag{font-weight:900;font-size:19px;letter-spacing:.28em;text-transform:uppercase;color:var(--green)}
 """
+
+# Auto-fit (equivalente ao de gerar_carrossel._render / gerar_infografico): encolhe a
+# fonte ate o titulo caber na caixa. Cobre .head h1 (mapa), .ed-title (ideia) e .fitv
+# (mapa), + .thumb h1 (titulo longo na thumb 16:9). Roda apos document.fonts.ready.
+_FIT_JS = """() => {
+  for (const el of document.querySelectorAll('.head h1, .ed-title, .thumb h1')) {
+    const box = el.parentElement, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (el.scrollWidth > avail && fs > 40 && g < 120){ fs -= 3; el.style.fontSize = fs+'px'; g++; }
+  }
+  for (const el of document.querySelectorAll('.fitv')) {
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (el.scrollHeight > el.clientHeight + 1 && fs > 24 && g < 60){ fs -= 1; el.style.fontSize = fs+'px'; g++; }
+  }
+}"""
 
 
 def _page(fragment, w, h, css_extra='', css=None):
@@ -87,7 +102,7 @@ def _pick_idea(book, data):
 
 def _ideia_fragment(book, card):
     kicker = f"{book.get('header_light','')} {book.get('header_bold','')}".strip() or 'MINUTO REAL'
-    body = card['b']
+    body = gc._lead(card['b'])  # orcamento Krug: cartaz, nao paragrafo (reusa o do carrossel)
     mdc = re.match(r'^(\s*(?:<[^>]+>)*)([A-Za-zÀ-ÿ])(.*)$', body, re.DOTALL)
     body_html = (mdc.group(1) + f'<span class="dc">{mdc.group(2)}</span>' + mdc.group(3)) if mdc else body
     tip_html = ''
@@ -133,7 +148,7 @@ def _thumb_fragment(book, data):
         '<div><div class="eyebrow">o livro em ~5 min</div>'
         f'<h1><span class="lt">{book["header_light"]}</span> <span class="bd">{book["header_bold"]}</span></h1></div>'
         f'<div class="foot"><span class="num">{n}</span>'
-        '<span class="lbl">ideias<span>que ficam com você</span></span></div></div>')
+        '<span class="lbl">ideias</span></div></div>')
 
 
 def emit(slug):
@@ -231,7 +246,9 @@ def proof(slug):
             w, h = sizes[name]
             pg = b.new_page(viewport={'width': w, 'height': h}, device_scale_factor=2)
             pg.goto((TPL / slug / name).as_uri(), wait_until='networkidle')
+            pg.evaluate('document.fonts.ready')
             pg.wait_for_timeout(500)
+            pg.evaluate(_FIT_JS)
             png = out / name.replace('.html', '.png')
             pg.locator('.slide, .story, .thumb').first.screenshot(path=str(png))
             made.append(png); pg.close()

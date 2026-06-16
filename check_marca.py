@@ -15,8 +15,9 @@ import marca
 ROOT = Path(__file__).parent
 
 # Superfícies que DEVEM ler a marca (não hardcodar)
-TARGETS = ['gerar_carrossel.py', 'gerar_infografico.py', 'assets/style.css',
-           'videos/gerar_video.py', 'videos/gerar_thumb.py', 'videos/gerar_canal_art.py']
+TARGETS = ['gerar_carrossel.py', 'gerar_infografico.py', 'gerar_metadados.py',
+           'assets/style.css', 'videos/gerar_video.py', 'videos/gerar_thumb.py',
+           'videos/gerar_canal_art.py']
 
 # Tokens/fontes PROIBIDOS de aparecer hardcoded nessas superfícies
 FORBIDDEN = {
@@ -29,19 +30,48 @@ FORBIDDEN = {
     'oklch(73% 0.15 152)': 'verde antigo (L73) → alinhe à marca (L70)',
 }
 
+# Hues canônicos (espelham marca.py): verde 152 · ouro 83 · alerta 30.
+# Regras de HUE DIVERGENTE: detectam famílias ouro/alerta que driftaram de matiz.
+# Cada par (regex, motivo). O regex casa um oklch(...) cujo C+H denuncia a família
+# (ouro/âmbar: C≈0.0x–0.1x; alerta/warn: C≈0.1x) num hue FORA do canônico.
+HUE_RULES = [
+    (re.compile(r'oklch\([^)]*\b0\.0?\d+\s+(?:7[0-9]|8[0-2]|8[4-9]|9[0-2])\s*[/)]'),
+     'ouro/âmbar fora do hue canônico → alinhe à marca (ouro h83)'),
+    (re.compile(r'oklch\([^)]*\b0\.1[5-9]\s+(?:3[1-9]|4[0-5])\s*[/)]'),
+     'alerta/warn fora do hue canônico → alinhe à marca (alerta h30)'),
+]
+
+# Heurística de :root inline — TARGET que define literais --green/--gold/--warn/--amber
+# em vez de importar a marca (fonte única de tokens).
+_INLINE_ROOT = re.compile(r'--(?:green|gold|warn|amber)\s*:\s*oklch')
+_IMPORTS_MARCA = re.compile(r'import\s+(?:marca|tokens)\b')
+
 
 def scan_drift():
-    viol = 0
+    """Devolve (hard, warns). hard = drift de cor/fonte (falha o build);
+    warns = :root inline que espelha a marca mas deveria importá-la (só sinaliza)."""
+    hard, warns = 0, 0
     for rel in TARGETS:
         p = ROOT / rel
         if not p.exists():
             continue
-        for i, line in enumerate(p.read_text(encoding='utf-8').splitlines(), 1):
+        text = p.read_text(encoding='utf-8')
+        for i, line in enumerate(text.splitlines(), 1):
             for bad, why in FORBIDDEN.items():
                 if bad in line:
                     print(f'  DRIFT  {rel}:{i}  "{bad}" — {why}')
-                    viol += 1
-    return viol
+                    hard += 1
+            for rx, why in HUE_RULES:
+                if rx.search(line):
+                    print(f'  DRIFT  {rel}:{i}  hue divergente — {why}')
+                    hard += 1
+        # :root inline sem importar a marca: dívida estrutural, não drift de cor.
+        # Só AVISA (os valores já podem espelhar a marca); style.css É fonte de verdade.
+        if rel.endswith('.py') and _INLINE_ROOT.search(text) and not _IMPORTS_MARCA.search(text):
+            print(f'  AVISO  {rel}  define --green/--gold/--warn/--amber inline '
+                  f'sem importar marca/tokens — idealmente use marca.css_root()/tokens')
+            warns += 1
+    return hard, warns
 
 
 # --- WCAG -------------------------------------------------------------------
@@ -133,8 +163,10 @@ def contrast_report_light():
 
 if __name__ == '__main__':
     print('== Drift (geradores × marca.py) ==')
-    v = scan_drift()
-    print('  OK — nenhum hardcode; tudo lê marca.py' if v == 0 else f'  FALHOU — {v} drift(s)')
+    v, w = scan_drift()
+    print('  OK — nenhum drift de cor/fonte' if v == 0 else f'  FALHOU — {v} drift(s) duro(s)')
+    if w:
+        print(f'  ({w} aviso(s) de :root inline — espelham a marca, mas deveriam importá-la)')
     contrast_report()
     contrast_report_light()
     sys.exit(1 if v else 0)

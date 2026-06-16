@@ -69,6 +69,18 @@ def tracked(draw, pos, text, fnt, fill, tracking):
         x += draw.textlength(ch, font=fnt) + tracking
 
 
+def text_shadow(draw, pos, text, fnt, fill, halo=(4, 4, 7), r=4):
+    """Desenha texto com contorno/halo escuro por glifo — protege o texto centrado
+    sobre arte de miolo claro (mesma proteção do lower-third, que conta com o
+    gradiente forte do darken_side). Anel de offsets + stroke do Pillow."""
+    x, y = pos
+    for dx in range(-r, r + 1, 2):
+        for dy in range(-r, r + 1, 2):
+            if dx or dy:
+                draw.text((x + dx, y + dy), text, font=fnt, fill=halo)
+    draw.text((x, y), text, font=fnt, fill=fill, stroke_width=2, stroke_fill=halo)
+
+
 def radial_aura(img, color, cx, cy, radius, max_alpha):
     """Aura radial sutil de acento sobre o fundo escuro."""
     aura = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -115,14 +127,15 @@ def darken_side(img, side):
             a = min(238, int(215 * (px / W) ** 1.25) + 55)
             od.rectangle([(px, 0), (px + 2, H)], fill=(5, 5, 8, a))
     else:  # center
-        od.rectangle([(0, 0), (W, H)], fill=(5, 5, 8, 70))
+        od.rectangle([(0, 0), (W, H)], fill=(5, 5, 8, 110))
     # banda inferior: rodapé + barra de progresso sempre legíveis
     for py in range(H - 170, H, 2):
         a = int(150 * ((py - (H - 170)) / 170) ** 1.3)
         od.rectangle([(0, py), (W, py + 2)], fill=(5, 5, 8, a))
     img.alpha_composite(ov)
     if side == 'center':
-        radial_dark(img, W // 2, int(H * 0.48), 1000, 470, 150)
+        # scrim central reforçado: arte de miolo claro (pôr-do-sol) furava o AA-large
+        radial_dark(img, W // 2, int(H * 0.48), 1080, 540, 205)
 
 
 def tracked_width(draw, text, fnt, tracking):
@@ -167,25 +180,33 @@ def _draw_text(img, cena, accent, idx, total, book_label, side, has_bg):
         y = (H - block_h) // 2 - 20
         for ln in lines:
             lw = d.textlength(ln, font=ft)
-            d.text(((W - lw) // 2, y), ln, font=ft, fill=tfill)
+            text_shadow(d, ((W - lw) // 2, y), ln, ft, tfill)
             y += line_h
         sub = cena.get('subtitulo')
         if sub:
             fs = F_UI(44)
             sw = d.textlength(sub, font=fs)
-            d.text(((W - sw) // 2, y + 24), sub, font=fs, fill=(212, 212, 222) if has_bg else GRAY)
+            text_shadow(d, ((W - sw) // 2, y + 24), sub, fs,
+                        (212, 212, 222) if has_bg else GRAY, r=3)
         d.rectangle([(W // 2 - 60, y + 110), (W // 2 + 60, y + 113)], fill=accent)
     else:
         # Editorial: alterna esquerda / direita p/ ritmo visual
         fk = F_UI_B(32)
         kicker = cena.get('kicker', '').upper()
-        ft = F_TITLE(108)
+        Y0, FLOOR = 440, H - 190   # bloco começa em y=440; não pode invadir a banda do rodapé (~910)
+        sz = 108
+        ft = F_TITLE(sz)
         lines = wrap(d, cena['titulo'], ft, W - 2 * MARGIN - 40)
+        # Clamp título×rodapé: encolhe a fonte (re-wrap) até o bloco caber acima do rodapé
+        while Y0 + len(lines) * int(ft.size * 1.12) > FLOOR and sz > 64:
+            sz -= 8
+            ft = F_TITLE(sz)
+            lines = wrap(d, cena['titulo'], ft, W - 2 * MARGIN - 40)
         if side == 'right':
             kw = tracked_width(d, kicker, fk, 4)
             d.rectangle([(W - MARGIN - 56, 300), (W - MARGIN, 305)], fill=accent)
             tracked(d, (W - MARGIN - kw, 336), kicker, fk, accent, 4)
-            y = 440
+            y = Y0
             for ln in lines:
                 lw = d.textlength(ln, font=ft)
                 d.text((W - MARGIN - lw, y), ln, font=ft, fill=tfill)
@@ -194,7 +215,7 @@ def _draw_text(img, cena, accent, idx, total, book_label, side, has_bg):
             ax = MARGIN
             d.rectangle([(ax, 300), (ax + 56, 305)], fill=accent)
             tracked(d, (ax, 336), kicker, fk, accent, 4)
-            y = 440
+            y = Y0
             for ln in lines:
                 d.text((ax, y), ln, font=ft, fill=tfill)
                 y += int(ft.size * 1.12)

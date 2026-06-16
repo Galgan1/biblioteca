@@ -24,6 +24,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
+import tokens  # fonte única de tokens (espinha da marca + paleta DARK do Kit)
 from gerar_livro import ICONS
 try:
     from gerar_carrossel import _EXTRA          # icones extra (arrow, shield, ...)
@@ -61,15 +62,10 @@ def _svg(name):
 # esqueleto comum a TODOS os arquetipos: tokens, base do slide (profundidade em
 # camadas + moldura tracejada + grade de pontos), brandmark e ghost. Tudo o mais
 # (cabecalho/rodape/conteudo) vive no CSS de cada arquetipo, p/ nao colidir.
-BASE_CSS = """
-__FONT_FACE__
-:root{
-  --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
-  --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
-  --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
-  --gold: oklch(76% 0.105 83); --on-gold: oklch(20% 0.04 83);
-  --warn: oklch(72% 0.15 40); --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
-}
+# Espinha da marca + paleta DARK do Kit vêm da fonte única (tokens.ROOT, que deriva
+# verde/ouro/alerta de marca.py). __FONT_FACE__ é trocado por @font-face base64 (render
+# isolado) ou por '' + @import (server/kit) por quem consome este BASE_CSS.
+BASE_CSS = "\n__FONT_FACE__\n" + tokens.ROOT + """
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
@@ -319,7 +315,7 @@ def build_fluxo(data):
         f'<span class="byline">{book.get("author","")}</span></div>'
         f'<div class="head"><span class="kicker">{f["kicker"]}</span>'
         f'<h1><span class="lt">{book["header_light"]}</span> <span class="bd">{book["header_bold"]}</span></h1></div>'
-        f'<div class="flow">{"".join(out)}</div>'
+        f'<div class="flow fitv">{"".join(out)}</div>'
         '<div class="foot"><span class="ic">' + _svg('arrow') + '</span>'
         '<div><span class="tag">Na prática · comece hoje</span>'
         f'<p>{f["na_pratica"]}</p></div></div>'
@@ -356,23 +352,30 @@ ARCH_CSS['compara'] = """
   display:flex;align-items:center;justify-content:center;border:3px solid var(--bg2);box-shadow:0 6px 16px oklch(8% 0.01 152 / .6)}
 .col-seal .mark svg{width:26px;height:26px;filter:none;color:inherit}
 .col-label{font-weight:900;font-size:31px;line-height:1.04;text-transform:uppercase;letter-spacing:-.005em;text-wrap:balance}
+.col-label .cmark{display:inline-flex;vertical-align:-.12em;align-items:center;justify-content:center;
+  width:.92em;height:.92em;margin-right:.28em;border:2.5px solid currentColor}
+.col-label .cmark svg{width:.62em;height:.62em}
+.col.a .col-label .cmark{border-radius:5px}
+.col.b .col-label .cmark{border-radius:50%}
 .col-tag{display:inline-block;font-size:16px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
 .col.a .col-seal{background:linear-gradient(160deg, oklch(56% 0.14 152 / .14), oklch(56% 0.14 152 / .03));border-color:oklch(56% 0.14 152 / .4)}
 .col.a .col-seal>svg{color:var(--green-deep)}
 .col.a .col-seal .mark{background:var(--green-deep);color:var(--ink)}
 .col.a .col-label{color:var(--green-deep)}
 .col.a .col-tag{color:var(--green-deep);background:oklch(56% 0.14 152 / .12);border:1.5px solid oklch(56% 0.14 152 / .35)}
-.col.a .it::before{background:var(--green-deep)} .col.a .it b{color:var(--green-soft)}
+.col.a .imark{color:var(--green-deep);border-color:oklch(56% 0.14 152 / .55);background:oklch(56% 0.14 152 / .12);border-radius:6px} .col.a .it b{color:var(--green-soft)}
 .col.b .col-seal{background:linear-gradient(160deg, oklch(70% 0.14 152 / .18), oklch(70% 0.14 152 / .04));border-color:var(--hair)}
 .col.b .col-seal>svg{color:var(--green)}
 .col.b .col-seal .mark{background:var(--green);color:var(--on-green)}
 .col.b .col-label{color:var(--ink)}
 .col.b .col-tag{color:var(--green);background:oklch(70% 0.14 152 / .1);border:1.5px solid var(--hair)}
-.col.b .it::before{background:var(--green)} .col.b .it b{color:var(--green-soft)}
+.col.b .imark{color:var(--green);border-color:var(--hair);background:oklch(70% 0.14 152 / .12);border-radius:50%} .col.b .it b{color:var(--green-soft)}
 .items{display:flex;flex-direction:column;gap:0;margin-top:22px}
-.it{position:relative;padding:16px 0 16px 30px;font-size:25px;line-height:1.26;color:var(--ink);font-weight:500;text-wrap:pretty}
+.it{display:flex;gap:16px;align-items:flex-start;padding:16px 0;font-size:25px;line-height:1.26;color:var(--ink);font-weight:500;text-wrap:pretty}
 .it + .it{border-top:1.5px solid var(--hair2)}
-.it::before{content:'';position:absolute;left:0;top:24px;width:13px;height:13px;border-radius:50%}
+.it .imark{flex:0 0 auto;width:32px;height:32px;margin-top:1px;display:flex;align-items:center;justify-content:center;border:2px solid currentColor}
+.it .imark svg{width:18px;height:18px}
+.it .itx{min-width:0}
 .it b{font-weight:800}
 .verdict{display:flex;align-items:center;gap:24px;margin-top:34px;flex:0 0 auto;
   border:2px solid oklch(76% 0.105 83 / .4);border-radius:22px;padding:26px 32px;background:oklch(76% 0.105 83 / .07)}
@@ -389,11 +392,15 @@ ARCH_CSS['compara'] = """
 
 def _col(side, spec):
     mark = _CROSS if side == 'a' else _CHECK
-    items = ''.join(f'<div class="it">{it}</div>' for it in spec['items'])
+    # 2o sinal repetido no NIVEL DO ITEM (sobrevive a miniatura): cada bullet
+    # carrega o ✕/✓ do lado + forma propria (quadrado A / circulo B), nao so' matiz.
+    items = ''.join(
+        f'<div class="it"><span class="imark">{mark}</span>'
+        f'<span class="itx">{it}</span></div>' for it in spec['items'])
     return (f'<div class="col {side}"><div class="col-head">'
             f'<div class="col-seal">{_svg(spec["ic"])}<span class="mark">{mark}</span></div>'
             f'<span class="col-tag">{spec["tag"]}</span>'
-            f'<div class="col-label">{spec["label"]}</div></div>'
+            f'<div class="col-label"><span class="cmark">{mark}</span>{spec["label"]}</div></div>'
             f'<div class="items">{items}</div></div>')
 
 
@@ -407,7 +414,7 @@ def build_compara(data):
         f'<span class="brandmark"><span class="seal">{_svg("book")}</span>Minuto<b>Real</b></span>'
         f'<span class="kicker">{kicker}</span>'
         f'<h1>{d["title"]}</h1></div>'
-        f'<div class="versus">{_col("a", d["left"])}{_col("b", d["right"])}<span class="vs">vs</span></div>'
+        f'<div class="versus fitv">{_col("a", d["left"])}{_col("b", d["right"])}<span class="vs">vs</span></div>'
         '<div class="verdict"><span class="vseal">' + _svg(d.get('verdict_ic', 'scale')) + '</span>'
         '<span class="vtxt"><span class="vlbl">Na prática</span>'
         f'<span class="vbody">{d["verdict"]}</span></span></div>'
@@ -540,7 +547,7 @@ def build_numeros(data):
         f'<div class="head"><div class="kicker">{d.get("kicker","O livro em números")}</div>'
         f'<h1><span class="lt">{book["header_light"]}</span> <span class="bd">{book["header_bold"]}</span></h1>'
         f'<div class="by">por {book.get("author","")}</div></div>'
-        f'<div class="stats">{stats}</div>'
+        f'<div class="stats fitv">{stats}</div>'
         f'{viz_html}'
         '<div class="foot"><span class="fic">' + _svg(d.get('foot', {}).get('ic', 'spark')) + '</span>'
         '<span class="ft"><span class="labrow"><span class="lab">Na prática</span>'
@@ -668,7 +675,7 @@ def build_anatomia(data):
         f'<span class="kpill"><span class="dot"></span>{eyebrow}</span></div>'
         f'<div class="head"><div class="ey">{book.get("author","")}</div>'
         f'<h1>{d["h1"]}</h1><div class="sub">{d["sub"]}</div></div>'
-        f'<div class="stage">{_art_ring(d.get("hub", {}), d["nodes"])}</div>'
+        f'<div class="stage fitv">{_art_ring(d.get("hub", {}), d["nodes"])}</div>'
         f'<div class="practice"><span class="pico">{_svg(pr.get("ic","spark"))}</span>'
         f'<div><div class="pk">{pr.get("kicker","Na prática")}</div><p>{pr.get("text","")}</p></div></div>'
         '<div class="foothandle">@minutoreal1701</div>'
@@ -693,9 +700,14 @@ _FIT_JS = """() => {
     let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
     while (el.getBoundingClientRect().width > avail && fs > 40 && g < 120){ fs -= 3; el.style.fontSize = fs+'px'; g++; }
   }
+  const over = el => el.scrollHeight > el.clientHeight + 1;
   for (const el of document.querySelectorAll('.fitv')) {
+    // 1) encolhe a font-size (resolve corpos com tamanhos em 'em', ex.: LISTA)
     let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
-    while (el.scrollHeight > el.clientHeight + 1 && fs > 24 && g < 60){ fs -= 1; el.style.fontSize = fs+'px'; g++; }
+    while (over(el) && fs > 30 && g < 60){ fs -= 1; el.style.fontSize = fs+'px'; g++; }
+    // 2) fallback p/ corpos em 'px' (curados): aplica zoom ate' caber (reflui o layout)
+    let z = 1, h = 0;
+    while (over(el) && z > 0.6 && h < 40){ z -= 0.02; el.style.zoom = z; h++; }
   }
 }"""
 

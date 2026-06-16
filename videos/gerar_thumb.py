@@ -23,17 +23,20 @@ def cover(src):
     return im.crop((x, y, x + W, y + H)).convert('RGBA')
 
 
-def fit_font(d, lines, maxw, start=200, floor=64):
+def fit_font(d, lines, maxw, start=200, floor=110):
     s = start
-    while s > floor:
+    while s >= floor:
         f = F_BLACK(s)
         if max(d.textlength(ln, font=f) for ln in lines) <= maxw:
             return f
         s -= 5
-    return F_BLACK(floor)
+    sys.exit(f'[!] thumbnail: punch nao cabe legivel (piso {floor}px) — encurte o punch')
 
 
 def main(slug, idx, punch, sub=None):
+    n = len(punch.split())
+    if n > 6:
+        sys.exit(f'[!] thumbnail: max 6 palavras, recebi {n} — encurte o punch')
     cfg = json.loads((ROOT / 'roteiros' / f'{slug}.json').read_text(encoding='utf-8'))
     accent = gv.hex_rgb(cfg.get('acento', gv.marca.hex_of('ouro')))
     src = ROOT / '_img' / f'{slug}_{idx:02d}.png'
@@ -70,11 +73,21 @@ def main(slug, idx, punch, sub=None):
     # filete de acento acima do texto
     d.rectangle([(58, H - 80 - len(lines) * lh - 20), (58 + 120, H - 80 - len(lines) * lh - 8)], fill=accent)
 
-    # subtítulo (livro) topo-direita — largura real considerando o tracking
+    # subtítulo (livro) topo-direita — encolhe e, no limite, trunca p/ não amontoar
     if sub:
-        fs = gv.F_UI_B(34)
-        tw = sum(d.textlength(c, font=fs) + 3 for c in sub.upper()) - 3
-        gv.tracked(d, (W - tw - 54, 56), sub.upper(), fs, (235, 235, 240), 3)
+        MAXW = 600
+        txt = sub.upper()
+        size = 34
+        while size >= 22:
+            fs = gv.F_UI_B(size)
+            if gv.tracked_width(d, txt, fs, 3) <= MAXW:
+                break
+            size -= 2
+        fs = gv.F_UI_B(size)
+        while len(txt) > 1 and gv.tracked_width(d, txt, fs, 3) > MAXW:
+            txt = txt[:-2] + '…'
+        tw = gv.tracked_width(d, txt, fs, 3)
+        gv.tracked(d, (W - tw - 54, 56), txt, fs, (235, 235, 240), 3)
 
     out = ROOT / '_thumbs'
     out.mkdir(exist_ok=True)

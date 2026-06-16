@@ -18,6 +18,8 @@ import os
 from pathlib import Path
 from datetime import date, datetime, timedelta
 
+import marca  # fonte única da marca: verde h152 + ouro h83 (espinha do painel)
+
 ROOT = Path(os.environ.get("MR_BASE", Path(__file__).parent))   # dados (books/metadados/datas/afiliados)
 OUT_DIR = Path(os.environ.get("MR_OUT", ROOT / "metadados"))    # onde gravar o index.html (VPS: web root)
 OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -490,6 +492,12 @@ col_str = f"{col.day:02d}/{MES[col.month]}/{col.year} {col.hour:02d}:{col.minute
 prox_str = f"{prox_pub.day:02d}/{MES[prox_pub.month]}" if prox_pub else "&mdash;"
 gerado = meta.get("gerado_em", str(date.today()))
 
+# Espinha da marca lida da fonte única (marca.py). O painel é um SITE com tema claro
+# (índice [0]) e escuro (índice [1]); --green/--amber (verde/ouro) saem daqui, e a
+# paleta semântica de status (red/orange/blue/violet/teal) segue local ao painel.
+_GREEN_L, _GREEN_D = marca.TOKENS["verde"][0], marca.TOKENS["verde"][1]
+_AMBER_L, _AMBER_D = marca.TOKENS["ouro"][0], marca.TOKENS["ouro"][1]
+
 HTML = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -503,11 +511,11 @@ HTML = f"""<!DOCTYPE html>
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 <style>
 :root {{
-  --green: oklch(52% 0.14 152); --green-dark: oklch(42% 0.13 152); --green-deep: oklch(33% 0.10 152);
+  --green: {_GREEN_L}; --green-dark: oklch(42% 0.13 152); --green-deep: oklch(33% 0.10 152);
   --green-light: oklch(95% 0.03 152); --on-green: oklch(99% 0.005 152);
   --ink: oklch(24% 0.015 152); --muted: oklch(48% 0.012 152); --line: oklch(89% 0.008 152);
   --bg: oklch(97% 0.006 152); --card: oklch(99.5% 0.002 152); --hover: oklch(96.5% 0.014 152);
-  --amber: oklch(58% 0.14 70); --amber-bg: oklch(94% 0.06 75);
+  --amber: {_AMBER_L}; --amber-bg: oklch(94% 0.06 83);
   --red: oklch(56% 0.18 25); --red-bg: oklch(94% 0.05 25);
   --orange: oklch(62% 0.16 50); --orange-bg: oklch(94% 0.06 50);
   --blue: oklch(56% 0.13 250); --blue-bg: oklch(94% 0.05 250);
@@ -520,11 +528,11 @@ HTML = f"""<!DOCTYPE html>
 }}
 @media (prefers-color-scheme: dark) {{
   :root {{
-    --green: oklch(70% 0.13 152); --green-dark: oklch(76% 0.12 152); --green-deep: oklch(58% 0.12 152);
+    --green: {_GREEN_D}; --green-dark: oklch(76% 0.12 152); --green-deep: oklch(58% 0.12 152);
     --green-light: oklch(30% 0.05 152); --on-green: oklch(15% 0.02 152);
     --ink: oklch(94% 0.01 152); --muted: oklch(68% 0.012 152); --line: oklch(33% 0.012 152);
     --bg: oklch(15% 0.012 152); --card: oklch(20% 0.012 152); --hover: oklch(25% 0.015 152);
-    --amber: oklch(80% 0.13 75); --amber-bg: oklch(32% 0.06 75);
+    --amber: {_AMBER_D}; --amber-bg: oklch(32% 0.06 83);
     --red: oklch(72% 0.16 25); --red-bg: oklch(31% 0.07 25);
     --orange: oklch(76% 0.14 50); --orange-bg: oklch(33% 0.07 50);
     --blue: oklch(74% 0.12 250); --blue-bg: oklch(31% 0.06 250);
@@ -540,6 +548,14 @@ body {{ margin: 0; background: var(--bg); color: var(--ink); font-family: var(--
 .wrap {{ max-width: 1240px; margin: 0 auto; padding: 1.5rem 1.25rem 5rem; }}
 a {{ color: var(--green-dark); }}
 .muted {{ color: var(--muted); }}
+:focus-visible {{ outline: 2px solid var(--green); outline-offset: 2px; }}
+
+/* breadcrumb (trunk test) — separador em ouro, padrao das paginas de capitulo */
+.crumbs {{ display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: .82rem;
+  margin-bottom: .9rem; opacity: .92; }}
+.crumbs-home {{ color: var(--on-green); font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }}
+.crumbs-sep {{ color: var(--amber); }}
+.crumbs-current {{ color: var(--on-green); opacity: .85; }}
 
 /* hero */
 .hero {{ position: relative; border-radius: var(--radius); padding: 2rem 2rem 1.75rem; margin-bottom: 1.5rem;
@@ -768,12 +784,18 @@ footer code {{ font-size: .72rem; color: var(--green-dark); background: var(--gr
 @media (max-width: 560px) {{
   .it {{ flex-wrap: wrap; }} .it-link {{ width: auto; }} .chip-cal {{ width: 78px; }}
   .hero {{ padding: 1.5rem 1.25rem; }}
+  .fbtn, .views-tg button {{ min-height: 44px; }}
 }}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="hero">
+    <nav class="crumbs" aria-label="Trilha de navega&ccedil;&atilde;o">
+      <a class="crumbs-home" href="../">Biblioteca</a>
+      <span class="crumbs-sep" aria-hidden="true">&rsaquo;</span>
+      <span class="crumbs-current" aria-current="page">Painel</span>
+    </nav>
     <div class="eyebrow">Minuto Real &middot; Painel de Publica&ccedil;&otilde;es</div>
     <h1>O que cada livro virou</h1>
     <p>Acervo completo de livros e o que cada um virou. <strong>Livros</strong> = a planilha de todos os t&iacute;tulos com visitas do site e link Amazon;
