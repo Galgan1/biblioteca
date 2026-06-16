@@ -15,7 +15,7 @@ import marca
 ROOT = Path(__file__).parent
 
 # Superfícies que DEVEM ler a marca (não hardcodar)
-TARGETS = ['gerar_carrossel.py', 'assets/style.css',
+TARGETS = ['gerar_carrossel.py', 'gerar_infografico.py', 'assets/style.css',
            'videos/gerar_video.py', 'videos/gerar_thumb.py', 'videos/gerar_canal_art.py']
 
 # Tokens/fontes PROIBIDOS de aparecer hardcoded nessas superfícies
