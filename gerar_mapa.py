@@ -58,8 +58,8 @@ def _art(slug, key, scene, cname, no_img):
         return p if p.exists() else None
     import imagen
     prompt = f"a symbolic illustration representing '{scene}', {cname} neon glow, {BASE_STYLE}"
-    print(f'  [imagen] {key}: {scene[:48]}...')
-    return p if imagen.gen(prompt, str(p), aspect='3:4') else None
+    print(f'  [imagen-ultra] {key}: {scene[:48]}...')
+    return p if imagen.gen(prompt, str(p), aspect='3:4', tier='ultra') else None
 
 
 # fundo de hexagonos (SVG data-uri, faint verde)

@@ -32,6 +32,16 @@ BASE_STYLE = (
     "absolutely no text of any kind, no words, no letters, no typography, no book titles, "
     "no signage, no nameplates, no captions, no watermark")
 
+# Cenas VISUAIS curadas (descritas sem as palavras do titulo -> a IA nao baked texto).
+# Override por slug; chaves: cover, c1..cN, cta. Sem curadoria -> cena automatica.
+CURATED = {
+    '48-leis-do-poder': {
+        'c2': ("an elegant masked aristocrat in opulent baroque attire adjusting an ornate "
+               "golden theatrical mask before a candlelit gilded mirror, silhouetted onlookers "
+               "watching from the shadowed background, dramatic chiaroscuro, smoke and intrigue"),
+    },
+}
+
 
 def _b64(p):
     return base64.b64encode(Path(p).read_bytes()).decode('ascii')
@@ -56,8 +66,8 @@ def _art(slug, key, scene, no_img=False, aspect='3:4'):
         return p if p.exists() else None
     import imagen
     prompt = f'{scene}. {BASE_STYLE}'
-    print(f'  [imagen] {key}: {scene[:60]}...')
-    if not imagen.gen(prompt, str(p), aspect=aspect):
+    print(f'  [imagen-ultra-2K] {key}: {scene[:56]}...')
+    if not imagen.gen(prompt, str(p), aspect=aspect, tier='ultra', size='2K'):
         return None
     return p
 
@@ -197,19 +207,20 @@ def build(slug, no_img=False):
     out = OUT / slug
     out.mkdir(parents=True, exist_ok=True)
 
+    scenes = {**CURATED.get(slug, {}), **getattr(data, 'PREMIUM_SCENES', {})}
     slides = []
     # capa — cena TEMATICA (nunca o titulo do livro no prompt: isso faz a IA cravar texto borrado)
     _theme = ', '.join(book.get('tags', [])[:3]) or 'wisdom, insight, transformation'
-    art = _art(slug, 'cover', f"a grand cinematic atmospheric establishing scene evoking the themes of {_theme}", no_img)
+    art = _art(slug, 'cover', scenes.get('cover') or f"a grand cinematic atmospheric establishing scene evoking the themes of {_theme}", no_img)
     slides.append(cover_html(book, art, len(chaps), total))
     # conceitos
     for i, ch in enumerate(chaps, 1):
-        sc = (f"a cinematic symbolic painterly scene evoking the concept of {_chapter_title(ch)}, "
+        sc = scenes.get(f'c{i}') or (f"a cinematic symbolic painterly scene evoking the concept of {_chapter_title(ch)}, "
               "told purely through imagery, objects, figures and symbolism")
         art = _art(slug, f'c{i}', sc, no_img)
         slides.append(concept_html(book, ch, art, i, total))
     # cta
-    art = _art(slug, 'cta', "an atmospheric cinematic still life of an open antique book glowing with emerald-green light, floating dust, dark background", no_img)
+    art = _art(slug, 'cta', scenes.get('cta') or "an atmospheric cinematic still life of an open antique book glowing with emerald-green light, floating dust, dark background", no_img)
     slides.append(cta_html(book, art, total))
 
     from playwright.sync_api import sync_playwright

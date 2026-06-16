@@ -15,16 +15,24 @@ except ImportError:
 KEY = (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
 MODELS = ['imagen-4.0-generate-001', 'imagen-4.0-fast-generate-001']
 
+# Tiers de qualidade (cada um cai p/ o de baixo se faltar): ultra = topo (mais caro),
+# usado nas pecas premium; standard = padrao (Reels/video); fast = barato.
+TIERS = {
+    'fast': ['imagen-4.0-fast-generate-001'],
+    'standard': MODELS,
+    'ultra': ['imagen-4.0-ultra-generate-001', 'imagen-4.0-generate-001'],
+}
+
 
 @retry(max_attempts=3, base_s=2.0)
 @circuit_breaker(api='google_imagen', threshold=3, timeout_s=300)
-def gen(prompt, out_png, aspect='16:9'):
-    body = json.dumps({
-        'instances': [{'prompt': prompt}],
-        'parameters': {'sampleCount': 1, 'aspectRatio': aspect},
-    }).encode('utf-8')
+def gen(prompt, out_png, aspect='16:9', tier='standard', size=None):
+    params = {'sampleCount': 1, 'aspectRatio': aspect}
+    if size:
+        params['sampleImageSize'] = size                 # '1K' | '2K' (Imagen 4 std/ultra)
+    body = json.dumps({'instances': [{'prompt': prompt}], 'parameters': params}).encode('utf-8')
     last = ''
-    for model in MODELS:
+    for model in TIERS.get(tier, MODELS):
         url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:predict?key={KEY}'
         req = urllib.request.Request(url, data=body, headers={'Content-Type': 'application/json'})
         try:
