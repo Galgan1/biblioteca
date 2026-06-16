@@ -187,6 +187,20 @@
 }
 .adm-select:disabled { opacity: 0.55; cursor: not-allowed; }
 
+/* campo de senha com botão "olho" (mostrar/ocultar p/ conferir o valor) */
+.adm-pass-wrap { position: relative; display: block; }
+.adm-pass-wrap input { padding-right: 2.6rem; }
+.adm-pass-eye {
+    position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: none; background: transparent; color: var(--adm-muted);
+    cursor: pointer; border-radius: 8px;
+    transition: color 140ms var(--adm-ease), background 140ms var(--adm-ease);
+}
+.adm-pass-eye:hover { color: var(--adm-green); background: oklch(52% 0.14 152 / 0.12); }
+.adm-pass-eye svg { width: 20px; height: 20px; }
+
 /* ----------------------------------------------------------------------
    Botões — solid (verde, ação principal), ghost (secundário), live (coral)
 ---------------------------------------------------------------------- */

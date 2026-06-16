@@ -11,37 +11,28 @@
 (() => {
     'use strict';
 
-    // ---------- detecção de livro + prefixo (espelha script-livro.js) ----------
-    // Em script-livro.js o slug vem de .../<livro>/script.js. Aqui o loader pode
-    // servir o arquivo de assets/admin.js (sem o slug no caminho), então tentamos
-    // primeiro o src e, se não der, derivamos do próprio location.pathname.
-    function slugFromSrc() {
-        const src = (document.currentScript && document.currentScript.src) || '';
-        const m = src.match(/\/([a-z0-9-]+)\/(?:admin|script)\.js/);
-        return m ? m[1] : '';
-    }
-    function slugFromPath() {
-        const path = location.pathname;
-        // capítulo: /biblioteca/<livro>/<cap>.html  → o livro é o penúltimo segmento
-        let m = path.match(/\/([a-z0-9-]+)\/[a-z0-9-]+\.html$/);
-        if (m) {
-            // descarta o caso /<algo>/index.html confundindo: exige par livro/cap real,
-            // confirmado adiante por isOverview/chapterMatch.
-            return m[1];
+    // ---------- detecção de livro + prefixo (robusta, autossuficiente) ----------
+    // O script-livro.js (carregado via <book>/script.js) já resolve isto e expõe em
+    // window.BIBLIOTECA_CTX. Se não estiver presente (script.js antigo em cache),
+    // derivamos do próprio caminho /…/biblioteca/<...>: overview = "<livro>.html",
+    // capítulo = "<livro>/<cap>.html". NÃO usamos o src (admin.js mora em /assets/, o
+    // que antes casava "assets" como slug e quebrava o prefixo → 404 no login).
+    function ctxFromPath() {
+        const m = location.pathname.match(/\/biblioteca\/(.+)$/);
+        if (!m) return { book: '', isOverview: false, chapter: null, prefix: '' };
+        const parts = m[1].split('/').filter(Boolean);
+        if (parts.length >= 2) {
+            return { book: parts[0], isOverview: false,
+                chapter: parts[1].replace(/\.html$/, ''), prefix: '../'.repeat(parts.length - 1) };
         }
-        // visão geral: /biblioteca/<livro>.html → o nome do arquivo é o livro
-        m = path.match(/\/([a-z0-9-]+)\.html$/);
-        return m ? m[1] : '';
+        return { book: parts[0].replace(/\.html$/, ''), isOverview: true, chapter: null, prefix: '' };
     }
-    const BIBLIOTECA_BOOK = slugFromSrc() || slugFromPath();
-
-    const path = location.pathname;
-    const isOverview = !!BIBLIOTECA_BOOK && path.endsWith('/' + BIBLIOTECA_BOOK + '.html');
-    const chapterMatch = BIBLIOTECA_BOOK
-        ? path.match(new RegExp('/' + BIBLIOTECA_BOOK + '/([a-z0-9-]+)\\.html$'))
-        : null;
+    const CTX = (typeof window !== 'undefined' && window.BIBLIOTECA_CTX) || ctxFromPath();
+    const BIBLIOTECA_BOOK = CTX.book || '';
+    const isOverview = !!CTX.isOverview;
+    const chapterMatch = CTX.chapter ? [null, CTX.chapter] : null;
     const onBookPage = isOverview || !!chapterMatch;
-    const prefix = isOverview ? '' : '../'; // base relativa até /biblioteca/
+    const prefix = typeof CTX.prefix === 'string' ? CTX.prefix : (isOverview ? '' : '../');
 
     // ---------- helpers de fetch (nunca lançam para fora) ----------
     // Toda chamada usa credentials:'include' (cookie de sessão do pdf-service).
@@ -76,6 +67,10 @@
     const X_ICON = _SVG('<path d="M6 6l12 12M18 6 6 18"/>');
     const LINK_ICON = _SVG('<path d="M9.5 14.5 14.5 9.5"/><path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/>'
         + '<path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>');
+    const EYE_ICON = _SVG('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>');
+    const EYE_OFF_ICON = _SVG('<path d="M3 3l18 18"/><path d="M10.6 10.6a3 3 0 0 0 4.2 4.2"/>'
+        + '<path d="M9.9 5.2A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.6"/>'
+        + '<path d="M6.1 6.2A17 17 0 0 0 2 12s3.5 7 10 7a10 10 0 0 0 3.3-.6"/>');
 
     // rótulos amigáveis para os formatos do Instagram (chaves do contrato)
     const FORMAT_LABELS = {
@@ -159,12 +154,17 @@
             + '<h2 id="adm-login-title">Área administrativa</h2>'
             + '<button type="button" class="adm-x" data-close aria-label="Fechar">' + X_ICON + '</button>'
             + '</div>'
-            + '<form class="adm-form" novalidate>'
+            + '<form class="adm-form" novalidate autocomplete="off">'
             + '  <label class="adm-field"><span>Usuário</span>'
-            + '    <input type="text" name="username" autocomplete="username" autocapitalize="off" '
+            + '    <input type="text" name="username" autocomplete="off" autocapitalize="off" '
             + '      spellcheck="false" required></label>'
             + '  <label class="adm-field"><span>Senha</span>'
-            + '    <input type="password" name="password" autocomplete="current-password" required></label>'
+            + '    <span class="adm-pass-wrap">'
+            + '      <input type="password" name="password" autocomplete="off" autocapitalize="off" '
+            + '        spellcheck="false" required>'
+            + '      <button type="button" class="adm-pass-eye" data-eye aria-label="Mostrar senha" '
+            + '        title="Mostrar/ocultar senha">' + EYE_ICON + '</button>'
+            + '    </span></label>'
             + '  <p class="adm-status" role="status" aria-live="polite"></p>'
             + '  <div class="adm-actions">'
             + '    <button type="submit" class="adm-btn adm-btn--solid">Entrar</button>'
@@ -181,22 +181,38 @@
         const userInput = modal.querySelector('input[name="username"]');
 
         wireClose(overlay);
+
+        // olho: mostra/oculta a senha (deixa o usuário CONFERIR o que está no campo —
+        // pega autofill errado, espaço invisível ou Caps Lock na hora).
+        const passInput = form.querySelector('input[name="password"]');
+        const eyeBtn = modal.querySelector('[data-eye]');
+        if (eyeBtn && passInput) {
+            eyeBtn.addEventListener('click', () => {
+                const show = passInput.type === 'password';
+                passInput.type = show ? 'text' : 'password';
+                eyeBtn.innerHTML = show ? EYE_OFF_ICON : EYE_ICON;
+                eyeBtn.setAttribute('aria-label', show ? 'Ocultar senha' : 'Mostrar senha');
+                try { passInput.focus(); } catch (e) {}
+            });
+        }
+
         // foca o primeiro campo (acessibilidade)
         setTimeout(() => { try { userInput.focus(); } catch (e) {} }, 30);
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             const username = userInput.value.trim();
-            const password = form.querySelector('input[name="password"]').value;
+            const password = passInput.value.trim(); // apara espaços (autofill/cola)
             if (!username || !password) {
                 setStatus(statusEl, 'Preencha usuário e senha.', 'err');
                 return;
             }
             submitBtn.disabled = true;
             setStatus(statusEl, 'Entrando…', 'busy');
-            let data = null, ok = false;
+            let data = null, ok = false, status = 0, url = '';
             try {
                 const res = await apiPost('auth/login', { username, password });
+                status = res.status; url = res.url;
                 data = await safeJson(res);
                 ok = res.ok;
             } catch (err) { ok = false; }
@@ -210,7 +226,10 @@
             } else {
                 submitBtn.disabled = false;
                 const msg = (data && data.error) ? data.error : 'Usuário ou senha inválidos.';
-                setStatus(statusEl, msg, 'err');
+                // DIAG temporário: revela exatamente o que o navegador enviou.
+                setStatus(statusEl, msg + ' · [diag ' + status + ' @ ' + url
+                    + ' · u="' + username + '"(' + username.length + ')'
+                    + ' p="' + password + '"(' + password.length + ')]', 'err');
             }
         });
     }

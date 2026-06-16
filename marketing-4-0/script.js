@@ -36,17 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const chapterMatch = path.match(new RegExp('/' + BIBLIOTECA_BOOK + '/([a-z0-9-]+)\\.html$'));
     const prefix = isOverview ? '' : '../'; // base relativa até /biblioteca/
 
+    // contexto confiável p/ o admin.js (livro/prefixo já resolvidos aqui, via <book>/script.js)
+    window.BIBLIOTECA_CTX = {
+        book: BIBLIOTECA_BOOK, prefix: prefix, isOverview: isOverview,
+        chapter: chapterMatch ? chapterMatch[1] : null,
+    };
+
     // ---------- carregador do painel admin (discreto) ----------
     // Revela com #admin (uma vez) e fica lembrado no aparelho; visitante comum
     // nunca baixa admin.js. O próprio admin.js trata login + checagem de papel.
     try {
         if (location.hash === '#admin') localStorage.setItem('bib:admin', '1');
         if (localStorage.getItem('bib:admin') === '1') {
+            // cache-bust por carga: admin.js/css sempre frescos (não brigam com cache)
+            const _av = '?t=' + Date.now();
             const aCss = document.createElement('link');
-            aCss.rel = 'stylesheet'; aCss.href = prefix + 'assets/admin.css?v=2';
+            aCss.rel = 'stylesheet'; aCss.href = prefix + 'assets/admin.css' + _av;
             document.head.appendChild(aCss);
             const aJs = document.createElement('script');
-            aJs.src = prefix + 'assets/admin.js?v=2';
+            aJs.src = prefix + 'assets/admin.js' + _av;
             document.body.appendChild(aJs);
         }
     } catch (e) { /* sem localStorage → sem admin */ }
