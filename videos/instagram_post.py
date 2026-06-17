@@ -325,14 +325,22 @@ def _png_to_jpg(folder):
 
 
 def _scp_host(jpgs, slug, part):
-    """Envia os JPEGs para a VPS, chmod 644, e retorna as URLs públicas."""
-    import subprocess
+    """Envia os JPEGs para a VPS, chmod 644, e retorna as URLs públicas.
+    Se rodando NA própria VPS, usa cópia local (evita scp para si mesmo)."""
+    import subprocess, os, shutil
     remote_dir = f'{VPS_BASE}/{slug}_{part}'
-    subprocess.run(['ssh', VPS_HOST, f'mkdir -p {remote_dir}'], check=True)
-    for jpg in jpgs:
-        subprocess.run(['scp', '-q', str(jpg), f'{VPS_HOST}:{remote_dir}/{jpg.name}'],
-                       check=True)
-    subprocess.run(['ssh', VPS_HOST, f'chmod 644 {remote_dir}/*.jpg'], check=True)
+    _on_vps = Path(VPS_BASE).exists()
+    if _on_vps:
+        Path(remote_dir).mkdir(parents=True, exist_ok=True)
+        for jpg in jpgs:
+            shutil.copy2(str(jpg), f'{remote_dir}/{jpg.name}')
+            os.chmod(f'{remote_dir}/{jpg.name}', 0o644)
+    else:
+        subprocess.run(['ssh', VPS_HOST, f'mkdir -p {remote_dir}'], check=True)
+        for jpg in jpgs:
+            subprocess.run(['scp', '-q', str(jpg), f'{VPS_HOST}:{remote_dir}/{jpg.name}'],
+                           check=True)
+        subprocess.run(['ssh', VPS_HOST, f'chmod 644 {remote_dir}/*.jpg'], check=True)
     return [f'{PUB_BASE}/{slug}_{part}/{jpg.name}' for jpg in jpgs]
 
 

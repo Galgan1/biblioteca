@@ -101,6 +101,11 @@ def cycle(n):
 def main():
     os.makedirs(AUD, exist_ok=True)
     st = json.load(open(STATE, encoding='utf-8')) if os.path.exists(STATE) else {'cycle':0,'max':30}
+    if st.get('paused'):
+        print(f"LOOP PAUSADO PELO USUARIO (estava em {st.get('cycle')}/{st.get('max')}). "
+              "NAO rode ciclo, NAO reagende, NAO desligue, NAO faca resumo final.")
+        print('continue: no')
+        return
     n = st['cycle'] + 1
     mx = st['max']
     sd = bool(st.get('shutdown_on_done'))
