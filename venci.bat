@@ -1,2 +1,1 @@
-python vp100.py mapa
-python vp100.py update
+python vp100.py dag
