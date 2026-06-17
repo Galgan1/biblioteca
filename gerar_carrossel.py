@@ -530,6 +530,41 @@ def _quote_card(q, book, k, total):
         ghost=_ghost('bottom:150px;right:24px;font-size:320px', '&rdquo;'))
 
 
+# Auto-fit do carrossel (FONTE ÚNICA). Encolhe-para-caber, nunca trunca:
+#  (1) títulos gigantes por LARGURA (.cover/.st h1);
+#  (2) QUALQUER slide (concept/quote/cta/story) por ALTURA — mede o elemento de
+#      texto mais baixo contra a margem segura (= padding-bottom do slide) e reduz
+#      o font-size dos blocos de texto até caber (piso 22px).
+_FIT_JS = """() => {
+  for (const el of document.querySelectorAll('.cover h1, .st h1')) {
+    const box = el.parentElement, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (el.getBoundingClientRect().width > avail && fs > 50 && g < 120) { fs -= 3; el.style.fontSize = fs + 'px'; g++; }
+  }
+  const SHRINK = '.ed-title,.ed-body,.ed-tip .tipbody,.phrase,.cta .big,.cta .row p,.cta .save,.card-title,.card-body,.card-tip';
+  for (const slide of document.querySelectorAll('.slide, .story')) {
+    const padB = parseFloat(getComputedStyle(slide).paddingBottom) || 110;
+    const safe = slide.getBoundingClientRect().bottom - Math.max(padB, 40);
+    const maxBottom = () => {
+      let m = 0;
+      for (const el of slide.querySelectorAll(SHRINK)) { const r = el.getBoundingClientRect(); if (r.height > 0) m = Math.max(m, r.bottom); }
+      return m;
+    };
+    let g = 0;
+    while (maxBottom() > safe && g < 300) {
+      let changed = false;
+      for (const el of slide.querySelectorAll(SHRINK)) {
+        const fs = parseFloat(getComputedStyle(el).fontSize);
+        if (fs > 22) { el.style.fontSize = (fs - 1) + 'px'; changed = true; }
+      }
+      if (!changed) break;
+      g++;
+    }
+  }
+}"""
+
+
 def _render(slides, out, scale=2, w=W, h=H, css=None):
     out.mkdir(parents=True, exist_ok=True)
     html = (f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">'
@@ -545,23 +580,7 @@ def _render(slides, out, scale=2, w=W, h=H, css=None):
         # COMUNICACAO, INSUSTENTAVEL...). Duravel: blinda qualquer titulo futuro sem
         # tocar nos que ja cabem. O h1 e flex-item centralizado (encolhe no proprio
         # texto), entao medimos contra a CAIXA DE CONTEUDO do contentor, nao o h1.
-        pg.evaluate("""() => {
-          for (const el of document.querySelectorAll('.cover h1, .st h1')) {
-            const box = el.parentElement, cs = getComputedStyle(box);
-            const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-            let fs = parseFloat(getComputedStyle(el).fontSize), guard = 0;
-            while (el.getBoundingClientRect().width > avail && fs > 50 && guard < 120) {
-              fs -= 3; el.style.fontSize = fs + 'px'; guard++;
-            }
-          }
-          for (const slide of document.querySelectorAll('.slide.concept')) {
-            const body = slide.querySelector('.ed-body'); if (!body) continue;
-            const last = slide.querySelector('.ed-tip') || body;
-            const safeBottom = slide.getBoundingClientRect().bottom - 128;
-            let fs = parseFloat(getComputedStyle(body).fontSize), g = 0;
-            while (last.getBoundingClientRect().bottom > safeBottom && fs > 40 && g < 80) { fs -= 1; body.style.fontSize = fs + 'px'; g++; }
-          }
-        }""")
+        pg.evaluate(_FIT_JS)
         paths = []
         for i, el in enumerate(pg.query_selector_all('.slide, .story'), 1):
             fp = out / f'{i:02d}.png'

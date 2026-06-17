@@ -913,7 +913,7 @@ async function renderCarousel(book, cap) {
     await page.setContent(html, { waitUntil: 'networkidle0', timeout: 60000 });
     await page.evaluateHandle('document.fonts.ready');
     await new Promise(r => setTimeout(r, 500));
-    await page.evaluate(CAROUSEL_SHRINK);
+    await page.evaluate(`(${CAROUSEL_SHRINK})()`);  // IIFE: Puppeteer avalia a string, nao invoca a funcao (igual KIT_FIT)
     const els = await page.$$('.slide');
     for (let i = 0; i < els.length; i++) {
       const n = String(i + 1).padStart(2, '0');
