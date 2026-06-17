@@ -1,93 +1,5 @@
 [
   {
-    "id": "keller-casamento",
-    "title": "O Significado do Casamento",
-    "author": "Timothy Keller",
-    "coverUrl": "assets/keller-casamento-capa.png",
-    "description": "Uma visão profunda e inspiradora sobre o casamento a partir da perspectiva cristã. Cada cônjuge carrega uma definição diferente de amor, moldada pela família de origem.",
-    "tags": [
-      "Relacionamento",
-      "Espiritualidade",
-      "Casamento"
-    ],
-    "progress": "Resumo Geral",
-    "url": "keller-casamento.html",
-    "amazon": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "maquiavel-pedagogo",
-    "title": "Maquiavel Pedagogo",
-    "author": "Pascal Bernardin",
-    "coverUrl": "assets/maquiavel-pedagogo-capa.png",
-    "description": "Desvenda as técnicas de engenharia social aplicadas à educação pela UNESCO para formar o novo cidadão global através da subversão cognitiva e psicológica.",
-    "tags": [
-      "Educação",
-      "Psicologia Social",
-      "Geopolítica"
-    ],
-    "progress": "16 Capítulos",
-    "url": "maquiavel-pedagogo.html",
-    "amazon": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "arte-da-guerra",
-    "title": "A Arte da Guerra",
-    "author": "Sun Tzu",
-    "coverUrl": "assets/arte-da-guerra-capa.png",
-    "description": "O tratado militar mais influente da história. Sun Tzu revela os princípios eternos da estratégia: vencer sem lutar, conhecer o inimigo e a si mesmo, e dominar a arte da dissimulação.",
-    "tags": [
-      "Estratégia",
-      "Liderança",
-      "Filosofia"
-    ],
-    "progress": "13 Capítulos",
-    "url": "arte-da-guerra.html",
-    "amazon": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "experiencia-psicodelica",
-    "title": "A Experiência Psicodélica",
-    "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
-    "coverUrl": "assets/experiencia-psicodelica-capa.png",
-    "description": "Um manual baseado no Livro Tibetano dos Mortos para navegar estados alterados de consciência. Mapeia os Três Bardos da expansão da mente e o protocolo Confiar-Desligar-Flutuar.",
-    "tags": [
-      "Consciência",
-      "Misticismo",
-      "Psicologia"
-    ],
-    "progress": "8 Capítulos",
-    "url": "experiencia-psicodelica.html",
-    "amazon": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "tjmg-regras-cartorios",
     "title": "Normas dos Cartórios (Prov. 93/2020)",
     "author": "TJMG · Corregedoria-Geral de Justiça",
@@ -100,72 +12,6 @@
     ],
     "progress": "9 Livros Completos",
     "url": "tjmg-regras-cartorios.html"
-  },
-  {
-    "id": "story-mckee",
-    "title": "Story: Os Princípios do Roteiro",
-    "author": "Robert McKee",
-    "coverUrl": "assets/story-mckee-capa.png",
-    "description": "A bíblia do roteiro. McKee destila os princípios eternos da narrativa — do Incidente Incitante e A Lacuna ao Princípio do Antagonismo e ao Clímax — num sistema operável de estrutura, personagem e significado.",
-    "tags": [
-      "Roteiro",
-      "Narrativa",
-      "Escrita Criativa"
-    ],
-    "progress": "19 Capítulos",
-    "url": "story-mckee.html",
-    "amazon": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "smith-assertividade",
-    "title": "Quando Digo Não, Me Sinto Culpado",
-    "author": "Manuel J. Smith",
-    "coverUrl": "assets/smith-assertividade-capa.png",
-    "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
-    "tags": [
-      "Assertividade",
-      "Comunicação",
-      "Psicologia"
-    ],
-    "progress": "11 Capítulos",
-    "url": "smith-assertividade.html",
-    "amazon": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "poder-do-silencio",
-    "title": "O Poder do Silêncio",
-    "author": "Eckhart Tolle",
-    "coverUrl": "assets/poder-do-silencio-capa.png",
-    "description": "Ensinamentos sobre presença, calma interior e transcendência do ego. Tolle revela como acessar a inteligência primordial que existe além do pensamento e dissolver o sofrimento pela aceitação do Agora.",
-    "tags": [
-      "Espiritualidade",
-      "Consciência",
-      "Meditação"
-    ],
-    "progress": "10 Capítulos",
-    "url": "poder-do-silencio.html",
-    "amazon": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
   },
   {
     "id": "save-the-cat",
@@ -2181,6 +2027,160 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8575428098/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "arte-da-guerra",
+    "title": "A Arte da Guerra",
+    "author": "Sun Tzu",
+    "coverUrl": "assets/arte-da-guerra-capa.png",
+    "description": "Os 13 capítulos de 'A Arte da Guerra' de Sun Tzu em cheat sheet: os 5 fatores do cálculo, vencer sem lutar, conhecer o inimigo e a si mesmo, a guerra como arte do engano, a vitória rápida, cheio e vazio, o momentum (shih), a flexibilidade da água, os tipos de terreno, não agir por raiva e o uso de espiões — frameworks de estratégia atemporal.",
+    "tags": [
+      "Estratégia",
+      "Liderança",
+      "Filosofia"
+    ],
+    "progress": "13 Capítulos",
+    "url": "arte-da-guerra.html",
+    "amazon": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "maquiavel-pedagogo",
+    "title": "Maquiavel Pedagogo",
+    "author": "Pascal Bernardin",
+    "coverUrl": "assets/maquiavel-pedagogo-capa.png",
+    "description": "Maquiavel Pedagogo de Pascal Bernardin em cheat sheet: a engenharia social aplicada à educação — dissonância cognitiva e sentimento de liberdade, a inversão atos→opiniões, a Unesco e a modificação de atitudes em escala, a revolução ética e cultural, reescrever a história, os IUFMs, a descentralização como engajamento, a avaliação como leme, a sociedade dual e o totalitarismo psicopedagógico.",
+    "tags": [
+      "Educação",
+      "Psicologia Social",
+      "Geopolítica"
+    ],
+    "progress": "16 Capítulos",
+    "url": "maquiavel-pedagogo.html",
+    "amazon": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "keller-casamento",
+    "title": "O Significado do Casamento",
+    "author": "Timothy Keller",
+    "coverUrl": "assets/keller-casamento-capa.png",
+    "description": "O Significado do Casamento de Timothy Keller em cheat sheet: aliança × relação de consumo, o Evangelho e a graça como base, ser cheio do Espírito, amor-ação antes de amor-sentimento, a santidade do outro como missão, verdade e graça, perdão como pagamento, papéis como serviço mútuo (Efésios 5), solteirice como vocação e o sexo como ato de aliança.",
+    "tags": [
+      "Relacionamento",
+      "Espiritualidade",
+      "Casamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "keller-casamento.html",
+    "amazon": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "poder-do-silencio",
+    "title": "O Poder do Silêncio",
+    "author": "Eckhart Tolle",
+    "coverUrl": "assets/poder-do-silencio-capa.png",
+    "description": "Os ensinamentos de 'O Poder do Silêncio' de Eckhart Tolle em cheat sheet: a quietude como linguagem de Deus, você como o observador por trás da mente, o ego e a identificação com a forma, o Agora como único momento real, quem você verdadeiramente é, aceitação e entrega, a natureza como mestra de presença, relacionamentos como prática espiritual, o corpo-dor, a morte e o sem-forma eterno.",
+    "tags": [
+      "Espiritualidade",
+      "Consciência",
+      "Meditação"
+    ],
+    "progress": "9 Capítulos",
+    "url": "poder-do-silencio.html",
+    "amazon": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "experiencia-psicodelica",
+    "title": "A Experiência Psicodélica",
+    "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
+    "coverUrl": "assets/experiencia-psicodelica-capa.png",
+    "description": "A Experiência Psicodélica (1964) de Leary, Metzner & Alpert em cheat sheet, lida como história das ideias e estudo da consciência: set & setting, a substância como chave química neutra, jogos × não-jogos, a morte do ego, os três Bardos (Clara Luz, visões, reentrada), tudo é projeção da própria mente, e o protocolo Confiar–Desligar–Flutuar.",
+    "tags": [
+      "Consciência",
+      "Misticismo",
+      "Psicologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "experiencia-psicodelica.html",
+    "amazon": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "smith-assertividade",
+    "title": "Quando Digo Não, Me Sinto Culpado",
+    "author": "Manuel J. Smith",
+    "coverUrl": "assets/smith-assertividade-capa.png",
+    "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
+    "tags": [
+      "Assertividade",
+      "Comunicação",
+      "Psicologia"
+    ],
+    "progress": "11 Capítulos",
+    "url": "smith-assertividade.html",
+    "amazon": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "story-mckee",
+    "title": "Story: Os Princípios do Roteiro",
+    "author": "Robert McKee",
+    "coverUrl": "assets/story-mckee-capa.png",
+    "description": "A bíblia do roteiro de Robert McKee em cheat sheet: o espectro estrutural (Arquitrama, Minitrama, Antitrama), cenário e gênero, estrutura ⇄ personagem, a Ideia de Controle, A Lacuna, o Incidente Incitante, o design de atos e de cena, crise/clímax/resolução, o Princípio do Antagonismo, exposição invisível e o método de dentro para fora.",
+    "tags": [
+      "Roteiro",
+      "Narrativa",
+      "Escrita Criativa"
+    ],
+    "progress": "19 Capítulos",
+    "url": "story-mckee.html",
+    "amazon": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   }
