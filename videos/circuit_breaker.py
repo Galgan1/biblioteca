@@ -138,7 +138,7 @@ def circuit_breaker(api: str, threshold: int = 3, timeout_s: float = 300):
 
             # Sucesso
             if state == 'half_open':
-                print(f'[circuit_breaker] {api}: HALF_OPEN → CLOSED (recuperado)')
+                print(f'[circuit_breaker] {api}: HALF_OPEN -> CLOSED (recuperado)')
             info.update({'state': 'closed', 'failures': 0, 'opened_at': None, 'last_error': None})
             _set_api(api, info)
             return result

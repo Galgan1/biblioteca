@@ -31,3 +31,15 @@ O agente **GitGuy** é a única lane autorizada a fazer `git commit`, `git push`
 | `gerar_*.py`, `publicar_livro.py` | `historico_metadados.json` — runtime |
 | `assets/style.css`, `script.js` | `_remote_books.json`, `_ssh_err.txt` — temp |
 | Skills e skills data | `pipeline/state/`, `pdf-service/cache/` |
+
+## Contratos Invioláveis — Constituição (Akita, pilar 6)
+
+Regras cross-cutting que **nenhuma lane quebra**. O detalhe de cada lane vive na skill da lane; aqui ficam só os contratos que valem para todo o projeto. Norte em `AKITA-PLANO-ALVO.md`; estado atual em `AKITA-DIAGNOSTICO.md`.
+
+1. **Git:** só o **GitGuy** commita/pusha/cria PR (ver seção acima).
+2. **Fontes da verdade** (edite a fonte, nunca o derivado): livros = `<slug>_data.py` (o HTML é gerado a partir dela); Amazon/afiliados = `afiliados.json`; estado do canal = `canal-state.json` (runtime, não versionar).
+3. **Qualidade (Akita):** nada se consolida sem **teste verde** (verde = exit code), não "a IA achou que está certo"; execução só por **ponto único idempotente** (nada de comando solto); na dúvida, o verificador reprova. Alvo: CI verde antes do merge.
+4. **Geração do site:** um gerador canônico (`gerar_livro.py`); estética "cheat-sheet verde" e tokens de marca são **únicos** (não inventar cor/variável). Detalhe: skill `biblioteca`.
+5. **Distribuição/afiliado:** link Amazon só de **produto** (`/dp/`, `/gp/`), nunca busca; no Instagram o link vai na **bio** (legenda não é clicável); no Facebook, **post nativo + link no 1º comentário** (não post-link). Detalhe: skills das lanes.
+6. **Idioma:** todo conteúdo em **pt-BR** (pt-PT é bloqueante).
+7. **Soberania:** o pipeline roda local/grátis; sem crédito de IA externa há rota de fuga (voz → edge-tts). Detalhe: `MODO-SOBERANO.md`.
