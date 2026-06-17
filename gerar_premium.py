@@ -17,8 +17,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / 'videos'))
+import tokens
 import gerar_carrossel as gc                      # _lead (orcamento de texto)
-from gerar_infografico import _chapter_title, _chapter_num, _even_sample, _first_sentence
+from gerar_infografico import _chapter_title, _chapter_num, _even_sample, _first_sentence, _font_face
 
 OUT = ROOT / 'videos' / '_premium'
 FONTS = ROOT / '_fonts'
@@ -61,15 +62,6 @@ def _b64(p):
     return base64.b64encode(Path(p).read_bytes()).decode('ascii')
 
 
-def _font_face():
-    out = []
-    for fam, fn in (('Hanken Grotesk', 'HankenGrotesk.ttf'), ('Literata', 'Literata.ttf')):
-        p = FONTS / fn
-        if p.exists():
-            out.append(f"@font-face{{font-family:'{fam}';font-weight:100 900;font-display:block;"
-                       f"src:url(data:font/ttf;base64,{_b64(p)}) format('truetype')}}")
-    return '\n'.join(out)
-
 
 def _art(slug, style, key, scene, no_img=False, aspect='3:4'):
     """Gera (ou reusa do cache) a ilustracao de IA p/ um slide, no estilo dado."""
@@ -98,50 +90,58 @@ _ICON_BOOK_MARK = ('<svg viewBox="0 0 64 64" fill="none"><path d="M18 10h28v44L3
                    'stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>')
 
 BASE_CSS = """
+__ROOT__
+:root{
+  --bg: oklch(14.5% 0.014 152); --ink: oklch(98% 0.008 152);
+  --green-a42: oklch(70% 0.13 152 / .42); --green-a40: oklch(70% 0.13 152 / .40);
+  --green-a35: oklch(70% 0.13 152 / .35); --green-a30: oklch(70% 0.13 152 / .30);
+  --green-shadow: oklch(50% 0.13 152 / .5); --green-dim-a40: oklch(70% 0.05 152 / .4);
+  --hand-color: oklch(70% 0.04 152 / .8);
+}
 __FF__
 *{margin:0;padding:0;box-sizing:border-box}
-.slide{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:'Hanken Grotesk',sans-serif;background:#05070a;color:#f3f5f4}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:'Hanken Grotesk',sans-serif;background:var(--bg);color:var(--ink)}
 .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .scrim{position:absolute;inset:0;background:__SCRIM__}
-.frame{position:absolute;inset:34px;border:2px dashed oklch(80% 0.12 152 / .42);border-radius:30px;pointer-events:none}
+.frame{position:absolute;inset:34px;border:2px dashed var(--green-a42);border-radius:30px;pointer-events:none}
 .wrap{position:absolute;inset:0;padding:74px 76px 70px;display:flex;flex-direction:column}
 .top{display:flex;justify-content:space-between;align-items:center}
 .brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em;font-size:27px;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.5)}
-.brand .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:oklch(72% 0.16 152);color:#06140d;box-shadow:0 8px 26px rgba(0,0,0,.5)}
+.brand .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--green);color:#06140d;box-shadow:0 8px 26px rgba(0,0,0,.5)}
 .brand .seal svg{width:27px;height:27px}
-.brand b{color:oklch(82% 0.14 152)}
-.tag{font-weight:800;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:oklch(86% 0.10 152);border:1.5px solid oklch(80% 0.12 152 / .4);border-radius:999px;padding:9px 20px;background:rgba(8,20,14,.5)}
+.brand b{color:var(--green)}
+.tag{font-weight:800;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-soft);border:1.5px solid var(--green-a40);border-radius:999px;padding:9px 20px;background:rgba(8,20,14,.5)}
 .spacer{flex:1 1 auto}
-.src{font-family:'Literata',serif;font-weight:600;font-size:29px;color:oklch(88% 0.07 152);margin-bottom:8px;text-shadow:0 2px 16px rgba(0,0,0,.85)}
-.src b{color:oklch(84% 0.13 152)}
+.src{font-family:'Literata',serif;font-weight:600;font-size:29px;color:var(--green-soft);margin-bottom:8px;text-shadow:0 2px 16px rgba(0,0,0,.85)}
+.src b{color:var(--green)}
 h1{font-family:'Literata',serif;font-weight:600;line-height:.98;letter-spacing:-.01em;text-shadow:0 4px 30px rgba(0,0,0,.9)}
 .cover h1{font-size:118px;font-weight:700;text-transform:uppercase;letter-spacing:-.02em;font-family:'Hanken Grotesk';line-height:.9}
-.cover h1 .lt{color:oklch(84% 0.14 152)} .cover h1 .bd{color:#fff}
-.concept h1{font-size:100px} .concept h1 .lt{color:#fff} .concept h1 .bd{color:oklch(84% 0.14 152);font-style:italic}
+.cover h1 .lt{color:var(--green)} .cover h1 .bd{color:#fff}
+.concept h1{font-size:100px} .concept h1 .lt{color:#fff} .concept h1 .bd{color:var(--green);font-style:italic}
 .cta h1{font-size:120px;font-weight:800;text-transform:uppercase;font-family:'Hanken Grotesk';line-height:.88}
-.cta h1 .bd{color:oklch(84% 0.14 152)} .cta h1 .lt{color:#fff}
-.take{margin-top:32px;display:flex;gap:22px;align-items:flex-start;border:1.5px solid oklch(80% 0.12 152 / .3);border-left:5px solid oklch(76% 0.105 83);border-radius:20px;padding:24px 30px;background:rgba(6,12,10,.62);box-shadow:0 18px 50px rgba(0,0,0,.5)}
-.take .ic{flex:0 0 auto;width:58px;height:58px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:oklch(76% 0.105 83);color:#1a1205}
+.cta h1 .bd{color:var(--green)} .cta h1 .lt{color:#fff}
+.take{margin-top:32px;display:flex;gap:22px;align-items:flex-start;border:1.5px solid var(--green-a30);border-left:5px solid var(--gold);border-radius:20px;padding:24px 30px;background:rgba(6,12,10,.62);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.take .ic{flex:0 0 auto;width:58px;height:58px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:var(--gold);color:#1a1205}
 .take .ic svg{width:36px;height:36px}
-.take .lbl{font-weight:900;font-size:20px;letter-spacing:.18em;text-transform:uppercase;color:oklch(80% 0.10 83)}
+.take .lbl{font-weight:900;font-size:20px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
 .take p{font-size:28px;line-height:1.26;color:#eef2f0;font-weight:500;margin-top:5px}
-.take p b{color:oklch(86% 0.12 152);font-weight:800}
-.promise{font-size:30px;color:oklch(88% 0.06 152);font-weight:600;margin-top:14px;max-width:840px;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.take p b{color:var(--green-soft);font-weight:800}
+.promise{font-size:30px;color:var(--green-soft);font-weight:600;margin-top:14px;max-width:840px;text-shadow:0 2px 14px rgba(0,0,0,.8)}
 .hook{margin-top:26px;display:inline-flex;align-items:center;gap:18px;font-size:54px;font-weight:900;text-transform:uppercase;color:#fff}
-.hook .n{font-size:96px;color:oklch(80% 0.10 83);line-height:.8}
-.swipe{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-weight:800;font-size:30px;letter-spacing:.12em;text-transform:uppercase;color:#06140d;background:oklch(80% 0.14 152);padding:18px 40px;border-radius:999px;box-shadow:0 16px 44px oklch(50% 0.12 152 / .5)}
+.hook .n{font-size:96px;color:var(--gold);line-height:.8}
+.swipe{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-weight:800;font-size:30px;letter-spacing:.12em;text-transform:uppercase;color:#06140d;background:var(--green);padding:18px 40px;border-radius:999px;box-shadow:0 16px 44px var(--green-shadow)}
 .swipe svg{width:34px;height:34px}
 .rows{margin-top:8px;display:flex;flex-direction:column;gap:18px}
 .row{display:flex;gap:18px;align-items:center;font-size:30px;font-weight:600;color:#eef2f0}
-.row .ri{flex:0 0 auto;width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(8,20,14,.6);border:1.5px solid oklch(80% 0.12 152 / .35);color:oklch(84% 0.13 152)}
+.row .ri{flex:0 0 auto;width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(8,20,14,.6);border:1.5px solid var(--green-a35);color:var(--green)}
 .row .ri svg{width:30px;height:30px}
-.row b{color:oklch(84% 0.13 152);font-weight:800}
-.save{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-weight:900;font-size:32px;letter-spacing:.06em;text-transform:uppercase;color:#06140d;background:oklch(80% 0.14 152);padding:20px 44px;border-radius:18px;box-shadow:0 16px 44px oklch(50% 0.12 152 / .5)}
+.row b{color:var(--green);font-weight:800}
+.save{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-weight:900;font-size:32px;letter-spacing:.06em;text-transform:uppercase;color:#06140d;background:var(--green);padding:20px 44px;border-radius:18px;box-shadow:0 16px 44px var(--green-shadow)}
 .save svg{width:34px;height:34px}
 .dots{display:flex;gap:12px;justify-content:center;margin-top:26px}
-.dots i{width:11px;height:11px;border-radius:999px;background:oklch(80% 0.05 152 / .4)}
-.dots i.on{width:36px;background:oklch(80% 0.14 152)}
-.hand{text-align:center;font-weight:800;letter-spacing:.24em;font-size:18px;color:oklch(80% 0.04 152 / .8);text-transform:uppercase;margin-top:16px}
+.dots i{width:11px;height:11px;border-radius:999px;background:var(--green-dim-a40)}
+.dots i.on{width:36px;background:var(--green)}
+.hand{text-align:center;font-weight:800;letter-spacing:.24em;font-size:18px;color:var(--hand-color);text-transform:uppercase;margin-top:16px}
 """
 
 
@@ -155,7 +155,10 @@ def _dots(pos, total):
 
 
 def _doc(inner, scrim):
-    css = BASE_CSS.replace('__FF__', _font_face()).replace('__SCRIM__', scrim)
+    css = (BASE_CSS
+           .replace('__ROOT__', tokens.ROOT)
+           .replace('__FF__', _font_face())
+           .replace('__SCRIM__', scrim))
     return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>'
             + css + '</style></head><body>' + inner + '</body></html>')
 

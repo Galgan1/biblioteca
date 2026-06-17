@@ -76,7 +76,18 @@ def _chrome(img, d):
     dashed_rect(d, (40, 40, W - 40, H - 40), verde + (255,), 3)
     _tracked(d, 'BIBLIOTECA', marca.font('display', 30, 'ExtraBold'), verde, 7, W // 2, 80)
     d.rectangle([(W // 2 - 58, 124), (W // 2 + 58, 130)], fill=ouro)
-    _tracked(d, 'RESUMO · UMA PÁGINA', marca.font('display', 23, 'Bold'), dim, 6, W // 2, H - 150)
+    # CTA preenchido: fundo verde da marca + texto escuro (papel) — Norman: significante saliente
+    cta_fnt = marca.font('display', 23, 'Bold')
+    cta_text = 'RESUMO · UMA PÁGINA'
+    cta_tw = sum(d.textlength(c, font=cta_fnt) + 6 for c in cta_text) - 6
+    cta_pad_x, cta_pad_y = 18, 8
+    cta_y = H - 150
+    cta_x0 = W // 2 - cta_tw // 2 - cta_pad_x
+    cta_x1 = W // 2 + cta_tw // 2 + cta_pad_x
+    cta_y0 = cta_y - cta_pad_y
+    cta_y1 = cta_y + cta_fnt.size + cta_pad_y
+    d.rectangle([(cta_x0, cta_y0), (cta_x1, cta_y1)], fill=verde)
+    _tracked(d, cta_text, cta_fnt, marca.rgb('papel'), 6, W // 2, cta_y)
 
 
 def _band(img, d, title, author, top, bottom):

@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(ROOT / 'videos'))
 import gerar_carrossel as gc
 from gerar_livro import ICONS
-from gerar_infografico import _chapter_title, _chapter_num, _even_sample, _first_sentence
+from gerar_infografico import _chapter_title, _chapter_num, _even_sample, _first_sentence, _font_face
 
 OUT = ROOT / 'videos' / '_premium'
 FONTS = ROOT / '_fonts'
@@ -35,15 +35,6 @@ BASE_STYLE = ("single central symbolic object, glowing neon rim light, dark mood
 
 def _b64(p): return base64.b64encode(Path(p).read_bytes()).decode('ascii')
 
-
-def _font_face():
-    out = []
-    for fam, fn in (('Hanken Grotesk', 'HankenGrotesk.ttf'), ('Literata', 'Literata.ttf')):
-        p = FONTS / fn
-        if p.exists():
-            out.append(f"@font-face{{font-family:'{fam}';font-weight:100 900;font-display:block;"
-                       f"src:url(data:font/ttf;base64,{_b64(p)}) format('truetype')}}")
-    return '\n'.join(out)
 
 
 def _svg(name, ic=None):
