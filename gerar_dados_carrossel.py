@@ -19,28 +19,21 @@ BASE = Path(__file__).parent
 KIT = BASE / 'assets' / 'kit'
 
 
-def _chapter_slides(book, ch):
-    cards = ch['cards']
-    n = len(cards)
-    total = n + 2  # capa + conceitos + cta
-    slides = [gc._cover(book, n, 1, total)]
-    slides += [gc._concept(c, i, n, i + 1, total, book, ch) for i, c in enumerate(cards, 1)]
-    slides.append(gc._cta(book, total, total))
-    return slides
-
-
 def emit(slug):
     data = importlib.import_module(slug.replace('-', '_') + '_data')
     book = data.BOOK
+    total_caps = len(getattr(data, 'CHAPTERS', []) or [])
     chapters, counts = {}, {}
-    # carrossel do LIVRO (visão geral) — usa overview_cards (cap "overview", sem underscore p/ passar no SLUG_RE)
-    ov_cards = book.get('overview_cards') or (data.CHAPTERS[0]['cards'] if data.CHAPTERS else [])
+    # carrossel do LIVRO (visão geral) — ch=None (consistente com o build); avisa se faltar
+    ov_cards = gc._overview_cards(book, data)
     if ov_cards:
-        ov = {'slug': 'overview', 'sub': '', 'cards': ov_cards}
-        chapters['overview'] = _chapter_slides(book, ov)
+        chapters['overview'] = gc.montar_slides(book, ov_cards, ch=None, total_caps=total_caps)
         counts['overview'] = len(chapters['overview'])
-    for ch in data.CHAPTERS:
-        sl = _chapter_slides(book, ch)
+    for ch in getattr(data, 'CHAPTERS', []) or []:
+        if not ch.get('cards'):
+            print(f"[aviso] {slug}/{ch.get('slug','?')}: capitulo sem cards, pulado")
+            continue
+        sl = gc.montar_slides(book, ch['cards'], ch=ch, total_caps=total_caps)
         chapters[ch['slug']] = sl
         counts[ch['slug']] = len(sl)
     out = KIT / slug

@@ -295,8 +295,18 @@ def _kicker_text(book):
     return ' '.join(words).strip()
 
 
-def _cover(book, n, pos, total):
-    kicker = _kicker_text(book)
+def _cover(book, n, pos, total, ch=None, total_caps=None):
+    if ch:
+        # capa de CAPITULO: deixa explicito que e 1 capitulo + a posicao na serie
+        cap = _cap_num(ch)
+        if cap and total_caps:
+            kicker = f'CAPÍTULO {cap} DE {total_caps}'
+        elif cap:
+            kicker = f'CAPÍTULO {cap}'
+        else:
+            kicker = 'CAPÍTULO'
+    else:
+        kicker = _kicker_text(book)
     kicker_html = f'<div class="kicker">{kicker}</div>' if kicker else ''
     return _slide(
         f'<div class="wordmark"><span class="seal">{_svg("book")}</span>'
@@ -353,7 +363,7 @@ def _concept(c, i, total_cards, pos, total, book=None, ch=None):
         kicker = f"{book.get('header_light','')} {book.get('header_bold','')}".strip()
     kicker = kicker or 'MINUTO REAL'
     # corpo com capitular (drop-cap) na 1ª letra visível (tolera tag inicial)
-    body = _lead(c['b'])
+    body = _lead(c['b'], cap=160 if ch is None else 240)  # overview=billboard (Krug); capitulo=detalhe
     mdc = re.match(r'^(\s*(?:<[^>]+>)*)([A-Za-zÀ-ÿ])(.*)$', body, re.DOTALL)
     body_html = (mdc.group(1) + f'<span class="dc">{mdc.group(2)}</span>' + mdc.group(3)) if mdc else body
     # tip vira caixa editorial: rótulo (do <strong>…:</strong>) + corpo
@@ -384,12 +394,15 @@ def _concept(c, i, total_cards, pos, total, book=None, ch=None):
         cls)
 
 
-def _cta(book, pos, total):
+def _cta(book, pos, total, is_chapter=False):
+    linha1 = ('<p>Este é só 1 capítulo — o livro <strong>inteiro</strong> em 1 resumo: '
+              'cheat sheet + PDF no acervo &mdash; link na bio.</p>') if is_chapter else (
+              '<p>O livro inteiro em 1 página: cheat sheet + PDF no <strong>acervo</strong> &mdash; link na bio.</p>')
     return _slide(
         '<div class="big">Gostou?<br><span class="lt">tem mais.</span></div>'
         '<div class="rows">'
         f'<div class="row"><span class="rico">{_svg("shelf")}</span>'
-        '<p>O livro inteiro em 1 página: cheat sheet + PDF no <strong>acervo</strong> &mdash; link na bio.</p></div>'
+        f'{linha1}</div>'
         f'<div class="row"><span class="rico">{_svg("play")}</span>'
         f'<p>Prefere assistir? Resumo de ~5 min no <strong>YouTube</strong>.</p></div>'
         f'<div class="row"><span class="rico">{_svg("spark")}</span>'
@@ -400,6 +413,58 @@ def _cta(book, pos, total):
         f'{_dots(pos, total)}',
         'cta',
         ghost=_ghost('bottom:150px;right:40px;font-size:300px', '+'))
+
+
+MAX_CONCEITOS = 8   # capa + conceitos + cta <= 10 slides (limite pratico do Instagram)
+
+
+def _cap_num(ch):
+    """Numero do capitulo, lido do sub ('CAPITULO 3: ...') ou do slug ('ch03-...')."""
+    if not ch:
+        return None
+    m = re.match(r'\s*CAP[IÍ]TULO\s*(\d+)', (ch.get('sub') or ''), re.IGNORECASE)
+    if m:
+        return int(m.group(1))
+    m = re.match(r'ch0*(\d+)', ch.get('slug', '') or '')
+    return int(m.group(1)) if m else None
+
+
+def _overview_cards(book, data):
+    """Cards do carrossel do LIVRO. Fallback p/ o capitulo 1 — mas AVISA (nao silencioso)."""
+    ov = book.get('overview_cards')
+    if not ov:
+        print(f"[aviso] {book.get('title', '?')}: overview_cards ausente/vazio; "
+              f"usando os cards do capitulo 1 como visao geral")
+        ov = data.CHAPTERS[0]['cards'] if getattr(data, 'CHAPTERS', None) else []
+    return ov
+
+
+def _clamp_cards(book, cards, ch):
+    """Valida/limita os cards antes de renderizar (evita carrossel inpostavel ou raquitico)."""
+    cards = cards or []
+    rotulo = (ch.get('slug') if ch else 'overview')
+    n = len(cards)
+    if n == 1:
+        print(f"[aviso] {book.get('title','?')}/{rotulo}: so 1 card (carrossel de 3 slides)")
+    if n > MAX_CONCEITOS:
+        print(f"[aviso] {book.get('title','?')}/{rotulo}: {n} cards excedem o limite do IG; "
+              f"usando os {MAX_CONCEITOS} primeiros")
+        cards = cards[:MAX_CONCEITOS]
+    return cards
+
+
+def montar_slides(book, cards, ch=None, total_caps=None):
+    """FONTE UNICA da sequencia do carrossel: capa -> N conceitos -> CTA.
+    ch=None => carrossel do LIVRO (overview, billboard); ch dado => CAPITULO (detalhe).
+    Usada pelo render Python (build) E pelo caminho Node (gerar_dados_carrossel) —
+    zero deriva entre eles."""
+    cards = _clamp_cards(book, cards, ch)
+    n = len(cards)
+    total = n + 2
+    slides = [_cover(book, n, 1, total, ch=ch, total_caps=total_caps)]
+    slides += [_concept(c, i, n, i + 1, total, book, ch) for i, c in enumerate(cards, 1)]
+    slides.append(_cta(book, total, total, is_chapter=bool(ch)))
+    return slides
 
 
 # ---------- modo citação ----------
@@ -604,13 +669,13 @@ def build(slug, cap=None):
         cards = ch['cards']
         part = ch['slug']
     else:
-        cards = book.get('overview_cards') or (data.CHAPTERS[0]['cards'])
+        cards = _overview_cards(book, data)
         part = 'overview'
-    n = len(cards)
-    total = n + 2  # capa + conceitos + cta
-    slides = [_cover(book, n, 1, total)]
-    slides += [_concept(c, i, n, i + 1, total, book, ch) for i, c in enumerate(cards, 1)]
-    slides.append(_cta(book, total, total))
+    if not cards:
+        sys.exit(f'[!] {slug}/{part}: sem cards para gerar o carrossel')
+    total_caps = len(getattr(data, 'CHAPTERS', []) or [])
+    slides = montar_slides(book, cards, ch=ch, total_caps=total_caps)
+    n = len(slides) - 2  # nº de conceitos (sem capa/cta), p/ as stories
     out = _render(slides, OUT_ROOT / f'{slug}_{part}')
     qs = _best_quotes(slug, book, data, want=1)
     quote = _strip_html(qs[0]).rstrip(' .') if qs else book.get('subtitle', '')
