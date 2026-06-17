@@ -33,8 +33,45 @@ import sys
 import time
 from pathlib import Path
 
+# ---------------------------------------------------------------------------
+# CONSTANTS
+# ---------------------------------------------------------------------------
 ROOT = Path(__file__).resolve().parent
 VIDEOS = ROOT / 'videos'
+
+DAG_FILE = VIDEOS / 'dag.py'
+COST_TRACKER_FILE = VIDEOS / 'cost_tracker.py'
+CANAL_STATE_FILE = VIDEOS / 'canal-state.json'
+ORQUESTRADOR_FILE = VIDEOS / 'orquestrador.py'
+
+BOOKS_FILE = ROOT / 'books.json'
+CLAUDE_MD_FILE = ROOT / 'CLAUDE.md'
+BIBLIOTECA_MD_FILE = ROOT / 'biblioteca.md'
+REQUIREMENTS_FILE = ROOT / 'requirements.txt'
+VP100_FILE = ROOT / 'vp100.py'
+WORKTREES_DIR = ROOT / '.claude' / 'worktrees'
+
+DEFAULT_CHANNEL_NAME = 'Minuto Real'
+DEFAULT_FALLBACK_SLUG = 'padrao-bitcoin'
+
+DEFAULT_DAG = {
+    'skill': [], 'biblioteca': ['skill'], 'video_built': ['skill'],
+    'uploaded': ['video_built'], 'shorts': ['uploaded'], 'scheduled': ['shorts'],
+    'instagram': ['skill'], 'tiktok': ['shorts'], 'facebook': ['uploaded'],
+}
+
+DEFAULT_PRICES = {
+    'google_imagen': 0.04, 'google_veo_8s': 1.20, 'google_tts_1k': 0.016,
+    'youtube_upload': 0.0, 'instagram_api': 0.0
+}
+
+EXPECTED_SCRIPTS = [
+    'videos/gerar_video.py', 'gerar_carrossel.py', 'videos/instagram_post.py',
+    'videos/upload_youtube.py', 'publicar_livro.py', 'videos/dag.py',
+    'videos/cost_tracker.py', 'books.json'
+]
+
+ENTRYPOINT_SEEDS = {'orquestrador', 'publicar_livro', 'gerar_metadados', 'coletar_datas'}
 
 # ---------------------------------------------------------------------------
 # Cores ANSI (desligam fora de terminal ou com --no-color)
@@ -68,14 +105,10 @@ def _import(nome, caminho):
 
 
 def carregar_dag():
-    mod = _import('dag', VIDEOS / 'dag.py')
+    mod = _import('dag', DAG_FILE)
     if mod and hasattr(mod, 'DAG'):
         return mod.DAG, mod.topological_sort, mod.parallel_groups
-    dag = {
-        'skill': [], 'biblioteca': ['skill'], 'video_built': ['skill'],
-        'uploaded': ['video_built'], 'shorts': ['uploaded'], 'scheduled': ['shorts'],
-        'instagram': ['skill'], 'tiktok': ['shorts'], 'facebook': ['uploaded'],
-    }
+    dag = DEFAULT_DAG
     def topo(d):
         ind = {s: len(v) for s, v in d.items()}
         q, out = sorted([s for s, n in ind.items() if n == 0]), []
@@ -99,11 +132,10 @@ def carregar_dag():
 
 
 def carregar_precos():
-    mod = _import('cost_tracker', VIDEOS / 'cost_tracker.py')
+    mod = _import('cost_tracker', COST_TRACKER_FILE)
     if mod and hasattr(mod, 'PRICES'):
         return mod.PRICES
-    return {'google_imagen': 0.04, 'google_veo_8s': 1.20, 'google_tts_1k': 0.016,
-            'youtube_upload': 0.0, 'instagram_api': 0.0}
+    return DEFAULT_PRICES
 
 
 def carregar_json(caminho, default):
@@ -207,11 +239,11 @@ class Ctx:
         self.tela = Tela(self.p, self.animar)
         self.dag, self.topo, self.groups = carregar_dag()
         self.precos = carregar_precos()
-        self.estado = carregar_json(VIDEOS / 'canal-state.json', {'lanes': {}})
-        self.books = carregar_json(ROOT / 'books.json', [])
+        self.estado = carregar_json(CANAL_STATE_FILE, {'lanes': {}})
+        self.books = carregar_json(BOOKS_FILE, [])
 
     def banner(self, titulo, modo='leitura'):
-        canal = self.estado.get('channel_name', 'Minuto Real')
+        canal = self.estado.get('channel_name', DEFAULT_CHANNEL_NAME)
         sub = ('· SIMULAÇÃO (dry-run — nada é executado)' if modo == 'sim'
                else '· leitura do real (diagnóstico — nada é alterado)')
         print(self.p.bold(self.p.green('▶ ' + canal)) + '  ' + self.p.dim(sub))
@@ -228,7 +260,7 @@ class Ctx:
         prox = self.estado.get('upcoming_schedule') or []
         if prox and prox[0].get('slug'):
             return prox[0]['slug']
-        return ids[0] if ids else 'padrao-bitcoin'
+        return ids[0] if ids else DEFAULT_FALLBACK_SLUG
 
     def stages_da_lane(self, lane):
         alvo = LANE_TERMINAL.get(lane)
@@ -376,14 +408,12 @@ def cmd_custo(ctx, slug):
 def cmd_doctor(ctx):
     ctx.banner('sanidade do ambiente (vp100 doctor)')
     checks = []
-    scripts = ['videos/gerar_video.py', 'gerar_carrossel.py', 'videos/instagram_post.py',
-               'videos/upload_youtube.py', 'publicar_livro.py', 'videos/dag.py',
-               'videos/cost_tracker.py', 'books.json']
+    scripts = EXPECTED_SCRIPTS
     for rel in scripts:
         checks.append((rel, (ROOT / rel).exists()))
     ok_estado = bool(ctx.estado.get('lanes'))
     checks.append(('videos/canal-state.json (válido)', ok_estado))
-    checks.append(('requirements.txt', (ROOT / 'requirements.txt').exists()))
+    checks.append((REQUIREMENTS_FILE.name, REQUIREMENTS_FILE.exists()))
     for nome, ok in checks:
         mark = ctx.p.green('✓') if ok else ctx.p.red('✗')
         print(f'    {mark} {nome}')
@@ -402,12 +432,12 @@ def cmd_agentes(ctx):
     # governança: GitGuy declarado no CLAUDE.md do projeto
     gitguy = False
     try:
-        gitguy = 'gitguy' in (ROOT / 'CLAUDE.md').read_text(encoding='utf-8', errors='replace').lower()
+        gitguy = 'gitguy' in CLAUDE_MD_FILE.read_text(encoding='utf-8', errors='replace').lower()
     except Exception:
         pass
     # sessões de agente vivas no disco (worktrees do harness)
     wt = []
-    wtdir = ROOT / '.claude' / 'worktrees'
+    wtdir = WORKTREES_DIR
     if wtdir.exists():
         wt = sorted(d.name for d in wtdir.iterdir() if d.is_dir() and d.name.startswith('agent-'))
 
@@ -492,7 +522,7 @@ def _bib_perfil(ctx):
     lane = ctx.estado.get('lanes', {}).get('biblioteca', {})
     desc = ''
     try:
-        for ln in (ROOT / 'biblioteca.md').read_text(encoding='utf-8', errors='replace').splitlines():
+        for ln in BIBLIOTECA_MD_FILE.read_text(encoding='utf-8', errors='replace').splitlines():
             if 'Bibliotecario' in ln and 'respons' in ln.lower():
                 desc = ln.lstrip('> *').strip().replace('**', ''); break
     except Exception:
@@ -589,7 +619,7 @@ def _refs(p):
 
 def cmd_mapa(ctx):
     """Esqueleto REAL: stage→script (do orquestrador) × disco, + divergências e órfãos."""
-    orq = (VIDEOS / 'orquestrador.py').read_text(encoding='utf-8', errors='replace') if (VIDEOS / 'orquestrador.py').exists() else ''
+    orq = ORQUESTRADOR_FILE.read_text(encoding='utf-8', errors='replace') if ORQUESTRADOR_FILE.exists() else ''
     # stage -> script real: parse 'cmd = [sys.executable, "X.py"]' seguido de _run(cmd,_,'stage')
     stage_script, last = {}, None
     for ln in orq.splitlines():
@@ -611,7 +641,7 @@ def cmd_mapa(ctx):
                     continue
                 discos[p.stem] = p
     # alcançáveis a partir dos entrypoints (BFS por import + subprocess)
-    seeds = {'orquestrador', 'publicar_livro', 'gerar_metadados', 'coletar_datas'}
+    seeds = set(ENTRYPOINT_SEEDS)
     for bat in ROOT.glob('*.bat'):
         try:
             seeds |= set(re.findall(r'([A-Za-z_][\w\-]*)\.py', bat.read_text(encoding='utf-8', errors='replace')))
@@ -667,7 +697,7 @@ def cmd_mapa(ctx):
 
 def cmd_update(ctx):
     """(Re)instala o atalho `vp100` no PowerShell e mostra como ativar sem reabrir."""
-    alvo = str(ROOT / 'vp100.py')
+    alvo = str(VP100_FILE)
     func = 'function vp100 { python "' + alvo + '" @args }'
     docs = Path.home() / 'Documents'
     profiles = [docs / 'WindowsPowerShell' / 'Microsoft.PowerShell_profile.ps1',  # PS 5.1
@@ -693,7 +723,7 @@ def cmd_update(ctx):
         print(json.dumps({'vp100': alvo, 'profiles': [(s, str(p)) for s, p in res]}, ensure_ascii=False, indent=2))
         return 0
     ctx.banner('vp100 update — integração do terminal', 'leitura')
-    mtime = time.strftime('%d/%m %H:%M', time.localtime((ROOT / 'vp100.py').stat().st_mtime))
+    mtime = time.strftime('%d/%m %H:%M', time.localtime((VP100_FILE).stat().st_mtime))
     print('    script ...... ' + alvo + ctx.p.dim(f'  (atualizado {mtime})'))
     print(ctx.p.bold('\n  Função vp100 no PowerShell'))
     rotulo = {'ok': ctx.p.green('já estava'), 'add': ctx.p.gold('INSTALADA'),
@@ -732,33 +762,37 @@ def main(argv=None):
         return 0
     ctx = Ctx(a)
     v, rest = a.verbo, a.args
-    if v == 'publicar':
-        return cmd_publicar(ctx, rest[0] if rest else 'instagram', rest[1] if len(rest) > 1 else 'full')
-    if v == 'pipeline':
-        return cmd_pipeline(ctx, rest[0] if rest else 'full')
-    if v == 'agentes':
-        return cmd_agentes(ctx)
-    if v in ('bibliotecario', 'biblioteca'):
-        return cmd_bibliotecario(ctx, rest)
-    if v == 'status':
-        return cmd_status(ctx)
-    if v == 'dag':
-        return cmd_dag(ctx)
-    if v == 'mapa':
-        return cmd_mapa(ctx)
-    if v == 'custo':
-        return cmd_custo(ctx, rest[0] if rest else 'full')
-    if v == 'doctor':
-        return cmd_doctor(ctx)
-    if v == 'update':
-        return cmd_update(ctx)
+
+    routes = {
+        'publicar':      lambda: cmd_publicar(ctx, rest[0] if rest else 'instagram', rest[1] if len(rest) > 1 else 'full'),
+        'pipeline':      lambda: cmd_pipeline(ctx, rest[0] if rest else 'full'),
+        'agentes':       lambda: cmd_agentes(ctx),
+        'bibliotecario': lambda: cmd_bibliotecario(ctx, rest),
+        'biblioteca':    lambda: cmd_bibliotecario(ctx, rest),
+        'status':        lambda: cmd_status(ctx),
+        'dag':           lambda: cmd_dag(ctx),
+        'mapa':          lambda: cmd_mapa(ctx),
+        'custo':         lambda: cmd_custo(ctx, rest[0] if rest else 'full'),
+        'doctor':        lambda: cmd_doctor(ctx),
+        'update':        lambda: cmd_update(ctx),
+    }
+
+    if v in routes:
+        return routes[v]()
+
     import difflib
-    sug = difflib.get_close_matches(v, ['publicar', 'pipeline', 'agentes', 'bibliotecario',
-                                        'status', 'dag', 'custo', 'doctor', 'update', 'ajuda'], n=1)
-    print('comando desconhecido: ' + v + (f'  ·  você quis dizer "{sug[0]}"?' if sug else ''))
+    sug = difflib.get_close_matches(v, list(routes.keys()) + ['ajuda'], n=1)
+    print(f'comando desconhecido: {v}' + (f'  ·  você quis dizer "{sug[0]}"?' if sug else ''))
     print('\n' + AJUDA)
     return 2
 
 
 if __name__ == '__main__':
-    sys.exit(main())
+    try:
+        sys.exit(main())
+    except KeyboardInterrupt:
+        print("\n\033[33m⚠ Simulação interrompida (Ctrl+C).\033[0m")
+        sys.exit(130)
+    except Exception as e:
+        print(f"\n\033[31m✗ Erro fatal: {e}\033[0m")
+        sys.exit(1)
