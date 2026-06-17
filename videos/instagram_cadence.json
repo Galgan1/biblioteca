@@ -1,0 +1,44 @@
+{
+  "_doc": "Cadência semanal do Instagram do Minuto Real (Akita etapa 2: operacionaliza o INSTAGRAM-PLANO-ALVO.md). Reaproveita ativos JÁ produzidos: Shorts 9:16 -> Reels; cheat sheets/infográficos -> carrosséis; citações -> Reel curto. Estrela-guia = sends (DM) + saves.",
+  "_updated": "2026-06-17",
+  "versao": 1,
+  "canal": "Minuto Real",
+  "conta": "@minutoreal1701",
+  "fuso": "America/Sao_Paulo",
+  "principios": [
+    "Desenhar cada peça para SHARE (DM) e SAVE — os sinais nº1 e nº2 do algoritmo.",
+    "3-5 posts de feed/semana + Stories diários; abaixo de 3 o algoritmo trata a conta como morta.",
+    "Conteúdo ORIGINAL (sem marca d'água de TikTok); nada de repost.",
+    "Hook nos 3 primeiros segundos; legenda na tela; SEO na 1ª frase; 3-5 hashtags de nicho.",
+    "Link só na BIO (legenda não é clicável); afiliado Amazon de PRODUTO; disclosure obrigatória.",
+    "Cada slot reaproveita um ativo que já existe — produção nova = zero."
+  ],
+  "series_assinatura": [
+    {"nome": "1 Livro, 1 Ideia", "formato": "reel", "fonte": "_shorts/<slug>_NN.mp4 (cena-herói)"},
+    {"nome": "Cheat-sheet do livro", "formato": "carrossel", "fonte": "_carrossel/<slug>_overview/"},
+    {"nome": "Mito x Verdade", "formato": "reel|carrossel", "fonte": "curado do <slug>_data.py"},
+    {"nome": "Citação com contexto", "formato": "reel_curto", "fonte": "citação do livro + narração"}
+  ],
+  "slots": [
+    {"dia": "terca",  "hora": "12:00", "formato": "reel",      "serie": "1 Livro, 1 Ideia",       "cta": "salvar + manda pra alguém"},
+    {"dia": "quarta", "hora": "19:00", "formato": "carrossel", "serie": "Cheat-sheet do livro",   "cta": "salvar (campeão de saves)"},
+    {"dia": "quinta", "hora": "19:00", "formato": "reel",      "serie": "Mito x Verdade",         "cta": "comentar + share"},
+    {"dia": "sexta",  "hora": "12:00", "formato": "reel",      "serie": "1 Livro, 1 Ideia",       "cta": "CTA falado -> YouTube (link na bio)"},
+    {"dia": "sabado", "hora": "11:00", "formato": "reel_curto","serie": "Citação com contexto",   "cta": "salvar + share"}
+  ],
+  "stories": {
+    "cadencia": "diário (3-7 frames)",
+    "padrao": "seg-qui: bastidores + enquete ('qual livro você quer?'); sex: link sticker -> episódio no YouTube",
+    "regra_link": "link sticker (Stories) e link na bio são os ÚNICOS lugares de link clicável"
+  },
+  "kpis": {
+    "estrela_guia": "sends/alcance + saves/alcance",
+    "topo": "alcance de não-seguidores, plays",
+    "fundo": "cliques na bio, DM->clique afiliado, inscritos YT via UTM, comissões Amazon (tag andregalgani-20)"
+  },
+  "regras": [
+    "Melhores dias: quarta/quinta; janelas BRT 14-15h e 19-21h — confirmar no Insights da conta.",
+    "Se o ativo do slot não estiver pronto, pula o slot (não inventa post).",
+    "Substituir <slug> pelo livro da semana (mesmo de canal-state.json)."
+  ]
+}
