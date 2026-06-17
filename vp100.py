@@ -77,24 +77,20 @@ ENTRYPOINT_SEEDS = {'orquestrador', 'publicar_livro', 'gerar_metadados', 'coleta
 # Cores ANSI (desligam fora de terminal ou com --no-color)
 # ---------------------------------------------------------------------------
 class Paint:
-    def __init__(self, on):
-        self.on = on
-
-    def _w(self, s, c):
-        return f'\033[{c}m{s}\033[0m' if self.on else s
-
-    def green(self, s): return self._w(s, '32')
-    def gold(self, s): return self._w(s, '33')
-    def red(self, s): return self._w(s, '31')
-    def dim(self, s): return self._w(s, '2')
-    def bold(self, s): return self._w(s, '1')
-    def cyan(self, s): return self._w(s, '36')
+    def __init__(self, on): self.on = on
+    def c(self, s, c): return f'[{c}m{s}[0m' if self.on else str(s)
+    def green(self, s): return self.c(s, '32')
+    def gold(self, s): return self.c(s, '33')
+    def red(self, s): return self.c(s, '31')
+    def dim(self, s): return self.c(s, '2')
+    def bold(self, s): return self.c(s, '1')
+    def cyan(self, s): return self.c(s, '36')
 
 
 # ---------------------------------------------------------------------------
 # Leitura das fontes de verdade (com fallback gracioso)
 # ---------------------------------------------------------------------------
-def _import(nome, caminho):
+def _import(nome: str, caminho: Path | str):
     try:
         spec = importlib.util.spec_from_file_location(nome, caminho)
         mod = importlib.util.module_from_spec(spec)
@@ -104,7 +100,7 @@ def _import(nome, caminho):
         return None
 
 
-def carregar_dag():
+def carregar_dag() -> tuple:
     mod = _import('dag', DAG_FILE)
     if mod and hasattr(mod, 'DAG'):
         return mod.DAG, mod.topological_sort, mod.parallel_groups
@@ -120,7 +116,7 @@ def carregar_dag():
                     if ind[s] == 0:
                         q.append(s); q.sort()
         return out
-    def groups(d):
+    def groups(d: dict) -> list:
         rem, done, gs = set(d), set(), []
         while rem:
             g = {s for s in rem if all(x in done for x in d[s])}
@@ -131,17 +127,20 @@ def carregar_dag():
     return dag, topo, groups
 
 
-def carregar_precos():
+def carregar_precos() -> dict[str, float]:
+    precos: dict[str, float] = DEFAULT_PRICES.copy()
     mod = _import('cost_tracker', COST_TRACKER_FILE)
-    if mod and hasattr(mod, 'PRICES'):
-        return mod.PRICES
-    return DEFAULT_PRICES
+    if mod and hasattr(mod, 'PRICES') and isinstance(mod.PRICES, dict):
+        for k, v in mod.PRICES.items():
+            if isinstance(v, (int, float)):
+                precos[k] = float(v)
+    return precos
 
 
-def carregar_json(caminho, default):
+def carregar_json(caminho: Path | str, default: dict | list) -> dict | list:
     try:
         return json.loads(Path(caminho).read_text(encoding='utf-8', errors='replace'))
-    except Exception:
+    except (OSError, ValueError):
         return default
 
 
@@ -207,21 +206,19 @@ def fmt_tempo(seg):
 # ---------------------------------------------------------------------------
 # Encenação (animação)
 # ---------------------------------------------------------------------------
-SPIN = '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
-
-
 class Tela:
-    def __init__(self, paint, animar):
-        self.p = paint
-        self.animar = animar
-
-    def passo(self, prefixo, rotulo, dur, resumo, marca=''):
-        linha = f'{prefixo}{rotulo} '.ljust(40, '.')
+    def __init__(self, p, animar): self.p, self.animar = p, animar
+    def passo(self, pre, rot, dur, res, marca=''):
+        ln = f'{pre}{rot} '.ljust(40, '.')
         if self.animar and dur > 0:
-            t0, k = time.time(), 0
+            import time, sys
+            t0, k, S = time.time(), 0, '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
             while time.time() - t0 < dur:
-                sys.stdout.write('\r' + linha + ' ' + self.p.gold(SPIN[k % len(SPIN)]))
-                sys.stdout.flush(); time.sleep(0.08); k += 1
+                sys.stdout.write(f'{ln} {self.p.gold(S[k%10])}'); sys.stdout.flush(); time.sleep(0.08); k += 1
+        import sys
+        sys.stdout.write(f'{ln} {self.p.green("✓")} {self.p.dim(res + (" " + marca if marca else ""))}
+')
+        sys.stdout.flush(); time.sleep(0.08); k += 1
         extra = self.p.dim(' ' + marca) if marca else ''
         sys.stdout.write('\r' + linha + ' ' + self.p.green('✓') + ' ' + self.p.dim(resumo) + extra + '\n')
         sys.stdout.flush()
