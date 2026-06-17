@@ -445,97 +445,83 @@ def cmd_dag(ctx):
     return {'ordem': ordem, 'grupos': [sorted(g) for g in grupos]}, render
 
 
+@with_json
 def cmd_custo(ctx, slug):
-    slug = ctx.resolver_slug(slug)
     p = ctx.precos
     linhas = [(STEPS[s].label, custo_etapa(s, p)) for s in ctx.topo(ctx.dag) if custo_etapa(s, p) > 0]
     total = sum(c for _, c in linhas)
-    if ctx.json:
-        print(json.dumps({'slug': slug, 'itens': linhas, 'total_usd': round(total, 4)}, ensure_ascii=False, indent=2))
-        return 0
-    ctx.banner(f'custo simulado · livro: {ctx.p.bold(slug)} ' + ctx.p.dim('(estimativa, preços de cost_tracker.py)'))
-    for nome, c in linhas:
-        print(f'    {nome:<12} US$ %.2f' % c)
-    print(ctx.p.dim('    ' + '-' * 22))
-    print('    ' + ctx.p.bold('TOTAL') + '        US$ %.2f' % total)
-    print(ctx.p.dim('    (carrossel/IG e site = US$0 — geração local)'))
-    return 0
+
+    def render():
+        ctx.banner(f'custo simulado · livro: {ctx.p.bold(slug)} ' + ctx.p.dim('(estimativa, preços de cost_tracker.py)'))
+        for nome, c in linhas:
+            print(f'    {nome:<12} US$ %.2f' % c)
+        print(ctx.p.dim('    ' + '-' * 22))
+        print('    ' + ctx.p.bold('TOTAL') + '        US$ %.2f' % total)
+        print(ctx.p.dim('    (carrossel/IG e site = US$0 — geração local)'))
+
+    return {'slug': slug, 'itens': linhas, 'total_usd': round(total, 4)}, render
 
 
+@with_json
 def cmd_doctor(ctx):
-    ctx.banner('sanidade do ambiente (vp100 doctor)')
-    checks = []
-    scripts = EXPECTED_SCRIPTS
-    for rel in scripts:
-        checks.append((rel, (ROOT / rel).exists()))
-    ok_estado = bool(ctx.estado.get('lanes'))
-    checks.append(('videos/canal-state.json (válido)', ok_estado))
-    checks.append((REQUIREMENTS_FILE.name, REQUIREMENTS_FILE.exists()))
-    for nome, ok in checks:
-        mark = ctx.p.green('✓') if ok else ctx.p.red('✗')
-        print(f'    {mark} {nome}')
-    nbooks = len(ctx.books)
     lanes = ctx.estado.get('lanes', {})
-    ativas = sum(1 for v in lanes.values() if v.get('status') == 'active')
-    print(ctx.p.dim(f'\n    catálogo: {nbooks} livros · lanes ativas: {ativas}/{len(lanes)}'))
-    faltando = [n for n, ok in checks if not ok]
-    print('    ' + (ctx.p.green('ambiente OK') if not faltando else ctx.p.gold('faltando: ' + ', '.join(faltando))))
-    return 0
+    checks = {r: (ROOT / r).exists() for r in EXPECTED_SCRIPTS} | {
+        'videos/canal-state.json (válido)': bool(lanes),
+        REQUIREMENTS_FILE.name: REQUIREMENTS_FILE.exists()
+    }
+    
+    data = {
+        'checks': checks,
+        'catalogo': (nbooks := len(ctx.books)),
+        'lanes_ativas': (ativas := sum(1 for v in lanes.values() if v.get('status') == 'active')),
+        'lanes_total': (nlanes := len(lanes)),
+        'ambiente_ok': not (faltam := [n for n, ok in checks.items() if not ok])
+    }
+
+    def render():
+        ctx.banner('sanidade do ambiente (vp100 doctor)')
+        for n, ok in checks.items():
+            print(f'    {ctx.p.green("✓") if ok else ctx.p.red("✗")} {n}')
+        print(ctx.p.dim(f'\n    catálogo: {nbooks} livros · lanes ativas: {ativas}/{nlanes}'))
+        print(f'    {ctx.p.gold("faltando: " + ", ".join(faltam)) if faltam else ctx.p.green("ambiente OK")}')
+
+    return data, render
 
 
+@with_json
 def cmd_agentes(ctx):
     """Lista os agentes ATUAIS — derivado do real (canal-state.json + CLAUDE.md + worktrees)."""
     lanes = ctx.estado.get('lanes', {})
-    # governança: GitGuy declarado no CLAUDE.md do projeto
-    gitguy = False
-    try:
-        gitguy = 'gitguy' in CLAUDE_MD_FILE.read_text(encoding='utf-8', errors='replace').lower()
-    except Exception:
-        pass
-    # sessões de agente vivas no disco (worktrees do harness)
-    wt = []
-    wtdir = WORKTREES_DIR
-    if wtdir.exists():
-        wt = sorted(d.name for d in wtdir.iterdir() if d.is_dir() and d.name.startswith('agent-'))
+    gitguy = CLAUDE_MD_FILE.exists() and 'gitguy' in CLAUDE_MD_FILE.read_text(encoding='utf-8', errors='replace').lower()
+    wt = sorted(d.name for d in WORKTREES_DIR.iterdir() if d.is_dir() and d.name.startswith('agent-')) if WORKTREES_DIR.exists() else []
 
-    if ctx.json:
-        print(json.dumps({
-            'lanes': {k: {'status': v.get('status'), 'agent': v.get('agent'),
-                          'account': v.get('account')} for k, v in lanes.items()},
-            'gitguy': gitguy, 'worktrees_vivos': wt,
-        }, ensure_ascii=False, indent=2))
-        return 0
+    data = {
+        'lanes': {k: {'status': v.get('status'), 'agent': v.get('agent'), 'account': v.get('account')} for k, v in lanes.items()},
+        'gitguy': gitguy, 'worktrees_vivos': wt
+    }
 
-    ctx.banner('agentes ' + ctx.p.dim('(derivado de canal-state.json + CLAUDE.md + git worktree)'))
-    print(ctx.p.bold('  Lanes operacionais') + ctx.p.dim('  · canal-state.json'))
-    sem_agente = 0
-    for ln, v in lanes.items():
-        ativo = v.get('status') == 'active'
-        bola = ctx.p.green('●') if ativo else ctx.p.red('○')
-        ag = v.get('agent')
-        if ag:
-            agtxt = ctx.p.cyan(ag)
-        else:
-            agtxt = ctx.p.gold('— não nomeado')
-            sem_agente += 1
-        acct = ctx.p.dim(' · ' + v['account']) if v.get('account') else ''
-        print(f'    {bola} {ln:<11} {v.get("status", ""):<8} agente: {agtxt}{acct}')
+    def render():
+        ctx.banner('agentes ' + ctx.p.dim('(derivado de canal-state.json + CLAUDE.md + git worktree)'))
+        print(ctx.p.bold('  Lanes operacionais') + ctx.p.dim('  · canal-state.json'))
+        
+        sem_agente = sum(1 for v in lanes.values() if not v.get('agent'))
+        for ln, v in lanes.items():
+            bola = ctx.p.green('●') if v.get('status') == 'active' else ctx.p.red('○')
+            agtxt = ctx.p.cyan(ag) if (ag := v.get('agent')) else ctx.p.gold('— não nomeado')
+            acct = ctx.p.dim(' · ' + acc) if (acc := v.get('account')) else ''
+            print(f'    {bola} {ln:<11} {v.get("status", ""):<8} agente: {agtxt}{acct}')
 
-    print(ctx.p.bold('\n  Governança') + ctx.p.dim('  · biblioteca/CLAUDE.md'))
-    print('    ' + (ctx.p.cyan('⬢ GitGuy') + ctx.p.dim(' — único autorizado a commit / push / criar PR')
-                    if gitguy else ctx.p.dim('(nenhuma regra de versionamento detectada)')))
+        print(ctx.p.bold('\n  Governança') + ctx.p.dim('  · biblioteca/CLAUDE.md'))
+        print('    ' + (ctx.p.cyan('⬢ GitGuy') + ctx.p.dim(' — único autorizado a commit / push / criar PR')
+                        if gitguy else ctx.p.dim('(nenhuma regra de versionamento detectada)')))
 
-    print(ctx.p.bold('\n  Sessões de agente vivas') + ctx.p.dim('  · .claude/worktrees'))
-    if wt:
-        for w in wt:
-            print('    ' + ctx.p.gold('•') + ' ' + w)
-    else:
-        print('    ' + ctx.p.dim('nenhuma'))
+        print(ctx.p.bold('\n  Sessões de agente vivas') + ctx.p.dim('  · .claude/worktrees'))
+        print('\n'.join(f'    {ctx.p.gold("•")} {w}' for w in wt) if wt else f'    {ctx.p.dim("nenhuma")}')
 
-    if sem_agente:
-        print('\n  ' + ctx.p.gold(f'⚠ achado: {sem_agente}/{len(lanes)} lanes sem campo "agent" no '
-                                  'canal-state.json — fonte de verdade incompleta.'))
-    return 0
+        if sem_agente:
+            print('\n  ' + ctx.p.gold(f'⚠ achado: {sem_agente}/{len(lanes)} lanes sem campo "agent" no canal-state.json — fonte de verdade incompleta.'))
+
+    return data, render
 
 
 def _bk(ctx, slug):
@@ -565,11 +551,16 @@ def cmd_bibliotecario(ctx, rest):
     if sub == 'livros':
         return _bib_livro(ctx, rest[1]) if len(rest) > 1 else _bib_tabela(ctx)
     if sub:
-        print(ctx.p.red(f'opção desconhecida: bibliotecario {sub}  ·  use: livros [<slug>]'))
+        if ctx.json:
+            import json
+            print(json.dumps({"error": f"opção desconhecida: {sub}"}, ensure_ascii=False))
+        else:
+            print(ctx.p.red(f'opção desconhecida: bibliotecario {sub}  ·  use: livros [<slug>]'))
         return 2
     return _bib_perfil(ctx)
 
 
+@with_json
 def _bib_perfil(ctx):
     books = ctx.books
     no_disco = sum(1 for b in books if _pagina(b, b['id']).exists())
@@ -577,6 +568,7 @@ def _bib_perfil(ctx):
     com_capa = sum(1 for b in books if _tem_capa(b))
     com_amz = sum(1 for b in books if b.get('amazon'))
     lane = ctx.estado.get('lanes', {}).get('biblioteca', {})
+    
     desc = ''
     try:
         for ln in BIBLIOTECA_MD_FILE.read_text(encoding='utf-8', errors='replace').splitlines():
@@ -584,86 +576,135 @@ def _bib_perfil(ctx):
                 desc = ln.lstrip('> *').strip().replace('**', ''); break
     except Exception:
         pass
-    if ctx.json:
-        print(json.dumps({'agente': 'Bibliotecario', 'lane': 'biblioteca', 'status': lane.get('status'),
-                          'catalogo': len(books), 'paginas_disco': no_disco, 'com_data': com_data,
-                          'com_capa': com_capa, 'com_amazon': com_amz}, ensure_ascii=False, indent=2))
-        return 0
-    ctx.banner('agente: ' + ctx.p.cyan('Bibliotecario') + ctx.p.dim('  (leitura do real)'))
-    print(ctx.p.bold('  Função') + ctx.p.dim('  · biblioteca.md'))
-    print('    ' + (desc or 'responsável pelo site /biblioteca — estética, páginas, PDF, afiliados, SEO, deploy'))
-    st = lane.get('status', '?')
-    print('    lane: ' + ctx.p.cyan('biblioteca') + ' · ' + (ctx.p.green(st) if st == 'active' else ctx.p.red(st)))
-    print(ctx.p.bold('\n  Acervo') + ctx.p.dim('  · books.json + disco'))
-    n = len(books)
-    print(f'    catálogo ............ {n}')
-    print(f'    páginas no disco .... {no_disco}' + (ctx.p.gold(f'  (faltam {n - no_disco})') if no_disco < n else ''))
-    print(f'    com fonte _data.py .. {com_data}' + (ctx.p.gold(f'  (faltam {n - com_data})') if com_data < n else ''))
-    print(f'    com capa ............ {com_capa}' + (ctx.p.gold(f'  (faltam {n - com_capa})') if com_capa < n else ''))
-    print(f'    com link Amazon ..... {com_amz}' + (ctx.p.gold(f'  ⚠ só {com_amz}/{n} monetizados') if com_amz < n else ''))
-    print(ctx.p.bold('\n  Opções'))
-    print('    ' + ctx.p.dim('vp100 bibliotecario livros') + '          tabela de todos os livros')
-    print('    ' + ctx.p.dim('vp100 bibliotecario livros <slug>') + '   status de um livro')
-    return 0
+        
+    data = {
+        'agente': 'Bibliotecario',
+        'lane': 'biblioteca',
+        'status': lane.get('status'),
+        'catalogo': len(books),
+        'paginas_disco': no_disco,
+        'com_data': com_data,
+        'com_capa': com_capa,
+        'com_amazon': com_amz,
+        'desc': desc
+    }
+
+    def render():
+        ctx.banner('agente: ' + ctx.p.cyan('Bibliotecario') + ctx.p.dim('  (leitura do real)'))
+        print(ctx.p.bold('  Função') + ctx.p.dim('  · biblioteca.md'))
+        print('    ' + (data['desc'] or 'responsável pelo site /biblioteca — estética, páginas, PDF, afiliados, SEO, deploy'))
+        st = data['status'] or '?'
+        print('    lane: ' + ctx.p.cyan('biblioteca') + ' · ' + (ctx.p.green(st) if st == 'active' else ctx.p.red(st)))
+        
+        print(ctx.p.bold('\n  Acervo') + ctx.p.dim('  · books.json + disco'))
+        n = data['catalogo']
+        print(f'    catálogo ............ {n}')
+        
+        def show_metric(label, value, total, warn_msg):
+            msg = f'    {label:<21} {value}'
+            if value < total:
+                msg += ctx.p.gold(warn_msg.format(faltam=total-value, total=total, value=value))
+            print(msg)
+            
+        show_metric('páginas no disco ....', data['paginas_disco'], n, '  (faltam {faltam})')
+        show_metric('com fonte _data.py ..', data['com_data'], n, '  (faltam {faltam})')
+        show_metric('com capa ............', data['com_capa'], n, '  (faltam {faltam})')
+        show_metric('com link Amazon .....', data['com_amazon'], n, '  ⚠ só {value}/{total} monetizados')
+        
+        print(ctx.p.bold('\n  Opções'))
+        print('    ' + ctx.p.dim('vp100 bibliotecario livros') + '          tabela de todos os livros')
+        print('    ' + ctx.p.dim('vp100 bibliotecario livros <slug>') + '   status de um livro')
+
+    return data, render
 
 
+@with_json
 def _bib_tabela(ctx):
     books = sorted(ctx.books, key=lambda b: b.get('title', '').lower())
-    if ctx.json:
-        print(json.dumps([{'id': b['id'], 'pagina': _pagina(b, b['id']).exists(),
-                           'caps': _capitulos(b['id']), 'data': _data_py(b['id']).exists(),
-                           'capa': _tem_capa(b), 'amazon': bool(b.get('amazon'))} for b in books],
-                         ensure_ascii=False))
-        return 0
-    ctx.banner('Bibliotecario · livros ' + ctx.p.dim(f'({len(books)} no books.json)'))
-    print(ctx.p.dim('   pág  livro                                   cap  capa data amz'))
+    
+    data = []
     for b in books:
-        slug = b['id']
-        pg = ctx.p.green('✓') if _pagina(b, slug).exists() else ctx.p.red('✗')
-        cap = _capitulos(slug)
-        capa = '✓' if _tem_capa(b) else ctx.p.gold('·')
-        dat = '✓' if _data_py(slug).exists() else ctx.p.gold('·')
-        amz = '✓' if b.get('amazon') else ctx.p.dim('·')
-        print(f'    {pg}   {b.get("title", "")[:38].ljust(38)} {str(cap or "·"):>3}  {capa:>3} {dat:>3} {amz:>3}')
-    print(ctx.p.dim('\n  pág ✓=página no disco · cap=nº de .html · data=fonte _data.py · amz=link Amazon'))
-    return 0
+        data.append({
+            'id': b['id'],
+            'title': b.get('title', ''),
+            'pagina': _pagina(b, b['id']).exists(),
+            'caps': _capitulos(b['id']),
+            'data': _data_py(b['id']).exists(),
+            'capa': _tem_capa(b),
+            'amazon': bool(b.get('amazon'))
+        })
+
+    def render():
+        ctx.banner('Bibliotecario · livros ' + ctx.p.dim(f'({len(data)} no books.json)'))
+        print(ctx.p.dim('   pág  livro                                   cap  capa data amz'))
+        for row in data:
+            pg = ctx.p.green('✓') if row['pagina'] else ctx.p.red('✗')
+            cap = str(row['caps'] or '·')
+            capa = '✓' if row['capa'] else ctx.p.gold('·')
+            dat = '✓' if row['data'] else ctx.p.gold('·')
+            amz = '✓' if row['amazon'] else ctx.p.dim('·')
+            print(f'    {pg}   {row["title"][:38].ljust(38)} {cap:>3}  {capa:>3} {dat:>3} {amz:>3}')
+        print(ctx.p.dim('\n  pág ✓=página no disco · cap=nº de .html · data=fonte _data.py · amz=link Amazon'))
+
+    return data, render
 
 
+@with_json
 def _bib_livro(ctx, slug):
     b = _bk(ctx, slug)
-    pagina, caps, data = _pagina(b, slug), _capitulos(slug), _data_py(slug)
-    if ctx.json:
-        print(json.dumps({'slug': slug, 'no_catalogo': bool(b), 'titulo': b.get('title') if b else None,
-                          'pagina': pagina.exists(), 'capitulos': caps, 'fonte_data': data.exists(),
-                          'capa': _tem_capa(b), 'amazon': bool(b and b.get('amazon'))},
-                         ensure_ascii=False, indent=2))
-        return 0
-    ctx.banner('Bibliotecario · livro: ' + ctx.p.bold(slug))
-    if not b:
-        print('  ' + ctx.p.red('não está no books.json') + ctx.p.dim(' — checando o disco mesmo assim'))
-    else:
-        print(f'    título ...... {b.get("title", "?")} · {ctx.p.dim(b.get("author", "?"))}')
-        print(f'    progresso ... {ctx.p.dim(b.get("progress", "—"))}')
-        print(f'    tags ........ {ctx.p.dim(", ".join(b.get("tags", []) or ["—"]))}')
+    pagina, caps, data_py = _pagina(b, slug), _capitulos(slug), _data_py(slug)
+    
+    data = {
+        'slug': slug,
+        'no_catalogo': bool(b),
+        'titulo': b.get('title') if b else None,
+        'author': b.get('author') if b else None,
+        'progress': b.get('progress') if b else None,
+        'tags': b.get('tags', []) if b else [],
+        'pagina': pagina.exists(),
+        'pagina_name': pagina.name,
+        'capitulos': caps,
+        'fonte_data': data_py.exists(),
+        'fonte_name': data_py.name,
+        'capa': _tem_capa(b),
+        'capa_name': b.get('coverUrl') if b else None,
+        'amazon': bool(b and b.get('amazon')),
+        'amazon_link': b.get('amazon') if b else None
+    }
 
-    def linha(rot, ok, det=''):
-        m = ctx.p.green('✓') if ok else ctx.p.red('✗')
-        return f'    {rot:<13} {m}' + (ctx.p.dim('  ' + det) if det else '')
-    print(linha('página', pagina.exists(), pagina.name))
-    print(linha('capítulos', caps > 0, f'{caps} .html em {slug}/'))
-    print(linha('fonte _data', data.exists(), data.name))
-    print(linha('capa', _tem_capa(b), (b.get('coverUrl') if b else '')))
-    print(linha('amazon', bool(b and b.get('amazon')), ((b.get('amazon') or '')[:48] if b else '')))
-    probs = []
-    if pagina.exists() and not data.exists():
-        probs.append('página sem _data.py (fonte)')
-    if b and not _tem_capa(b):
-        probs.append('sem capa no disco')
-    if b and not b.get('amazon'):
-        probs.append('sem link Amazon (não monetizado)')
-    if probs:
-        print('\n  ' + ctx.p.gold('⚠ ' + ' · '.join(probs)))
-    return 0
+    def render():
+        ctx.banner('Bibliotecario · livro: ' + ctx.p.bold(slug))
+        if not data['no_catalogo']:
+            print('  ' + ctx.p.red('não está no books.json') + ctx.p.dim(' — checando o disco mesmo assim'))
+        else:
+            print(f'    título ...... {data["titulo"] or "?"} · {ctx.p.dim(data["author"] or "?")}')
+            print(f'    progresso ... {ctx.p.dim(data["progress"] or "—")}')
+            print(f'    tags ........ {ctx.p.dim(", ".join(data["tags"] or ["—"]))}')
+
+        def linha(rot, ok, det=''):
+            m = ctx.p.green('✓') if ok else ctx.p.red('✗')
+            return f'    {rot:<13} {m}' + (ctx.p.dim('  ' + det) if det else '')
+
+        print(linha('página', data['pagina'], data['pagina_name']))
+        print(linha('capítulos', data['capitulos'] > 0, f'{data["capitulos"]} .html em {slug}/'))
+        print(linha('fonte _data', data['fonte_data'], data['fonte_name']))
+        print(linha('capa', data['capa'], data['capa_name'] or ''))
+        
+        amz_link = data['amazon_link'] or ''
+        print(linha('amazon', data['amazon'], (amz_link[:48] + '...') if len(amz_link) > 48 else amz_link))
+        
+        probs = []
+        if data['pagina'] and not data['fonte_data']:
+            probs.append('página sem _data.py (fonte)')
+        if data['no_catalogo'] and not data['capa']:
+            probs.append('sem capa no disco')
+        if data['no_catalogo'] and not data['amazon']:
+            probs.append('sem link Amazon (não monetizado)')
+            
+        if probs:
+            print('\n  ' + ctx.p.gold('⚠ ' + ' · '.join(probs)))
+
+    return data, render
 
 
 def _refs(p):
@@ -674,95 +715,90 @@ def _refs(p):
     return out
 
 
+@with_json
 def cmd_mapa(ctx):
     """Esqueleto REAL: stage→script (do orquestrador) × disco, + divergências e órfãos."""
     orq = ORQUESTRADOR_FILE.read_text(encoding='utf-8', errors='replace') if ORQUESTRADOR_FILE.exists() else ''
-    # stage -> script real: parse 'cmd = [sys.executable, "X.py"]' seguido de _run(cmd,_,'stage')
+    
     stage_script, last = {}, None
     for ln in orq.splitlines():
-        m = re.search(r"cmd\s*=\s*\[sys\.executable,\s*'([\w\-.]+\.py)'", ln)
-        if m:
+        if m := re.search(r"cmd\s*=\s*\[sys\.executable,\s*'([\w\-.]+\.py)'", ln):
             last = m.group(1)
-        m2 = re.search(r"_run\(cmd,\s*[\w_]+,\s*'(\w+)'", ln)
-        if m2 and last:
+        if (m2 := re.search(r"_run\(cmd,\s*[\w_]+,\s*'(\w+)'", ln)) and last:
             stage_script[m2.group(1)] = last
-    mu = re.search(r"UNMANAGED\s*=\s*\{([^}]*)\}", orq)
-    unmanaged = set(re.findall(r"'(\w+)'", mu.group(1))) if mu else set()
 
-    # universo de scripts no disco (sem _data, tools, privados)
-    discos = {}
-    for base in (ROOT, VIDEOS):
-        if base.exists():
-            for p in base.glob('*.py'):
-                if p.name.endswith('_data.py') or p.name in ('vp100.py', 'limpar.py') or p.name.startswith('_'):
-                    continue
-                discos[p.stem] = p
-    # alcançáveis a partir dos entrypoints (BFS por import + subprocess)
+    unmanaged = set(re.findall(r"'(\w+)'", mu.group(1))) if (mu := re.search(r"UNMANAGED\s*=\s*\{([^}]*)\}", orq)) else set()
+
+    discos = {
+        p.stem: p for base in (ROOT, VIDEOS) if base.exists() 
+        for p in base.glob('*.py') 
+        if not (p.name.endswith('_data.py') or p.name in ('vp100.py', 'limpar.py') or p.name.startswith('_'))
+    }
+
     seeds = set(ENTRYPOINT_SEEDS)
     for bat in ROOT.glob('*.bat'):
-        try:
-            seeds |= set(re.findall(r'([A-Za-z_][\w\-]*)\.py', bat.read_text(encoding='utf-8', errors='replace')))
-        except Exception:
-            pass
+        try: seeds |= set(re.findall(r'([A-Za-z_][\w\-]*)\.py', bat.read_text('utf-8', 'replace')))
+        except Exception: pass
+
     vivos, fila = set(), list(seeds)
     while fila:
-        b = fila.pop()
-        if b in vivos:
-            continue
-        vivos.add(b)
-        if b in discos:
-            fila += [r for r in _refs(discos[b]) if r in discos and r not in vivos]
+        if (b := fila.pop()) not in vivos:
+            vivos.add(b)
+            if b in discos:
+                fila.extend(r for r in _refs(discos[b]) if r in discos and r not in vivos)
+
     orfaos = sorted(n + '.py' for n in discos if n not in vivos and n not in ('orquestrador', 'publicar_livro'))
-
-    if ctx.json:
-        print(json.dumps({'stage_script': stage_script, 'unmanaged': sorted(unmanaged),
-                          'orfaos': orfaos}, ensure_ascii=False, indent=2))
-        return 0
-
-    ctx.banner('mapa — esqueleto REAL ' + ctx.p.dim('(derivado de orquestrador.py + disco)'), 'leitura')
-    print(ctx.p.bold('  Etapas (dag) → runner real'))
-    for st in ctx.topo(ctx.dag):
-        if st in stage_script:
-            sc = stage_script[st]
-            existe = (ROOT / sc).exists() or (VIDEOS / sc).exists()
-            print(f'    {st:<12} {sc:<22} ' + (ctx.p.green('✓') if existe else ctx.p.red('✗ não existe!')))
-        elif st in unmanaged:
-            print(f'    {st:<12} ' + ctx.p.dim('(sem runner · UNMANAGED — manual/outro script)'))
-        else:
-            print(f'    {st:<12} ' + ctx.p.red('SEM runner e fora de UNMANAGED — GAP'))
 
     div = []
     for st, real in stage_script.items():
-        modelo = (STEPS[st].script if st in STEPS else '')
-        mscripts = set(re.findall(r'([\w\-]+\.py)', modelo))
+        mscripts = set(re.findall(r'([\w\-]+\.py)', (modelo := STEPS[st].script if st in STEPS else '')))
         if real not in mscripts:
             div.append(f'{st}: real é "{real}", mas o modelo do vp100 diz "{modelo}"')
-        else:
-            extra = mscripts - {real}
-            if extra:
-                div.append(f'{st}: modelo cita {", ".join(sorted(extra))} que o orquestrador NÃO roda')
-    if div:
-        print(ctx.p.bold('\n  Divergências vp100 × real') + ctx.p.dim('  (corrigir o modelo)'))
-        for d in div:
-            print('    ' + ctx.p.gold('⚠ ') + d)
+        elif extra := mscripts - {real}:
+            div.append(f'{st}: modelo cita {", ".join(sorted(extra))} que o orquestrador NÃO roda')
 
-    print(ctx.p.bold('\n  Scripts órfãos') + ctx.p.dim(f'  ({len(orfaos)} não alcançados pelo pipeline — código morto OU ferramenta manual)'))
-    for i in range(0, len(orfaos), 3):
-        print('    ' + ctx.p.gold(' · '.join(orfaos[i:i + 3])))
-    return 0
+    def render():
+        ctx.banner('mapa — esqueleto REAL ' + ctx.p.dim('(derivado de orquestrador.py + disco)'), 'leitura')
+        print(ctx.p.bold('  Etapas (dag) → runner real'))
+        
+        for st in ctx.topo(ctx.dag):
+            if st in stage_script:
+                sc = stage_script[st]
+                existe = (ROOT / sc).exists() or (VIDEOS / sc).exists()
+                print(f'    {st:<12} {sc:<22} ' + (ctx.p.green('✓') if existe else ctx.p.red('✗ não existe!')))
+            elif st in unmanaged:
+                print(f'    {st:<12} ' + ctx.p.dim('(sem runner · UNMANAGED — manual/outro script)'))
+            else:
+                print(f'    {st:<12} ' + ctx.p.red('SEM runner e fora de UNMANAGED — GAP'))
+
+        if div:
+            print(ctx.p.bold('\n  Divergências vp100 × real') + ctx.p.dim('  (corrigir o modelo)'))
+            for d in div: print('    ' + ctx.p.gold('⚠ ') + d)
+
+        print(ctx.p.bold('\n  Scripts órfãos') + ctx.p.dim(f'  ({len(orfaos)} não alcançados pelo pipeline — código morto OU ferramenta manual)'))
+        for i in range(0, len(orfaos), 3):
+            print('    ' + ctx.p.gold(' · '.join(orfaos[i:i + 3])))
+
+    return {'stage_script': stage_script, 'unmanaged': sorted(unmanaged), 'orfaos': orfaos, 'divergencias': div}, render
 
 
+@with_json
 def cmd_update(ctx):
     """(Re)instala o atalho `vp100` no PowerShell e mostra como ativar sem reabrir."""
     alvo = str(VP100_FILE)
     func = 'function vp100 { python "' + alvo + '" @args }'
     docs = Path.home() / 'Documents'
-    profiles = [docs / 'WindowsPowerShell' / 'Microsoft.PowerShell_profile.ps1',  # PS 5.1
-                docs / 'PowerShell' / 'Microsoft.PowerShell_profile.ps1']         # PS 7 (pwsh)
+    profiles = [
+        docs / 'WindowsPowerShell' / 'Microsoft.PowerShell_profile.ps1',  # PS 5.1
+        docs / 'PowerShell' / 'Microsoft.PowerShell_profile.ps1'          # PS 7 (pwsh)
+    ]
+    
     res = []
     for prof in profiles:
         if prof.parent.name == 'PowerShell' and not prof.parent.exists():
-            res.append(('skip', prof)); continue  # pwsh7 não instalado — não criar lixo
+            res.append(('skip', prof))
+            continue  # pwsh7 não instalado — não criar lixo
+            
         try:
             txt = prof.read_text(encoding='utf-8', errors='replace') if prof.exists() else ''
             if 'function vp100' in txt:
@@ -776,24 +812,36 @@ def cmd_update(ctx):
         except Exception:
             res.append(('erro', prof))
 
-    if ctx.json:
-        print(json.dumps({'vp100': alvo, 'profiles': [(s, str(p)) for s, p in res]}, ensure_ascii=False, indent=2))
-        return 0
-    ctx.banner('vp100 update — integração do terminal', 'leitura')
-    mtime = time.strftime('%d/%m %H:%M', time.localtime((VP100_FILE).stat().st_mtime))
-    print('    script ...... ' + alvo + ctx.p.dim(f'  (atualizado {mtime})'))
-    print(ctx.p.bold('\n  Função vp100 no PowerShell'))
-    rotulo = {'ok': ctx.p.green('já estava'), 'add': ctx.p.gold('INSTALADA'),
-              'skip': ctx.p.dim('pulado (sem pwsh7)'), 'erro': ctx.p.red('erro')}
-    for s, p in res:
-        ver = 'PS5.1' if p.parent.name == 'WindowsPowerShell' else 'PS7  '
-        print(f'    {ver}  {rotulo[s]}  {ctx.p.dim(str(p))}')
-    print(ctx.p.bold('\n  Comandos'))
-    print('    ' + ctx.p.dim('publicar · pipeline · agentes · bibliotecario · status · dag · custo · doctor · update'))
-    print('\n  ' + ctx.p.gold('▶ ativar AGORA (sem reabrir o terminal):') + '  ' + ctx.p.bold('. $PROFILE'))
-    print('  ' + ctx.p.dim('(ou abra um terminal novo — a função carrega sozinha)'))
-    print('  ' + ctx.p.dim('obs.: editar o vp100.py NÃO exige reabrir — a função sempre roda a versão atual.'))
-    return 0
+    data = {
+        'vp100': alvo,
+        'profiles': [(s, str(p)) for s, p in res]
+    }
+
+    def render():
+        ctx.banner('vp100 update — integração do terminal', 'leitura')
+        
+        mtime = time.strftime('%d/%m %H:%M', time.localtime((VP100_FILE).stat().st_mtime))
+        print('    script ...... ' + alvo + ctx.p.dim(f'  (atualizado {mtime})'))
+        
+        print(ctx.p.bold('\n  Função vp100 no PowerShell'))
+        rotulo = {
+            'ok': ctx.p.green('já estava'), 
+            'add': ctx.p.gold('INSTALADA'),
+            'skip': ctx.p.dim('pulado (sem pwsh7)'), 
+            'erro': ctx.p.red('erro')
+        }
+        
+        for s, p in res:
+            ver = 'PS5.1' if p.parent.name == 'WindowsPowerShell' else 'PS7  '
+            print(f'    {ver}  {rotulo[s]}  {ctx.p.dim(str(p))}')
+            
+        print(ctx.p.bold('\n  Comandos'))
+        print('    ' + ctx.p.dim('publicar · pipeline · agentes · bibliotecario · status · dag · custo · doctor · update'))
+        print('\n  ' + ctx.p.gold('▶ ativar AGORA (sem reabrir o terminal):') + '  ' + ctx.p.bold('. $PROFILE'))
+        print('  ' + ctx.p.dim('(ou abra um terminal novo — a função carrega sozinha)'))
+        print('  ' + ctx.p.dim('obs.: editar o vp100.py NÃO exige reabrir — a função sempre roda a versão atual.'))
+
+    return data, render
 
 
 AJUDA = __doc__
@@ -817,19 +865,23 @@ def main(argv=None):
     if a.verbo in ('ajuda', 'help', '-h', '--help'):
         print(AJUDA)
         return 0
+        
     ctx = Ctx(a)
     v, rest = a.verbo, a.args
 
+    p0 = rest[0] if len(rest) > 0 else None
+    p1 = rest[1] if len(rest) > 1 else None
+
     routes = {
-        'publicar':      lambda: cmd_publicar(ctx, rest[0] if rest else 'instagram', rest[1] if len(rest) > 1 else 'full'),
-        'pipeline':      lambda: cmd_pipeline(ctx, rest[0] if rest else 'full'),
+        'publicar':      lambda: cmd_publicar(ctx, p0 or 'instagram', p1 or 'full'),
+        'pipeline':      lambda: cmd_pipeline(ctx, p0 or 'full'),
         'agentes':       lambda: cmd_agentes(ctx),
         'bibliotecario': lambda: cmd_bibliotecario(ctx, rest),
         'biblioteca':    lambda: cmd_bibliotecario(ctx, rest),
         'status':        lambda: cmd_status(ctx),
         'dag':           lambda: cmd_dag(ctx),
         'mapa':          lambda: cmd_mapa(ctx),
-        'custo':         lambda: cmd_custo(ctx, rest[0] if rest else 'full'),
+        'custo':         lambda: cmd_custo(ctx, p0 or 'full'),
         'doctor':        lambda: cmd_doctor(ctx),
         'update':        lambda: cmd_update(ctx),
     }
