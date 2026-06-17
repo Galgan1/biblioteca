@@ -14,10 +14,13 @@ Uso:
   vp100 publicar <lane> <full|slug>   simula a publicação numa lane
   vp100 pipeline <slug>               o livro inteiro (todas as lanes, ordem do dag)
   vp100 agentes                       lista os agentes/lanes atuais (derivado do real)
+  vp100 bibliotecario [livros [slug]] perfil do agente · tabela de livros · status de 1 livro
   vp100 status                        lanes, agenda, pendências, circuit breakers
   vp100 dag                           grafo de dependências + grupos paralelos
+  vp100 mapa                          esqueleto REAL: stage→script, divergências e órfãos
   vp100 custo <slug>                  custo simulado (PRICES reais)
   vp100 doctor                        sanidade do ambiente simulado
+  vp100 update                        (re)instala o atalho 'vp100' no terminal e mostra como ativar
   vp100 ajuda
 
 Flags: --speed fast|real  --verbose  --seed N  --no-color  --json
@@ -25,6 +28,7 @@ Flags: --speed fast|real  --verbose  --seed N  --no-color  --json
 import argparse
 import importlib.util
 import json
+import re
 import sys
 import time
 from pathlib import Path
@@ -137,16 +141,16 @@ STEPS = {
     'scheduled':   dict(label='agendar',    script='agendar_lote.py',
                         produz='posts agendados (qua/qui)', seg=12,
                         subs=['calcular slots', 'setPublishAt']),
-    'instagram':   dict(label='instagram',  script='gerar_carrossel.py + instagram_post.py',
+    'instagram':   dict(label='instagram',  script='gerar_carrossel.py',
                         produz='carrossel no @minutoreal1701', seg=38,
                         subs=['gerar_carrossel (7 cards)', 'legenda 5 As + disclosure',
-                              'criar media container', 'media_publish', 'permalink']),
+                              'post manual via instagram_post.py (fora do orquestrador)']),
     'tiktok':      dict(label='tiktok',     script='tiktok_post.py --draft',
                         produz='RASCUNHO no TikTok', seg=30,
                         subs=['refresh token', 'upload draft']),
-    'facebook':    dict(label='facebook',   script='facebook_post.py',
-                        produz='post nativo + link no 1º comentário', seg=25,
-                        subs=['reusar ativo do IG', 'publicar', 'comentar CTA']),
+    'facebook':    dict(label='facebook',   script='facebook_publicar.py',
+                        produz='vídeo nativo + link no 1º comentário', seg=25,
+                        subs=['reusar ativo do IG', 'publicar nativo', 'comentar CTA (link)']),
 }
 
 LANE_TERMINAL = {
@@ -206,9 +210,11 @@ class Ctx:
         self.estado = carregar_json(VIDEOS / 'canal-state.json', {'lanes': {}})
         self.books = carregar_json(ROOT / 'books.json', [])
 
-    def banner(self, titulo):
+    def banner(self, titulo, modo='leitura'):
         canal = self.estado.get('channel_name', 'Minuto Real')
-        print(self.p.bold(self.p.green('▶ ' + canal)) + '  ' + self.p.dim('· SIMULAÇÃO (dry-run — nada é executado)'))
+        sub = ('· SIMULAÇÃO (dry-run — nada é executado)' if modo == 'sim'
+               else '· leitura do real (diagnóstico — nada é alterado)')
+        print(self.p.bold(self.p.green('▶ ' + canal)) + '  ' + self.p.dim(sub))
         if titulo:
             print('  ' + titulo)
         print()
@@ -257,7 +263,7 @@ def cmd_publicar(ctx, lane, escopo):
     slug = ctx.resolver_slug(escopo)
     info = ctx.estado.get('lanes', {}).get(lane, {})
     conta = info.get('account', '')
-    ctx.banner(f'lane: {ctx.p.cyan(lane)}' + (f' · {conta}' if conta else '') + f' · livro: {ctx.p.bold(slug)}')
+    ctx.banner(f'lane: {ctx.p.cyan(lane)}' + (f' · {conta}' if conta else '') + f' · livro: {ctx.p.bold(slug)}', 'sim')
     if info.get('status') == 'blocked':
         print(ctx.p.gold(f'  ⚠ lane BLOQUEADA ({info.get("reason", "?")}) — simulando o fluxo mesmo assim.\n'))
 
@@ -285,7 +291,7 @@ def cmd_publicar(ctx, lane, escopo):
 def cmd_pipeline(ctx, slug):
     slug = ctx.resolver_slug(slug)
     ativas = [ln for ln, v in ctx.estado.get('lanes', {}).items() if v.get('status') == 'active']
-    ctx.banner(f'pipeline COMPLETO · livro: {ctx.p.bold(slug)} · lanes ativas: {ctx.p.cyan(", ".join(ativas) or "—")}')
+    ctx.banner(f'pipeline COMPLETO · livro: {ctx.p.bold(slug)} · lanes ativas: {ctx.p.cyan(", ".join(ativas) or "—")}', 'sim')
     ordem = ctx.topo(ctx.dag)
     custo = 0.0
     for gi, grupo in enumerate(ctx.groups(ctx.dag), 1):
@@ -445,6 +451,264 @@ def cmd_agentes(ctx):
     return 0
 
 
+def _bk(ctx, slug):
+    return next((b for b in ctx.books if b.get('id') == slug), None)
+
+
+def _pagina(b, slug):
+    return ROOT / ((b or {}).get('url') or f'{slug}.html')
+
+
+def _capitulos(slug):
+    d = ROOT / slug
+    return len(list(d.glob('*.html'))) if d.is_dir() else 0
+
+
+def _data_py(slug):
+    return ROOT / (slug.replace('-', '_') + '_data.py')
+
+
+def _tem_capa(b):
+    cu = (b or {}).get('coverUrl')
+    return bool(cu) and (ROOT / cu).exists()
+
+
+def cmd_bibliotecario(ctx, rest):
+    sub = rest[0] if rest else None
+    if sub == 'livros':
+        return _bib_livro(ctx, rest[1]) if len(rest) > 1 else _bib_tabela(ctx)
+    if sub:
+        print(ctx.p.red(f'opção desconhecida: bibliotecario {sub}  ·  use: livros [<slug>]'))
+        return 2
+    return _bib_perfil(ctx)
+
+
+def _bib_perfil(ctx):
+    books = ctx.books
+    no_disco = sum(1 for b in books if _pagina(b, b['id']).exists())
+    com_data = sum(1 for b in books if _data_py(b['id']).exists())
+    com_capa = sum(1 for b in books if _tem_capa(b))
+    com_amz = sum(1 for b in books if b.get('amazon'))
+    lane = ctx.estado.get('lanes', {}).get('biblioteca', {})
+    desc = ''
+    try:
+        for ln in (ROOT / 'biblioteca.md').read_text(encoding='utf-8', errors='replace').splitlines():
+            if 'Bibliotecario' in ln and 'respons' in ln.lower():
+                desc = ln.lstrip('> *').strip().replace('**', ''); break
+    except Exception:
+        pass
+    if ctx.json:
+        print(json.dumps({'agente': 'Bibliotecario', 'lane': 'biblioteca', 'status': lane.get('status'),
+                          'catalogo': len(books), 'paginas_disco': no_disco, 'com_data': com_data,
+                          'com_capa': com_capa, 'com_amazon': com_amz}, ensure_ascii=False, indent=2))
+        return 0
+    ctx.banner('agente: ' + ctx.p.cyan('Bibliotecario') + ctx.p.dim('  (leitura do real)'))
+    print(ctx.p.bold('  Função') + ctx.p.dim('  · biblioteca.md'))
+    print('    ' + (desc or 'responsável pelo site /biblioteca — estética, páginas, PDF, afiliados, SEO, deploy'))
+    st = lane.get('status', '?')
+    print('    lane: ' + ctx.p.cyan('biblioteca') + ' · ' + (ctx.p.green(st) if st == 'active' else ctx.p.red(st)))
+    print(ctx.p.bold('\n  Acervo') + ctx.p.dim('  · books.json + disco'))
+    n = len(books)
+    print(f'    catálogo ............ {n}')
+    print(f'    páginas no disco .... {no_disco}' + (ctx.p.gold(f'  (faltam {n - no_disco})') if no_disco < n else ''))
+    print(f'    com fonte _data.py .. {com_data}' + (ctx.p.gold(f'  (faltam {n - com_data})') if com_data < n else ''))
+    print(f'    com capa ............ {com_capa}' + (ctx.p.gold(f'  (faltam {n - com_capa})') if com_capa < n else ''))
+    print(f'    com link Amazon ..... {com_amz}' + (ctx.p.gold(f'  ⚠ só {com_amz}/{n} monetizados') if com_amz < n else ''))
+    print(ctx.p.bold('\n  Opções'))
+    print('    ' + ctx.p.dim('vp100 bibliotecario livros') + '          tabela de todos os livros')
+    print('    ' + ctx.p.dim('vp100 bibliotecario livros <slug>') + '   status de um livro')
+    return 0
+
+
+def _bib_tabela(ctx):
+    books = sorted(ctx.books, key=lambda b: b.get('title', '').lower())
+    if ctx.json:
+        print(json.dumps([{'id': b['id'], 'pagina': _pagina(b, b['id']).exists(),
+                           'caps': _capitulos(b['id']), 'data': _data_py(b['id']).exists(),
+                           'capa': _tem_capa(b), 'amazon': bool(b.get('amazon'))} for b in books],
+                         ensure_ascii=False))
+        return 0
+    ctx.banner('Bibliotecario · livros ' + ctx.p.dim(f'({len(books)} no books.json)'))
+    print(ctx.p.dim('   pág  livro                                   cap  capa data amz'))
+    for b in books:
+        slug = b['id']
+        pg = ctx.p.green('✓') if _pagina(b, slug).exists() else ctx.p.red('✗')
+        cap = _capitulos(slug)
+        capa = '✓' if _tem_capa(b) else ctx.p.gold('·')
+        dat = '✓' if _data_py(slug).exists() else ctx.p.gold('·')
+        amz = '✓' if b.get('amazon') else ctx.p.dim('·')
+        print(f'    {pg}   {b.get("title", "")[:38].ljust(38)} {str(cap or "·"):>3}  {capa:>3} {dat:>3} {amz:>3}')
+    print(ctx.p.dim('\n  pág ✓=página no disco · cap=nº de .html · data=fonte _data.py · amz=link Amazon'))
+    return 0
+
+
+def _bib_livro(ctx, slug):
+    b = _bk(ctx, slug)
+    pagina, caps, data = _pagina(b, slug), _capitulos(slug), _data_py(slug)
+    if ctx.json:
+        print(json.dumps({'slug': slug, 'no_catalogo': bool(b), 'titulo': b.get('title') if b else None,
+                          'pagina': pagina.exists(), 'capitulos': caps, 'fonte_data': data.exists(),
+                          'capa': _tem_capa(b), 'amazon': bool(b and b.get('amazon'))},
+                         ensure_ascii=False, indent=2))
+        return 0
+    ctx.banner('Bibliotecario · livro: ' + ctx.p.bold(slug))
+    if not b:
+        print('  ' + ctx.p.red('não está no books.json') + ctx.p.dim(' — checando o disco mesmo assim'))
+    else:
+        print(f'    título ...... {b.get("title", "?")} · {ctx.p.dim(b.get("author", "?"))}')
+        print(f'    progresso ... {ctx.p.dim(b.get("progress", "—"))}')
+        print(f'    tags ........ {ctx.p.dim(", ".join(b.get("tags", []) or ["—"]))}')
+
+    def linha(rot, ok, det=''):
+        m = ctx.p.green('✓') if ok else ctx.p.red('✗')
+        return f'    {rot:<13} {m}' + (ctx.p.dim('  ' + det) if det else '')
+    print(linha('página', pagina.exists(), pagina.name))
+    print(linha('capítulos', caps > 0, f'{caps} .html em {slug}/'))
+    print(linha('fonte _data', data.exists(), data.name))
+    print(linha('capa', _tem_capa(b), (b.get('coverUrl') if b else '')))
+    print(linha('amazon', bool(b and b.get('amazon')), ((b.get('amazon') or '')[:48] if b else '')))
+    probs = []
+    if pagina.exists() and not data.exists():
+        probs.append('página sem _data.py (fonte)')
+    if b and not _tem_capa(b):
+        probs.append('sem capa no disco')
+    if b and not b.get('amazon'):
+        probs.append('sem link Amazon (não monetizado)')
+    if probs:
+        print('\n  ' + ctx.p.gold('⚠ ' + ' · '.join(probs)))
+    return 0
+
+
+def _refs(p):
+    """basenames referenciados por um .py (imports + 'X.py' em subprocess)."""
+    t = p.read_text(encoding='utf-8', errors='replace')
+    out = set(re.findall(r'(?:^|\n)\s*(?:import|from)\s+([A-Za-z_]\w*)', t))
+    out |= set(re.findall(r"""['"]([A-Za-z_][\w\-]*)\.py['"]""", t))
+    return out
+
+
+def cmd_mapa(ctx):
+    """Esqueleto REAL: stage→script (do orquestrador) × disco, + divergências e órfãos."""
+    orq = (VIDEOS / 'orquestrador.py').read_text(encoding='utf-8', errors='replace') if (VIDEOS / 'orquestrador.py').exists() else ''
+    # stage -> script real: parse 'cmd = [sys.executable, "X.py"]' seguido de _run(cmd,_,'stage')
+    stage_script, last = {}, None
+    for ln in orq.splitlines():
+        m = re.search(r"cmd\s*=\s*\[sys\.executable,\s*'([\w\-.]+\.py)'", ln)
+        if m:
+            last = m.group(1)
+        m2 = re.search(r"_run\(cmd,\s*[\w_]+,\s*'(\w+)'", ln)
+        if m2 and last:
+            stage_script[m2.group(1)] = last
+    mu = re.search(r"UNMANAGED\s*=\s*\{([^}]*)\}", orq)
+    unmanaged = set(re.findall(r"'(\w+)'", mu.group(1))) if mu else set()
+
+    # universo de scripts no disco (sem _data, tools, privados)
+    discos = {}
+    for base in (ROOT, VIDEOS):
+        if base.exists():
+            for p in base.glob('*.py'):
+                if p.name.endswith('_data.py') or p.name in ('vp100.py', 'limpar.py') or p.name.startswith('_'):
+                    continue
+                discos[p.stem] = p
+    # alcançáveis a partir dos entrypoints (BFS por import + subprocess)
+    seeds = {'orquestrador', 'publicar_livro', 'gerar_metadados', 'coletar_datas'}
+    for bat in ROOT.glob('*.bat'):
+        try:
+            seeds |= set(re.findall(r'([A-Za-z_][\w\-]*)\.py', bat.read_text(encoding='utf-8', errors='replace')))
+        except Exception:
+            pass
+    vivos, fila = set(), list(seeds)
+    while fila:
+        b = fila.pop()
+        if b in vivos:
+            continue
+        vivos.add(b)
+        if b in discos:
+            fila += [r for r in _refs(discos[b]) if r in discos and r not in vivos]
+    orfaos = sorted(n + '.py' for n in discos if n not in vivos and n not in ('orquestrador', 'publicar_livro'))
+
+    if ctx.json:
+        print(json.dumps({'stage_script': stage_script, 'unmanaged': sorted(unmanaged),
+                          'orfaos': orfaos}, ensure_ascii=False, indent=2))
+        return 0
+
+    ctx.banner('mapa — esqueleto REAL ' + ctx.p.dim('(derivado de orquestrador.py + disco)'), 'leitura')
+    print(ctx.p.bold('  Etapas (dag) → runner real'))
+    for st in ctx.topo(ctx.dag):
+        if st in stage_script:
+            sc = stage_script[st]
+            existe = (ROOT / sc).exists() or (VIDEOS / sc).exists()
+            print(f'    {st:<12} {sc:<22} ' + (ctx.p.green('✓') if existe else ctx.p.red('✗ não existe!')))
+        elif st in unmanaged:
+            print(f'    {st:<12} ' + ctx.p.dim('(sem runner · UNMANAGED — manual/outro script)'))
+        else:
+            print(f'    {st:<12} ' + ctx.p.red('SEM runner e fora de UNMANAGED — GAP'))
+
+    div = []
+    for st, real in stage_script.items():
+        modelo = STEPS.get(st, {}).get('script', '')
+        mscripts = set(re.findall(r'([\w\-]+\.py)', modelo))
+        if real not in mscripts:
+            div.append(f'{st}: real é "{real}", mas o modelo do vp100 diz "{modelo}"')
+        else:
+            extra = mscripts - {real}
+            if extra:
+                div.append(f'{st}: modelo cita {", ".join(sorted(extra))} que o orquestrador NÃO roda')
+    if div:
+        print(ctx.p.bold('\n  Divergências vp100 × real') + ctx.p.dim('  (corrigir o modelo)'))
+        for d in div:
+            print('    ' + ctx.p.gold('⚠ ') + d)
+
+    print(ctx.p.bold('\n  Scripts órfãos') + ctx.p.dim(f'  ({len(orfaos)} não alcançados pelo pipeline — código morto OU ferramenta manual)'))
+    for i in range(0, len(orfaos), 3):
+        print('    ' + ctx.p.gold(' · '.join(orfaos[i:i + 3])))
+    return 0
+
+
+def cmd_update(ctx):
+    """(Re)instala o atalho `vp100` no PowerShell e mostra como ativar sem reabrir."""
+    alvo = str(ROOT / 'vp100.py')
+    func = 'function vp100 { python "' + alvo + '" @args }'
+    docs = Path.home() / 'Documents'
+    profiles = [docs / 'WindowsPowerShell' / 'Microsoft.PowerShell_profile.ps1',  # PS 5.1
+                docs / 'PowerShell' / 'Microsoft.PowerShell_profile.ps1']         # PS 7 (pwsh)
+    res = []
+    for prof in profiles:
+        if prof.parent.name == 'PowerShell' and not prof.parent.exists():
+            res.append(('skip', prof)); continue  # pwsh7 não instalado — não criar lixo
+        try:
+            txt = prof.read_text(encoding='utf-8', errors='replace') if prof.exists() else ''
+            if 'function vp100' in txt:
+                res.append(('ok', prof))
+            else:
+                prof.parent.mkdir(parents=True, exist_ok=True)
+                sep = '' if (not txt or txt.endswith('\n')) else '\n'
+                with open(prof, 'a', encoding='utf-8') as f:
+                    f.write(sep + func + '\n')
+                res.append(('add', prof))
+        except Exception:
+            res.append(('erro', prof))
+
+    if ctx.json:
+        print(json.dumps({'vp100': alvo, 'profiles': [(s, str(p)) for s, p in res]}, ensure_ascii=False, indent=2))
+        return 0
+    ctx.banner('vp100 update — integração do terminal', 'leitura')
+    mtime = time.strftime('%d/%m %H:%M', time.localtime((ROOT / 'vp100.py').stat().st_mtime))
+    print('    script ...... ' + alvo + ctx.p.dim(f'  (atualizado {mtime})'))
+    print(ctx.p.bold('\n  Função vp100 no PowerShell'))
+    rotulo = {'ok': ctx.p.green('já estava'), 'add': ctx.p.gold('INSTALADA'),
+              'skip': ctx.p.dim('pulado (sem pwsh7)'), 'erro': ctx.p.red('erro')}
+    for s, p in res:
+        ver = 'PS5.1' if p.parent.name == 'WindowsPowerShell' else 'PS7  '
+        print(f'    {ver}  {rotulo[s]}  {ctx.p.dim(str(p))}')
+    print(ctx.p.bold('\n  Comandos'))
+    print('    ' + ctx.p.dim('publicar · pipeline · agentes · bibliotecario · status · dag · custo · doctor · update'))
+    print('\n  ' + ctx.p.gold('▶ ativar AGORA (sem reabrir o terminal):') + '  ' + ctx.p.bold('. $PROFILE'))
+    print('  ' + ctx.p.dim('(ou abra um terminal novo — a função carrega sozinha)'))
+    print('  ' + ctx.p.dim('obs.: editar o vp100.py NÃO exige reabrir — a função sempre roda a versão atual.'))
+    return 0
+
+
 AJUDA = __doc__
 
 
@@ -474,16 +738,25 @@ def main(argv=None):
         return cmd_pipeline(ctx, rest[0] if rest else 'full')
     if v == 'agentes':
         return cmd_agentes(ctx)
+    if v in ('bibliotecario', 'biblioteca'):
+        return cmd_bibliotecario(ctx, rest)
     if v == 'status':
         return cmd_status(ctx)
     if v == 'dag':
         return cmd_dag(ctx)
+    if v == 'mapa':
+        return cmd_mapa(ctx)
     if v == 'custo':
         return cmd_custo(ctx, rest[0] if rest else 'full')
     if v == 'doctor':
         return cmd_doctor(ctx)
-    print(Paint(False).red(f'comando desconhecido: {v}\n'))
-    print(AJUDA)
+    if v == 'update':
+        return cmd_update(ctx)
+    import difflib
+    sug = difflib.get_close_matches(v, ['publicar', 'pipeline', 'agentes', 'bibliotecario',
+                                        'status', 'dag', 'custo', 'doctor', 'update', 'ajuda'], n=1)
+    print('comando desconhecido: ' + v + (f'  ·  você quis dizer "{sug[0]}"?' if sug else ''))
+    print('\n' + AJUDA)
     return 2
 
 
