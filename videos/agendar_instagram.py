@@ -49,24 +49,24 @@ PLANO = [
     ('25/06', 'futebol-brasileiro',   'carousel'),
     ('26/06', 'marketing-4-0',        'carousel'),
     ('27/06', 'poder-de-delegar',     'carousel'),
-    ('28/06', 'poder-do-silencio',    'carousel'),
+    ('28/06', 'poder-dos-quietos',    'carousel'),  # poder-do-silencio sem carrossel gerado
     ('29/06', 'quem-mexeu-no-queijo', 'carousel'),
     # --- Jun 30 / Jul 01-05: Stories ---
     ('30/06', 'aristoteles-poetica',  'story'),
     ('01/07', 'futebol-brasileiro',   'story'),
     ('02/07', 'marketing-4-0',        'story'),
     ('03/07', 'poder-de-delegar',     'story'),
-    ('04/07', 'poder-do-silencio',    'story'),
+    ('04/07', 'poder-dos-quietos',    'story'),     # poder-do-silencio sem story gerado
     ('05/07', 'quem-mexeu-no-queijo', 'story'),
     # --- Jul 06-09: Carrossels de slugs já postados (catch-up) ---
     ('06/07', 'save-the-cat',         'carousel'),
-    ('07/07', 'maquiavel-pedagogo',   'carousel'),
-    ('08/07', 'arte-da-guerra',       'carousel'),
+    ('07/07', 'inteligencia-emocional', 'carousel'),  # maquiavel sem carrossel gerado
+    ('08/07', 'mindset',              'carousel'),     # arte-da-guerra sem carrossel gerado
     ('09/07', 'padrao-bitcoin',       'carousel'),
     # --- Jul 10-13: Stories de slugs já postados ---
     ('10/07', 'save-the-cat',         'story'),
-    ('11/07', 'maquiavel-pedagogo',   'story'),
-    ('12/07', 'arte-da-guerra',       'story'),
+    ('11/07', 'inteligencia-emocional', 'story'),
+    ('12/07', 'mindset',              'story'),
     ('13/07', 'padrao-bitcoin',       'story'),
     # --- Jul 14-17: Teasers pré-lançamento YouTube (carrossel) ---
     ('14/07', 'sound-design',         'carousel'),
