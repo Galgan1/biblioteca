@@ -1,6 +1,16 @@
-# CLAUDE.md — Projeto Biblioteca
+# CLAUDE.md — Projeto Biblioteca (bazuka)
 
 > Complementa o CLAUDE.md raiz em `scratch/`. Regras específicas deste projeto.
+
+## Modo de trabalho PADRÃO (obrigatório neste projeto)
+
+Toda tarefa não-trivial neste projeto roda sob dois padrões. Não é opcional.
+
+1. **Método = Akita (anti-vibe coding).** Siga a skill `akita` / `akita.md`: planejar antes de codar (tarefas atômicas), **TDD real** (verde = exit code de teste, nunca "a IA achou que está certo"), humano decide o *quê* / IA o *como*, refatoração contínua, CI obrigatória, isolamento de execução. Constituição = este arquivo.
+
+2. **Execução = `/loop-agente`.** Não responda/entregue direto: passe pelo ciclo **Planner → Executor → Verifier**, com **rúbrica** definida antes e **verificação cross-model** (juiz ≠ autor: Opus ↔ Sonnet). Só entrega o que passar na rúbrica (parada em 5 tentativas). Para tarefas grandes, o Planner decompõe em subagentes (mesmo sistema).
+
+Tarefas triviais (ex.: 1 linha, leitura simples) dispensam o cerimonial — use bom senso. Tudo que gera/edita código de produção: Akita + loop, sem exceção.
 
 ## Git — REGRA ABSOLUTA: não commitar, não fazer push
 

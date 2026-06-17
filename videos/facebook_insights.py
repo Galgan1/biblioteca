@@ -22,8 +22,10 @@ coletar() NUNCA lanca: captura tudo e acumula em 'erros'.
 
 Uso:  python facebook_insights.py     # imprime resumo legivel (read-only)
 """
-import sys, json, urllib.request, urllib.parse, urllib.error
+import sys, urllib.parse
 from pathlib import Path
+
+import net  # camada HTTP isolada — circuit_breaker aplicado (Akita, isolamento)
 
 try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -52,7 +54,8 @@ def _page_id():
 
 
 def _get(path, token, fields=None, extra=None):
-    """GET na Graph API. Devolve dict; em HTTPError devolve {'error': ...} (nao lanca)."""
+    """GET na Graph API via camada isolada `net` (circuit_breaker aplicado).
+    Mantem o contrato: devolve o JSON, ou {'error': {...}} — NUNCA lanca."""
     q = {'access_token': token}
     if fields:
         q['fields'] = fields
@@ -60,9 +63,14 @@ def _get(path, token, fields=None, extra=None):
         q.update(extra)
     url = f'{GRAPH}{path}?{urllib.parse.urlencode(q)}'
     try:
-        return json.load(urllib.request.urlopen(url, timeout=60))
-    except urllib.error.HTTPError as e:
-        return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
+        r = net.request_json(url, method='GET', api='facebook_graph', timeout=60)
+    except net.CircuitOpenError:
+        return {'error': {'code': 'circuit_open', 'message': 'circuit OPEN (facebook_graph)'}}
+    except net.TransientError as e:
+        return {'error': {'code': 'transient', 'message': str(e)[:300]}}
+    if r.get('ok'):
+        return r['data']
+    return {'error': {'code': r.get('status'), 'message': (r.get('erro') or '')[:300]}}
 
 
 def coletar():

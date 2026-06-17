@@ -1,0 +1,4 @@
+# Dependências para rodar o mural de testes (Akita etapa 5 / CI).
+# O core do pipeline e os testes usam stdlib; a única dependência externa
+# exercida pelos testes é o pydantic (contracts.py).
+pydantic>=2,<3
