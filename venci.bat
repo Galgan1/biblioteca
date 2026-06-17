@@ -1,1 +1,2 @@
-python ingerir_gemini.py
+@echo off
+call verificar.bat

@@ -32,6 +32,7 @@ import re
 import sys
 import time
 from pathlib import Path
+from dataclasses import dataclass, field
 
 # ---------------------------------------------------------------------------
 # CONSTANTS
@@ -147,55 +148,31 @@ def carregar_json(caminho: Path | str, default: dict | list) -> dict | list:
 # ---------------------------------------------------------------------------
 # Manifesto das etapas (a narração de cada stage)  ·  seg = tempo SIMULADO
 # ---------------------------------------------------------------------------
-STAGE_LANE = {
-    'skill': None, 'biblioteca': 'biblioteca', 'video_built': 'youtube',
-    'uploaded': 'youtube', 'shorts': 'youtube', 'scheduled': 'youtube',
-    'instagram': 'instagram', 'tiktok': 'tiktok', 'facebook': 'facebook',
-}
+@dataclass(frozen=True)
+class Step:
+    label: str
+    script: str
+    produz: str
+    seg: int
+    subs: list[str]
+    lane: str | None = None
+    terminal: bool = False
+    cost: dict[str, float] = field(default_factory=dict)
 
-STEPS = {
-    'skill':       dict(label='skill',      script='book-to-skill',
-                        produz='base de conhecimento destilada', seg=8,
-                        subs=['ler livro/PDF', 'extrair capítulos', 'validar taxonomia']),
-    'biblioteca':  dict(label='biblioteca', script='publicar_livro.py --deploy',
-                        produz='<slug>.html + capítulos + deploy VPS', seg=60,
-                        subs=['gerar_livro.py (páginas)', 'gerar_capa', 'retrofit-fase23', 'scp + chmod (VPS)']),
-    'video_built': dict(label='vídeo',      script='gerar_video.py',
-                        produz='videos/<slug>.mp4 (~5min)', seg=240,
-                        subs=['roteiro.json', 'TTS pt-BR', 'slides Pillow', 'trilha + marca sonora', 'montagem ffmpeg']),
-    'uploaded':    dict(label='upload YT',  script='upload_youtube.py',
-                        produz='vídeo no canal (unlisted)', seg=120,
-                        subs=['OAuth token', 'upload resumable', 'metadados + thumb']),
-    'shorts':      dict(label='shorts',     script='produzir_shorts.py',
-                        produz='4 shorts 9:16', seg=180,
-                        subs=['cortar cenas', 'legendar', 'render 1080×1920']),
-    'scheduled':   dict(label='agendar',    script='agendar_lote.py',
-                        produz='posts agendados (qua/qui)', seg=12,
-                        subs=['calcular slots', 'setPublishAt']),
-    'instagram':   dict(label='instagram',  script='gerar_carrossel.py',
-                        produz='carrossel no @minutoreal1701', seg=38,
-                        subs=['gerar_carrossel (7 cards)', 'legenda 5 As + disclosure',
-                              'post manual via instagram_post.py (fora do orquestrador)']),
-    'tiktok':      dict(label='tiktok',     script='tiktok_post.py --draft',
-                        produz='RASCUNHO no TikTok', seg=30,
-                        subs=['refresh token', 'upload draft']),
-    'facebook':    dict(label='facebook',   script='facebook_publicar.py',
-                        produz='vídeo nativo + link no 1º comentário', seg=25,
-                        subs=['reusar ativo do IG', 'publicar nativo', 'comentar CTA (link)']),
+STEPS: dict[str, Step] = {
+    'skill':       Step('skill',      'book-to-skill',              'base de conhecimento destilada', 8,   ['ler livro/PDF', 'extrair capítulos', 'validar taxonomia']),
+    'biblioteca':  Step('biblioteca', 'publicar_livro.py --deploy', '<slug>.html + capítulos + deploy VPS', 60,  ['gerar_livro.py (páginas)', 'gerar_capa', 'retrofit-fase23', 'scp + chmod (VPS)'], lane='biblioteca', terminal=True),
+    'video_built': Step('vídeo',      'gerar_video.py',             'videos/<slug>.mp4 (~5min)',      240, ['roteiro.json', 'TTS pt-BR', 'slides Pillow', 'trilha + marca sonora', 'montagem ffmpeg'], lane='youtube', cost={'google_tts_1k':4, 'google_imagen':8, 'google_veo_8s':3}),
+    'uploaded':    Step('upload YT',  'upload_youtube.py',          'vídeo no canal (unlisted)',      120, ['OAuth token', 'upload resumable', 'metadados + thumb'], lane='youtube'),
+    'shorts':      Step('shorts',     'produzir_shorts.py',         '4 shorts 9:16',                  180, ['cortar cenas', 'legendar', 'render 1080×1920'], lane='youtube', cost={'google_tts_1k':1}),
+    'scheduled':   Step('agendar',    'agendar_lote.py',            'posts agendados (qua/qui)',      12,  ['calcular slots', 'setPublishAt'], lane='youtube', terminal=True),
+    'instagram':   Step('instagram',  'gerar_carrossel.py',         'carrossel no @minutoreal1701',   38,  ['gerar_carrossel (7 cards)', 'legenda 5 As + disclosure', 'post manual via instagram_post.py (fora do orquestrador)'], lane='instagram', terminal=True),
+    'tiktok':      Step('tiktok',     'tiktok_post.py --draft',     'RASCUNHO no TikTok',             30,  ['refresh token', 'upload draft'], lane='tiktok', terminal=True),
+    'facebook':    Step('facebook',   'facebook_publicar.py',       'vídeo nativo + link no 1º comentário', 25,  ['reusar ativo do IG', 'publicar nativo', 'comentar CTA (link)'], lane='facebook', terminal=True),
 }
-
-LANE_TERMINAL = {
-    'instagram': 'instagram', 'youtube': 'scheduled', 'facebook': 'facebook',
-    'tiktok': 'tiktok', 'biblioteca': 'biblioteca',
-}
-
 
 def custo_etapa(stage, p):
-    if stage == 'video_built':
-        return p['google_tts_1k'] * 4 + p['google_imagen'] * 8 + p['google_veo_8s'] * 3
-    if stage == 'shorts':
-        return p['google_tts_1k'] * 1
-    return 0.0
+    return sum(p.get(k, 0.0) * v for k, v in STEPS.get(stage, Step('', '', '', 0, [])).cost.items())
 
 
 def fmt_tempo(seg):
@@ -214,13 +191,9 @@ class Tela:
             import time, sys
             t0, k, S = time.time(), 0, '⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
             while time.time() - t0 < dur:
-                sys.stdout.write(f'{ln} {self.p.gold(S[k%10])}'); sys.stdout.flush(); time.sleep(0.08); k += 1
+                sys.stdout.write(f'\r{ln} {self.p.gold(S[k%10])}'); sys.stdout.flush(); time.sleep(0.08); k += 1
         import sys
-        sys.stdout.write(f'{ln} {self.p.green("✓")} {self.p.dim(res + (" " + marca if marca else ""))}
-')
-        sys.stdout.flush(); time.sleep(0.08); k += 1
-        extra = self.p.dim(' ' + marca) if marca else ''
-        sys.stdout.write('\r' + linha + ' ' + self.p.green('✓') + ' ' + self.p.dim(resumo) + extra + '\n')
+        sys.stdout.write(f'\r{ln} {self.p.green("✓")} {self.p.dim(res + (" " + marca if marca else ""))}\n')
         sys.stdout.flush()
 
 
@@ -260,7 +233,7 @@ class Ctx:
         return ids[0] if ids else DEFAULT_FALLBACK_SLUG
 
     def stages_da_lane(self, lane):
-        alvo = LANE_TERMINAL.get(lane)
+        alvo = next((s for s, m in STEPS.items() if m.lane == lane and m.terminal), None)
         if not alvo:
             return []
         vis = set()
@@ -285,110 +258,197 @@ def _proximo(ctx):
         print('  ' + ctx.p.dim('↪ próximo na agenda: ') + f"{it.get('slug', '?')} · {it.get('longo_date', '?')}")
 
 
-def cmd_publicar(ctx, lane, escopo):
-    if lane not in LANE_TERMINAL:
-        print(ctx.p.red(f'lane desconhecida: {lane}. Use: ' + ', '.join(LANE_TERMINAL)))
-        return 2
+def plan_publish(ctx, lane, escopo):
+    terminais = {m.lane: s for s, m in STEPS.items() if m.terminal}
+    if lane not in terminais:
+        return None, f"lane desconhecida: {lane}. Use: " + ", ".join(terminais.keys())
+
     slug = ctx.resolver_slug(escopo)
     info = ctx.estado.get('lanes', {}).get(lane, {})
-    conta = info.get('account', '')
-    ctx.banner(f'lane: {ctx.p.cyan(lane)}' + (f' · {conta}' if conta else '') + f' · livro: {ctx.p.bold(slug)}', 'sim')
-    if info.get('status') == 'blocked':
-        print(ctx.p.gold(f'  ⚠ lane BLOQUEADA ({info.get("reason", "?")}) — simulando o fluxo mesmo assim.\n'))
-
     stages = ctx.stages_da_lane(lane)
-    terminal = LANE_TERMINAL[lane]
-    total = len(stages)
-    custo = 0.0
-    for i, st in enumerate(stages, 1):
+    
+    plan = {
+        'lane': lane,
+        'slug': slug,
+        'account': info.get('account', ''),
+        'status': info.get('status'),
+        'reason': info.get('reason', '?'),
+        'stages': []
+    }
+
+    terminal = terminais[lane]
+    for st in stages:
         m = STEPS[st]
-        custo += custo_etapa(st, ctx.precos)
-        marca = m['script'] if ctx.verbose else ''
-        ctx.tela.passo(f'  [{i}/{total}] ', m['label'], min(m['seg'] * 0.01, 1.0), m['produz'], marca)
-        if st == terminal:  # detalha os sub-passos da etapa-fim da lane
-            subs = m['subs']
-            for j, sub in enumerate(subs):
-                rede = ' (SIMULADO)' if any(k in sub for k in ('container', 'publish', 'upload', 'permalink', 'comentar')) else ''
-                ctx.tela.passo('        · ', sub, 0.3, ('ok' + rede) if rede else 'ok')
-    seg = sum(STEPS[s]['seg'] for s in stages)
+        stage_info = {
+            'id': st,
+            'label': m.label,
+            'script': m.script,
+            'produz': m.produz,
+            'seg': m.seg,
+            'cost': custo_etapa(st, ctx.precos),
+            'subs': []
+        }
+        if st == terminal:
+            for sub in m.subs:
+                rede = any(k in sub for k in ('container', 'publish', 'upload', 'permalink', 'comentar'))
+                stage_info['subs'].append({'label': sub, 'simulated': rede})
+        plan['stages'].append(stage_info)
+        
+    plan['total_cost'] = sum(s['cost'] for s in plan['stages'])
+    plan['total_time'] = sum(s['seg'] for s in plan['stages'])
+    
+    return plan, None
+
+
+def cmd_publicar(ctx, lane, escopo):
+    plan, err = plan_publish(ctx, lane, escopo)
+    if err:
+        print(ctx.p.red(err))
+        return 2
+
+    if ctx.json:
+        import json
+        print(json.dumps(plan, ensure_ascii=False, indent=2))
+        return 0
+
+    conta = plan['account']
+    ctx.banner(f'lane: {ctx.p.cyan(plan["lane"])}' + (f' · {conta}' if conta else '') + f' · livro: {ctx.p.bold(plan["slug"])}', 'sim')
+    
+    if plan['status'] == 'blocked':
+        print(ctx.p.gold(f'  ⚠ lane BLOQUEADA ({plan["reason"]}) — simulando o fluxo mesmo assim.\n'))
+
+    total = len(plan['stages'])
+    for i, st in enumerate(plan['stages'], 1):
+        marca = st['script'] if ctx.verbose else ''
+        ctx.tela.passo(f'  [{i}/{total}] ', st['label'], min(st['seg'] * 0.01, 1.0), st['produz'], marca)
+        for sub in st['subs']:
+            res = 'ok (SIMULADO)' if sub['simulated'] else 'ok'
+            ctx.tela.passo('        · ', sub['label'], 0.3, res)
+
     print()
-    print('  ' + ctx.p.green('✓ publicado (simulado)') + '  ·  custo US$ %.2f  ·  tempo simulado ~%s' % (custo, fmt_tempo(seg)))
+    print('  ' + ctx.p.green('✓ publicado (simulado)') + '  ·  custo US$ %.2f  ·  tempo simulado ~%s' % (plan['total_cost'], fmt_tempo(plan['total_time'])))
     _proximo(ctx)
     return 0
 
 
-def cmd_pipeline(ctx, slug):
+def calc_pipeline_state(ctx, slug):
     slug = ctx.resolver_slug(slug)
     ativas = [ln for ln, v in ctx.estado.get('lanes', {}).items() if v.get('status') == 'active']
-    ctx.banner(f'pipeline COMPLETO · livro: {ctx.p.bold(slug)} · lanes ativas: {ctx.p.cyan(", ".join(ativas) or "—")}', 'sim')
     ordem = ctx.topo(ctx.dag)
+    
+    plan = []
     custo = 0.0
     for gi, grupo in enumerate(ctx.groups(ctx.dag), 1):
         gstages = [s for s in ordem if s in grupo]
-        print(ctx.p.dim(f'  grupo {gi} (paralelo): ') + ', '.join(STEPS[s]['label'] for s in gstages))
+        steps = []
         for st in gstages:
-            lane = STAGE_LANE.get(st)
-            if lane and lane not in ativas and lane != 'biblioteca':
-                ctx.tela.passo('    ', STEPS[st]['label'], 0.0, ctx.p.gold('pulado (lane inativa)') if False else 'pulado (lane inativa)')
+            if st not in STEPS:
                 continue
-            custo += custo_etapa(st, ctx.precos)
-            marca = STEPS[st]['script'] if ctx.verbose else ''
-            ctx.tela.passo('    ', STEPS[st]['label'], min(STEPS[st]['seg'] * 0.008, 0.9), STEPS[st]['produz'], marca)
-    seg = sum(STEPS[s]['seg'] for s in ordem)
+            step = STEPS[st]
+            skipped = bool(step.lane and step.lane not in ativas and step.lane != 'biblioteca')
+            if not skipped:
+                custo += custo_etapa(st, ctx.precos)
+            
+            steps.append({
+                'id': st, 'label': step.label, 'skipped': skipped, 
+                'seg': step.seg, 'produz': step.produz, 'script': step.script
+            })
+            
+        plan.append({'index': gi, 'labels': [STEPS[s].label for s in gstages if s in STEPS], 'steps': steps})
+        
+    return {
+        'slug': slug,
+        'ativas': ativas,
+        'plan': plan,
+        'custo': custo,
+        'seg': sum(STEPS[s].seg for s in ordem if (s in STEPS and not bool(STEPS[s].lane and STEPS[s].lane not in ativas and STEPS[s].lane != 'biblioteca')))
+    }
+
+
+def cmd_pipeline(ctx, slug):
+    state = calc_pipeline_state(ctx, slug)
+    
+    if ctx.json:
+        import json
+        print(json.dumps(state, ensure_ascii=False, indent=2))
+        return 0
+
+    ctx.banner(f'pipeline COMPLETO · livro: {ctx.p.bold(state["slug"])} · lanes ativas: {ctx.p.cyan(", ".join(state["ativas"]) or "—")}', 'sim')
+    
+    for g in state['plan']:
+        print(ctx.p.dim(f'  grupo {g["index"]} (paralelo): ') + ', '.join(g['labels']))
+        for st in g['steps']:
+            if st['skipped']:
+                ctx.tela.passo('    ', st['label'], 0.0, 'pulado (lane inativa)')
+            else:
+                marca = st['script'] if ctx.verbose else ''
+                ctx.tela.passo('    ', st['label'], min(st['seg'] * 0.008, 0.9), st['produz'], marca)
+                
     print()
-    print('  ' + ctx.p.green('✓ pipeline simulado') + '  ·  custo US$ %.2f  ·  tempo simulado ~%s' % (custo, fmt_tempo(seg)))
+    print('  ' + ctx.p.green('✓ pipeline simulado') + '  ·  custo US$ %.2f  ·  tempo simulado ~%s' % (state['custo'], fmt_tempo(state['seg'])))
     return 0
 
 
+def with_json(func):
+    """Decorator to isolate JSON output from the CLI presentation layer."""
+    def wrapper(ctx, *args, **kwargs):
+        data, render = func(ctx, *args, **kwargs)
+        if ctx.json:
+            import json
+            print(json.dumps(data, ensure_ascii=False, indent=2))
+        else:
+            render()
+        return 0
+    return wrapper
+
+@with_json
 def cmd_status(ctx):
     e = ctx.estado
-    if ctx.json:
-        print(json.dumps({'lanes': e.get('lanes'), 'agenda': e.get('schedule_cadence'),
-                          'upcoming': e.get('upcoming_schedule'), 'pending': e.get('pending_operations'),
-                          'api_health': e.get('api_health')}, ensure_ascii=False, indent=2))
-        return 0
-    ctx.banner('status do canal (lido de canal-state.json)')
-    print(ctx.p.bold('  Lanes'))
-    for ln, v in e.get('lanes', {}).items():
-        st = v.get('status', '?')
-        cor = ctx.p.green if st == 'active' else ctx.p.red
-        extra = ' — ' + v.get('reason', '') if v.get('reason') else (' · ' + v.get('account', '') if v.get('account') else '')
-        print(f'    {cor("●")} {ln:<11} {cor(st)}{ctx.p.dim(extra)}')
-    prox = e.get('upcoming_schedule') or []
-    if prox:
-        print(ctx.p.bold('\n  Próximos longos'))
-        for it in prox[:5]:
-            print(f'    {ctx.p.gold("›")} {it.get("slug","?"):<16} {ctx.p.dim(str(it.get("longo_date","?")))}')
-    pend = e.get('pending_operations') or {}
-    if pend:
-        print(ctx.p.bold('\n  Pendências'))
-        for k, v in pend.items():
-            print(f'    {ctx.p.gold("•")} {k} {ctx.p.dim("— " + str(v.get("note", ""))[:70])}')
-    ah = e.get('api_health') or {}
-    abertos = [k for k, v in ah.items() if v.get('state') != 'closed']
-    print(ctx.p.bold('\n  Circuit breakers'))
-    print('    ' + (ctx.p.red('ABERTOS: ' + ', '.join(abertos)) if abertos else ctx.p.green('todos fechados (saudáveis)')))
-    return 0
+    data = {
+        'lanes': e.get('lanes'), 'agenda': e.get('schedule_cadence'),
+        'upcoming': e.get('upcoming_schedule'), 'pending': e.get('pending_operations'),
+        'api_health': e.get('api_health')
+    }
+    
+    def render():
+        ctx.banner('status do canal (lido de canal-state.json)')
+        print(ctx.p.bold('  Lanes'))
+        for ln, v in (data['lanes'] or {}).items():
+            st, cor = v.get('status', '?'), ctx.p.green if v.get('status') == 'active' else ctx.p.red
+            ext = f" — {v['reason']}" if v.get('reason') else (f" · {v['account']}" if v.get('account') else "")
+            print(f'    {cor("●")} {ln:<11} {cor(st)}{ctx.p.dim(ext)}')
+            
+        if u := data['upcoming']:
+            print(ctx.p.bold('\n  Próximos longos'))
+            for it in u[:5]: print(f'    {ctx.p.gold("›")} {it.get("slug","?"):<16} {ctx.p.dim(str(it.get("longo_date","?")))}')
+            
+        if p := data['pending']:
+            print(ctx.p.bold('\n  Pendências'))
+            for k, v in p.items(): print(f'    {ctx.p.gold("•")} {k} {ctx.p.dim("— " + str(v.get("note", ""))[:70])}')
+            
+        abertos = [k for k, v in (data['api_health'] or {}).items() if v.get('state') != 'closed']
+        print(ctx.p.bold('\n  Circuit breakers\n    ') + (ctx.p.red('ABERTOS: ' + ', '.join(abertos)) if abertos else ctx.p.green('todos fechados (saudáveis)')))
+        
+    return data, render
 
-
+@with_json
 def cmd_dag(ctx):
-    ordem = ctx.topo(ctx.dag)
-    if ctx.json:
-        print(json.dumps({'ordem': ordem, 'grupos': [sorted(g) for g in ctx.groups(ctx.dag)]}, ensure_ascii=False, indent=2))
-        return 0
-    ctx.banner('grafo de dependências (videos/dag.py)')
-    print(ctx.p.bold('  Ordem topológica'))
-    print('    ' + ctx.p.dim(' → ').join(STEPS.get(s, {}).get('label', s) for s in ordem))
-    print(ctx.p.bold('\n  Grupos paralelos'))
-    for i, g in enumerate(ctx.groups(ctx.dag), 1):
-        print(f'    {i}. ' + ', '.join(sorted(STEPS.get(s, {}).get('label', s) for s in g)))
-    return 0
+    ordem, grupos = ctx.topo(ctx.dag), ctx.groups(ctx.dag)
+    
+    def render():
+        lbl = lambda s: STEPS[s].label if s in STEPS else s
+        ctx.banner('grafo de dependências (videos/dag.py)')
+        print(ctx.p.bold('  Ordem topológica\n    ') + ctx.p.dim(' → ').join(map(lbl, ordem)))
+        print(ctx.p.bold('\n  Grupos paralelos'))
+        for i, g in enumerate(grupos, 1): print(f'    {i}. ' + ', '.join(sorted(map(lbl, g))))
+        
+    return {'ordem': ordem, 'grupos': [sorted(g) for g in grupos]}, render
 
 
 def cmd_custo(ctx, slug):
     slug = ctx.resolver_slug(slug)
     p = ctx.precos
-    linhas = [(STEPS[s]['label'], custo_etapa(s, p)) for s in ctx.topo(ctx.dag) if custo_etapa(s, p) > 0]
+    linhas = [(STEPS[s].label, custo_etapa(s, p)) for s in ctx.topo(ctx.dag) if custo_etapa(s, p) > 0]
     total = sum(c for _, c in linhas)
     if ctx.json:
         print(json.dumps({'slug': slug, 'itens': linhas, 'total_usd': round(total, 4)}, ensure_ascii=False, indent=2))
@@ -673,7 +733,7 @@ def cmd_mapa(ctx):
 
     div = []
     for st, real in stage_script.items():
-        modelo = STEPS.get(st, {}).get('script', '')
+        modelo = (STEPS[st].script if st in STEPS else '')
         mscripts = set(re.findall(r'([\w\-]+\.py)', modelo))
         if real not in mscripts:
             div.append(f'{st}: real é "{real}", mas o modelo do vp100 diz "{modelo}"')

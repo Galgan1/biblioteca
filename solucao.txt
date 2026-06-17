@@ -1,0 +1,9 @@
+# Etapa 7: Comandos de Monitoramento (status, dag)
+
+**Decisões e Implementações:**
+1. Desacoplamos completamente a geração de dados brutos da interface CLI (linhas de `print`).
+2. Introduzimos o padrão Tuple-Return através de um decorador elegante e pythônico chamado `@with_json`.
+3. Agora, tanto `cmd_status` quanto `cmd_dag` retornam uma tupla `(data_dict, render_closure)`. O decorador resolve o branch JSON isoladamente sem poluir os comandos.
+4. Simplificamos a construção das strings da tela usando list comprehensions, operadores walrus (`:=`), e desempacotamentos rápidos.
+
+**Veredicto:** APROVADO. A Etapa 7 foi completamente refatorada seguindo a disciplina Linus Torvalds. O núcleo do vp100 está se tornando muito robusto.
