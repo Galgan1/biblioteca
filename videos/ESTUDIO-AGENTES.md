@@ -173,13 +173,33 @@ Tudo local, sem crédito de API, testável com TDD antes de mexer em provedores 
 > **STATUS (implementado, jun/2026, TDD + cross-model APROVADO):**
 > - **(a) FEITO** — `mixmaster.py`: `loudnorm −14 LUFS / TP −1` ligado por padrão; grafo de
 >   áudio extraído para `_build_audio_filter` (puro, testado). Tests: `test_mixmaster.py`.
-> - **(b) SEAM FEITO** — `cinegrafista.py` (decisão `tratamento` + guard `parallax`) + hook
+> - **(b) FEITO** — `cinegrafista.py` (decisão `tratamento` + guard `parallax`) + hook
 >   **dormente** em `gerar_video.py` (zero regressão sem DepthFlow). Tests: `test_cinegrafista.py`.
->   *Pendente:* render parallax real precisa de `pip install depthflow` + **smoke-test em GPU**.
 > - **(c) FEITO** — `qc.py`: 4 estágios, bloqueantes (resolução/TP/pt-PT/link-busca), exit code;
 >   CLI provado (aprova roteiro bom, reprova ruim). Tests: `test_qc.py`. Achado: densidade de
 >   narração usa 52 palavras (convenção do projeto), não 35 (que é de slide).
-> Mural: **96 testes verdes** (eram 64).
+>
+> **RODADA DE SUBAGENTES (cada item = 1 executor Sonnet + verificação Opus cross-model):**
+> - **Item 1 — Gate QC cravado** ✅ — fim de `gerar_video.py` roda `qc.coletar` e grava o veredicto
+>   em `_stems/<slug>/qc.json` (não destrói mídia); ponto único `qc.aprovado(slug)` p/ a publicação.
+>   Tests: `test_qc_gate.py`.
+> - **Item 2 — DepthFlow FECHADO** ✅ — `pip install depthflow` feito; flags reais da CLI corrigidas
+>   (`python -m depthflow … -t … -f …`) + fix de Unicode no Windows; **render real verificado**
+>   (mp4 3.0s, ~2,4s cache). ⚠️ instalar depthflow **rebaixou torch p/ CPU** (CUDA: False).
+>   Smoke reutilizável: `cinegrafista_smoke.py`. Tests: `test_cinegrafista.py`.
+> - **Item 4 — Narrador ElevenLabs** ✅ código — cadeia `eleven→Chirp3-HD→edge-tts` em `tts()`;
+>   sem chave cai na fuga (zero rede). Tests: `test_tts_provedor.py`. **PENDENTE p/ uso real:**
+>   chave em `.secrets/elevenlabs_key.txt` + autorização de gasto (não houve chamada paga).
+>
+> **ITEM 3 — Três papéis contratados (Opus executor + Sonnet verificador cross-model 5/5):**
+> - **Pesquisador** ✅ — `pesquisador.py`: gera ganchos pelas 5 fórmulas de retenção, pontua
+>   (brevidade+curiosidade+pergunta+número) e escolhe o melhor; puro/local. Tests: `test_pesquisador.py`.
+> - **Conferente de direitos (Compliance)** ✅ — `compliance.py` é o **lar canônico** das regras
+>   (link só `/dp//gp/`, prompt sem IP protegida, trilha licenciada); cravado no gate (`qc.coletar`
+>   chama `compliance.auditar`; `qc` reexporta `link_amazon_valido`, sem duplicar nem ciclo). Tests: `test_compliance.py`.
+> - **Diretor** ✅ — `diretor.py`: shot list com 4 campos/cena (texto/visual/voz/som), visual reusa
+>   `cinegrafista.tratamento`; `revisar_ritmo` avisa cena estática (anti-slop). Tests: `test_diretor.py`.
+> Mural: **151 testes verdes** (eram 64 no início desta fase).
 
 ---
 

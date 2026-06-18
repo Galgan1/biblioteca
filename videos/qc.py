@@ -17,6 +17,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+import compliance   # Conferente de direitos — fonte única das regras de direito
+
 ROOT = Path(__file__).parent
 LUFS_ALVO = -14.0
 TP_MAX = -1.0
@@ -86,18 +88,14 @@ def avaliar_conteudo(cenas):
     return falhas, avisos
 
 
-def link_amazon_valido(url):
-    """True se for link de PRODUTO Amazon (/dp/ ou /gp/), False se busca (s?k=) ou outro."""
-    u = (url or '').lower()
-    if 's?k=' in u or '/s?' in u:
-        return False
-    return '/dp/' in u or '/gp/' in u
+# As regras de direito vivem no Conferente (compliance.py) — fonte única. O qc
+# reexporta o validador de link e delega a auditoria de links, sem duplicar a regra.
+link_amazon_valido = compliance.link_amazon_valido
 
 
 def avaliar_compliance(links):
-    """-> falhas (BLOQUEANTE): todo link de afiliado tem de ser de produto."""
-    return [f'link de afiliado inválido (não é /dp//gp/): {u}'
-            for u in (links or []) if not link_amazon_valido(u)]
+    """-> falhas (BLOQUEANTE): todo link de afiliado tem de ser de produto. Delega ao Conferente."""
+    return compliance.auditar_links(links)
 
 
 def exit_code(falhas):
@@ -168,6 +166,8 @@ def coletar(roteiro_path, video_path=None):
     falhas += fc; avisos += ac
     avisos += avaliar_producao(cenas)
     falhas += avaliar_compliance(links)
+    fcomp, acomp = compliance.auditar(cfg)   # Conferente: prompts de imagem (IP) + licença de trilha
+    falhas += fcomp; avisos += acomp
 
     if video_path and Path(video_path).exists():
         w, h, lufs, tp = medir_arquivo(video_path)

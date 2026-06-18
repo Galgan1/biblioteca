@@ -57,6 +57,26 @@ class TestCmd(unittest.TestCase):
         self.assertIn('out.mp4', cmd)
         self.assertTrue(any('6' in str(a) for a in cmd))   # duração presente
 
+    def test_cmd_usa_python_m_depthflow(self):
+        """CLI invocada via python -m depthflow (não depende de entrada no PATH)."""
+        import sys
+        cmd = cg._depthflow_cmd('cap.png', 'out.mp4', 4.0, 24)
+        self.assertEqual(cmd[0], sys.executable)
+        self.assertIn('-m', cmd)
+        self.assertIn('depthflow', cmd)
+
+    def test_cmd_fps_flag_correta(self):
+        """Flag de fps na v1.0 é -f (não --fps)."""
+        cmd = cg._depthflow_cmd('cap.png', 'out.mp4', 4.0, 24)
+        idx = cmd.index('-f')
+        self.assertEqual(cmd[idx + 1], '24')
+
+    def test_cmd_time_flag_correta(self):
+        """Flag de duração é -t."""
+        cmd = cg._depthflow_cmd('cap.png', 'out.mp4', 4.0, 24)
+        idx = cmd.index('-t')
+        self.assertEqual(cmd[idx + 1], '4')
+
 
 if __name__ == '__main__':
     unittest.main()
