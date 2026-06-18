@@ -33,18 +33,27 @@ scales = torch.tensor(scales, device=dev)
 opac = torch.tensor(opac, device=dev)
 colors = torch.tensor(rgb, device=dev)
 
-alvo = xyz.mean(0)
-extent = float(np.linalg.norm(xyz - alvo, axis=1).mean())   # raio "natural" da nuvem
-raio = extent * 2.2 * RAIOF
+# Enquadra a MASSA PRINCIPAL (conteúdo perto; ignora cauda de fundo distante) e
+# posiciona a câmera À FRENTE, a uma distância que cabe a bounding box. Órbita = pequeno
+# wobble lateral mantendo a câmera de frente (Flash3D só reconstrói o lado visível).
+mask = (xyz[:, 2] > 0.05) & (xyz[:, 2] < np.percentile(xyz[:, 2], 90))
+core = xyz[mask] if int(mask.sum()) > 100 else xyz
+center = core.mean(0).astype(np.float32)
+size = float(np.linalg.norm(core - center, axis=1).max()) + 1e-6
+cam_dist = size / np.tan(np.radians(FOV) / 2.0) * 1.15
+r = RAIOF * 0.15 * cam_dist
+print(f"center={center} size={size:.3f} cam_dist={cam_dist:.3f} r={r:.3f}")
 K = se.intrinsics(W, H, fov_graus=FOV)
 Kt = torch.tensor(K, dtype=torch.float32, device=dev)[None]
-poses = sp.orbit_poses(n=DUR * FPS, raio=raio, arco_graus=ARCO)
 
+N = DUR * FPS
 wr = imageio_ffmpeg.write_frames(out_mp4, (W, H), fps=FPS, macro_block_size=None)
 wr.send(None)
 try:
-    for eye in poses:
-        vm = torch.tensor(se.look_at(np.asarray(eye) + alvo, alvo), dtype=torch.float32, device=dev)[None]
+    for i in range(N):
+        phi = 2.0 * np.pi * i / N
+        eye = center + np.array([r * np.cos(phi), r * np.sin(phi) * 0.4, -cam_dist], dtype=np.float32)
+        vm = torch.tensor(se.look_at(eye, center), dtype=torch.float32, device=dev)[None]
         img, _, _ = rasterization(means, quats, scales, opac, colors, vm, Kt, W, H)
         fr = (img[0].clamp(0, 1).cpu().numpy() * 255).astype(np.uint8)
         wr.send(np.ascontiguousarray(fr))
