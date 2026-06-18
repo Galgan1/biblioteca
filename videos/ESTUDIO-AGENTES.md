@@ -215,6 +215,14 @@ Tudo local, sem crédito de API, testável com TDD antes de mexer em provedores 
 >   como admin (CUDA 12.8 + VS BuildTools) → eu compilo gsplat + `pip install transformers` → smoke na GPU.
 > Mural: **166 testes verdes**.
 > Mural: **160 testes verdes**.
+>
+> **CINEGRAFISTA PREMIUM (Blender) — a rota vencedora p/ capa de livro** ✅ (Opus + 3 subagentes + Sonnet 4/4):
+> 3D REAL fotorrealista, COMERCIAL (renders nossos + HDRI Poly Haven CC0), roda na RTX 5060 (Cycles OptiX,
+> ~1,3s/frame, sem compile hell). `videos/cenario3d.py` (headless `blender --background --python`): livro 3D
+> real (capa = textura) + HDRI estúdio + luzes + câmera 85mm + DoF + AgX + **sway ±50%** (capa sempre herói).
+> Blender 4.5.10 PORTÁTIL (zip, sem admin) em `_blender/`. Vídeo no /design: `vivido01_blender.mp4`.
+> **Comparativo final no /design:** DepthFlow (2.5D) < motor 3DGS próprio (cru) < Flash3D (rede, não-comercial)
+> < **Blender (premium, comercial)** — este é o que serve pra produção monetizada.
 
 ---
 

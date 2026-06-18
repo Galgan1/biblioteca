@@ -48,8 +48,12 @@ def mat_capa(capa_path):
 
 def mat_papel():
     m = bpy.data.materials.new("Papel"); m.use_nodes = True
-    b = m.node_tree.nodes.get('Principled BSDF')
-    _set(b, "Base Color", (0.52, 0.49, 0.44, 1)); _set(b, "Roughness", 0.85); _set(b, "Specular IOR Level", 0.1)
+    b = m.node_tree.nodes.get('Principled BSDF') or next((n for n in m.node_tree.nodes if n.type == 'BSDF_PRINCIPLED'), None)
+    if b:
+        b.inputs['Base Color'].default_value = (0.30, 0.28, 0.25, 1)   # cinza-escuro fosco (verso/lombada/cortes)
+        b.inputs['Roughness'].default_value = 0.85
+        _set(b, "Specular IOR Level", 0.1)
+    print("[dbg] papel BSDF ok:", b is not None)
     return m
 
 
@@ -114,13 +118,14 @@ def camera(alvo):
     return co
 
 
-def turntable(ob, n):
+def turntable(ob, n, amp=50):
+    """Sway senoidal ±amp (não 360): a CAPA é a heroína o tempo todo, mostra o 3D/espessura
+    e o verso (sem conteúdo) nunca aparece. Loopável (começa e termina em 0)."""
     s = bpy.context.scene; s.frame_start = 1; s.frame_end = n
-    ob.rotation_euler = (0, 0, 0); ob.keyframe_insert("rotation_euler", frame=1)
-    ob.rotation_euler = (0, 0, math.radians(360)); ob.keyframe_insert("rotation_euler", frame=n)
-    for fc in ob.animation_data.action.fcurves:
-        for kp in fc.keyframe_points:
-            kp.interpolation = 'LINEAR'
+    a = math.radians(amp)
+    for fr, ang in [(1, 0), (n // 4, a), (n // 2, 0), (3 * n // 4, -a), (n, 0)]:
+        ob.rotation_euler = (0, 0, ang); ob.keyframe_insert("rotation_euler", frame=fr)
+    # interpolação BEZIER (default) = sway suave; sem LINEAR
 
 
 def gpu():
