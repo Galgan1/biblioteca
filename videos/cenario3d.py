@@ -165,4 +165,5 @@ def main():
     print("CENARIO_OK", OUT)
 
 
-main()
+if __name__ == "__main__":
+    main()
