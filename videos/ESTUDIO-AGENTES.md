@@ -170,6 +170,17 @@ maior valor / menor risco / custo zero → **(a)** Sonoplasta `−14 LUFS` no ma
 **(b)** Cinegrafista DepthFlow no NORMAL + **(c)** Gate 2 como `qc.py` (rúbrica executável).
 Tudo local, sem crédito de API, testável com TDD antes de mexer em provedores pagos.
 
+> **STATUS (implementado, jun/2026, TDD + cross-model APROVADO):**
+> - **(a) FEITO** — `mixmaster.py`: `loudnorm −14 LUFS / TP −1` ligado por padrão; grafo de
+>   áudio extraído para `_build_audio_filter` (puro, testado). Tests: `test_mixmaster.py`.
+> - **(b) SEAM FEITO** — `cinegrafista.py` (decisão `tratamento` + guard `parallax`) + hook
+>   **dormente** em `gerar_video.py` (zero regressão sem DepthFlow). Tests: `test_cinegrafista.py`.
+>   *Pendente:* render parallax real precisa de `pip install depthflow` + **smoke-test em GPU**.
+> - **(c) FEITO** — `qc.py`: 4 estágios, bloqueantes (resolução/TP/pt-PT/link-busca), exit code;
+>   CLI provado (aprova roteiro bom, reprova ruim). Tests: `test_qc.py`. Achado: densidade de
+>   narração usa 52 palavras (convenção do projeto), não 35 (que é de slide).
+> Mural: **96 testes verdes** (eram 64).
+
 ---
 
 ## 7. Fontes (pesquisa 2025–26)

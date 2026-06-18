@@ -460,6 +460,7 @@ def main(roteiro_path):
             import veo
             mot_gen = veo.animate
 
+    import cinegrafista                                  # Cinegrafista NORMAL (parallax grátis / fallback Ken Burns)
     clips = []
     durs = []   # duração on-screen de cada cena (p/ legendas/capítulos da lane YouTube)
     label = {'fal': 'Flux + Kling', 'google': 'Imagen + Veo'}.get(provider, provider)
@@ -491,6 +492,14 @@ def main(roteiro_path):
                 except Exception as _me:
                     print(f"  [!] movimento falhou ({type(_me).__name__}: {str(_me)[:80]}) — usando Ken Burns")
                     mot = None
+
+        # Cinegrafista NORMAL: imagem grátis sem movimento pago → parallax 2.5D (DepthFlow);
+        # rota de fuga = Ken Burns. Dormente enquanto DepthFlow não estiver instalado.
+        if not mot and bg and not mot_gen and cinegrafista.depthflow_disponivel():
+            dfp = MOTDIR / f'{slug}_{i:02d}_df.mp4'
+            if dfp.exists() or cinegrafista.parallax(str(bg), str(dfp)):
+                mot = dfp
+                print(f"  cena {i+1}/{n}: parallax 2.5D (DepthFlow, grátis)")
 
         tipo = cena.get('tipo', 'conceito')
         side = 'center' if tipo in ('abertura', 'encerramento') else ('left' if i % 2 == 1 else 'right')
@@ -536,6 +545,26 @@ def main(roteiro_path):
         print(f"  [aviso] camada de batidas pulada: {e}")
     out = mixmaster.master(slug, ROOT / f'{slug}.mp4')      # Mix & Master a partir dos stems (já com efeitos.wav)
     print(f"\nOK -> {out}  ·  stems em _stems/{slug}/  ·  re-mix: python mixmaster.py {slug}")
+
+    # Gate de QC: sinaliza e registra o veredicto — NÃO destrói a mídia cara em caso de reprovação.
+    # A mídia fica; o que o gate barra é a PUBLICAÇÃO (consultar qc.aprovado(slug) antes de subir).
+    import qc as _qc
+    _falhas, _avisos = _qc.coletar(roteiro_path, out)
+    _veredicto = _qc.montar_veredicto(_falhas, _avisos)
+    _qc.salvar_veredicto(slug, _veredicto)
+    print('=== QC — Gate 2 do estúdio ===')
+    if _falhas:
+        print(f'FALHAS ({len(_falhas)}):')
+        for _f in _falhas:
+            print('  [REPROVA]', _f)
+    else:
+        print('FALHAS: nenhuma')
+    if _avisos:
+        print(f'AVISOS ({len(_avisos)}):')
+        for _a in _avisos:
+            print('  [aviso]', _a)
+    _status = 'APROVADO' if _veredicto['aprovado'] else 'REPROVADO'
+    print(f"VEREDICTO: {_status}  ·  veredicto em _stems/{slug}/qc.json")
 
 
 if __name__ == '__main__':
