@@ -223,6 +223,13 @@ Tudo local, sem crédito de API, testável com TDD antes de mexer em provedores 
 > Blender 4.5.10 PORTÁTIL (zip, sem admin) em `_blender/`. Vídeo no /design: `vivido01_blender.mp4`.
 > **Comparativo final no /design:** DepthFlow (2.5D) < motor 3DGS próprio (cru) < Flash3D (rede, não-comercial)
 > < **Blender (premium, comercial)** — este é o que serve pra produção monetizada.
+>
+> **BASE DE CONHECIMENTO (treino dos agentes):** o **Cinegrafista** e o **Diretor** consultam a skill
+> `blender` antes de montar/escolher cena 3D — núcleo técnico (Cycles/OptiX, AgX, Principled BSDF,
+> HDRI, câmera/DoF), trilha de aprendizado e os gotchas já pagos do nosso pipeline headless. A skill é
+> fundada em 3 fontes **livres** (CC), agora publicadas na Biblioteca: [Blender Manual](https://www.andregalgani.com.br/biblioteca/blender-manual.html),
+> [Noob to Pro](https://www.andregalgani.com.br/biblioteca/blender-noob-to-pro.html) e
+> [Blender Fundamentals](https://www.andregalgani.com.br/biblioteca/blender-fundamentals.html). Especialista-irmão: `gaussian-splatting`.
 
 ---
 

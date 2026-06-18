@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAPÍTULO 2: Materiais — Principled BSDF | Blender Manual Oficial | Biblioteca</title>
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Biblioteca André Galgani">
+    <meta property="og:title" content="CAPÍTULO 2: Materiais — Principled BSDF · Blender Manual Oficial">
+    <meta property="og:description" content="Um shader físico só, controlado por poucos parâmetros, faz qualquer superfície convincente.">
+    <meta property="og:image" content="https://www.andregalgani.com.br/biblioteca/assets/og-banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://www.andregalgani.com.br/biblioteca/blender-manual/ch02-materiais-principled-bsdf.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/style.css">
+    <meta name="description" content="Um shader físico só, controlado por poucos parâmetros, faz qualquer superfície convincente.">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta name="theme-color" content="#fcfdfc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1c1f1d" media="(prefers-color-scheme: dark)">
+    <!-- og-retrofit -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Biblioteca André Galgani">
+    <meta property="og:title" content="CAPÍTULO 2: Materiais — Principled BSDF | Blender Manual Oficial | Biblioteca">
+    <meta property="og:description" content="Um shader físico só, controlado por poucos parâmetros, faz qualquer superfície convincente.">
+    <meta property="og:image" content="https://www.andregalgani.com.br/biblioteca/assets/blender-manual-capa.png">
+    <meta property="og:url" content="https://www.andregalgani.com.br/biblioteca/blender-manual/ch02-materiais-principled-bsdf.html">
+    <meta name="twitter:card" content="summary">
+    <!-- /og-retrofit -->
+
+    <!-- seo:start -->
+    <link rel="canonical" href="https://www.andregalgani.com.br/biblioteca/blender-manual/ch02-materiais-principled-bsdf.html">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.andregalgani.com.br/biblioteca/blender-manual/ch02-materiais-principled-bsdf.html#article",
+      "headline": "CAPÍTULO 2: Materiais — Principled BSDF",
+      "inLanguage": "pt-BR",
+      "url": "https://www.andregalgani.com.br/biblioteca/blender-manual/ch02-materiais-principled-bsdf.html",
+      "image": "https://www.andregalgani.com.br/biblioteca/assets/blender-manual-capa.png",
+      "author": {
+        "@type": "Person",
+        "name": "Blender Foundation"
+      },
+      "isPartOf": {
+        "@type": "Book",
+        "@id": "https://www.andregalgani.com.br/biblioteca/blender-manual.html#book",
+        "name": "Blender Manual Oficial"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Biblioteca",
+          "item": "https://www.andregalgani.com.br/biblioteca/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blender Manual Oficial",
+          "item": "https://www.andregalgani.com.br/biblioteca/blender-manual.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CAPÍTULO 2: Materiais — Principled BSDF",
+          "item": "https://www.andregalgani.com.br/biblioteca/blender-manual/ch02-materiais-principled-bsdf.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- seo:end -->
+</head>
+<body>
+    <a href="#conteudo" class="skip-link">Ir para o conteúdo</a>
+    <div class="page">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"CAP\u00cdTULO 2: Materiais \u2014 Principled BSDF \u00b7 Blender Manual Oficial","description":"Um shader f\u00edsico s\u00f3, controlado por poucos par\u00e2metros, faz qualquer superf\u00edcie convincente.","author":{"@type":"Person","name":"Blender Foundation"},"datePublished":"2026-06-18","dateModified":"2026-06-18","inLanguage":"pt-BR"}</script>
+        <nav class="crumbs" aria-label="Trilha de navegação">
+            <a class="crumbs-home" href="../index.html">Biblioteca</a>
+            <span class="crumbs-sep" aria-hidden="true">›</span>
+            <a href="../blender-manual.html">Blender Manual Oficial</a>
+            <span class="crumbs-sep" aria-hidden="true">›</span>
+            <span class="crumbs-current" aria-current="page">Cap. 2: Materiais — Principled BSDF</span>
+        </nav>
+
+        <header class="header animate-entrance" style="--i: 0">
+            <h1 class="header-title">
+                <span class="header-title-light">BLENDER</span>
+                <span class="header-title-bold">MANUAL</span>
+            </h1>
+            <p class="header-subtitle">CAPÍTULO 2: Materiais — Principled BSDF</p>
+            <p class="header-credit">Blender Foundation</p>
+            <p class="header-intro">Um shader físico só, controlado por poucos parâmetros, faz qualquer superfície convincente.</p>
+        </header>
+        <main id="conteudo">
+            <div class="grid">
+<article class="card animate-entrance" style="--i: 1">
+<div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 8L18 36h12l-4 20 20-30H34l4-18z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></div>
+<div class="card-content">
+<h2 class="card-title">Roughness é o rei</h2>
+<p class="card-body">De 0 (espelho) a 1 (fosco total), o <strong>Roughness define como a luz espalha</strong> — é o parâmetro que mais muda a leitura do material. Papel fosco ~0,7; verniz ~0,05.</p>
+<p class="card-tip"><strong>Dica:</strong> quase nada no mundo real é 0 ou 1; fuja dos extremos.</p>
+</div></article>
+<article class="card animate-entrance" style="--i: 2">
+<div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 14h44v28H30l-12 10v-10H10z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M20 24h24M20 32h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></div>
+<div class="card-content">
+<h2 class="card-title">Metallic é binário</h2>
+<p class="card-body"><strong>Metallic é 0 (dielétrico: plástico, papel, pele) ou 1 (metal puro) — raramente meio-termo.</strong> Em metal, a Base Color vira a cor do reflexo. Misturar valores intermediários costuma ser erro.</p>
+<p class="card-tip"><strong>Regra PBR:</strong> decida primeiro 'é metal ou não?' e só então ajuste rugosidade.</p>
+</div></article>
+<article class="card animate-entrance" style="--i: 3">
+<div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 16C26 12 16 12 12 14v34c4-2 14-2 20 2 6-4 16-4 20-2V14c-4-2-14-2-20 2z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M32 18v34" stroke="currentColor" stroke-width="3"/></svg></div>
+<div class="card-content">
+<h2 class="card-title">Textura por nó</h2>
+<p class="card-body">Conecte <strong>UV → Image Texture → Base Color → BSDF → Output</strong>. A imagem da capa vira a cor da superfície. <strong>Colorspace sRGB para cor; Non-Color para mapas técnicos</strong> (normal, roughness).</p>
+<p class="card-tip"><strong>Alpha (recorte):</strong> ligue a saída Alpha do nó ao Alpha do BSDF — é assim que um billboard recortado funciona no Cycles.</p>
+</div></article>
+            </div>
+            <section class="lessons animate-entrance" style="--i: 4">
+                <h2 class="lessons-title">Lições-Chave do Capítulo 2</h2>
+                <ul class="lessons-list">
+<li>Roughness é o parâmetro de maior impacto visual.</li>
+<li>Metallic é praticamente binário (0 ou 1).</li>
+<li>Texturas entram por nós; cuidado com o colorspace (sRGB × Non-Color).</li>
+                </ul>
+            </section>
+            <nav aria-label="Navegação entre capítulos" class="chapter-nav">
+                <a href="ch01-modelagem-modificadores.html" class="chapter-nav-link" rel="prev" aria-label="Capítulo anterior: Cap. 1: Modelagem e Modificadores">&larr; Cap. 1: Modelagem e Modificadores</a>
+                <a href="ch03-luz-camera.html" class="chapter-nav-link" rel="next" aria-label="Próximo capítulo: Cap. 3: Iluminação e Câmera">Cap. 3: Iluminação e Câmera &rarr;</a>
+            </nav>
+        </main>
+        <footer class="footer">
+            <p class="footer-credit">Blender Manual Oficial · Blender Foundation · <a class="footer-link" href="../index.html">Biblioteca</a></p>
+        </footer>
+    </div>
+    <script defer src="script.js"></script>
+</body>
+</html>

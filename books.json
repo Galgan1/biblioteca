@@ -2183,5 +2183,71 @@
         "url": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR"
       }
     ]
+  },
+  {
+    "id": "blender-manual",
+    "title": "Blender Manual Oficial",
+    "author": "Blender Foundation",
+    "coverUrl": "assets/blender-manual-capa.png",
+    "description": "Referência rápida do Blender Manual oficial (CC-BY-SA): modelagem e modificadores, Principled BSDF, HDRI e luzes, câmera e profundidade de campo, Cycles/GPU OptiX, color management AgX e a API Python (bpy) para render headless. Conteúdo livre, com atribuição à Blender Foundation.",
+    "tags": [
+      "Blender",
+      "3D",
+      "Referência"
+    ],
+    "progress": "4 Capítulos",
+    "url": "blender-manual.html",
+    "amazon": "https://www.amazon.com.br/s?k=Blender+Manual+Oficial+Blender+Foundation&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Blender+Manual+Oficial+Blender+Foundation&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "blender-noob-to-pro",
+    "title": "Blender 3D: Noob to Pro",
+    "author": "Wikibooks (comunidade)",
+    "coverUrl": "assets/blender-noob-to-pro-capa.png",
+    "description": "Trilha de aprendizado de Blender do Wikibooks (CC-BY-SA): fundamentos de 3D, navegação, Object/Edit Mode, extrusão e loop cut, normais e smooth shading, materiais × texturas, UV unwrap e animação por keyframes. O complemento didático do manual — a sequência e o 'porquê'.",
+    "tags": [
+      "Blender",
+      "Aprendizado",
+      "Tutorial"
+    ],
+    "progress": "3 Capítulos",
+    "url": "blender-noob-to-pro.html",
+    "amazon": "https://www.amazon.com.br/s?k=Blender+3D%3A+Noob+to+Pro+Wikibooks+%28comunidade%29&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Blender+3D%3A+Noob+to+Pro+Wikibooks+%28comunidade%29&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "blender-fundamentals",
+    "title": "Blender Fundamentals",
+    "author": "Blender Foundation",
+    "coverUrl": "assets/blender-fundamentals-capa.png",
+    "description": "Resumo do curso oficial Blender Fundamentals (Blender Foundation, CC-BY 4.0): primeiros passos e atalhos, modelagem, shading com Principled BSDF, iluminação de três pontos, render Cycles × EEVEE e o workflow de produção recomendado. As boas práticas oficiais da casa.",
+    "tags": [
+      "Blender",
+      "Curso",
+      "Oficial"
+    ],
+    "progress": "3 Capítulos",
+    "url": "blender-fundamentals.html",
+    "amazon": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20"
+      }
+    ]
   }
 ]
