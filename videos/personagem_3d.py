@@ -36,10 +36,10 @@ def mat(nome, cor, rough=0.6, subsurf=0.0, metal=0.0):
     return m
 
 
-SKIN  = lambda: mat("Skin",  (0.62, 0.66, 0.52), 0.55, subsurf=0.18)   # pele pálida doentia
+SKIN  = lambda: mat("Skin",  (0.46, 0.54, 0.37), 0.55, subsurf=0.18)   # pele pálida doentia (esverdeada)
 HAIR  = lambda: mat("Hair",  (0.86, 0.87, 0.90), 0.85)                  # branco-grisalho
-SHIRT = lambda: mat("Shirt", (0.56, 0.53, 0.46), 0.92)                  # camisa suja off-white
-PANTS = lambda: mat("Pants", (0.30, 0.33, 0.40), 0.92)                  # calça cinza-azulada
+SHIRT = lambda: mat("Shirt", (0.42, 0.38, 0.30), 0.95)                  # camisa suja (marrom-acinzentada)
+PANTS = lambda: mat("Pants", (0.26, 0.29, 0.37), 0.95)                  # calça cinza-azulada suja
 EYE   = lambda: mat("Eye",   (0.92, 0.92, 0.93), 0.25)                  # esclera
 IRIS  = lambda: mat("Iris",  (0.02, 0.02, 0.03), 0.30)                  # pupila escura
 MOUTH = lambda: mat("Mouth", (0.10, 0.02, 0.02), 0.50)                  # boca escura
@@ -109,31 +109,38 @@ def construir_corpo():
         (-0.16,0.12, 0.42),   # 14 joelho D
         (-0.18,0.20, 0.06),   # 15 torn. D
     ]
+    V[12] = (0.17, -0.30, 0.045); V[15] = (-0.18, 0.20, 0.045)   # tornozelos no chão
     E = [(0,1),(1,2),(2,3),(2,4),(4,5),(5,6),(2,7),(7,8),(8,9),
          (0,10),(10,11),(11,12),(0,13),(13,14),(14,15)]
     R = {0:0.085, 1:0.078, 2:0.085, 3:0.045,
          4:0.045,5:0.034,6:0.030, 7:0.045,8:0.034,9:0.030,
          10:0.055,11:0.040,12:0.030, 13:0.055,14:0.040,15:0.030}
-    return figura_skin("Corpo", V, E, R, root=0, material=SKIN(), subsurf=2, base_r=0.04)
+    corpo = figura_skin("Corpo", V, E, R, root=0, material=SKIN(), subsurf=2, base_r=0.04)
+    pele = corpo.data.materials[0]
+    esfera("MaoE", (0.50, -0.34, 1.30), 0.055, pele, escala=(0.9, 0.9, 1.0))    # mãos
+    esfera("MaoD", (-0.46, -0.16, 0.82), 0.055, pele, escala=(0.9, 0.9, 1.0))
+    esfera("PeE", (0.17, -0.37, 0.035), 0.055, pele, escala=(0.7, 1.5, 0.5))    # pés descalços no chão
+    esfera("PeD", (-0.18, 0.12, 0.035), 0.055, pele, escala=(0.7, 1.5, 0.5))
+    return corpo
 
 
 def construir_roupa():
     # CAMISA esfarrapada: chain pelve->peito + mangas curtas (cobre torso e parte do braço),
     # raio maior que o corpo -> "veste". Material sujo. (pernas/antebraços ficam à mostra = rasgado)
-    Vc = [(0.00,0.02,0.74),(0.00,-0.05,0.95),(0.00,-0.10,1.16),   # 0,1,2 torso
-          (0.15,-0.10,1.16),(0.30,-0.18,1.16),                    # 3,4 manga E
-          (-0.15,-0.10,1.16),(-0.30,-0.06,1.04)]                  # 5,6 manga D
-    Ec = [(0,1),(1,2),(2,3),(3,4),(2,5),(5,6)]
-    Rc = {0:0.115,1:0.110,2:0.115,3:0.070,4:0.058,5:0.070,6:0.058}
-    camisa = figura_skin("Camisa", Vc, Ec, Rc, root=0, material=SHIRT(), subsurf=2, base_r=0.06)
-    _esfarrapar(camisa, 0.025)
+    # CAMISA esfarrapada = TÚNICA elipsoide (cobre torso ombro->quadril) — confiável (a
+    # skin-figure colapsava e só o hem aparecia). Material sujo + displace forte = rasgada.
+    camisa = esfera("Camisa", (0.0, -0.05, 0.97), 0.155, SHIRT(), escala=(1.06, 0.92, 1.5), segs=28, rings=18)
+    _esfarrapar(camisa, 0.05)
+    smat = camisa.data.materials[0]
+    esfera("MangaE", (0.16, -0.10, 1.12), 0.075, smat, escala=(1.1, 1.0, 0.85))   # cotos de manga curta
+    esfera("MangaD", (-0.16, -0.10, 1.12), 0.075, smat, escala=(1.1, 1.0, 0.85))
     # CALÇA rasgada: quadris -> joelhos só (joelho->tornozelo fica perna nua = pernas rasgadas)
     Vp = [(0.00,0.02,0.78),(0.10,0.02,0.70),(0.15,-0.16,0.44),    # 0 cintura,1 quadril E,2 joelho E
           (-0.10,0.02,0.70),(-0.16,0.10,0.46)]                    # 3 quadril D,4 joelho D
     Ep = [(0,1),(1,2),(0,3),(3,4)]
-    Rp = {0:0.115,1:0.075,2:0.052,3:0.075,4:0.052}
+    Rp = {0:0.135,1:0.090,2:0.060,3:0.090,4:0.060}
     calca = figura_skin("Calca", Vp, Ep, Rp, root=0, material=PANTS(), subsurf=2, base_r=0.06)
-    _esfarrapar(calca, 0.02)
+    _esfarrapar(calca, 0.035)
     return camisa, calca
 
 
@@ -152,9 +159,9 @@ def construir_cabeca():
     esfera("Nariz", (cx, cy - 0.20, cz - 0.02), 0.045, cab.data.materials[0], escala=(1.0, 1.4, 1.0))
     # OLHOS grandes esbugalhados (esclera projetada p/ -Y) + íris
     eye_m, iris_m = EYE(), IRIS()
-    for sx in (0.075, -0.075):
-        esfera("Olho", (cx + sx, cy - 0.135, cz + 0.05), 0.062, eye_m, segs=20, rings=12)
-        esfera("Iris", (cx + sx, cy - 0.185, cz + 0.045), 0.026, iris_m, segs=16, rings=10)
+    for sx in (0.078, -0.078):
+        esfera("Olho", (cx + sx, cy - 0.150, cz + 0.055), 0.072, eye_m, segs=20, rings=12)   # esbugalhados
+        esfera("Iris", (cx + sx, cy - 0.205, cz + 0.050), 0.028, iris_m, segs=16, rings=10)
         # sobrancelha branca rebelde
         caixa("Sob", (cx + sx, cy - 0.175, cz + 0.135), (0.075, 0.012, 0.018), HAIR(),
               rot=(0, 0, math.radians(18 if sx > 0 else -18)))
@@ -170,19 +177,19 @@ def cabelo_selvagem(cabeca):
     """Cabelo de partículas branco, explodindo do topo/trás da cabeça (selvagem)."""
     cabeca.data.materials.append(HAIR())   # slot 1 = cabelo
     vg = cabeca.vertex_groups.new(name="couro")
-    for v in cabeca.data.vertices:        # topo (z>0) e trás (y>0) recebem cabelo; rosto fica sem
-        peso = 1.0 if (v.co.z > 0.0 or v.co.y > 0.04) else 0.0
+    for v in cabeca.data.vertices:        # SÓ topo + nuca alta -> cabelo p/ cima (não disco lateral)
+        peso = 1.0 if (v.co.z > 0.075 or (v.co.y > 0.06 and v.co.z > -0.02)) else 0.0
         vg.add([v.index], peso, 'REPLACE')
-    ps_mod = cabeca.modifiers.new("cabelo", 'PARTICLE_SYSTEM')
+    cabeca.modifiers.new("cabelo", 'PARTICLE_SYSTEM')
     ps = cabeca.particle_systems[-1]; ps.vertex_group_density = "couro"
     p = ps.settings
-    p.type = 'HAIR'; p.count = 320; p.hair_length = 0.34
-    p.use_advanced_hair = True
+    p.type = 'HAIR'; p.count = 420; p.hair_length = 0.15     # mais curto e denso = mop selvagem
+    p.use_advanced_hair = True; p.use_hair_bspline = True
     p.root_radius = 0.006; p.tip_radius = 0.0
-    p.normal_factor = 0.35; p.factor_random = 0.55          # caos = selvagem
-    p.brownian_factor = 0.25
-    p.kink = 'CURL'; p.kink_amplitude = 0.05; p.kink_frequency = 2.5
-    p.child_type = 'INTERPOLATED'; p.rendered_child_count = 60; p.child_length = 1.0
+    p.normal_factor = 0.13; p.factor_random = 0.40           # menos radial, ainda caótico
+    p.brownian_factor = 0.18
+    p.kink = 'CURL'; p.kink_amplitude = 0.035; p.kink_frequency = 2.5
+    p.child_type = 'INTERPOLATED'; p.rendered_child_count = 70; p.child_length = 1.0
     p.material = 2                                          # slot 2 (1-based) = HAIR
     return ps
 
@@ -190,9 +197,9 @@ def cabelo_selvagem(cabeca):
 # ---------------------------------------------------------------- estúdio + render
 def estudio():
     c3.mundo_hdri(HDRI, 0.55)                               # HDRI ilumina/reflete, câmera vê fundo escuro
-    c3.luz("Key", 320, (1.4, -1.8, 2.4), 1.3)
-    c3.luz("Fill", 110, (-1.8, -1.2, 1.6), 1.8)
-    c3.luz("Rim", 260, (0.0, 1.8, 2.0), 1.0)
+    c3.luz("Key", 230, (1.4, -1.8, 2.4), 1.4)
+    c3.luz("Fill", 95, (-1.8, -1.2, 1.6), 1.8)
+    c3.luz("Rim", 240, (0.0, 1.8, 2.0), 1.0)
     # chão p/ ancorar a sombra de contato
     bpy.ops.mesh.primitive_plane_add(size=14, location=(0, 0, 0))
     ch = bpy.context.active_object
@@ -209,7 +216,7 @@ def setup_render(co):
 
 
 def nova_cam():
-    cd = bpy.data.cameras.new("Cam"); cd.lens = 70; cd.sensor_width = 36
+    cd = bpy.data.cameras.new("Cam"); cd.lens = 55; cd.sensor_width = 36
     co = bpy.data.objects.new("Cam", cd); bpy.context.scene.collection.objects.link(co)
     return co
 
@@ -222,7 +229,7 @@ def main():
     cabelo_selvagem(cab)
     estudio()
     co = nova_cam(); setup_render(co)
-    alvo = (0.0, 0.0, 0.95)
+    alvo = (0.0, 0.0, 0.85)
     s = bpy.context.scene
     s.cycles.samples = SAMPLES
     print("[pers] corpo dim", tuple(round(x, 2) for x in corpo.dimensions),
@@ -247,7 +254,7 @@ def main():
         bpy.ops.render.render(animation=True)
         print("PERS_OK", r.filepath)
     else:
-        raio, alt = 3.4, 1.05
+        raio, alt = 3.5, 0.95
         s.render.image_settings.file_format = 'PNG'
         angulos = [("a", 25), ("b", 90), ("c", 200)]       # 3/4 frente, perfil, 3/4 trás (prova 3D)
         for suf, deg in angulos:
