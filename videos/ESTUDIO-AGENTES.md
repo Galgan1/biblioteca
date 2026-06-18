@@ -210,6 +210,10 @@ Tudo local, sem crédito de API, testável com TDD antes de mexer em provedores 
 >   `torchvision 0.26.0+cu128` (CUDA True; DepthFlow agora roda na GPU). *(2.12.1 não tem wheel cu128;
 >   2.11.0 é a build CUDA original da máquina.)* **PENDENTE p/ render 3DGS real:** instalar motor 3DGS
 >   (gsplat) + escrever `splatting_engine` (imagem→Gaussians→render). Bleeding-edge em Blackwell/Windows.
+> - **`splatting_engine.py` ESCRITO** ✅ (geometria pura testada; render GPU isolado, ligado a `splat_clip`).
+>   gsplat 1.5.3 instalado mas **desabilitado** (sem nvcc/MSVC). Próximo: usuário roda `setup_3dgs_toolchain.bat`
+>   como admin (CUDA 12.8 + VS BuildTools) → eu compilo gsplat + `pip install transformers` → smoke na GPU.
+> Mural: **166 testes verdes**.
 > Mural: **160 testes verdes**.
 
 ---
