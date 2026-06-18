@@ -11,7 +11,7 @@ Uso:  blender --background --python personagem_3d.py -- --hdri STUDIO.exr --out 
   stills -> PREFIXO_a.png/_b.png/_c.png (3 ângulos, prova de 3D)
   turn   -> PREFIXO.mp4 (turntable 360)
 """
-import bpy, sys, os, math
+import bpy, sys, os, math, random
 from mathutils import Vector
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import cenario3d as c3   # gpu, mundo_hdri, luz, _set, limpar
@@ -38,7 +38,7 @@ def mat(nome, cor, rough=0.6, subsurf=0.0, metal=0.0):
 
 SKIN  = lambda: mat("Skin",  (0.46, 0.54, 0.37), 0.55, subsurf=0.18)   # pele pálida doentia (esverdeada)
 HAIR  = lambda: mat("Hair",  (0.86, 0.87, 0.90), 0.85)                  # branco-grisalho
-SHIRT = lambda: mat("Shirt", (0.42, 0.38, 0.30), 0.95)                  # camisa suja (marrom-acinzentada)
+SHIRT = lambda: mat("Shirt", (0.30, 0.24, 0.16), 0.95)                  # camisa suja (marrom-terra escuro, contrasta c/ pele)
 PANTS = lambda: mat("Pants", (0.26, 0.29, 0.37), 0.95)                  # calça cinza-azulada suja
 EYE   = lambda: mat("Eye",   (0.92, 0.92, 0.93), 0.25)                  # esclera
 IRIS  = lambda: mat("Iris",  (0.02, 0.02, 0.03), 0.30)                  # pupila escura
@@ -124,16 +124,37 @@ def construir_corpo():
     return corpo
 
 
+def construir_camisa():
+    """Camisa = TUBO de tecido aberto (gola em cima, bainha RASGADA embaixo) + Solidify
+    (espessura de pano). Lê claramente como roupa (não 'barriga') — cues de gola + bainha torta."""
+    random.seed(7)
+    Nr = 18
+    topo_z, base_z = 0.21, -0.21
+    topo_r, base_r = 0.125, 0.175
+    V = []
+    for i in range(Nr):                                    # gola (mostra o pescoço pelo buraco)
+        a = 2 * math.pi * i / Nr
+        V.append((topo_r * math.cos(a), topo_r * 0.85 * math.sin(a), topo_z))
+    for i in range(Nr):                                    # bainha esfarrapada (z e raio irregulares)
+        a = 2 * math.pi * i / Nr
+        r = base_r + random.uniform(-0.012, 0.022)
+        V.append((r * math.cos(a), r * 0.9 * math.sin(a), base_z + random.uniform(-0.06, 0.02)))
+    F = [(i, (i + 1) % Nr, Nr + (i + 1) % Nr, Nr + i) for i in range(Nr)]
+    me = bpy.data.meshes.new("Camisa"); me.from_pydata(V, [], F); me.update()
+    for p in me.polygons: p.use_smooth = True
+    o = bpy.data.objects.new("Camisa", me); bpy.context.scene.collection.objects.link(o)
+    o.location = (0.0, -0.04, 0.97); o.rotation_euler = (math.radians(16), 0, 0)   # acompanha a inclinação do torso
+    o.data.materials.append(SHIRT())
+    o.modifiers.new("sol", 'SOLIDIFY').thickness = 0.02    # parede de pano
+    o.modifiers.new("sub", 'SUBSURF').levels = 1
+    _esfarrapar(o, 0.02)
+    return o
+
+
 def construir_roupa():
     # CAMISA esfarrapada: chain pelve->peito + mangas curtas (cobre torso e parte do braço),
     # raio maior que o corpo -> "veste". Material sujo. (pernas/antebraços ficam à mostra = rasgado)
-    # CAMISA esfarrapada = TÚNICA elipsoide (cobre torso ombro->quadril) — confiável (a
-    # skin-figure colapsava e só o hem aparecia). Material sujo + displace forte = rasgada.
-    camisa = esfera("Camisa", (0.0, -0.05, 0.97), 0.155, SHIRT(), escala=(1.06, 0.92, 1.5), segs=28, rings=18)
-    _esfarrapar(camisa, 0.05)
-    smat = camisa.data.materials[0]
-    esfera("MangaE", (0.16, -0.10, 1.12), 0.075, smat, escala=(1.1, 1.0, 0.85))   # cotos de manga curta
-    esfera("MangaD", (-0.16, -0.10, 1.12), 0.075, smat, escala=(1.1, 1.0, 0.85))
+    camisa = construir_camisa()
     # CALÇA rasgada: quadris -> joelhos só (joelho->tornozelo fica perna nua = pernas rasgadas)
     Vp = [(0.00,0.02,0.78),(0.10,0.02,0.70),(0.15,-0.16,0.44),    # 0 cintura,1 quadril E,2 joelho E
           (-0.10,0.02,0.70),(-0.16,0.10,0.46)]                    # 3 quadril D,4 joelho D
@@ -183,10 +204,10 @@ def cabelo_selvagem(cabeca):
     cabeca.modifiers.new("cabelo", 'PARTICLE_SYSTEM')
     ps = cabeca.particle_systems[-1]; ps.vertex_group_density = "couro"
     p = ps.settings
-    p.type = 'HAIR'; p.count = 420; p.hair_length = 0.15     # mais curto e denso = mop selvagem
+    p.type = 'HAIR'; p.count = 420; p.hair_length = 0.13     # mais curto e denso = mop selvagem
     p.use_advanced_hair = True; p.use_hair_bspline = True
     p.root_radius = 0.006; p.tip_radius = 0.0
-    p.normal_factor = 0.13; p.factor_random = 0.40           # menos radial, ainda caótico
+    p.normal_factor = 0.11; p.factor_random = 0.38           # menos radial, ainda caótico
     p.brownian_factor = 0.18
     p.kink = 'CURL'; p.kink_amplitude = 0.035; p.kink_frequency = 2.5
     p.child_type = 'INTERPOLATED'; p.rendered_child_count = 70; p.child_length = 1.0
