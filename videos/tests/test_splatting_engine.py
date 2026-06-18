@@ -80,5 +80,39 @@ class TestInitGaussians(unittest.TestCase):
         self.assertLess(g2['means'].shape[0], g1['means'].shape[0])
 
 
+class TestCamadaDeFundo(unittest.TestCase):
+    """Flash3D-style: camada(s) atrás preenchem a disocclusion (buracos pretos)."""
+    def _dados(self, w=16, h=12):
+        rgb = np.random.rand(h, w, 3).astype(np.float32)
+        depth = (np.random.rand(h, w).astype(np.float32) + 0.5)   # 0.5..1.5
+        return rgb, depth, se.intrinsics(w, h)
+
+    def test_fundo_adiciona_gaussians(self):
+        rgb, depth, K = self._dados()
+        g0 = se.init_gaussians(rgb, depth, K, stride=2, com_fundo=False)
+        g1 = se.init_gaussians(rgb, depth, K, stride=2, com_fundo=True)
+        self.assertGreater(g1['means'].shape[0], g0['means'].shape[0])
+
+    def test_fundo_fica_atras(self):
+        # as gaussians do fundo devem estar mais LONGE que o objeto mais distante
+        rgb, depth, K = self._dados()
+        g0 = se.init_gaussians(rgb, depth, K, stride=2, com_fundo=False)
+        g1 = se.init_gaussians(rgb, depth, K, stride=2, com_fundo=True)
+        z_obj_max = g0['means'][:, 2].max()
+        n_extra = g1['means'].shape[0] - g0['means'].shape[0]
+        z_fundo = g1['means'][-n_extra:, 2]          # as últimas são o fundo
+        self.assertTrue(np.all(z_fundo >= z_obj_max))
+
+    def test_campos_consistentes_com_fundo(self):
+        rgb, depth, K = self._dados()
+        g = se.init_gaussians(rgb, depth, K, stride=2, com_fundo=True)
+        n = g['means'].shape[0]
+        self.assertEqual(g['colors'].shape, (n, 3))
+        self.assertEqual(g['scales'].shape, (n, 3))
+        self.assertEqual(g['quats'].shape, (n, 4))
+        self.assertEqual(g['opacities'].shape, (n,))
+        self.assertTrue(np.all((g['colors'] >= 0) & (g['colors'] <= 1)))
+
+
 if __name__ == '__main__':
     unittest.main()

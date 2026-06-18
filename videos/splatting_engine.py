@@ -65,21 +65,50 @@ def look_at(eye, alvo, up=(0.0, -1.0, 0.0)):
     return vm
 
 
-def init_gaussians(rgb, depth, K, stride=2):
+def _backdrop(rgb_s, depth_s, K2, stride):
+    """Camada de FUNDO (Flash3D-style): grade grossa de Gaussians grandes num plano
+    ATRÁS do objeto mais distante, colorida pela imagem. Quando a câmera orbita e o
+    primeiro plano se move, os buracos de disocclusion revelam este fundo (borrado)
+    em vez de preto. PURO. -> (means, colors, scales)."""
+    hs, ws = depth_s.shape
+    zf = float(depth_s.max()) * 1.3 + 0.2                 # plano atrás de tudo
+    gi = np.linspace(0, hs - 1, max(2, hs // 3)).astype(int)
+    gj = np.linspace(0, ws - 1, max(2, ws // 3)).astype(int)
+    jj, ii = np.meshgrid(gj, gi)
+    fx, fy, cx, cy = K2[0, 0], K2[1, 1], K2[0, 2], K2[1, 2]
+    xb = (jj.ravel() - cx) * zf / fx
+    yb = (ii.ravel() - cy) * zf / fy
+    means = np.stack([xb, yb, np.full(xb.size, zf)], axis=1)
+    colors = rgb_s[ii.ravel(), jj.ravel()].astype(np.float64)
+    spacing = (gj[1] - gj[0]) if len(gj) > 1 else ws      # gaussians grandes p/ cobrir a grade
+    s = np.full(xb.size, zf / fx * max(1, spacing) * 1.1)
+    scales = np.repeat(s[:, None], 3, axis=1)
+    return means, colors, scales
+
+
+def init_gaussians(rgb, depth, K, stride=2, com_fundo=False):
     """Constrói os Gaussians a partir de imagem (h,w,3 em [0,1]) + profundidade (h,w).
-    `stride` subamostra a grade (1 = um Gaussian por pixel). PURO (numpy)."""
+    `stride` subamostra a grade (1 = um Gaussian por pixel). `com_fundo` adiciona a
+    camada de fundo Flash3D-style (tapa buracos de disocclusion). PURO (numpy)."""
     h, w = depth.shape
-    rgb = rgb[::stride, ::stride]
+    rgb_s = rgb[::stride, ::stride]
     depth_s = depth[::stride, ::stride]
     K2 = K.copy()
     K2[0, 0] /= stride; K2[1, 1] /= stride; K2[0, 2] /= stride; K2[1, 2] /= stride
     means = unproject(depth_s, K2)
-    colors = rgb.reshape(-1, 3).astype(np.float64)
-    n = means.shape[0]
+    colors = rgb_s.reshape(-1, 3).astype(np.float64)
     # escala ~ footprint de um pixel na profundidade (z / fx); isotrópica
     fx = K2[0, 0]
     s = np.clip(means[:, 2] / fx, 1e-3, None) * 1.5   # *1.5: cobre sem virar mingau
     scales = np.repeat(s[:, None], 3, axis=1)
+
+    if com_fundo:                                     # fundo POR ÚLTIMO (testes leem as últimas linhas)
+        bm, bc, bs = _backdrop(rgb_s, depth_s, K2, stride)
+        means = np.concatenate([means, bm], axis=0)
+        colors = np.concatenate([colors, bc], axis=0)
+        scales = np.concatenate([scales, bs], axis=0)
+
+    n = means.shape[0]
     opacities = np.ones(n, dtype=np.float64)
     quats = np.tile(np.array([1.0, 0.0, 0.0, 0.0]), (n, 1))   # identidade
     return {'means': means, 'colors': colors, 'scales': scales,
@@ -117,7 +146,7 @@ def render(src_png, out_mp4, poses, fps=24):
     h, w = rgb.shape[:2]
     depth = estimar_profundidade(rgb)
     K = intrinsics(w, h)
-    g = init_gaussians(rgb, depth, K, stride=2)
+    g = init_gaussians(rgb, depth, K, stride=1, com_fundo=False)  # 1 Gaussian/pixel = superfície densa (sem vãos)
 
     dev = 'cuda'
     means = torch.tensor(g['means'], dtype=torch.float32, device=dev)

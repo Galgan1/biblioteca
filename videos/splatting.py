@@ -73,7 +73,7 @@ def splat_clip(src_png, out_mp4, dur=6.0, fps=30):
         return False
     try:
         import splatting_engine                      # motor concreto, instalado no setup de GPU
-        poses = orbit_poses(n=int(dur * fps), raio=1.4, arco_graus=18.0)  # órbita fechada (esconde disocclusion)
+        poses = orbit_poses(n=int(dur * fps), raio=2.0, arco_graus=16.0)  # órbita curta (1ª plano denso; pouca disocclusion)
         splatting_engine.render(str(src_png), str(out_mp4), poses=poses, fps=fps)
         return Path(out_mp4).exists()
     except Exception:
