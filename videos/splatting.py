@@ -21,20 +21,25 @@ import numpy as np
 
 ROOT = Path(__file__).parent
 
-# Motores 3DGS que, COM CUDA, habilitam o tratamento 'gaussian'.
-_MOTORES = ('gsplat',)
-
 
 def gaussian_disponivel():
-    """True só se houver torch COM CUDA e um motor 3DGS importável. 3DGS exige GPU —
-    sem CUDA (ex.: torch CPU) devolve False e o caller usa parallax/Ken Burns."""
+    """True só se houver torch COM CUDA E o backend CUDA do gsplat REALMENTE compilado.
+    Instalar o pacote `gsplat` NÃO basta: sem CUDA toolkit (nvcc) + compilador (MSVC), o
+    backend fica desabilitado (`_C is None`) e o gsplat se auto-desativa. Só então o
+    tratamento 'gaussian' entra; senão devolve False e o caller usa parallax/Ken Burns."""
     try:
         import torch
         if not torch.cuda.is_available():
             return False
     except Exception:
         return False
-    return any(importlib.util.find_spec(m) is not None for m in _MOTORES)
+    if importlib.util.find_spec('gsplat') is None:
+        return False
+    try:
+        from gsplat.cuda._backend import _C    # dispara o build; _C is None se não compilou
+        return _C is not None
+    except Exception:
+        return False
 
 
 def orbit_poses(n=48, raio=2.0, arco_graus=30.0, altura=0.0, alvo=(0.0, 0.0, 0.0)):

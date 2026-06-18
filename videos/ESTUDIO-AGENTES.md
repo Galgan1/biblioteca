@@ -200,6 +200,17 @@ Tudo local, sem crédito de API, testável com TDD antes de mexer em provedores 
 > - **Diretor** ✅ — `diretor.py`: shot list com 4 campos/cena (texto/visual/voz/som), visual reusa
 >   `cinegrafista.tratamento`; `revisar_ritmo` avisa cena estática (anti-slop). Tests: `test_diretor.py`.
 > Mural: **151 testes verdes** (eram 64 no início desta fase).
+>
+> **CINEGRAFISTA 3D — 3D Gaussian Splatting local (Opus executor + Sonnet verificador 6/6):**
+> - `splatting.py` ✅ seam — `gaussian_disponivel()` (exige torch+CUDA + motor 3DGS), `orbit_poses()`
+>   (matemática da órbita de câmera, pura/testada), `splat_clip()` (guard+fallback). Decisão `'gaussian'`
+>   adicionada a `cinegrafista.tratamento` (preferida quando disponível; `gaussian_ok` default False =
+>   sem regressão). Hook **dormente** em `gerar_video.py`. Tests: `test_splatting.py`. Smoke: `splatting_smoke.py`.
+> - **GPU:** RTX 5060 (8 GB, Blackwell). **torch CUDA restaurado** ✅ — `torch 2.11.0+cu128` +
+>   `torchvision 0.26.0+cu128` (CUDA True; DepthFlow agora roda na GPU). *(2.12.1 não tem wheel cu128;
+>   2.11.0 é a build CUDA original da máquina.)* **PENDENTE p/ render 3DGS real:** instalar motor 3DGS
+>   (gsplat) + escrever `splatting_engine` (imagem→Gaussians→render). Bleeding-edge em Blackwell/Windows.
+> Mural: **160 testes verdes**.
 
 ---
 
