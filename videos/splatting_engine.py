@@ -78,7 +78,7 @@ def init_gaussians(rgb, depth, K, stride=2):
     n = means.shape[0]
     # escala ~ footprint de um pixel na profundidade (z / fx); isotrópica
     fx = K2[0, 0]
-    s = np.clip(means[:, 2] / fx, 1e-3, None)
+    s = np.clip(means[:, 2] / fx, 1e-3, None) * 1.5   # *1.5: cobre sem virar mingau
     scales = np.repeat(s[:, None], 3, axis=1)
     opacities = np.ones(n, dtype=np.float64)
     quats = np.tile(np.array([1.0, 0.0, 0.0, 0.0]), (n, 1))   # identidade
