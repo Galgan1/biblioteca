@@ -3,6 +3,11 @@
 # exercida pelos testes é o pydantic (contracts.py).
 pydantic>=2,<3
 
+# imageio_ffmpeg: importado por gerar_video/gerar_short/qc/etc. no load do
+# modulo -> test_tts_provedor (videos) nao importava em ambiente limpo (CI).
+# Achado ao ativar a CI fantasma (Onda 1 revisao Akita). Pilar 2: env reproduzivel.
+imageio_ffmpeg>=0.4
+
 # parallax 2.5D NORMAL — puxa torch, idealmente precisa de GPU
 # (sem GPU, o render cai para CPU e é muito lento; o pipeline degrada para Ken Burns)
 depthflow>=1.0.0
