@@ -38,3 +38,15 @@ Toda conversão nasce com **Objetivo · Método · Restrições · Validação**
 - **Lote:** ondas de subagentes em paralelo (cada um só escreve a própria pasta — isolamento). Akita: paralelizar é para pipeline amortizada (N livros), não default.
 - **Rate-limit** é a falha comum em ondas grandes → **retentar** o subagente (idempotente: sobrescreve parciais).
 - **Verde = exit code.** Consolidar só com `valida_skill_lane.py`/`testar.py` verdes. Verificação cruzada (juiz ≠ autor, Opus↔Sonnet) via `loop-agente`.
+
+## Voz & Alma dos textos do site (rúbrica de prosa — jun/2026)
+Os textos do site (em `<slug>_data.py`: subtitle · intro · description · cards `b`/`tip` · lessons) devem ser **dizeres inteligentíssimos que capturam a ALMA do livro e do autor**. Rúbrica (cada texto cumpre):
+1. **Voz do autor/obra** — soa como o espírito do livro (Manson irônico, Sun Tzu frio, Harari épico, Machado ambíguo); **nunca** genérico nem "o livro explica/aborda X".
+2. **Tensão central em 1 frase** — o paradoxo-força condensado, não resumo morno.
+3. **Aforismo memorável** — ao menos uma frase "de capa" onde couber.
+4. **Concreto > abstrato** — imagem/figura, não jargão.
+5. **pt-BR impecável** — zero typo, zero pt-PT.
+6. **Fidelidade** — nada inventado sobre livro/autor; **nunca copiar** frase do livro (sintetizar).
+7. **Cabe no campo** — respeitar ~o tamanho atual; não alongar.
+**Não tocar (estrutural):** chaves, `ic`, `slug`, `cover`, `tags`, `header_light/bold`, `progress`, contagem de capítulos/cards, prefixos `VISÃO GERAL ·` e `CAPÍTULO N:`. Preservar `<strong>/<em>` (parcimônia, nos termos-chave).
+**Pronto da prosa:** `python valida_skill_lane.py` segue verde (sem mojibake/estrutura intacta) + veredito da rúbrica por juiz cross-model (Sonnet).

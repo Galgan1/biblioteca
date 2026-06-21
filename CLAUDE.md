@@ -97,6 +97,17 @@ Concretiza o contrato 3 ("verde = exit code"):
 - O teste que define "pronto" é **um comando único** (na raiz: `python testar.py`), **output parseável**, **sem setup humano** (sem seed manual, credencial secreta ou config ausente).
 - **Um bug vira um teste de regressão** antes do fix. Modelos a replicar: `book-to-skill/` (pytest + CI) e `videos/tests/` (unittest, verde).
 
+## Contratos de módulo — lane de vídeo (`videos/`) [Akita pilar 6]
+
+Mapa dos módulos do Criador de Vídeos (revisão Akita 2026-06-20; detalhe em `AKITA-REVISAO-VIDEOS.md`). Edite a responsabilidade no módulo dono — não espalhe nem duplique.
+
+- **Auth das redes = fonte única.** Facebook → `facebook_base.py` (`token/page_id/post`, `GRAPH`, `HASHTAGS_BASE`); Instagram → `ig_base.py` (`read_token/refresh_token/read_user_id`). Os postadores (`facebook_*`, `instagram_post`, `analytics_ig`) IMPORTAM daí — PROIBIDO redefinir `_token/_page_id/_post` no módulo (só wrapper fino que passa o `*_FILE` do módulo, p/ o mock do teste valer).
+- **Resiliência obrigatória em todo cliente de API paga.** Decore `@retry(...)` (fora) + `@circuit_breaker(api=...)` (dentro) — NESSA ordem — e chame `record_cost(api=...)` no sucesso. Já vale p/ `imagen/veo/tts_gcloud/upload_youtube/falgen`. Estado do breaker em `canal-state.json["api_health"]`.
+- **Roteiro inválido ABORTA antes de gastar API.** `contracts.load_roteiro` é guarda dura nos callers (`gerar_video`, `upload_youtube`): fora do `try/except` (só `ImportError` é silenciado, p/ ambiente sem pydantic).
+- **Som procedural (numpy puro, sem lib externa):** `dsp.py` (cadeia premium low-cut→saturação→ar→reverb), `marca_sonora.py` (10 sons da marca, Ré menor), `efeitos_transicao.py` (arco Fibonacci de comoção + `place_marca`). `_video_audio.py` = trilha (`sintetiza_ambiente`); `_video_tts.py` = voz (`_to_ssml`, `tts` com fallback Eleven→Google→edge).
+- **`gerar_video.py` é orquestrador fino** (< 500 linhas): delega som a `_video_audio`/`_video_tts` — não reabsorva essas funções no arquivo.
+- **Gate da lane:** `python testar.py` (raiz + `videos/tests`); verde = exit code. Todo módulo novo não-trivial nasce com teste hermético.
+
 ## Memória do agente: markdown + grep, nunca RAG (Akita pilar 10) [ADIÇÃO]
 
 - **Markdown no disco = fonte da verdade.** `MEMORY.md` é índice de ponteiros → topic files curtos sob demanda. Embeddings/RAG ficam OFF: long-context + grep (ripgrep) > vector DB.
