@@ -1,0 +1,26 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/.gemini/antigravity/scratch/biblioteca/hooks/git_guard.py\""
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"C:/Users/User/.gemini/antigravity/scratch/biblioteca/hooks/fantasma_guard.py\""
+          }
+        ]
+      }
+    ]
+  }
+}

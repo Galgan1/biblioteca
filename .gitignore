@@ -10,7 +10,12 @@
 .env*
 
 # ===== Config local / repos aninhados =====
-.claude/
+# Ignora .claude/ EXCETO settings.json (wiring dos hooks de enforcement — precisa
+# sobreviver a `git clean`). Usa `.claude/*` (não `.claude/`) porque o git não
+# re-inclui um arquivo se o diretório-pai está excluído. settings.local.json segue
+# ignorado (local/per-máquina).
+.claude/*
+!.claude/settings.json
 book-to-skill/
 
 # ===== Dependências e caches =====
