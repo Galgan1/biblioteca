@@ -95,6 +95,7 @@ def build_metadata(roteiro_path):
         'descricao': desc[:5000],
         'tags': tags,
         'privacidade': yt.get('privacidade', 'unlisted'),  # unlisted = não público até você revisar
+        'publish_in_min': yt.get('publish_in_min'),        # se setado: agenda (private→public no horário)
     }
 
 
@@ -124,6 +125,14 @@ def upload(video_path, roteiro_path):
             'containsSyntheticMedia': True,
         },
     }
+    # Agendamento: YouTube exige privacyStatus='private' + publishAt (RFC3339 UTC) p/
+    # estrear PÚBLICO no horário marcado. publish_in_min vem do roteiro (youtube.publish_in_min).
+    if meta.get('publish_in_min'):
+        from datetime import datetime, timedelta, timezone
+        quando = datetime.now(timezone.utc) + timedelta(minutes=int(meta['publish_in_min']))
+        body['status']['privacyStatus'] = 'private'
+        body['status']['publishAt'] = quando.isoformat().replace('+00:00', 'Z')
+        print(f"  agendado p/ estrear público em {quando.isoformat()} (UTC)")
     media = MediaFileUpload(str(video_path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024)
     req = yt.videos().insert(part='snippet,status', body=body, media_body=media)
     print(f"Enviando '{meta['titulo']}' ({meta['privacidade']})...")
