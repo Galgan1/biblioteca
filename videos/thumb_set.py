@@ -9,13 +9,12 @@ try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 from googleapiclient.http import MediaFileUpload
 from googleapiclient.errors import HttpError
 
 vid, img = sys.argv[1], sys.argv[2]
-yt = build('youtube', 'v3', credentials=get_creds())
+yt = get_youtube()   # cliente JÁ verificado no Minuto Real
 try:
     yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(img)).execute()
     print(f'OK ✓ thumbnail definida em https://youtu.be/{vid}')

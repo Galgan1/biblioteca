@@ -1,0 +1,27 @@
+{
+  "slug": "psicologia-financeira-showcase",
+  "titulo": "A Psicologia Financeira",
+  "autor": "Morgan Housel",
+  "voz": "eleven:cwJjEggZKn5KfGG0DKUu",
+  "provider": "google",
+  "musica": true,
+  "musica_energia": 0.55,
+  "tts_rate": 1.0,
+  "estilo_img": "warm cinematic, soft golden hour lighting, rich shadows, film grain, shallow depth of field, intimate premium atmosphere, photorealistic, highly detailed, no text, no watermark, no logos",
+  "youtube": {
+    "titulo": "Por que gênios quebram e gente simples enriquece | A Psicologia Financeira",
+    "descricao": "Em \"A Psicologia Financeira\", Morgan Housel mostra que lidar bem com dinheiro tem pouco a ver com inteligencia e tudo a ver com comportamento. Este video resume as ideias centrais do livro: ninguem e maluco com dinheiro, o peso da sorte e do risco, o perigo de nunca ter o bastante, o poder dos juros compostos (tempo), a diferenca entre ficar e permanecer rico, e a riqueza que voce nao ve.\n\nConteudo de RESUMO/COMENTARIO da obra; nao e recomendacao de investimento. Leia o livro e tire suas proprias conclusoes.\n\nResumo completo na Biblioteca: https://www.andregalgani.com.br/biblioteca\n\nNarracao e imagens geradas por IA.\n\n#PsicologiaFinanceira #MorganHousel #financas #resumo #livros",
+    "tags": ["A Psicologia Financeira", "Morgan Housel", "financas pessoais", "juros compostos", "investimento", "resumo de livro", "livros"],
+    "privacidade": "public",
+    "publish_in_min": 15
+  },
+  "cenas": [
+    {"tipo": "abertura", "titulo": "Ninguém é Doido", "narracao": "[serious] Ninguém é maluco com dinheiro. [pause] Em A Psicologia Financeira, Morgan Housel mostra: cada decisão financeira faz sentido para quem a toma, dada a história que ela viveu.", "img": "a thoughtful person sitting alone at a kitchen table at night counting old coins under a warm lamp, intimate, cinematic, photorealistic, shallow depth of field"},
+    {"tipo": "conceito", "titulo": "Sorte e Risco", "narracao": "[serious] Sucesso com dinheiro não é ciência exata. [pause] É comportamento. E por trás de toda grande fortuna há uma dose de SORTE, e de risco, que quase ninguém gosta de admitir.", "img": "two dice tumbling across a dark felt table beside stacks of generic gold coins, dramatic side light, motion blur, risk and luck, moody"},
+    {"tipo": "conceito", "titulo": "Nunca o Bastante", "narracao": "[deliberate] O erro mais caro? Não saber a hora de PARAR. [pause] Quando a meta corre sempre na frente, o suficiente nunca chega, e gente rica arrisca tudo por aquilo de que não precisa.", "img": "a small lone figure running on an endless treadmill toward a golden horizon that keeps receding, surreal, desaturated with a single golden accent, conceptual"},
+    {"tipo": "conceito", "titulo": "A Bola de Neve", "narracao": "[serious] A fortuna de Warren Buffett não veio só do talento. [pause] Veio do TEMPO. [quietly] O juro composto é silencioso: o segredo não é o maior retorno, é um retorno bom mantido por décadas.", "img": "a tiny snowball at the very top of a vast snowy mountain slope at golden hour, about to roll downhill, epic scale, growth over time, cinematic"},
+    {"tipo": "conceito", "titulo": "Sobreviver", "narracao": "[serious] Ficar rico e PERMANECER rico são jogos diferentes. [pause] O primeiro pede ousadia. O segundo pede humildade e margem de segurança. Sobreviver é o que deixa os juros trabalharem.", "img": "a small sturdy wooden boat riding a calm sea while a dark storm breaks on the distant horizon, survival, resilience, dramatic light, cinematic seascape"},
+    {"tipo": "conceito", "titulo": "O que Você Não Vê", "narracao": "[deliberate] Riqueza é o dinheiro que você NÃO gastou. [pause] O carro de luxo é gasto, não é riqueza. A fortuna de verdade é invisível: são as escolhas que você guardou para depois.", "img": "an elegant minimalist modern interior with a hidden safe behind a plain wall, contrast between visible simplicity and unseen wealth, warm moody light, conceptual"},
+    {"tipo": "encerramento", "titulo": "Poupar", "narracao": "[serious] Poupar é a distância entre o seu ego e aquilo de que você precisa. [pause] Não exige renda alta. Exige humildade. [short pause] O resumo completo está na Biblioteca.", "img": "a glass jar slowly filling with coins on a windowsill at dawn, soft golden morning light, patience and saving, warm, photorealistic, shallow depth of field"}
+  ]
+}

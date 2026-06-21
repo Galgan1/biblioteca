@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
 """Publicação automática de Reels no Instagram via Instagram Graph API. Conta: @minutoreal1701.
 
-Usa o UPLOAD RESUMÁVEL (envia os bytes do mp4 direto, sem precisar hospedar em URL
-pública) — o análogo do FILE_UPLOAD que o tiktok_post.py usa. Fluxo de 3 passos da
-Graph API: criar contêiner (media_type=REELS, upload_type=resumable) → enviar os bytes
-para rupload.facebook.com → publicar (media_publish).
+Usa a rota `video_url` — a MESMA de post_carousel/post_story: hospeda o mp4 vertical
+numa URL pública (VPS) e cria o contêiner apontando para ela. Fluxo da Graph API:
+hospedar mp4 → criar contêiner (media_type=REELS, video_url=...) → pollar status_code
+até FINISHED → publicar (media_publish).
+  (O upload resumável por bytes via rupload.facebook.com foi ABANDONADO: falhava com
+  400 ProcessingFailedError "Request processing failed" mesmo com o contêiner criado
+  OK, token válido e specs IG-safe — H.264 main/yuv420p/30fps/AAC, faststart, 59–96s.
+  Reprodutível 3x em 21/jun/26; a rota video_url passou de primeira.)
 
 PRÉ-REQUISITOS (passos do Showrunner — NÃO dá para automatizar):
   1. Vincular uma Página do Facebook à conta Creator @minutoreal1701 (no app do IG ou
@@ -37,7 +41,6 @@ from ig_base import refresh_token as _ig_refresh, read_token as _ig_read_token, 
 ROOT = Path(__file__).parent
 SH = ROOT / '_shorts'
 GRAPH = 'https://graph.facebook.com/v21.0'
-RUPLOAD = 'https://rupload.facebook.com/ig-api-upload/v21.0'
 SEC = ROOT / '.secrets'
 TOKEN_FILE = SEC / 'instagram_token.txt'
 TOKEN_JSON = SEC / 'instagram_token.json'
@@ -156,14 +159,18 @@ COVER_OFFSET_MS = 1500   # capa do Reel num frame APÓS o fade-in (~0,45s) — s
 
 def post_reel(mp4, caption, share_to_feed=True, thumb_offset=COVER_OFFSET_MS):
     """Publica um mp4 vertical como Reel. Retorna o media_id publicado ou None.
+    Hospeda o mp4 numa URL pública (VPS) e usa a rota `video_url` da Graph API — a
+    mesma de post_carousel/post_story. O upload resumável por bytes (rupload) foi
+    abandonado: falhava com 400 ProcessingFailedError mesmo com o contêiner OK e specs
+    IG-safe (21/jun/26 — ver docstring do módulo).
     `thumb_offset` (ms) escolhe o frame de capa — default ~1,5s p/ pular o fade-in preto."""
     token, uid = _token(), _user_id()
-    data = Path(mp4).read_bytes()
-    size = len(data)
-    # 1) cria o contêiner em modo resumável
+    url = _scp_video(mp4)
+    print(f'  mp4 hospedado na VPS: {url}')
+    # 1) cria o contêiner apontando para a URL pública
     cont = _post(f'/{uid}/media', token, {
         'media_type': 'REELS',
-        'upload_type': 'resumable',
+        'video_url': url,
         'caption': caption,
         'share_to_feed': 'true' if share_to_feed else 'false',
         **({'thumb_offset': str(int(thumb_offset))} if thumb_offset else {}),
@@ -172,19 +179,7 @@ def post_reel(mp4, caption, share_to_feed=True, thumb_offset=COVER_OFFSET_MS):
         print(f'  ERRO container: {cont.get("error", cont)}')
         return None
     cid = cont['id']
-    # 2) envia os bytes para o rupload (offset 0, arquivo inteiro)
-    up = urllib.request.Request(f'{RUPLOAD}/{cid}', data=data, method='POST',
-                                headers={'Authorization': f'OAuth {token}',
-                                         'offset': '0', 'file_size': str(size)})
-    try:
-        r = json.load(urllib.request.urlopen(up, timeout=600))
-    except urllib.error.HTTPError as e:
-        print(f'  ERRO upload: {e.code} {e.read().decode()[:200]}')
-        return None
-    if not r.get('success', True):
-        print(f'  ERRO upload: {r}')
-        return None
-    # 3) espera o processamento e publica
+    # 2) espera o processamento e publica
     for _ in range(40):
         st = _get(f'/{cid}', token, fields='status_code').get('status_code')
         if st == 'FINISHED':
@@ -251,6 +246,9 @@ CARR = ROOT / '_carrossel'
 VPS_HOST = 'root@andregalgani.com.br'
 VPS_BASE = '/var/www/andregalgani/biblioteca/_carrossel'
 PUB_BASE = 'https://www.andregalgani.com.br/biblioteca/_carrossel'
+# Reels: o mp4 vai p/ uma URL pública (rota video_url) — mesma mecânica de scp do carrossel.
+VPS_REELS = '/var/www/andregalgani/biblioteca/_reels'
+PUB_REELS = 'https://www.andregalgani.com.br/biblioteca/_reels'
 
 
 def _book_for(slug):
@@ -316,6 +314,23 @@ def _scp_host(jpgs, slug, part):
                            check=True)
         subprocess.run(['ssh', VPS_HOST, f'chmod 644 {remote_dir}/*.jpg'], check=True)
     return [f'{PUB_BASE}/{slug}_{part}/{jpg.name}' for jpg in jpgs]
+
+
+def _scp_video(mp4):
+    """Hospeda um mp4 na VPS (mesma mecânica do _scp_host) e devolve a URL HTTPS pública.
+    O nome do arquivo (<slug>_NN.mp4) já é único, então hospeda flat em _reels/.
+    Se rodando NA própria VPS, copia local (evita scp para si mesmo)."""
+    import subprocess, os, shutil
+    mp4 = Path(mp4)
+    if Path(VPS_REELS).exists():
+        Path(VPS_REELS).mkdir(parents=True, exist_ok=True)
+        shutil.copy2(str(mp4), f'{VPS_REELS}/{mp4.name}')
+        os.chmod(f'{VPS_REELS}/{mp4.name}', 0o644)
+    else:
+        subprocess.run(['ssh', VPS_HOST, f'mkdir -p {VPS_REELS}'], check=True)
+        subprocess.run(['scp', '-q', str(mp4), f'{VPS_HOST}:{VPS_REELS}/{mp4.name}'], check=True)
+        subprocess.run(['ssh', VPS_HOST, f'chmod 644 {VPS_REELS}/{mp4.name}'], check=True)
+    return f'{PUB_REELS}/{mp4.name}'
 
 
 def post_carousel(slug, part='overview', caption=None, publish=False):

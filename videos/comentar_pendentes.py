@@ -11,8 +11,7 @@ try:
 except Exception:
     pass
 from pathlib import Path
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 
 ROOT = Path(__file__).parent
 STATE = ROOT / '_shorts' / 'comentarios_state.json'
@@ -33,7 +32,7 @@ def main():
                        capture_output=True)
         print('todos comentados — tarefa removida')
         return
-    yt = build('youtube', 'v3', credentials=get_creds())
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real
     r = yt.videos().list(part='status', id=','.join(falta)).execute()
     publicos = [it['id'] for it in r['items'] if it['status']['privacyStatus'] == 'public']
     for vid in publicos:

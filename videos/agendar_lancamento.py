@@ -14,8 +14,7 @@ try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 
 BRT = timezone(timedelta(hours=-3))
 
@@ -55,7 +54,7 @@ def main(executar=False):
     if not executar:
         print("\n(prévia — rode com --executar para agendar de verdade)")
         return
-    yt = build('youtube', 'v3', credentials=get_creds())
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real
     print()
     for vid, rotulo, dt in PLANO:
         body = {'id': vid, 'status': {

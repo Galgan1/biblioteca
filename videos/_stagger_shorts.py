@@ -4,10 +4,9 @@ Short A = ancora (ja publico, t=0). B/C/D ficam PRIVADOS agora e viram PUBLICOS
 em +15 / +30 / +45 min. Idempotente o suficiente para um disparo unico."""
 import sys, time
 sys.path.insert(0, r'C:\Users\User\.gemini\antigravity\scratch\biblioteca\videos')
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 
-yt = build('youtube', 'v3', credentials=get_creds())
+yt = get_youtube()   # cliente JÁ verificado no Minuto Real
 
 
 def setp(vid, status):

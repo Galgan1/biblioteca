@@ -23,8 +23,7 @@ try:
 except Exception:
     pass
 from pathlib import Path
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 
 ROOT = Path(__file__).parent
 BRT = timezone(timedelta(hours=-3))
@@ -50,7 +49,7 @@ def main(slug, longo_id, ddmm):
     dia = datetime(ano, m, d, hour=19, tzinfo=BRT)
     if dia.weekday() not in (2, 3):
         print(f'  [i] {ddmm} é {DOW[dia.weekday()]}; para 2 longos/semana use QUARTA e QUINTA.')
-    yt = build('youtube', 'v3', credentials=get_creds())
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real
     agendar(yt, longo_id, dia, f'LONGO · {slug} ({DOW[dia.weekday()]})')
     st = ROOT / '_shorts' / f'{slug}_upload_state.json'
     shorts = list(json.loads(st.read_text()).values()) if st.exists() else []

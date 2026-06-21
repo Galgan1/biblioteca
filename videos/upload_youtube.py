@@ -28,7 +28,6 @@ from pathlib import Path
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
 # force-ssl = escopo amplo (upload + editar/agendar + comentários). O token antigo
@@ -109,7 +108,8 @@ def upload(video_path, roteiro_path):
         meta['descricao'] = youtube_pos.with_chapters(meta['descricao'], cfg)
     except Exception as e:
         print(f"  [aviso] capitulos pulados: {str(e)[:120]}")
-    yt = build('youtube', 'v3', credentials=get_creds())
+    import canal_guard
+    yt = canal_guard.get_youtube()   # cliente JÁ verificado no Minuto Real (aborta no canal errado)
     body = {
         'snippet': {
             'title': meta['titulo'],

@@ -17,8 +17,7 @@ except Exception:
     pass
 from pathlib import Path
 import gerar_short
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 from googleapiclient.http import MediaFileUpload
 
 ROOT = Path(__file__).parent
@@ -67,7 +66,7 @@ def main(slug, parent):
             print(f"  corte já existe: {out.name}")
 
     # 2) subir os que ainda não subiram
-    yt = build('youtube', 'v3', credentials=get_creds())
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real
     for i in idxs:
         key = str(i)
         if key in state:

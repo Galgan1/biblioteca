@@ -10,8 +10,7 @@ Cron:      17 */2 * * * /opt/minutoreal/run.sh   (permanente; ocioso quando nada
 """
 import json
 from pathlib import Path
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 
 ROOT = Path(__file__).parent
 FILA = ROOT / 'fila.json'
@@ -25,7 +24,7 @@ def main():
     if not falta:
         print('fila vazia — nada pendente')
         return
-    yt = build('youtube', 'v3', credentials=get_creds())
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real
     # videos.list aceita até 50 ids por chamada
     ids = list(falta)
     publicos = []

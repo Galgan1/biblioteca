@@ -8,8 +8,10 @@ Cobertos: funções PURAS e mockáveis. Nada de rede, token real ou disco de pro
   - _token()                — ausência de arquivo → sys.exit
   - _user_id()              — ausência de arquivo → sys.exit
   - COVER_OFFSET_MS         — constante de capa de Reel presente e próxima a 1500
+  - post_reel(...)          — rota video_url (rede/scp/_post mockados): contêiner com
+                              video_url + thumb_offset, depois media_publish
 
-NÃO testados: post_reel, post_carousel, _png_to_jpg, _scp_host (rede/API/PIL).
+NÃO testados: post_carousel, _png_to_jpg, _scp_host, _scp_video (rede/API/PIL/scp).
 caption_carousel: depende de importar <slug>_data.py em runtime — coberto via mock
 de _book_for para evitar dependência de arquivo de dados de produção.
 """
@@ -302,6 +304,86 @@ class TestCoverOffset(unittest.TestCase):
 
     def test_e_numero_inteiro_ou_float(self):
         self.assertIsInstance(ig.COVER_OFFSET_MS, (int, float))
+
+
+# ---------------------------------------------------------------------------
+# post_reel — rota video_url (rupload por bytes abandonado, 21/jun/26)
+# Rede/scp/_post mockados: pin do CONTRATO, não chamada real à Graph API.
+# ---------------------------------------------------------------------------
+
+class TestPostReel(unittest.TestCase):
+    def _post_reel(self, mp4='/tmp/x_00.mp4', caption='legenda', **kw):
+        """Roda post_reel com toda a borda (token/uid/scp/_post/_get/sleep) mockada.
+        Devolve (media_id, lista de chamadas (path, params) feitas a _post)."""
+        chamadas = []
+
+        def fake_post(path, token, params):
+            chamadas.append((path, params))
+            if path.endswith('/media'):
+                return {'id': 'CONTAINER123'}
+            if path.endswith('/media_publish'):
+                return {'id': 'MEDIA456'}
+            return {}
+
+        with (mock.patch.object(ig, '_token', return_value='tok'),
+              mock.patch.object(ig, '_user_id', return_value='999'),
+              mock.patch.object(ig, '_scp_video',
+                                return_value='https://www.andregalgani.com.br/biblioteca/_reels/x_00.mp4') as scp,
+              mock.patch.object(ig, '_post', side_effect=fake_post),
+              mock.patch.object(ig, '_get', return_value={'status_code': 'FINISHED'}),
+              mock.patch.object(ig.time, 'sleep')):
+            mid = ig.post_reel(mp4, caption, **kw)
+        self.scp = scp
+        return mid, chamadas
+
+    def _container_params(self, chamadas):
+        return next(p for path, p in chamadas if path.endswith('/media'))
+
+    def test_hospeda_o_mp4_via_scp_video(self):
+        """A mídia é hospedada na VPS (rota video_url), não enviada por bytes."""
+        _, _ = self._post_reel(mp4='/tmp/x_00.mp4')
+        self.scp.assert_called_once_with('/tmp/x_00.mp4')
+
+    def test_container_usa_video_url(self):
+        _, chamadas = self._post_reel()
+        params = self._container_params(chamadas)
+        self.assertEqual(params['media_type'], 'REELS')
+        self.assertIn('video_url', params)
+        self.assertTrue(params['video_url'].startswith('https://'))
+
+    def test_container_nao_usa_upload_resumavel(self):
+        """Regressão: a rota rupload (upload_type=resumable) foi abandonada."""
+        _, chamadas = self._post_reel()
+        params = self._container_params(chamadas)
+        self.assertNotIn('upload_type', params)
+
+    def test_repassa_caption_e_thumb_offset(self):
+        _, chamadas = self._post_reel(caption='minha legenda', thumb_offset=1500)
+        params = self._container_params(chamadas)
+        self.assertEqual(params['caption'], 'minha legenda')
+        self.assertEqual(params['thumb_offset'], '1500')
+
+    def test_share_to_feed_false_vira_string(self):
+        _, chamadas = self._post_reel(share_to_feed=False)
+        params = self._container_params(chamadas)
+        self.assertEqual(params['share_to_feed'], 'false')
+
+    def test_publica_com_creation_id_do_container(self):
+        mid, chamadas = self._post_reel()
+        self.assertEqual(mid, 'MEDIA456')
+        pub = next(p for path, p in chamadas if path.endswith('/media_publish'))
+        self.assertEqual(pub['creation_id'], 'CONTAINER123')
+
+    def test_erro_no_container_retorna_none_sem_publicar(self):
+        with (mock.patch.object(ig, '_token', return_value='tok'),
+              mock.patch.object(ig, '_user_id', return_value='999'),
+              mock.patch.object(ig, '_scp_video', return_value='https://x/y.mp4'),
+              mock.patch.object(ig, '_post', return_value={'error': {'message': 'falhou'}}) as p,
+              mock.patch.object(ig.time, 'sleep')):
+            mid = ig.post_reel('/tmp/x_00.mp4', 'legenda')
+        self.assertIsNone(mid)
+        # só a tentativa de contêiner; media_publish não é chamado
+        self.assertTrue(all(c.args[0].endswith('/media') for c in p.call_args_list))
 
 
 if __name__ == '__main__':

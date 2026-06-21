@@ -1,0 +1,27 @@
+{
+  "slug": "1984-showcase",
+  "titulo": "1984",
+  "autor": "George Orwell",
+  "voz": "eleven:cwJjEggZKn5KfGG0DKUu",
+  "provider": "google",
+  "musica": true,
+  "musica_energia": 0.45,
+  "tts_rate": 1.0,
+  "estilo_img": "dark cinematic, moody chiaroscuro lighting, desaturated cold palette, film grain, dramatic deep shadows, shallow depth of field, oppressive dystopian atmosphere, photorealistic, highly detailed, no text, no watermark, no logos",
+  "youtube": {
+    "titulo": "1984 já chegou? O aviso de George Orwell sobre o controle total",
+    "descricao": "Em \"1984\", George Orwell imaginou um regime que vigia, reescreve o passado e ataca a propria linguagem para tornar a rebeldia impensavel. Este video resume os mecanismos centrais do romance: os tres lemas do Partido, a Novafala, o controle do passado no Ministerio da Verdade, o duplipensar (2+2=5) e o Quarto 101 (o poder pelo poder).\n\nConteudo de RESUMO/COMENTARIO da obra. Leia o livro e tire suas proprias conclusoes.\n\nResumo completo na Biblioteca: https://www.andregalgani.com.br/biblioteca\n\nNarracao e imagens geradas por IA.\n\n#1984 #GeorgeOrwell #distopia #resumo #livros",
+    "tags": ["1984", "George Orwell", "distopia", "Grande Irmao", "vigilancia", "resumo de livro", "livros"],
+    "privacidade": "public",
+    "publish_in_min": 15
+  },
+  "cenas": [
+    {"tipo": "abertura", "titulo": "Você é Vigiado", "narracao": "[serious] Imagine um mundo onde a tela que te informa também te ASSISTE. [pause] George Orwell imaginou. Chamou de mil novecentos e oitenta e quatro. [deliberate] E parece cada vez menos ficção.", "img": "extreme close-up of a single human eye reflected in the cold glow of a screen in a dark room, surveillance, paranoia, cinematic, photorealistic, shallow depth of field"},
+    {"tipo": "conceito", "titulo": "Os Três Lemas", "narracao": "[serious] No livro, o Partido governa com três frases. [pause] Guerra é paz. Liberdade é escravidão. [deliberate] Ignorância é força. A contradição não é um erro: é a ferramenta.", "img": "a vast grey brutalist totalitarian plaza at dawn, a colossal blank concrete monument looming over tiny anonymous figures, oppressive scale, fog, desaturated, ominous wide shot"},
+    {"tipo": "conceito", "titulo": "A Novafala", "narracao": "[serious] A arma final não é a tortura. É a LÍNGUA. [pause] A Novafala apaga palavras: sem a palavra liberdade, o próprio pensamento de ser livre se torna impossível.", "img": "an old dictionary with its pages dissolving into ash and blank empty pages, words disappearing, dark moody still life, single dramatic light, shallow depth of field"},
+    {"tipo": "conceito", "titulo": "Quem Controla o Passado", "narracao": "[deliberate] Quem controla o passado, controla o futuro. [pause] No Ministério da Verdade, Winston reescreve jornais antigos. A história vira argila, moldada pelo poder, todo dia.", "img": "endless dim rows of identical filing cabinets in a vast archive, a single pneumatic tube, papers being fed into a glowing incinerator slot, cold institutional dread"},
+    {"tipo": "conceito", "titulo": "Dois Mais Dois", "narracao": "[serious] O teste final de obediência? [pause] Acreditar que dois mais dois são CINCO, se o Partido mandar. [quietly] Quando o poder dobra a realidade, ele dobra você.", "img": "a dark chalkboard with the equation two plus two equals five chalked harshly, a single bare interrogation lamp, cold sterile concrete room, unsettling"},
+    {"tipo": "conceito", "titulo": "O Quarto 101", "narracao": "[serious] No Quarto cento e um mora o seu pior medo. [pause] Ali o Partido não quer só o seu silêncio. Quer o seu AMOR. [deliberate] Não basta obedecer ao Grande Irmão: é preciso amá-lo.", "img": "a dark prison cell with a single overhead light, an ominous metal cage on a metal table casting long shadows, claustrophobic, terror, deep chiaroscuro"},
+    {"tipo": "encerramento", "titulo": "Um Aviso", "narracao": "[serious] Orwell não escreveu um manual. Escreveu um AVISO. [pause] Reconhecer a engrenagem é o primeiro ato de liberdade. [short pause] O resumo completo está na Biblioteca.", "img": "a lone small silhouette standing before a giant glowing screen-eye in a dark dystopian city at night, looking up, defiant, cinematic wide shot, rim light"}
+  ]
+}

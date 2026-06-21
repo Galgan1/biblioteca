@@ -13,13 +13,11 @@ Idempotente: não duplica capítulos (checa '0:00'), legenda standard nem item d
 """
 import sys, json
 from pathlib import Path
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube
 import youtube_pos as yp
 import recuperar_timing
 
 ROOT = Path(__file__).parent
-CANAL_OK = 'UC2N5xZ-gyCU3hNvH1QqNahA'   # Minuto Real (NUNCA o pessoal)
 
 
 def _writable_snippet(old, new_desc):
@@ -36,12 +34,7 @@ def main(slug, vid):
         print('timing ausente -> recuperando do artefato...')
         recuperar_timing.main(slug)
     tm = yp.load_timing(slug)
-    yt = build('youtube', 'v3', credentials=get_creds())
-
-    ch = yt.channels().list(part='snippet', mine=True).execute()['items'][0]
-    if ch['id'] != CANAL_OK:
-        sys.exit(f"[X] canal errado: {ch['snippet']['title']} ({ch['id']}) — aborta.")
-    print(f"canal: {ch['snippet']['title']} ✓")
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real (aborta no canal errado)
 
     feito = []
     cenas = cfg['cenas']

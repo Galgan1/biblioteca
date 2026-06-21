@@ -8,11 +8,9 @@ try:
     sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 except Exception:
     pass
-from upload_youtube import get_creds
-from googleapiclient.discovery import build
+from canal_guard import get_youtube, CANAL_TITULO
 
 BRT = timezone(timedelta(hours=-3))
-CANAL_OK = 'UC2N5xZ-gyCU3hNvH1QqNahA'
 
 # (id, rótulo, esperado-BRT segundo o cronograma)
 ESPERADO = [
@@ -60,11 +58,8 @@ def fmt(pub):
 
 
 def main():
-    yt = build('youtube', 'v3', credentials=get_creds())
-    ch = yt.channels().list(part='snippet', mine=True).execute()['items'][0]
-    if ch['id'] != CANAL_OK:
-        sys.exit(f"[X] canal errado: {ch['snippet']['title']} ({ch['id']})")
-    print(f"canal: {ch['snippet']['title']} ✓\n")
+    yt = get_youtube()   # cliente JÁ verificado no Minuto Real (aborta no canal errado)
+    print(f"canal: {CANAL_TITULO} ✓\n")
 
     ids = [i for i, _, _ in ESPERADO]
     got = {}

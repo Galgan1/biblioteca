@@ -82,6 +82,8 @@ def main():
     books = json.loads((BASE / "books.json").read_text(encoding="utf-8"))
     links = json.loads((BASE / "afiliados" / "links.json").read_text(encoding="utf-8"))
     yt = build("youtube", "v3", credentials=creds())
+    import canal_guard
+    canal_guard.assert_canal(yt)   # contrato inviolável: só o Minuto Real (nunca o pessoal)
     vids = listar_videos(yt)
 
     print(f"{len(vids)} videos no canal\n")
