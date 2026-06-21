@@ -9,6 +9,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · O TOTALITARISMO E O FIM DA VERDADE",
  "intro": "Era um dia frio e claro de abril, e os relógios batiam treze horas. Em Oceania, o Partido não se contenta em mandar nos corpos: ele edita o passado, encolhe a língua e quer ser o dono do que se passa dentro do seu crânio. Winston Smith comete o único crime que importa — pensar por conta própria. Orwell não previu gadgets; ele dissecou o desejo eterno do poder de ter <em>tudo</em>, inclusive a sua certeza de que dois mais dois são quatro. A pergunta que ele deixa não envelhece: <em>o que sobra do humano quando a bota encontra o rosto — e o rosto aprende a amar a bota?</em>",
  "description": "Romance distópico de George Orwell (1949). Em Oceania, o Partido (INGSOC) governa pela inversão do sentido e pela vigilância da teletela; Winston Smith reescreve a história no Ministério da Verdade e ama Julia até ser quebrado por O'Brien. Grande Irmão, duplipensar, Novafala, crime de pensamento, o buraco da memória, '2+2=5', o Quarto 101 e o poder pelo poder — o vocabulário do totalitarismo moderno, lido como mapa do que o poder faz quando não há mais quem o impeça.",
+ "hook": "Você já se autocensurou com medo? Tem nome pra isso.",
+ "story_promise": "isso se chama crimideia",
+ "story_lessons": [
+   "O sistema te faz amar o que te prende.",
+   "Quem controla o passado controla o futuro.",
+   "Obedecer sem questionar é colaborar com a prisão.",
+ ],
  "tags": ["Distopia", "Política", "Totalitarismo"],
  "progress": "9 Capítulos",
  "cover": "assets/1984-cover.png",

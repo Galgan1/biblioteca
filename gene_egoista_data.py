@@ -9,6 +9,13 @@ BOOK = {
   "subtitle": "VISÃO GERAL · A EVOLUÇÃO VISTA DO PONTO DE VISTA DO GENE",
   "intro": "Vire a luneta ao contrário e a vida muda de protagonista. A unidade da seleção natural não é a espécie, nem o grupo, nem você: é o <strong>gene</strong>, a única coisa neste planeta velha o bastante para ser quase imortal. Você é o resto — uma máquina de sobrevivência montada às pressas, descartada após o uso. A galinha é só o jeito que um ovo achou de fazer outro ovo. 'Egoísta' não é um xingamento moral, é engenharia: o gene que sobra é o que faz mais cópias de si. E o paradoxo elegante é este — desse egoísmo cego nascem mães que morrem pelos filhos e estranhos que cooperam. No fim, Dawkins cunha o <strong>meme</strong>: descobre que a Terra acaba de ganhar um segundo replicador, e ele mora na sua cabeça.",
   "description": "Clássico de divulgação científica de Richard Dawkins (1976) que reescreveu como o mundo enxerga a evolução. A virada central: olhar tudo do ponto de vista do gene, não do animal. Replicador × veículo, a máquina de sobrevivência, a seleção de parentesco e a regra de Hamilton (rB>C), as estratégias evolutivamente estáveis e a teoria dos jogos (falcão × pomba), o altruísmo recíproco e o dilema do prisioneiro iterado — e, no arremate, o meme, a unidade da evolução cultural. Uma advertência percorre o livro: explicar a frieza do gene não é endossá-la como moral. Somos a única espécie capaz de dizer não aos próprios criadores.",
+  "hook": "Você não age por amor — seus genes agem por você.",
+  "story_promise": "você é a máquina. o gene é o dono.",
+  "story_lessons": [
+    "Você é o carro. Seus genes são o motorista.",
+    "Você protege quem divide seus genes.",
+    "O gene só cuida de si — não da espécie, nem de você.",
+  ],
   "tags": ["Biologia Evolutiva", "Ciência", "Comportamento"],
   "progress": "4 Capítulos",
   "cover": "assets/gene-egoista-cover.png",

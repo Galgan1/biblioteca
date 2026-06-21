@@ -28,6 +28,8 @@ sys.path.insert(0, str(BASE / 'videos'))
 from gerar_livro import icon  # reaproveita os ícones de linha reais
 from instagram_post import _afiliado_block  # rodapé único de afiliado/disclosure
 import tokens  # fonte única de tokens (fontes + cores) — Diretor de Design
+from _carousel_slides import _lessons_slide  # slide de lições por capítulo
+from _carousel_stories import _story_insights  # frame insights do story
 
 OUT_ROOT = BASE / 'videos' / '_carrossel'
 ROTEIROS = BASE / 'videos' / 'roteiros'
@@ -79,9 +81,8 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   background-image:radial-gradient(oklch(78% 0.07 152 / .055) 1.1px, transparent 1.3px);
   background-size:36px 36px;background-position:center;
   -webkit-mask-image:radial-gradient(125% 105% at 50% -5%, #000 50%, transparent 100%);}
-/* moldura tracejada (DNA cheat sheet), refinada + halo interno */
-.slide::after{content:'';position:absolute;inset:38px;border:2px dashed var(--green);
-  border-radius:32px;opacity:.38;pointer-events:none;
+/* halo interno (borda removida — parecia debug, não design) */
+.slide::after{content:'';position:absolute;inset:38px;border-radius:32px;opacity:0;pointer-events:none;
   box-shadow:inset 0 0 90px oklch(70% 0.13 152 / .05)}
 /* numeral-fantasma de fundo (contido pela moldura p/ não virar artefato) */
 .slide>*{position:relative;z-index:1}
@@ -162,7 +163,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .warn .ed-body::before{border-color:var(--warn)}
 .ed-body strong{font-weight:700;color:var(--green-soft)}
 .warn .ed-body strong{color:var(--warn)}
-.ed-body .dc{float:left;font-family:'Literata',Georgia,serif;font-weight:600;font-size:138px;line-height:.78;color:var(--green);margin:8px 22px -6px 0;text-shadow:0 0 44px oklch(72% 0.14 152 / .3)}
+.ed-body .dc{color:var(--green);font-weight:700;text-shadow:0 0 24px oklch(72% 0.14 152 / .2)}
 .warn .ed-body .dc{color:var(--warn)}
 .ed-tip{margin-top:auto;display:flex;gap:26px;align-items:flex-start;background:linear-gradient(150deg, oklch(70% 0.14 152 / .14), oklch(70% 0.14 152 / .035));border:2px solid var(--hair);border-left:6px solid var(--green);border-radius:22px;padding:34px 38px;box-shadow:0 16px 44px oklch(8% 0.02 152 / .45), inset 0 1px 0 oklch(90% 0.1 152 / .08)}
 .warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 30 / .14), oklch(75% 0.16 30 / .035))}
@@ -174,7 +175,19 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .warn .ed-tip .tiplabel{color:var(--warn)}
 .ed-tip .tipbody{font-size:31px;line-height:1.36;color:var(--green-soft);font-weight:500;text-wrap:pretty}
 .ed-tip .tipbody strong{color:var(--green);font-weight:800}
-.warn .ed-tip .tipbody{color:oklch(82% 0.08 38)} .warn .ed-tip .tipbody strong{color:var(--warn)}
+.warn .ed-tip .tipbody{color:oklch(82% 0.08 30)} .warn .ed-tip .tipbody strong{color:var(--warn)}
+
+/* ---------- lições-chave (slide final do carrossel de capítulo) ---------- */
+/* _lessons_slide (de _carousel_slides.py) emite .lessons/.lessons-list/.lnum;
+   estas regras viviam só no órfão _carousel_css.py → portadas p/ a fonte única inline. */
+.lessons{justify-content:flex-start}
+.lessons .ed-num{font-size:80px;width:80px;height:80px;display:flex;align-items:center;justify-content:center}
+.lessons .ed-num svg{width:54px;height:54px;color:var(--green);filter:drop-shadow(0 0 12px oklch(72% 0.14 152 / .45))}
+.lessons-list{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;flex:1}
+.lessons-list li{display:flex;align-items:flex-start;gap:30px;padding:32px 0;font-family:'Literata',Georgia,serif;font-size:41px;font-weight:500;color:var(--ink);line-height:1.3;text-wrap:pretty}
+.lessons-list li + li{border-top:2px dashed var(--hair)}
+.lessons-list .lnum{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:62px;font-weight:900;color:var(--green);line-height:.82;flex:0 0 44px;text-shadow:0 0 36px oklch(72% 0.14 152 / .38)}
+.lessons-list li strong{color:var(--green-soft);font-weight:700}
 
 /* ---------- capa ---------- */
 .cover{justify-content:center;text-align:center;align-items:center}
@@ -460,9 +473,12 @@ def montar_slides(book, cards, ch=None, total_caps=None):
     zero deriva entre eles."""
     cards = _clamp_cards(book, cards, ch)
     n = len(cards)
-    total = n + 2
+    has_lessons = bool(ch and ch.get('lessons'))
+    total = n + 2 + (1 if has_lessons else 0)
     slides = [_cover(book, n, 1, total, ch=ch, total_caps=total_caps)]
     slides += [_concept(c, i, n, i + 1, total, book, ch) for i, c in enumerate(cards, 1)]
+    if has_lessons:
+        slides.append(_lessons_slide(book, ch, n + 2, total))
     slides.append(_cta(book, total, total, is_chapter=bool(ch)))
     return slides
 
@@ -768,8 +784,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
   background-image:radial-gradient(var(--story-dots) 1.1px, transparent 1.3px);
   background-size:38px 38px;background-position:center;
   -webkit-mask-image:radial-gradient(120% 88% at 50% 0%, #000 50%, transparent 100%);}
-.story::after{content:'';position:absolute;inset:208px 60px;border:2px dashed var(--green);
-  border-radius:40px;opacity:.32;pointer-events:none}
+.story::after{content:'';display:none}
 .story>*{position:relative;z-index:1}
 .story>.ghost{position:absolute;font-family:'Hanken Grotesk';font-weight:900;line-height:.74;
   color:transparent;-webkit-text-stroke:2px var(--story-ghost);pointer-events:none;
@@ -797,10 +812,19 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
   text-wrap:balance;letter-spacing:-.022em}
 .st h1 .lt{color:var(--green);text-shadow:0 0 80px var(--story-glow-a42)}
 .st h1 .bd{color:var(--ink)}
-.st .hook{margin-top:60px;font-size:60px;font-weight:800;color:var(--ink);text-transform:uppercase;
-  display:inline-flex;align-items:center;gap:26px;border-top:3px dashed var(--green);padding-top:46px}
+/* frame 1 com hook: book-id (secundário) + headline (herói) */
+.st .book-id{font-size:28px;font-weight:800;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:40px}
+.st .headline{font-size:88px;line-height:1.08;font-weight:900;color:var(--ink);
+  text-wrap:balance;letter-spacing:-.014em;margin-bottom:0}
+.st .headline em{color:var(--green);font-style:normal;
+  text-shadow:0 0 60px var(--story-glow-a42)}
+.st .hook{margin-top:60px;display:flex;flex-direction:column;align-items:center;gap:14px;
+  border-top:3px dashed var(--green);padding-top:46px;width:100%}
 .st .hook .num{font-size:140px;font-weight:900;color:var(--gold);line-height:.78;
   text-shadow:0 0 56px var(--story-glow-a38)}
+.st .hook .lbl{font-size:52px;font-weight:800;color:var(--ink);text-transform:uppercase;
+  text-wrap:balance;text-align:center;letter-spacing:.01em}
 /* quote */
 .sq{align-items:flex-start;text-align:left}
 .sq .qmark{font-family:'Literata',Georgia,serif;font-style:italic;font-weight:600;font-size:300px;
@@ -822,6 +846,15 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;-webkit-f
 .sc .row .rico svg{width:52px;height:52px}
 .sc .row p{font-size:50px;font-weight:800;color:var(--ink);line-height:1.05}
 .sc .row p span{display:block;font-size:33px;color:var(--muted);font-weight:600;margin-top:6px;text-transform:none;letter-spacing:0}
+/* insights — frame 3 do story (lições-chave) */
+.si{align-items:flex-start;text-align:left}
+.si .eyebrow{margin-bottom:56px;align-self:flex-start}
+.si ul{list-style:none;width:100%;display:flex;flex-direction:column;gap:36px}
+.si li{display:flex;align-items:flex-start;gap:32px;font-size:52px;line-height:1.3;
+  font-weight:600;color:var(--ink);text-wrap:pretty}
+.si li .num{flex:0 0 auto;width:68px;height:68px;border-radius:18px;display:flex;
+  align-items:center;justify-content:center;background:var(--green);color:var(--on-green);
+  font-weight:900;font-size:38px;box-shadow:0 8px 24px var(--story-seal-shadow);margin-top:5px}
 """
 
 
@@ -830,13 +863,20 @@ def _story(inner, cls='', ghost=''):
 
 
 def _story_teaser(book, n):
+    hook_text = book.get('hook', '')
+    if hook_text:
+        hero = (f'<div class="book-id">{book["title"]}</div>'
+                f'<div class="headline">{_emph(hook_text)}</div>')
+    else:
+        hero = ('<div class="eyebrow">novo · resumo da semana</div>'
+                f'<h1><span class="lt">{book["header_light"]}</span><br>'
+                f'<span class="bd">{book["header_bold"]}</span></h1>')
     return _story(
         f'<div class="badge"><span class="seal">{_svg("book")}</span>'
         f'<span class="name">Minuto<b>Real</b></span></div>'
-        '<div class="eyebrow">novo · resumo da semana</div>'
-        f'<h1><span class="lt">{book["header_light"]}</span><br>'
-        f'<span class="bd">{book["header_bold"]}</span></h1>'
-        f'<div class="hook"><span class="num">{n}</span> ideias que ficam</div>'
+        + hero +
+        f'<div class="hook"><span class="num">{n}</span>'
+        f'<span class="lbl">{book.get("story_promise", "ideias que ficam")}</span></div>'
         f'<div class="foot"><span class="tap">toque no link da bio {_svg("arrow")}</span>'
         '<span class="handle">@minutoreal1701</span></div>',
         'st', ghost=_ghost('top:430px;right:70px;font-size:440px', f'{n}'))
@@ -868,14 +908,27 @@ def _story_cta(book):
         'sc', ghost=_ghost('top:430px;left:60px;font-size:400px', '+'))
 
 
-def build_stories(slug):
+def build_stories(slug, cap=None):
     data = importlib.import_module(slug.replace('-', '_') + '_data')
     book = data.BOOK
     cards = book.get('overview_cards') or (data.CHAPTERS[0]['cards'])
     n = len(cards)
     qs = _best_quotes(slug, book, data, want=1)
     quote = _strip_html(qs[0]).rstrip(' .') if qs else book.get('subtitle', '')
-    frames = [_story_teaser(book, n), _story_quote(quote, book), _story_cta(book)]
+    # story_lessons no BOOK sobrescreve a coleta por capítulo (padrão WhatsApp curado)
+    lessons_title = 'O que fica'
+    lessons = list(book.get('story_lessons', []))[:3]
+    if not lessons:
+        for chap in getattr(data, 'CHAPTERS', []):
+            ls = chap.get('lessons', [])
+            if ls:
+                lessons.append(ls[0])
+            if len(lessons) >= 3:
+                break
+    frames = [_story_teaser(book, n), _story_quote(quote, book)]
+    if lessons:
+        frames.append(_story_insights(book, lessons, lessons_title))
+    frames.append(_story_cta(book))
     out = _render(frames, OUT_ROOT / f'{slug}_stories', w=1080, h=1920, css=STORY_CSS)
     _write_stories(out, slug, book, n, quote)   # roteiro de texto p/ figurinhas manuais
     return out
