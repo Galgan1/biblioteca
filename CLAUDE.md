@@ -49,12 +49,14 @@ Regras cross-cutting que **nenhuma lane quebra**. Norte em `AKITA-PLANO-ALVO.md`
 5. **Distribuição/afiliado:** link Amazon só de **produto** (`/dp/`, `/gp/`), nunca busca; no Instagram o link vai na **bio** (legenda não é clicável); no Facebook, **post nativo + link no 1º comentário**. Detalhe: skills das lanes.
 6. **Idioma:** todo conteúdo em **pt-BR** (pt-PT é bloqueante).
 7. **Soberania:** o pipeline roda local/grátis; sem crédito de IA externa há rota de fuga (voz → edge-tts). Detalhe: `MODO-SOBERANO.md`.
+8. **Canal YouTube = SÓ Minuto Real (NUNCA o pessoal):** todo conteúdo do canal publica no **Minuto Real** (`@MinutoReal1701`, id `UC2N5xZ-gyCU3hNvH1QqNahA`) e **JAMAIS** no pessoal André Galgani (`UCmSpZF4cVFd1kTYomdC_NUw`). Isto é **guarda de máquina, não confiança no operador**: nenhuma lane chama `build('youtube', …)` direto — o cliente nasce de **`videos/canal_guard.py::get_youtube()`**, que **ABORTA** (`CanalErrado`) se o OAuth resolver para o canal errado, antes de qualquer `insert/update/set`. Ao reautorizar (`reauth_youtube.py`), no consentimento Google **escolher o brand Minuto Real**. Origem: incidente 21/jun (token expirou → re-auth caiu no pessoal → upload foi p/ o canal errado). Lição Akita pilar 7: regra em doc ≠ regra cumprida.
 
 ## Contratos de módulo — lane de vídeo (`videos/`) [Akita pilar 6]
 
 Mapa dos módulos do Criador de Vídeos (revisão Akita; detalhe em `AKITA-REVISAO-VIDEOS.md`). Edite a responsabilidade no módulo dono — não espalhe nem duplique.
 
 - **Auth das redes = fonte única.** Facebook → `facebook_base.py` (`token/page_id/post`, `GRAPH`, `HASHTAGS_BASE`); Instagram → `ig_base.py` (`read_token/refresh_token/read_user_id`). Os postadores (`facebook_*`, `instagram_post`, `analytics_ig`) IMPORTAM daí — PROIBIDO redefinir `_token/_page_id/_post` (só wrapper fino que passa o `*_FILE` do módulo, p/ o mock do teste valer).
+- **Identidade do canal YouTube = fonte única `canal_guard.py`.** `CANAL_ID` (Minuto Real), `PESSOAL_ID` (proibido), `assert_canal(yt)`→`CanalErrado`, `get_youtube()` (cliente já verificado). TODO script que toca a YouTube API obtém o cliente por `get_youtube()` (ou chama `assert_canal` se tiver `creds()` próprio, ex.: `afiliado_youtube`) — PROIBIDO `build('youtube', …)` direto num caller. Contrato inviolável nº 8.
 - **Resiliência em todo cliente de API paga:** `@retry(...)` (fora) + `@circuit_breaker(api=...)` (dentro) — NESSA ordem — + `record_cost(api=...)` no sucesso. Hoje completo em `imagen/tts_gcloud/falgen`; **`veo` e `upload_youtube` têm só `@circuit_breaker` (retry pendente — ver revisão).** Estado do breaker em `canal-state.json["api_health"]`.
 - **Roteiro inválido ABORTA antes de gastar API.** `contracts.load_roteiro` é guarda dura nos callers (`gerar_video`, `upload_youtube`): fora do `try/except` (só `ImportError` silenciado, p/ ambiente sem pydantic).
 - **Som procedural (numpy puro):** `dsp.py` (low-cut→saturação→ar→reverb), `marca_sonora.py` (10 sons, Ré menor), `efeitos_transicao.py` (arco Fibonacci + `place_marca`). `_video_audio.py` = trilha (`sintetiza_ambiente`); `_video_tts.py` = voz (`_to_ssml`, `tts` fallback Eleven→Google→edge).
@@ -69,6 +71,7 @@ A doutrina completa (clean-code, memória, prompt 4-blocos, isolamento) vive na 
 - **Memória (pilar 10):** markdown + grep, **nunca RAG**; `MEMORY.md` = índice de ponteiros; não escreva sem validar ("cemitério de superstição"); frontmatter usa `kind`/`confidence` (lint `valida_memoria.py`, na pasta de memória do agente). Fato vivo (ex.: metadados) → invocar a skill, não responder de memória.
 - **Prompt 4 blocos (pilar 1):** Objetivo · Método · Restrições · Validação. Tarefa atômica, uma por vez.
 - **Isolamento (pilar 8):** ponto único idempotente revisável; negar `rm -rf`/`sudo`/`git push --force`; nunca **YOLO mode** (`--dangerously-skip-permissions`); segredos fora do working tree.
+- **Erro fica registrado (pilares 7+9):** nada de `except: pass` silencioso — erro **com contexto** (valor ofendido + forma esperada). Registros vivos: API paga → `canal-state.json` `api_health.last_error` (circuit_breaker); stage → `pipeline_state` (`blocked`+`reason` → `events.jsonl`); loop → `historico_loop.log`; saúde → `doctor.py`. E **bug → teste de regressão** (pilar 2) antes do fix.
 
 ## Guardas de máquina: CI real + anti-fantasma (revisão Akita)
 
