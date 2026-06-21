@@ -1,0 +1,90 @@
+{
+ "ch01-experiencia-no-campo": {
+  "cards": [
+   {
+    "ic": "spark",
+    "t": "As Três Fases do Prisioneiro",
+    "b": "<strong>Choque</strong> (chegada): terror, frieza defensiva, humor mórbido e a 'ilusão do indulto'. <strong>Apatia</strong> (rotina): embotamento que protege e, no excesso, desumaniza. <strong>Despersonalização</strong> (libertação): tudo parece irreal; é preciso reaprender a sentir.",
+    "tip": "<strong>Como aplicar:</strong> leia qualquer entrada abrupta numa situação extrema (diagnóstico, perda, exílio) por essas fases — cada uma pede uma resposta interior diferente."
+   },
+   {
+    "ic": "book",
+    "t": "Porquê e Como (Nietzsche)",
+    "b": "A bússola do livro: <em>'quem tem um porquê para viver suporta quase qualquer como'</em>. No campo, a resistência vinha menos da força física e mais de haver um sentido, uma meta, alguém esperando — um <strong>porquê</strong>.",
+    "tip": "<strong>Modelo mental:</strong> antes de perguntar 'como aguentar?', encontre o 'por que / para que aguentar'."
+   },
+   {
+    "ic": "person",
+    "t": "Amor, Beleza e Humor",
+    "b": "Privado do mundo exterior, o homem aprofunda a <strong>vida interior</strong>. A imagem do ser amado sustenta o prisioneiro: salva-se o homem pelo e no amor. A <strong>beleza</strong> (um pôr do sol) e o <strong>humor</strong> (rir do horror) provam a alma viva.",
+    "tip": "<strong>Para refletir:</strong> ama-se a essência do outro, presente ou não — o amor dá sentido independentemente da posse."
+   }
+  ]
+ },
+ "ch02-a-ultima-liberdade-e-o-sofrimento": {
+  "cards": [
+   {
+    "ic": "scale",
+    "t": "A Inversão da Pergunta",
+    "b": "Não cabe ao homem perguntar 'qual o sentido da vida?', mas <strong>responder à pergunta que a vida lhe faz</strong>. Somos os interrogados; respondemos agindo na tarefa concreta de cada momento — isso é <strong>responsabilidade</strong>.",
+    "tip": "<strong>Como aplicar:</strong> reformule 'qual o sentido de tudo isto?' em 'o que esta situação, agora, me pede para fazer ou ser?'."
+   },
+   {
+    "ic": "mountain",
+    "t": "Sofrimento com Sentido",
+    "b": "O sofrimento <strong>evitável</strong> deve ser evitado (sofrer por sofrer é masoquismo). Mas o sofrimento <strong>inevitável</strong> carrega um sentido potencial: a atitude digna diante dele transforma a tragédia em conquista interior.",
+    "tip": "<strong>Regra:</strong> mude o que pode mudar; dê sentido ao que não pode."
+   },
+   {
+    "ic": "pin",
+    "t": "O Sentido é Único e Concreto",
+    "b": "O sentido é <strong>descoberto, não inventado</strong> — detecta-se no mundo, fora de si. E é sempre <strong>concreto e único</strong>: muda de pessoa para pessoa e de hora para hora. Não há um 'sentido da vida' genérico.",
+    "tip": "<strong>Para refletir:</strong> manter uma meta no futuro (uma tarefa, alguém) sustenta o homem no presente mais duro."
+   }
+  ]
+ },
+ "ch03-conceitos-da-logoterapia": {
+  "cards": [
+   {
+    "ic": "constellation",
+    "t": "As Três Escolas Vienenses",
+    "b": "1ª <strong>Freud</strong> → vontade de prazer. 2ª <strong>Adler</strong> → vontade de poder. 3ª <strong>Frankl</strong> → <strong>vontade de sentido</strong>. A logoterapia cura pela busca de sentido, voltada ao futuro a realizar.",
+    "tip": "<strong>Modelo mental:</strong> o homem é <em>autotranscendente</em> — realiza-se ao esquecer-se de si numa causa ou em alguém, não girando em torno do próprio eu."
+   },
+   {
+    "ic": "gap",
+    "t": "Vazio Existencial",
+    "b": "A frustração da vontade de sentido produz o sentimento de <strong>vazio, tédio e ausência de propósito</strong> — fenômeno de massa do nosso tempo. Manifesta-se no <strong>conformismo</strong> (fazer o que os outros fazem) e no <strong>totalitarismo</strong> (fazer o que mandam).",
+    "tip": "<strong>Como aplicar:</strong> leia o tédio crônico como sentido frustrado — pergunte o 'para quê', não só medique o humor."
+   },
+   {
+    "ic": "spiral",
+    "t": "Neurose Noogênica · Tensão Sadia",
+    "b": "A <strong>neurose noogênica</strong> nasce de conflitos existenciais/espirituais (de <em>noös</em>), não de pulsões — pede logoterapia. E a saúde não é equilíbrio sem tensão: é a <strong>tensão sadia</strong> rumo a uma meta digna. Homeostase plena = vazio.",
+    "tip": "<strong>Para refletir:</strong> não precisamos de uma vida sem exigências, mas do esforço por uma meta que valha a pena."
+   }
+  ]
+ },
+ "ch04-tecnicas-e-otimismo-tragico": {
+  "cards": [
+   {
+    "ic": "pivot",
+    "t": "Intenção Paradoxal",
+    "b": "Contra o medo que se autorrealiza (fobia, insônia): o paciente é convidado a <strong>desejar, com humor e exagero, justamente o que teme</strong> ('vou tentar suar o máximo possível'). O <strong>autodistanciamento</strong> e o riso cortam a ansiedade antecipatória.",
+    "tip": "<strong>Como aplicar:</strong> ninguém consegue <em>querer</em> de propósito o sintoma com a mesma força com que o teme — o círculo se rompe."
+   },
+   {
+    "ic": "eye",
+    "t": "Dereflexão",
+    "b": "Contra a <strong>hiperreflexão</strong> (auto-observação que sabota o desempenho): <strong>desviar a atenção de si</strong> para um sentido, uma tarefa ou outra pessoa. O que foge quando perseguido — sono, prazer, felicidade — volta quando deixa de ser alvo.",
+    "tip": "<strong>Regra:</strong> felicidade não se persegue, ela sobrevém — como efeito de um sentido realizado."
+   },
+   {
+    "ic": "leaf",
+    "t": "Otimismo Trágico",
+    "b": "Dizer 'sim' à vida apesar da <strong>tríade trágica</strong> — dor, culpa e morte. Converter cada uma: <strong>dor</strong> em conquista; <strong>culpa</strong> em mudança para melhor; <strong>transitoriedade</strong> em responsabilidade de agir agora.",
+    "tip": "<strong>Para refletir:</strong> é otimismo <em>apesar</em> da tragédia, não em negação dela."
+   }
+  ]
+ }
+}

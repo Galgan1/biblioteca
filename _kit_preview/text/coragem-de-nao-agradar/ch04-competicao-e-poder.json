@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "mountain",
+      "t": "Saia da Competição e o Mundo Muda de Cor",
+      "emph": "Competição",
+      "b": "Quem compete mede a própria vitória pela derrota alheia — e nunca descansa: cada conquista do outro vira ferida sua, cada sala vira ringue. Adler propõe caminhar para frente sem comparar-se com ninguém. <strong>Largue a competição e os rivais viram companheiros</strong>: o mesmo mundo que era campo de batalha se enche de gente que torce por você.",
+      "tip": "<strong>Modelo mental:</strong> a horizontal não tem pódio — quando ninguém precisa perder, todos cabem do mesmo lado."
+    },
+    {
+      "ic": "sword",
+      "t": "A Provocação É um Convite Para o Ringue",
+      "emph": "o Ringue",
+      "b": "Quem te ataca ou te insulta não busca a verdade — busca arrastar você para uma <strong>luta de poder</strong> onde possa vencer. O erro não está em ter razão; está em entrar na briga. Mesmo que você “ganhe” humilhando o outro, a relação perde e a vingança já se arma no silêncio. A saída adleriana é simples e difícil: não pise no ringue.",
+      "tip": "<strong>Como aplicar:</strong> separe “ter razão” de “fazer o outro admitir que errou” — perseguir o segundo é declarar guerra.",
+      "warn": true
+    },
+    {
+      "ic": "scale",
+      "t": "Admitir o Erro Não É Perder",
+      "emph": "Não É Perder",
+      "b": "Reconhecer um equívoco, pedir desculpas, sair de uma briga — nada disso é derrota, embora o orgulho jure que é. Quem precisa vencer toda discussão confunde recuar da briga com recuar da verdade. <strong>São coisas distintas: a verdade fica de pé mesmo quando você sai do ringue.</strong> A derrota real é virar refém do próprio orgulho.",
+      "tip": "<strong>Regra:</strong> admitir erro é força tranquila; o que aprisiona é a necessidade de provar que o outro está errado."
+    }
+  ]
+}

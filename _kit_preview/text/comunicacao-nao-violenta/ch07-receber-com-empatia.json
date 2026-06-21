@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "wave",
+      "t": "Empatia é Presença, não Conserto",
+      "emph": "Presença",
+      "b": "Diante da dor do outro, o impulso é resolver — e é justo aí que se perde a conexão. Empatia é esvaziar a mente dos pré-julgamentos e ficar inteiro com quem está na sua frente, sem agenda de consertar. <strong>Antes de qualquer solução, a presença cura mais que o conselho</strong> — escute, e só se ajudar devolva sentimento e necessidade.",
+      "tip": "<strong>Modelo mental:</strong> “não faça algo, fique aí” — pergunte-se se a pessoa quer solução ou só quer ser ouvida."
+    },
+    {
+      "ic": "gap",
+      "t": "Os Bloqueadores que Parecem Ajuda",
+      "emph": "Parecem Ajuda",
+      "b": "Há frases bem-intencionadas que cortam a conexão pela raiz: aconselhar (“o que você devia fazer…”), consolar (“vai passar”), competir (“comigo foi pior”), educar, corrigir, interrogar. Todas tiram o foco da pessoa e o jogam de volta em você. <strong>Mesmo cheias de boa intenção, elas invalidam o que o outro sente.</strong>",
+      "tip": "<strong>Cuidado:</strong> “relaxa, semana que vem melhora” não acolhe — apaga o que a pessoa está sentindo agora.",
+      "warn": true
+    },
+    {
+      "ic": "bubble",
+      "t": "Reflita em Pergunta, não em Rótulo",
+      "emph": "Pergunta",
+      "b": "Devolver o que você ouviu como afirmação fecha (“você está com medo.”); devolver como pergunta abre (“você está com medo de…?”). A pergunta convida o outro a corrigir ou confirmar, em vez de receber um diagnóstico pronto. <strong>Sinal de empatia suficiente: a tensão no corpo do outro afrouxa, ou ele para de falar.</strong>",
+      "tip": "<strong>Como aplicar:</strong> reflita sentimento mais necessidade — “você está frustrado porque queria ter sido consultado?”."
+    }
+  ]
+}

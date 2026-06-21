@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "layers",
+      "t": "Diferentes, mas Iguais",
+      "emph": "Iguais",
+      "b": "A relação vertical é hierarquia de valor: alguém se coloca acima, julga, premia e pune — e gera dependência. Adler propõe a horizontal: <strong>“diferentes, mas iguais”</strong>. Pai e filho, chefe e equipe têm papéis distintos, mas nenhum vale mais que o outro. A virada não é tratar todos igual; é tratá-los como iguais em valor.",
+      "tip": "<strong>Como aplicar:</strong> colabore lado a lado em vez de comandar de cima — mesmo onde o papel te dá autoridade.",
+      "wide": true
+    },
+    {
+      "ic": "bubble",
+      "t": "Diga “Obrigado”, Não “Muito Bem”",
+      "emph": "“Obrigado”",
+      "b": "O elogio — “que bom menino!” — soa generoso, mas é um veredito de cima para baixo: quem tem capacidade avaliando quem supostamente não tem. Ele alimenta a fome de aprovação que adoece. A alternativa horizontal é <strong>agradecer</strong>: “obrigado, isso me ajudou”. O foco sai do julgamento e pousa na contribuição entre iguais.",
+      "tip": "<strong>Regra:</strong> “muito bem” é vertical e cria dependência; “obrigado” é horizontal e devolve dignidade ao outro."
+    },
+    {
+      "ic": "spark",
+      "t": "“Sou Útil” Constrói o Que o Elogio Corrói",
+      "emph": "“Sou Útil”",
+      "b": "A criança que põe a mesa e ouve “obrigado, você me ajudou” não aprende a caçar elogios — aprende que <strong>é útil</strong>. É esse senso de utilidade, não o aplauso, que ergue coragem e valor próprio por dentro. Encorajar é reconhecer contribuição real para o outro agir por si — não bajular: o elogio vazio prende; o agradecimento liberta.",
+      "tip": "<strong>Cuidado:</strong> encorajar não é bajular — reconheça a contribuição verdadeira, jamais lisonjeie para conduzir o outro.",
+      "warn": true
+    }
+  ]
+}

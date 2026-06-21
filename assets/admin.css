@@ -1,0 +1,432 @@
+/* =========================================
+   admin.css — painel administrativo da Biblioteca
+   Self-contained: NÃO depende de style.css. Reaproveita só os tokens públicos
+   (--green*, --gold, --paper-bg, --radius, --font-*) quando existem, mas define
+   fallbacks próprios para funcionar mesmo carregado isolado.
+   Paleta e "dark-glass" espelham os overlays do kit (.kit-overlay/.cv-overlay):
+   verde da marca (hue 152), coral de alerta (hue 30) p/ o "AO VIVO", fundo
+   escuro translúcido com blur, bordas tracejadas e cantos arredondados.
+   ========================================= */
+
+.adm-panel,
+.adm-overlay,
+.adm-entrar {
+    /* Tokens locais com fallback — herdam os do site se já definidos no :root. */
+    --adm-green: var(--green, oklch(52% 0.14 152));
+    --adm-green-dark: var(--green-dark, oklch(40% 0.12 152));
+    --adm-coral: var(--dislike, oklch(55% 0.17 30));
+    --adm-coral-dark: var(--dislike-dark, oklch(48% 0.16 30));
+    --adm-on-coral: var(--on-dislike, oklch(99% 0.004 30));
+    --adm-on-green: var(--on-green, oklch(99% 0.002 152));
+    --adm-surface: var(--paper-bg, oklch(99% 0.002 152));
+    --adm-ink: var(--black, oklch(22% 0.01 152));
+    --adm-muted: var(--gray-dark, oklch(46% 0.01 152));
+    --adm-radius: var(--radius, 6px);
+    --adm-font: var(--font-display, 'Hanken Grotesk', system-ui, sans-serif);
+    --adm-ease: var(--ease-out-quart, cubic-bezier(0.25, 1, 0.5, 1));
+}
+
+/* ----------------------------------------------------------------------
+   Gatilho "entrar" — pílula discreta fixa no canto (só p/ deslogado).
+   Pequena de propósito: é uma porta de serviço, não um CTA do site.
+---------------------------------------------------------------------- */
+.adm-entrar {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 900;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem;
+    min-height: 40px;
+    border: 1.5px dashed var(--adm-green);
+    border-radius: 999px;
+    background: oklch(18% 0.012 152 / 0.78);
+    color: oklch(95% 0.01 152);
+    font-family: var(--adm-font);
+    font-weight: 700;
+    font-size: 0.82rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(6px) saturate(115%);
+    -webkit-backdrop-filter: blur(6px) saturate(115%);
+    box-shadow: 0 6px 18px oklch(0% 0 0 / 0.28);
+    transition: border-color 180ms var(--adm-ease), transform 180ms var(--adm-ease), background 180ms var(--adm-ease);
+    opacity: 0.85;
+}
+.adm-entrar:hover { opacity: 1; border-color: var(--adm-green-dark); transform: translateY(-1px); }
+.adm-entrar:focus-visible { outline: 2px solid var(--adm-green); outline-offset: 2px; }
+.adm-entrar svg { width: 16px; height: 16px; }
+
+/* ----------------------------------------------------------------------
+   Painel "Publicar no Instagram" — injetado após .kit-section (ou header).
+   Mesma "carteira de identidade" do kit-section: borda tracejada verde, mas
+   com um corpo de card para abrigar os controles.
+---------------------------------------------------------------------- */
+.adm-panel {
+    margin: 1.5rem 0 3rem;
+    border: 2px dashed var(--adm-green);
+    border-radius: var(--adm-radius);
+    background: var(--adm-surface);
+    overflow: hidden;
+    font-family: var(--adm-font);
+    color: var(--adm-ink);
+}
+.adm-panel-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.1rem;
+    border-bottom: 1.5px dashed var(--adm-green);
+    background: oklch(52% 0.14 152 / 0.06);
+}
+.adm-ig-badge {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    color: var(--adm-on-green);
+    /* gradiente discreto evocando o IG, dentro da marca verde→ouro */
+    background: linear-gradient(135deg, var(--adm-green), var(--gold, oklch(60% 0.10 83)));
+}
+.adm-ig-badge svg { width: 19px; height: 19px; }
+.adm-panel-titles { flex: 1 1 auto; min-width: 0; }
+.adm-panel-titles h2 {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--adm-green-dark);
+    letter-spacing: -0.01em;
+}
+.adm-panel-sub {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--adm-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.adm-logout {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.7rem;
+    border: 1.5px dashed oklch(46% 0.01 152 / 0.5);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--adm-muted);
+    font-family: var(--adm-font);
+    font-weight: 700;
+    font-size: 0.74rem;
+    cursor: pointer;
+    transition: border-color 160ms var(--adm-ease), color 160ms var(--adm-ease);
+}
+.adm-logout:hover { border-color: var(--adm-coral); color: var(--adm-coral-dark); }
+.adm-logout svg { width: 14px; height: 14px; }
+
+.adm-panel-body { padding: 1.1rem; }
+.adm-loading,
+.adm-empty {
+    color: var(--adm-muted);
+    font-size: 0.92rem;
+    margin: 0;
+}
+
+/* linha de selects (formato | peça) — empilha no mobile */
+.adm-row {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 0.8rem;
+    margin-bottom: 0.9rem;
+}
+
+/* ----------------------------------------------------------------------
+   Campos (compartilhados pelo login e pelo painel)
+---------------------------------------------------------------------- */
+.adm-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    font-size: 0.9rem;
+}
+.adm-field > span {
+    font-weight: 700;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--adm-muted);
+}
+.adm-field--caption { margin-bottom: 0.9rem; }
+
+.adm-select,
+.adm-caption,
+.adm-field input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.92rem;
+    color: var(--adm-ink);
+    background: var(--adm-surface);
+    border: 1.5px solid oklch(46% 0.01 152 / 0.35);
+    border-radius: var(--adm-radius);
+    padding: 0.55rem 0.7rem;
+    min-height: 42px;
+    transition: border-color 160ms var(--adm-ease), box-shadow 160ms var(--adm-ease);
+}
+.adm-caption { resize: vertical; min-height: 120px; line-height: 1.45; }
+.adm-select:focus,
+.adm-caption:focus,
+.adm-field input:focus {
+    outline: none;
+    border-color: var(--adm-green);
+    box-shadow: 0 0 0 3px oklch(52% 0.14 152 / 0.18);
+}
+.adm-select:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* campo de senha com botão "olho" (mostrar/ocultar p/ conferir o valor) */
+.adm-pass-wrap { position: relative; display: block; }
+.adm-pass-wrap input { padding-right: 2.6rem; }
+.adm-pass-eye {
+    position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+    width: 32px; height: 32px; padding: 0;
+    display: flex; align-items: center; justify-content: center;
+    border: none; background: transparent; color: var(--adm-muted);
+    cursor: pointer; border-radius: 8px;
+    transition: color 140ms var(--adm-ease), background 140ms var(--adm-ease);
+}
+.adm-pass-eye:hover { color: var(--adm-green); background: oklch(52% 0.14 152 / 0.12); }
+.adm-pass-eye svg { width: 20px; height: 20px; }
+
+/* nota de cota na confirmação */
+.adm-confirm-quota { font-size: 0.82rem; color: var(--adm-muted); margin: 0.1rem 0 0.7rem; }
+.adm-confirm-quota b { color: var(--adm-ink); }
+
+/* ----------------------------------------------------------------------
+   Botões — solid (verde, ação principal), ghost (secundário), live (coral)
+---------------------------------------------------------------------- */
+.adm-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+}
+.adm-actions--publish { margin-top: 0.5rem; }
+.adm-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    min-height: 44px;
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--adm-radius);
+    border: 1.5px solid transparent;
+    font-family: var(--adm-font);
+    font-weight: 700;
+    font-size: 0.92rem;
+    line-height: 1;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 180ms var(--adm-ease), border-color 180ms var(--adm-ease), transform 180ms var(--adm-ease), color 180ms var(--adm-ease);
+}
+.adm-btn svg { width: 17px; height: 17px; flex-shrink: 0; }
+.adm-btn:focus-visible { outline: 2px solid var(--adm-green); outline-offset: 2px; }
+.adm-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+.adm-btn--solid {
+    background: var(--adm-green);
+    color: var(--adm-on-green);
+    border-color: var(--adm-green);
+}
+.adm-btn--solid:not(:disabled):hover { background: var(--adm-green-dark); border-color: var(--adm-green-dark); transform: translateY(-1px); }
+
+.adm-btn--ghost {
+    background: transparent;
+    color: var(--adm-muted);
+    border-color: oklch(46% 0.01 152 / 0.45);
+}
+.adm-btn--ghost:not(:disabled):hover { border-color: var(--adm-green); color: var(--adm-green-dark); }
+
+/* "AO VIVO" — coral, deliberadamente quente, p/ frear o dedo no gatilho */
+.adm-btn--live {
+    background: var(--adm-coral);
+    color: var(--adm-on-coral);
+    border-color: var(--adm-coral);
+}
+.adm-btn--live:not(:disabled):hover { background: var(--adm-coral-dark); border-color: var(--adm-coral-dark); transform: translateY(-1px); }
+
+/* ----------------------------------------------------------------------
+   Status inline (login + publicação): busy/ok/err
+---------------------------------------------------------------------- */
+.adm-status {
+    margin: 0.2rem 0 0.7rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    min-height: 1.1em;
+    display: none;
+}
+.adm-status.is-visible { display: block; }
+.adm-status.is-busy { color: var(--adm-muted); }
+.adm-status.is-busy::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 0.45rem;
+    vertical-align: -1px;
+    border: 2px solid oklch(46% 0.01 152 / 0.35);
+    border-top-color: var(--adm-green);
+    border-radius: 50%;
+    animation: adm-spin 800ms linear infinite;
+}
+.adm-status.is-ok { color: var(--adm-green-dark); }
+.adm-status.is-err { color: var(--adm-coral-dark); }
+@keyframes adm-spin { to { transform: rotate(360deg); } }
+
+.adm-permalink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    margin-left: 0.5rem;
+    color: var(--adm-green-dark);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.adm-permalink svg { width: 14px; height: 14px; }
+
+/* ----------------------------------------------------------------------
+   Overlays (login + confirmação) — dark-glass igual ao kit/cv overlay
+---------------------------------------------------------------------- */
+.adm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+    background: oklch(18% 0.012 152 / 0.9);
+    backdrop-filter: blur(8px) saturate(115%);
+    -webkit-backdrop-filter: blur(8px) saturate(115%);
+    animation: adm-fade 200ms var(--adm-ease);
+}
+@keyframes adm-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.adm-modal {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    max-height: 92vh;
+    overflow: auto;
+    background: var(--adm-surface);
+    border: 2px dashed var(--adm-green);
+    border-radius: var(--adm-radius);
+    padding: 1.25rem 1.35rem 1.4rem;
+    font-family: var(--adm-font);
+    color: var(--adm-ink);
+    box-shadow: 0 24px 60px oklch(0% 0 0 / 0.5);
+    animation: adm-pop 220ms var(--adm-ease);
+}
+.adm-modal--confirm { max-width: 400px; border-color: var(--adm-coral); }
+@keyframes adm-pop { from { transform: translateY(8px) scale(0.98); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.adm-modal-head {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+}
+.adm-modal-head h2 {
+    flex: 1 1 auto;
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--adm-green-dark);
+    letter-spacing: -0.01em;
+}
+.adm-modal--confirm .adm-modal-head h2 { color: var(--adm-coral-dark); }
+.adm-dot {
+    flex: 0 0 auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--adm-green);
+    box-shadow: 0 0 0 4px oklch(52% 0.14 152 / 0.18);
+}
+.adm-dot--live {
+    background: var(--adm-coral);
+    box-shadow: 0 0 0 4px oklch(55% 0.17 30 / 0.2);
+    animation: adm-pulse 1.4s ease-in-out infinite;
+}
+@keyframes adm-pulse {
+    0%, 100% { box-shadow: 0 0 0 4px oklch(55% 0.17 30 / 0.2); }
+    50% { box-shadow: 0 0 0 7px oklch(55% 0.17 30 / 0.08); }
+}
+.adm-x {
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1.5px dashed oklch(46% 0.01 152 / 0.45);
+    background: transparent;
+    color: var(--adm-muted);
+    cursor: pointer;
+    transition: border-color 160ms var(--adm-ease), color 160ms var(--adm-ease), transform 160ms var(--adm-ease);
+}
+.adm-x:hover { border-color: var(--adm-coral); color: var(--adm-coral-dark); transform: rotate(90deg); }
+.adm-x svg { width: 16px; height: 16px; }
+
+.adm-form { display: flex; flex-direction: column; gap: 0.85rem; }
+.adm-form .adm-actions { margin-top: 0.2rem; }
+
+/* confirmação */
+.adm-confirm-lead {
+    margin: 0 0 0.9rem;
+    font-family: var(--font-serif, 'Literata', Georgia, serif);
+    color: var(--adm-ink);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+.adm-confirm-meta {
+    margin: 0 0 1.1rem;
+    display: grid;
+    gap: 0.4rem;
+    padding: 0.7rem 0.85rem;
+    border-radius: var(--adm-radius);
+    background: oklch(52% 0.14 152 / 0.06);
+}
+.adm-confirm-meta > div { display: flex; gap: 0.6rem; align-items: baseline; }
+.adm-confirm-meta dt {
+    flex: 0 0 70px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--adm-muted);
+}
+.adm-confirm-meta dd { margin: 0; font-weight: 700; font-size: 0.9rem; color: var(--adm-ink); }
+
+/* ----------------------------------------------------------------------
+   Responsivo
+---------------------------------------------------------------------- */
+@media (max-width: 560px) {
+    .adm-row { grid-template-columns: 1fr; }
+    .adm-panel-head { flex-wrap: wrap; }
+    .adm-logout { margin-left: auto; }
+}
+
+/* respeita o tema escuro do sistema (o site já vira dark via :root) */
+@media (prefers-color-scheme: dark) {
+    .adm-entrar { background: oklch(26% 0.01 152 / 0.82); color: oklch(95% 0.005 152); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .adm-overlay, .adm-modal, .adm-entrar,
+    .adm-status.is-busy::before, .adm-dot--live { animation: none !important; }
+    .adm-btn, .adm-x, .adm-logout, .adm-entrar { transition: none !important; }
+}

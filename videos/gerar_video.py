@@ -69,6 +69,18 @@ def tracked(draw, pos, text, fnt, fill, tracking):
         x += draw.textlength(ch, font=fnt) + tracking
 
 
+def text_shadow(draw, pos, text, fnt, fill, halo=(4, 4, 7), r=4):
+    """Desenha texto com contorno/halo escuro por glifo — protege o texto centrado
+    sobre arte de miolo claro (mesma proteção do lower-third, que conta com o
+    gradiente forte do darken_side). Anel de offsets + stroke do Pillow."""
+    x, y = pos
+    for dx in range(-r, r + 1, 2):
+        for dy in range(-r, r + 1, 2):
+            if dx or dy:
+                draw.text((x + dx, y + dy), text, font=fnt, fill=halo)
+    draw.text((x, y), text, font=fnt, fill=fill, stroke_width=2, stroke_fill=halo)
+
+
 def radial_aura(img, color, cx, cy, radius, max_alpha):
     """Aura radial sutil de acento sobre o fundo escuro."""
     aura = Image.new('RGBA', (W, H), (0, 0, 0, 0))
@@ -115,14 +127,15 @@ def darken_side(img, side):
             a = min(238, int(215 * (px / W) ** 1.25) + 55)
             od.rectangle([(px, 0), (px + 2, H)], fill=(5, 5, 8, a))
     else:  # center
-        od.rectangle([(0, 0), (W, H)], fill=(5, 5, 8, 70))
+        od.rectangle([(0, 0), (W, H)], fill=(5, 5, 8, 110))
     # banda inferior: rodapé + barra de progresso sempre legíveis
     for py in range(H - 170, H, 2):
         a = int(150 * ((py - (H - 170)) / 170) ** 1.3)
         od.rectangle([(0, py), (W, py + 2)], fill=(5, 5, 8, a))
     img.alpha_composite(ov)
     if side == 'center':
-        radial_dark(img, W // 2, int(H * 0.48), 1000, 470, 150)
+        # scrim central reforçado: arte de miolo claro (pôr-do-sol) furava o AA-large
+        radial_dark(img, W // 2, int(H * 0.48), 1080, 540, 205)
 
 
 def tracked_width(draw, text, fnt, tracking):
@@ -167,25 +180,33 @@ def _draw_text(img, cena, accent, idx, total, book_label, side, has_bg):
         y = (H - block_h) // 2 - 20
         for ln in lines:
             lw = d.textlength(ln, font=ft)
-            d.text(((W - lw) // 2, y), ln, font=ft, fill=tfill)
+            text_shadow(d, ((W - lw) // 2, y), ln, ft, tfill)
             y += line_h
         sub = cena.get('subtitulo')
         if sub:
             fs = F_UI(44)
             sw = d.textlength(sub, font=fs)
-            d.text(((W - sw) // 2, y + 24), sub, font=fs, fill=(212, 212, 222) if has_bg else GRAY)
+            text_shadow(d, ((W - sw) // 2, y + 24), sub, fs,
+                        (212, 212, 222) if has_bg else GRAY, r=3)
         d.rectangle([(W // 2 - 60, y + 110), (W // 2 + 60, y + 113)], fill=accent)
     else:
         # Editorial: alterna esquerda / direita p/ ritmo visual
         fk = F_UI_B(32)
         kicker = cena.get('kicker', '').upper()
-        ft = F_TITLE(108)
+        Y0, FLOOR = 440, H - 190   # bloco começa em y=440; não pode invadir a banda do rodapé (~910)
+        sz = 108
+        ft = F_TITLE(sz)
         lines = wrap(d, cena['titulo'], ft, W - 2 * MARGIN - 40)
+        # Clamp título×rodapé: encolhe a fonte (re-wrap) até o bloco caber acima do rodapé
+        while Y0 + len(lines) * int(ft.size * 1.12) > FLOOR and sz > 64:
+            sz -= 8
+            ft = F_TITLE(sz)
+            lines = wrap(d, cena['titulo'], ft, W - 2 * MARGIN - 40)
         if side == 'right':
             kw = tracked_width(d, kicker, fk, 4)
             d.rectangle([(W - MARGIN - 56, 300), (W - MARGIN, 305)], fill=accent)
             tracked(d, (W - MARGIN - kw, 336), kicker, fk, accent, 4)
-            y = 440
+            y = Y0
             for ln in lines:
                 lw = d.textlength(ln, font=ft)
                 d.text((W - MARGIN - lw, y), ln, font=ft, fill=tfill)
@@ -194,7 +215,7 @@ def _draw_text(img, cena, accent, idx, total, book_label, side, has_bg):
             ax = MARGIN
             d.rectangle([(ax, 300), (ax + 56, 305)], fill=accent)
             tracked(d, (ax, 336), kicker, fk, accent, 4)
-            y = 440
+            y = Y0
             for ln in lines:
                 d.text((ax, y), ln, font=ft, fill=tfill)
                 y += int(ft.size * 1.12)
@@ -297,6 +318,92 @@ def sintetiza_ambiente(dur, out_wav, seed=7, energia=0.65):
         w.writeframes(out.tobytes())
 
 
+def _provedor_voz(voice: str) -> str:
+    """Função PURA: classifica a string 'voice' no provedor correto.
+
+    Retornos possíveis:
+      'eleven' — prefixo 'eleven:' ou 'el:' (case-insensitive)
+      'google' — contém marcador de voz Cloud TTS (Chirp3/Studio/Neural2/Wavenet)
+      'edge'   — qualquer outro valor (inclui pt-BR-AntonioNeural, string vazia, etc.)
+
+    Exemplos:
+      'eleven:Rachel'                 → 'eleven'
+      'el:21m00Tcm4TlvDq8ikWAM'      → 'eleven'
+      'pt-BR-Chirp3-HD-Iapetus'       → 'google'
+      'pt-BR-Studio-B'                → 'google'
+      'pt-BR-AntonioNeural'           → 'edge'
+    """
+    v = voice.lower()
+    if v.startswith('eleven:') or v.startswith('el:'):
+        return 'eleven'
+    if any(t in voice for t in ('Chirp3', 'Studio', 'Neural2', 'Wavenet')):
+        return 'google'
+    return 'edge'
+
+
+def _tts_eleven(text: str, voice_id: str, out_mp3: str) -> bool:
+    """Chama a API ElevenLabs TTS (REST, modelo turbo-v2.5, saída mp3_44100_128).
+
+    Lê a chave em ordem de prioridade:
+      1. variável de ambiente ELEVENLABS_API_KEY
+      2. arquivo .secrets/elevenlabs_key.txt
+
+    Se a chave estiver AUSENTE ou VAZIA, imprime aviso e retorna False (sem chamar
+    a rede) — a lógica de fallback fica em tts(). Mesma filosofia soberana do projeto.
+
+    Retorna True em caso de sucesso, False em qualquer falha (ausência de chave,
+    erro de rede, status != 200). Nunca lança exceção — nunca quebra o build.
+
+    ATENÇÃO: a chamada real gasta créditos ElevenLabs. NÃO use sem autorização de
+    gasto e sem a chave configurada. Ver pendência em PENDENTE.md / resumo do PR.
+    """
+    import os
+
+    # 1. Obter chave
+    chave = os.environ.get('ELEVENLABS_API_KEY', '').strip()
+    if not chave:
+        try:
+            chave = (ROOT / '.secrets' / 'elevenlabs_key.txt').read_text(encoding='utf-8').strip()
+        except (FileNotFoundError, OSError):
+            chave = ''
+
+    if not chave:
+        print('  [aviso] ElevenLabs sem chave -> rota de fuga ativada')
+        return False
+
+    # 2. Chamar a API (REST puro via requests)
+    url = f'https://api.elevenlabs.io/v1/text-to-speech/{voice_id}'
+    payload = {
+        'text': text,
+        'model_id': 'eleven_turbo_v2_5',   # melhor custo/benefício pt-BR (jun/2026)
+        'voice_settings': {
+            'stability': 0.50,
+            'similarity_boost': 0.75,
+        },
+    }
+    headers = {
+        'xi-api-key': chave,
+        'Content-Type': 'application/json',
+        'Accept': 'audio/mpeg',
+    }
+    try:
+        import requests as _req
+        import json as _json
+        resp = _req.post(url, headers=headers, json=payload, timeout=60)
+        resp.raise_for_status()
+        Path(out_mp3).write_bytes(resp.content)
+        try:
+            from cost_tracker import record_cost
+            chars = len(text)
+            record_cost(api='elevenlabs_1k', units=chars / 1000)
+        except Exception:
+            pass
+        return True
+    except Exception as _e:
+        print(f'  [aviso] ElevenLabs falhou: {str(_e)[:120]}')
+        return False
+
+
 def _to_ssml(text):
     """Direção de prosódia PREMIUM (jun/2026): cadência VARIADA, não metronômica.
     O salto amador→premium é a MICRO-PAUSA DE VÍRGULA — sem ela a lista/oração 'corre'
@@ -319,11 +426,32 @@ def _to_ssml(text):
 
 
 def tts(text, voice, out_mp3, rate=1.0):
-    # Vozes Cloud TTS (Chirp3-HD / Studio / Neural2) → Google; senão edge-tts.
-    # ROTA DE FUGA (jun/2026): se o Google cair (sem crédito/cota/503), tenta 2x e então
-    # usa a voz GRÁTIS local (edge-tts) — a produção nunca para por falta de crédito externo.
+    """Narração TTS com fallback encadeado (Akita — soberania):
+
+      ElevenLabs (premium, mais humano pt-BR)
+        → Google Cloud TTS Chirp3-HD (se voice/credencial permitirem)
+          → edge-tts local GRÁTIS (NUNCA falha — a produção nunca para)
+
+    Prefixos de voz ElevenLabs:  'eleven:<voice_id>'  ou  'el:<voice_id>'
+    Vozes Google:                 contêm Chirp3 / Studio / Neural2 / Wavenet
+    Rota de fuga edge-tts:       qualquer outro valor (ex.: pt-BR-AntonioNeural)
+    """
     FUGA_VOZ = 'pt-BR-AntonioNeural'   # voz de fuga: masculina, sóbria (mais próxima do Iapetus)
-    if any(t in voice for t in ('Chirp3', 'Studio', 'Neural2', 'Wavenet')):
+
+    provedor = _provedor_voz(voice)
+
+    # --- 1ª opção: ElevenLabs ---
+    if provedor == 'eleven':
+        voice_id = voice.split(':', 1)[1]   # 'eleven:Rachel' → 'Rachel'
+        if _tts_eleven(text, voice_id, str(out_mp3)):
+            return
+        # ElevenLabs falhou → tenta Google Chirp3-HD (mesmo SSML) antes de cair no edge
+        print(f'  [ROTA DE FUGA] ElevenLabs indisponível → tentando Google Chirp3-HD')
+        voice = 'pt-BR-Chirp3-HD-Iapetus'
+        provedor = 'google'
+
+    # --- 2ª opção: Google Cloud TTS ---
+    if provedor == 'google':
         import time as _time
         for _tentativa in range(2):
             try:
@@ -335,6 +463,8 @@ def tts(text, voice, out_mp3, rate=1.0):
             _time.sleep(2)
         print(f'  [ROTA DE FUGA] Cloud TTS indisponível → voz grátis local edge-tts ({FUGA_VOZ})')
         voice = FUGA_VOZ
+
+    # --- 3ª opção (e fallback final): edge-tts local GRÁTIS ---
     subprocess.run([sys.executable, '-m', 'edge_tts', '--voice', voice,
                     '--text', text, '--write-media', str(out_mp3)],
                    check=True, capture_output=True)
@@ -439,6 +569,8 @@ def main(roteiro_path):
             import veo
             mot_gen = veo.animate
 
+    import cinegrafista                                  # Cinegrafista NORMAL (parallax grátis / fallback Ken Burns)
+    import splatting                                      # Cinegrafista 3D (3D Gaussian Splatting na GPU local)
     clips = []
     durs = []   # duração on-screen de cada cena (p/ legendas/capítulos da lane YouTube)
     label = {'fal': 'Flux + Kling', 'google': 'Imagen + Veo'}.get(provider, provider)
@@ -470,6 +602,22 @@ def main(roteiro_path):
                 except Exception as _me:
                     print(f"  [!] movimento falhou ({type(_me).__name__}: {str(_me)[:80]}) — usando Ken Burns")
                     mot = None
+
+        # Cinegrafista 3D: imagem sem movimento pago → 3D Gaussian Splatting na GPU local
+        # (cena 3D navegável, melhor profundidade). Dormente sem torch+CUDA + motor 3DGS.
+        if not mot and bg and not mot_gen and splatting.gaussian_disponivel():
+            gsp = MOTDIR / f'{slug}_{i:02d}_3dgs.mp4'
+            if gsp.exists() or splatting.splat_clip(str(bg), str(gsp)):
+                mot = gsp
+                print(f"  cena {i+1}/{n}: 3D Gaussian Splatting (GPU local)")
+
+        # Cinegrafista NORMAL: imagem grátis sem movimento pago → parallax 2.5D (DepthFlow);
+        # rota de fuga = Ken Burns. Dormente enquanto DepthFlow não estiver instalado.
+        if not mot and bg and not mot_gen and cinegrafista.depthflow_disponivel():
+            dfp = MOTDIR / f'{slug}_{i:02d}_df.mp4'
+            if dfp.exists() or cinegrafista.parallax(str(bg), str(dfp)):
+                mot = dfp
+                print(f"  cena {i+1}/{n}: parallax 2.5D (DepthFlow, grátis)")
 
         tipo = cena.get('tipo', 'conceito')
         side = 'center' if tipo in ('abertura', 'encerramento') else ('left' if i % 2 == 1 else 'right')
@@ -515,6 +663,26 @@ def main(roteiro_path):
         print(f"  [aviso] camada de batidas pulada: {e}")
     out = mixmaster.master(slug, ROOT / f'{slug}.mp4')      # Mix & Master a partir dos stems (já com efeitos.wav)
     print(f"\nOK -> {out}  ·  stems em _stems/{slug}/  ·  re-mix: python mixmaster.py {slug}")
+
+    # Gate de QC: sinaliza e registra o veredicto — NÃO destrói a mídia cara em caso de reprovação.
+    # A mídia fica; o que o gate barra é a PUBLICAÇÃO (consultar qc.aprovado(slug) antes de subir).
+    import qc as _qc
+    _falhas, _avisos = _qc.coletar(roteiro_path, out)
+    _veredicto = _qc.montar_veredicto(_falhas, _avisos)
+    _qc.salvar_veredicto(slug, _veredicto)
+    print('=== QC — Gate 2 do estúdio ===')
+    if _falhas:
+        print(f'FALHAS ({len(_falhas)}):')
+        for _f in _falhas:
+            print('  [REPROVA]', _f)
+    else:
+        print('FALHAS: nenhuma')
+    if _avisos:
+        print(f'AVISOS ({len(_avisos)}):')
+        for _a in _avisos:
+            print('  [aviso]', _a)
+    _status = 'APROVADO' if _veredicto['aprovado'] else 'REPROVADO'
+    print(f"VEREDICTO: {_status}  ·  veredicto em _stems/{slug}/qc.json")
 
 
 if __name__ == '__main__':

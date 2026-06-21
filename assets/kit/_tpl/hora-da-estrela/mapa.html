@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><title>kit · minuto real</title><style>@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,400;1,7..72,500;1,7..72,600&display=swap');
+
+:root{
+  --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
+  --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
+  --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
+  --gold: oklch(76% 0.105 83); --on-gold: oklch(20% 0.04 83);
+  --warn: oklch(72% 0.15 40); --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+.slide{width:1080px;height:1350px;color:var(--ink);padding:70px 76px 50px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  background:
+   radial-gradient(135% 95% at 102% 108%, oklch(24% 0.045 152 / .85) 0%, transparent 48%),
+   radial-gradient(115% 72% at 50% -12%, oklch(27% 0.05 152) 0%, transparent 60%),
+   radial-gradient(150% 125% at 50% 48%, transparent 52%, oklch(5% 0.012 152 / .6) 100%),
+   linear-gradient(177deg, var(--bg) 0%, var(--bg2) 100%);}
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(oklch(78% 0.07 152 / .055) 1.1px, transparent 1.3px);
+  background-size:36px 36px;background-position:center;
+  -webkit-mask-image:radial-gradient(125% 105% at 50% -5%, #000 50%, transparent 100%);}
+.slide::after{content:'';position:absolute;inset:38px;border:2px dashed var(--green);
+  border-radius:32px;opacity:.38;pointer-events:none;box-shadow:inset 0 0 90px oklch(70% 0.13 152 / .05)}
+.slide>*{position:relative;z-index:1}
+.slide>.ghost{position:absolute;font-family:'Hanken Grotesk';font-weight:900;line-height:.74;
+  color:transparent;-webkit-text-stroke:2px oklch(74% 0.09 152 / .09);pointer-events:none;
+  letter-spacing:-.05em;z-index:0;overflow:hidden;
+  -webkit-mask-image:radial-gradient(120% 120% at 50% 50%, #000 60%, transparent 100%)}
+.brandmark{display:inline-flex;align-items:center;gap:11px;font-weight:900;
+  letter-spacing:.03em;font-size:25px;color:var(--ink);text-transform:uppercase}
+.brandmark .seal{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto;
+  box-shadow:0 8px 22px oklch(60% 0.14 152 / .35)}
+.brandmark .seal svg{width:25px;height:25px;color:var(--on-green)}
+.brandmark b{color:var(--green);font-weight:900}
+
+.head{flex:0 0 auto}
+.head .top{display:flex;justify-content:space-between;align-items:center}
+.head .badge{font-weight:800;font-size:20px;letter-spacing:.12em;color:var(--green-soft);
+  text-transform:uppercase;border:1.5px solid var(--hair);border-radius:999px;
+  padding:9px 20px;background:oklch(70% 0.14 152 / .06);white-space:nowrap}
+.head h1{font-size:78px;line-height:.92;font-weight:900;text-transform:uppercase;
+  margin:26px 0 0;letter-spacing:-.022em;text-wrap:balance}
+.head h1 .lt{color:var(--green);text-shadow:0 0 50px oklch(72% 0.14 152 / .38)}
+.head h1 .bd{color:var(--ink)}
+.head .promise{font-size:30px;line-height:1.24;color:var(--muted);font-weight:600;
+  margin-top:16px;max-width:880px;text-wrap:pretty}
+.head .promise strong{color:var(--green-soft);font-weight:800}
+.head .rule{margin-top:24px;border-top:2px dashed var(--green);opacity:.55}
+.rows{flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between;padding:26px 0 4px;font-size:40px}
+.row{display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:28px;padding:6px 0}
+.row .seal{width:84px;height:84px;border-radius:22px;display:flex;align-items:center;justify-content:center;
+  flex:0 0 auto;background:linear-gradient(160deg, oklch(70% 0.14 152 / .16), oklch(70% 0.14 152 / .04));
+  border:2px solid var(--hair);box-shadow:0 0 34px oklch(70% 0.14 152 / .12), inset 0 1px 0 oklch(90% 0.1 152 / .12)}
+.row .seal svg{width:46px;height:46px;filter:drop-shadow(0 0 9px oklch(72% 0.14 152 / .4))}
+.row .txt{min-width:0}
+.row .lbl{font-size:.97em;line-height:1.04;font-weight:900;text-transform:uppercase;letter-spacing:.002em;text-wrap:balance}
+.row .sub{font-size:.65em;line-height:1.26;color:var(--muted);font-weight:500;margin-top:7px;text-wrap:pretty}
+.row .sub strong{font-weight:800}
+.row .chip{flex:0 0 auto;justify-self:end;align-self:center;font-weight:900;font-size:21px;letter-spacing:.02em;
+  text-transform:uppercase;white-space:nowrap;padding:11px 17px;border-radius:13px;text-align:center;line-height:1}
+.row .chip .big{display:block;font-size:33px;line-height:.92}
+.row.deep .seal svg{color:var(--green-deep)} .row.deep .lbl{color:var(--green-deep)} .row.deep .sub strong{color:var(--green-deep)}
+.row.mid  .seal svg{color:var(--green)}      .row.mid .lbl{color:var(--green)}      .row.mid .sub strong{color:var(--green)}
+.row.soft .seal svg{color:var(--green-soft)} .row.soft .lbl{color:var(--green-soft)} .row.soft .sub strong{color:var(--green-soft)}
+.row.gold .seal{background:linear-gradient(160deg, oklch(76% 0.11 83 / .18), oklch(76% 0.11 83 / .04));
+  border-color:oklch(76% 0.11 83 / .45);box-shadow:0 0 38px oklch(76% 0.11 83 / .16)}
+.row.gold .seal svg{color:var(--gold);filter:drop-shadow(0 0 10px oklch(80% 0.1 83 / .5))}
+.row.gold .lbl{color:var(--gold)} .row.gold .sub strong{color:var(--gold)}
+.chip.g{background:oklch(70% 0.14 152 / .14);color:var(--green-soft);border:1.5px solid var(--hair)} .chip.g .big{color:var(--green)}
+.chip.au{background:var(--gold);color:var(--on-gold);box-shadow:0 8px 22px oklch(70% 0.1 83 / .3)} .chip.au .big{color:var(--on-gold)}
+.divider{height:2px;background:repeating-linear-gradient(90deg,var(--hair2) 0 14px,transparent 14px 26px);margin:2px 0}
+.foot{flex:0 0 auto;display:flex;align-items:center;gap:22px;margin-top:18px;
+  border:2px solid var(--hair);border-radius:22px;padding:22px 28px;
+  background:linear-gradient(160deg, oklch(70% 0.14 152 / .10), oklch(70% 0.14 152 / .02))}
+.foot .ic{flex:0 0 auto;width:62px;height:62px;border-radius:17px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);box-shadow:0 10px 26px oklch(60% 0.14 152 / .38)}
+.foot .ic svg{width:38px;height:38px;color:var(--on-green)}
+.foot .body{min-width:0}
+.foot .kick{font-size:21px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--green);display:block}
+.foot .tactic{font-size:27px;line-height:1.22;color:var(--ink);font-weight:600;margin-top:5px;text-wrap:pretty}
+.foot .tactic strong{color:var(--green-soft);font-weight:800}
+.wm{text-align:center;font-weight:800;letter-spacing:.24em;font-size:18px;
+  color:var(--ink-dim);text-transform:uppercase;margin-top:13px;flex:0 0 auto}
+</style></head><body style="width:1080px;height:1350px"><div class="slide lista"><div class="head"><div class="top"><span class="brandmark"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 16C26 12 16 12 12 14v34c4-2 14-2 20 2 6-4 16-4 20-2V14c-4-2-14-2-20 2z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M32 18v34" stroke="currentColor" stroke-width="3"/></svg></span>Minuto<b>Real</b></span><span class="badge">Mapa do livro</span></div><h1><span class="lt">A HORA</span> <span class="bd">DA ESTRELA</span></h1><div class="promise">Um narrador inventado tenta contar a vida de Macabéa — datilógrafa nordestina pobre, quase sem desejo, invisível para o mundo. </div><div class="rule"></div></div><div class="rows fitv"><div class="row soft"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 14h44v28H30l-12 10v-10H10z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M20 24h24M20 32h16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="txt"><div class="lbl">Rodrigo S.M. e a Metalinguagem</div><div class="sub">Antes de contar Macabéa, o livro conta quem conta. </div></span><span class="chip g"><span class="big">01</span>cap</span></div><div class="divider"></div><div class="row mid"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="20" r="10" stroke="currentColor" stroke-width="3"/><path d="M14 52c0-10 8-18 18-18s18 8 18 18" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="txt"><div class="lbl">Macabéa, a Anti-Heroína Invisível</div><div class="sub">Macabéa é uma personagem feita de negação: pobre, feia aos olhos do mundo, datilógrafa…</div></span><span class="chip g"><span class="big">02</span>cap</span></div><div class="divider"></div><div class="row deep"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 38c6-8 12-8 18 0s12 8 18 0 12-8 16 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M6 26c6-8 12-8 18 0s12 8 18 0 12-8 16 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="txt"><div class="lbl">Linguagem, Silêncio e o Instante</div><div class="sub">A obra gira em torno dos limites da palavra: Macabéa quase não tem linguagem; o narrador tem demais…</div></span><span class="chip g"><span class="big">04</span>cap</span></div><div class="divider"></div><div class="row soft"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M44 12l8 8-22 22-8-8 22-22z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M22 42l-8 8M12 44l8 8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="txt"><div class="lbl">Olímpico, Glória e o Desejo</div><div class="sub">O único enredo 'de amor' da obra é um anti-romance: Macabéa encontra Olímpico, namorado tão pobre…</div></span><span class="chip g"><span class="big">05</span>cap</span></div><div class="divider"></div><div class="row mid"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 16C26 12 16 12 12 14v34c4-2 14-2 20 2 6-4 16-4 20-2V14c-4-2-14-2-20 2z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M32 18v34" stroke="currentColor" stroke-width="3"/></svg></span><span class="txt"><div class="lbl">A Hora da Estrela — a Morte como Ápice</div><div class="sub">Ao sair da cartomante cheia de futuro, Macabéa é atropelada por um Mercedes amarelo dirigido por um…</div></span><span class="chip g"><span class="big">07</span>cap</span></div><div class="divider"></div><div class="row gold"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 16C26 12 16 12 12 14v34c4-2 14-2 20 2 6-4 16-4 20-2V14c-4-2-14-2-20 2z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M32 18v34" stroke="currentColor" stroke-width="3"/></svg></span><span class="txt"><div class="lbl">Estrutura, Símbolos e Recursos</div><div class="sub">A Hora da Estrela começa antes de começar, é interrompida o tempo todo e termina onde a personagem…</div></span><span class="chip au"><span class="big">08</span>cap</span></div></div><div class="foot"><span class="ic"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 8L18 36h12l-4 20 20-30H34l4-18z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></span><span class="body"><span class="kick">Na prática</span><span class="tactic">leia a hesitação do narrador como conteúdo — cada 'não sei como contar' é o tema, não um defeito.</span></span></div><div class="wm">@minutoreal1701 · o livro inteiro em 1 página</div></div></body></html>

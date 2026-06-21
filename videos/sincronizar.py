@@ -155,7 +155,7 @@ def upload_media(slug, media_files):
 
 def build_job(slug, tipo, anchor, offset_h):
     """Monta o dict do job (sem efeitos colaterais). tipo: reel | carousel | quote."""
-    cfg = _cfg(slug)
+    cfg = _cfg(slug) if tipo == 'reel' else {}  # roteiro só obrigatório para reel
     offset_h = clamp_offset(offset_h)
     alvo = ig_time(anchor, offset_h)
     job = {

@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "constellation",
+      "t": "A Cura da Relação Está na Relação",
+      "emph": "na Relação",
+      "b": "Se todo problema é interpessoal, é nas relações que mora a saída — e seu nome em Adler é <strong>sentimento de comunidade</strong> (Gemeinschaftsgefühl): sentir os outros como companheiros e a si como parte de um todo. Não é afeto que aparece sozinho; é a bússola final, o ponto onde a angústia nascida entre as pessoas se desfaz entre as pessoas.",
+      "tip": "<strong>Modelo mental:</strong> a ferida que veio do “entre-nós” só fecha no “entre-nós” — nunca no isolamento orgulhoso.",
+      "wide": true
+    },
+    {
+      "ic": "pivot",
+      "t": "Saia do Centro do Mundo",
+      "emph": "do Centro",
+      "b": "Quem vive em “como me veem? o que eu ganho?” está preso no próprio eu e exige que tudo gire em torno de si. A virada é trocar a pergunta: de <strong>“o que esta pessoa faz por mim?”</strong> para “o que eu posso dar a esta comunidade?”. Você não é o centro do mundo — é um membro dele. E pertencer não se recebe; se conquista contribuindo.",
+      "tip": "<strong>Como aplicar:</strong> diante de cada vínculo, pergunte o que pode oferecer antes de medir o que vai receber."
+    },
+    {
+      "ic": "steps",
+      "t": "Nenhum Grupo É o Universo Inteiro",
+      "emph": "o Universo Inteiro",
+      "b": "Quando o emprego, a escola ou o casamento parecem prisão sem saída, o sufoco vem de tratar uma comunidade pequena como o mundo. Mas há sempre uma <strong>comunidade maior</strong> — a sociedade, a humanidade, o futuro. Ouvir a voz dela devolve a liberdade de discordar, mudar ou sair. A cela só existe enquanto você crê que ela é o universo.",
+      "tip": "<strong>Cuidado:</strong> confundir um grupo imediato com o mundo inteiro é exatamente o que faz você se submeter a tudo.",
+      "warn": true
+    }
+  ]
+}

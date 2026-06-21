@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "fork",
+      "t": "Os Quatro Bloqueadores da Compaixão",
+      "emph": "Bloqueadores",
+      "b": "Antes de aprender a girafa, é preciso flagrar a fala que desconecta. São quatro hábitos: o julgamento moralizador que rotula quem discorda; a comparação que mede gente contra um ideal; a negação da escolha (“tive de”); e a exigência que ameaça com culpa. <strong>Todos desviam a atenção do que cada um precisa para quem está “certo”.</strong>",
+      "tip": "<strong>Como aplicar:</strong> pegue-se usando qualquer um dos quatro e reescreva a frase em observação, sentimento, necessidade e pedido."
+    },
+    {
+      "ic": "key",
+      "t": "De “Tenho de” para “Escolho”",
+      "emph": "“Escolho”",
+      "b": "A linguagem que nega a escolha apaga você da própria vida: “tenho de”, “devo”, “sou obrigado” entregam o comando a uma força lá fora. Quase tudo o que dizemos ser obrigação é, no fundo, uma escolha com um motivo. <strong>Troque “tenho de” por “escolho ___ porque quero ___” e a responsabilidade volta para as suas mãos.</strong>",
+      "tip": "<strong>Modelo mental:</strong> ninguém te obriga a quase nada — você escolhe, a partir de uma necessidade que vale a pena nomear."
+    },
+    {
+      "ic": "sword",
+      "t": "A Semente da Violência é o “Merecer”",
+      "emph": "“Merecer”",
+      "b": "Pensar que alguém “merece” sofrer é, para Rosenberg, a raiz psicológica de toda violência — da bronca em casa à guerra. O julgamento de caráter (“ele é egoísta”) é sempre uma necessidade sua que não foi dita em voz alta, embrulhada em veredito. <strong>Por baixo de “ele é um grosso” mora um “eu precisava de respeito”.</strong>",
+      "tip": "<strong>Cuidado:</strong> “sinto que você é injusto” não é sentimento — é julgamento fantasiado de emoção.",
+      "warn": true
+    }
+  ]
+}

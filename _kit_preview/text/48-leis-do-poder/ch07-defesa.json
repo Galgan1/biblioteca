@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "eye",
+      "t": "O Padrão dos Outros é Contagioso",
+      "emph": "Contagioso",
+      "b": "A Lei 10 alerta para o contágio social: estados emocionais e padrões de fracasso grudam sem aviso, e você absorve o jeito de quem te cerca tanto quanto o ar que respira. O eterno azarado raramente é só vítima — costuma ser causa do próprio caos, e te arrasta junto. <strong>A convivência que rebaixa contamina antes que você perceba.</strong>",
+      "tip": "<strong>Cuidado:</strong> escolha o círculo com método — o padrão dominante à sua volta vira o seu sem pedir licença.",
+      "warn": true
+    },
+    {
+      "ic": "mask",
+      "t": "O Grátis Sempre Cobra Depois",
+      "emph": "Sempre Cobra",
+      "b": "A Lei 40 desconfia da dádiva: toda generosidade súbita carrega um preço oculto, e o “presente” cria dívida e controle disfarçados de gentileza. O brinde que chega antes da negociação não é cortesia — é amarra. <strong>Aceitar o favor grande sem ver a obrigação que ele instala é entregar a coleira de bom grado.</strong> A reciprocidade é a corrente mais educada.",
+      "tip": "<strong>Defesa:</strong> agradeça sem virar refém — pague o que recebe ou recuse cedo, antes que a dívida vire alavanca."
+    },
+    {
+      "ic": "key",
+      "t": "Saiba com Quem Está Lidando",
+      "emph": "com Quem",
+      "b": "As Leis 19 e 20 protegem suas opções: nem todos reagem igual, e ofender a pessoa errada pode render um inimigo que nunca esquece — leia o alvo antes de provocar. E não se comprometa cedo demais com ninguém: independência preserva valor e margem de manobra. <strong>Quem não deve a ninguém não é dono nem refém de ninguém.</strong>",
+      "tip": "<strong>Regra:</strong> mantenha-se acima das facções pelo máximo de tempo — pressa para te alistar é sinal de armadilha."
+    }
+  ]
+}

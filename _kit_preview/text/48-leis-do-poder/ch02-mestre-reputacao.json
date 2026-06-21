@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "scale",
+      "t": "A Reputação Fala Antes de Você",
+      "emph": "Antes de Você",
+      "b": "A Lei 5 é a pedra angular: as pessoas te leem pela fama que te precede, antes mesmo de você abrir a boca. Forte, ela intimida e abre portas; arranhada, convida ao ataque. É capital que se constrói devagar e se perde num gesto — por isso o alvo mais sensível de um rival nunca é seu trabalho, <strong>é o seu nome</strong>.",
+      "tip": "<strong>Como aplicar:</strong> trate a reputação como ativo central — defenda a sua e observe quem mira a alheia."
+    },
+    {
+      "ic": "mask",
+      "t": "Nunca Ofusque o Mestre",
+      "emph": "Ofusque",
+      "b": "A Lei 1 afunda mais talentosos que a incompetência: brilhar demais diante de quem está acima não gera admiração, gera inveja e retaliação. O funcionário que corrige o chefe em público colhe sabotagem, não promoção. <strong>Faça quem manda sentir-se mais brilhante e sua ascensão deixa de ameaçar</strong> — o crédito que sobe não compete com você.",
+      "tip": "<strong>Regra:</strong> deixe o mérito subir; mostrar-se mais esperto que o superior é vitória que custa caro.",
+      "warn": true
+    },
+    {
+      "ic": "link",
+      "t": "Cuidado com Amigos, Use Inimigos",
+      "emph": "Use Inimigos",
+      "b": "A Lei 2 inverte o instinto: o amigo acomodado pode invejar em silêncio o que você conquista, enquanto o ex-rival conquistado se torna leal porque teve de provar o valor. O afeto cega para o interesse em jogo; a desconfiança bem calibrada enxerga. <strong>Avalie quem te cerca pelo que está em jogo, não só pelo carinho.</strong>",
+      "tip": "<strong>Cuidado:</strong> confiança baseada apenas em afeto ignora o interesse — e é por aí que a faca entra."
+    }
+  ]
+}

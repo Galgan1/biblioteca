@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "ic": "constellation",
+      "t": "Os Três Pilares que Se Sustentam em Roda",
+      "emph": "Três Pilares",
+      "b": "A coragem de ser feliz repousa em três apoios que se alimentam em ciclo. <strong>Autoaceitação</strong>: aceitar o eu que não consegue (mudar o mutável, aceitar o imutável). <strong>Confiança incondicional</strong>: confiar sem garantias; trair é tarefa do outro. <strong>Contribuição</strong>: agir pelo bem de todos. Aceito-me, então confio; confio, então contribuo; sinto-me útil — e me aceito mais.",
+      "tip": "<strong>Como aplicar:</strong> não force os três de uma vez — acione um, e o ciclo puxa os outros sozinho.",
+      "wide": true
+    },
+    {
+      "ic": "spark",
+      "t": "O Valor Vem de “Sou Útil”, Não de “Fui Aprovado”",
+      "emph": "“Sou Útil”",
+      "b": "É contribuir que dá o <strong>sentido de valor</strong> — “sou bom para alguém” — fonte real do valor próprio, não o aplauso. Repare na inversão: a aprovação vem de fora e te deixa refém; a utilidade nasce do seu gesto e ninguém tira. Por isso o foco muda de “o que eu tenho” para “como uso o que tenho” — a coragem mora no uso, não no estoque.",
+      "tip": "<strong>Regra:</strong> sentir-se útil sustenta a coragem por dentro; caçar aprovação a corrói por fora."
+    },
+    {
+      "ic": "clock",
+      "t": "A Vida É Série de Instantes, Não uma Reta",
+      "emph": "Série de Instantes",
+      "b": "A vida não é uma linha que sobe rumo a um pico: é uma sucessão de <strong>agoras</strong>, pontos soltos como passos de uma dança. Quem trata o presente como “vida em preparação” — “serei feliz quando me formar, for promovido, casar” — nunca chega, pois adiar a felicidade é deixar de viver. Não há ensaio: o instante já é a apresentação inteira.",
+      "tip": "<strong>Cuidado:</strong> fixar-se no passado (trauma) ou no futuro (metas) apaga o único lugar onde se vive de fato — o aqui.",
+      "warn": true
+    },
+    {
+      "ic": "constellation",
+      "t": "Aponte para a Estrela-Guia e Cada Passo Já É Pleno",
+      "emph": "Estrela-Guia",
+      "b": "Não há sentido universal entregue pronto: o sentido da vida é o que <strong>você dá a ela</strong>. Basta apontar para a estrela-guia da contribuição aos outros — enquanto se caminha em sua direção, qualquer instante já está completo, mesmo sem chegar a lugar nenhum. Dance a vida em vez de corrê-la: o valor está em cada passo, não na chegada.",
+      "tip": "<strong>Modelo mental:</strong> a estrela-guia não é um destino a alcançar — é a direção que torna pleno o agora."
+    }
+  ]
+}

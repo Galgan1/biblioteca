@@ -15,6 +15,7 @@ import os
 import re
 import sys
 import glob
+import time
 from datetime import date
 
 BASE = "https://www.andregalgani.com.br/biblioteca"
@@ -40,8 +41,18 @@ def read(path):
 
 
 def write(path, text):
-    with open(path, "w", encoding="utf-8", newline='\n') as f:
-        f.write(text)
+    # Windows às vezes devolve OSError [Errno 22] / PermissionError ao reabrir um
+    # arquivo p/ escrita logo após gravá-lo (AV/indexer segura o handle por instantes)
+    # durante a gravação em lote. Retry curto com backoff resolve sem mascarar erro real.
+    for tentativa in range(6):
+        try:
+            with open(path, "w", encoding="utf-8", newline='\n') as f:
+                f.write(text)
+            return
+        except (OSError, PermissionError):
+            if tentativa == 5:
+                raise
+            time.sleep(0.15 * (tentativa + 1))
 
 
 def ld(obj):

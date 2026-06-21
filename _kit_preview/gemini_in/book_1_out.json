@@ -1,0 +1,103 @@
+{
+  "ch01-experiencia-no-campo": {
+    "cards": [
+      {
+        "ic": "spark",
+        "t": "As Três Fases do Prisioneiro",
+        "emph": "Fases",
+        "b": "O colapso da normalidade segue um roteiro sombrio: começa com o <strong>choque congelante</strong>, onde a ilusão de salvação ainda sobrevive. Em seguida, a alma adormece numa <strong>apatia defensiva</strong> que blinda contra a dor diária. Por fim, a libertação traz a <strong>despersonalização</strong> — a realidade parece um sonho distante e reaprender a sentir exige um esforço doloroso.",
+        "tip": "<strong>Modelo mental:</strong> diante de qualquer perda abrupta (um luto, um diagnóstico), não cobre reações lógicas. Cada fase exige um acolhimento diferente."
+      },
+      {
+        "ic": "book",
+        "t": "Quem Tem um Porquê Suporta o Como",
+        "emph": "Porquê",
+        "b": "A bússola que salva não é a força dos músculos, mas a solidez do espírito. No abismo do campo de concentração, os que resistiam mais bravamente eram os que guardavam <strong>um objetivo, uma tarefa pendente ou alguém amado a esperar no futuro</strong>. A resiliência é um subproduto do sentido.",
+        "tip": "<strong>Prática:</strong> antes de perguntar \"como vou aguentar isso?\", encontre a resposta afirmativa para \"por que eu devo aguentar?\""
+      },
+      {
+        "ic": "person",
+        "t": "Amor, Beleza e Humor Salvam",
+        "emph": "Amor",
+        "b": "Quando tudo lhe é arrancado, o homem redescobre a imensidão da <strong>vida interior</strong>. Contemplar a imagem nítida de quem se ama, deslumbrar-se com o esplendor de um pôr do sol ou rir do próprio absurdo são atos de insubordinação. A alma continua intacta, provando que nem tudo foi roubado.",
+        "tip": "<strong>Para refletir:</strong> nós amamos a essência do outro. A ausência física não destrói o poder estabilizador desse amor."
+      }
+    ]
+  },
+  "ch02-a-ultima-liberdade-e-o-sofrimento": {
+    "cards": [
+      {
+        "ic": "scale",
+        "t": "A Inversão da Pergunta",
+        "emph": "Inversão",
+        "b": "A angústia paralisa quando você exige da vida um sentido. O pulo do gato é perceber que <strong>é você o interrogado, e a vida é quem faz as perguntas</strong>. A resposta não está em ruminações filosóficas, mas em assumir a responsabilidade de agir corretamente diante da tarefa que o agora lhe apresenta.",
+        "tip": "<strong>Como aplicar:</strong> em vez de sofrer buscando \"o sentido de tudo\", pergunte: \"o que essa situação específica me exige hoje?\""
+      },
+      {
+        "ic": "mountain",
+        "t": "O Sentido do Sofrimento",
+        "emph": "Sentido",
+        "b": "Procurar a dor evitável não é virtude, é adoecimento. Mas quando a tragédia bate à porta e não pode ser desfeita, a sua atitude é o último bastião de poder. <strong>Encarar a dor incontornável com dignidade transforma o próprio sofrimento em uma conquista espiritual.</strong>",
+        "tip": "<strong>Regra:</strong> não meça esforços para mudar o que tem conserto; se não tiver, doe-lhe significado.",
+        "warn": true
+      },
+      {
+        "ic": "pin",
+        "t": "O Sentido É Único e Concreto",
+        "emph": "Concreto",
+        "b": "Não existe um propósito universal embalado para presente. O sentido é <strong>descoberto na aspereza do mundo real, não inventado num laboratório mental</strong>. Ele é sob medida para você, mudando de cor e forma conforme as exigências inadiáveis do seu dia.",
+        "tip": "<strong>Para refletir:</strong> focar a mente em uma meta futura, por menor que seja, é o que ancora o seu corpo no presente conturbado."
+      }
+    ]
+  },
+  "ch03-conceitos-da-logoterapia": {
+    "cards": [
+      {
+        "ic": "constellation",
+        "t": "A Vontade de Sentido",
+        "emph": "Sentido",
+        "b": "Se Freud viu o homem movido pelo prazer e Adler pelo poder, Frankl viu além: nossa fome primordial é de <strong>sentido profundo</strong>. Nós não somos sistemas fechados buscando equilíbrio. Nós somos seres que só se realizam quando se esquecem de si mesmos por uma causa ou por alguém.",
+        "tip": "<strong>Modelo mental:</strong> a verdadeira felicidade é um efeito colateral, nunca um alvo direto. Ela surge quando o seu foco está na tarefa."
+      },
+      {
+        "ic": "gap",
+        "t": "O Vazio Existencial Contemporâneo",
+        "emph": "Vazio",
+        "b": "Sem a bússola do instinto e sem a rede de proteção das tradições de outrora, nós sucumbimos ao <strong>tédio crônico e à ausência de propósito</strong>. Essa fome frustrada de significado nos empurra para o conformismo (imitar o rebanho) ou para o totalitarismo (obedecer cegamente).",
+        "tip": "<strong>Como aplicar:</strong> identifique os buracos da sua rotina onde o tédio impera. Ali mora um sentido que você abdicou de encontrar."
+      },
+      {
+        "ic": "spiral",
+        "t": "A Tensão que nos Mantém Vivos",
+        "emph": "Tensão",
+        "b": "A ilusão do bem-estar ocidental é o sonho da total ausência de exigências, a paz oca da estagnação. <strong>A verdadeira saúde mental exige a tensão sadia entre o que você é e o que você deve se tornar.</strong> Uma vida sem alvos dignos para mirar atrofia a alma.",
+        "tip": "<strong>Sinal de alerta:</strong> não fuja de toda e qualquer cobrança. A paz estéril adoece mais do que o esforço virtuoso."
+      }
+    ]
+  },
+  "ch04-tecnicas-e-otimismo-tragico": {
+    "cards": [
+      {
+        "ic": "pivot",
+        "t": "A Intenção Paradoxal",
+        "emph": "Paradoxal",
+        "b": "Para combater a ansiedade que alimenta o próprio sintoma (como a insônia), inverta o jogo: <strong>deseje o seu pior medo com exagero cômico</strong>. Tentar, intencionalmente, \"suar como um porco na frente de todos\" usa o autodistanciamento e o humor para cortar pela raiz o ciclo de pânico.",
+        "tip": "<strong>Prática:</strong> rir do próprio medo desarma a tensão. Exija do corpo exatamente aquilo que ele está ameaçando fazer."
+      },
+      {
+        "ic": "eye",
+        "t": "O Poder da Dereflexão",
+        "emph": "Dereflexão",
+        "b": "O excesso de auto-observação destrói o desempenho espontâneo. Quem hiperanalisa como dorme ou como sente prazer, perde ambos. A cura está em <strong>arrancar a lente de aumento de cima do umbigo</strong> e focar a atenção na entrega a um trabalho ou no cuidado com os outros.",
+        "tip": "<strong>Como aplicar:</strong> pare de medir sua \"taxa de sucesso\". Engaje-se no processo e esqueça os gráficos de avaliação interna."
+      },
+      {
+        "ic": "leaf",
+        "t": "O Otimismo Trágico",
+        "emph": "Trágico",
+        "b": "É a recusa teimosa de não capitular frente à dor, à culpa e à inevitabilidade da morte. O homem forte converte <strong>dor em superação, culpa em reparação vigorosa e a transitoriedade no dever inadiável de agir já</strong>. É amar a vida, mesmo quando ela mostra os dentes.",
+        "tip": "<strong>Para refletir:</strong> otimismo que exige a ausência da dor é fragilidade. Otimismo trágico constrói em cima dos escombros."
+      }
+    ]
+  }
+}

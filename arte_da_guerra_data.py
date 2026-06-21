@@ -1,0 +1,180 @@
+# -*- coding: utf-8 -*-
+"""Conteúdo (pt-BR) de 'A Arte da Guerra' (Sun Tzu)."""
+
+BOOK = {
+  "title": "A Arte da Guerra",
+  "author": "Sun Tzu",
+  "header_light": "A ARTE",
+  "header_bold": "DA GUERRA",
+  "subtitle": "VISÃO GERAL · 13 CAPÍTULOS DE ESTRATÉGIA ATEMPORAL",
+  "intro": "Escrito há mais de dois mil anos, o tratado de Sun Tzu trata a estratégia como cálculo frio que antecede o conflito: vence-se na sala de planejamento, não no campo. O ápice da habilidade não é ganhar cem batalhas — é subjugar o inimigo sem combater. Lente atemporal para negócios, negociação, competição e qualquer decisão sob conflito.",
+  "description": "Os 13 capítulos de 'A Arte da Guerra' de Sun Tzu em cheat sheet: os 5 fatores do cálculo, vencer sem lutar, conhecer o inimigo e a si mesmo, a guerra como arte do engano, a vitória rápida, cheio e vazio, o momentum (shih), a flexibilidade da água, os tipos de terreno, não agir por raiva e o uso de espiões — frameworks de estratégia atemporal.",
+  "tags": ["Estratégia", "Liderança", "Filosofia"],
+  "progress": "13 Capítulos",
+  "cover": "assets/arte-da-guerra-capa.png",
+  "overview_cards": [
+    {"ic":"target","t":"Vencer sem Lutar","b":"O ápice da habilidade não é ganhar cem batalhas — é <strong>quebrar a resistência do inimigo sem combater</strong>. A hierarquia, do melhor ao pior: atacar a estratégia dele, isolá-lo das alianças, enfrentar o exército, e só em último caso sitiar. Suba o mais alto possível nessa escada: o confronto frontal é o método mais caro.","tip":"<strong>Modelo mental:</strong> tomar o inimigo inteiro e intacto vale mais que destruí-lo — preserve o todo.","wide":True},
+    {"ic":"scale","t":"O Cálculo Antes do Campo","b":"A guerra se decide primeiro no <strong>cálculo, não no combate</strong>. Antes de mover qualquer peça, meça a si e ao adversário nos 5 fatores — Tao, Céu, Terra, Comando, Método — e nas 7 estimativas. Quem soma mais vantagens no planejamento já venceu antes de lutar; quem entra na briga sem contar as cartas aposta às cegas.","tip":"<strong>Regra:</strong> decida pela soma dos fatores, nunca pela vontade de lutar."},
+    {"ic":"eye","t":"Conhece o Inimigo e a Ti","b":"A informação é o eixo de tudo. Conheces o inimigo e a ti mesmo: cem batalhas sem perigo. Conheces só a ti: vence uma, perde outra. <strong>Não conheces nem a ti nem o inimigo: derrota certa em toda batalha.</strong> O autoconhecimento, literalmente, é metade da estratégia.","tip":"<strong>Como aplicar:</strong> antes de competir, faça o diagnóstico honesto dos dois lados — sem ele, é sorte, não estratégia."},
+    {"ic":"wave","t":"Seja Água","b":"As táticas são como a água: ela evita o alto e corre para o baixo, não tem forma constante, molda-se ao terreno. Assim o exército evita o forte e ataca o fraco, e <strong>adapta a vitória ao adversário</strong> em vez de seguir uma fórmula fixa. Quem vence modificando-se conforme o inimigo é chamado divino.","tip":"<strong>Modelo mental:</strong> nenhuma regra é absoluta — o mérito está em saber quando não segui-la."},
+  ],
+}
+
+CHAPTERS = [
+  {
+    "slug": "ch01-calculos-iniciais",
+    "sub": "CAPÍTULO 1: Cálculos Iniciais",
+    "intro": "A guerra é assunto vital para o Estado — caminho de vida ou morte. Por isso se decide primeiro no cálculo, não no campo: quem faz muitas estimativas no templo antes da batalha vence; quem faz poucas, perde.",
+    "cards": [
+      {"ic":"scale","t":"Os Cinco Fatores","emph":"Cinco","b":"Antes de mover tropa alguma, meça a si e ao inimigo em cinco dimensões: Tao (o alinhamento moral entre líder e povo), Céu (o tempo e as condições que não se controla), Terra (o terreno e a distância), Comando (as virtudes do general) e Método (a organização e a logística). <strong>A soma desses cinco aponta quem já venceu antes de lutar.</strong>","tip":"<strong>Como aplicar:</strong> pontue você e o adversário fator a fator — a vitória no templo precede a vitória no campo."},
+      {"ic":"mask","t":"A Guerra é Engano","emph":"Engano","b":"Toda ação militar se baseia na dissimulação. Quando capaz, aparente incapaz; quando ativo, aparente inativo; quando perto, faça crer que está longe. Atraia com isca, finja desordem e esmague onde não é esperado. <strong>Para cada capacidade real, projete a aparência oposta</strong> — assim você cria assimetria de informação a seu favor.","tip":"<strong>Modelo mental:</strong> ocultar capacidade e intenção é ferramenta padrão, não exceção."},
+      {"ic":"bulb","t":"As Sete Estimativas","emph":"Sete","b":"O cálculo vira perguntas comparativas: qual soberano tem o Tao? Qual general é mais capaz? A quem favorecem Céu e Terra? De que lado a disciplina é mais firme, o exército mais forte, as tropas mais treinadas, as recompensas e punições mais claras? Respondidas com honestidade, elas <strong>dizem o resultado antes do primeiro choque</strong>.","tip":"<strong>Sinal de alerta:</strong> se você se recusa a fazer essas perguntas, é porque teme a resposta — e entrar assim é apostar sem contar as cartas.","warn":True},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 1",
+    "lessons": ["Decida pela soma dos 5 fatores, não pela vontade de lutar.", "Compare-se ao adversário ponto a ponto através das 7 estimativas.", "Trate o engano como ferramenta padrão: oculte capacidade e intenção."],
+  },
+  {
+    "slug": "ch02-conduzindo-a-guerra",
+    "sub": "CAPÍTULO 2: Conduzindo a Guerra",
+    "intro": "A guerra é cara — cada dia de campanha drena o tesouro. Por isso a regra suprema da execução é a rapidez: nunca houve país que lucrasse com guerra prolongada.",
+    "cards": [
+      {"ic":"clock","t":"A Duração é Inimiga","emph":"Duração","b":"A guerra que se arrasta esgota o tesouro, embota as armas e mina o moral — e abre brecha para terceiros atacarem. “Ouvi falar de pressa grosseira na guerra, mas nunca vi habilidade em campanhas prolongadas.” <strong>Uma vitória grosseira e rápida vale mais que uma campanha hábil e demorada.</strong> A duração é um custo, não uma neutralidade.","tip":"<strong>Sinal de alerta:</strong> se a vitória não vier rápido, o custo a torna inútil — pense no relógio do caixa, não só no placar.","warn":True},
+      {"ic":"wrench","t":"Alimente-se do Inimigo","emph":"do Inimigo","b":"Capturar suprimentos e recursos do adversário vale muitas vezes o que sai do próprio depósito. Tomar do inimigo poupa o seu e <strong>o enfraquece duplamente</strong>: você ganha força e ele a perde no mesmo gesto. Recompense quem captura e converta o que era dele em combustível para a sua campanha.","tip":"<strong>Como aplicar:</strong> antes de queimar seu caixa, pergunte que recurso do rival você pode converter em força própria."},
+      {"ic":"spark","t":"Some o Custo Diário","emph":"Custo Diário","b":"Mil carros, provisões a mil li de distância: o gasto diário de uma campanha é imenso. Antes de comprometer-se, calcule a “queima diária” e quanto tempo o caixa aguenta. <strong>Se o seu fôlego é de seis meses e a vitória exigiria dois anos, a vitória prolongada já é derrota.</strong> Dimensione tudo pelo custo de manutenção, não só pelo objetivo.","tip":"<strong>Regra:</strong> mire a vitória rápida — a duração é inimiga, não aliada."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 2",
+    "lessons": ["Mire a vitória rápida; a duração é inimiga, não aliada.", "Some o custo diário antes de comprometer-se com uma campanha.", "Alimente sua força com recursos tomados ao adversário."],
+  },
+  {
+    "slug": "ch03-estrategia-ofensiva",
+    "sub": "CAPÍTULO 3: Estratégia Ofensiva",
+    "intro": "O ápice da habilidade não é vencer cem batalhas — é subjugar o inimigo sem combater. Tomar o inimigo inteiro e intacto é melhor que destruí-lo.",
+    "cards": [
+      {"ic":"steps","t":"A Hierarquia da Vitória","emph":"Hierarquia","b":"Existe uma escada de como vencer, do melhor ao pior: atacar a estratégia do inimigo (frustrar o plano dele), depois suas alianças (isolá-lo), depois o exército no campo e, só em último caso, sitiar a cidade — o recurso mais caro e lento. <strong>Suba o mais alto possível nessa escada</strong>: o confronto frontal total é o método mais custoso de todos.","tip":"<strong>Como aplicar:</strong> antes de bater de frente, pergunte se dá para desmontar a premissa do plano do outro."},
+      {"ic":"eye","t":"Conhece os Dois Lados","emph":"os Dois Lados","b":"“Conhece o inimigo e a ti mesmo e em cem batalhas não correrás perigo.” Conhecer só a si mesmo dá metade da chance; <strong>não conhecer nem a si nem ao inimigo é derrota certa em toda batalha</strong>. O autoconhecimento não é virtude moral aqui — é, literalmente, metade da estratégia, e começa nas estimativas iniciais.","tip":"<strong>Modelo mental:</strong> o diagnóstico honesto dos dois lados é a diferença entre segurança e ruína."},
+      {"ic":"link","t":"Não Algeme o General","emph":"Não Algeme","b":"O soberano arruína o próprio exército de três modos: mandando avançar ou recuar sem conhecer a situação real, administrando o exército como administra o Estado, e interferindo no comando sem entender de tática. <strong>Vitória exige um líder capaz e um chefe distante que não atrapalha.</strong> Microgerenciar quem está no terreno semeia dúvida e confunde os oficiais.","tip":"<strong>Sinal de alerta:</strong> quando a chefia distante dita a tática local, a derrota está sendo plantada de cima.","warn":True},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 3",
+    "lessons": ["Suba a hierarquia: ataque a estratégia, depois as alianças, só então o exército.", "Ajuste a tática à razão de forças — incluindo a opção de evitar o combate.", "Conhecer o inimigo e a si mesmo é a diferença entre segurança e ruína."],
+  },
+  {
+    "slug": "ch04-disposicoes",
+    "sub": "CAPÍTULO 4: Disposições / Forma",
+    "intro": "A invencibilidade depende de você; a oportunidade de vencer depende do inimigo. O bom guerreiro primeiro se torna impossível de derrotar e então espera o erro do adversário.",
+    "cards": [
+      {"ic":"shield","t":"Primeiro, Não Perder","emph":"Não Perder","b":"“Estar a salvo da derrota está em suas mãos; a chance de vencer está nas do inimigo.” A defesa é o que você controla; o ataque depende do erro alheio. Por isso a sequência importa: <strong>torne-se primeiro invencível e só então busque a vitória</strong>. Proteja o que não pode perder antes de correr atrás do ganho.","tip":"<strong>Regra:</strong> garanta a própria invencibilidade antes de atacar — a defesa vem antes da ofensiva."},
+      {"ic":"mountain","t":"Vencer o Já Vencido","emph":"o Já Vencido","b":"O estrategista hábil só ataca quando a vitória já está assegurada — ele “vence batalhas que já estavam ganhas”. Não há proeza espetacular nem glória aparente, porque o desfecho foi montado com antecedência. <strong>A vitória é consequência, não aposta:</strong> arrume as condições e ela cai como água represada no alto que se solta.","tip":"<strong>Modelo mental:</strong> a vitória discreta e assegurada vale mais que a brilhante e arriscada."},
+      {"ic":"steps","t":"Os Cinco Passos da Medida","emph":"Medida","b":"A vitória nasce de uma cadeia de mensuração, não do acaso: Medição do terreno → Estimativa das quantidades → Cálculo → Comparação → Vitória. Cada passo alimenta o seguinte. <strong>Vencer é o produto de medir, estimar, calcular e comparar — nunca de coragem cega</strong> ou de um lance de sorte no campo.","tip":"<strong>Como aplicar:</strong> antes de agir, rode a cadeia — meça, estime, calcule e compare; a vitória é o último elo."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 4",
+    "lessons": ["Construa primeiro a invencibilidade (defesa), que está sob seu controle.", "Ataque só quando a vitória já está praticamente assegurada.", "A vitória nasce de medir, estimar, calcular e comparar — não de coragem cega."],
+  },
+  {
+    "slug": "ch05-energia",
+    "sub": "CAPÍTULO 5: Energia / Força",
+    "intro": "Comandar muitos é igual a comandar poucos — é questão de organização. A vitória não vem da força bruta de cada soldado, mas da energia acumulada e liberada no momento certo.",
+    "cards": [
+      {"ic":"pivot","t":"O Momentum (Shih)","emph":"Momentum","b":"A vitória não vem do esforço de cada indivíduo, mas do impulso combinado — o shih. É como a pedra redonda que rola da montanha ou a água torrencial que arrasta pedras: a posição e o timing multiplicam o impacto. <strong>Arrume a situação para que a vitória role morro abaixo</strong>, em vez de contar com a bravura isolada de cada soldado.","tip":"<strong>Modelo mental:</strong> posição e momentum valem mais que esforço individual — desenhe a vantagem, não a force."},
+      {"ic":"fork","t":"Ordinário e Extraordinário","emph":"Extraordinário","b":"Engaja-se com a força direta e ortodoxa (zheng) e vence-se com a indireta e surpresa (qi). As duas andam sempre juntas: o ordinário fixa e ocupa o inimigo enquanto o extraordinário entra por onde não se espera. <strong>As combinações de direto e indireto são inesgotáveis</strong>, como notas musicais ou cores primárias que geram variações infinitas.","tip":"<strong>Como aplicar:</strong> fixe com o ordinário, vença com o extraordinário — nunca use só o ataque previsível."},
+      {"ic":"spark","t":"O Golpe do Falcão","emph":"Falcão","b":"O momento do golpe é como o falcão que, no instante exato, quebra o corpo da presa: força concentrada num só ponto e num só tempo. Não basta ter energia — é preciso liberá-la no instante decisivo. <strong>Concentre a energia num ponto e solte-a no momento preciso</strong>, e o impacto será maior que a soma das partes.","tip":"<strong>Regra:</strong> energia dispersa não derruba nada — concentre num ponto e libere no tempo certo."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 5",
+    "lessons": ["A vitória vem do momentum (shih) bem posicionado, não da força isolada.", "Combine sempre o ordinário (zheng) e o extraordinário (qi).", "Concentre a energia num ponto e libere-a no instante exato."],
+  },
+  {
+    "slug": "ch06-cheio-e-vazio",
+    "sub": "CAPÍTULO 6: Pontos Fortes e Fracos",
+    "intro": "Quem chega primeiro ao campo e espera o inimigo está descansado; quem chega depois e corre para a luta está exausto. O segredo é impor sua vontade ao inimigo, sem que ele imponha a dele.",
+    "cards": [
+      {"ic":"target","t":"Ataque o Vazio","emph":"o Vazio","b":"Evite o que está forte e preparado (o cheio); ataque o que está fraco e desguarnecido (o vazio). “Avance onde ele não pode resistir; recue onde ele não pode alcançar.” <strong>Bater de frente no ponto mais forte do inimigo é o erro mais caro</strong> — em vez disso, entre pela frente que ele negligenciou e dite ali onde a batalha acontece.","tip":"<strong>Regra:</strong> nunca bata no cheio; sempre ataque o vazio."},
+      {"ic":"pivot","t":"Tome a Iniciativa","emph":"Iniciativa","b":"O hábil faz o inimigo vir até ele — atraindo-o com vantagem — ou o impede de vir, com a ameaça do dano. Você dita o ritmo em vez de reagir ao dele. <strong>Faça o inimigo dançar conforme a sua música</strong>, não o contrário. Se você se pega reagindo ao tempo do adversário, já perdeu a iniciativa — e precisa retomá-la.","tip":"<strong>Sinal de alerta:</strong> reagir sempre ao ritmo do outro é o sintoma de quem perdeu o comando do jogo.","warn":True},
+      {"ic":"wave","t":"Seja Água, Sem Forma","emph":"Sem Forma","b":"Seja tão sutil a ponto de não ter forma, tão silencioso a ponto de ser inaudível — assim o inimigo não sabe onde você vai atacar e é forçado a se defender em todo lugar. <strong>Quem defende tudo é fraco em tudo.</strong> Como a água, sem disposição fixa, molde-se ao adversário: concentre-se num só corpo contra os fragmentos dispersos dele.","tip":"<strong>Como aplicar:</strong> force o inimigo a se espalhar e concentre sua força no ponto único — seja um contra dez."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 6",
+    "lessons": ["Ataque sempre o vazio; evite o cheio.", "Tome a iniciativa — faça o inimigo dançar conforme a sua música.", "Seja sem forma e adaptável como a água, concentrando-se enquanto o disperde."],
+  },
+  {
+    "slug": "ch07-manobra",
+    "sub": "CAPÍTULO 7: Manobra",
+    "intro": "A coisa mais difícil na guerra é a manobra tática: transformar o desvio em vantagem — fazer do caminho tortuoso o mais curto e da desvantagem, ganho.",
+    "cards": [
+      {"ic":"fork","t":"O Desvio que Chega Antes","emph":"Desvio","b":"A arte da manobra é partir depois e chegar antes: enganando o inimigo com uma rota indireta, você o distrai e o ultrapassa. <strong>O caminho mais longo pode ser o mais rápido se for o menos disputado.</strong> Calcular o trajeto tortuoso como o mais vantajoso — quando o direto está lotado ou previsível — é o domínio do desvio e do direto.","tip":"<strong>Como aplicar:</strong> quando a rota óbvia está congestionada, busque a indireta que ninguém disputa."},
+      {"ic":"wave","t":"Ataque o Moral","emph":"o Moral","b":"O ânimo coletivo oscila com o tempo: pela manhã o espírito do inimigo está aceso, à tarde fraqueja, à noite só quer voltar para casa. O comandante hábil ataca quando o ardor do outro decaiu e preserva o seu. <strong>Atinja o moral, não só o corpo</strong> — mantenha-se calmo diante da desordem, descansado espere o exausto, perto espere quem vem de longe.","tip":"<strong>Modelo mental:</strong> o ânimo é alvo legítimo — golpeie quando o do outro está em baixa e o seu, no alto."},
+      {"ic":"arrow","t":"Deixe a Saída Aberta","emph":"Saída","b":"Não persiga um inimigo que finge fugir, não morda a tropa-isca de elite e, sobretudo, deixe uma rota de fuga ao inimigo cercado. <strong>Um adversário sem saída luta até a morte</strong>, e essa batalha custa caro e é destrutiva sem necessidade. Encurralar quem está desesperado é provocar a resistência máxima — abra-lhe uma saída honrosa e o conflito se encerra barato.","tip":"<strong>Regra:</strong> nunca encurrale o desesperado — a rota de fuga é o que evita a luta mais sangrenta.","warn":True},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 7",
+    "lessons": ["Faça do desvio o atalho: a rota indireta para chegar à frente.", "Ataque o inimigo quando o moral dele está em baixa.", "Deixe sempre uma rota de fuga ao adversário cercado."],
+  },
+  {
+    "slug": "ch08-as-nove-variaveis",
+    "sub": "CAPÍTULO 8: As Nove Variáveis",
+    "intro": "Nenhuma regra é absoluta. O general sábio domina a adaptação às circunstâncias variáveis — há estradas que não se tomam, exércitos que não se atacam, cidades que não se sitiam e ordens que não se obedecem.",
+    "cards": [
+      {"ic":"wave","t":"Toda Regra Tem Exceção","emph":"Exceção","b":"Quem entende as vantagens de variar as táticas sabe conduzir tropas; quem só conhece o terreno mas não sabe variar não extrai vantagem dele. Conhecer o princípio não basta — é preciso adaptá-lo à realidade do campo. <strong>O mérito do general está em saber quando não seguir a própria doutrina</strong>, em vez de aplicá-la cegamente.","tip":"<strong>Como aplicar:</strong> sempre que a regra padrão colidir com a realidade, a realidade vence — varie."},
+      {"ic":"scale","t":"Pese Ganho e Dano Juntos","emph":"Ganho e Dano","b":"O líder sábio mistura, em cada plano, a consideração do ganho e do dano. Vendo a vantagem dentro do perigo, age com confiança; vendo o perigo escondido na vantagem, evita a ruína. <strong>Nunca pese um sem o outro</strong> — toda oportunidade carrega um risco e todo risco esconde uma chance, e o cálculo só é honesto quando contempla os dois lados.","tip":"<strong>Regra:</strong> no mesmo cálculo, sempre o ganho E o dano — um sem o outro é meia verdade."},
+      {"ic":"key","t":"Os Cinco Perigos do General","emph":"Cinco Perigos","b":"Cinco vícios de caráter destroem o líder e viram alavancas para o inimigo: a temeridade leva à morte, a covardia à captura, o temperamento explosivo o faz provocável, a vaidade o torna manipulável, e a compaixão excessiva o afoga em preocupação. <strong>Conheça e proteja seus pontos fracos — são as portas pelas quais o adversário entra.</strong>","tip":"<strong>Sinal de alerta:</strong> quando um insulto te faz reagir na hora, o inimigo achou a alça para te mover — não morda a isca.","warn":True},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 8",
+    "lessons": ["Domine a adaptação: nenhuma tática é regra fixa.", "Pese sempre vantagem e desvantagem no mesmo cálculo.", "Conheça e proteja seus 5 perigos — são portas para o inimigo.", "Não conte com o erro alheio; conte com o seu próprio preparo."],
+  },
+  {
+    "slug": "ch09-o-exercito-em-marcha",
+    "sub": "CAPÍTULO 9: O Exército em Marcha",
+    "intro": "O comandante deve ser um leitor de sinais: posicionar e mover o exército segundo o terreno, e interpretar o comportamento do inimigo e da natureza para inferir suas intenções ocultas.",
+    "cards": [
+      {"ic":"eye","t":"Leia os Sinais","emph":"Sinais","b":"O comportamento denuncia a intenção que as palavras escondem. Árvores que se movem: o inimigo avança. Pássaros que alçam voo: emboscada. Fala humilde enquanto reforça as tropas: prepara um ataque. Palavras agressivas com avanço fingido: vai recuar. <strong>Observe o que o outro faz, não o que ele diz</strong> — os indícios revelam o que a retórica disfarça.","tip":"<strong>Como aplicar:</strong> diante de qualquer discurso, procure o sinal concreto que o confirma ou o desmente."},
+      {"ic":"link","t":"Laço e Lei, Nessa Ordem","emph":"Nessa Ordem","b":"Trate os soldados com humanidade para ganhar o coração, mas mantenha a disciplina firme com regras consistentes. A ordem importa: <strong>punir antes de conquistar a lealdade gera revolta; ser leniente sem disciplina torna o exército inútil.</strong> Conquiste primeiro o afeto, imponha depois a regra — autoridade e cuidado têm de andar juntos.","tip":"<strong>Modelo mental:</strong> primeiro o coração, depois a regra — afeto sem disciplina, ou disciplina sem afeto, falham igual."},
+      {"ic":"mountain","t":"O Alto e o Seco","emph":"Alto e o Seco","b":"Posicione-se com vantagem antes do contato: nas montanhas, fique no alto; ao cruzar rios, afaste-se da água; em pântanos, atravesse rápido. O princípio geral é simples — <strong>prefira sempre o terreno alto e seco ao baixo e úmido</strong>. Quem ocupa a posição superior antes do choque já entrou na disputa com meio caminho andado.","tip":"<strong>Regra:</strong> garanta a posição alta e seca antes de qualquer movimento — vantagem se conquista antes, não durante."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 9",
+    "lessons": ["Posicione-se em terreno alto e seco; adapte a marcha ao terreno.", "Leia os sinais — eles revelam a intenção que a fala oculta.", "Comande com afeto E disciplina, conquistando o coração antes de impor a regra."],
+  },
+  {
+    "slug": "ch10-o-terreno",
+    "sub": "CAPÍTULO 10: O Terreno",
+    "intro": "O terreno é o aliado do general; avaliá-lo corretamente e calcular as dificuldades distingue o vitorioso. E a derrota, em geral, não é culpa do céu — é falha do general.",
+    "cards": [
+      {"ic":"layers","t":"Classifique o Terreno","emph":"Classifique","b":"Há seis tipos de terreno, cada um com sua própria regra: o acessível pede que se ocupe primeiro o alto; o enredante (fácil entrar, caro sair) só se avança se o inimigo está despreparado; o estreito e o acidentado, se já ocupados pelo inimigo, não se atacam. <strong>Tratar toda situação com a mesma tática é o erro de origem</strong> — a regra muda com o tipo de terreno.","tip":"<strong>Como aplicar:</strong> antes de mover, nomeie em que tipo de terreno você está; a tática certa depende disso."},
+      {"ic":"triangle","t":"A Derrota Tem Dono","emph":"Tem Dono","b":"As seis calamidades — fuga, insubordinação, colapso, ruína, desorganização, debandada — não nascem do terreno: nascem do general. Lançar um contra dez, oficiais fracos sobre soldados fortes, comando sem autoridade. <strong>A derrota é diagnóstico de gestão, não azar</strong> — culpar o “céu”, o mercado ou a sorte é recusar-se a ver a própria falha.","tip":"<strong>Sinal de alerta:</strong> quando você culpa fatores externos por uma perda, suspeite — a calamidade quase sempre foi de comando.","warn":True},
+      {"ic":"shield","t":"Proteja o Todo, Não o Ego","emph":"o Todo","b":"O general digno avança sem buscar glória e recua sem temer a desgraça, com o único pensamento de proteger o país — esse é a joia do reino. Trate os soldados como filhos amados, mas sem a indulgência que os torna inúteis. <strong>Avançar e recuar pelo bem comum, nunca pela vaidade pessoal</strong>, é o que separa o líder maduro do que busca aplausos.","tip":"<strong>Regra:</strong> decida sempre pelo bem do todo — a glória pessoal é péssima bússola estratégica."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 10",
+    "lessons": ["Classifique o terreno em seus 6 tipos e siga a regra própria de cada um.", "A maioria das derrotas é culpa do general — reconheça as 6 calamidades.", "Lidere para proteger o todo, não para colher glória."],
+  },
+  {
+    "slug": "ch11-as-nove-situacoes",
+    "sub": "CAPÍTULO 11: As Nove Situações",
+    "intro": "A estratégia muda conforme a situação — da mais leve à mais extrema. O paradoxo central: quanto mais profundo no perigo, mais unido e feroz fica o exército.",
+    "cards": [
+      {"ic":"spark","t":"O Terreno Mortal","emph":"Mortal","b":"Soldados sem rota de fuga perdem o medo e lutam com força máxima — em desespero, descobrem firmeza. “Coloque-os onde não há fuga e preferirão a morte à rendição.” <strong>Às vezes remover a saída é justamente o que faz a equipe vencer:</strong> a necessidade vira motor de coragem. É o oposto exato da rota de fuga que se deixa ao inimigo.","tip":"<strong>Como aplicar:</strong> quando o momento exige tudo, queimar o “plano B” pode converter complacência em coragem total.","warn":True},
+      {"ic":"spiral","t":"A Serpente Shuai-jan","emph":"Serpente","b":"Bata na cabeça e a cauda ataca; bata na cauda e a cabeça responde; bata no meio e ambas vêm. O exército deve reagir assim — partes interdependentes que se socorrem automaticamente. <strong>Una as muitas partes para que ajam como um só corpo</strong>, e isso se cria pela organização e pela situação, fazendo a coragem ser uniforme — não pela natureza de cada um.","tip":"<strong>Modelo mental:</strong> projete os times para se socorrerem sozinhos, como a serpente que reage inteira a qualquer golpe."},
+      {"ic":"arrow","t":"Rapidez é a Essência","emph":"Rapidez","b":"A velocidade é a alma da guerra: aproveite o despreparo do inimigo, vá por rotas inesperadas, ataque os pontos desguardados antes que ele se organize. <strong>Comande a multidão como quem conduz uma única pessoa pela mão</strong> — unidade e velocidade, juntas, decidem a campanha. Cada uma das nove situações tem seu modo de agir; tratá-las igual é o erro.","tip":"<strong>Regra:</strong> identifique em qual das 9 situações você está e aja antes que o inimigo se prepare."},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 11",
+    "lessons": ["Identifique em qual das 9 situações está e use a tática própria de cada uma.", "Em terreno mortal, a falta de saída multiplica a coragem.", "Rapidez e unidade total — como a serpente Shuai-jan — ganham a campanha."],
+  },
+  {
+    "slug": "ch12-ataque-pelo-fogo",
+    "sub": "CAPÍTULO 12: Ataque pelo Fogo",
+    "intro": "O fogo é uma arma poderosa mas perigosa — exige condições certas e contenção. E sua lição maior transcende o fogo: nunca aja por raiva, porque o que se destrói não volta.",
+    "cards": [
+      {"ic":"spark","t":"A Arma de Dois Gumes","emph":"Dois Gumes","b":"O fogo amplia o efeito de um ataque, mas precisa dos meios certos e do momento certo: há estações e dias secos próprios, e jamais se ataca a favor do vento. <strong>Toda arma extrema cobra preparo e disciplina</strong>, e pode voltar-se contra quem a usa. Coordene-a com o plano — se o caos se instala, ataque; se não, espere — nunca a solte sem controle.","tip":"<strong>Como aplicar:</strong> reserve as medidas extremas para quando as condições, e não a vontade, as justificam."},
+      {"ic":"layers","t":"Os Cinco Alvos","emph":"Cinco Alvos","b":"O ataque pelo fogo tem cinco alvos: o acampamento, os suprimentos, os trens de bagagem, os arsenais e as linhas de suprimento. Não é destruição ao acaso — <strong>é força amplificadora aplicada no ponto exato e na hora exata</strong>. Quem usa o fogo precisa de inteligência para escolher o alvo certo; sem material pronto e momento certo, a arma falha ou se vira contra você.","tip":"<strong>Regra:</strong> a medida destrutiva só vale no ponto e no instante certos — fora deles, é desperdício ou autodano."},
+      {"ic":"mask","t":"Nunca Aja por Raiva","emph":"por Raiva","b":"O soberano não deve mobilizar o exército por ira, nem o general lutar por despeito. Ira e ressentimento podem virar alegria amanhã; mas <strong>um reino destruído não se restaura, nem os mortos voltam à vida</strong>. A raiva é a pior estrategista, porque suas decisões são irreversíveis. Avance só quando há ganho real; pare quando não há — o lucro guia, não o ego.","tip":"<strong>Sinal de alerta:</strong> se a vontade de agir vem do despeito e não do ganho, espere — a ira passa, o estrago não.","warn":True},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 12",
+    "lessons": ["Armas extremas exigem condições, timing e disciplina.", "Coordene a medida destrutiva com o plano — nunca a solte sem controle.", "Jamais aja por raiva: o destruído não se recupera; decida pelo ganho real."],
+  },
+  {
+    "slug": "ch13-uso-de-espioes",
+    "sub": "CAPÍTULO 13: O Uso de Espiões",
+    "intro": "A previsão que permite agir antes do inimigo não vem de deuses, espíritos nem analogia — vem de homens que conhecem a situação do inimigo. Economizar na inteligência é o cúmulo da insensatez.",
+    "cards": [
+      {"ic":"key","t":"O Conhecimento Prévio","emph":"Conhecimento Prévio","b":"A vantagem decisiva — saber antes do adversário — não vem da intuição, da sorte nem da adivinhação: vem de informação humana verificada. <strong>Gastar fortunas com a guerra e economizar na inteligência que a vence é o cúmulo da loucura.</strong> A informação é, ao mesmo tempo, o investimento mais barato e o mais determinante de toda a campanha.","tip":"<strong>Como aplicar:</strong> antes de adivinhar a posição do outro lado, invista em saber — informação custa pouco e decide tudo."},
+      {"ic":"masks","t":"As Cinco Classes","emph":"Cinco Classes","b":"São cinco os tipos de espião: o local (habitantes do território inimigo), o interno (oficiais recrutados), o convertido (o agente duplo), o descartável (a quem se passa informação falsa) e o sobrevivente (que vai ao campo e volta com relatórios). <strong>Operadas juntas, sem que ninguém conheça o sistema inteiro, formam uma rede de vantagem inestimável.</strong>","tip":"<strong>Modelo mental:</strong> nenhuma fonte isolada basta — a vantagem está na rede que cruza várias fontes."},
+      {"ic":"person","t":"O Agente Duplo é o Eixo","emph":"o Eixo","b":"O espião inimigo capturado e virado a seu favor é o mais valioso de todos: é por meio dele que se obtêm os locais, os internos e se alimentam os descartáveis com falsidades. Por isso deve ser tratado com a maior generosidade. <strong>E nada exige mais sigilo: revelado o segredo antes da hora, o espião e quem ouviu morrem.</strong>","tip":"<strong>Sinal de alerta:</strong> quebra de sigilo é fatal — a operação de inteligência vive ou morre pela discrição absoluta.","warn":True},
+    ],
+    "lessons_title": "Lições-Chave do Capítulo 13",
+    "lessons": ["A vantagem decisiva vem de informação humana — invista nela sem economia.", "Domine as 5 classes de espiões e opere-as como uma rede integrada.", "O agente duplo é o eixo — e o sigilo absoluto é inegociável."],
+  },
+]

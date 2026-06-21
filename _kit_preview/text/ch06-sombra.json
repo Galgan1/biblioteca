@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "mask",
+      "t": "A Sombra Cresce no Escuro",
+      "emph": "no Escuro",
+      "b": "Tudo o que você nega em si não some — vira Sombra e volta disfarçada: o comportamento contraditório, a negação enfática demais, o lapso “acidental”, a santarronia exagerada. Reprimir custa energia o tempo todo, e o que é trancado <strong>só ganha força no porão</strong>, até arrombar a porta.",
+      "tip": "<strong>Sinal de alerta:</strong> reação desproporcional e moral ostensiva são denúncia — a fachada perfeita demais esconde a Sombra mais densa.",
+      "warn": true
+    },
+    {
+      "ic": "eye",
+      "t": "A Projeção é seu Espelho",
+      "emph": "Espelho",
+      "b": "O que mais te irrita no outro costuma ser <strong>material teu, negado e jogado nele</strong>. A aversão intensa não fala do outro: revela o traço que você não admite ter. Por isso os de moral mais alardeada desmoronam justo no vício que mais condenavam — a Sombra cobrando o preço da repressão.",
+      "tip": "<strong>Modelo mental:</strong> use a irritação forte como pista diagnóstica — pergunte “o que isto diz de mim?”."
+    },
+    {
+      "ic": "spark",
+      "t": "Reintegre, Não Reprima",
+      "emph": "Reintegre",
+      "b": "A saída não é soltar a Sombra sem freio nem fingir que ela não existe — é reconhecê-la e canalizá-la com consciência. O autêntico integra o lado obscuro em vez de investir numa imagem impecável que explode cedo ou tarde. <strong>Energia reprimida vira sintoma; energia integrada vira força.</strong>",
+      "tip": "<strong>Regra:</strong> observe, nomeie, integre — o traço sombrio tem combustível; usado de propósito, ele vira recurso criativo."
+    }
+  ]
+}

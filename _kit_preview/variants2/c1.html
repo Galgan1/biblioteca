@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualizador de Carrossel — C1 (Lightbox Clássico Premium)</title>
+
+<!-- Tokens reais da marca -->
+<link rel="stylesheet" href="../../assets/style.css">
+
+<!-- Fonte de exibição da marca -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     C1 — LIGHTBOX CLÁSSICO PREMIUM
+     Visualizador de carrossel (5 slides 4:5) já aberto.
+     ============================================================ */
+
+  .cv-demo {
+    min-height: 100vh;
+    background: var(--paper-bg);
+    font-family: var(--font-display);
+    color: var(--black);
+  }
+
+  /* Overlay escuro cobrindo a tela -------------------------------- */
+  .cv-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* fundo escuro estilo Instagram, com um leve clarão verde no centro */
+    background:
+      radial-gradient(120% 80% at 50% 42%, oklch(26% 0.03 152 / 0.55), transparent 70%),
+      oklch(14% 0.012 152 / 0.96);
+    backdrop-filter: blur(8px) saturate(115%);
+    -webkit-backdrop-filter: blur(8px) saturate(115%);
+    padding: clamp(1rem, 3vh, 2rem) clamp(1rem, 4vw, 3rem);
+    gap: clamp(0.9rem, 2.2vh, 1.6rem);
+  }
+
+  /* ---- Barra superior: título + contador + fechar --------------- */
+  .cv-top {
+    width: 100%;
+    max-width: 1100px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    color: oklch(97% 0.005 152);
+  }
+
+  .cv-title {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+    color: oklch(82% 0.01 152);
+  }
+  .cv-title .cv-chap {
+    color: oklch(99% 0.004 152);
+    font-weight: 700;
+  }
+  .cv-title .cv-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.18rem 0.6rem;
+    border: 1.5px dashed var(--green);
+    border-radius: 999px;
+    color: oklch(86% 0.07 152);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .cv-title .cv-tag svg { width: 13px; height: 13px; }
+
+  /* Contador 01 / 05 no centro do topo */
+  .cv-counter {
+    justify-self: center;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: var(--text-md);
+    letter-spacing: 0.08em;
+    color: oklch(99% 0.004 152);
+  }
+  .cv-counter .cv-sep { color: oklch(64% 0.02 152); margin: 0 0.25rem; font-weight: 500; }
+  .cv-counter .cv-total { color: oklch(72% 0.02 152); font-weight: 600; }
+
+  .cv-top-right { justify-self: end; }
+
+  .cv-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid oklch(99% 0 0 / 0.16);
+    background: oklch(99% 0 0 / 0.06);
+    color: oklch(96% 0.005 152);
+    cursor: pointer;
+    transition: background 160ms var(--ease-out-quart), transform 160ms var(--ease-out-quart);
+  }
+  .cv-close:hover { background: oklch(99% 0 0 / 0.14); transform: rotate(90deg); }
+  .cv-close svg { width: 18px; height: 18px; }
+
+  /* ---- Palco central: setas + slide ----------------------------- */
+  .cv-stage {
+    width: 100%;
+    max-width: 1100px;
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.6rem, 2vw, 1.6rem);
+  }
+
+  /* Setas ‹ › nas laterais */
+  .cv-arrow {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(44px, 4.5vw, 58px);
+    height: clamp(44px, 4.5vw, 58px);
+    border-radius: 50%;
+    border: 1px solid oklch(99% 0 0 / 0.18);
+    background: oklch(99% 0 0 / 0.07);
+    color: oklch(98% 0.005 152);
+    cursor: pointer;
+    transition: background 160ms var(--ease-out-quart), border-color 160ms var(--ease-out-quart), transform 160ms var(--ease-out-quart);
+  }
+  .cv-arrow:hover {
+    background: var(--green);
+    border-color: var(--green);
+    color: var(--on-green);
+    transform: scale(1.06);
+  }
+  .cv-arrow:disabled {
+    opacity: 0.28;
+    cursor: default;
+    transform: none;
+    background: oklch(99% 0 0 / 0.04);
+  }
+  .cv-arrow svg { width: 26px; height: 26px; }
+
+  /* Slide central grande — respeita 4:5, altura ~76vh */
+  .cv-frame {
+    flex: 0 1 auto;
+    height: 76vh;
+    aspect-ratio: 4 / 5;
+    max-width: 100%;
+    border-radius: calc(var(--radius) * 2);
+    overflow: hidden;
+    position: relative;
+    background: oklch(10% 0.01 152);
+    box-shadow:
+      0 30px 80px oklch(0% 0 0 / 0.55),
+      0 6px 18px oklch(0% 0 0 / 0.40),
+      0 0 0 1px oklch(99% 0 0 / 0.06) inset;
+  }
+  .cv-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* moldura tracejada verde discreta — assinatura da marca */
+  .cv-frame::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1.5px dashed oklch(70% 0.13 152 / 0.55);
+    border-radius: var(--radius);
+    pointer-events: none;
+  }
+
+  /* ---- Trilho de dots ------------------------------------------- */
+  .cv-dots {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+  .cv-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: oklch(99% 0 0 / 0.28);
+    cursor: pointer;
+    transition: background 160ms var(--ease-out-quart), width 200ms var(--ease-out-quart), transform 160ms var(--ease-out-quart);
+  }
+  .cv-dot:hover { background: oklch(99% 0 0 / 0.55); transform: scale(1.2); }
+  .cv-dot[aria-current="true"] {
+    background: var(--green);
+    width: 26px;
+    border-radius: 999px;
+  }
+
+  /* ---- Barra de ações ------------------------------------------- */
+  .cv-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cv-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    padding: 0.7rem 1.25rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 160ms var(--ease-out-quart), color 160ms var(--ease-out-quart), border-color 160ms var(--ease-out-quart), transform 120ms var(--ease-out-quart);
+  }
+  .cv-btn svg { width: 17px; height: 17px; }
+  .cv-btn:active { transform: translateY(1px); }
+
+  /* primário — pílula verde sólida da marca */
+  .cv-btn--primary {
+    background: var(--green);
+    color: var(--on-green);
+    border: 1.5px solid var(--green);
+  }
+  .cv-btn--primary:hover { background: var(--green-dark); border-color: var(--green-dark); }
+
+  /* secundário — contorno tracejado verde sobre o escuro */
+  .cv-btn--ghost {
+    background: oklch(99% 0 0 / 0.05);
+    color: oklch(88% 0.06 152);
+    border: 1.5px dashed var(--green);
+  }
+  .cv-btn--ghost:hover { background: oklch(99% 0 0 / 0.12); color: oklch(95% 0.05 152); }
+
+  /* ---- Dica de teclado ------------------------------------------ */
+  .cv-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--text-xs);
+    color: oklch(70% 0.01 152);
+    letter-spacing: 0.02em;
+  }
+  .cv-key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 0.3rem;
+    border-radius: 5px;
+    border: 1px solid oklch(99% 0 0 / 0.22);
+    background: oklch(99% 0 0 / 0.07);
+    color: oklch(92% 0.005 152);
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  /* Folga vertical em telas baixas */
+  @media (max-height: 720px) {
+    .cv-frame { height: 64vh; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cv-demo">
+
+  <!-- ================= LIGHTBOX (já aberto) ================= -->
+  <div class="cv-overlay" role="dialog" aria-modal="true" aria-label="Carrossel do capítulo">
+
+    <!-- Topo: título + contador + fechar -->
+    <div class="cv-top">
+      <div class="cv-title">
+        <span class="cv-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="13" height="16" rx="2"></rect>
+            <path d="M16 8h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-3"></path>
+          </svg>
+          Carrossel
+        </span>
+        <span>Capítulo 1 · <span class="cv-chap">A Surpreendente Força dos Hábitos Atômicos</span></span>
+      </div>
+
+      <div class="cv-counter">
+        <span class="cv-current" id="cv-cur">02</span><span class="cv-sep">/</span><span class="cv-total" id="cv-tot">05</span>
+      </div>
+
+      <div class="cv-top-right">
+        <button class="cv-close" type="button" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 6 18 18M18 6 6 18"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Palco: seta ‹ + slide + seta › -->
+    <div class="cv-stage">
+      <button class="cv-arrow cv-prev" type="button" aria-label="Slide anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M15 5 8 12l7 7"></path>
+        </svg>
+      </button>
+
+      <figure class="cv-frame">
+        <img id="cv-img" src="slides/02.png" alt="Slide 2 de 5 do carrossel">
+      </figure>
+
+      <button class="cv-arrow cv-next" type="button" aria-label="Próximo slide">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 5 16 12l-7 7"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Dots -->
+    <div class="cv-dots" role="tablist" aria-label="Navegar entre slides">
+      <button class="cv-dot" type="button" aria-label="Ir para o slide 1"></button>
+      <button class="cv-dot" type="button" aria-current="true" aria-label="Ir para o slide 2"></button>
+      <button class="cv-dot" type="button" aria-label="Ir para o slide 3"></button>
+      <button class="cv-dot" type="button" aria-label="Ir para o slide 4"></button>
+      <button class="cv-dot" type="button" aria-label="Ir para o slide 5"></button>
+    </div>
+
+    <!-- Barra de ações -->
+    <div class="cv-actions">
+      <button class="cv-btn cv-btn--primary" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12"></path><path d="m7 11 5 5 5-5"></path><path d="M5 21h14"></path>
+        </svg>
+        Baixar este slide
+      </button>
+      <button class="cv-btn cv-btn--ghost" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path>
+          <path d="M16 3h5v5"></path><path d="M11 13 21 3"></path>
+        </svg>
+        Baixar carrossel (.zip)
+      </button>
+    </div>
+
+    <!-- Dica de teclado -->
+    <div class="cv-hint">
+      <span class="cv-key">&larr;</span>
+      <span class="cv-key">&rarr;</span>
+      <span>use as setas do teclado para navegar &middot; <span class="cv-key">Esc</span> fecha</span>
+    </div>
+
+  </div>
+  <!-- ============== /LIGHTBOX ============== -->
+
+</div>
+
+<script>
+(function () {
+  var total = 5;
+  var idx = 1; // estado inicial: slide 02 ativo (índice 0-based)
+
+  var img = document.getElementById('cv-img');
+  var cur = document.getElementById('cv-cur');
+  var dots = Array.prototype.slice.call(document.querySelectorAll('.cv-dot'));
+  var prev = document.querySelector('.cv-prev');
+  var next = document.querySelector('.cv-next');
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function render() {
+    var file = 'slides/' + pad(idx + 1) + '.png';
+    img.setAttribute('src', file);
+    img.setAttribute('alt', 'Slide ' + (idx + 1) + ' de ' + total + ' do carrossel');
+    cur.textContent = pad(idx + 1);
+    dots.forEach(function (d, i) {
+      if (i === idx) { d.setAttribute('aria-current', 'true'); }
+      else { d.removeAttribute('aria-current'); }
+    });
+    prev.disabled = (idx === 0);
+    next.disabled = (idx === total - 1);
+  }
+
+  function go(n) {
+    idx = Math.max(0, Math.min(total - 1, n));
+    render();
+  }
+
+  prev.addEventListener('click', function () { go(idx - 1); });
+  next.addEventListener('click', function () { go(idx + 1); });
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () { go(i); });
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { go(idx - 1); }
+    else if (e.key === 'ArrowRight') { go(idx + 1); }
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>

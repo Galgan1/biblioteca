@@ -22,12 +22,15 @@ const express = require('express');
 const puppeteer = require('puppeteer-core');
 const QRCode = require('qrcode');
 const { PDFDocument } = require('pdf-lib');
+const makeAuth = require('./auth');                 // login multiusuário + papéis
+const instagram = require('./instagram');           // publicação IG via Graph API
+const publishAssets = require('./publish_assets');  // mídia + legenda do post
 
 const PORT = Number(process.env.PORT) || 3008;
 const SITE_ROOT = process.env.SITE_ROOT || '/var/www/andregalgani/biblioteca';
 const CHROME = process.env.CHROME || '/usr/bin/google-chrome';
 const CACHE_DIR = path.join(__dirname, 'cache');
-const VERSION = 10; // suba para invalidar todo o cache após mudar o layout
+const VERSION = 11; // suba para invalidar todo o cache após mudar o layout
 
 // ----------------------------------------------------------- paywall (Pix)
 // DESLIGADO por enquanto (downloads gratuitos enquanto os PDFs amadurecem).
@@ -692,6 +695,11 @@ const pdf = express.Router();
 app.use('/pdf', pdf);            // produção (nginx faz proxy de /biblioteca/pdf/ → /pdf/)
 app.use('/biblioteca/pdf', pdf); // espelho local sem nginx
 
+// login/usuários (mesmas montagens do pdf → /pdf/auth/* e /biblioteca/pdf/auth/*)
+const auth = makeAuth(SECRET);
+app.use('/pdf', auth.router);
+app.use('/biblioteca/pdf', auth.router);
+
 // ------------------------------------------------------------- estatísticas
 // beacon de visita (sendBeacon do script.js): ?book=<slug> ou ?book=_estante
 pdf.post('/hit', (req, res) => {
@@ -714,6 +722,302 @@ pdf.post('/vote', (req, res) => {
   if (!SLUG_RE.test(book) || !ok(from) || !ok(to)) return res.status(400).json({ error: 'parâmetros inválidos' });
   if (BOT_RE.test(req.headers['user-agent'] || '')) return res.json(getVotes(book));
   res.json(applyVote(book, from, to));
+});
+
+// ----- Kit de Divulgação: assets de redes on-demand (gera-ou-serve-cache) -----
+// Cada formato = um template HTML servido estaticamente, renderizado pelo mesmo
+// Chrome dos PDFs e cacheado em disco. 1º pedido gera; os próximos servem o
+// cache. 'capa'/'og' já são estáticos (gerados antes) — só servidos.
+const KIT_TPL = {
+  'citacao-feed':  { tpl: 'quote.html',       w: 1080, h: 1350 },
+  'citacao-story': { tpl: 'quote-story.html', w: 1080, h: 1920 },
+  'ideia':         { tpl: 'ideia.html',       w: 1080, h: 1080 },
+  'capa-story':    { tpl: 'capa-story.html',  w: 1080, h: 1920 },
+  'mapa':          { tpl: 'mapa.html',        w: 1080, h: 1350 },
+  'thumb':         { tpl: 'thumb.html',       w: 1280, h: 720  },
+};
+
+// Auto-fit das peças do Kit. ESPELHA gerar_dados_kit._FIT_JS (o fit do caminho
+// --proof, em Playwright) — mantenha os dois em sincronia: a produção tem de bater
+// com a prova. Encolhe título que estoura a largura (.head h1/.ed-title/.thumb h1)
+// e o corpo .fitv (ex.: o mapa) que estoura a altura. Não toca no que já cabe.
+//
+// ATENÇÃO: o Puppeteer (≠ Playwright) NÃO invoca uma string em forma de função —
+// só AVALIA a expressão. Por isso o call site embrulha isto num IIFE; sem o IIFE a
+// função só seria criada e o fit nunca rodaria (era o motivo de não estar aplicando).
+const KIT_FIT = `() => {
+  for (const el of document.querySelectorAll('.head h1, .ed-title, .thumb h1')) {
+    const box = el.parentElement, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (el.scrollWidth > avail && fs > 40 && g < 120){ fs -= 3; el.style.fontSize = fs+'px'; g++; }
+  }
+  for (const el of document.querySelectorAll('.fitv')) {
+    let fs = parseFloat(getComputedStyle(el).fontSize), g = 0;
+    while (el.scrollHeight > el.clientHeight + 1 && fs > 24 && g < 60){ fs -= 1; el.style.fontSize = fs+'px'; g++; }
+  }
+}`;
+const KIT_STATIC = { 'capa': (b) => `${b}-capa.png`, 'og': (b) => `${b}-og.png` };
+
+async function renderKitAsset(book, fmt, ext = 'png') {
+  const spec = KIT_TPL[fmt];
+  const type = ext === 'jpg' ? 'jpeg' : 'png';  // IG exige JPEG; PNG p/ download
+  const tplFile = path.join(SITE_ROOT, 'assets', 'kit', '_tpl', book, spec.tpl);
+  const st = await fsp.stat(tplFile);
+  const hash = crypto.createHash('sha1')
+    .update(`kit|v${VERSION}|${book}|${fmt}|${st.mtimeMs}|${st.size}`).digest('hex').slice(0, 16);
+  const cacheFile = path.join(CACHE_DIR, `kit-${book}-${fmt}-${hash}.${ext}`);
+  try { return { buffer: await fsp.readFile(cacheFile), cached: true }; } catch {}
+  const url = `http://127.0.0.1:${PORT}/biblioteca/assets/kit/_tpl/${book}/${spec.tpl}`;
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  try {
+    await page.setViewport({ width: spec.w, height: spec.h, deviceScaleFactor: 2 });
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 60000 });
+    await page.evaluateHandle('document.fonts.ready');
+    await page.evaluate(`(${KIT_FIT})()`);  // IIFE: Puppeteer avalia a string, não invoca a função (ver KIT_FIT)
+    const el = await page.$('.slide, .story, .thumb');
+    const shot = type === 'jpeg' ? { type: 'jpeg', quality: 90 } : { type: 'png' };
+    const buffer = await (el || page).screenshot(shot);
+    fsp.writeFile(cacheFile, buffer).catch(() => {});
+    return { buffer, cached: false };
+  } finally { await page.close().catch(() => {}); }
+}
+
+pdf.get('/asset/:book/:fmt.png', async (req, res) => {
+  const book = String(req.params.book);
+  const fmt = String(req.params.fmt);
+  if (!SLUG_RE.test(book)) return res.status(400).send('inválido');
+  try {
+    if (KIT_TPL[fmt]) {
+      const { buffer, cached } = await enqueue(() => renderKitAsset(book, fmt));
+      res.setHeader('Content-Type', 'image/png');
+      res.setHeader('X-Kit-Cache', cached ? 'hit' : 'miss');
+      res.setHeader('Cache-Control', 'public, max-age=300');
+      return res.end(buffer);
+    }
+    if (KIT_STATIC[fmt]) {
+      const f = path.join(SITE_ROOT, 'assets', KIT_STATIC[fmt](book));
+      await fsp.access(f);
+      res.setHeader('X-Kit-Cache', 'static');
+      return res.sendFile(f);
+    }
+    return res.status(404).send('formato desconhecido');
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.status(404).send('não encontrado');
+    console.error('[kit-asset]', err.message);
+    res.status(500).send('erro ao gerar asset');
+  }
+});
+
+// variante JPEG (Instagram exige JPEG p/ image/story; só os formatos de template)
+pdf.get('/asset/:book/:fmt.jpg', async (req, res) => {
+  const book = String(req.params.book);
+  const fmt = String(req.params.fmt);
+  if (!SLUG_RE.test(book)) return res.status(400).send('inválido');
+  if (!KIT_TPL[fmt]) return res.status(404).send('formato sem jpg');
+  try {
+    const { buffer, cached } = await enqueue(() => renderKitAsset(book, fmt, 'jpg'));
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('X-Kit-Cache', cached ? 'hit' : 'miss');
+    res.setHeader('Cache-Control', 'public, max-age=300');
+    return res.end(buffer);
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.status(404).send('não encontrado');
+    console.error('[kit-asset-jpg]', err.message);
+    res.status(500).send('erro ao gerar asset');
+  }
+});
+
+// ----- Kit de Divulgação: CARROSSEL por capítulo, on-demand (gera no 1º clique) -----
+// O conteúdo dos slides (HTML) é emitido localmente por gerar_dados_carrossel.py
+// (mesmos construtores do gerar_carrossel → zero deriva) em assets/kit/<livro>/slides.json.
+// Aqui montamos CSS + slides, renderizamos no mesmo Chrome dos PDFs (png + webp),
+// armazenamos em assets/kit/<livro>/caps/<cap>/ e devolvemos o manifesto. Idempotente.
+const CRC_TABLE = (() => {
+  const t = new Array(256);
+  for (let n = 0; n < 256; n++) {
+    let c = n;
+    for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+    t[n] = c >>> 0;
+  }
+  return t;
+})();
+function crc32(buf) {
+  let c = 0xFFFFFFFF;
+  for (let i = 0; i < buf.length; i++) c = CRC_TABLE[(c ^ buf[i]) & 0xFF] ^ (c >>> 8);
+  return (c ^ 0xFFFFFFFF) >>> 0;
+}
+function zipStore(entries) {
+  // ZIP método "store" (sem compressão) — PNG já é comprimido. Sem dependências.
+  const locals = [], central = [];
+  let offset = 0;
+  for (const e of entries) {
+    const name = Buffer.from(e.name, 'utf8');
+    const crc = crc32(e.data);
+    const lh = Buffer.alloc(30);
+    lh.writeUInt32LE(0x04034b50, 0); lh.writeUInt16LE(20, 4); lh.writeUInt16LE(0, 6);
+    lh.writeUInt16LE(0, 8); lh.writeUInt16LE(0, 10); lh.writeUInt16LE(0, 12);
+    lh.writeUInt32LE(crc, 14); lh.writeUInt32LE(e.data.length, 18); lh.writeUInt32LE(e.data.length, 22);
+    lh.writeUInt16LE(name.length, 26); lh.writeUInt16LE(0, 28);
+    locals.push(lh, name, e.data);
+    const ch = Buffer.alloc(46);
+    ch.writeUInt32LE(0x02014b50, 0); ch.writeUInt16LE(20, 4); ch.writeUInt16LE(20, 6); ch.writeUInt16LE(0, 8);
+    ch.writeUInt16LE(0, 10); ch.writeUInt16LE(0, 12); ch.writeUInt16LE(0, 14);
+    ch.writeUInt32LE(crc, 16); ch.writeUInt32LE(e.data.length, 20); ch.writeUInt32LE(e.data.length, 24);
+    ch.writeUInt16LE(name.length, 28); ch.writeUInt16LE(0, 30); ch.writeUInt16LE(0, 32);
+    ch.writeUInt16LE(0, 34); ch.writeUInt16LE(0, 36); ch.writeUInt32LE(0, 38); ch.writeUInt32LE(offset, 42);
+    central.push(ch, name);
+    offset += lh.length + name.length + e.data.length;
+  }
+  const cdStart = offset;
+  const cdSize = central.reduce((s, b) => s + b.length, 0);
+  const eocd = Buffer.alloc(22);
+  eocd.writeUInt32LE(0x06054b50, 0); eocd.writeUInt16LE(0, 4); eocd.writeUInt16LE(0, 6);
+  eocd.writeUInt16LE(entries.length, 8); eocd.writeUInt16LE(entries.length, 10);
+  eocd.writeUInt32LE(cdSize, 12); eocd.writeUInt32LE(cdStart, 16); eocd.writeUInt16LE(0, 20);
+  return Buffer.concat([...locals, ...central, eocd]);
+}
+const CAROUSEL_SHRINK = `() => {
+  for (const el of document.querySelectorAll('.cover h1, .st h1')) {
+    const box = el.parentElement, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    let fs = parseFloat(getComputedStyle(el).fontSize), guard = 0;
+    while (el.getBoundingClientRect().width > avail && fs > 50 && guard < 120) { fs -= 3; el.style.fontSize = fs + 'px'; guard++; }
+  }
+  const SHRINK = '.ed-title,.ed-body,.ed-tip .tipbody,.phrase,.cta .big,.cta .row p,.cta .save,.card-title,.card-body,.card-tip';
+  for (const slide of document.querySelectorAll('.slide, .story')) {
+    const padB = parseFloat(getComputedStyle(slide).paddingBottom) || 110;
+    const safe = slide.getBoundingClientRect().bottom - Math.max(padB, 40);
+    const maxBottom = () => {
+      let m = 0;
+      for (const el of slide.querySelectorAll(SHRINK)) { const r = el.getBoundingClientRect(); if (r.height > 0) m = Math.max(m, r.bottom); }
+      return m;
+    };
+    let g = 0;
+    while (maxBottom() > safe && g < 300) {
+      let changed = false;
+      for (const el of slide.querySelectorAll(SHRINK)) {
+        const fs = parseFloat(getComputedStyle(el).fontSize);
+        if (fs > 22) { el.style.fontSize = (fs - 1) + 'px'; changed = true; }
+      }
+      if (!changed) break;
+      g++;
+    }
+  }
+}`;
+async function renderCarousel(book, cap) {
+  const outDir = path.join(SITE_ROOT, 'assets', 'kit', book, 'caps', cap);
+  const mfPath = path.join(outDir, 'manifest.json');
+  try { return { manifest: JSON.parse(await fsp.readFile(mfPath, 'utf8')), cached: true }; } catch {}
+  const slidesFile = path.join(SITE_ROOT, 'assets', 'kit', book, 'slides.json');
+  const data = JSON.parse(await fsp.readFile(slidesFile, 'utf8'));
+  const slidesHtml = (data.chapters || {})[cap];
+  if (!Array.isArray(slidesHtml) || !slidesHtml.length) { const e = new Error('cap'); e.code = 'ENOENT'; throw e; }
+  const css = await fsp.readFile(path.join(SITE_ROOT, 'assets', 'kit', '_carousel.css'), 'utf8');
+  const html = `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>${css}</style></head><body>${slidesHtml.join('')}</body></html>`;
+  await fsp.mkdir(outDir, { recursive: true });
+  const browser = await getBrowser();
+  const page = await browser.newPage();
+  const pngEntries = [];
+  const slides = [], view = [];
+  try {
+    await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
+    await page.setContent(html, { waitUntil: 'networkidle0', timeout: 60000 });
+    await page.evaluateHandle('document.fonts.ready');
+    await new Promise(r => setTimeout(r, 500));
+    await page.evaluate(`(${CAROUSEL_SHRINK})()`);  // IIFE: Puppeteer avalia a string, nao invoca a funcao (igual KIT_FIT)
+    const els = await page.$$('.slide');
+    for (let i = 0; i < els.length; i++) {
+      const n = String(i + 1).padStart(2, '0');
+      const png = await els[i].screenshot({ type: 'png' });
+      const webp = await els[i].screenshot({ type: 'webp', quality: 72 });
+      const jpg = await els[i].screenshot({ type: 'jpeg', quality: 90 }); // p/ Instagram
+      await fsp.writeFile(path.join(outDir, n + '.png'), png);
+      await fsp.writeFile(path.join(outDir, n + '.webp'), webp);
+      await fsp.writeFile(path.join(outDir, n + '.jpg'), jpg);
+      pngEntries.push({ name: `${book}-${cap}-${n}.png`, data: png });
+      slides.push(`assets/kit/${book}/caps/${cap}/${n}.png`);
+      view.push(`assets/kit/${book}/caps/${cap}/${n}.webp`);
+    }
+  } finally { await page.close().catch(() => {}); }
+  await fsp.writeFile(path.join(outDir, 'carrossel.zip'), zipStore(pngEntries));
+  const manifest = { book, chapter: cap, count: slides.length, slides, view, zip: `assets/kit/${book}/caps/${cap}/carrossel.zip` };
+  await fsp.writeFile(mfPath, JSON.stringify(manifest, null, 2));
+  return { manifest, cached: false };
+}
+pdf.get('/carrossel/:book/:cap.json', async (req, res) => {
+  const book = String(req.params.book), cap = String(req.params.cap);
+  if (!SLUG_RE.test(book) || !SLUG_RE.test(cap)) return res.status(400).json({ error: 'inválido' });
+  try {
+    const { manifest, cached } = await enqueue(() => renderCarousel(book, cap));
+    res.setHeader('X-Kit-Cache', cached ? 'hit' : 'miss');
+    res.setHeader('Cache-Control', 'public, max-age=60');
+    return res.json(manifest);
+  } catch (err) {
+    if (err.code === 'ENOENT') return res.status(404).json({ error: 'capítulo sem carrossel' });
+    console.error('[kit-carrossel]', err.message);
+    res.status(500).json({ error: 'erro ao gerar carrossel' });
+  }
+});
+
+// ----- ADMIN: disparo de publicação no Instagram (a partir da VPS) -----
+// Protegido por requireAdmin. IG_DRYRUN=1 monta o contêiner mas NÃO publica.
+pdf.get('/admin/instagram/options', auth.requireAdmin, (req, res) => {
+  const book = String(req.query.book || '');
+  if (!SLUG_RE.test(book)) return res.status(400).json({ error: 'inválido' });
+  try {
+    const o = publishAssets.optionsFor(book);
+    // adapta {types, options:{tipo:[...]}} → [{type, selectors:[...]}] (forma da UI)
+    const options = o.types.map((t) => ({ type: t, selectors: o.options[t] }));
+    res.json({ book, options, captionPreview: o.captionPreview });
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+});
+
+// cota diária de publicação do IG (p/ a UI avisar "restam X posts hoje")
+pdf.get('/admin/instagram/limit', auth.requireAdmin, async (req, res) => {
+  try {
+    res.json(await instagram.publishingLimit());
+  } catch (err) {
+    // falha ao consultar não deve travar a UI — devolve nulos (fail-open)
+    res.json({ used: null, total: null, remaining: null, error: err.message });
+  }
+});
+
+pdf.post('/admin/instagram/publish', auth.requireAdmin, async (req, res) => {
+  const { book, type, selector, caption, confirm } = req.body || {};
+  if (!SLUG_RE.test(String(book || ''))) return res.status(400).json({ error: 'livro inválido' });
+  if (!confirm) return res.status(400).json({ error: 'confirmação ausente' });
+  const dryRun = String(process.env.IG_DRYRUN || '') === '1';
+  try {
+    let media, cap;
+    if (type === 'carrossel') {
+      // gera os slides (png+webp+jpg) e monta as URLs JPEG públicas do manifesto
+      const { manifest } = await enqueue(() => renderCarousel(book, String(selector)));
+      media = manifest.slides.map((s) => `${publishAssets.PUB}/biblioteca/${s.replace(/\.png$/, '.jpg')}`);
+      cap = caption !== undefined ? caption : publishAssets.captionFor(book);
+    } else {
+      const r = publishAssets.resolve(book, type, selector); // valida selector
+      media = r.media;
+      cap = caption !== undefined ? caption : r.caption;
+      // pré-aquece o JPEG p/ o IG buscar sem timeout (feed/story)
+      if (type === 'feed' || type === 'story') {
+        await enqueue(() => renderKitAsset(book, String(selector), 'jpg'));
+      }
+    }
+    let result;
+    if (type === 'feed') result = await instagram.publishImage(media[0], cap, { dryRun });
+    else if (type === 'story') result = await instagram.publishStory(media[0], { dryRun });
+    else if (type === 'carrossel') result = await instagram.publishCarousel(media, cap, { dryRun });
+    else if (type === 'reels') result = await instagram.publishReel(media[0], cap, { dryRun });
+    else return res.status(400).json({ error: 'tipo inválido' });
+    res.json({ ok: true, dryRun, mediaId: result.id || result.containerId, permalink: result.permalink || null });
+  } catch (err) {
+    console.error('[ig-publish]', err.message);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // ----- refinador (DEV, só com REFINADOR=1): render fresco, sem cache, com -----

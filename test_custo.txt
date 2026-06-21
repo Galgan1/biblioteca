@@ -1,0 +1,8 @@
+▶ Minuto Real  · leitura do real (diagnóstico — nada é alterado)
+  custo simulado · livro: full (estimativa, preços de cost_tracker.py)
+
+    vídeo        US$ 3.98
+    shorts       US$ 0.02
+    ----------------------
+    TOTAL        US$ 4.00
+    (carrossel/IG e site = US$0 — geração local)

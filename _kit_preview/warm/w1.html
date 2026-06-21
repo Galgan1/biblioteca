@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Minuto Real — Conceito (W1 quente)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Literata:ital,opsz,wght@1,7..72,500;1,7..72,600&display=swap');
+
+:root{
+  --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
+  --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
+  --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
+  --gold: oklch(76% 0.105 83); --gold-soft: oklch(84% 0.085 86);
+  --warn: oklch(72% 0.16 30); --on-warn: oklch(16% 0.03 30);
+  --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;text-rendering:geometricPrecision}
+
+/* ============================================================
+   W1 — "Calor pela luz e moldura"
+   Fundo mais rico/quente (verde em camadas + brasa âmbar baixa),
+   halo de luz atrás do bloco de texto, moldura dupla
+   (filete dourado + tracejado verde), texto sobre painel translúcido.
+   ============================================================ */
+
+.slide{width:1080px;height:1350px;color:var(--ink);padding:92px 90px 150px;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;
+  background:
+   /* brasa quente, baixa e lateral — dá temperatura sem virar laranja */
+   radial-gradient(70% 50% at 16% 84%, oklch(60% 0.09 70 / .30) 0%, transparent 56%),
+   radial-gradient(80% 55% at 100% 100%, oklch(40% 0.07 96 / .26) 0%, transparent 52%),
+   /* verde rico vindo de cima, mais saturado que o original */
+   radial-gradient(120% 80% at 50% -14%, oklch(33% 0.075 152) 0%, transparent 62%),
+   radial-gradient(135% 95% at 102% 8%, oklch(28% 0.06 152 / .8) 0%, transparent 50%),
+   /* vinheta de profundidade nas bordas */
+   radial-gradient(150% 128% at 50% 46%, transparent 48%, oklch(4.5% 0.012 152 / .72) 100%),
+   linear-gradient(176deg, var(--bg) 0%, var(--bg2) 100%);}
+
+/* textura: grade de pontos finos (fade do topo) — mantida, mais sutil */
+.slide::before{content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(oklch(80% 0.07 120 / .05) 1.1px, transparent 1.3px);
+  background-size:38px 38px;background-position:center;
+  -webkit-mask-image:radial-gradient(125% 105% at 50% -5%, #000 45%, transparent 100%);}
+
+/* MOLDURA DUPLA: filete dourado fino por fora + tracejado verde por dentro */
+.slide::after{content:'';position:absolute;inset:34px;border-radius:34px;
+  border:1.5px solid var(--gold);opacity:.55;pointer-events:none;
+  box-shadow:
+    0 0 0 1px oklch(80% 0.09 86 / .12),
+    inset 0 0 60px oklch(76% 0.105 83 / .05);}
+.frame-in{position:absolute;inset:46px;border:2px dashed var(--green);
+  border-radius:26px;opacity:.42;pointer-events:none;z-index:0;
+  box-shadow:inset 0 0 100px oklch(70% 0.13 152 / .06)}
+/* cantos dourados — moldura "cuidada" */
+.corner{position:absolute;width:54px;height:54px;pointer-events:none;z-index:1;opacity:.8}
+.corner::before,.corner::after{content:'';position:absolute;background:
+  linear-gradient(90deg, var(--gold-soft), oklch(76% 0.105 83 / 0));border-radius:2px}
+.corner::before{width:54px;height:2.5px} .corner::after{width:2.5px;height:54px;
+  background:linear-gradient(180deg, var(--gold-soft), oklch(76% 0.105 83 / 0))}
+.corner.tl{top:34px;left:34px} .corner.tr{top:34px;right:34px;transform:scaleX(-1)}
+.corner.bl{bottom:34px;left:34px;transform:scaleY(-1)}
+.corner.br{bottom:34px;right:34px;transform:scale(-1,-1)}
+
+.slide>*{position:relative;z-index:2}
+
+/* indicador de progresso */
+.dots{position:absolute;left:0;right:0;bottom:74px;display:flex;gap:13px;
+  justify-content:center;align-items:center;z-index:3}
+.dots i{width:11px;height:11px;border-radius:999px;background:var(--hair);display:block}
+.dots i.on{width:38px;background:var(--green);box-shadow:0 0 18px oklch(72% 0.14 152 / .55)}
+.wm{position:absolute;left:0;right:0;bottom:40px;text-align:center;font-weight:800;
+  letter-spacing:.26em;font-size:21px;color:var(--ink-dim);text-transform:uppercase;z-index:3}
+
+/* ---------- topbar ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:center;z-index:3}
+.brandmark{display:inline-flex;align-items:center;gap:12px;font-weight:900;
+  letter-spacing:.03em;font-size:28px;color:var(--ink);text-transform:uppercase}
+.brandmark .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;
+  justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto;
+  box-shadow:0 8px 22px oklch(60% 0.14 152 / .35), inset 0 1px 0 oklch(92% 0.1 152 / .3)}
+.brandmark .seal svg{width:28px;height:28px;color:var(--on-green)}
+.brandmark b{color:var(--green);font-weight:900}
+.count{display:inline-flex;align-items:baseline;gap:4px;font-weight:800;
+  font-size:26px;letter-spacing:.04em;color:var(--green-soft)}
+.count b{font-size:34px;color:var(--green)} .count .sl{color:var(--hair);font-weight:700}
+
+/* ---------- HALO de luz atrás do bloco de texto ---------- */
+.glow{position:absolute;z-index:1;pointer-events:none;
+  top:300px;left:50%;transform:translateX(-50%);
+  width:1180px;height:900px;
+  background:
+    radial-gradient(46% 42% at 50% 40%, oklch(78% 0.1 130 / .20) 0%, transparent 70%),
+    radial-gradient(60% 55% at 50% 46%, oklch(72% 0.08 110 / .12) 0%, transparent 72%);
+  filter:blur(8px);}
+
+/* ---------- PAINEL translúcido (texto não flutua) ---------- */
+.panel{position:relative;z-index:2;margin-top:50px;
+  display:flex;flex-direction:column;flex:1;
+  padding:54px 52px 48px;border-radius:30px;
+  background:
+    linear-gradient(168deg, oklch(26% 0.035 152 / .58) 0%, oklch(15% 0.02 152 / .42) 100%);
+  border:1px solid oklch(80% 0.07 130 / .14);
+  box-shadow:
+    0 30px 70px oklch(4% 0.01 152 / .5),
+    inset 0 1px 0 oklch(92% 0.08 130 / .14),
+    inset 0 0 0 1px oklch(76% 0.105 83 / .05);
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);}
+/* fio dourado de topo do painel */
+.panel::before{content:'';position:absolute;left:52px;right:52px;top:0;height:2px;
+  background:linear-gradient(90deg, transparent, oklch(80% 0.1 86 / .55) 22%,
+    oklch(84% 0.085 86 / .7) 50%, oklch(80% 0.1 86 / .55) 78%, transparent);}
+
+/* ---------- selo do ícone ---------- */
+.card-icon{width:108px;height:108px;border-radius:26px;display:flex;align-items:center;
+  justify-content:center;margin:0 0 30px;
+  background:linear-gradient(160deg, oklch(72% 0.14 152 / .2), oklch(60% 0.1 86 / .07));
+  border:1.5px solid oklch(78% 0.09 120 / .34);
+  box-shadow:0 0 56px oklch(70% 0.14 152 / .2), inset 0 1px 0 oklch(92% 0.1 152 / .16)}
+.card-icon svg{width:58px;height:58px;color:var(--green-soft);
+  filter:drop-shadow(0 0 16px oklch(74% 0.13 152 / .55))}
+
+/* ---------- conceito ---------- */
+.card-title{display:inline-block;
+  background:linear-gradient(150deg, var(--green) 0%, oklch(66% 0.135 145) 100%);
+  color:var(--on-green);font-weight:800;font-size:52px;line-height:1.12;
+  padding:15px 30px;border-radius:16px;text-transform:uppercase;text-wrap:balance;
+  align-self:flex-start;letter-spacing:.004em;
+  box-shadow:0 16px 44px oklch(58% 0.14 152 / .42),
+    inset 0 1px 0 oklch(92% 0.1 152 / .35),
+    0 0 0 1px oklch(80% 0.1 86 / .14)}
+.card-body{font-size:45px;line-height:1.4;color:var(--ink);margin-top:30px;
+  font-weight:500;text-wrap:pretty}
+.card-body strong{color:var(--green-soft);font-weight:800;
+  text-shadow:0 0 24px oklch(80% 0.1 152 / .35)}
+
+.card-tip{display:flex;gap:20px;align-items:flex-start;font-size:31px;line-height:1.36;
+  color:var(--green-soft);margin-top:auto;padding-top:30px;font-weight:500;text-wrap:pretty;
+  position:relative}
+/* divisória do tip: tracejado verde com brilho dourado por baixo */
+.card-tip::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:repeating-linear-gradient(90deg, var(--green) 0 14px, transparent 14px 26px);
+  opacity:.85}
+.card-tip::after{content:'';position:absolute;top:1px;left:0;right:0;height:10px;
+  background:linear-gradient(180deg, oklch(76% 0.105 83 / .18), transparent);
+  pointer-events:none}
+.card-tip .tipic{flex:0 0 auto;width:42px;height:42px;margin-top:2px;color:var(--gold-soft);
+  filter:drop-shadow(0 0 10px oklch(80% 0.1 86 / .4))}
+.card-tip .tipic svg{width:42px;height:42px}
+.card-tip strong{color:var(--gold-soft);font-weight:800}
+</style>
+</head>
+<body>
+
+<div class="slide concept">
+  <div class="frame-in"></div>
+  <span class="corner tl"></span><span class="corner tr"></span>
+  <span class="corner bl"></span><span class="corner br"></span>
+  <div class="glow"></div>
+
+  <!-- topbar: wordmark + contador -->
+  <div class="topbar">
+    <div class="brandmark">
+      <span class="seal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v15H5.5A1.5 1.5 0 0 0 4 20.5z"/>
+          <path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v15h5.5A1.5 1.5 0 0 1 20 20.5z"/>
+        </svg>
+      </span>
+      <span>Minuto<b>Real</b></span>
+    </div>
+    <div class="count"><b>04</b><span class="sl">/</span>04</div>
+  </div>
+
+  <!-- painel translúcido com o conteúdo -->
+  <div class="panel">
+    <div class="card-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2v3"/><path d="M12 19v3"/>
+        <path d="M5 12H2"/><path d="M22 12h-3"/>
+        <path d="M9.5 9.5 7.5 7.5"/><path d="M16.5 9.5 18.5 7.5"/>
+        <path d="M9.5 14.5 7.5 16.5"/><path d="M16.5 14.5 18.5 16.5"/>
+        <circle cx="12" cy="12" r="3.2"/>
+      </svg>
+    </div>
+
+    <span class="card-title">A liberdade mora no intervalo</span>
+
+    <p class="card-body">Entre o que te acontece e o que você faz existe uma fresta — e é nela que cabe toda a sua liberdade. Uma pausa, nomear a emoção, olhar-se como olharia um estranho: cada gesto <strong>alarga a fresta</strong> e devolve o comando ao Adulto, tirando-o da Criança e do Pai que reagem por impulso.</p>
+
+    <div class="card-tip">
+      <span class="tipic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 1.5"/>
+          <path d="M9 2h6"/><path d="M19 4l1.5 1.5"/>
+        </svg>
+      </span>
+      <span><strong>Regra:</strong> quando a intensidade for alta, espere 24h. Pressa emocional quase nunca decide bem.</span>
+    </div>
+  </div>
+
+  <!-- rodapé: dots + wordmark -->
+  <div class="dots"><i></i><i></i><i></i><i class="on"></i></div>
+  <div class="wm">Minuto Real</div>
+</div>
+
+</body>
+</html>

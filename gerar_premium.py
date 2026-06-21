@@ -1,0 +1,262 @@
+# -*- coding: utf-8 -*-
+"""Gerador PREMIUM de carrossel (1080x1350) — nivel das referencias do usuario
+(u02/u03/u04): ILUSTRACAO cinematografica por IA (videos/imagen.py = Imagen 4.0)
++ COMPOSICAO da marca por cima (wordmark, titulo serifa, caixa de takeaway, cromo).
+
+Obedece o contrato de usabilidade: texto enxuto (gc._lead), 1 so progresso (dots),
+marca coesa, billboard. Cache das artes de IA em videos/_premium/<slug>/art_*.png
+(nao regera se ja existe = controle de custo; a composicao e' refeita sempre).
+
+  python gerar_premium.py <slug>            # capa + conceitos + CTA (premium)
+  python gerar_premium.py <slug> --no-img   # so recompoe (usa arte em cache)
+Saida: videos/_premium/<slug>/NN.png
+"""
+import sys, base64
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / 'videos'))
+import tokens
+import gerar_carrossel as gc                      # _lead (orcamento de texto)
+from gerar_infografico import _chapter_title, _chapter_num, _even_sample, _first_sentence, _font_face
+
+OUT = ROOT / 'videos' / '_premium'
+FONTS = ROOT / '_fonts'
+W, H = 1080, 1350
+
+_NOTEXT = ("absolutely no text of any kind, no words, no letters, no typography, no book titles, "
+           "no signage, no nameplates, no captions, no watermark")
+
+# DIRECOES DE ARTE (estilos). Cada uma = prompt-base + scrim de composicao compativel.
+# Gera em pasta propria (videos/_premium/<slug>/<estilo>/) -> NUNCA sobrescreve outra,
+# pra ir comparando o que funciona. Adicione novos estilos aqui.
+STYLES = {
+    'vivido': {
+        'base': ("vivid luminous saturated colors, bright radiant daylight, lush emerald green and warm gold, "
+                 "airy uplifting joyful atmosphere, soft glowing rim light, painterly digital illustration, "
+                 "crisp vibrant detail, premium editorial book-summary art, masterpiece, " + _NOTEXT),
+        'scrim': ("linear-gradient(180deg, rgba(5,9,8,.42) 0%, rgba(5,9,8,0) 22%, rgba(5,9,8,0) 40%, "
+                  "rgba(5,9,8,.55) 64%, rgba(5,9,8,.92) 100%)"),
+    },
+    'morbido': {
+        'base': ("deep emerald green and antique gold palette, cinematic chiaroscuro lighting, "
+                 "dramatic moody dark atmosphere, painterly digital illustration, rich texture and detail, "
+                 "dark empty negative space, premium editorial book-summary art, masterpiece, " + _NOTEXT),
+        'scrim': ("linear-gradient(180deg, rgba(5,9,8,.80) 0%, rgba(5,9,8,.05) 25%, rgba(5,9,8,.02) 44%, "
+                  "rgba(5,9,8,.70) 72%, rgba(5,9,8,.95) 100%)"),
+    },
+}
+
+# Cenas VISUAIS curadas (sem palavras do titulo -> a IA nao baked texto; sem termos de
+# brilho -> o estilo decide claro/escuro). Override por slug; chaves cover, c1..cN, cta.
+CURATED = {
+    '48-leis-do-poder': {
+        'c2': ("an elegant masked aristocrat in opulent baroque attire adjusting an ornate golden "
+               "theatrical mask before a gilded mirror in a grand ballroom, graceful figures around"),
+    },
+}
+
+
+def _b64(p):
+    return base64.b64encode(Path(p).read_bytes()).decode('ascii')
+
+
+
+def _art(slug, style, key, scene, no_img=False, aspect='3:4'):
+    """Gera (ou reusa do cache) a ilustracao de IA p/ um slide, no estilo dado."""
+    d = OUT / slug / style
+    d.mkdir(parents=True, exist_ok=True)
+    p = d / f'art_{key}.png'
+    if p.exists() or no_img:
+        return p if p.exists() else None
+    import imagen
+    prompt = f"{scene}. {STYLES[style]['base']}"
+    print(f'  [imagen-ultra-2K · {style}] {key}: {scene[:48]}...')
+    if not imagen.gen(prompt, str(p), aspect=aspect, tier='ultra', size='2K'):
+        return None
+    return p
+
+
+# ----------------------------- CROMO + CSS compartilhado -----------------------------
+_ICON_BOOK = ('<svg viewBox="0 0 64 64" fill="none"><path d="M12 14h18a6 6 0 016 6v30a6 6 0 00-6-6H12z" '
+              'stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M52 14H34a6 6 0 00-6 6v30a6 6 0 016-6h18z" '
+              'stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>')
+_ICON_SPARK = ('<svg viewBox="0 0 64 64" fill="none"><path d="M32 10l5 17 17 5-17 5-5 17-5-17-17-5 17-5z" '
+               'stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>')
+_ICON_ARROW = ('<svg viewBox="0 0 64 64" fill="none"><path d="M12 32h36M34 18l16 14-16 14" '
+               'stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>')
+_ICON_BOOK_MARK = ('<svg viewBox="0 0 64 64" fill="none"><path d="M18 10h28v44L32 44 18 54z" '
+                   'stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg>')
+
+BASE_CSS = """
+__ROOT__
+:root{
+  --bg: oklch(14.5% 0.014 152); --ink: oklch(98% 0.008 152);
+  --green-a42: oklch(70% 0.13 152 / .42); --green-a40: oklch(70% 0.13 152 / .40);
+  --green-a35: oklch(70% 0.13 152 / .35); --green-a30: oklch(70% 0.13 152 / .30);
+  --green-shadow: oklch(50% 0.13 152 / .5); --green-dim-a40: oklch(70% 0.05 152 / .4);
+  --hand-color: oklch(70% 0.04 152 / .8);
+}
+__FF__
+*{margin:0;padding:0;box-sizing:border-box}
+.slide{width:1080px;height:1350px;position:relative;overflow:hidden;font-family:'Hanken Grotesk',sans-serif;background:var(--bg);color:var(--ink)}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.scrim{position:absolute;inset:0;background:__SCRIM__}
+.frame{position:absolute;inset:34px;border:2px dashed var(--green-a42);border-radius:30px;pointer-events:none}
+.wrap{position:absolute;inset:0;padding:74px 76px 70px;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:center}
+.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em;font-size:27px;text-transform:uppercase;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.brand .seal{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--green);color:#06140d;box-shadow:0 8px 26px rgba(0,0,0,.5)}
+.brand .seal svg{width:27px;height:27px}
+.brand b{color:var(--green)}
+.tag{font-weight:800;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:var(--green-soft);border:1.5px solid var(--green-a40);border-radius:999px;padding:9px 20px;background:rgba(8,20,14,.5)}
+.spacer{flex:1 1 auto}
+.src{font-family:'Literata',serif;font-weight:600;font-size:29px;color:var(--green-soft);margin-bottom:8px;text-shadow:0 2px 16px rgba(0,0,0,.85)}
+.src b{color:var(--green)}
+h1{font-family:'Literata',serif;font-weight:600;line-height:.98;letter-spacing:-.01em;text-shadow:0 4px 30px rgba(0,0,0,.9)}
+.cover h1{font-size:118px;font-weight:700;text-transform:uppercase;letter-spacing:-.02em;font-family:'Hanken Grotesk';line-height:.9}
+.cover h1 .lt{color:var(--green)} .cover h1 .bd{color:#fff}
+.concept h1{font-size:100px} .concept h1 .lt{color:#fff} .concept h1 .bd{color:var(--green);font-style:italic}
+.cta h1{font-size:120px;font-weight:800;text-transform:uppercase;font-family:'Hanken Grotesk';line-height:.88}
+.cta h1 .bd{color:var(--green)} .cta h1 .lt{color:#fff}
+.take{margin-top:32px;display:flex;gap:22px;align-items:flex-start;border:1.5px solid var(--green-a30);border-left:5px solid var(--gold);border-radius:20px;padding:24px 30px;background:rgba(6,12,10,.62);box-shadow:0 18px 50px rgba(0,0,0,.5)}
+.take .ic{flex:0 0 auto;width:58px;height:58px;border-radius:15px;display:flex;align-items:center;justify-content:center;background:var(--gold);color:#1a1205}
+.take .ic svg{width:36px;height:36px}
+.take .lbl{font-weight:900;font-size:20px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.take p{font-size:28px;line-height:1.26;color:#eef2f0;font-weight:500;margin-top:5px}
+.take p b{color:var(--green-soft);font-weight:800}
+.promise{font-size:30px;color:var(--green-soft);font-weight:600;margin-top:14px;max-width:840px;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+.hook{margin-top:26px;display:inline-flex;align-items:center;gap:18px;font-size:54px;font-weight:900;text-transform:uppercase;color:#fff}
+.hook .n{font-size:96px;color:var(--gold);line-height:.8}
+.swipe{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-weight:800;font-size:30px;letter-spacing:.12em;text-transform:uppercase;color:#06140d;background:var(--green);padding:18px 40px;border-radius:999px;box-shadow:0 16px 44px var(--green-shadow)}
+.swipe svg{width:34px;height:34px}
+.rows{margin-top:8px;display:flex;flex-direction:column;gap:18px}
+.row{display:flex;gap:18px;align-items:center;font-size:30px;font-weight:600;color:#eef2f0}
+.row .ri{flex:0 0 auto;width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(8,20,14,.6);border:1.5px solid var(--green-a35);color:var(--green)}
+.row .ri svg{width:30px;height:30px}
+.row b{color:var(--green);font-weight:800}
+.save{margin-top:30px;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;font-weight:900;font-size:32px;letter-spacing:.06em;text-transform:uppercase;color:#06140d;background:var(--green);padding:20px 44px;border-radius:18px;box-shadow:0 16px 44px var(--green-shadow)}
+.save svg{width:34px;height:34px}
+.dots{display:flex;gap:12px;justify-content:center;margin-top:26px}
+.dots i{width:11px;height:11px;border-radius:999px;background:var(--green-dim-a40)}
+.dots i.on{width:36px;background:var(--green)}
+.hand{text-align:center;font-weight:800;letter-spacing:.24em;font-size:18px;color:var(--hand-color);text-transform:uppercase;margin-top:16px}
+"""
+
+
+def _brand(eyebrow):
+    return (f'<div class="top"><span class="brand"><span class="seal">{_ICON_BOOK}</span>MINUTO<b>REAL</b></span>'
+            f'<span class="tag">{eyebrow}</span></div>')
+
+
+def _dots(pos, total):
+    return '<div class="dots">' + ''.join(f'<i class="{"on" if k == pos else ""}"></i>' for k in range(total)) + '</div>'
+
+
+def _doc(inner, scrim):
+    css = (BASE_CSS
+           .replace('__ROOT__', tokens.ROOT)
+           .replace('__FF__', _font_face())
+           .replace('__SCRIM__', scrim))
+    return ('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><style>'
+            + css + '</style></head><body>' + inner + '</body></html>')
+
+
+def _slide(cls, art, body):
+    bg = f'<img class="bg" src="data:image/png;base64,{_b64(art)}">' if art else ''
+    return (f'<div class="slide {cls}">{bg}<div class="scrim"></div><div class="frame"></div>'
+            f'<div class="wrap">{body}</div></div>')
+
+
+# ----------------------------- layouts -----------------------------
+def cover_html(book, art, n_ideias, total):
+    return _slide('cover', art,
+        _brand(' · '.join(book.get('tags', [])[:2]).upper() or 'Resumo')
+        + '<div class="spacer"></div>'
+        + f'<h1><span class="lt">{book["header_light"]}</span> <span class="bd">{book["header_bold"]}</span></h1>'
+        + f'<div class="promise">{_first_sentence(book.get("intro", ""), 130)}</div>'
+        + f'<div class="hook"><span class="n">{n_ideias}</span>ideias que ficam</div>'
+        + f'<div class="swipe">arrasta {_ICON_ARROW}</div>'
+        + _dots(0, total))
+
+
+def concept_html(book, ch, art, pos, total):
+    num = _chapter_num(ch)
+    src = f'Capítulo {int(num)} · <b>{_chapter_title(ch)}</b>' if num else f'<b>{_chapter_title(ch)}</b>'
+    title = _chapter_title(ch)
+    # takeaway: melhor tip do capitulo, enxuto
+    tip = ''
+    for c in ch.get('cards', []):
+        if c.get('tip'):
+            tip = gc._lead(__import__('re').sub(r'^<strong>.*?</strong>\s*', '', c['tip']), max_sent=2, cap=150)
+            break
+    if not tip:
+        tip = gc._lead(ch.get('intro', ''), max_sent=2, cap=150)
+    return _slide('concept', art,
+        _brand(f'{book["header_light"]} {book["header_bold"]}'.strip())
+        + '<div class="spacer"></div>'
+        + f'<div class="src">{src}</div>'
+        + f'<h1><span class="lt">{title}</span></h1>'
+        + f'<div class="take"><span class="ic">{_ICON_SPARK}</span><div>'
+        + f'<div class="lbl">Modelo mental</div><p>{tip}</p></div></div>'
+        + _dots(pos, total))
+
+
+def cta_html(book, art, total):
+    return _slide('cta', art,
+        _brand('Minuto Real') + '<div class="spacer"></div>'
+        + '<h1><span class="lt">Gostou?</span> <span class="bd">tem mais.</span></h1>'
+        + '<div class="rows" style="margin-top:30px">'
+        + f'<div class="row"><span class="ri">{_ICON_BOOK_MARK}</span>O livro inteiro em 1 página — <b>no acervo</b></div>'
+        + f'<div class="row"><span class="ri">{_ICON_SPARK}</span>Resumo de ~5 min <b>no YouTube</b></div>'
+        + '</div>'
+        + f'<div class="save">{_ICON_BOOK_MARK} Salve para revisar</div>'
+        + _dots(total - 1, total)
+        + '<div class="hand">@minutoreal1701 · link na bio</div>')
+
+
+def build(slug, style='vivido', no_img=False):
+    data = __import__(slug.replace('-', '_') + '_data')
+    book = data.BOOK
+    chaps = _even_sample(getattr(data, 'CHAPTERS', []), 4)
+    total = 1 + len(chaps) + 1                       # capa + conceitos + cta
+    out = OUT / slug / style
+    out.mkdir(parents=True, exist_ok=True)
+
+    scenes = {**CURATED.get(slug, {}), **getattr(data, 'PREMIUM_SCENES', {})}
+    slides = []
+    # capa — cena TEMATICA (nunca o titulo do livro no prompt: isso faz a IA cravar texto borrado)
+    _theme = ', '.join(book.get('tags', [])[:3]) or 'wisdom, insight, transformation'
+    art = _art(slug, style, 'cover', scenes.get('cover') or f"a grand cinematic establishing scene evoking the themes of {_theme}", no_img)
+    slides.append(cover_html(book, art, len(chaps), total))
+    # conceitos
+    for i, ch in enumerate(chaps, 1):
+        sc = scenes.get(f'c{i}') or (f"a cinematic symbolic scene evoking the concept of {_chapter_title(ch)}, "
+              "told purely through imagery, objects, figures and symbolism")
+        art = _art(slug, style, f'c{i}', sc, no_img)
+        slides.append(concept_html(book, ch, art, i, total))
+    # cta
+    art = _art(slug, style, 'cta', scenes.get('cta') or "an open antique book radiating light, glowing floating particles, a luminous still life", no_img)
+    slides.append(cta_html(book, art, total))
+
+    scrim = STYLES[style]['scrim']
+    from playwright.sync_api import sync_playwright
+    with sync_playwright() as p:
+        b = p.chromium.launch()
+        pg = b.new_page(viewport={'width': W, 'height': H}, device_scale_factor=2)
+        for i, html in enumerate(slides, 1):
+            pg.set_content(_doc(html, scrim), wait_until='networkidle')
+            pg.evaluate('document.fonts.ready'); pg.wait_for_timeout(350)
+            fp = out / f'{i:02d}.png'
+            pg.query_selector('.slide').screenshot(path=str(fp))
+            print('OK ->', fp)
+        b.close()
+
+
+if __name__ == '__main__':
+    a = [x for x in sys.argv[1:] if not x.startswith('--')]
+    style = next((x.split('=', 1)[1] for x in sys.argv if x.startswith('--style=')), 'vivido')
+    if not a:
+        sys.exit('uso: python gerar_premium.py <slug> [--style=vivido|morbido] [--no-img]')
+    build(a[0], style=style, no_img='--no-img' in sys.argv)

@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"ic":"link","t":"Omnichannel e O2O","emph":"Omnichannel","b":"Integrar os pontos de contato <strong>online e offline numa experiência sem costura</strong> — o O2O (online-to-offline). O cliente pesquisa no app, compra na loja e é reconhecido em ambos, sem recomeçar do zero a cada troca de canal. A marca é uma só casa, e cada canal é uma porta para ela.","tip":"<strong>Como aplicar:</strong> garanta que a marca reconheça o mesmo cliente em todo canal — a junta entre eles não pode aparecer.","wide":true},
+    {"ic":"spark","t":"O Momento UAU","emph":"UAU","b":"A experiência que surpreende — <strong>prazerosa, envolvente e engajadora</strong> — é o gatilho que dispara a Apologia e, com ela, eleva o BAR. O “UAU” fecha a espiral dos cinco As: transforma quem comprou em quem recomenda. E essa surpresa não se promete num anúncio; só se entrega na vivência.","tip":"<strong>Regra:</strong> projete deliberadamente um momento de encantamento no uso — é ele, não o slogan, que faz o cliente falar de você."},
+    {"ic":"target","t":"Engajamento com Propósito","emph":"Propósito","b":"Três alavancas cultivam a afinidade: <strong>apps móveis</strong> (utilidade na palma da mão), <strong>CRM social</strong> (conversar e resolver às claras nas redes) e <strong>gamificação</strong> (recompensas, níveis, missões). Todas a serviço do vínculo — não do enfeite. Engajar é aproximar, não distrair.","tip":"<strong>Sinal de alerta:</strong> gamificar por gamificar, sem valor real para o cliente, vira fricção disfarçada de diversão.","warn":true}
+  ]
+}

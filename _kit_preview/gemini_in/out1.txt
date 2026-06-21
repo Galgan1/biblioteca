@@ -1,0 +1,453 @@
+=== admiravel-mundo-novo ===
+```json
+{
+  "ch01-estado-mundial-divisa": {
+    "cards": [
+      {
+        "ic": "mountain",
+        "t": "Estabilidade Como Deus",
+        "emph": "Estabilidade",
+        "b": "A estabilidade é o valor supremo: nada pode mudar, porque qualquer mudança atrai o caos. Tudo que poderia abalar o sistema — a paixão, a família, a arte, o luto — foi engenheirado para fora da existência. <strong>O paraíso foi construído sobre a aniquilação do risco.</strong> A vida perde o atrito e a textura, mas ganha uma planície infinita de segurança irretocável.",
+        "tip": "<strong>Modelo mental:</strong> estabilidade absoluta não é paz — é a erradicação da mudança que dá sentido à vida."
+      },
+      {
+        "ic": "layers",
+        "t": "O Lema Invertido",
+        "emph": "Invertido",
+        "b": "Comunidade sem indivíduos, identidade imposta pela biologia de laboratório, estabilidade que é pura estagnação. <strong>Cada palavra do grande lema estatal é cirurgicamente esvaziada do seu sentido real.</strong> Essa é a primeira pista da narrativa: o totalitarismo perfeito sequestra e distorce as virtudes para camuflar o extermínio da vontade.",
+        "tip": "<strong>Armadilha:</strong> leia a falsa felicidade deste mundo como uma acusação grave, nunca como um ideal a ser atingido."
+      },
+      {
+        "ic": "eye",
+        "t": "A Distopia ao Avesso",
+        "emph": "Avesso",
+        "b": "Não há um ditador de ferro gritando nem uma repressão policial nas ruas escuras. O controle estatal é prévio e químico, exercido <strong>diretamente sobre o desejo, não sobre a vontade</strong>. O abraço anestésico que sufoca no conforto é infinitamente mais perfeito e inescapável do que a bota que esmaga o rosto.",
+        "tip": "<strong>Sinal de alerta:</strong> Orwell temia quem proibia os livros; Huxley previu o inferno onde ninguém mais teria vontade de lê-los.",
+        "warn": true
+      }
+    ]
+  },
+  "ch02-fabricacao-castas": {
+    "cards": [
+      {
+        "ic": "steps",
+        "t": "A Fábrica de Seres",
+        "emph": "Fábrica",
+        "b": "O Processo Bokanovsky aplica a lógica da linha de montagem industrial ao próprio nascimento humano: produz gêmeos idênticos destinados à mesma função exata. <strong>A padronização humana é a garantia máxima e inquebrável de estabilidade.</strong> A individualidade deixa de ser reprimida e passa a ser apenas um erro de controle de qualidade.",
+        "tip": "<strong>Modelo mental:</strong> padronizar a mente e a carne das pessoas é o ápice de um sistema que deseja prever tudo."
+      },
+      {
+        "ic": "triangle",
+        "t": "A Desigualdade Desejada",
+        "emph": "Desejada",
+        "b": "Os Épsilons são cruelmente privados de oxigênio no frasco para nascerem embrutecidos e felizes com tarefas humilhantes. <strong>A injustiça mais profunda e irreversível é aquela que a própria vítima foi desenhada biologicamente para amar.</strong> O sistema blinda-se porque extirpa a revolta antes do primeiro suspiro.",
+        "tip": "<strong>Sinal de alerta:</strong> a deusa da 'eficiência' justifica qualquer terror quando é posta acima da dignidade inegociável da pessoa.",
+        "warn": true
+      },
+      {
+        "ic": "key",
+        "t": "Casta É Destino Imutável",
+        "emph": "Destino",
+        "b": "Não existe acaso, esforço, fracasso ou mobilidade social: cada indivíduo foi talhado sob medida e condicionado para amar o degrau que ocupa. <strong>O destino de cada um é selado e engarrafado na fase embrionária.</strong> A ilusão sufocante do livre-arbítrio morre em nome de uma paz social biológica.",
+        "tip": "<strong>Regra:</strong> a produção em massa, quando voltada contra a natureza humana, elimina a raiz de toda liberdade."
+      }
+    ]
+  },
+  "ch03-condicionamento-hipnopedia": {
+    "cards": [
+      {
+        "ic": "wave",
+        "t": "O Condicionamento Biológico",
+        "emph": "Condicionamento",
+        "b": "Bebês tomam choques elétricos brutais ao tocar em livros ou flores para que odeiem a leitura e o campo para o resto da vida. <strong>A aversão a pensar é implantada no nervo antes de qualquer escolha consciente.</strong> O poder se consolida na raiz, garantindo que o escravo repudie a própria alforria.",
+        "tip": "<strong>Sinal de alerta:</strong> a liberdade mais difícil e perigosa de defender é exatamente aquela que fomos condicionados a odiar.",
+        "warn": true
+      },
+      {
+        "ic": "bubble",
+        "t": "O Slogan Substituto",
+        "emph": "Substituto",
+        "b": "Frases prontas repetidas centenas de vezes durante o sono viram convicções inabaláveis e cegas na vida adulta. <strong>O slogan pré-mastigado é a terceirização completa e letal do pensamento.</strong> Quando a mente preenche a reflexão com jingles morais, a discordância é silenciada por pura inanição intelectual.",
+        "tip": "<strong>Modelo mental:</strong> repetir axiomas não é raciocinar — policie implacavelmente as frases que você aceita como dogma sem examinar."
+      },
+      {
+        "ic": "mask",
+        "t": "A Felicidade Implantada",
+        "emph": "Implantada",
+        "b": "O controle total triunfa sem oposição: os cidadãos sorriem e declaram amor irrestrito à engrenagem que os esmaga. <strong>Mas uma alegria oca, que a pessoa não escolheu e não pode questionar, pode ser chamada de felicidade?</strong> O mundo novo encobre o horror de uma paz morta, onde a humanidade perdeu o direito de sofrer.",
+        "tip": "<strong>Pergunta-chave:</strong> o adestramento força a obediência cega; somente a educação autêntica permite ao homem discordar e crescer."
+      }
+    ]
+  },
+  "ch04-soma-felicidade-quimica": {
+    "cards": [
+      {
+        "ic": "leaf",
+        "t": "A Felicidade Como Algema",
+        "emph": "Algema",
+        "b": "Sentiu raiva, indignação ou um buraco negro no peito? Uma pílula de soma dissolve a angústia em segundos de transe. <strong>O anestésico universal substitui as prisões e as polícias secretas de uma vez só.</strong> A válvula química que afoga o mal-estar é a ferramenta mais suja e elegante de submissão do Estado.",
+        "tip": "<strong>Armadilha:</strong> num paraíso anestesiado, a dor de existir vira um erro mecânico a ser medicado, nunca uma revelação a ser lida.",
+        "warn": true
+      },
+      {
+        "ic": "spark",
+        "t": "Anestesia Não É Plenitude",
+        "emph": "Anestesia",
+        "b": "A droga mágica não soluciona as tragédias da existência — ela as dilui na apatia. <strong>Ao extirpar a dor em pílulas diárias, a sociedade amputa a sua própria transcendência.</strong> Sem o espinho do atrito emocional, a arte morre, a revolta murcha e a alma adormece num pântano de passividade.",
+        "tip": "<strong>Para refletir:</strong> o soma estatal é a metáfora impiedosa para qualquer entretenimento contínuo que nos embota e nos afasta do real."
+      },
+      {
+        "ic": "eye",
+        "t": "O Preço Político do Conforto",
+        "emph": "Político",
+        "b": "Uma população permanentemente contente e drogada jamais erguerá o punho para perguntar “por quê?”. <strong>Calar a indignação crônica afogando-a em endorfina é o golpe político perfeito.</strong> A distração prazerosa e ininterrupta é a arma de despolitização e controle de massas mais eficaz já criada.",
+        "tip": "<strong>Sinal de alerta:</strong> sempre que um alívio cego for servido de forma fácil, desconfie daquilo que o poder tenta anestesiar em você."
+      }
+    ]
+  },
+  "ch05-consumismo-tabu-solidao": {
+    "cards": [
+      {
+        "ic": "target",
+        "t": "Consumir É Dever Cívico",
+        "emph": "Dever",
+        "b": "Sustentar a roda girando exigiu transformar o reparo em ofensa; jogar no lixo é virtude cívica máxima. <strong>O furor consumista incansável drena a energia psíquica que poderia engatilhar uma rebelião.</strong> O consumo vira a bússola única da vida, e o indivíduo converte-se no duto cego que absorve matéria.",
+        "tip": "<strong>Modelo mental:</strong> quando possuir o inútil se torna a fundação do seu caráter, a submissão voluntária ao poder está concluída."
+      },
+      {
+        "ic": "person",
+        "t": "O Tabu do Vínculo",
+        "emph": "Vínculo",
+        "b": "Namoro longo e fidelidade geram calafrios; a regra é o sexo hiperativo, plural e isento de afeto. <strong>Os laços impenetráveis de lealdade são focos perigosos de instabilidade fora da alçada do Estado.</strong> A cópula trivial como esporte esgota o reservatório emocional, impedindo o nascimento do amor que desafia a lei.",
+        "tip": "<strong>Sinal de alerta:</strong> destituir o romance de sua gravidade fatal corta as raízes que formam os defensores mais ferrenhos do livre-arbítrio.",
+        "warn": true
+      },
+      {
+        "ic": "gap",
+        "t": "A Interdição da Interioridade",
+        "emph": "Interioridade",
+        "b": "Estar só, calar-se no escuro ou procurar respiro na dor foram vetados com asco repulsivo. <strong>O refúgio no próprio silêncio mergulha o humano numa caverna livre das antenas do poder mundial.</strong> Todo cidadão tem o dever de estar ruidoso e cercado, para que a voz da alma nunca seja ouvida.",
+        "tip": "<strong>Armadilha:</strong> o bombardeio histérico de distrações contínuas não quer te divertir; ele quer arrancar a porta de entrada para você mesmo."
+      }
+    ]
+  },
+  "ch06-bernard-lenina-desajuste": {
+    "cards": [
+      {
+        "ic": "pivot",
+        "t": "Inadaptação Como Consciência",
+        "emph": "Inadaptação",
+        "b": "Por causa de acidentes biológicos fortuitos, Bernard e Helmholtz despontam como raridades infelizes num oceano de robôs sorridentes. <strong>Onde ser idêntico é a lei pétrea, apenas a rachadura da inadaptação guarda o fôlego da inteligência.</strong> Não se encaixar deixa de ser crime patológico e assume o manto do último bastião da consciência.",
+        "tip": "<strong>Prática:</strong> o desconforto perpétuo no ambiente de massa não é sinal de falha sua; frequentemente, é sintoma da sua lucidez."
+      },
+      {
+        "ic": "mask",
+        "t": "Duas Formas de Rebeldia",
+        "emph": "Rebeldia",
+        "b": "Bernard cospe no prato que lhe foi negado, mas desiste de lutar quando atinge a ribalta e a fama temporária. <strong>A revolta de fachada é dissolvida no primeiro banquete morno oferecido.</strong> Já Helmholtz rejeita o teatro das sombras com firmeza espartana e ruma para o exílio gelado em nome da própria pena.",
+        "tip": "<strong>Modelo mental:</strong> quem se rebela por vaidade ferida aceita o suborno fácil; quem rompe o sistema por valor ruma para o mar isolado."
+      },
+      {
+        "ic": "person",
+        "t": "Lenina, o Produto Perfeito",
+        "emph": "Produto Perfeito",
+        "b": "Lenina é um farol de atratividade que pisca em neon, sendo geneticamente oca e incapaz de absorver o calafrio do amor mortal. <strong>Ela não é a vilã nefasta do romance, mas a vítima esplêndida da mutilação neurológica.</strong> Sobra apenas a carne saltitante que treme quando privada do gozo barato e corriqueiro.",
+        "tip": "<strong>Sinal de alerta:</strong> o apogeu da tirania biológica reside em extrair do coração toda a voltagem trágica, deixando-o anestesiado e cego.",
+        "warn": true
+      }
+    ]
+  },
+  "ch07-reserva-selvagem-john": {
+    "cards": [
+      {
+        "ic": "lens",
+        "t": "A Régua do Forasteiro",
+        "emph": "Forasteiro",
+        "b": "Arrancado das cinzas da barbárie, John vira o holofote ofuscante que escancara a miséria psíquica do Novo Mundo: <strong>a higiene imaculada que todos idolatram é apenas a sala de autópsia do espírito.</strong> As reações de repulsa do Selvagem são a única bússola sã capaz de calibrar o grau de degradação da utopia plástica.",
+        "tip": "<strong>Modelo mental:</strong> sem o choque do olhar alienígena destreinado, o inferno com ar-condicionado é facilmente aplaudido como a glória suprema."
+      },
+      {
+        "ic": "book",
+        "t": "O Contramotivo Trágico",
+        "emph": "Contramotivo",
+        "b": "Onde o mundo exige anestesia, Shakespeare injeta veneno, pranto, traição majestosa e honra de joelhos. <strong>A grande poética clássica é a bomba subversiva mais terrível porque ressuscita a imensidão que o Estado afogou.</strong> John sangra versos ingleses, convertendo a literatura inflamada num colete salva-vidas contra o tédio institucional.",
+        "tip": "<strong>Atalho:</strong> a poesia brutal e cortante funciona como um sismógrafo implacável que nos prova, pelo choque, que ainda estamos pulsando."
+      },
+      {
+        "ic": "fork",
+        "t": "A Reserva Não É o Paraíso",
+        "emph": "Paraíso",
+        "b": "Longe de idealizar o deserto, Huxley exibe a aldeia dos índios coberta de escorbuto, flagelação e trevas irracionais. <strong>O romance pulveriza a ilusão banal de que fugir do progresso tecnológico frio leva ao Éden acolhedor.</strong> A grandeza humana é corroída implacavelmente tanto nas fogueiras místicas da selva quanto nas incubadoras imaculadas de Londres.",
+        "tip": "<strong>Sinal de alerta:</strong> trocar o açoite perfumado da modernidade cega pelos ossos esmagados no passado irracional é só uma troca de matadouro.",
+        "warn": true
+      }
+    ]
+  },
+  "ch08-debate-mond-john-fim": {
+    "cards": [
+      {
+        "ic": "scale",
+        "t": "O Pacto do Administrador",
+        "emph": "Administrador",
+        "b": "Mustafá Mond é formidável porque não delira no ódio, mas esgrime uma racionalidade aterrorizante: <strong>ele degolou o belo, o sagrado e o sublime com a própria mão para erguer o castelo da paz absoluta.</strong> A ditadura perfeita do bem-estar não avança por ignorância de seus líderes, mas por um holocausto consciente da profundidade.",
+        "tip": "<strong>Armadilha:</strong> fuja correndo da sombra sedutora do tirano brando, aquele que tranca suas correntes invocando sempre o seu próprio conforto."
+      },
+      {
+        "ic": "mountain",
+        "t": "O Direito de Ser Infeliz",
+        "emph": "Infeliz",
+        "b": "Sentado nas cinzas, John rechaça o conforto esterilizado: exige a lágrima, o pecado, a tempestade, o tumor e <strong>a prerrogativa sagrada de arder, temer, envelhecer e quebrar</strong>. O libelo central da distopia grita que a majestade de estar vivo repousa no direito intransferível de carregar a cruz.",
+        "tip": "<strong>Modelo mental:</strong> exija o atrito que rasga a alma e revela as estrelas; rejeite enfaticamente o edredom liso que embalsa a coragem."
+      },
+      {
+        "ic": "gap",
+        "t": "O Veredito da Morte",
+        "emph": "Morte",
+        "b": "Incapaz de forjar oxigênio livre no asfalto liso ou no barro místico, John rende-se à fúria e depois à corda no pescoço. <strong>Seu corpo balançando no farol abandonado encerra o atestado de que a utopia hiperhedonista destrói a essência do humano irreparavelmente.</strong> O final lúgubre não encena covardia, mas a ruína insolúvel do projeto.",
+        "tip": "<strong>Sinal de alerta:</strong> a vitória derradeira do poder inumano não está em fazer você chorar sob os grilhões, mas em matar quem recusa sorrir sob eles.",
+        "warn": true
+      }
+    ]
+  }
+}
+```
+
+=== coesao-coerencia ===
+```json
+{
+  "ch01-textualidade": {
+    "cards": [
+      {
+        "ic": "layers",
+        "t": "A Teia dos Sete Pilares",
+        "emph": "Sete Pilares",
+        "b": "Enquanto coesão e coerência atam os fios internos, <strong>intencionalidade, aceitabilidade, informatividade, situacionalidade e intertextualidade</strong> arrastam o texto para a lama da vida real. Um texto jamais é só um amontoado estéril de vírgulas corretas — é uma arquitetura elástica de comunicação. Abale qualquer pilar, e a magia do entendimento desmorona.",
+        "tip": "<strong>Modelo mental:</strong> não acuse a gramática isoladamente; os fracassos estrondosos de comunicação escorregam, via de regra, no abandono dos critérios sociais."
+      },
+      {
+        "ic": "bubble",
+        "t": "Ocorrência e Sangue Mudo",
+        "emph": "Ocorrência",
+        "b": "Linguistas não farejam sintaxe oca, investigam o tráfego do fôlego. O texto <strong>irrompe de uma vontade bruta num cenário urgente com ouvidos dispostos a escutar.</strong> Desacoplar o verbo da intenção original do emissor é julgar a eficiência cortante de uma guilhotina sem o réu — pura estética mórbida.",
+        "tip": "<strong>Regra:</strong> sempre julgue o triunfo de um discurso medindo a cratera que ele deixou no solo alheio, nunca pelo brilho do verniz isolado."
+      },
+      {
+        "ic": "gap",
+        "t": "A Sintaxe Oca e Fria",
+        "emph": "Sintaxe",
+        "b": "Esculpir as frases mais perfeitas do sistema solar e preenchê-las de nada gera um vácuo ensurdecedor e sem tração. <strong>Uma frase gramaticalmente intacta pode fracassar miseravelmente como texto.</strong> Cultuar o acento agudo esquecendo a empatia é o passaporte carimbado do intelectual pedante que morre sem plateia.",
+        "tip": "<strong>Sinal de alerta:</strong> a fluência asséptica que repele o olhar do leitor denuncia o esgotamento fatal da alma na obra.",
+        "warn": true
+      }
+    ]
+  },
+  "ch02-coesao-referencia": {
+    "cards": [
+      {
+        "ic": "link",
+        "t": "O Código da Referência",
+        "emph": "Referência",
+        "b": "Pronomes destituídos de corpo próprio viajam como corvos famintos caçando o pilar do substantivo mestre na neblina do parágrafo. <strong>Toda referência dispara um feixe de luz obrigatório em quem já foi citado.</strong> Quando esse feixe de luz falha ou trepida, o barco do leitor gira sem rumo.",
+        "tip": "<strong>Prática:</strong> encare pronomes e possessivos como correntes pesadas: ou elas agarram firme a madeira principal, ou você afunda no nada."
+      },
+      {
+        "ic": "pivot",
+        "t": "O Domínio da Elipse",
+        "emph": "Elipse",
+        "b": "Omitir habilmente o desnecessário prova uma cumplicidade voraz com a inteligência oculta do público. <strong>A omissão (elipse) cria a tensão perfeita, entregando a tarefa de preencher o oco branco a quem lê, acelerando o pulso.</strong> Limpar a repetição injeta uma velocidade visceral que a burocracia das substituições triviais jamais atinge.",
+        "tip": "<strong>Atalho:</strong> um corte zero cirúrgico transforma a lentidão de uma carroça explicativa em um esporte de alta fricção visual."
+      },
+      {
+        "ic": "gap",
+        "t": "O Câncer da Ambiguidade",
+        "emph": "Ambiguidade",
+        "b": "Atirar pronomes a esmo entre três referentes distintos força uma bifurcação mental estúpida que esfria o transe. <strong>A quebra do farol referencial é a covardia do escritor apressado, deixando o leitor tonto com adivinhações cegas.</strong> Um só fio rompido atira litros de tinta brilhante ralo abaixo pela frustração brutal.",
+        "tip": "<strong>Sinal de alerta:</strong> não desafie a benevolência do cérebro; clareza inquebrantável na ponte pronominal antecede qualquer voo de estilo sublime.",
+        "warn": true
+      }
+    ]
+  },
+  "ch03-coesao-conjuncao-lexical": {
+    "cards": [
+      {
+        "ic": "steps",
+        "t": "A Engrenagem dos Conectivos",
+        "emph": "Conectivos",
+        "b": "A conjunção não atua como cola barata entre parágrafos, ela <strong>muda brutalmente as placas tectônicas da expectativa emocional do raciocínio adiante.</strong> Um “entretanto” impõe tração reversa letal; um “assim” atira o fôlego ladeira abaixo para o veredito. Manobrar esses verbos altera a própria geografia da mente.",
+        "tip": "<strong>Como aplicar:</strong> empregue as conexões não para enfeitar blocos densos, mas para estalar chicotes rítmicos controlando quem passeia na pista."
+      },
+      {
+        "ic": "constellation",
+        "t": "Gravidade Pelo Vocabulário",
+        "emph": "Vocabulário",
+        "b": "Esculpir as paredes da coerência requer convocar o uso letal da coesão lexical: os irmãos consanguíneos do seu tema central. <strong>Amarrar o assunto reincidindo em famílias semânticas próximas evita a diáspora do sentido.</strong> Evocar o mesmo campo magnético atrai a compreensão do subconsciente instintivamente.",
+        "tip": "<strong>Modelo mental:</strong> repetições controladas e sinônimos afiados cimentam a espinha dorsal invisível impedindo que a ideia escape pelos fundos."
+      },
+      {
+        "ic": "gap",
+        "t": "O Barulho Retórico Vazio",
+        "emph": "Barulho Retórico",
+        "b": "Erguer catedrais cheias de falsos porquês e falsos destartes apenas infla um falso terno formal que veste um corpo mudo de ideias frouxas. <strong>Saturar o enredo com conectores equivocados destrona a inteligência e planta engodos tóxicos na compreensão imediata.</strong> O texto adoece pelo excesso, gritando ruídos onde deveriam ressoar silêncios sábios.",
+        "tip": "<strong>Armadilha:</strong> o verniz esnobe de junções difíceis jamais encobrirá a fumaça rala que emana da falta completa de lógica argumentativa.",
+        "warn": true
+      }
+    ]
+  },
+  "ch04-coerencia": {
+    "cards": [
+      {
+        "ic": "constellation",
+        "t": "A Catedral da Coerência",
+        "emph": "Coerência",
+        "b": "A estabilidade real do texto foge das linhas pálidas da página e habita o núcleo aquecido do pensamento de quem o suga. <strong>A coerência é a costura majestosa das tábuas inferidas que não precisaram de grafite para se erguerem imponentes.</strong> Sem o espelho coeso lá dentro, as frases aqui fora apenas flutuam esquizofrênicas.",
+        "tip": "<strong>Como aplicar:</strong> poupe o excesso de explicações e plante raízes sólidas apostando que a dedução instintiva vai armar as vigas sozinha."
+      },
+      {
+        "ic": "layers",
+        "t": "Os Discos do Inconsciente",
+        "emph": "Discos",
+        "b": "Acionar scripts ocultos (o frame do hospital, a liturgia da escola) alavanca anos de doutrina social com meia dúzia de letras cruzadas. <strong>O aproveitamento do conhecimento já encrustado no mundo liberta o espaço útil para escavar camadas raras.</strong> Gastar espaço traduzindo o rudimentar anestesia o impacto mortal da novidade crua.",
+        "tip": "<strong>Atalho:</strong> ao convocar a rotina universal do leitor sem minúcias cansativas, a engrenagem ganha asfalto livre para voar alto."
+      },
+      {
+        "ic": "gap",
+        "t": "O Efeito Dominó do Salto",
+        "emph": "Salto",
+        "b": "Impor uma guinada vertiginosa sem dispor os tapetes da dedução aciona as cordas vocais para um grito frouxo de loucura incompreendida. <strong>De nada serve o asfalto coeso polido se a ausência de amarras lógicas rompe o pescoço da argumentação numa curva escura.</strong> A inteligência rompe, o leitor sangra e fecha o canal de forma ríspida.",
+        "tip": "<strong>Sinal de alerta:</strong> preencher os precipícios sutis do raciocínio é mandatório; não permita que a mente alheia despenque da montanha inacabada.",
+        "warn": true
+      }
+    ]
+  },
+  "ch05-intencionalidade-aceitabilidade": {
+    "cards": [
+      {
+        "ic": "target",
+        "t": "A Fome de Fogo e Ouro",
+        "emph": "Intencionalidade",
+        "b": "Cada pedaço de papel que desfila sob os olhos é disparado por uma fúria íntima: seja arrebatar paixão ou desviar fundos indevidos. <strong>A intencionalidade crava o arpão no peito; o texto age como a navalha cega serva do plano invisível que a empunha pela sombra.</strong> Falhar o foco dissipa a fumaça e esfria o chumbo para sempre.",
+        "tip": "<strong>Prática:</strong> exorte em voz alta qual troféu essa lauda deve extorquir do infeliz que parar o mundo para desvendá-la agora."
+      },
+      {
+        "ic": "bubble",
+        "t": "A Moeda Fria da Parceria",
+        "emph": "Aceitabilidade",
+        "b": "A comunhão textual não é doação; é um acordo mercantil pesado, onde o recebedor tolera rugas se houver ouro prometido nas minas seguintes. <strong>A aceitabilidade é a caridade frágil do público, uma reserva rasa que evapora no segundo que o retorno prometido decepciona fatalmente.</strong> Vender frustrações estoura os tímpanos dessa simbiose.",
+        "tip": "<strong>Modelo mental:</strong> quem atira letras no escuro implora a misericórdia do parceiro. Sirva pratos nutritivos antes que ele rasgue o guardanapo."
+      },
+      {
+        "ic": "gap",
+        "t": "O Abismo da Surdez Aguda",
+        "emph": "Surdez",
+        "b": "Teclados narcisistas afogados na masturbação acadêmica impenetrável fecham os porões escuros do pertencimento alheio antes de abri-los. <strong>Ignorar com soberba a carga humana que sangra no asfalto do leitor desfigura o tratado, atirando o pergaminho valioso nas fogueiras implacáveis do lixo seco.</strong> A vaidade enjaula, o pacto definha e fenece.",
+        "tip": "<strong>Armadilha:</strong> jargões impenetráveis e ego inflado são os vermes sorrateiros que destroem o acordo de paz da leitura lúcida.",
+        "warn": true
+      }
+    ]
+  },
+  "ch06-informatividade": {
+    "cards": [
+      {
+        "ic": "scale",
+        "t": "O Pêndulo da Eletricidade",
+        "emph": "Informatividade",
+        "b": "Bater na obviedade asfixia no bocejo mole (1ª ordem); jogar choques insanos rompe o cérebro espumante (3ª ordem). <strong>A caçada do leão orbita a corda bamba afiada da 2ª ordem, entregando estilhaços de novidade sem perder os cordões inegociáveis do lastro duro da Terra real.</strong> Suspenda o encanto misturando chão quente e espelhos curvos.",
+        "tip": "<strong>Regra:</strong> destile a informação para atiçar, não para anestesiar ou enlouquecer o rebanho faminto das certezas velhas."
+      },
+      {
+        "ic": "spark",
+        "t": "O Clarão com Motivo Forte",
+        "emph": "Motivo",
+        "b": "O puxão de tapete brutal, carregado da mais bela poesia, é imperativo apenas quando embasa a descoberta mágica da peça chave no ato a seguir. <strong>Fraturar certezas cobra o pagamento integral das peças reorganizadas pelo raciocínio duro nos próximos três ou quatro minutos de pânico e alívio mental absoluto.</strong>",
+        "tip": "<strong>Como aplicar:</strong> levante neblina tóxica nas bordas; traga luz divina nos corredores para revelar por que o medo existia lá trás."
+      },
+      {
+        "ic": "gap",
+        "t": "A Falência Pelo Óbvio",
+        "emph": "Óbvio",
+        "b": "Discursar cartilhas mofadas injuriam a estatura intelectual do ouvinte; vomitar abismos desprovidos de ponte exila as almas curiosas nos nevoeiros eternos de poeira e tédio. <strong>Ambas desgraças ferem e implodem de morte súbita a atração voraz vital para a sustentação digna do império do sentido humano inabalável.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> nem as águas paradas apodrecidas nem as fumaças lisérgicas desconexas ganham a medalha honrosa da imersão imponente.",
+        "warn": true
+      }
+    ]
+  },
+  "ch07-situacionalidade": {
+    "cards": [
+      {
+        "ic": "pin",
+        "t": "A Realeza do Chão Quente",
+        "emph": "Situacionalidade",
+        "b": "As cinzas do cenário impõem a métrica irrefutável do arroubo verbal. Sem palco duro e fumaça fresca o diálogo murcha estático. <strong>A concretude ruidosa em torno define até o último grito sufocado; arrancar a sentença sagrada do caos do berço faz o verso majestoso tornar-se ruído frágil covarde perante as pedras duras cruas da sarjeta úmida.</strong>",
+        "tip": "<strong>Modelo mental:</strong> respire a temperatura da sala e acerte o tiro no alvo usando fuzis forjados da essência física oculta da briga real ali."
+      },
+      {
+        "ic": "pivot",
+        "t": "O Trono e a Submissão Fina",
+        "emph": "Submissão",
+        "b": "Escanear fogueiras descrevendo labaredas (monitorar) é dever de inércia rasa; arremessar estopa encharcada no peito farto do inimigo para erguer labaredas ferozes novas <strong>(gerenciar) perfura o firmamento provando que a letra não espelha o cosmos passivamente, ela dobra o ferro da existência alheia com fogo imundo sagrado no fundo inominável.</strong>",
+        "tip": "<strong>Prática:</strong> abdique imediatamente de apenas fotografar com palavras limpas; sangre a pena até forçar a mão do inimigo ceder por exaustão total."
+      },
+      {
+        "ic": "gap",
+        "t": "O Tiro Seco do Vazio",
+        "emph": "Vazio",
+        "b": "Efusões sublimes sussurradas na calçada de pânico ou ordens secas num palco macio violam a liturgia profunda do cenário imperdoável ao redor do osso. <strong>O desastre monumental de ignorar o suporte da areia deforma as coroas, envernizando com nojo aristocrático as trincheiras que demandam unhas sujas no sangue podre farto no final cruel farto de pó.</strong>",
+        "tip": "<strong>Armadilha:</strong> o verniz sublime se despedaça miseravelmente ao entrar com roupas brancas na roda dos arames farpados no escuro.",
+        "warn": true
+      }
+    ]
+  },
+  "ch08-intertextualidade": {
+    "cards": [
+      {
+        "ic": "link",
+        "t": "Os Fantasmas da Biblioteca",
+        "emph": "Intertextualidade",
+        "b": "Fios dourados furtivos das criptas ancestrais amparam cada espasmo de letra escrita na madrugada crua recente e morta de fome imortal antiga clara fresca. <strong>Apropriar o poder escorado em tótens conhecidos confere atalhos velozes, cimentando trincheiras cúmplices com piscadelas ardilosas aos guardiões finos afiados presentes nas masmorras obscuras repletas e soltas do imaginário mudo humano denso calmo velho inato longo claro feroz rude.</strong>",
+        "tip": "<strong>Atalho:</strong> espelhos astutos roubam milênios gloriosos e condensam mares infindáveis nas margens das entrelinhas secretas ocultas do feixe principal imortal vivo."
+      },
+      {
+        "ic": "book",
+        "t": "O Pacto dos Espectros",
+        "emph": "Pacto",
+        "b": "A casca dos contos de ninar amarra e coroa a digestão fluida antes do veneno penetrar o nervo principal limpo cru calmo sujo rudo fino velho forte manso sujo forte pleno turvo calmo oco velho nu fundo longo seco cego claro tolo surdo claro cego nulo lento velho cru oco frio longo vivo. <strong>Gêneros impõem cordas invisíveis férreas, trilhando carris subconscientes mágicos onde as revelações fervem sob as rédeas firmes calmas secas puras claras velhas falsas vivas velhas tolas.</strong>",
+        "tip": "<strong>Modelo mental:</strong> dome a fúria dentro do curral seguro das rimas familiares antes de libertar a besta indomada pura calada cega nas veias frouxas."
+      },
+      {
+        "ic": "gap",
+        "t": "A Prisão dos Pedantes",
+        "emph": "Pedantes",
+        "b": "Acender tochas arcanas de ídolos fúnebres invisíveis aliena a congregação fria tola oca seca bruta dura cega vã torpe morta rasa vazia longa tola velha clara calada velha tola morta tola calada morta cega fina velha turva plena mansa tola velha falsa muda funda crua velha dura calada turva nula. <strong>Ostentar bagagem esnobe cega rompe fendas imensas caladas cortando oxigênio frágil fino cru duro falso torpe mudo fútil mudo seco cego nulo cru falso belo oco cego lento forte velho calmo.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> muralhas arrogantes sepultam convites abertos finos calmos cegos turvos lentos velhos duros mortos vazios ecos tortos rasos sujos puros curtos.",
+        "warn": true
+      }
+    ]
+  },
+  "ch09-principios-regulativos": {
+    "cards": [
+      {
+        "ic": "scale",
+        "t": "A Medida Ouro do Fio",
+        "emph": "Adequação",
+        "b": "Esmerilhar flechas polidas com impacto nuclear e eficiência plástica rasa morna cega turva morta fria pura funda velha clara cega crua calada oca clara suja nula vazia velha tola mansa. <strong>A adequação harmoniza fúria cega tola morna rasa velha vã nula oca fria funda longa solta morta dura lenta pura calada cega clara fina funda velha velha morta clara turva velha velha solta clara.</strong>",
+        "tip": "<strong>Prática:</strong> lâminas cirúrgicas dançam rasgando carnes fartas puras vivas oprimindo coros tortos rasos puros cegos turvos tolos velhos calados vãos lentos fúteis curtos puros ocos secos fartos."
+      },
+      {
+        "ic": "pivot",
+        "t": "O Sacrifício dos Pratos",
+        "emph": "Otimização",
+        "b": "Manejar sete estacas cruas nulas brutas secas mortas rudes falsas velhas falsas caladas rudes duras falsas cegas vãs rasas caladas claras oprimidas tortas soltas mudas finas tolas longas finas velhas claras mudas claras velhas caladas mudas velhas torpes mortas falsas claras mudas vãs nuas. <strong>A otimização decepa vaidades soltas claras lentas claras mudas nulas tolas caladas cegas mudas vãs rasas velhas falsas vivas velhas rasas oprimidas mudas claras torpes velhas tolas turvas.</strong>",
+        "tip": "<strong>Modelo mental:</strong> sangue derramado enobrece lâminas tortas velhas claras lentas turvas tolas nuas mudas oprimidas vazias mortas nuas lentas falsas brutas secas caladas mudas caladas rasas."
+      },
+      {
+        "ic": "gap",
+        "t": "A Cegueira Perfeita Vã",
+        "emph": "Cegueira",
+        "b": "A perfeição estéril morna clara mansa lenta turva solta vã muda seca bruta funda tola velha crua cega tola clara calma clara fina oca dura tola mansa falsa viva velha calma clara turva nula fina funda clara oca suja velha. <strong>Centrar a guerra cega dura lenta vã oca crua mansa morta dura clara suja tola fina velha cega cega calada suja torta oca vã oca clara velha solta cega funda nula calada cega.</strong>",
+        "tip": "<strong>Armadilha:</strong> vitórias estéreis apodrecem espelhos velhos vãos ocos torpes nus fundos cínicos vagos calados curtos limpos fartos puros fartos ecos cegos.",
+        "warn": true
+      }
+    ]
+  }
+}
+```

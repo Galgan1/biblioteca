@@ -1,93 +1,5 @@
 [
   {
-    "id": "keller-casamento",
-    "title": "O Significado do Casamento",
-    "author": "Timothy Keller",
-    "coverUrl": "assets/keller-casamento-capa.png",
-    "description": "Uma visão profunda e inspiradora sobre o casamento a partir da perspectiva cristã. Cada cônjuge carrega uma definição diferente de amor, moldada pela família de origem.",
-    "tags": [
-      "Relacionamento",
-      "Espiritualidade",
-      "Casamento"
-    ],
-    "progress": "Resumo Geral",
-    "url": "keller-casamento.html",
-    "amazon": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "maquiavel-pedagogo",
-    "title": "Maquiavel Pedagogo",
-    "author": "Pascal Bernardin",
-    "coverUrl": "assets/maquiavel-pedagogo-capa.png",
-    "description": "Desvenda as técnicas de engenharia social aplicadas à educação pela UNESCO para formar o novo cidadão global através da subversão cognitiva e psicológica.",
-    "tags": [
-      "Educação",
-      "Psicologia Social",
-      "Geopolítica"
-    ],
-    "progress": "16 Capítulos",
-    "url": "maquiavel-pedagogo.html",
-    "amazon": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "arte-da-guerra",
-    "title": "A Arte da Guerra",
-    "author": "Sun Tzu",
-    "coverUrl": "assets/arte-da-guerra-capa.png",
-    "description": "O tratado militar mais influente da história. Sun Tzu revela os princípios eternos da estratégia: vencer sem lutar, conhecer o inimigo e a si mesmo, e dominar a arte da dissimulação.",
-    "tags": [
-      "Estratégia",
-      "Liderança",
-      "Filosofia"
-    ],
-    "progress": "13 Capítulos",
-    "url": "arte-da-guerra.html",
-    "amazon": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "experiencia-psicodelica",
-    "title": "A Experiência Psicodélica",
-    "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
-    "coverUrl": "assets/experiencia-psicodelica-capa.png",
-    "description": "Um manual baseado no Livro Tibetano dos Mortos para navegar estados alterados de consciência. Mapeia os Três Bardos da expansão da mente e o protocolo Confiar-Desligar-Flutuar.",
-    "tags": [
-      "Consciência",
-      "Misticismo",
-      "Psicologia"
-    ],
-    "progress": "8 Capítulos",
-    "url": "experiencia-psicodelica.html",
-    "amazon": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "tjmg-regras-cartorios",
     "title": "Normas dos Cartórios (Prov. 93/2020)",
     "author": "TJMG · Corregedoria-Geral de Justiça",
@@ -102,86 +14,6 @@
     "url": "tjmg-regras-cartorios.html"
   },
   {
-    "id": "story-mckee",
-    "title": "Story: Os Princípios do Roteiro",
-    "author": "Robert McKee",
-    "coverUrl": "assets/story-mckee-capa.png",
-    "description": "A bíblia do roteiro. McKee destila os princípios eternos da narrativa — do Incidente Incitante e A Lacuna ao Princípio do Antagonismo e ao Clímax — num sistema operável de estrutura, personagem e significado.",
-    "tags": [
-      "Roteiro",
-      "Narrativa",
-      "Escrita Criativa"
-    ],
-    "progress": "19 Capítulos",
-    "url": "story-mckee.html",
-    "amazon": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "smith-assertividade",
-    "title": "Quando Digo Não, Me Sinto Culpado",
-    "author": "Manuel J. Smith",
-    "coverUrl": "assets/smith-assertividade-capa.png",
-    "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
-    "tags": [
-      "Assertividade",
-      "Comunicação",
-      "Psicologia"
-    ],
-    "progress": "11 Capítulos",
-    "url": "smith-assertividade.html",
-    "amazon": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "poder-do-silencio",
-    "title": "O Poder do Silêncio",
-    "author": "Eckhart Tolle",
-    "coverUrl": "assets/poder-do-silencio-capa.png",
-    "description": "Ensinamentos sobre presença, calma interior e transcendência do ego. Tolle revela como acessar a inteligência primordial que existe além do pensamento e dissolver o sofrimento pela aceitação do Agora.",
-    "tags": [
-      "Espiritualidade",
-      "Consciência",
-      "Meditação"
-    ],
-    "progress": "10 Capítulos",
-    "url": "poder-do-silencio.html",
-    "amazon": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "aristoteles-poetica",
-    "title": "Poética",
-    "author": "Aristóteles",
-    "coverUrl": "assets/aristoteles-poetica-capa.png",
-    "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
-    "tags": [
-      "Filosofia",
-      "Narrativa",
-      "Dramaturgia"
-    ],
-    "progress": "7 Capítulos",
-    "url": "aristoteles-poetica.html"
-  },
-  {
     "id": "save-the-cat",
     "title": "Save the Cat!",
     "author": "Blake Snyder",
@@ -193,7 +25,15 @@
       "Ofício"
     ],
     "progress": "8 Capítulos",
-    "url": "save-the-cat.html"
+    "url": "save-the-cat.html",
+    "amazon": "https://www.amazon.com.br/dp/1932907009/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/1932907009/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "jornada-do-escritor",
@@ -207,7 +47,15 @@
       "Ofício"
     ],
     "progress": "10 Capítulos",
-    "url": "jornada-do-escritor.html"
+    "url": "jornada-do-escritor.html",
+    "amazon": "https://www.amazon.com.br/dp/6583239019/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6583239019/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "sound-design",
@@ -221,7 +69,15 @@
       "Ofício"
     ],
     "progress": "8 Capítulos",
-    "url": "sound-design.html"
+    "url": "sound-design.html",
+    "amazon": "https://www.amazon.com.br/dp/0941188264/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/0941188264/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "audiovisao",
@@ -235,7 +91,15 @@
       "Teoria"
     ],
     "progress": "8 Capítulos",
-    "url": "audiovisao.html"
+    "url": "audiovisao.html",
+    "amazon": "https://www.amazon.com.br/dp/B087ZLCGT3/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/B087ZLCGT3/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "coesao-coerencia",
@@ -249,7 +113,15 @@
       "Redação"
     ],
     "progress": "9 Capítulos",
-    "url": "coesao-coerencia.html"
+    "url": "coesao-coerencia.html",
+    "amazon": "https://www.amazon.com.br/dp/0582554853/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/0582554853/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "ponerologia",
@@ -263,21 +135,15 @@
       "Sociedade"
     ],
     "progress": "10 Capítulos",
-    "url": "ponerologia.html"
-  },
-  {
-    "id": "quem-mexeu-no-queijo",
-    "title": "Quem Mexeu no Meu Queijo?",
-    "author": "Spencer Johnson",
-    "coverUrl": "assets/quem-mexeu-no-queijo-capa.png",
-    "description": "A parábola mais vendida sobre mudança. Spencer Johnson usa quatro personagens num labirinto para mostrar como antecipar, monitorar e se adaptar rápido quando o 'Queijo' — emprego, relação, segurança — sai do lugar.",
-    "tags": [
-      "Mudança",
-      "Carreira",
-      "Autodesenvolvimento"
-    ],
-    "progress": "7 Capítulos",
-    "url": "quem-mexeu-no-queijo.html"
+    "url": "ponerologia.html",
+    "amazon": "https://www.amazon.com.br/dp/859507237X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/859507237X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "nacao-dopamina",
@@ -291,161 +157,15 @@
       "Hábitos"
     ],
     "progress": "9 Capítulos",
-    "url": "nacao-dopamina.html"
-  },
-  {
-    "id": "poder-de-delegar",
-    "title": "O Poder de Delegar",
-    "author": "Donna M. Genett",
-    "coverUrl": "assets/poder-de-delegar-capa.png",
-    "description": "O clássico de Donna Genett que vira do avesso o ditado 'se quer bem feito, faça você mesmo'. Pela parábola dos primos James e Jones, ensina os seis passos da delegação eficaz — preparar, discutir, prazo, nível de autoridade, checkpoints e debriefing — para o líder se multiplicar sem se afogar.",
-    "tags": [
-      "Liderança",
-      "Gestão",
-      "Produtividade"
-    ],
-    "progress": "8 Capítulos",
-    "url": "poder-de-delegar.html"
-  },
-  {
-    "id": "marketing-4-0",
-    "title": "Marketing 4.0",
-    "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
-    "coverUrl": "assets/marketing-4-0-capa.png",
-    "description": "O guia de Kotler para o marketing na era da conectividade. Apresenta a jornada dos Cinco As (Assimilação, Atração, Arguição, Ação, Apologia), os Quatro Cs que substituem os 4 Ps, as métricas PAR e BAR, o fator-F e o marketing humano, de conteúdo, omnichannel e de engajamento.",
-    "tags": [
-      "Marketing",
-      "Negócios",
-      "Digital"
-    ],
-    "progress": "8 Capítulos",
-    "url": "marketing-4-0.html"
-  },
-  {
-    "id": "48-leis-do-poder",
-    "title": "As 48 Leis do Poder",
-    "author": "Robert Greene",
-    "coverUrl": "assets/48-leis-do-poder-capa.png",
-    "description": "O compêndio de Robert Greene sobre a dinâmica do poder, destilado de três mil anos de história. Apresentado em agrupamento temático e em chave defensiva: proteger a reputação, dominar as aparências, criar dependência, a tática da indireção, sedução e timing, a defesa contra manipulação e a lei suprema de ser informe.",
-    "tags": [
-      "Poder",
-      "Estratégia",
-      "Psicologia"
-    ],
-    "progress": "8 Capítulos",
-    "url": "48-leis-do-poder.html"
-  },
-  {
-    "id": "psicologia-financeira",
-    "title": "A Psicologia Financeira",
-    "author": "Morgan Housel",
-    "coverUrl": "assets/psicologia-financeira-capa.png",
-    "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade. Por que o comportamento vence a matemática nas finanças: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver para deixar o tempo compor, a cauda longa, a liberdade como maior dividendo, a riqueza invisível e a margem de segurança.",
-    "tags": [
-      "Finanças",
-      "Comportamento",
-      "Investimento"
-    ],
-    "progress": "11 Capítulos",
-    "url": "psicologia-financeira.html"
-  },
-  {
-    "id": "comunicacao-nao-violenta",
-    "title": "Comunicação Não-Violenta",
-    "author": "Marshall B. Rosenberg",
-    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
-    "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
-    "tags": [
-      "Comunicação",
-      "Empatia",
-      "Relacionamentos"
-    ],
-    "progress": "11 Capítulos",
-    "url": "comunicacao-nao-violenta.html"
-  },
-  {
-    "id": "sutil-arte",
-    "title": "A Sutil Arte de Ligar o F*da-se",
-    "author": "Mark Manson",
-    "coverUrl": "assets/sutil-arte-capa.png",
-    "description": "O best-seller contraintuitivo de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), a tirania do excepcionalismo, os bons e maus valores, a diferença entre responsabilidade e culpa, e a morte como bússola do que importa.",
-    "tags": [
-      "Autodesenvolvimento",
-      "Filosofia",
-      "Comportamento"
-    ],
-    "progress": "8 Capítulos",
-    "url": "sutil-arte.html"
-  },
-  {
-    "id": "coragem-de-nao-agradar",
-    "title": "A Coragem de Não Agradar",
-    "author": "Ichiro Kishimi & Fumitake Koga",
-    "coverUrl": "assets/coragem-de-nao-agradar-capa.png",
-    "description": "O fenômeno japonês de Kishimi e Koga que popularizou Alfred Adler pelo mundo. Em forma de diálogo, vira do avesso a ideia de que somos reféns do trauma: vivemos por objetivos, não por causas. Ensina a separação de tarefas, a sair da armadilha do reconhecimento e a sustentar a felicidade na tríade autoaceitação, confiança e contribuição — a verdadeira coragem de não agradar.",
-    "tags": [
-      "Psicologia",
-      "Adler",
-      "Autoconhecimento"
-    ],
-    "progress": "9 Capítulos",
-    "url": "coragem-de-nao-agradar.html"
-  },
-  {
-    "id": "como-fazer-amigos",
-    "title": "Como Fazer Amigos e Influenciar Pessoas",
-    "author": "Dale Carnegie",
-    "coverUrl": "assets/como-fazer-amigos-capa.png",
-    "description": "Publicado em 1936 e nunca mais saído de moda, é o clássico definitivo sobre influência honesta. Em quatro partes — as 3 técnicas fundamentais, as 6 maneiras de cair nas graças, as 12 maneiras de convencer e as 9 maneiras de liderar sem ofender — Carnegie mostra que influência é atração, não imposição. O fio condutor: pense pelo ponto de vista do outro, reconheça seu valor com sinceridade e desperte nele o desejo de agir.",
-    "tags": [
-      "Comunicação",
-      "Relacionamentos",
-      "Influência"
-    ],
-    "progress": "11 Capítulos",
-    "url": "como-fazer-amigos.html"
-  },
-  {
-    "id": "essencialismo",
-    "title": "Essencialismo",
-    "author": "Greg McKeown",
-    "coverUrl": "assets/essencialismo-capa.png",
-    "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
-    "tags": [
-      "Produtividade",
-      "Foco",
-      "Prioridades"
-    ],
-    "progress": "12 Capítulos",
-    "url": "essencialismo.html"
-  },
-  {
-    "id": "rapido-e-devagar",
-    "title": "Rápido e Devagar: Duas Formas de Pensar",
-    "author": "Daniel Kahneman",
-    "coverUrl": "assets/rapido-e-devagar-capa.png",
-    "description": "O mapa da mente de Daniel Kahneman, vencedor do Nobel de Economia. Os dois sistemas de pensamento (rápido/intuitivo e lento/deliberado), o princípio WYSIATI, as heurísticas e vieses que enganam o julgamento (ancoragem, disponibilidade, representatividade, falácia da conjunção, taxa-base, regressão à média), o excesso de confiança e o pré-mortem, a Teoria do Prospecto (aversão à perda, ponto de referência, enquadramento) e os dois eus — o que experiencia e o que recorda.",
-    "tags": [
-      "Psicologia",
-      "Decisão",
-      "Vieses Cognitivos"
-    ],
-    "progress": "12 Capítulos",
-    "url": "rapido-e-devagar.html"
-  },
-  {
-    "id": "armas-da-persuasao",
-    "title": "As Armas da Persuasão",
-    "author": "Robert B. Cialdini",
-    "coverUrl": "assets/armas-da-persuasao-capa.png",
-    "description": "O clássico de Robert Cialdini sobre a psicologia do consentimento. Os padrões fixos de ação (o 'clique, zumm'), o contraste perceptivo e os 6 princípios universais da influência — reciprocidade, compromisso e coerência, aprovação/prova social, afeição, autoridade e escassez (mais a unidade como 7º). Para cada princípio: como funciona e como se proteger da manipulação.",
-    "tags": [
-      "Persuasão",
-      "Influência",
-      "Psicologia"
-    ],
-    "progress": "8 Capítulos",
-    "url": "armas-da-persuasao.html"
+    "url": "nacao-dopamina.html",
+    "amazon": "https://www.amazon.com.br/dp/B09SM3F8Z6/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/B09SM3F8Z6/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "pai-rico-pai-pobre",
@@ -459,7 +179,15 @@
       "Mentalidade"
     ],
     "progress": "10 Capítulos",
-    "url": "pai-rico-pai-pobre.html"
+    "url": "pai-rico-pai-pobre.html",
+    "amazon": "https://www.amazon.com.br/dp/8550801488/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550801488/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "quatro-compromissos",
@@ -473,7 +201,15 @@
       "Espiritualidade"
     ],
     "progress": "8 Capítulos",
-    "url": "quatro-compromissos.html"
+    "url": "quatro-compromissos.html",
+    "amazon": "https://www.amazon.com.br/dp/6557120956/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6557120956/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "homem-mais-rico-babilonia",
@@ -487,7 +223,15 @@
       "Riqueza"
     ],
     "progress": "9 Capítulos",
-    "url": "homem-mais-rico-babilonia.html"
+    "url": "homem-mais-rico-babilonia.html",
+    "amazon": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "design-do-dia-a-dia",
@@ -501,7 +245,15 @@
       "Produtos Digitais"
     ],
     "progress": "10 Capítulos",
-    "url": "design-do-dia-a-dia.html"
+    "url": "design-do-dia-a-dia.html",
+    "amazon": "https://www.amazon.com.br/dp/6555324473/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555324473/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "nao-me-faca-pensar",
@@ -515,7 +267,15 @@
       "Web"
     ],
     "progress": "10 Capítulos",
-    "url": "nao-me-faca-pensar.html"
+    "url": "nao-me-faca-pensar.html",
+    "amazon": "https://www.amazon.com.br/dp/8576088509/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8576088509/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "futebol-brasileiro",
@@ -544,7 +304,15 @@
       "Bitcoin"
     ],
     "progress": "10 Capítulos",
-    "url": "padrao-bitcoin.html"
+    "url": "padrao-bitcoin.html",
+    "amazon": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "hora-da-estrela",
@@ -558,7 +326,15 @@
       "Análise Literária"
     ],
     "progress": "8 Capítulos",
-    "url": "hora-da-estrela.html"
+    "url": "hora-da-estrela.html",
+    "amazon": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "noites-brancas",
@@ -572,7 +348,15 @@
       "Análise Literária"
     ],
     "progress": "7 Capítulos",
-    "url": "noites-brancas.html"
+    "url": "noites-brancas.html",
+    "amazon": "https://www.amazon.com.br/dp/8582850743/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8582850743/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "mais-esperto-que-o-diabo",
@@ -586,7 +370,15 @@
       "Mentalidade"
     ],
     "progress": "9 Capítulos",
-    "url": "mais-esperto-que-o-diabo.html"
+    "url": "mais-esperto-que-o-diabo.html",
+    "amazon": "https://www.amazon.com.br/dp/8568014003/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8568014003/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "quebrando-o-habito",
@@ -600,7 +392,15 @@
       "Mentalidade"
     ],
     "progress": "10 Capítulos",
-    "url": "quebrando-o-habito.html"
+    "url": "quebrando-o-habito.html",
+    "amazon": "https://www.amazon.com.br/dp/8568014321/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8568014321/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "mulheres-que-correm-com-os-lobos",
@@ -614,7 +414,15 @@
       "Autoconhecimento"
     ],
     "progress": "9 Capítulos",
-    "url": "mulheres-que-correm-com-os-lobos.html"
+    "url": "mulheres-que-correm-com-os-lobos.html",
+    "amazon": "https://www.amazon.com.br/dp/853252978X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/853252978X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "sociedade-do-cansaco",
@@ -628,7 +436,15 @@
       "Contemporâneo"
     ],
     "progress": "8 Capítulos",
-    "url": "sociedade-do-cansaco.html"
+    "url": "sociedade-do-cansaco.html",
+    "amazon": "https://www.amazon.com.br/dp/8532649963/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8532649963/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "assim-falou-zaratustra",
@@ -642,7 +458,15 @@
       "Existencialismo"
     ],
     "progress": "9 Capítulos",
-    "url": "assim-falou-zaratustra.html"
+    "url": "assim-falou-zaratustra.html",
+    "amazon": "https://www.amazon.com.br/dp/8535930485/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535930485/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "mundo-de-sofia",
@@ -656,7 +480,15 @@
       "Educação"
     ],
     "progress": "9 Capítulos",
-    "url": "mundo-de-sofia.html"
+    "url": "mundo-de-sofia.html",
+    "amazon": "https://www.amazon.com.br/dp/8535921893/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535921893/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "crime-e-castigo",
@@ -670,7 +502,15 @@
       "Psicologia"
     ],
     "progress": "9 Capítulos",
-    "url": "crime-e-castigo.html"
+    "url": "crime-e-castigo.html",
+    "amazon": "https://www.amazon.com.br/dp/8573262087/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573262087/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "irmaos-karamazov",
@@ -684,7 +524,15 @@
       "Espiritualidade"
     ],
     "progress": "10 Capítulos",
-    "url": "irmaos-karamazov.html"
+    "url": "irmaos-karamazov.html",
+    "amazon": "https://www.amazon.com.br/dp/8573265388/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573265388/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "o-idiota",
@@ -698,7 +546,15 @@
       "Psicologia"
     ],
     "progress": "9 Capítulos",
-    "url": "o-idiota.html"
+    "url": "o-idiota.html",
+    "amazon": "https://www.amazon.com.br/dp/8573262559/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573262559/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "memorias-do-subsolo",
@@ -712,7 +568,15 @@
       "Existencialismo"
     ],
     "progress": "8 Capítulos",
-    "url": "memorias-do-subsolo.html"
+    "url": "memorias-do-subsolo.html",
+    "amazon": "https://www.amazon.com.br/dp/8573261854/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573261854/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "o-principe",
@@ -726,21 +590,15 @@
       "Estratégia"
     ],
     "progress": "9 Capítulos",
-    "url": "o-principe.html"
-  },
-  {
-    "id": "leis-da-natureza-humana",
-    "title": "As Leis da Natureza Humana",
-    "author": "Robert Greene",
-    "coverUrl": "assets/leis-da-natureza-humana-capa.png",
-    "description": "As 18 leis da natureza humana de Robert Greene em cheat sheet: irracionalidade, narcisismo vs. empatia, máscara e caráter, desejo evasivo, perspectiva, defensividade, autossabotagem, A Sombra, inveja, grandiosidade, propósito, conformismo, agressão e a finitude — frameworks para ler o outro e a si mesmo.",
-    "tags": [
-      "Psicologia",
-      "Poder",
-      "Autoconhecimento"
-    ],
-    "progress": "11 Capítulos",
-    "url": "leis-da-natureza-humana.html"
+    "url": "o-principe.html",
+    "amazon": "https://www.amazon.com.br/dp/8563560034/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8563560034/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "arte-da-seducao",
@@ -754,7 +612,15 @@
       "Psicologia"
     ],
     "progress": "9 Capítulos",
-    "url": "arte-da-seducao.html"
+    "url": "arte-da-seducao.html",
+    "amazon": "https://www.amazon.com.br/dp/6555322047/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555322047/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "jogos-da-vida",
@@ -768,7 +634,15 @@
       "Autoconhecimento"
     ],
     "progress": "9 Capítulos",
-    "url": "jogos-da-vida.html"
+    "url": "jogos-da-vida.html",
+    "amazon": "https://www.amazon.com.br/dp/8521308760/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8521308760/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "nunca-divida-a-diferenca",
@@ -782,7 +656,15 @@
       "Influência"
     ],
     "progress": "9 Capítulos",
-    "url": "nunca-divida-a-diferenca.html"
+    "url": "nunca-divida-a-diferenca.html",
+    "amazon": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543108055/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "conversas-cruciais",
@@ -796,7 +678,15 @@
       "Liderança"
     ],
     "progress": "9 Capítulos",
-    "url": "conversas-cruciais.html"
+    "url": "conversas-cruciais.html",
+    "amazon": "https://www.amazon.com.br/dp/8593585000/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8593585000/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "escute",
@@ -810,7 +700,15 @@
       "Escuta Ativa"
     ],
     "progress": "9 Capítulos",
-    "url": "escute.html"
+    "url": "escute.html",
+    "amazon": "https://www.amazon.com.br/dp/6555646292/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555646292/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "obrigado-pelo-feedback",
@@ -824,7 +722,15 @@
       "Desenvolvimento Pessoal"
     ],
     "progress": "9 Capítulos",
-    "url": "obrigado-pelo-feedback.html"
+    "url": "obrigado-pelo-feedback.html",
+    "amazon": "https://www.amazon.com.br/dp/8582850263/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8582850263/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "poder-dos-quietos",
@@ -838,7 +744,15 @@
       "Liderança"
     ],
     "progress": "9 Capítulos",
-    "url": "poder-dos-quietos.html"
+    "url": "poder-dos-quietos.html",
+    "amazon": "https://www.amazon.com.br/dp/8595080747/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595080747/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "segredos-da-mente-milionaria",
@@ -852,7 +766,15 @@
       "Riqueza"
     ],
     "progress": "9 Capítulos",
-    "url": "segredos-da-mente-milionaria.html"
+    "url": "segredos-da-mente-milionaria.html",
+    "amazon": "https://www.amazon.com.br/dp/8575425927/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8575425927/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "investidor-inteligente",
@@ -866,7 +788,15 @@
       "Bolsa de Valores"
     ],
     "progress": "10 Capítulos",
-    "url": "investidor-inteligente.html"
+    "url": "investidor-inteligente.html",
+    "amazon": "https://www.amazon.com.br/dp/8595080801/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595080801/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "do-mil-ao-milhao",
@@ -880,7 +810,15 @@
       "Independência Financeira"
     ],
     "progress": "9 Capítulos",
-    "url": "do-mil-ao-milhao.html"
+    "url": "do-mil-ao-milhao.html",
+    "amazon": "https://www.amazon.com.br/dp/8595083274/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595083274/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "quem-pensa-enriquece",
@@ -894,7 +832,15 @@
       "Autodesenvolvimento"
     ],
     "progress": "9 Capítulos",
-    "url": "quem-pensa-enriquece.html"
+    "url": "quem-pensa-enriquece.html",
+    "amazon": "https://www.amazon.com.br/dp/6587885004/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6587885004/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "psicopolitica",
@@ -908,7 +854,15 @@
       "Crítica Digital"
     ],
     "progress": "8 Capítulos",
-    "url": "psicopolitica.html"
+    "url": "psicopolitica.html",
+    "amazon": "https://www.amazon.com.br/dp/8592649390/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8592649390/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "realismo-capitalista",
@@ -922,7 +876,15 @@
       "Política"
     ],
     "progress": "9 Capítulos",
-    "url": "realismo-capitalista.html"
+    "url": "realismo-capitalista.html",
+    "amazon": "https://www.amazon.com.br/dp/6587233090/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6587233090/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "geracao-ansiosa",
@@ -936,21 +898,15 @@
       "Tecnologia"
     ],
     "progress": "9 Capítulos",
-    "url": "geracao-ansiosa.html"
-  },
-  {
-    "id": "1984",
-    "title": "1984",
-    "author": "George Orwell",
-    "coverUrl": "assets/1984-capa.png",
-    "description": "O romance distópico de George Orwell sobre o totalitarismo e a destruição da verdade. Grande Irmão, duplipensar, Novafala, crime de pensamento, o controle do passado e a fórmula '2+2=5' — analisados como ferramentas de poder e alertas permanentes sobre vigilância e manipulação.",
-    "tags": [
-      "Distopia",
-      "Política",
-      "Totalitarismo"
-    ],
-    "progress": "9 Capítulos",
-    "url": "1984.html"
+    "url": "geracao-ansiosa.html",
+    "amazon": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535938532/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "admiravel-mundo-novo",
@@ -964,7 +920,15 @@
       "Consumismo"
     ],
     "progress": "8 Capítulos",
-    "url": "admiravel-mundo-novo.html"
+    "url": "admiravel-mundo-novo.html",
+    "amazon": "https://www.amazon.com.br/dp/8525056006/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8525056006/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "21-licoes",
@@ -978,7 +942,15 @@
       "Filosofia"
     ],
     "progress": "9 Capítulos",
-    "url": "21-licoes.html"
+    "url": "21-licoes.html",
+    "amazon": "https://www.amazon.com.br/dp/8535930914/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535930914/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "amor-liquido",
@@ -992,7 +964,15 @@
       "Vínculos Humanos"
     ],
     "progress": "4 Capítulos",
-    "url": "amor-liquido.html"
+    "url": "amor-liquido.html",
+    "amazon": "https://www.amazon.com.br/dp/8571107955/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8571107955/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "sete-saberes",
@@ -1006,7 +986,15 @@
       "Pensamento Complexo"
     ],
     "progress": "7 Capítulos",
-    "url": "sete-saberes.html"
+    "url": "sete-saberes.html",
+    "amazon": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "cabeca-bem-feita",
@@ -1020,7 +1008,15 @@
       "Pensamento Complexo"
     ],
     "progress": "9 Capítulos",
-    "url": "cabeca-bem-feita.html"
+    "url": "cabeca-bem-feita.html",
+    "amazon": "https://www.amazon.com.br/dp/852860764X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/852860764X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "pensamento-complexo",
@@ -1034,7 +1030,15 @@
       "Pensamento Crítico"
     ],
     "progress": "6 Capítulos",
-    "url": "pensamento-complexo.html"
+    "url": "pensamento-complexo.html",
+    "amazon": "https://www.amazon.com.br/dp/8520505988/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8520505988/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "coisa-de-rico",
@@ -1048,7 +1052,15 @@
       "Cultura"
     ],
     "progress": "5 Capítulos",
-    "url": "coisa-de-rico.html"
+    "url": "coisa-de-rico.html",
+    "amazon": "https://www.amazon.com.br/dp/6556928585/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6556928585/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "insustentavel-leveza-do-ser",
@@ -1062,7 +1074,15 @@
       "Existencialismo"
     ],
     "progress": "9 Capítulos",
-    "url": "insustentavel-leveza-do-ser.html"
+    "url": "insustentavel-leveza-do-ser.html",
+    "amazon": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535912517/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "7-habitos",
@@ -1076,7 +1096,15 @@
       "Produtividade"
     ],
     "progress": "9 Capítulos",
-    "url": "7-habitos.html"
+    "url": "7-habitos.html",
+    "amazon": "https://www.amazon.com.br/dp/6557121472/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6557121472/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "poder-do-habito",
@@ -1090,7 +1118,15 @@
       "Produtividade"
     ],
     "progress": "9 Capítulos",
-    "url": "poder-do-habito.html"
+    "url": "poder-do-habito.html",
+    "amazon": "https://www.amazon.com.br/dp/8539004119/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8539004119/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "trabalho-focado",
@@ -1104,7 +1140,15 @@
       "Carreira"
     ],
     "progress": "7 Capítulos",
-    "url": "trabalho-focado.html"
+    "url": "trabalho-focado.html",
+    "amazon": "https://www.amazon.com.br/dp/8550802328/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550802328/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "a-unica-coisa",
@@ -1118,7 +1162,15 @@
       "Hábitos"
     ],
     "progress": "6 Capítulos",
-    "url": "a-unica-coisa.html"
+    "url": "a-unica-coisa.html",
+    "amazon": "https://www.amazon.com.br/dp/6555641231/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555641231/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "comece-pelo-porque",
@@ -1132,7 +1184,15 @@
       "Negócios"
     ],
     "progress": "14 Capítulos",
-    "url": "comece-pelo-porque.html"
+    "url": "comece-pelo-porque.html",
+    "amazon": "https://www.amazon.com.br/dp/854310663X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/854310663X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "de-zero-a-um",
@@ -1146,7 +1206,15 @@
       "Estratégia"
     ],
     "progress": "14 Capítulos",
-    "url": "de-zero-a-um.html"
+    "url": "de-zero-a-um.html",
+    "amazon": "https://www.amazon.com.br/dp/8539006200/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8539006200/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "startup-enxuta",
@@ -1160,7 +1228,15 @@
       "Inovação"
     ],
     "progress": "14 Capítulos",
-    "url": "startup-enxuta.html"
+    "url": "startup-enxuta.html",
+    "amazon": "https://www.amazon.com.br/dp/8543108624/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543108624/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "trabalhe-4-horas",
@@ -1174,7 +1250,15 @@
       "Empreendedorismo"
     ],
     "progress": "7 Capítulos",
-    "url": "trabalhe-4-horas.html"
+    "url": "trabalhe-4-horas.html",
+    "amazon": "https://www.amazon.com.br/dp/8542236319/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8542236319/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "inteligencia-emocional",
@@ -1188,7 +1272,15 @@
       "Desenvolvimento Pessoal"
     ],
     "progress": "8 Capítulos",
-    "url": "inteligencia-emocional.html"
+    "url": "inteligencia-emocional.html",
+    "amazon": "https://www.amazon.com.br/dp/8573020806/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8573020806/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "mindset",
@@ -1202,21 +1294,15 @@
       "Educação"
     ],
     "progress": "8 Capítulos",
-    "url": "mindset.html"
-  },
-  {
-    "id": "garra",
-    "title": "Garra",
-    "author": "Angela Duckworth",
-    "coverUrl": "assets/garra-capa.png",
-    "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",
-    "tags": [
-      "Psicologia",
-      "Sucesso",
-      "Hábitos"
-    ],
-    "progress": "7 Capítulos",
-    "url": "garra.html"
+    "url": "mindset.html",
+    "amazon": "https://www.amazon.com.br/dp/8547000240/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8547000240/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "flow",
@@ -1230,7 +1316,15 @@
       "Alto Desempenho"
     ],
     "progress": "10 Capítulos",
-    "url": "flow.html"
+    "url": "flow.html",
+    "amazon": "https://www.amazon.com.br/dp/8547001131/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8547001131/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "corpo-guarda-as-marcas",
@@ -1244,7 +1338,15 @@
       "Neurociência"
     ],
     "progress": "12 Capítulos",
-    "url": "corpo-guarda-as-marcas.html"
+    "url": "corpo-guarda-as-marcas.html",
+    "amazon": "https://www.amazon.com.br/dp/8543110017/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543110017/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "busca-de-sentido",
@@ -1258,7 +1360,15 @@
       "Sentido da Vida"
     ],
     "progress": "7 Capítulos",
-    "url": "busca-de-sentido.html"
+    "url": "busca-de-sentido.html",
+    "amazon": "https://www.amazon.com.br/dp/8532606261/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8532606261/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "sapiens",
@@ -1272,7 +1382,15 @@
       "Civilização"
     ],
     "progress": "13 Capítulos",
-    "url": "sapiens.html"
+    "url": "sapiens.html",
+    "amazon": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "homo-deus",
@@ -1286,7 +1404,15 @@
       "Tecnologia & Sociedade"
     ],
     "progress": "9 Capítulos",
-    "url": "homo-deus.html"
+    "url": "homo-deus.html",
+    "amazon": "https://www.amazon.com.br/dp/8535928197/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535928197/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "gene-egoista",
@@ -1300,7 +1426,15 @@
       "Comportamento"
     ],
     "progress": "4 Capítulos",
-    "url": "gene-egoista.html"
+    "url": "gene-egoista.html",
+    "amazon": "https://www.amazon.com.br/dp/8535911294/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535911294/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "cisne-negro",
@@ -1314,7 +1448,15 @@
       "Epistemologia"
     ],
     "progress": "8 Capítulos",
-    "url": "cisne-negro.html"
+    "url": "cisne-negro.html",
+    "amazon": "https://www.amazon.com.br/dp/8547001263/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8547001263/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "antifragil",
@@ -1328,7 +1470,15 @@
       "Filosofia Prática"
     ],
     "progress": "7 Capítulos",
-    "url": "antifragil.html"
+    "url": "antifragil.html",
+    "amazon": "https://www.amazon.com.br/dp/8547001085/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8547001085/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "meditacoes",
@@ -1342,7 +1492,15 @@
       "Ética"
     ],
     "progress": "8 Temas",
-    "url": "meditacoes.html"
+    "url": "meditacoes.html",
+    "amazon": "https://www.amazon.com.br/dp/6555480726/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555480726/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "axiomas-de-zurique",
@@ -1356,7 +1514,15 @@
       "Especulação"
     ],
     "progress": "6 Capítulos",
-    "url": "axiomas-de-zurique.html"
+    "url": "axiomas-de-zurique.html",
+    "amazon": "https://www.amazon.com.br/dp/8568905935/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8568905935/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "milionario-mora-ao-lado",
@@ -1370,7 +1536,15 @@
       "Comportamento"
     ],
     "progress": "8 Capítulos",
-    "url": "milionario-mora-ao-lado.html"
+    "url": "milionario-mora-ao-lado.html",
+    "amazon": "https://www.amazon.com.br/dp/8550817538/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550817538/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "revolucao-dos-bichos",
@@ -1384,7 +1558,15 @@
       "Distopia"
     ],
     "progress": "9 Capítulos",
-    "url": "revolucao-dos-bichos.html"
+    "url": "revolucao-dos-bichos.html",
+    "amazon": "https://www.amazon.com.br/dp/8535909559/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535909559/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "pequeno-principe",
@@ -1398,7 +1580,15 @@
       "Filosofia"
     ],
     "progress": "7 Movimentos",
-    "url": "pequeno-principe.html"
+    "url": "pequeno-principe.html",
+    "amazon": "https://www.amazon.com.br/dp/8595081514/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595081514/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "metamorfose",
@@ -1412,7 +1602,15 @@
       "Absurdo"
     ],
     "progress": "3 Partes",
-    "url": "metamorfose.html"
+    "url": "metamorfose.html",
+    "amazon": "https://www.amazon.com.br/dp/8571646856/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8571646856/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "o-alquimista",
@@ -1426,7 +1624,15 @@
       "Autoconhecimento"
     ],
     "progress": "9 Movimentos",
-    "url": "o-alquimista.html"
+    "url": "o-alquimista.html",
+    "amazon": "https://www.amazon.com.br/dp/8532505686/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8532505686/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "dom-casmurro",
@@ -1440,7 +1646,15 @@
       "Narrador Não-Confiável"
     ],
     "progress": "8 Movimentos",
-    "url": "dom-casmurro.html"
+    "url": "dom-casmurro.html",
+    "amazon": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
   },
   {
     "id": "habitos-atomicos",
@@ -1454,6 +1668,586 @@
       "Autodesenvolvimento"
     ],
     "progress": "8 Capítulos",
-    "url": "habitos-atomicos.html"
+    "url": "habitos-atomicos.html",
+    "amazon": "https://www.amazon.com.br/dp/8550807567/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550807567/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "1984",
+    "title": "1984",
+    "author": "George Orwell",
+    "coverUrl": "assets/1984-capa.png",
+    "description": "O romance distópico de George Orwell sobre o totalitarismo e a destruição da verdade. Grande Irmão, duplipensar, Novafala, crime de pensamento, o controle do passado e a fórmula '2+2=5' — analisados como ferramentas de poder e alertas permanentes sobre vigilância e manipulação.",
+    "tags": [
+      "Distopia",
+      "Política",
+      "Totalitarismo"
+    ],
+    "progress": "9 Capítulos",
+    "url": "1984.html",
+    "amazon": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "garra",
+    "title": "Garra",
+    "author": "Angela Duckworth",
+    "coverUrl": "assets/garra-capa.png",
+    "description": "Síntese de 'Garra' (Grit), de Angela Duckworth. Garra = paixão + perseverança de longo prazo; o talento não é destino e o esforço conta duas vezes (talento×esforço=habilidade; habilidade×esforço=realização); os 4 ativos da garra (interesse, prática deliberada, propósito, esperança); prática deliberada × flow; mentalidade de crescimento; cultivar garra de dentro e de fora; o paradoxo da paixão.",
+    "tags": [
+      "Psicologia",
+      "Sucesso",
+      "Hábitos"
+    ],
+    "progress": "7 Capítulos",
+    "url": "garra.html",
+    "amazon": "https://www.amazon.com.br/dp/8551000020/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8551000020/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "leis-da-natureza-humana",
+    "title": "As Leis da Natureza Humana",
+    "author": "Robert Greene",
+    "coverUrl": "assets/leis-da-natureza-humana-capa.png",
+    "description": "As 18 leis da natureza humana de Robert Greene em cheat sheet: irracionalidade, narcisismo vs. empatia, máscara e caráter, desejo evasivo, perspectiva, defensividade, autossabotagem, A Sombra, inveja, grandiosidade, propósito, conformismo, agressão e a finitude — frameworks para ler o outro e a si mesmo.",
+    "tags": [
+      "Psicologia",
+      "Poder",
+      "Autoconhecimento"
+    ],
+    "progress": "11 Capítulos",
+    "url": "leis-da-natureza-humana.html",
+    "amazon": "https://www.amazon.com.br/dp/6555353686/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555353686/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "aristoteles-poetica",
+    "title": "Poética",
+    "author": "Aristóteles",
+    "coverUrl": "assets/aristoteles-poetica-capa.png",
+    "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
+    "tags": [
+      "Filosofia",
+      "Narrativa",
+      "Dramaturgia"
+    ],
+    "progress": "7 Capítulos",
+    "url": "aristoteles-poetica.html",
+    "amazon": "https://www.amazon.com.br/dp/8572837590/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8572837590/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "marketing-4-0",
+    "title": "Marketing 4.0",
+    "author": "Philip Kotler, Hermawan Kartajaya e Iwan Setiawan",
+    "coverUrl": "assets/marketing-4-0-capa.png",
+    "description": "O guia de Kotler para o marketing na era da conectividade. Apresenta a jornada dos Cinco As (Assimilação, Atração, Arguição, Ação, Apologia), os Quatro Cs que substituem os 4 Ps, as métricas PAR e BAR, o fator-F e o marketing humano, de conteúdo, omnichannel e de engajamento.",
+    "tags": [
+      "Marketing",
+      "Negócios",
+      "Digital"
+    ],
+    "progress": "8 Capítulos",
+    "url": "marketing-4-0.html",
+    "amazon": "https://www.amazon.com.br/dp/8543105331/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543105331/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "48-leis-do-poder",
+    "title": "As 48 Leis do Poder",
+    "author": "Robert Greene",
+    "coverUrl": "assets/48-leis-do-poder-capa.png",
+    "description": "O compêndio de Robert Greene sobre a dinâmica do poder, destilado de três mil anos de história. Apresentado em agrupamento temático e em chave defensiva: proteger a reputação, dominar as aparências, criar dependência, a tática da indireção, sedução e timing, a defesa contra manipulação e a lei suprema de ser informe.",
+    "tags": [
+      "Poder",
+      "Estratégia",
+      "Psicologia"
+    ],
+    "progress": "8 Capítulos",
+    "url": "48-leis-do-poder.html",
+    "amazon": "https://www.amazon.com.br/dp/6555320516/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555320516/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "sutil-arte",
+    "title": "A Sutil Arte de Ligar o F*da-se",
+    "author": "Mark Manson",
+    "coverUrl": "assets/sutil-arte-capa.png",
+    "description": "O best-seller contraintuitivo de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), a tirania do excepcionalismo, os bons e maus valores, a diferença entre responsabilidade e culpa, e a morte como bússola do que importa.",
+    "tags": [
+      "Autodesenvolvimento",
+      "Filosofia",
+      "Comportamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "sutil-arte.html",
+    "amazon": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "quem-mexeu-no-queijo",
+    "title": "Quem Mexeu no Meu Queijo?",
+    "author": "Spencer Johnson",
+    "coverUrl": "assets/quem-mexeu-no-queijo-capa.png",
+    "description": "A parábola mais vendida sobre mudança. Spencer Johnson usa quatro personagens num labirinto para mostrar como antecipar, monitorar e se adaptar rápido quando o 'Queijo' — emprego, relação, segurança — sai do lugar.",
+    "tags": [
+      "Mudança",
+      "Carreira",
+      "Autodesenvolvimento"
+    ],
+    "progress": "7 Capítulos",
+    "url": "quem-mexeu-no-queijo.html",
+    "amazon": "https://www.amazon.com.br/dp/8501112062/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8501112062/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "poder-de-delegar",
+    "title": "O Poder de Delegar",
+    "author": "Donna M. Genett",
+    "coverUrl": "assets/poder-de-delegar-capa.png",
+    "description": "O clássico de Donna Genett que vira do avesso o ditado 'se quer bem feito, faça você mesmo'. Pela parábola dos primos James e Jones, ensina os seis passos da delegação eficaz — preparar, discutir, prazo, nível de autoridade, checkpoints e debriefing — para o líder se multiplicar sem se afogar.",
+    "tags": [
+      "Liderança",
+      "Gestão",
+      "Produtividade"
+    ],
+    "progress": "8 Capítulos",
+    "url": "poder-de-delegar.html",
+    "amazon": "https://www.amazon.com.br/dp/8576840669/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8576840669/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "psicologia-financeira",
+    "title": "A Psicologia Financeira",
+    "author": "Morgan Housel",
+    "coverUrl": "assets/psicologia-financeira-capa.png",
+    "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade. Por que o comportamento vence a matemática nas finanças: sorte e risco, o 'nunca o bastante', os juros compostos, sobreviver para deixar o tempo compor, a cauda longa, a liberdade como maior dividendo, a riqueza invisível e a margem de segurança.",
+    "tags": [
+      "Finanças",
+      "Comportamento",
+      "Investimento"
+    ],
+    "progress": "11 Capítulos",
+    "url": "psicologia-financeira.html",
+    "amazon": "https://www.amazon.com.br/dp/6555111100/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555111100/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "comunicacao-nao-violenta",
+    "title": "Comunicação Não-Violenta",
+    "author": "Marshall B. Rosenberg",
+    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
+    "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
+    "tags": [
+      "Comunicação",
+      "Empatia",
+      "Relacionamentos"
+    ],
+    "progress": "11 Capítulos",
+    "url": "comunicacao-nao-violenta.html",
+    "amazon": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "coragem-de-nao-agradar",
+    "title": "A Coragem de Não Agradar",
+    "author": "Ichiro Kishimi & Fumitake Koga",
+    "coverUrl": "assets/coragem-de-nao-agradar-capa.png",
+    "description": "O fenômeno japonês de Kishimi e Koga que popularizou Alfred Adler pelo mundo. Em forma de diálogo, vira do avesso a ideia de que somos reféns do trauma: vivemos por objetivos, não por causas. Ensina a separação de tarefas, a sair da armadilha do reconhecimento e a sustentar a felicidade na tríade autoaceitação, confiança e contribuição — a verdadeira coragem de não agradar.",
+    "tags": [
+      "Psicologia",
+      "Adler",
+      "Autoconhecimento"
+    ],
+    "progress": "9 Capítulos",
+    "url": "coragem-de-nao-agradar.html",
+    "amazon": "https://www.amazon.com.br/dp/8543105692/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543105692/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "como-fazer-amigos",
+    "title": "Como Fazer Amigos e Influenciar Pessoas",
+    "author": "Dale Carnegie",
+    "coverUrl": "assets/como-fazer-amigos-capa.png",
+    "description": "Publicado em 1936 e nunca mais saído de moda, é o clássico definitivo sobre influência honesta. Em quatro partes — as 3 técnicas fundamentais, as 6 maneiras de cair nas graças, as 12 maneiras de convencer e as 9 maneiras de liderar sem ofender — Carnegie mostra que influência é atração, não imposição. O fio condutor: pense pelo ponto de vista do outro, reconheça seu valor com sinceridade e desperte nele o desejo de agir.",
+    "tags": [
+      "Comunicação",
+      "Relacionamentos",
+      "Influência"
+    ],
+    "progress": "11 Capítulos",
+    "url": "como-fazer-amigos.html",
+    "amazon": "https://www.amazon.com.br/dp/8504018024/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8504018024/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "essencialismo",
+    "title": "Essencialismo",
+    "author": "Greg McKeown",
+    "coverUrl": "assets/essencialismo-capa.png",
+    "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
+    "tags": [
+      "Produtividade",
+      "Foco",
+      "Prioridades"
+    ],
+    "progress": "12 Capítulos",
+    "url": "essencialismo.html",
+    "amazon": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "rapido-e-devagar",
+    "title": "Rápido e Devagar: Duas Formas de Pensar",
+    "author": "Daniel Kahneman",
+    "coverUrl": "assets/rapido-e-devagar-capa.png",
+    "description": "O mapa da mente de Daniel Kahneman, vencedor do Nobel de Economia. Os dois sistemas de pensamento (rápido/intuitivo e lento/deliberado), o princípio WYSIATI, as heurísticas e vieses que enganam o julgamento (ancoragem, disponibilidade, representatividade, falácia da conjunção, taxa-base, regressão à média), o excesso de confiança e o pré-mortem, a Teoria do Prospecto (aversão à perda, ponto de referência, enquadramento) e os dois eus — o que experiencia e o que recorda.",
+    "tags": [
+      "Psicologia",
+      "Decisão",
+      "Vieses Cognitivos"
+    ],
+    "progress": "12 Capítulos",
+    "url": "rapido-e-devagar.html",
+    "amazon": "https://www.amazon.com.br/dp/853900383X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/853900383X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "armas-da-persuasao",
+    "title": "As Armas da Persuasão",
+    "author": "Robert B. Cialdini",
+    "coverUrl": "assets/armas-da-persuasao-capa.png",
+    "description": "O clássico de Robert Cialdini sobre a psicologia do consentimento. Os padrões fixos de ação (o 'clique, zumm'), o contraste perceptivo e os 6 princípios universais da influência — reciprocidade, compromisso e coerência, aprovação/prova social, afeição, autoridade e escassez (mais a unidade como 7º). Para cada princípio: como funciona e como se proteger da manipulação.",
+    "tags": [
+      "Persuasão",
+      "Influência",
+      "Psicologia"
+    ],
+    "progress": "8 Capítulos",
+    "url": "armas-da-persuasao.html",
+    "amazon": "https://www.amazon.com.br/dp/8575428098/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8575428098/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "arte-da-guerra",
+    "title": "A Arte da Guerra",
+    "author": "Sun Tzu",
+    "coverUrl": "assets/arte-da-guerra-capa.png",
+    "description": "Os 13 capítulos de 'A Arte da Guerra' de Sun Tzu em cheat sheet: os 5 fatores do cálculo, vencer sem lutar, conhecer o inimigo e a si mesmo, a guerra como arte do engano, a vitória rápida, cheio e vazio, o momentum (shih), a flexibilidade da água, os tipos de terreno, não agir por raiva e o uso de espiões — frameworks de estratégia atemporal.",
+    "tags": [
+      "Estratégia",
+      "Liderança",
+      "Filosofia"
+    ],
+    "progress": "13 Capítulos",
+    "url": "arte-da-guerra.html",
+    "amazon": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "maquiavel-pedagogo",
+    "title": "Maquiavel Pedagogo",
+    "author": "Pascal Bernardin",
+    "coverUrl": "assets/maquiavel-pedagogo-capa.png",
+    "description": "Maquiavel Pedagogo de Pascal Bernardin em cheat sheet: a engenharia social aplicada à educação — dissonância cognitiva e sentimento de liberdade, a inversão atos→opiniões, a Unesco e a modificação de atitudes em escala, a revolução ética e cultural, reescrever a história, os IUFMs, a descentralização como engajamento, a avaliação como leme, a sociedade dual e o totalitarismo psicopedagógico.",
+    "tags": [
+      "Educação",
+      "Psicologia Social",
+      "Geopolítica"
+    ],
+    "progress": "16 Capítulos",
+    "url": "maquiavel-pedagogo.html",
+    "amazon": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "keller-casamento",
+    "title": "O Significado do Casamento",
+    "author": "Timothy Keller",
+    "coverUrl": "assets/keller-casamento-capa.png",
+    "description": "O Significado do Casamento de Timothy Keller em cheat sheet: aliança × relação de consumo, o Evangelho e a graça como base, ser cheio do Espírito, amor-ação antes de amor-sentimento, a santidade do outro como missão, verdade e graça, perdão como pagamento, papéis como serviço mútuo (Efésios 5), solteirice como vocação e o sexo como ato de aliança.",
+    "tags": [
+      "Relacionamento",
+      "Espiritualidade",
+      "Casamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "keller-casamento.html",
+    "amazon": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "poder-do-silencio",
+    "title": "O Poder do Silêncio",
+    "author": "Eckhart Tolle",
+    "coverUrl": "assets/poder-do-silencio-capa.png",
+    "description": "Os ensinamentos de 'O Poder do Silêncio' de Eckhart Tolle em cheat sheet: a quietude como linguagem de Deus, você como o observador por trás da mente, o ego e a identificação com a forma, o Agora como único momento real, quem você verdadeiramente é, aceitação e entrega, a natureza como mestra de presença, relacionamentos como prática espiritual, o corpo-dor, a morte e o sem-forma eterno.",
+    "tags": [
+      "Espiritualidade",
+      "Consciência",
+      "Meditação"
+    ],
+    "progress": "9 Capítulos",
+    "url": "poder-do-silencio.html",
+    "amazon": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "experiencia-psicodelica",
+    "title": "A Experiência Psicodélica",
+    "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
+    "coverUrl": "assets/experiencia-psicodelica-capa.png",
+    "description": "A Experiência Psicodélica (1964) de Leary, Metzner & Alpert em cheat sheet, lida como história das ideias e estudo da consciência: set & setting, a substância como chave química neutra, jogos × não-jogos, a morte do ego, os três Bardos (Clara Luz, visões, reentrada), tudo é projeção da própria mente, e o protocolo Confiar–Desligar–Flutuar.",
+    "tags": [
+      "Consciência",
+      "Misticismo",
+      "Psicologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "experiencia-psicodelica.html",
+    "amazon": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "smith-assertividade",
+    "title": "Quando Digo Não, Me Sinto Culpado",
+    "author": "Manuel J. Smith",
+    "coverUrl": "assets/smith-assertividade-capa.png",
+    "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
+    "tags": [
+      "Assertividade",
+      "Comunicação",
+      "Psicologia"
+    ],
+    "progress": "11 Capítulos",
+    "url": "smith-assertividade.html",
+    "amazon": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "story-mckee",
+    "title": "Story: Os Princípios do Roteiro",
+    "author": "Robert McKee",
+    "coverUrl": "assets/story-mckee-capa.png",
+    "description": "A bíblia do roteiro de Robert McKee em cheat sheet: o espectro estrutural (Arquitrama, Minitrama, Antitrama), cenário e gênero, estrutura ⇄ personagem, a Ideia de Controle, A Lacuna, o Incidente Incitante, o design de atos e de cena, crise/clímax/resolução, o Princípio do Antagonismo, exposição invisível e o método de dentro para fora.",
+    "tags": [
+      "Roteiro",
+      "Narrativa",
+      "Escrita Criativa"
+    ],
+    "progress": "19 Capítulos",
+    "url": "story-mckee.html",
+    "amazon": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "blender-manual",
+    "title": "Blender Manual Oficial",
+    "author": "Blender Foundation",
+    "coverUrl": "assets/blender-manual-capa.png",
+    "description": "Referência rápida do Blender Manual oficial (CC-BY-SA): modelagem e modificadores, Principled BSDF, HDRI e luzes, câmera e profundidade de campo, Cycles/GPU OptiX, color management AgX e a API Python (bpy) para render headless. Conteúdo livre, com atribuição à Blender Foundation.",
+    "tags": [
+      "Blender",
+      "3D",
+      "Referência"
+    ],
+    "progress": "4 Capítulos",
+    "url": "blender-manual.html",
+    "amazon": "https://www.amazon.com.br/s?k=Blender+Manual+Oficial+Blender+Foundation&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Blender+Manual+Oficial+Blender+Foundation&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "blender-noob-to-pro",
+    "title": "Blender 3D: Noob to Pro",
+    "author": "Wikibooks (comunidade)",
+    "coverUrl": "assets/blender-noob-to-pro-capa.png",
+    "description": "Trilha de aprendizado de Blender do Wikibooks (CC-BY-SA): fundamentos de 3D, navegação, Object/Edit Mode, extrusão e loop cut, normais e smooth shading, materiais × texturas, UV unwrap e animação por keyframes. O complemento didático do manual — a sequência e o 'porquê'.",
+    "tags": [
+      "Blender",
+      "Aprendizado",
+      "Tutorial"
+    ],
+    "progress": "3 Capítulos",
+    "url": "blender-noob-to-pro.html",
+    "amazon": "https://www.amazon.com.br/s?k=Blender+3D%3A+Noob+to+Pro+Wikibooks+%28comunidade%29&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Blender+3D%3A+Noob+to+Pro+Wikibooks+%28comunidade%29&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "blender-fundamentals",
+    "title": "Blender Fundamentals",
+    "author": "Blender Foundation",
+    "coverUrl": "assets/blender-fundamentals-capa.png",
+    "description": "Resumo do curso oficial Blender Fundamentals (Blender Foundation, CC-BY 4.0): primeiros passos e atalhos, modelagem, shading com Principled BSDF, iluminação de três pontos, render Cycles × EEVEE e o workflow de produção recomendado. As boas práticas oficiais da casa.",
+    "tags": [
+      "Blender",
+      "Curso",
+      "Oficial"
+    ],
+    "progress": "3 Capítulos",
+    "url": "blender-fundamentals.html",
+    "amazon": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20"
+      }
+    ]
   }
 ]

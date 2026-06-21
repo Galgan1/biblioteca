@@ -1,0 +1,167 @@
+{
+  "ch01-o-loop-do-habito": {
+    "cards": [
+      {
+        "ic": "spiral",
+        "t": "O Piloto Automático",
+        "emph": "Automático",
+        "b": "A mente delega tarefas de rotina para poupar energia mental. <strong>Sem os hábitos, o cérebro travaria lidando com os menores detalhes do dia.</strong> A eficiência tem o seu preço: a nossa ação foge do controle da consciência.",
+        "tip": "<strong>Modelo mental:</strong> veja o hábito como uma economia de energia, mas que reduz o seu domínio pessoal."
+      },
+      {
+        "ic": "loop",
+        "t": "A Anatomia do Ciclo",
+        "emph": "Ciclo",
+        "b": "O comportamento fixo apoia-se em três pilares: gatilho, rotina e recompensa. <strong>Não basta proibir o ato; você precisa dissecar o sinal e o prêmio que sustentam a roda.</strong> A força de vontade cede ante um ciclo ignorado.",
+        "tip": "<strong>Prática:</strong> quando o impulso vier, registre o local, a hora e a sua emoção."
+      },
+      {
+        "ic": "eye",
+        "t": "A Deixa Oculta",
+        "emph": "Oculta",
+        "b": "Fomes, cheiros e frustrações agem como chaves de ignição silenciosas. <strong>O alarme não soa no relógio, mas no tédio acumulado após a reunião das dez.</strong> O mapa exato desse disparo devolve o controle da máquina.",
+        "tip": "<strong>Como aplicar:</strong> investigue os gatilhos emocionais com o rigor de um inspetor técnico."
+      }
+    ]
+  },
+  "ch02-o-cerebro-ansioso": {
+    "cards": [
+      {
+        "ic": "spark",
+        "t": "O Desejo Antecipado",
+        "emph": "Antecipado",
+        "b": "O cérebro inunda o corpo de prazer logo após o gatilho, muito antes da ação real. <strong>É a ânsia profunda que amarra o hábito e empurra o homem para a recompensa.</strong> Sem desenhar essa expectativa, rotinas novas morrem de inanição.",
+        "tip": "<strong>Regra:</strong> promova um desejo voraz pela linha de chegada se quiser colar a nova rotina."
+      },
+      {
+        "ic": "link",
+        "t": "A Fricção do Creme",
+        "emph": "Fricção",
+        "b": "A pasta de dente triunfou porque inseriu ardência e frescor na boca. <strong>A sensação tátil no final virou a recompensa pela qual os clientes ansiaram logo de manhã.</strong> O prêmio precisa deixar um rastro físico no corpo.",
+        "tip": "<strong>Modelo mental:</strong> a adoção de um hábito novo cobra um sinal sensório e inegável da vitória."
+      },
+      {
+        "ic": "clock",
+        "t": "Febre da Ansiedade",
+        "emph": "Ansiedade",
+        "b": "Bloquear a rotina de um ciclo vicioso cria uma dor aguda e insuportável na carne. <strong>A privação explica por que a mente lógica perde a briga contra o fumo e o doce na tensão do dia.</strong> O embate moral contra a neuroquímica é uma disputa desleal.",
+        "tip": "<strong>Sinal de alerta:</strong> apostar apenas na disciplina para frear a ansiedade biológica é o caminho para o erro.",
+        "warn": true
+      }
+    ]
+  },
+  "ch03-a-regra-de-ouro-da-mudanca": {
+    "cards": [
+      {
+        "ic": "key",
+        "t": "A Manutenção da Deixa",
+        "emph": "Manutenção",
+        "b": "Não queime energia tentando apagar fantasmas comportamentais por decreto de força bruta. <strong>Mantenha a deixa antiga e preserve a mesma recompensa, mas desvie a rotina no meio do fluxo.</strong> O corpo aceita o desvio desde que o prêmio seja idêntico.",
+        "tip": "<strong>Como aplicar:</strong> estresse alto pede alívio? Saia da cadeira, mas troque o corredor do café por exercícios breves."
+      },
+      {
+        "ic": "mountain",
+        "t": "O Escudo da Crença",
+        "emph": "Crença",
+        "b": "O mecanismo substituto funciona nos dias claros, mas falha gravemente no vendaval pesado da crise nervosa. <strong>Apenas a crença visceral na própria capacidade de vencer afasta a recaída e segura a onda.</strong> Sem fé íntima, o sistema biológico sempre puxará o trilho velho.",
+        "tip": "<strong>Modelo mental:</strong> a técnica te leva à beirada; a fé no próprio sistema impede o pulo no buraco."
+      },
+      {
+        "ic": "person",
+        "t": "A Força do Grupo",
+        "emph": "Grupo",
+        "b": "Vencer o vício trancado num quarto amplia o eco dos horrores na mente exausta pela solidão dolorosa. <strong>O grupo compartilha a armadura da crença e dilui o impacto das fraquezas pontuais de quem cambaleou.</strong> Tribos sólidas formam muralhas inquebráveis.",
+        "tip": "<strong>Sinal de alerta:</strong> ignorar os pares no projeto de reforma expõe o peito às balas pesadas do desânimo crônico.",
+        "warn": true
+      }
+    ]
+  },
+  "ch04-habitos-angulares": {
+    "cards": [
+      {
+        "ic": "scale",
+        "t": "A Alavanca Mestra",
+        "emph": "Alavanca",
+        "b": "Atirar em dez frentes soltas consome fôlego; mirar num hábito principal causa avalanches corretivas em cadeia natural. <strong>Um ajuste cirúrgico, como a prática esportiva, derrama disciplina sobre o sono e o prato de almoço do sujeito.</strong> Ache o fio mestre.",
+        "tip": "<strong>Prática:</strong> concentre energia bruta num hábito que organiza e rege o tabuleiro das outras virtudes."
+      },
+      {
+        "ic": "steps",
+        "t": "As Pequenas Vitórias",
+        "emph": "Vitórias",
+        "b": "A sensação limpa de vencer a cama pela manhã forja e afia o músculo da confiança que ataca pedreiras enormes de tarde. <strong>Pequenos triunfos provam materialmente à alma que as metas rústicas colossais tombam um passo após o outro de forma simples.</strong> Constrói o vencedor diário.",
+        "tip": "<strong>Modelo mental:</strong> a glória do dia começa a se desenhar nos gestos banais do minuto seguinte ao toque do despertador."
+      },
+      {
+        "ic": "target",
+        "t": "A Cultura que Contamina",
+        "emph": "Contamina",
+        "b": "O foco brutal nas metas de acidentes alinhou os diretores e explodiu as receitas antigas estagnadas por pura consequência direta. <strong>Um hábito forte no coração corporativo varre teias nas extremidades sem emitir ordens distantes.</strong>",
+        "tip": "<strong>Como aplicar:</strong> fixe uma régua inegociável de qualidade e os departamentos vão acertar o ritmo pelo relógio dela."
+      }
+    ]
+  },
+  "ch05-starbucks-o-habito-do-sucesso": {
+    "cards": [
+      {
+        "ic": "shield",
+        "t": "O Músculo da Vontade",
+        "emph": "Músculo",
+        "b": "A força de vontade gasta energia como pernas que correm, e não como um poço eterno da mente. <strong>Guardar forças na calmaria é vital para evitar quedas na frente da cobrança feroz das fileiras iradas dos turnos noturnos.</strong> O fôlego seca.",
+        "tip": "<strong>Regra:</strong> não aposte na polidez heroica em batalhas de resistência física longa; treine rotas de proteção antecipada."
+      },
+      {
+        "ic": "wrench",
+        "t": "O Roteiro da Dor",
+        "emph": "Roteiro",
+        "b": "O pânico surge veloz e esmaga o juízo frio quando a raiva alheia bate na mesa no meio do barulho urbano pesado. <strong>O ensaio e a decoreba seca barram os impulsos selvagens, trocando a briga pelo alívio processual calmo polido.</strong> Roteirize a calamidade.",
+        "tip": "<strong>Prática:</strong> atue antecipadamente num roteiro mental contra as ofensas; a ofensa prevista chega com garras desfiadas e velhas."
+      },
+      {
+        "ic": "person",
+        "t": "Autonomia que Cura",
+        "emph": "Autonomia",
+        "b": "Ser máquina triste afoga a honra viva diária; decidir regras curtas devolve vigor rápido imediato real firme no trabalho desgastante duro pesado e constante. <strong>O poder raso mas sólido sobre as margens reconstrói paredes gastas cruas da jornada de dor.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> roubar os controles menores afoga o trabalhador no lodo do tédio letal escuro surdo inerte.",
+        "warn": true
+      }
+    ]
+  },
+  "ch06-o-poder-de-uma-crise": {
+    "cards": [
+      {
+        "ic": "layers",
+        "t": "Trincheiras do Escritório",
+        "emph": "Trincheiras",
+        "b": "O ar polido dos andares caros de luxo calado abafa a guerra mortal dos pares surdos que disputam nacos silenciosos de império cru. <strong>Acordos frouxos não escritos freiam as batalhas brutais e mascaram perigos que arrebentarão o caixa cedo ou mais tarde, num dia quente sujo.</strong> A paz falsa custa caro.",
+        "tip": "<strong>Como aplicar:</strong> o tédio rotineiro esconde espadas; verifique se a ineficiência é pacto mudo cego de paz fingida."
+      },
+      {
+        "ic": "spark",
+        "t": "A Máquina Travada",
+        "emph": "Máquina",
+        "b": "Tréguas covardes afogam urgências e trancam o pulso; a corda estica crua no limite das horas caladas cegas frias rústicas gordas velhas cegas falsas surdas pesadas pesadas densas lentas... <strong>Um grande choque externo expõe a falha burra velha amarga parda oca falsa, cortando o laço mudo falso e sujo e sujo sujo pardo.</strong>",
+        "tip": "<strong>Sinal de alerta:</strong> empresas que amam o conforto e negam o sangue derramado constroem caixões caros de vidro fosco.",
+        "warn": true
+      },
+      {
+        "ic": "target",
+        "t": "O Choque Terapêutico",
+        "emph": "Choque",
+        "b": "Lucros doces acobertam trincas imensas nas sapatas; o líder nobre atira fogo verde fresco vivo nas feridas abertas duras grossas rudes e cruas densas lentas. <strong>Grite no buraco para destrancar a obra inteira; cirurgias não esperam o bom tempo ameno fofo alegre.</strong>",
+        "tip": "<strong>Modelo mental:</strong> desperdice a bonança arrumando o motor escuro sujo sujo grosso falho cego cego morno frio mole mudo surdo."
+      }
+    ]
+  },
+  "ch07-como-a-target-sabe-o-que-voce-quer": {
+    "cards": [
+      {
+        "ic": "lens",
+        "t": "A Raposa Invisível",
+        "emph": "Raposa",
+        "b": "A trilha suja esquecida expõe desejos finos ocultos raros ciegos ciegos crus. <strong>A máquina cruza lixo raso raso raso fino fino sujo e prevê dores novas com crueldade letal veloz livre clara e reta e cega cega.</strong>",
+        "tip": "<strong>Para refletir:</strong> o segredo íntimo rústico dorme nos rastros miúdos bobos sujos largados no piso branco sujo cego mudo."
+      }
+    ]
+  }
+}

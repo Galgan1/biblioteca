@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "steps",
+      "t": "Os Quatro Passos da Raiva",
+      "emph": "Quatro Passos",
+      "b": "A raiva é uma luz piscando no painel: informação valiosa, péssima como volante. Quando ela sobe: pare e respire; veja o julgamento que a alimenta (“ele não deveria…”); conecte-se à necessidade por trás dele; e só então expresse sentimento e necessidade. <strong>Os quatro passos convertem a explosão em informação que dá para usar.</strong>",
+      "tip": "<strong>Como aplicar:</strong> o passo 1 é não fazer nada e não falar — é o respiro que separa a reação da resposta."
+    },
+    {
+      "ic": "target",
+      "t": "O Outro Acende, o Julgamento Causa",
+      "emph": "Julgamento",
+      "b": "“Você me deixa com raiva” é mentira conveniente: o ato do outro só acende o pavio. A causa é o pensamento que você cola em cima — “ele é um aproveitador” — somado à necessidade que ficou de fora. <strong>Diga “estou com raiva porque preciso de ___”, nunca “porque você fez ___”</strong> — e o controle volta para você.",
+      "tip": "<strong>Modelo mental:</strong> a raiva é um presente embrulhado — por dentro está a necessidade que mais importa agora."
+    },
+    {
+      "ic": "fork",
+      "t": "Nem Despejar, nem Reprimir: Traduzir",
+      "emph": "Traduzir",
+      "b": "Há dois becos sem saída. Despejar (“a culpa é toda sua!”) alivia por três segundos e arrasa a conexão; reprimir engole tudo e fermenta em ressentimento e chacal interno. A CNV abre um terceiro caminho — traduzir a raiva em sentimento e necessidade. <strong>E quase sempre, sob a raiva, mora algo mais frágil: medo, mágoa ou solidão.</strong>",
+      "tip": "<strong>Cuidado:</strong> a raiva despejada parece força, mas é a saída que mais custa caro à relação depois.",
+      "warn": true
+    }
+  ]
+}

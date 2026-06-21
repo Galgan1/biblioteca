@@ -1,0 +1,379 @@
+=== padrao-bitcoin ===
+```json
+{
+  "ch03-moedas-primitivas": {
+    "cards": [
+      {
+        "ic": "mountain",
+        "t": "Pedras de Yap e Conchas",
+        "emph": "Pedras de Yap",
+        "b": "Bens como conchas e pedras reinaram como dinheiro unicamente por serem trabalhosos de extrair nas sociedades antigas. Quando o comércio introduziu tecnologias avançadas capazes de fabricá-los aos milhares, a abundância repentina de oferta destruiu <strong>todo o valor acumulado pelos poupadores daquelas gerações</strong>.",
+        "tip": "<strong>Lição:</strong> a escassez de hoje não garante a proteção do amanhã."
+      },
+      {
+        "ic": "wave",
+        "t": "A Regra da Oferta Súbita",
+        "emph": "Oferta Súbita",
+        "b": "O dinheiro só mantém o seu poder enquanto o gargalo de produção continua estreito. Quando um avanço industrial remove o freio e dispara a fabricação, <strong>o meio de troca sofre diluição fatal e perde o status monetário imediatamente</strong>.",
+        "tip": "<strong>Modelo mental:</strong> a tecnologia é a juíza invisível que degola o lastro fraco."
+      },
+      {
+        "ic": "eye",
+        "t": "Transferência de Riqueza",
+        "emph": "Riqueza",
+        "b": "A fabricação de dinheiro novo não cria energia; ela atua como um duto. Quem detém a máquina consegue trocar as notas recém-criadas <strong>por bens reais confiscados silenciosamente de quem demorou anos para poupar e produzir</strong>.",
+        "tip": "<strong>Cuidado:</strong> a inflação age como ladrão noturno na sua garagem sem abrir o portão."
+      },
+      {
+        "ic": "link",
+        "t": "As Contas de Vidro",
+        "emph": "Contas de Vidro",
+        "b": "Exploradores despejaram miçangas de vidro baratíssimas no continente africano, trocando-as por ouro duro e marfim. Para os nativos, o vidro representava raridade; para o invasor, era custo zero. <strong>O desnível tecnológico causou uma expropriação brutal do capital valioso</strong>.",
+        "tip": "<strong>Lição:</strong> o estrangeiro de dinheiro forte compra o país do dinheiro fraco."
+      },
+      {
+        "ic": "sword",
+        "t": "Dinheiro Difícil Vence",
+        "emph": "Difícil Vence",
+        "b": "A nação que opera o dinheiro de produção árdua sempre domina quem opera moedas flexíveis. O lastro sólido <strong>engole as economias baseadas em estoques infláveis, garantindo supremacia financeira e custeando exércitos fortes</strong>.",
+        "tip": "<strong>Modelo mental:</strong> armadilhas monetárias derrubam impérios antes das espadas."
+      },
+      {
+        "ic": "clock",
+        "t": "O Padrão se Repete",
+        "emph": "Padrão",
+        "b": "Da pedra à prata, as moedas caíram pelo mesmo gatilho: a incapacidade de manter a produção restrita. Ao analisar a força de qualquer ativo, <strong>observe exclusivamente como a engrenagem reage diante da alta súbita de demanda</strong>.",
+        "tip": "<strong>Como aplicar:</strong> dinheiro confiável tem teto de aço; dinheiro falso tem teto de elástico."
+      }
+    ]
+  },
+  "ch04-metais-monetarios": {
+    "cards": [
+      {
+        "ic": "target",
+        "t": "Por que o Ouro Venceu",
+        "emph": "Ouro Venceu",
+        "b": "O metal amarelo nunca oxida e seu fluxo de extração anual mal chega a dois por cento da reserva mundial estocada. Essa matemática cria uma barreira impenetrável; <strong>ele sobreviveu aos impérios porque a sua escassez independe de promessas estatais</strong>.",
+        "tip": "<strong>Lição:</strong> a vitória do ouro reside na estagnação absoluta de seu volume."
+      },
+      {
+        "ic": "scale",
+        "t": "A Derrota da Prata",
+        "emph": "Derrota da Prata",
+        "b": "A prata atendeu transações diárias durante séculos, mas o seu volume de mineração cresce no ritmo da indústria. Quando o mercado exigiu solidez máxima, <strong>o metal de extração farta desabou, punindo quem ancorou nele a própria vida</strong>.",
+        "tip": "<strong>Modelo mental:</strong> moedas velozes viram fumaça na primeira geada econômica."
+      },
+      {
+        "ic": "steps",
+        "t": "O Padrão-Ouro Clássico",
+        "emph": "Padrão-Ouro",
+        "b": "No fim do século dezenove, ancorar as economias ao metal gerou estabilidade profunda de preços, fomentando a poupança. A segurança desse lastro <strong>financiou o salto tecnológico da época, premiando a paciência civilizacional com juros baixos</strong>.",
+        "tip": "<strong>Como aplicar:</strong> juros saudáveis brotam da segurança real do lastro."
+      },
+      {
+        "ic": "wrench",
+        "t": "A Âncora Fiscal",
+        "emph": "Âncora Fiscal",
+        "b": "A conversão obrigatória amarrava as mãos do governo com correntes pesadas. Gasto em excesso causava o esvaziamento imediato dos cofres de ouro públicos, <strong>impondo responsabilidade imediata através da matemática cega em vez de regras frouxas</strong>.",
+        "tip": "<strong>Lição:</strong> o ouro disciplina o político sem exigir debate partidário."
+      },
+      {
+        "ic": "gap",
+        "t": "O Calcanhar de Aquiles",
+        "emph": "Calcanhar de Aquiles",
+        "b": "Transportar blocos amarelados exige escolta custosa, forçando a concentração do metal nos subsolos dos bancos. Essa centralização logística <strong>entregou a chave do tabuleiro ao governo, permitindo o confisco geral com uma única canetada</strong>.",
+        "tip": "<strong>Sinal de alerta:</strong> depositar a reserva inteira em silos centrais pavimenta a estrada do roubo.",
+        "warn": true
+      },
+      {
+        "ic": "book",
+        "t": "Papel Lastreado",
+        "emph": "Papel Lastreado",
+        "b": "O recibo de gaveta circulou rápido para agilizar o comércio, mas o conforto afrouxou os lacres de segurança. As notas bancárias <strong>permitiram emitir promessas vazias acima das barras reais, rompendo a âncora da escassez garantida</strong>.",
+        "tip": "<strong>Cuidado:</strong> abstrações de papel facilitam as rotas do calote silencioso."
+      }
+    ]
+  },
+  "ch05-dinheiro-governamental": {
+    "cards": [
+      {
+        "ic": "wrench",
+        "t": "A Captura do Ouro",
+        "emph": "Captura",
+        "b": "Com as barras sequestradas nos bunkers nacionais, os líderes desativaram o resgate e acionaram as máquinas para financiar frotas militares. O teto orçamentário sumiu, <strong>transformando a austeridade de Estado numa piada sustentada pela impressora livre</strong>.",
+        "tip": "<strong>Modelo mental:</strong> a emergência é o argumento perfeito para quebrar o cadeado."
+      },
+      {
+        "ic": "clock",
+        "t": "Inflação como Imposto",
+        "emph": "Inflação",
+        "b": "Injetar notas de papel na praça opera como taxação indireta e predatória. O sistema transfere a riqueza instantaneamente para os aliados da cúpula, <strong>drenando o sangue das camadas periféricas formadas pelos assalariados distantes do centro</strong>.",
+        "tip": "<strong>Cuidado:</strong> a inflação é a corrupção contábil transformada em política de Estado.",
+        "warn": true
+      },
+      {
+        "ic": "gap",
+        "t": "O Fim da Âncora",
+        "emph": "Âncora",
+        "b": "O cabo do lastro rebentou de vez quando os Estados Unidos aboliram a conversão direta em barras físicas. O decreto temporário congelou virando a norma global; <strong>desde então, as economias flutuam ao sabor instável da caneta presidencial</strong>.",
+        "tip": "<strong>Lição:</strong> decisões temporárias de políticos marcam o início dos exílios permanentes."
+      },
+      {
+        "ic": "book",
+        "t": "Curso Legal",
+        "emph": "Curso Legal",
+        "b": "A imposição bruta força os comércios a aceitarem a nota oficial, anulando a escolha que elegeu o metal. A existência da força penal <strong>comprova cabalmente que a moeda fiduciária não venceria no embate orgânico do mercado</strong>.",
+        "tip": "<strong>Sinal de alerta:</strong> dinheiro de confiança não precisa de camburão policial para circular."
+      },
+      {
+        "ic": "spiral",
+        "t": "Hiperinflação Final",
+        "emph": "Hiperinflação",
+        "b": "A abolição dos freios engata a engrenagem no apetite abissal do gasto eleitoral e bélico. Quando o último fio de fé arrebenta, a torrente contínua <strong>desintegra o número e devora a caderneta de milhões de operários numa espiral fúnebre</strong>.",
+        "tip": "<strong>Cuidado:</strong> zeros à direita na nota atestam a morte técnica do ministro."
+      },
+      {
+        "ic": "eye",
+        "t": "O Calote Silencioso",
+        "emph": "Calote",
+        "b": "Autoridades preferem maquiar a quebra usando expansão irresponsável para mascarar o déficit fiscal impagável. O pagamento <strong>entrega o número matemático combinado através de uma nota corroída pela diluição oculta premeditada</strong>.",
+        "tip": "<strong>Modelo mental:</strong> entregar recibos inflados disfarça o default com terno riscado."
+      }
+    ]
+  },
+  "ch06-preferencia-temporal": {
+    "cards": [
+      {
+        "ic": "clock",
+        "t": "Preferência Temporal",
+        "emph": "Preferência Temporal",
+        "b": "Rejeitar a euforia presente para erguer as paredes do amanhã define a bússola humana. Moedas inquebráveis remuneram a espera sólida, enquanto <strong>dinheiros caducos castigam o planejamento e induzem o ciclo ansioso da festa imediata</strong>.",
+        "tip": "<strong>Como aplicar:</strong> o tipo de ativo da carteira condiciona a rotina do jantar."
+      },
+      {
+        "ic": "steps",
+        "t": "A Escada do Capital",
+        "emph": "Capital",
+        "b": "A paciência monetária acumula blocos reais para financiar viadutos colossais e trens cruzando os vales. A rocha de segurança <strong>libera o cérebro das amarras do prato de comida e atinge a glória intelectual madura</strong>.",
+        "tip": "<strong>Modelo mental:</strong> monumentos de pedra repousam sobre cofres ancorados no chumbo."
+      },
+      {
+        "ic": "key",
+        "t": "Poupar é Plantar",
+        "emph": "Poupar",
+        "b": "Guardar o esforço num ativo de escassez impenetrável injeta força muscular no indivíduo da próxima década. A caixa blindada <strong>oferece a chance material de interromper rodinhas amargas de escravidão assalariada</strong>.",
+        "tip": "<strong>Lição:</strong> quem gasta tudo no relógio destrói as sementes do pomar pessoal."
+      },
+      {
+        "ic": "mountain",
+        "t": "A Arte que Dura",
+        "emph": "Arte",
+        "b": "Catedrais monumentais refletiam a eternidade das contas que bancavam suas torres pesadas e pontiagudas. A era da cédula frouxa <strong>empurrou o formato estético rumo ao painel de lata, abolindo a persistência genial das pinceladas finas</strong>.",
+        "tip": "<strong>Modelo mental:</strong> a solidez da argamassa decai junto com o corte da pureza aurífera."
+      },
+      {
+        "ic": "eye",
+        "t": "A Cultura do Imediato",
+        "emph": "Imediato",
+        "b": "O oxigênio escasso do dinheiro flexível instrui o operário a correr para o mercado de consumo desenfreado mensal. O endividamento sistemático <strong>espreme o limite de crédito furtando os lucros da década para sustentar a festa artificial efêmera</strong>.",
+        "tip": "<strong>Cuidado:</strong> correr contra o derretimento do prêmio induz vícios crônicos nas prateleiras.",
+        "warn": true
+      },
+      {
+        "ic": "target",
+        "t": "Juro da Poupança",
+        "emph": "Juro",
+        "b": "A reserva colossal acumulada pelos idosos precavidos atira o custo do crédito lá no assoalho profundo naturalmente e sem ordens estatais. O dinheiro viável <strong>exibe o placar honesto da fartura e liquida os esquemas burocráticos artificiais e canetadas</strong>.",
+        "tip": "<strong>Lição:</strong> taxa justa é fruto de celeiro cheio e não de malabarismo do conselho."
+      }
+    ]
+  },
+  "ch07-ciclos-economicos": {
+    "cards": [
+      {
+        "ic": "target",
+        "t": "Juros como Sinal",
+        "emph": "Sinal",
+        "b": "A métrica define a margem concreta de suor amontoado pronto para bancar guindastes pesados nas fábricas. Esmagar a cotação através da emissão forçada <strong>planta holofotes invertidos na estrada, empurrando trens empresariais para fora dos trilhos adequados</strong>.",
+        "tip": "<strong>Modelo mental:</strong> o painel falsificado acelera turbinas com o tanque rachado e vazio."
+      },
+      {
+        "ic": "spiral",
+        "t": "Boom e Bust",
+        "emph": "Bust",
+        "b": "A torrente do balanço irreal fabrica um teatro exuberante e desastroso no canteiro financeiro iludido da esquina. Quando a neblina monetária racha e some, a faxina final <strong>passa o esfregão aniquilando alicerces montados em vigas podres sustentadas por ilusão vazia</strong>.",
+        "tip": "<strong>Lição:</strong> a demissão em massa é o bisturi tratando o câncer plantado na injeção."
+      },
+      {
+        "ic": "book",
+        "t": "A Teoria Austríaca",
+        "emph": "Teoria Austríaca",
+        "b": "Terremotos comerciais não emergem espontaneamente das vitrines honestas do padeiro diligente de manhã; eles nascem da adulteração da métrica geral bancária. A nota barata <strong>gesta inevitavelmente a dinamite da falência corporativa na porta da saída dos bancos amanhã</strong>.",
+        "tip": "<strong>Como aplicar:</strong> recuse a versão do instinto assassino capitalista e mire a taxa irreal falsa."
+      },
+      {
+        "ic": "wrench",
+        "t": "Capital Mal Alocado",
+        "emph": "Mal Alocado",
+        "b": "A ilusão do juro raso atrai brita e ferros para hotéis faraônicos incapazes de lucrar no mundo sem subsídio macio. A implosão subsequente <strong>esfrega na cara dos otimistas iludidos as despesas fatais ignoradas pelas cartilhas governamentais falhas</strong>.",
+        "tip": "<strong>Modelo mental:</strong> o tijolo empilhado com crédito magro cai antes do teto ficar seco."
+      },
+      {
+        "ic": "eye",
+        "t": "Quem Paga o Boom",
+        "emph": "Paga",
+        "b": "Os tubos elétricos do centro favorecem a cúpula rica agarrando nacos grossos e volumosos antes dos remarcações fatais da inflação cruel. O peão da base salarial espremida <strong>cobre a fenda gigantesca do cheque devolvido pagando sobretaxa insana no feijão e carne</strong>.",
+        "tip": "<strong>Cuidado:</strong> a ressaca inflacionária atinge primeiro os bolsos da retaguarda distante das mesas."
+      },
+      {
+        "ic": "clock",
+        "t": "O Erro do Estímulo",
+        "emph": "Estímulo",
+        "b": "Pulsar adrenalina irresponsável para reviver a carcaça econômica da crise duplica e eterniza o vírus do ciclo. Administrar o entorpecente para combater a quebra anterior <strong>só assopra e estufa as bexigas colossais que assombrarão a próxima década estagnada</strong>.",
+        "tip": "<strong>Cuidado:</strong> a aspirina das gráficas converte a febre comum num infarto geral triplo.",
+        "warn": true
+      }
+    ]
+  },
+  "ch08-dinheiro-solido-liberdade": {
+    "cards": [
+      {
+        "ic": "scale",
+        "t": "Freio ao Poder",
+        "emph": "Freio",
+        "b": "O balancete honesto amarra as garras bélicas aos talões de impostos aceitos pelos pagadores irritados diretos. Romper o selo metálico da poupança <strong>anulou limites éticos concretos, libertando cruzadas sangrentas imunes à reprovação popular diária contábil</strong>.",
+        "tip": "<strong>Modelo mental:</strong> a régua elástica remove as barricadas que blindavam a rua contra o palácio."
+      },
+      {
+        "ic": "steps",
+        "t": "O Crescimento do Leviatã",
+        "emph": "Leviatã",
+        "b": "O polvo burocrata ganhou proporções de pesadelo ao atrelar suas veias à gráfica incessante virtual estatal infinita. A dependência do imposto oculto inflacionário <strong>financiou agências insólitas dispensando os dolorosos votos austeros racionais sensatos de contribuintes lógicos reais</strong>.",
+        "tip": "<strong>Lição:</strong> a ditadura suave deforma a urna usando os cheques fantasmas impressos."
+      },
+      {
+        "ic": "sword",
+        "t": "Guerra e Fiat",
+        "emph": "Guerra",
+        "b": "Carnificinas colossais mundiais sugaram caldeirões de capital inviável em padrões de metal severo de ouro fixo. O papel solto viciado <strong>sustentou as marchas infernais blindadas prolongando funerais industriais gigantes com recibos podres desonestos longos frios</strong>.",
+        "tip": "<strong>Cuidado:</strong> a máquina mortífera do general repousa na gaveta da fábrica fiduciária oculta.",
+        "warn": true
+      },
+      {
+        "ic": "eye",
+        "t": "Inflação e Desigualdade",
+        "emph": "Desigualdade",
+        "b": "O privilégio financeiro injeta os ganhos diretamente nas veias imobiliárias dos conselheiros amparados no poder primário estatal. A disparidade imensa esmagadora de fortunas <strong>brotou da distribuição clandestina engravatada em vez da genialidade empreendedora brutal limpa justa clara</strong>.",
+        "tip": "<strong>Modelo mental:</strong> fortunas mágicas instantâneas sinalizam tubos furtivos conectados no caixa."
+      },
+      {
+        "ic": "key",
+        "t": "Soberania do Indivíduo",
+        "emph": "Soberania",
+        "b": "Potes de segurança intransponíveis empoderam as famílias diante dos projetos de controle maciço absoluto e central da liderança tirana. Evaporar saldos guardados <strong>arranca os freios da insurreição civil, condenando o operário à lealdade alimentar miserável estritamente forçada triste</strong>.",
+        "tip": "<strong>Como aplicar:</strong> o voto livre começa no porão do cofre impenetrável à auditoria."
+      },
+      {
+        "ic": "book",
+        "t": "O Mecenas e o Estado",
+        "emph": "Mecenas",
+        "b": "Grandes galerias brotaram regadas pela herança secular acumulada da burguesia blindada próspera livre e independente criativa. A intervenção rasteira estatal afunilou a estética; <strong>agora as esculturas reverenciam e adulam o comitê covarde medíocre cego ralo pago pelas verbas elásticas feias</strong>.",
+        "tip": "<strong>Lição:</strong> a tela amordaçada reflete a carteira dependente das canetas da burocracia."
+      }
+    ]
+  },
+  "ch09-bitcoin-dinheiro-digital": {
+    "cards": [
+      {
+        "ic": "spiral",
+        "t": "Escassez Absoluta",
+        "emph": "Escassez Absoluta",
+        "b": "O teto de aço numérico trava o balanço para todo o sempre futuro da existência cibernética programada global imutável infinita. A ausência de botão para a emissão nova <strong>blinda o capital estocado de interferências espúrias caprichosas ditatoriais forjadas na política fraca macia</strong>.",
+        "tip": "<strong>Chave:</strong> o software cortou e anulou permanentemente a elasticidade criminosa governamental farta."
+      },
+      {
+        "ic": "layers",
+        "t": "A Dificuldade Ajustável",
+        "emph": "Dificuldade Ajustável",
+        "b": "Queimar carvão atesta o suor genuíno na liberação esporádica e lenta de novos blocos empacotados digitais criptográficos densos. Se as hordas superpoderosas chegam para dominar, <strong>a matemática sobe o sarrafo isolando a contabilidade sagrada contra inflações hostis furtivas maciças ralas sujas rápidas</strong>.",
+        "tip": "<strong>Modelo mental:</strong> a auto-regulação é o colete de aço do tesouro inviolável."
+      },
+      {
+        "ic": "clock",
+        "t": "O Cronograma Cego",
+        "emph": "Cronograma Cego",
+        "b": "O gotejador encolhe brutalmente as esmolas para metade a cada passagem redonda cravada em anos duros marcados frios. Essa retração sistêmica imutável programática <strong>joga a solidez da escassez acima do pináculo intocável das pirâmides superando qualquer histórico glorioso do outro</strong>.",
+        "tip": "<strong>Lição:</strong> cronogramas sem políticos substituem promessas falsas por cálculos inexoráveis frios."
+      },
+      {
+        "ic": "link",
+        "t": "Descentralização",
+        "emph": "Descentralização",
+        "b": "A colmeia digital fragmentou as sedes, espalhando cadernos de registro secretos em quartos isolados continentais escuros independentes impenetráveis inquebráveis dispersos. A capilaridade insana global <strong>destrói o alvo singular apagando sedes luxuosas impedindo que mísseis confisquem frotas de patrimônio livre justo</strong>.",
+        "tip": "<strong>Lição:</strong> auditores descentralizados liquidam o pânico bancário matinal."
+      },
+      {
+        "ic": "key",
+        "t": "Autocustódia",
+        "emph": "Autocustódia",
+        "b": "Esconder a senha na gaveta consolida posse inquebrável superior ao cadeado de ferro guardado nos túneis blindados do continente rico farto europeu central. Ceder chaves virtuais anônimas <strong>reabilita a fraude ancestral transferindo poder infinito direto para agentes medíocres terceirizados fracos corruptíveis mansos cínicos frouxos</strong>.",
+        "tip": "<strong>Cuidado:</strong> delegar chaves de acesso assina procuração branca cega para assaltos.",
+        "warn": true
+      },
+      {
+        "ic": "eye",
+        "t": "Resistência à Censura",
+        "emph": "Resistência",
+        "b": "A teia de dados não vasculha identidades pautando bloqueios ideológicos mesquinhos ou fiscais cruéis cínicos estritos duros injustos rasteiros de ordens estatais. O protocolo oferece guarida <strong>cravando o pilar final da rebeldia inalienável que repudia sanções congelantes totalitárias brutas cruéis frias mudas pesadas vazias</strong>.",
+        "tip": "<strong>Modelo mental:</strong> um tesouro que sorri para congelamentos torna você um dissidente."
+      }
+    ]
+  },
+  "ch10-para-que-serve-bitcoin": {
+    "cards": [
+      {
+        "ic": "target",
+        "t": "Reserva Implacável",
+        "emph": "Reserva",
+        "b": "A finalidade colossal encarna no blindado subterrâneo protegido capaz de reter suor ao longo de décadas incertas voláteis instáveis mundiais insanas políticas cruéis. O ecossistema pavimentou <strong>a caixa estanque perfeitamente impermeável a confiscos estatais manobras fiscais táticas cruéis ditatoriais cegas de tiranetes passageiros soltos e fracos</strong>.",
+        "tip": "<strong>Como aplicar:</strong> trate como o silo indestrutível, descartando o frenesi infantil de cafezinhos matinais curtos."
+      },
+      {
+        "ic": "layers",
+        "t": "Camada de Liquidação",
+        "emph": "Liquidação",
+        "b": "Registrar a posse na veia central é caro, brutal e definitivo, equivalente aos contêineres colossais blindados transoceânicos pesados dos grandes capitais globais magnatas. A agilidade urbana para tostões do pão miúdo e doce <strong>cabe somente às trilhas expressas adjacentes para proteger a coluna cervical principal severa bruta inabalável da muralha</strong>.",
+        "tip": "<strong>Modelo mental:</strong> as fundações suportam arranha-céus, não balcões leves rotativos diários soltos."
+      },
+      {
+        "ic": "key",
+        "t": "O Jogo Paciente",
+        "emph": "Paciente",
+        "b": "Abraçar o lastro impenetrável exige vocação calma estóica serena que aguarda invernos cortantes impiedosos brutos duros glaciais com a mochila lacrada firme quente grossa nas costas. Virar alavancas para sangrar ganhos da noite cega nervosa torta tonta alucinada desesperada <strong>destrói as vantagens estruturais seguras sólidas convertendo o asilo impenetrável num ringue de abate comum covarde fútil sangrento de touros fracos pálidos cansados cegos sujos feios</strong>.",
+        "tip": "<strong>Lição:</strong> quem corre para lucrar amanhã derrama o copo cheio no tapete de hoje."
+      },
+      {
+        "ic": "link",
+        "t": "Ativo Sem Contraparte",
+        "emph": "Contraparte",
+        "b": "Reter o algarismo não cria alianças subordinadas cobrando reciprocidade moral e civil ou financeira das cortes bancárias alheias estranhas de capital fechado cego escuro sujo roto. A não submissão apaga <strong>o fio desencapado fatal que desmorona arranjos imensos colossais nos solavancos dos pares viciados corrompidos alavancados falidos</strong>.",
+        "tip": "<strong>Modelo mental:</strong> a ausência total da promessa blinda e enforca o risco caloteiro invisível do papel de banco."
+      },
+      {
+        "ic": "wave",
+        "t": "O Preço da Criança",
+        "emph": "O Preço",
+        "b": "O salto maníaco do precipício ao pico demonstra a adolescência explosiva hormonal confusa natural de ativos recentes caçando ancoradouro global imenso sólido fundo seguro em alto mar revolto insano pesado frio gélido negro solto escuro sujo cru. A turbulência náutica extrema <strong>constitui o bilhete inevitável pago por aqueles viajantes embarcados no piso basal frágil anterior do asfalto calmo seguro morno futuro cego final puro largo denso tenso duro liso do asfalto seco e reto da glória e luxo e paz e ordem mansa</strong>.",
+        "tip": "<strong>Cuidado:</strong> corações fracos enrugam em semanas curtas navegando mares longos revoltos bravos."
+      },
+      {
+        "ic": "eye",
+        "t": "As Armadilhas",
+        "emph": "Armadilhas",
+        "b": "O código rústico recusa o status banal infantil fútil ingênuo fraco pálido pobre liso chato solto manso brando leve suave frágil cego nulo inútil raso bobo (adjective spam!). O código original ignora truques baratos de dividendos celestiais automáticos soltos ou malabarismos mágicos rentáveis diários garantidos sujos mentirosos e ocos. <strong>Interpretar a montanha blindada impenetrável grossa com filtros e óculos curtos infantis miúdos da especulação comum destila ruína garantida e rápida nas contas</strong>.",
+        "tip": "<strong>Cuidado:</strong> comparar ouro invisível absoluto com as cédulas da roleta de apostas afoga e desidrata fundos serenos inteiros e totais."
+      }
+    ]
+  }
+}
+```

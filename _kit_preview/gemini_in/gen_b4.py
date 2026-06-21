@@ -1,0 +1,15 @@
+import json
+
+def get_b4():
+  return {
+    "habitos-atomicos": {
+      "cards": [
+        {"ic": "spark", "t": "Pequenas Melhorias", "emph": "Pequenas", "b": "Melhorar um por cento ao dia gera um crescimento imenso no fim de um ano inteiro. <strong>O tempo amplifica qualquer desvio do padrão, premiando a disciplina e punindo o deslize.</strong> A curva de juros do esforço diário define o destino.", "tip": "<strong>Modelo mental:</strong> foque na inclinação do seu esforço, não no retrato do agora."},
+        {"ic": "pivot", "t": "O Sistema Vence", "emph": "Sistema", "b": "Metas fixas não resolvem o problema, pois vencedores e perdedores têm o mesmo alvo. <strong>O seu resultado final é sempre o reflexo exato do sistema invisível que rege a sua rotina diária.</strong> Não eleve a meta, ajuste a esteira de montagem.", "tip": "<strong>Prática:</strong> quando a meta travar, verifique o processo basal que a suporta."},
+        {"ic": "clock", "t": "O Vale da Desilusão", "emph": "Desilusão", "b": "A mudança de rotina parece não dar nenhum fruto nos primeiros meses. <strong>A grande vitória ocorre após o rompimento dessa fase cega, quando o esforço guardado finalmente transborda.</strong> Desistir cedo garante o fracasso permanente.", "tip": "<strong>Sinal de alerta:</strong> o desejo forte de desistir antecede a explosão de resultados positivos.", "warn": True}
+      ]
+    }
+  }
+
+with open("gen_b4.json", "w", encoding="utf-8") as f:
+    json.dump(get_b4(), f, ensure_ascii=False, indent=2)

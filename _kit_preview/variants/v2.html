@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit de Divulgação — V2 (Chip com mini-formato em escala)</title>
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+    body {
+        background: var(--body-bg, oklch(95% 0.005 152));
+        color: var(--black);
+        font-family: var(--font-display);
+        margin: 0;
+        padding: 3rem 1.5rem;
+        display: flex;
+        justify-content: center;
+    }
+
+    .kit-demo {
+        width: 100%;
+        max-width: 1000px;
+        background: var(--paper-bg);
+        border: var(--border-solid);
+        border-radius: var(--radius);
+        padding: 2rem 2.25rem 2.25rem;
+    }
+
+    .kit-demo h2 {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: var(--black);
+        margin: 0 0 0.35rem;
+        letter-spacing: -0.01em;
+    }
+
+    .kit-demo__lead {
+        font-size: 0.85rem;
+        color: var(--gray-dark);
+        margin: 0 0 1.6rem;
+        max-width: 60ch;
+        line-height: 1.5;
+    }
+
+    /* --- Fileira de chips compactos (quebra linha) --- */
+    .kit-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+    }
+
+    /* --- O chip: do tamanho de um botão "Baixar PDF" --- */
+    .kit-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        min-height: 44px;
+        padding: 0.5rem 1.05rem 0.5rem 0.65rem;
+        border: 1px dashed var(--green);
+        border-radius: var(--radius);
+        background: var(--paper-bg);
+        text-decoration: none;
+        color: var(--green-dark);
+        cursor: pointer;
+        transition: background-color 200ms var(--ease-out-quart),
+                    border-color 200ms var(--ease-out-quart);
+    }
+
+    .kit-chip:hover {
+        background: var(--surface-hover);
+        border-color: var(--green-dark);
+    }
+
+    /* --- O glifo: caixa que abriga o mini-formato (altura fixa, centraliza) --- */
+    .kit-glyph {
+        flex-shrink: 0;
+        width: 34px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* O retângulo na proporção REAL do formato — altura fixa ~22px, largura proporcional */
+    .kit-ratio {
+        height: 22px;
+        border-radius: 1.5px;
+        background: var(--green);
+        border: 1.5px solid var(--green);
+        box-sizing: border-box;
+    }
+
+    /* Variante contornada (vazada) para diferenciar os "Capa" sem trocar a cor */
+    .kit-ratio--outline {
+        background: transparent;
+    }
+
+    /* Larguras = 22px × proporção real (w/h) */
+    .r-4x5    { width: 17.6px; }   /* 4:5  → 0.80 */
+    .r-9x16   { width: 12.4px; }   /* 9:16 → 0.5625 (bem alto e fino) */
+    .r-1x1    { width: 22px;   }   /* 1:1  → quadrado */
+    .r-2x3    { width: 14.7px; }   /* 2:3  → 0.667 */
+    .r-191x1  { width: 42px;   }   /* 1.91:1 → largo */
+
+    /* --- Texto do chip: rótulo + destino --- */
+    .kit-txt {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.15;
+        gap: 1px;
+    }
+
+    .kit-name {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.92rem;
+        color: var(--green-dark);
+    }
+
+    .kit-dest {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--gray-dark);
+    }
+</style>
+</head>
+<body>
+    <div class="kit-demo">
+        <h2>Kit de Divulgação</h2>
+        <p class="kit-demo__lead">Seis peças prontas para postar. Cada selo mostra o formato exato em escala — toque para gerar e baixar.</p>
+
+        <div class="kit-row">
+
+            <!-- 1. Citação — Instagram · Feed — 1080×1350 — 4:5 -->
+            <a class="kit-chip" href="#">
+                <span class="kit-glyph"><span class="kit-ratio r-4x5"></span></span>
+                <span class="kit-txt">
+                    <span class="kit-name">Citação</span>
+                    <span class="kit-dest">Feed · 4:5</span>
+                </span>
+            </a>
+
+            <!-- 2. Citação — Stories — 1080×1920 — 9:16 -->
+            <a class="kit-chip" href="#">
+                <span class="kit-glyph"><span class="kit-ratio r-9x16"></span></span>
+                <span class="kit-txt">
+                    <span class="kit-name">Citação</span>
+                    <span class="kit-dest">Stories · 9:16</span>
+                </span>
+            </a>
+
+            <!-- 3. Ideia-chave — Feed · Quadrado — 1080×1080 — 1:1 -->
+            <a class="kit-chip" href="#">
+                <span class="kit-glyph"><span class="kit-ratio r-1x1"></span></span>
+                <span class="kit-txt">
+                    <span class="kit-name">Ideia-chave</span>
+                    <span class="kit-dest">Quadrado · 1:1</span>
+                </span>
+            </a>
+
+            <!-- 4. Capa — Stories — 1080×1920 — 9:16 -->
+            <a class="kit-chip" href="#">
+                <span class="kit-glyph"><span class="kit-ratio kit-ratio--outline r-9x16"></span></span>
+                <span class="kit-txt">
+                    <span class="kit-name">Capa</span>
+                    <span class="kit-dest">Stories · 9:16</span>
+                </span>
+            </a>
+
+            <!-- 5. Capa do livro — Geral — 800×1200 — 2:3 -->
+            <a class="kit-chip" href="#">
+                <span class="kit-glyph"><span class="kit-ratio kit-ratio--outline r-2x3"></span></span>
+                <span class="kit-txt">
+                    <span class="kit-name">Capa do livro</span>
+                    <span class="kit-dest">Geral · 2:3</span>
+                </span>
+            </a>
+
+            <!-- 6. Banner de link — Facebook · WhatsApp — 1200×630 — 1.91:1 -->
+            <a class="kit-chip" href="#">
+                <span class="kit-glyph"><span class="kit-ratio r-191x1"></span></span>
+                <span class="kit-txt">
+                    <span class="kit-name">Banner de link</span>
+                    <span class="kit-dest">Facebook · WhatsApp</span>
+                </span>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>

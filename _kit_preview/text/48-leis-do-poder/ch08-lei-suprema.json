@@ -1,0 +1,25 @@
+{
+  "cards": [
+    {
+      "ic": "wave",
+      "t": "Assuma a Forma da Água",
+      "emph": "da Água",
+      "b": "A Lei 48 fecha o livro com a verdade mais profunda: o que tem forma fixa é previsível, e o previsível é atacável. Não se prenda a um único método ou identidade rígida — mude conforme o terreno e ninguém te encurrala. <strong>Quem sempre reage do mesmo jeito é lido e manipulado;</strong> a água vence a pedra pela adaptação, nunca pela dureza.",
+      "tip": "<strong>Como aplicar:</strong> varie a resposta o bastante para não ser decifrado — padrão fixo é alvo, adaptar-se é blindagem."
+    },
+    {
+      "ic": "mountain",
+      "t": "Porte-se como Rei",
+      "emph": "como Rei",
+      "b": "A Lei 34 trata da profecia da autoimagem: a postura molda como o mundo te trata, e o porte antecede o reconhecimento. Quem se conduz com a dignidade que reivindica é tratado à altura; quem se diminui convida a ser diminuído. <strong>Mas ser informe não é ser sem caráter</strong> — é flexibilidade tática assentada sobre valores firmes, não areia movediça.",
+      "tip": "<strong>Cuidado:</strong> adaptar a forma não é trair a essência — sem um núcleo de princípios, “informe” vira só fraqueza."
+    },
+    {
+      "ic": "scale",
+      "t": "A Régua Ética Fecha o Acervo",
+      "emph": "Régua Ética",
+      "b": "Greene escreveu uma lente do jogo social, não um catecismo de vilania — e usá-la como tal cobra caro: corrói a própria reputação (Lei 5) e fabrica inimigos. O poder íntegro serve a quem entende o jogo sem perder a alma. <strong>Nomear a tática que se aplica em você desarma o poder dela</strong>, como na ponerologia: o reconhecimento é a defesa.",
+      "tip": "<strong>Regra final:</strong> a pergunta que santifica todo o acervo — “isto está sendo usado em mim?” — é radar, não mira."
+    }
+  ]
+}

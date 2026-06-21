@@ -1,0 +1,27 @@
+{
+  "cards": [
+    {
+      "ic": "spark",
+      "t": "Clique, e a Fita Toca Inteira",
+      "emph": "a Fita Toca Inteira",
+      "b": "Como a perua que aquece qualquer bola de penas que faça “piu-piu”, agimos por fitas gravadas: um único traço-gatilho dispara a reação inteira, sem análise. “Caro é bom”, “todo mundo faz” — o atalho poupa o esforço de pensar. <strong>O problema nunca é o atalho; é quem imita o gatilho e aciona a reação sem o conteúdo que a justificava.</strong>",
+      "tip": "<strong>Modelo mental:</strong> o gatilho liga a fita inteira de uma vez — útil até virar falsificável."
+    },
+    {
+      "ic": "scale",
+      "t": "O Contraste é Invisível",
+      "emph": "Invisível",
+      "b": "A mente não mede em absoluto — mede em relação ao que veio logo antes. Depois da casa cara, a “razoável” parece pechincha; depois do terno, o suéter caro vira detalhe. <strong>Quem mostra o item caro primeiro não está informando, está calibrando o seu juízo</strong> — e você sente isso como percepção, não como manobra.",
+      "tip": "<strong>Como se defender:</strong> avalie cada preço sozinho, isolado do que foi exibido um segundo antes.",
+      "wide": true
+    },
+    {
+      "ic": "bulb",
+      "t": "Jiu-jítsu, Não Empurrão",
+      "emph": "Não Empurrão",
+      "b": "O persuasor hábil não te empurra de fora — usa uma força que já mora em você, a sua própria heurística, e deixa a gravidade fazer o resto. Por isso a manobra não parece pressão: parece descoberta sua. <strong>Ele gasta pouca energia e some da cena</strong>, enquanto o gatilho plantado trabalha sozinho dentro da sua cabeça.",
+      "tip": "<strong>Sinal de alerta:</strong> reação rápida e forte a um sinal isolado — preço, jaleco, “porque…” — é a fita tocando.",
+      "warn": true
+    }
+  ]
+}

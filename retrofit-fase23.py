@@ -4,11 +4,25 @@ no rodapé, em todas as páginas existentes. Idempotente (pode rodar de novo).""
 import json
 import re
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).parent
 BASE = "https://www.andregalgani.com.br/biblioteca"
 books = json.loads((ROOT / "books.json").read_text(encoding="utf-8"))
+
+
+def _safe_write(path, text):
+    # Windows devolve OSError [Errno 22]/lock transitório ao reabrir arquivo p/ escrita
+    # logo após gravá-lo (AV/indexer) durante a gravação em lote. Retry curto resolve.
+    for tentativa in range(6):
+        try:
+            path.write_text(text, encoding="utf-8", newline='\n')
+            return
+        except (OSError, PermissionError):
+            if tentativa == 5:
+                raise
+            time.sleep(0.15 * (tentativa + 1))
 
 ARROW_L = "←"  # ←
 ARROW_R = "→"  # →
@@ -89,7 +103,7 @@ idx = idx.replace('<meta property="og:type" content="article">',
                   '<meta property="og:type" content="website">')
 idx = idx.replace('<meta name="twitter:card" content="summary">',
                   '<meta name="twitter:card" content="summary_large_image">')
-idx_file.write_text(idx, encoding="utf-8", newline='\n')
+_safe_write(idx_file, idx)
 total_pages += 1
 
 # ------------------------------------------------------------------- livros
@@ -116,7 +130,7 @@ for book in books:
     cover = f"{BASE}/{book['coverUrl']}"
     ov = head_inject(ov, "", esc(book["title"]), esc(book["description"]), cover, f"{BASE}/{slug}.html")
     ov = footer_link(ov, "")
-    ov_file.write_text(ov, encoding="utf-8", newline='\n')
+    _safe_write(ov_file, ov)
     total_pages += 1
 
     book_dir = ROOT / slug
@@ -167,7 +181,7 @@ for book in books:
         if html != n0:
             total_nav += 1
 
-        ch_file.write_text(html, encoding="utf-8", newline='\n')
+        _safe_write(ch_file, html)
         total_pages += 1
 
 print(f"ok: {total_pages} páginas processadas, {total_nav} navegações nomeadas")

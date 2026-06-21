@@ -30,7 +30,7 @@ A autoridade clara + os checkpoints existem para impedir **delegação reversa**
 
 ```
 python upload_youtube.py <slug>.mp4 roteiros\<slug>.json   # -> <video_id> (unlisted, flag IA, cat 27, pt-BR)
-python thumb_set.py <video_id> _thumbs\<slug>.png          # hoje 403 (canal nao verificado) -> thumb manual no Studio
+python thumb_set.py <video_id> _thumbs\<slug>.png          # canal VERIFICADO (jun/2026): thumbnails.set OK via API
 python produzir_shorts.py <slug> <video_id>                # cenas-heroi do campo "shorts":[...]; idempotente
 python agendar_lote.py <slug> <video_id> <DD/MM>           # grade 2 longos/sem SEG/QUI + shorts +1..+4 dias
 python enfileirar_comentarios.py <slug> <video_id> "<pergunta-ancora>"   # fila.json -> VPS; cron 2/2h posta CTA

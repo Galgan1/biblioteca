@@ -26,12 +26,33 @@ ROOT = Path(__file__).parent
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 STEMS = ROOT / '_stems'
 
-# Defaults de mix (iguais ao comportamento histórico: trilha ~-19 dB sob a voz)
-DEFAULT_MIX = {"music_gain": 0.11, "sfx_gain": 1.0, "loudnorm": False, "lufs": -14, "tp": -1.0}
+# Defaults de mix (trilha ~-19 dB sob a voz). loudnorm ON → master no alvo do
+# YouTube (-14 LUFS, True Peak -1 dBTP): a plataforma normaliza para -14, então
+# entregar nesse alvo evita rebaixamento e mantém o volume consistente entre vídeos.
+DEFAULT_MIX = {"music_gain": 0.11, "sfx_gain": 1.0, "loudnorm": True, "lufs": -14, "tp": -1.0}
 
 
 def _run(args):
     subprocess.run(args, check=True, capture_output=True)
+
+
+def _build_audio_filter(mix, has_trilha, has_efe):
+    """PURO (sem ffmpeg): monta o grafo de áudio a partir das decisões de mix.
+    Devolve (parts, label_final). Voz soberana ([1:a]); trilha rebaixada e somada;
+    SFX somado SEM normalizar (não rebaixa voz/trilha); loudnorm ao final (-14 LUFS)."""
+    parts, idx, cur = [], 2, '[1:a]'                   # voz soberana
+    if has_trilha:
+        parts.append(f'[{idx}:a]volume={mix["music_gain"]}[m]')
+        parts.append(f'{cur}[m]amix=inputs=2:duration=first:dropout_transition=2[vt]')
+        cur = '[vt]'; idx += 1
+    if has_efe:
+        parts.append(f'[{idx}:a]volume={mix["sfx_gain"]}[e]')
+        parts.append(f'{cur}[e]amix=inputs=2:duration=first:normalize=0[ve]')
+        cur = '[ve]'; idx += 1
+    if mix.get('loudnorm'):
+        parts.append(f'{cur}loudnorm=I={mix["lufs"]}:TP={mix["tp"]}:LRA=11[a]')
+        cur = '[a]'
+    return parts, cur
 
 
 def export_stems(slug, narr_mp4, music_wav=None, efeitos_wav=None):
@@ -71,25 +92,15 @@ def master(slug, out=None):
     mix = {**DEFAULT_MIX, **(json.loads(mj.read_text(encoding='utf-8')) if (mj := d / 'mix.json').exists() else {})}
     out = Path(out) if out else ROOT / f'{slug}.mp4'
 
-    inp = ['-i', str(video), '-i', str(voz)]          # 0:v vídeo · 1:a voz
-    parts, idx, cur = [], 2, '[1:a]'                   # voz soberana
+    # entradas (I/O) na ordem que _build_audio_filter assume: 0:v vídeo · 1:a voz · 2 trilha · 3 SFX
+    inp = ['-i', str(video), '-i', str(voz)]
     if trilha.exists():
         inp += ['-i', str(trilha)]
-        parts.append(f'[{idx}:a]volume={mix["music_gain"]}[m]')
-        parts.append(f'{cur}[m]amix=inputs=2:duration=first:dropout_transition=2[vt]')
-        cur = '[vt]'; idx += 1
     if efe.exists():
-        # SFX (sonoplastia) entra por uma 2ª soma SEM normalização (normalize=0): não
-        # rebaixa voz/trilha. O knock cai no respiro entre cenas, onde a voz está em
-        # silêncio — então o pico somado não clipa. (Só ativa se efeitos.wav existir.)
+        # SFX entra por soma SEM normalização: não rebaixa voz/trilha. O knock cai no
+        # respiro entre cenas (voz em silêncio), então o pico somado não clipa.
         inp += ['-i', str(efe)]
-        parts.append(f'[{idx}:a]volume={mix["sfx_gain"]}[e]')
-        parts.append(f'{cur}[e]amix=inputs=2:duration=first:normalize=0[ve]')
-        cur = '[ve]'; idx += 1
-    if mix.get('loudnorm'):
-        parts.append(f'{cur}loudnorm=I={mix["lufs"]}:TP={mix["tp"]}:LRA=11[a]')
-        cur = '[a]'
-    last = cur
+    parts, last = _build_audio_filter(mix, trilha.exists(), efe.exists())
 
     args = [FFMPEG, '-y', *inp]
     amap = '1:a'

@@ -1,0 +1,26 @@
+{
+  "cards": [
+    {
+      "ic": "gap",
+      "t": "O Desejo de Aprovação É uma Armadilha",
+      "emph": "Armadilha",
+      "b": "Querer ser reconhecido parece nobre, mas escraviza: você se molda às expectativas dos outros e abre mão da própria vida. E a armadilha tem dois dentes — quem vive para agradar acaba também <strong>exigindo</strong> que os outros correspondam às suas expectativas. Você não nasceu para satisfazer ninguém; nem ninguém para satisfazer você.",
+      "tip": "<strong>Sinal de alerta:</strong> quando a decisão sai de “o que vão achar?” em vez de “qual é a minha tarefa?”, a coleira já está no pescoço.",
+      "warn": true
+    },
+    {
+      "ic": "sword",
+      "t": "Não Buscar Ser Desprezado — Mas Não Temer Sê-lo",
+      "emph": "Não Temer",
+      "b": "Ser livre é aceitar a possibilidade de ser malvisto por alguém. Não é provocar antipatia, nem viver <strong>contra</strong> as expectativas — isso ainda seria deixá-las governar você. É não temer a desaprovação a ponto de trair quem você é. Sem essa coragem não há liberdade, e sem liberdade não há felicidade. Daqui vem o título do livro.",
+      "tip": "<strong>Modelo mental:</strong> se ninguém nunca te desaprova, é bem provável que você esteja vivendo a vida que os outros escreveram."
+    },
+    {
+      "ic": "lens",
+      "t": "A Regra das Dez Pessoas",
+      "emph": "Dez Pessoas",
+      "b": "Por mais íntegro que você seja, de cada dez pessoas <strong>uma</strong> vai te desprezar faça o que fizer, sete serão neutras, e uma ou duas viram amigas de verdade. Gastar a vida convertendo o único desaprovador é sacrificar o todo por uma fração — e ainda falhar, pois o juízo dele nunca foi seu. Viva para quem importa.",
+      "tip": "<strong>Como aplicar:</strong> a opinião do desaprovador é tarefa dele; não a gerencie — invista nos um ou dois que ficam."
+    }
+  ]
+}

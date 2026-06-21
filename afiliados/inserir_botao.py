@@ -10,6 +10,7 @@ import html
 import json
 import re
 import sys
+import time
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
@@ -71,7 +72,14 @@ def main():
             doc = re.sub(r"(\n[ \t]*<footer)", "\n        " + novo + r"\1", doc, count=1)
             acao = "inserido"
 
-        arq.write_text(doc, encoding="utf-8", newline='\n')
+        for tentativa in range(6):  # Windows: OSError [Errno 22]/lock transitório na gravação em lote
+            try:
+                arq.write_text(doc, encoding="utf-8", newline='\n')
+                break
+            except (OSError, PermissionError):
+                if tentativa == 5:
+                    raise
+                time.sleep(0.15 * (tentativa + 1))
         feitos.append(f"{acao}: {book['id']}.html ({len(compras)} loja)")
 
     for linha in feitos:

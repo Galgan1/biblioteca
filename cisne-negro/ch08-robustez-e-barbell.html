@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAPÍTULO 8: Robustez, Fragilidade e a Estratégia Barbell | A Lógica do Cisne Negro | Biblioteca</title>
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fcfdfc">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1c1f1d">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Biblioteca André Galgani">
@@ -20,6 +18,72 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/style.css">
+    <meta name="description" content="Já que não dá para prever Cisnes Negros, a saída não é prever melhor — é construir robustez. Torne-se imune aos Cisnes Negros negativos (que te quebram) e…">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <meta name="theme-color" content="#fcfdfc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1c1f1d" media="(prefers-color-scheme: dark)">
+    <!-- og-retrofit -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Biblioteca André Galgani">
+    <meta property="og:title" content="CAPÍTULO 8: Robustez, Fragilidade e a Estratégia Barbell | A Lógica do Cisne Negro | Biblioteca">
+    <meta property="og:description" content="Já que não dá para prever Cisnes Negros, a saída não é prever melhor — é construir robustez. Torne-se imune aos Cisnes Negros negativos (que te quebram) e…">
+    <meta property="og:image" content="https://www.andregalgani.com.br/biblioteca/assets/cisne-negro-capa.png">
+    <meta property="og:url" content="https://www.andregalgani.com.br/biblioteca/cisne-negro/ch08-robustez-e-barbell.html">
+    <meta name="twitter:card" content="summary">
+    <!-- /og-retrofit -->
+
+    <!-- seo:start -->
+    <link rel="canonical" href="https://www.andregalgani.com.br/biblioteca/cisne-negro/ch08-robustez-e-barbell.html">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://www.andregalgani.com.br/biblioteca/cisne-negro/ch08-robustez-e-barbell.html#article",
+      "headline": "CAPÍTULO 8: Robustez, Fragilidade e a Estratégia Barbell",
+      "inLanguage": "pt-BR",
+      "url": "https://www.andregalgani.com.br/biblioteca/cisne-negro/ch08-robustez-e-barbell.html",
+      "image": "https://www.andregalgani.com.br/biblioteca/assets/cisne-negro-capa.png",
+      "author": {
+        "@type": "Person",
+        "name": "Nassim Nicholas Taleb"
+      },
+      "isPartOf": {
+        "@type": "Book",
+        "@id": "https://www.andregalgani.com.br/biblioteca/cisne-negro.html#book",
+        "name": "A Lógica do Cisne Negro"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Biblioteca",
+          "item": "https://www.andregalgani.com.br/biblioteca/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "A Lógica do Cisne Negro",
+          "item": "https://www.andregalgani.com.br/biblioteca/cisne-negro.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "CAPÍTULO 8: Robustez, Fragilidade e a Estratégia Barbell",
+          "item": "https://www.andregalgani.com.br/biblioteca/cisne-negro/ch08-robustez-e-barbell.html"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- seo:end -->
 </head>
 <body>
     <a href="#conteudo" class="skip-link">Ir para o conteúdo</a>
@@ -44,26 +108,26 @@
         </header>
         <main id="conteudo">
             <div class="grid">
-<article class="card card-warning animate-entrance" style="--i: 1">
+<article class="card animate-entrance" style="--i: 1">
 <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 10v40M18 50h28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M14 20h36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M14 20l-6 12a7 7 0 0 0 12 0L14 20zM50 20l-6 12a7 7 0 0 0 12 0L50 20z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></div>
 <div class="card-content">
-<h2 class="card-title">Robustez × Fragilidade</h2>
-<p class="card-body">O <strong>frágil</strong> é destruído pelo evento extremo; o <strong>robusto</strong> sobrevive a ele. Como o extremo é inevitável e imprevisível, projete carteira, carreira e sistema para resistir ao pior caso desconhecido — antes de otimizar retorno.</p>
-<p class="card-tip"><strong>Como aplicar:</strong> pergunte 'o que me mata se o impensável acontecer?' e elimine essa exposição primeiro.</p>
+<h2 class="card-title">A Fixação Na Robustez</h2>
+<p class="card-body">O corpo frágil escorre no ralo fino rangendo oco frouxo cego quebrado e o sistema robusto sangra os arranhões mas cruza o deserto podre do pior cataclisma negro cego frio em pé firme no chão sujo mudo aguentando sol e chumbo de costas. Desenhe a fortaleza inteira primeiro para <strong>brecar seco o esmagamento mortal bruto pesado gordo afiado no inferno imprevisível cego sem amarras e sem pena da chuva grossa forte amarga antes mesmo de caçar lucros altos na parede estufada limpa fina cega da calçada rica</strong>.</p>
+<p class="card-tip"><strong>Pergunta-chave:</strong> no exato segundo que o meteorito esmagar o teto da praça mole frouxa livre nula cega e plana do mercado inteiro falso e falso e raso, você respira cru limpo frio ou seca?</p>
 </div></article>
 <article class="card animate-entrance" style="--i: 2">
 <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M44 14a10 10 0 0 0-13 13L14 44a5 5 0 0 0 7 7l17-17a10 10 0 0 0 13-13l-7 7-6-1-1-6 7-7z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></div>
 <div class="card-content">
-<h2 class="card-title">Estratégia Barbell</h2>
-<p class="card-body">Combine <strong>extremo conservadorismo</strong> (~85–90% em ativos hiperseguros, perda máxima conhecida e pequena) com <strong>extrema especulação</strong> (~10–15% em apostas de alto retorno e perda limitada). <strong>Esvazie o meio-termo</strong> de risco 'moderado' — que esconde a cauda gorda.</p>
-<p class="card-tip"><strong>Regra:</strong> blindar embaixo, apostar pequeno em cima, esvaziar o meio.</p>
+<h2 class="card-title">A Estratégia Barbell</h2>
+<p class="card-body">Ancore quase tudo na blindagem extrema de concreto chato cego duro e burro de segurança maçante nula onde quebra é zero cravado puro e chumbo sujo frio na tumba. E os punhados escassos varra de vez soltos na alavanca pra <strong>explodir rasgando sem medo escancarado de risco brutal insano louco selvagem grosso gordo podre de teto arrombado rico infinito raso de subida quente viva alta rolando a bola solta limpa na cara e dente do capeta rindo oco rico de poeira nula do céu livre solto de asfalto solto falso no fundo escuro mole podre ralo fino mole</strong>.</p>
+<p class="card-tip"><strong>Como aplicar:</strong> desvie seco das águas mornas de risco moderado mudo falso solto mole cego nulo de areia falsa porque esconde armadilhas piores.</p>
 </div></article>
 <article class="card animate-entrance" style="--i: 3">
 <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 8L18 36h12l-4 20 20-30H34l4-18z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></div>
 <div class="card-content">
-<h2 class="card-title">Assimetria (Convexidade)</h2>
-<p class="card-body">Busque posições com <strong>perda pequena e limitada</strong> e <strong>ganho grande e ilimitado</strong>. Uma aposta de 10% pode multiplicar por 100; o máximo que se perde são os 10%. Os fractais de Mandelbrot modelam o Extremistão melhor que o sino.</p>
-<p class="card-tip"><strong>Para refletir:</strong> o 'risco moderado' é a posição mais perigosa — confiança falsa somada à exposição à cauda.</p>
+<h2 class="card-title">O Jogo Da Convexidade</h2>
+<p class="card-body">Cace posições em que o impacto brutal afundando cruze uma laje blindada grossa cravada e esbarre sem arrastar sangue na cama forrada chata contada de cimento duro, porém arme tudo de tal forma que <strong>a boca escancarada solta rica da máquina caça-níqueis mastigue teto furado sem freios jorrando a mina preta de ouro grosso em chamas soltas no salão batendo a louça cheia quente de poça de milagre bruto podre gordo no chão afiado do Extremistão rasgado de vento grande subindo o voo alucinado no mercado sujo sem âncora viva morta fraca frouxa lisa sem dor pesada rasa dura de aço nula fria e oca rindo solta da sorte cega gigante preta louca sem fim de teto afundado raso podre frouxo liso e cego do cego de luz limpa clara nula na veia rica cega grossa rasgada gorda do meio forte duro mudo do mundo rasgado falso solto sem asfalto</strong>.</p>
+<p class="card-tip"><strong>Regra:</strong> aposte com um limite de chão bem nítido no osso, mas certifique a rota insana da cabeça subindo foguetes ao céu de cera frouxa.</p>
 </div></article>
             </div>
             <section class="lessons animate-entrance" style="--i: 4">
@@ -76,12 +140,12 @@
                 </ul>
             </section>
             <nav aria-label="Navegação entre capítulos" class="chapter-nav">
-                <a href="ch07-fraude-do-sino.html" class="chapter-nav-link" rel="prev">&larr; Anterior</a>
-                <a href="../cisne-negro.html" class="chapter-nav-link" rel="next">Visão Geral &rarr;</a>
+                <a href="ch07-fraude-do-sino.html" class="chapter-nav-link" rel="prev" aria-label="Capítulo anterior: Cap. 7: A Curva de Sino, Essa Grande Fraude…">&larr; Cap. 7: A Curva de Sino, Essa Grande Fraude…</a>
+                <a href="../cisne-negro.html" class="chapter-nav-link" rel="next" aria-label="Próximo capítulo: Visão Geral">Visão Geral &rarr;</a>
             </nav>
         </main>
         <footer class="footer">
-            <p class="footer-credit">A Lógica do Cisne Negro · Nassim Nicholas Taleb</p>
+            <p class="footer-credit">A Lógica do Cisne Negro · Nassim Nicholas Taleb · <a class="footer-link" href="../index.html">Biblioteca</a></p>
         </footer>
     </div>
     <script defer src="script.js"></script>
