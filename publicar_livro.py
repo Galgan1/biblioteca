@@ -9,10 +9,14 @@
 Encadeia, na ordem certa e sem deixar esquecer nenhum passo:
   1. valida o schema do `<slug>_data.py`
   2. gera visao geral + capitulos + script.js + books.json   (gerar_livro)
+  2b. gera kit de divulgacao (templates HTML para o admin do site)  (gerar_dados_kit)
+  2c. gera dados de carrossel (slides.json + caps.json)             (gerar_dados_carrossel)
+  2d. gera story PNGs com 4 frames (teaser+quote+insights+CTA)      (gerar_carrossel --stories)
   3. garante a capa (gera tipografica on-brand se faltar)     (gerar_capa)
   4. roda o retrofit (favicon, OG/Twitter, theme-color, nav nomeada, rodape)
   5. verifica: paginas existem + smoke no navegador
   6. [--deploy] sobe os arquivos do livro + assets e corrige a permissao da pasta
+             + kit/_tpl/<slug>/ + assets/kit/<slug>/ + story PNGs para a VPS
 """
 import importlib
 import os
@@ -141,6 +145,30 @@ def deploy(slug, CH):
          f"{VPS}:{REMOTE}/assets/"], cwd=BASE)
     # corrige a permissao da pasta nova (senao o nginx da 404 — o bug classico)
     run(["ssh", VPS, f"chmod 755 {REMOTE}/{slug} && chmod 644 {REMOTE}/{slug}/*"])
+
+    # kit de divulgacao (templates HTML para o admin + dados do carrossel)
+    kit_tpl = os.path.join(BASE, "assets", "kit", "_tpl", slug)
+    kit_data_dir = os.path.join(BASE, "assets", "kit", slug)
+    if os.path.isdir(kit_tpl):
+        run(["ssh", VPS, f"mkdir -p {REMOTE}/assets/kit/_tpl/{slug}"])
+        run(["scp", "-r", kit_tpl, f"{VPS}:{REMOTE}/assets/kit/_tpl/"], cwd=BASE)
+    for fname in ("manifest.json", "slides.json", "caps.json"):
+        src = os.path.join(kit_data_dir, fname)
+        if os.path.exists(src):
+            run(["ssh", VPS, f"mkdir -p {REMOTE}/assets/kit/{slug}"])
+            run(["scp", src, f"{VPS}:{REMOTE}/assets/kit/{slug}/"], cwd=BASE)
+
+    # story PNGs (para o cron do Instagram)
+    story_dir = os.path.join(BASE, "videos", "_carrossel", f"{slug}_stories")
+    pngs = sorted(
+        [os.path.join(story_dir, p) for p in os.listdir(story_dir) if p.endswith(".png")]
+    ) if os.path.isdir(story_dir) else []
+    if pngs:
+        vps_stories = f"/opt/minutoreal/_carrossel/{slug}_stories"
+        run(["ssh", VPS, f"mkdir -p {vps_stories}"])
+        run(["scp", *pngs, f"{VPS}:{vps_stories}/"], cwd=BASE)
+        print(f"OK: {len(pngs)} story PNGs enviados para {vps_stories}")
+
     print(f"OK: no ar -> https://www.andregalgani.com.br/biblioteca/{slug}.html")
 
 
@@ -160,6 +188,15 @@ def main():
     step("2", "gerando paginas + books.json")
     import gerar_livro
     gerar_livro.main(slug)
+
+    step("2b", "gerando kit de divulgacao (templates do admin)")
+    run([sys.executable, "gerar_dados_kit.py", slug], cwd=BASE)
+
+    step("2c", "gerando dados do carrossel (slides.json + caps.json)")
+    run([sys.executable, "gerar_dados_carrossel.py", slug], cwd=BASE)
+
+    step("2d", "gerando story PNGs (4 frames: teaser+quote+insights+CTA)")
+    run([sys.executable, "gerar_carrossel.py", slug, "--stories"], cwd=BASE)
 
     step("3", "garantindo a capa")
     ensure_cover(B, slug)
