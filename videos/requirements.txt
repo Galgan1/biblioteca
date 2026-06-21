@@ -1,0 +1,14 @@
+# Dependências de RUNTIME da lane de vídeo (Akita pilar 8: ambiente reproduzível).
+# Antes só existia requirements-dev.txt (pydantic + depthflow); as 7 deps abaixo
+# eram usadas mas NÃO declaradas — qualquer `pip install` limpo / CI quebrava.
+# Uso: pip install -r videos/requirements.txt
+numpy>=1.26
+Pillow>=10
+imageio-ffmpeg>=0.5
+mutagen>=1.47
+requests>=2.31
+google-api-python-client>=2.140
+google-auth>=2.30
+google-auth-httplib2>=0.2
+google-auth-oauthlib>=1.2
+fal-client>=0.5
