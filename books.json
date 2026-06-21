@@ -1371,28 +1371,6 @@
     ]
   },
   {
-    "id": "sapiens",
-    "title": "Sapiens",
-    "author": "Yuval Noah Harari",
-    "coverUrl": "assets/sapiens-capa.png",
-    "description": "Grande história de Yuval Noah Harari sobre o passado da humanidade. As 3 revoluções (Cognitiva ~70 mil anos, Agrícola ~12 mil, Científica ~500 anos); o poder das ficções compartilhadas; a Revolução Agrícola como 'a maior fraude da história'; dinheiro, império e religião como as 3 ordens unificadoras; o casamento ciência-império-capital; o capitalismo e o crédito; a (in)felicidade do Sapiens; e o fim do Homo sapiens.",
-    "tags": [
-      "História",
-      "Antropologia",
-      "Civilização"
-    ],
-    "progress": "13 Capítulos",
-    "url": "sapiens.html",
-    "amazon": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "homo-deus",
     "title": "Homo Deus",
     "author": "Yuval Noah Harari",
@@ -1635,28 +1613,6 @@
     ]
   },
   {
-    "id": "dom-casmurro",
-    "title": "Dom Casmurro",
-    "author": "Machado de Assis",
-    "coverUrl": "assets/dom-casmurro-capa.png",
-    "description": "Romance realista de Machado de Assis (1899) narrado em 1ª pessoa por Bento Santiago. O narrador não-confiável, a ambiguidade proposital sobre o adultério de Capitu, os 'olhos de ressaca', o ciúme como tema central, a paternidade incerta de Ezequiel, a promessa do seminário, José Dias e o leitor convertido em júri. Não conclui a culpa — expõe o debate.",
-    "tags": [
-      "Literatura Brasileira",
-      "Realismo",
-      "Narrador Não-Confiável"
-    ],
-    "progress": "8 Movimentos",
-    "url": "dom-casmurro.html",
-    "amazon": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "habitos-atomicos",
     "title": "Hábitos Atômicos",
     "author": "James Clear",
@@ -1807,28 +1763,6 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/6555320516/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "sutil-arte",
-    "title": "A Sutil Arte de Ligar o F*da-se",
-    "author": "Mark Manson",
-    "coverUrl": "assets/sutil-arte-capa.png",
-    "description": "O best-seller contraintuitivo de Mark Manson. A cota limitada de fodas-se, o feedback loop do inferno, a felicidade como problema (escolha sua dor), a tirania do excepcionalismo, os bons e maus valores, a diferença entre responsabilidade e culpa, e a morte como bússola do que importa.",
-    "tags": [
-      "Autodesenvolvimento",
-      "Filosofia",
-      "Comportamento"
-    ],
-    "progress": "8 Capítulos",
-    "url": "sutil-arte.html",
-    "amazon": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
@@ -2247,6 +2181,72 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "sutil-arte",
+    "title": "A Sutil Arte de Ligar o F*da-se",
+    "author": "Mark Manson",
+    "coverUrl": "assets/sutil-arte-capa.png",
+    "description": "O anti-livro de autoajuda de Mark Manson, com a delicadeza de um soco. A cota finita de fodas-se, o feedback loop do inferno, a felicidade que mora no problema certo, a tirania de ter que ser especial, a régua dos bons e maus valores, a culpa que não é responsabilidade — e a morte como o único filtro que não mente.",
+    "tags": [
+      "Autodesenvolvimento",
+      "Filosofia",
+      "Comportamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "sutil-arte.html",
+    "amazon": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "sapiens",
+    "title": "Sapiens",
+    "author": "Yuval Noah Harari",
+    "coverUrl": "assets/sapiens-capa.png",
+    "description": "Yuval Noah Harari conta a história inteira da nossa espécie sem reverência ao 'progresso'. Três revoluções a movem: a Cognitiva (~70 mil anos) nos deu a ficção; a Agrícola (~12 mil) — 'a maior fraude da história' — multiplicou a espécie e escravizou o indivíduo; a Científica (~500 anos) transformou a ignorância confessada em poder. No meio, dinheiro, império e religião costuram mundos isolados num só. No fim, o capitalismo aposta tudo num futuro maior — e o sapiens, mais poderoso que nunca e nem por isso mais feliz, ensaia trocar a evolução pelo design e virar deus de si mesmo.",
+    "tags": [
+      "História",
+      "Antropologia",
+      "Civilização"
+    ],
+    "progress": "13 Capítulos",
+    "url": "sapiens.html",
+    "amazon": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "dom-casmurro",
+    "title": "Dom Casmurro",
+    "author": "Machado de Assis",
+    "coverUrl": "assets/dom-casmurro-capa.png",
+    "description": "Romance de Machado de Assis (1899), narrado em 1ª pessoa por Bento Santiago. O narrador parcial, a dúvida montada com arte sobre o adultério de Capitu, os 'olhos de ressaca', o ciúme que nasce antes do motivo, a paternidade incerta de Ezequiel, a promessa do seminário, a delação de José Dias — e o leitor promovido a júri. Nenhuma prova é dada; o veredicto é a armadilha.",
+    "tags": [
+      "Literatura Brasileira",
+      "Realismo",
+      "Narrador Não-Confiável"
+    ],
+    "progress": "8 Movimentos",
+    "url": "dom-casmurro.html",
+    "amazon": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   }

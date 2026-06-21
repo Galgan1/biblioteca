@@ -60,7 +60,6 @@
   "flow": "https://www.amazon.com.br/dp/8547001131/?tag=andregalgani-20&language=pt_BR",
   "corpo-guarda-as-marcas": "https://www.amazon.com.br/dp/8543110017/?tag=andregalgani-20&language=pt_BR",
   "busca-de-sentido": "https://www.amazon.com.br/dp/8532606261/?tag=andregalgani-20&language=pt_BR",
-  "sapiens": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR",
   "homo-deus": "https://www.amazon.com.br/dp/8535928197/?tag=andregalgani-20&language=pt_BR",
   "gene-egoista": "https://www.amazon.com.br/dp/8535911294/?tag=andregalgani-20&language=pt_BR",
   "cisne-negro": "https://www.amazon.com.br/dp/8547001263/?tag=andregalgani-20&language=pt_BR",
@@ -72,7 +71,6 @@
   "pequeno-principe": "https://www.amazon.com.br/dp/8595081514/?tag=andregalgani-20&language=pt_BR",
   "metamorfose": "https://www.amazon.com.br/dp/8571646856/?tag=andregalgani-20&language=pt_BR",
   "o-alquimista": "https://www.amazon.com.br/dp/8532505686/?tag=andregalgani-20&language=pt_BR",
-  "dom-casmurro": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR",
   "habitos-atomicos": "https://www.amazon.com.br/dp/8550807567/?tag=andregalgani-20&language=pt_BR",
   "1984": "https://www.amazon.com.br/dp/8535914846/?tag=andregalgani-20&language=pt_BR",
   "garra": "https://www.amazon.com.br/dp/8551000020/?tag=andregalgani-20&language=pt_BR",
@@ -80,7 +78,6 @@
   "aristoteles-poetica": "https://www.amazon.com.br/dp/8572837590/?tag=andregalgani-20&language=pt_BR",
   "marketing-4-0": "https://www.amazon.com.br/dp/8543105331/?tag=andregalgani-20&language=pt_BR",
   "48-leis-do-poder": "https://www.amazon.com.br/dp/6555320516/?tag=andregalgani-20&language=pt_BR",
-  "sutil-arte": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR",
   "quem-mexeu-no-queijo": "https://www.amazon.com.br/dp/8501112062/?tag=andregalgani-20&language=pt_BR",
   "poder-de-delegar": "https://www.amazon.com.br/dp/8576840669/?tag=andregalgani-20&language=pt_BR",
   "psicologia-financeira": "https://www.amazon.com.br/dp/6555111100/?tag=andregalgani-20&language=pt_BR",
@@ -99,5 +96,8 @@
   "story-mckee": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR",
   "blender-manual": "https://www.amazon.com.br/s?k=Blender+Manual+Oficial+Blender+Foundation&tag=andregalgani-20",
   "blender-noob-to-pro": "https://www.amazon.com.br/s?k=Blender+3D%3A+Noob+to+Pro+Wikibooks+%28comunidade%29&tag=andregalgani-20",
-  "blender-fundamentals": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20"
+  "blender-fundamentals": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20",
+  "sutil-arte": "https://www.amazon.com.br/dp/855100249X/?tag=andregalgani-20&language=pt_BR",
+  "sapiens": "https://www.amazon.com.br/dp/8535933921/?tag=andregalgani-20&language=pt_BR",
+  "dom-casmurro": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR"
 }
