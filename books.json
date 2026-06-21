@@ -14,307 +14,6 @@
     "url": "tjmg-regras-cartorios.html"
   },
   {
-    "id": "save-the-cat",
-    "title": "Save the Cat!",
-    "author": "Blake Snyder",
-    "coverUrl": "assets/save-the-cat-capa.png",
-    "description": "O método prático de Blake Snyder para estruturar histórias: logline com ironia, os 10 gêneros de transformação, a beat sheet de 15 beats, o Quadro de 40 cartões, as leis da física do roteiro e um checklist de diagnóstico.",
-    "tags": [
-      "Roteiro",
-      "Narrativa",
-      "Ofício"
-    ],
-    "progress": "8 Capítulos",
-    "url": "save-the-cat.html",
-    "amazon": "https://www.amazon.com.br/dp/1932907009/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/1932907009/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "jornada-do-escritor",
-    "title": "A Jornada do Escritor",
-    "author": "Christopher Vogler",
-    "coverUrl": "assets/jornada-do-escritor-capa.png",
-    "description": "A adaptação de Christopher Vogler do monomito de Campbell para roteiristas: os 12 estágios da Jornada do Herói e os 8 arquétipos como funções psicológicas — uma bússola flexível para a estrutura de qualquer história.",
-    "tags": [
-      "Roteiro",
-      "Mito",
-      "Ofício"
-    ],
-    "progress": "10 Capítulos",
-    "url": "jornada-do-escritor.html",
-    "amazon": "https://www.amazon.com.br/dp/6583239019/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6583239019/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "sound-design",
-    "title": "Sound Design",
-    "author": "David Sonnenschein",
-    "coverUrl": "assets/sound-design-capa.png",
-    "description": "O guia prático e expressivo do sound design por David Sonnenschein: o processo (do roteiro à mixagem), a criação de sons, a acústica e a psicoacústica, música, voz, efeitos e o mapa emocional que faz o som dirigir o que o público sente.",
-    "tags": [
-      "Som",
-      "Cinema",
-      "Ofício"
-    ],
-    "progress": "8 Capítulos",
-    "url": "sound-design.html",
-    "amazon": "https://www.amazon.com.br/dp/0941188264/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/0941188264/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "audiovisao",
-    "title": "A Audiovisão",
-    "author": "Michel Chion",
-    "coverUrl": "assets/audiovisao-capa.png",
-    "description": "A teoria do som no cinema por Michel Chion: o contrato audiovisual, o valor acrescentado, a síncrese, os três modos de escuta, o som acusmático e o acusmêtre, a temporalização, o rendering e o vococentrismo.",
-    "tags": [
-      "Som",
-      "Cinema",
-      "Teoria"
-    ],
-    "progress": "8 Capítulos",
-    "url": "audiovisao.html",
-    "amazon": "https://www.amazon.com.br/dp/B087ZLCGT3/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/B087ZLCGT3/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "coesao-coerencia",
-    "title": "Coesão e Coerência",
-    "author": "Beaugrande, Dressler & Halliday",
-    "coverUrl": "assets/coesao-coerencia-capa.png",
-    "description": "A linguística textual de Beaugrande & Dressler (os 7 critérios de textualidade) e os 5 mecanismos de coesão de Halliday & Hasan: coesão, coerência, intencionalidade, aceitabilidade, informatividade, situacionalidade e intertextualidade.",
-    "tags": [
-      "Língua",
-      "Texto",
-      "Redação"
-    ],
-    "progress": "9 Capítulos",
-    "url": "coesao-coerencia.html",
-    "amazon": "https://www.amazon.com.br/dp/0582554853/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/0582554853/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "ponerologia",
-    "title": "Ponerologia Política",
-    "author": "Andrzej Łobaczewski",
-    "coverUrl": "assets/ponerologia-capa.png",
-    "description": "A ponerologia de Łobaczewski: o estudo clínico da gênese do mal social. Ponerogênese, psicopatia essencial, spellbinders, paramoralismos, a máscara ideológica, a pathocracia e o ciclo histeroidal — em chave defensiva, para reconhecer e resistir.",
-    "tags": [
-      "Psicologia",
-      "Política",
-      "Sociedade"
-    ],
-    "progress": "10 Capítulos",
-    "url": "ponerologia.html",
-    "amazon": "https://www.amazon.com.br/dp/859507237X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/859507237X/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "nacao-dopamina",
-    "title": "Nação Dopamina",
-    "author": "Anna Lembke",
-    "coverUrl": "assets/nacao-dopamina-capa.png",
-    "description": "A neurociência do prazer e do vício, por Anna Lembke: a balança prazer-dor, a dopamina como moeda do vício, o déficit por excesso, o jejum de dopamina (acrônimo DOPAMINE), o autovínculo, a hormese e o caminho do equilíbrio.",
-    "tags": [
-      "Psicologia",
-      "Neurociência",
-      "Hábitos"
-    ],
-    "progress": "9 Capítulos",
-    "url": "nacao-dopamina.html",
-    "amazon": "https://www.amazon.com.br/dp/B09SM3F8Z6/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/B09SM3F8Z6/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "pai-rico-pai-pobre",
-    "title": "Pai Rico, Pai Pobre",
-    "author": "Robert T. Kiyosaki",
-    "coverUrl": "assets/pai-rico-pai-pobre-capa.png",
-    "description": "O clássico da educação financeira de Robert Kiyosaki. Por que inteligência acadêmica não é inteligência financeira: a parábola dos dois pais, a regra nº1 (ativo vs. passivo e o fluxo de caixa), a corrida dos ratos movida por medo e ganância, construir a coluna de ativos, o poder das corporações e dos impostos, inventar dinheiro com risco calculado, trabalhar para aprender, pagar-se primeiro e vencer os 5 obstáculos à riqueza.",
-    "tags": [
-      "Finanças",
-      "Educação Financeira",
-      "Mentalidade"
-    ],
-    "progress": "10 Capítulos",
-    "url": "pai-rico-pai-pobre.html",
-    "amazon": "https://www.amazon.com.br/dp/8550801488/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8550801488/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "quatro-compromissos",
-    "title": "Os Quatro Compromissos",
-    "author": "Don Miguel Ruiz",
-    "coverUrl": "assets/quatro-compromissos-capa.png",
-    "description": "O clássico de Don Miguel Ruiz baseado na sabedoria tolteca. A domesticação do humano e o sonho do planeta; o Juiz, a Vítima e o Livro da Lei; os QUATRO acordos — seja impecável com a palavra, não leve nada para o lado pessoal, não tire conclusões precipitadas, sempre faça o melhor que puder; a quebra de acordos antigos rumo à liberdade pessoal, mais o quinto acordo: seja cético, mas aprenda a ouvir.",
-    "tags": [
-      "Sabedoria",
-      "Autoconhecimento",
-      "Espiritualidade"
-    ],
-    "progress": "8 Capítulos",
-    "url": "quatro-compromissos.html",
-    "amazon": "https://www.amazon.com.br/dp/6557120956/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6557120956/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "homem-mais-rico-babilonia",
-    "title": "O Homem Mais Rico da Babilônia",
-    "author": "George S. Clason",
-    "coverUrl": "assets/homem-mais-rico-babilonia-capa.png",
-    "description": "As parábolas de Arkad, Bansir e Dabasir destilam as leis universais da prosperidade: pague-se primeiro (no mínimo 10%), as Sete Curas para uma bolsa vazia, as Cinco Leis do Ouro, o plano 70/20/10 para sair das dívidas, e a ideia de que a sorte favorece quem age. Riqueza é resultado de hábitos simples e constantes, não de salário alto ou sorte.",
-    "tags": [
-      "Finanças",
-      "Poupança",
-      "Riqueza"
-    ],
-    "progress": "9 Capítulos",
-    "url": "homem-mais-rico-babilonia.html",
-    "amazon": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "design-do-dia-a-dia",
-    "title": "O Design do Dia a Dia",
-    "author": "Don Norman",
-    "coverUrl": "assets/design-do-dia-a-dia-capa.png",
-    "description": "O clássico que inventou o vocabulário do design centrado no humano. Don Norman explica os cinco princípios que fazem um objeto se explicar sozinho — affordances, significantes, mapeamento, feedback e restrições — e por que 'erro humano' quase sempre é erro de design. Da psicologia da ação (os dois golfos, os sete estágios) ao design à prova de erro (deslizes × enganos, funções de força, poka-yoke), é o manual para projetar coisas que as pessoas conseguem usar sem manual.",
-    "tags": [
-      "Design",
-      "UX",
-      "Produtos Digitais"
-    ],
-    "progress": "10 Capítulos",
-    "url": "design-do-dia-a-dia.html",
-    "amazon": "https://www.amazon.com.br/dp/6555324473/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6555324473/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "nao-me-faca-pensar",
-    "title": "Não Me Faça Pensar",
-    "author": "Steve Krug",
-    "coverUrl": "assets/nao-me-faca-pensar-capa.png",
-    "description": "O clássico mais influente da usabilidade web, de Steve Krug. Em vez de um manual técnico, é um guia de bom senso: reduza a carga cognitiva, aproveite as convenções, deixe óbvio o que é clicável, corte as palavras desnecessárias e dê ao usuário uma navegação que sempre responde 'onde estou?' e 'como volto?'. Krug demole o mito do 'usuário médio' e da home perfeita, e mostra como um teste de usabilidade barato — três pessoas, uma manhã por mês — resolve discussões com evidência. No centro de tudo, a reserva de boa vontade do usuário: cada atrito a esvazia, cada cortesia a reabastece.",
-    "tags": [
-      "Usabilidade",
-      "UX",
-      "Web"
-    ],
-    "progress": "10 Capítulos",
-    "url": "nao-me-faca-pensar.html",
-    "amazon": "https://www.amazon.com.br/dp/8576088509/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8576088509/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "futebol-brasileiro",
-    "title": "A História do Futebol Brasileiro",
-    "author": "Mário Filho e clássicos do tema",
-    "coverUrl": "assets/futebol-brasileiro-capa.png",
-    "description": "A história do futebol brasileiro, da origem aristocrática (Charles Miller, 1894) à era das cinco estrelas — inspirada no maior clássico do tema, 'O Negro no Futebol Brasileiro' de Mário Filho. A barreira racial e o 'pó de arroz', a ruptura do Vasco (1923), Friedenreich e Leônidas, a profissionalização (1933), a invenção do futebol-arte, o Maracanazo (1950) e o 'complexo de vira-lata', o tri de Pelé e Garrincha (1958/62/70), a beleza que perdeu em 1982, o tetra e o penta (1994/2002), o 7 a 1 de 2014 e o debate sobre o mito da democracia racial.",
-    "tags": [
-      "História",
-      "Futebol",
-      "Brasil",
-      "Cultura"
-    ],
-    "progress": "10 Capítulos",
-    "url": "futebol-brasileiro.html"
-  },
-  {
-    "id": "padrao-bitcoin",
-    "title": "O Padrão Bitcoin",
-    "author": "Saifedean Ammous",
-    "coverUrl": "assets/padrao-bitcoin-capa.png",
-    "description": "Para entender o Bitcoin, entenda o dinheiro. Ammous usa a história monetária e a escola austríaca para mostrar por que o dinheiro forte (alta razão estoque/fluxo) preserva poupança e civilização — e por que o Bitcoin seria o mais forte já criado.",
-    "tags": [
-      "Economia",
-      "Dinheiro",
-      "Bitcoin"
-    ],
-    "progress": "10 Capítulos",
-    "url": "padrao-bitcoin.html",
-    "amazon": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "hora-da-estrela",
     "title": "A Hora da Estrela",
     "author": "Clarice Lispector",
@@ -2247,6 +1946,307 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8582850352/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "save-the-cat",
+    "title": "Save the Cat!",
+    "author": "Blake Snyder",
+    "coverUrl": "assets/save-the-cat-capa.png",
+    "description": "O manual de roteiro mais prático e debochado de Hollywood. Blake Snyder entrega o sistema inteiro: a logline com ironia que vende o filme numa frase, os 10 gêneros (que são tipos de transformação, não cenários), a beat sheet de 15 batidas, o Quadro de 40 cartões, as leis da física do roteiro (salve o gato, o papa na piscina, uma só mágica por filme) e o diagnóstico que conserta a história pela planta baixa, não pela tinta da parede.",
+    "tags": [
+      "Roteiro",
+      "Narrativa",
+      "Ofício"
+    ],
+    "progress": "8 Capítulos",
+    "url": "save-the-cat.html",
+    "amazon": "https://www.amazon.com.br/dp/1932907009/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/1932907009/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "jornada-do-escritor",
+    "title": "A Jornada do Escritor",
+    "author": "Christopher Vogler",
+    "coverUrl": "assets/jornada-do-escritor-capa.png",
+    "description": "A adaptação que Christopher Vogler fez do monomito de Joseph Campbell para o ofício do roteiro: os 12 estágios da Jornada do Herói e os 8 arquétipos vistos como funções psicológicas, não tipos fixos. Uma bússola para escrever — e diagnosticar — qualquer história, do mito épico ao drama mais íntimo. Mapa flexível, jamais receita.",
+    "tags": [
+      "Roteiro",
+      "Mito",
+      "Ofício"
+    ],
+    "progress": "10 Capítulos",
+    "url": "jornada-do-escritor.html",
+    "amazon": "https://www.amazon.com.br/dp/6583239019/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6583239019/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "sound-design",
+    "title": "Sound Design",
+    "author": "David Sonnenschein",
+    "coverUrl": "assets/sound-design-capa.png",
+    "description": "O manual expressivo do sound design por David Sonnenschein — o livro que ensina a ouvir o roteiro antes de filmá-lo. Do spotting à mixagem: como inventar sons que dizem mais que o real, como a física vira emoção (vibração → sensação → percepção → sentimento), e como orquestrar voz, música e efeitos sem que briguem. No fim, o mapa emocional: a curva do que a plateia sente, desenhada com peso, ritmo, silêncio — e a coragem de cortar tudo no instante certo.",
+    "tags": [
+      "Som",
+      "Cinema",
+      "Ofício"
+    ],
+    "progress": "8 Capítulos",
+    "url": "sound-design.html",
+    "amazon": "https://www.amazon.com.br/dp/0941188264/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/0941188264/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "audiovisao",
+    "title": "A Audiovisão",
+    "author": "Michel Chion",
+    "coverUrl": "assets/audiovisao-capa.png",
+    "description": "A teoria francesa do som no cinema, por Michel Chion. Não um tratado de acústica, mas a anatomia de uma ilusão: o contrato audiovisual que fundimos sem perceber, o valor acrescentado que o ouvido planta e o olho colhe, a síncrese que solda qualquer som a qualquer gesto, os três modos de escuta, a voz sem corpo que vira o acusmêtre, o som que dá tempo à imagem, o rendering — fiel à sensação, não à física — e o vococentrismo, esse ímã que puxa toda escuta para a fala. Aprende-se a ouvir o que sempre escapou.",
+    "tags": [
+      "Som",
+      "Cinema",
+      "Teoria"
+    ],
+    "progress": "8 Capítulos",
+    "url": "audiovisao.html",
+    "amazon": "https://www.amazon.com.br/dp/B087ZLCGT3/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/B087ZLCGT3/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "coesao-coerencia",
+    "title": "Coesão e Coerência",
+    "author": "Beaugrande, Dressler & Halliday",
+    "coverUrl": "assets/coesao-coerencia-capa.png",
+    "description": "A linguística do texto de Beaugrande & Dressler — os 7 critérios que transformam frases soltas em tessitura — somada aos 5 fios de coesão de Halliday & Hasan. No tecido: coesão (a superfície amarrada) e coerência (o sentido contínuo). No uso: intencionalidade, aceitabilidade, informatividade, situacionalidade, intertextualidade. Um mapa para ler por que um texto se sustenta — ou se rompe.",
+    "tags": [
+      "Língua",
+      "Texto",
+      "Redação"
+    ],
+    "progress": "9 Capítulos",
+    "url": "coesao-coerencia.html",
+    "amazon": "https://www.amazon.com.br/dp/0582554853/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/0582554853/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "ponerologia",
+    "title": "Ponerologia Política",
+    "author": "Andrzej Łobaczewski",
+    "coverUrl": "assets/ponerologia-capa.png",
+    "description": "A ponerologia de Łobaczewski: o estudo clínico da gênese do mal social, escrito por um psiquiatra que o observou por dentro de um regime. Ponerogênese, psicopatia essencial, spellbinders, paramoralismos, a máscara ideológica, a pathocracia e o ciclo histeroidal — diagnosticados friamente, em chave defensiva: nomear a patologia é a primeira dose da vacina. Lente de imunização, jamais manual.",
+    "tags": [
+      "Psicologia",
+      "Política",
+      "Sociedade"
+    ],
+    "progress": "10 Capítulos",
+    "url": "ponerologia.html",
+    "amazon": "https://www.amazon.com.br/dp/859507237X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/859507237X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "nacao-dopamina",
+    "title": "Nação Dopamina",
+    "author": "Anna Lembke",
+    "coverUrl": "assets/nacao-dopamina-capa.png",
+    "description": "A neurociência do prazer e do vício, por Anna Lembke. A balança prazer-dor e a homeostase; a dopamina como régua do potencial viciante; a tolerância, a anedonia e o déficit que nasce do excesso; o cérebro de escassez perdido na abundância; o jejum de dopamina (~30 dias, acrônimo DOPAMINE); o autovínculo contra a fissura; a busca deliberada da dor (hormese); a honestidade radical e a vergonha que reconecta. A receita não é abolir o prazer — é aprender a sentar-se no meio da balança.",
+    "tags": [
+      "Psicologia",
+      "Neurociência",
+      "Hábitos"
+    ],
+    "progress": "9 Capítulos",
+    "url": "nacao-dopamina.html",
+    "amazon": "https://www.amazon.com.br/dp/B09SM3F8Z6/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/B09SM3F8Z6/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "pai-rico-pai-pobre",
+    "title": "Pai Rico, Pai Pobre",
+    "author": "Robert T. Kiyosaki",
+    "coverUrl": "assets/pai-rico-pai-pobre-capa.png",
+    "description": "O livro de finanças mais vendido da história, e o que mais irrita quem ama diploma. Kiyosaki desmonta a promessa da escola — boas notas, bom emprego, segurança — e a chama de armadilha: a corrida dos ratos, em que cada aumento de salário só compra uma gaiola mais cara. Contra isso, uma única regra que dá nome ao jogo: ativo põe dinheiro no seu bolso, passivo tira. Dos dois pais à coluna de ativos, das corporações que driblam o imposto ao pague-se primeiro, é um manual para parar de trabalhar por dinheiro e fazê-lo trabalhar por você.",
+    "tags": [
+      "Finanças",
+      "Educação Financeira",
+      "Mentalidade"
+    ],
+    "progress": "10 Capítulos",
+    "url": "pai-rico-pai-pobre.html",
+    "amazon": "https://www.amazon.com.br/dp/8550801488/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550801488/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "quatro-compromissos",
+    "title": "Os Quatro Compromissos",
+    "author": "Don Miguel Ruiz",
+    "coverUrl": "assets/quatro-compromissos-capa.png",
+    "description": "O clássico de Don Miguel Ruiz, colhido na sabedoria tolteca. A vida como um sonho coletivo e a domesticação que nos faz sonhá-lo; o Juiz, a Vítima e o Livro da Lei que governam por dentro; os QUATRO acordos — seja impecável com a palavra, não leve nada para o lado pessoal, não tire conclusões precipitadas, sempre faça o melhor que puder. Conhecê-los é fácil; vivê-los é o trabalho de uma vida. No fim, a quebra dos acordos antigos abre caminho à liberdade pessoal — e o quinto acordo a sela: duvide das palavras, mas aprenda a ouvir.",
+    "tags": [
+      "Sabedoria",
+      "Autoconhecimento",
+      "Espiritualidade"
+    ],
+    "progress": "8 Capítulos",
+    "url": "quatro-compromissos.html",
+    "amazon": "https://www.amazon.com.br/dp/6557120956/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6557120956/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "homem-mais-rico-babilonia",
+    "title": "O Homem Mais Rico da Babilônia",
+    "author": "George S. Clason",
+    "coverUrl": "assets/homem-mais-rico-babilonia-capa.png",
+    "description": "Nas parábolas de Arkad, Bansir e Dabasir, as leis da prosperidade aparecem despidas de toda complicação moderna: guarde um décimo antes de tocar no resto, faça o ouro guardado gerar mais ouro, distinga o que você quer do que você precisa, proteja o principal acima do lucro, e saiba que a sorte só sorri a quem já estendeu a mão. Endividado, Dabasir mostra a saída — 70% para viver, 20% para os credores, 10% para si. A riqueza, conclui o livro, é filha de hábitos pequenos e repetidos, não de salário grande nem de golpe de sorte.",
+    "tags": [
+      "Finanças",
+      "Poupança",
+      "Riqueza"
+    ],
+    "progress": "9 Capítulos",
+    "url": "homem-mais-rico-babilonia.html",
+    "amazon": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "design-do-dia-a-dia",
+    "title": "O Design do Dia a Dia",
+    "author": "Don Norman",
+    "coverUrl": "assets/design-do-dia-a-dia-capa.png",
+    "description": "O clássico que inventou o vocabulário do design centrado no humano. Don Norman destrincha os cinco princípios que fazem um objeto se explicar sozinho — affordances, significantes, mapeamento, feedback e restrições — e por que 'erro humano' é, quase sempre, erro de projeto disfarçado. Da psicologia da ação (os dois golfos, os sete estágios) ao design à prova de erro (deslizes × enganos, funções de força, poka-yoke), é o manual para fazer coisas que as pessoas usam sem precisar de manual.",
+    "tags": [
+      "Design",
+      "UX",
+      "Produtos Digitais"
+    ],
+    "progress": "10 Capítulos",
+    "url": "design-do-dia-a-dia.html",
+    "amazon": "https://www.amazon.com.br/dp/6555324473/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6555324473/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "nao-me-faca-pensar",
+    "title": "Não Me Faça Pensar",
+    "author": "Steve Krug",
+    "coverUrl": "assets/nao-me-faca-pensar-capa.png",
+    "description": "O livro de usabilidade mais lido do mundo, e de propósito o mais fino: Steve Krug parte do princípio de que ninguém tem tempo nem paciência para a sua interface. Daí as regras de bom senso — descarregue o cérebro do usuário, respeite as convenções que ele já conhece, deixe gritantemente óbvio o que é clicável, corte metade das palavras (e depois metade do resto) e ofereça uma navegação que responda sempre 'onde estou?' e 'como volto?'. Krug fura o mito do 'usuário médio' (ele não existe) e o da home que agrada a todos (ela não comunica nada), e mostra que o teste barato — três usuários, uma manhã por mês, pensando em voz alta — vale mais que semanas de opinião. Por baixo de tudo, a reserva de boa vontade: cada atrito esvazia, cada gentileza reabastece, e o usuário que seca vai embora sem reclamar.",
+    "tags": [
+      "Usabilidade",
+      "UX",
+      "Web"
+    ],
+    "progress": "10 Capítulos",
+    "url": "nao-me-faca-pensar.html",
+    "amazon": "https://www.amazon.com.br/dp/8576088509/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8576088509/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "futebol-brasileiro",
+    "title": "A História do Futebol Brasileiro",
+    "author": "Mário Filho e clássicos do tema",
+    "coverUrl": "assets/futebol-brasileiro-capa.png",
+    "description": "A história do futebol brasileiro da casaca à camisa amarela, lida pelo maior clássico do tema: 'O Negro no Futebol Brasileiro', de Mário Filho. Charles Miller e a origem de elite (1894); a barreira racial e o 'pó de arroz'; a ruptura do Vasco (1923), que escalou pobre e foi campeão; Friedenreich e Leônidas; a profissionalização (1933) que derrubou o último muro; a invenção da ginga; o Maracanazo (1950) e o 'complexo de vira-lata' de Nelson Rodrigues; o tri de Pelé e Garrincha (1958/62/70); a beleza que perdeu em 1982; o tetra e o penta (1994/2002); o 7 a 1 de 2014; e o debate sobre o mito da democracia racial — o futebol como arena da nossa questão de raça, não como sua cura.",
+    "tags": [
+      "História",
+      "Futebol",
+      "Brasil",
+      "Cultura"
+    ],
+    "progress": "10 Capítulos",
+    "url": "futebol-brasileiro.html"
+  },
+  {
+    "id": "padrao-bitcoin",
+    "title": "O Padrão Bitcoin",
+    "author": "Saifedean Ammous",
+    "coverUrl": "assets/padrao-bitcoin-capa.png",
+    "description": "Saifedean Ammous escreve com a economia austríaca na ponta da língua e o fiat na mira. Sua tese: a qualidade do dinheiro decide se uma sociedade poupa ou queima, constrói catedrais ou estoura bolhas, valoriza o futuro ou o devora hoje. Dinheiro forte (alta razão estoque/fluxo) preserva a poupança e a civilização; dinheiro fácil expropria quem confia nele. O Bitcoin, argumenta, é o ponto final dessa história — escassez que nenhum decreto consegue diluir.",
+    "tags": [
+      "Economia",
+      "Dinheiro",
+      "Bitcoin"
+    ],
+    "progress": "10 Capítulos",
+    "url": "padrao-bitcoin.html",
+    "amazon": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   }
