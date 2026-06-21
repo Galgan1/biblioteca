@@ -12,6 +12,32 @@ Toda tarefa não-trivial neste projeto roda sob dois padrões. Não é opcional.
 
 Tarefas triviais (ex.: 1 linha, leitura simples) dispensam o cerimonial — use bom senso. Tudo que gera/edita código de produção: Akita + loop, sem exceção.
 
+## Contratos de Formato — Gerador de Conteúdo
+
+Estes contratos são verificados pela bateria de testes (`pytest tests/test_carrossel.py`).
+Violar qualquer contrato aqui resulta em teste vermelho.
+
+### Story (9:16 — `build_stories`)
+- **Sempre 4 frames**, nesta ordem: teaser → quote → insights/lições → CTA
+- Frame 3 = insights: coleta a 1ª lição de cada um dos 3 primeiros capítulos do livro
+- Para story de capítulo: usa `ch['lessons']`; para story de livro: agrega 1 lição por capítulo
+
+### Carrossel de capítulo (`montar_slides` com `ch=`)
+- **Sempre ≥ 6 slides** quando o capítulo tem `lessons`: capa → N cards → lições → CTA
+- Sem `ch` (overview) ou sem `lessons`: NÃO insere slide de lições
+- O slide de lições usa a classe `.lessons` (CSS) e o componente `_lessons_slide()`
+
+### Kit de publicação (`gerar_dados_kit.py`)
+- `insights-story.html` é gerado automaticamente para todo livro que tem `lessons` nos capítulos
+- Template fica em `assets/kit/_tpl/<slug>/insights-story.html`
+- Endpoint VPS: `/pdf/asset/<slug>/insights-story.jpg` → deve retornar 200
+
+### Estrutura de módulos (`gerar_carrossel.py`)
+- `gerar_carrossel.py` é o thin orchestrator (target: ≤ 350 linhas)
+- CSS strings → `_carousel_css.py`
+- Funções de slide HTML → `_carousel_slides.py`
+- Funções de story HTML → `_carousel_stories.py`
+
 ## Git — REGRA ABSOLUTA: não commitar, não fazer push
 
 **Você NÃO é o responsável pelo git deste projeto.**
@@ -53,3 +79,44 @@ Regras cross-cutting que **nenhuma lane quebra**. O detalhe de cada lane vive na
 5. **Distribuição/afiliado:** link Amazon só de **produto** (`/dp/`, `/gp/`), nunca busca; no Instagram o link vai na **bio** (legenda não é clicável); no Facebook, **post nativo + link no 1º comentário** (não post-link). Detalhe: skills das lanes.
 6. **Idioma:** todo conteúdo em **pt-BR** (pt-PT é bloqueante).
 7. **Soberania:** o pipeline roda local/grátis; sem crédito de IA externa há rota de fuga (voz → edge-tts). Detalhe: `MODO-SOBERANO.md`.
+
+## Clean Code para agentes — normas de ofício (Akita pilar 9) [ADIÇÃO]
+
+Otimize o código para a forma como o agente lê e edita. Concretiza o contrato 3 (qualidade).
+
+- **Funções 4–20 linhas. Arquivos < 500 linhas (ideal 200–300)** — deve caber numa tool call sem truncar. Arquivo gigante → extraia responsabilidade (não "depois").
+- **Nomes únicos e pesquisáveis: meta < 5 hits de grep.** PROIBIDO `data`, `process`, `handler`, `Manager`, `Service` (~50 matches). Grep é mais barato que read.
+- **Comentário = POR QUÊ, não O QUE** + proveniência (issue/SHA/workaround/constraint). **Não apague comentário alheio no refactor** — carrega a intenção da iteração anterior ("keep your own comments").
+- **Tipos explícitos** (type hints) = gabarito p/ o agente. **DRY é mais crítico ainda** (o agente atualiza uma cópia e esquece as réplicas).
+- **Early returns, ≤ 2 níveis de indentação.** Erro com contexto (valor ofendido + forma esperada). Setup idempotente (`bin/setup` roda em máquina limpa).
+- Vale só para código novo/editado por você. NÃO refatore código alheio que não está quebrado (mudança cirúrgica — CLAUDE.md raiz §3).
+
+## Teste = comando único que o agente roda sozinho (Akita pilar 2) [ADIÇÃO]
+
+Concretiza o contrato 3 ("verde = exit code"):
+- O teste que define "pronto" é **um comando único** (na raiz: `python testar.py`), **output parseável**, **sem setup humano** (sem seed manual, credencial secreta ou config ausente).
+- **Um bug vira um teste de regressão** antes do fix. Modelos a replicar: `book-to-skill/` (pytest + CI) e `videos/tests/` (unittest, verde).
+
+## Memória do agente: markdown + grep, nunca RAG (Akita pilar 10) [ADIÇÃO]
+
+- **Markdown no disco = fonte da verdade.** `MEMORY.md` é índice de ponteiros → topic files curtos sob demanda. Embeddings/RAG ficam OFF: long-context + grep (ripgrep) > vector DB.
+- **Não escreva memória sem validar** (evidência/confiança/trilha). Memória sem validação = "cemitério de superstição".
+- Frontmatter do fato: além de `type`, use `kind` ∈ {decision,gotcha,rule,fact,concept,procedure}; `confidence` nasce `low` sem `evidence`. Lint: `valida_memoria.py` (verde = exit 0).
+- Toda lane que precisar de fato vivo (ex.: metadados) **invoca a skill** e lê ao vivo — não responde de memória.
+
+## Prompt em 4 blocos (Akita pilar 1) [ADIÇÃO]
+
+Toda tarefa não-trivial nasce com: **Objetivo · Método · Restrições · Validação**, e injeta o conhecimento de domínio que está na sua cabeça (senão o modelo assume o "default mais razoável" e erra). Tarefa atômica, uma por vez.
+
+## Isolamento e permissões mínimas (Akita pilar 8) [ADIÇÃO]
+
+Estende o contrato 1 (git) ao host inteiro:
+- Execução por **ponto único idempotente revisável** — nunca comando solto/destrutivo no host.
+- **Negar por padrão:** `rm -rf`, `sudo`, `git push --force` (ver `.claude/settings.local.json` → `deny`). Anti-padrão proibido: **YOLO mode** (`--dangerously-skip-permissions`).
+- Segredos **fora do working tree**; ambiente reproduzível (venv/`requirements.txt`) antes de qualquer gate de teste.
+
+## Guardas de máquina: CI real + anti-fantasma (Onda 1-2 revisão Akita) [ADIÇÃO]
+
+A CI (`.github/workflows/ci.yml`) é o gate que IMPÕE os contratos (antes era só convenção):
+- **Ponto único de teste:** `python testar.py` (raiz) agrega `tests/` (contratos do gerador) + `videos/tests/` (pipeline). É o que a CI roda. Verde = exit code, não "a IA achou".
+- **Anti-fantasma (pilar 7):** `python audita_fantasmas.py` (roda na CI ANTES do pip) bloqueia `.py` rastreado que importe módulo de raiz NÃO versionado. Origem: `gerar_carrossel.py` importava `_carousel_*` nunca commitados → repo quebrava em clone limpo. **Regra: "passa local" ≠ "está no git"** — todo entrypoint tem seu import-closure versionado.
