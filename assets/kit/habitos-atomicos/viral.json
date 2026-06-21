@@ -1,0 +1,47 @@
+{
+  "slug": "habitos-atomicos",
+  "aprovados": 3,
+  "total": 8,
+  "capitulos": [
+    {
+      "sub": "CAPÍTULO 1: O 1% e os Sistemas",
+      "score": 9,
+      "tentativas": 1
+    },
+    {
+      "sub": "CAPÍTULO 2: Hábitos e Identidade",
+      "score": 9,
+      "tentativas": 1
+    },
+    {
+      "sub": "CAPÍTULO 3: O Loop do Hábito",
+      "score": 9,
+      "tentativas": 1
+    },
+    {
+      "sub": "CAPÍTULO 4: 1ª Lei — Torne Óbvio",
+      "score": 0,
+      "tentativas": 0
+    },
+    {
+      "sub": "CAPÍTULO 5: 2ª Lei — Torne Atraente",
+      "score": 0,
+      "tentativas": 0
+    },
+    {
+      "sub": "CAPÍTULO 6: 3ª Lei — Torne Fácil",
+      "score": 0,
+      "tentativas": 0
+    },
+    {
+      "sub": "CAPÍTULO 7: 4ª Lei — Torne Satisfatório",
+      "score": 0,
+      "tentativas": 0
+    },
+    {
+      "sub": "CAPÍTULO 8: Avançado — Manter e Dominar",
+      "score": 0,
+      "tentativas": 0
+    }
+  ]
+}

@@ -134,7 +134,11 @@ async function publishImage(imageUrl, caption, opts = {}) {
 // tolera status null) — vamos direto ao publish.
 async function publishStory(imageUrl, opts = {}) {
   const uid = userId();
-  const cont = await graphPost(`/${uid}/media`, { media_type: 'STORIES', image_url: imageUrl });
+  const cont = await graphPost(`/${uid}/media`, {
+    media_type: 'STORIES',
+    image_url: imageUrl,
+    alt_text: 'Viralização redes sociais crescer no instagram',
+  });
   return publishContainer(uid, cont.id, opts);
 }
 

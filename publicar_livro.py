@@ -146,6 +146,11 @@ def deploy(slug, CH):
     # corrige a permissao da pasta nova (senao o nginx da 404 — o bug classico)
     run(["ssh", VPS, f"chmod 755 {REMOTE}/{slug} && chmod 644 {REMOTE}/{slug}/*"])
 
+    # _data.py necessario para o pipeline viral (gerar_viral.py na VPS)
+    data_py = os.path.join(BASE, slug.replace("-", "_") + "_data.py")
+    if os.path.exists(data_py):
+        run(["scp", data_py, f"{VPS}:{REMOTE}/"])
+
     # kit de divulgacao (templates HTML para o admin + dados do carrossel)
     kit_tpl = os.path.join(BASE, "assets", "kit", "_tpl", slug)
     kit_data_dir = os.path.join(BASE, "assets", "kit", slug)
@@ -180,10 +185,18 @@ def main():
     slug = args[0]
 
     step("1", f"validando {slug}_data.py")
-    B, CH = validate(slug)
+    validate(slug)
     if "--check" in flags:
         print("\nOK: --check: schema ok, nada escrito.")
         return
+
+    step("1b", "verificacao editorial (fidelidade ao autor — skill e a referencia)")
+    run([sys.executable, "verificar_conteudo.py", slug, "--fix"], cwd=BASE)
+    # Recarrega o modulo apos possiveis correcoes (file pode ter mudado)
+    _mod = slug.replace("-", "_") + "_data"
+    if _mod in sys.modules:
+        del sys.modules[_mod]
+    B, CH = validate(slug)
 
     step("2", "gerando paginas + books.json")
     import gerar_livro
