@@ -161,17 +161,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const bookEl = book.comingSoon ? document.createElement('div') : document.createElement('a');
         bookEl.className = book.comingSoon ? 'card card-soon' : 'card';
         if (!book.comingSoon) bookEl.href = book.url;
-        const webpUrl = book.coverUrl.replace(/\.png$/i, '.webp');
+        // Card mostra a ARTE PURA do livro (-cover); a híbrida (-capa) já traz
+        // moldura + título + autor EMBUTIDOS na imagem e duplicaria a moldura/
+        // título do card premium (bug "título dobrado", jun/26). Fallback: se o
+        // coverUrl não for -capa, usa como está.
+        const coverPng = book.coverUrl.replace(/-capa\.png$/i, '-cover.png');
+        const webpUrl = coverPng.replace(/\.png$/i, '.webp');
         bookEl.innerHTML = `
             <div class="card-cover">
                 <picture>
                     <source srcset="${webpUrl}" type="image/webp">
-                    <img src="${book.coverUrl}" alt="Capa do livro ${book.title}" loading="lazy" width="800" height="1200">
+                    <img src="${coverPng}" alt="Capa do livro ${book.title}" loading="lazy" width="800" height="1200">
                 </picture>
             </div>
             <div class="card-content">
                 <div class="card-title">${book.title}</div>
-                <p class="card-author">${book.author}</p>
+                <p class="card-author" title="${book.author}">${book.author}</p>
                 <p class="card-progress">${book.progress}</p>
             </div>
         `;
@@ -205,6 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = THUMB_ICON;
             btn.appendChild(count);
             btn.setAttribute('aria-label', (dir === 'up' ? 'Curtir ' : 'Não curtir ') + book.title);
+            btn.title = dir === 'up' ? 'Curtir' : 'Não curtir';
             btn._refresh = () => {
                 btn.setAttribute('aria-pressed', myVotes[book.id] === dir);
                 count.textContent = dir === 'up' ? (book._up || 0) : (book._down || 0);

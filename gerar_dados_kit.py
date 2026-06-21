@@ -170,6 +170,10 @@ def emit(slug):
     # capa 9:16 (story) — anúncio do livro com nº de ideias
     n = len(book.get('overview_cards') or []) or sum(len(ch.get('cards', [])) for ch in data.CHAPTERS)
     pages['capa-story.html'] = _page(gc._story_teaser(book, n), 1080, 1920, css=gc.STORY_CSS)
+    # insights 9:16 (story) — 3 lições-chave (1 por capítulo)
+    lessons_list = [ch.get('lessons', [None])[0] for ch in data.CHAPTERS if ch.get('lessons')][:3]
+    if lessons_list:
+        pages['insights-story.html'] = _page(gc._story_insights(book, lessons_list), 1080, 1920, css=gc.STORY_CSS)
     # MAPA DO LIVRO 4:5 (infográfico LISTA, universal) — só se houver BOOK+CHAPTERS
     try:
         frag = gi.build_lista(data)
@@ -191,11 +195,12 @@ ASSET_META = {
     'mapa':          {'tpl': 'mapa.html',        'icon': 'idea',   'label': 'Mapa do livro',      'rede': 'Instagram', 'fmt': '4:5'},
     'citacao-feed':  {'tpl': 'quote.html',       'icon': 'quote',  'label': 'Citação (feed)',     'rede': 'Instagram', 'fmt': '4:5'},
     'citacao-story': {'tpl': 'quote-story.html', 'icon': 'quote',  'label': 'Citação (story)',    'rede': 'Stories',   'fmt': '9:16'},
-    'capa-story':    {'tpl': 'capa-story.html',  'icon': 'cover',  'label': 'Capa (story)',       'rede': 'Stories',   'fmt': '9:16'},
-    'thumb':         {'tpl': 'thumb.html',       'icon': 'cover',  'label': 'Thumbnail YouTube',  'rede': 'YouTube',   'fmt': '16:9'},
+    'capa-story':      {'tpl': 'capa-story.html',      'icon': 'cover',  'label': 'Capa (story)',        'rede': 'Stories',   'fmt': '9:16'},
+    'insights-story':  {'tpl': 'insights-story.html',  'icon': 'idea',   'label': 'Insights (story)',    'rede': 'Stories',   'fmt': '9:16'},
+    'thumb':           {'tpl': 'thumb.html',            'icon': 'cover',  'label': 'Thumbnail YouTube',   'rede': 'YouTube',   'fmt': '16:9'},
 }
 # ordem de exibição na UI (carrossel do livro entra primeiro, à parte)
-ASSET_ORDER = ['mapa', 'ideia', 'citacao-feed', 'citacao-story', 'capa-story', 'thumb']
+ASSET_ORDER = ['mapa', 'ideia', 'citacao-feed', 'citacao-story', 'capa-story', 'insights-story', 'thumb']
 
 
 def _write_manifest(slug, book, pages):

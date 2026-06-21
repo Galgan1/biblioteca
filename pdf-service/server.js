@@ -16,6 +16,7 @@
  */
 const path = require('path');
 const fs = require('fs');
+const { spawn } = require('child_process');
 const fsp = fs.promises;
 const crypto = require('crypto');
 const express = require('express');
@@ -963,6 +964,64 @@ pdf.get('/carrossel/:book/:cap.json', async (req, res) => {
 
 // ----- ADMIN: disparo de publicação no Instagram (a partir da VPS) -----
 // Protegido por requireAdmin. IG_DRYRUN=1 monta o contêiner mas NÃO publica.
+
+/** Roda script Python e envia cada linha de stdout como SSE. Resolve quando exit 0, rejeita se não zero. */
+function runPythonStream(res, scriptPath, args = []) {
+  return new Promise((resolve, reject) => {
+    const proc = spawn('python3', [scriptPath, ...args], {
+      cwd: path.dirname(scriptPath),
+      env: { ...process.env }
+    });
+    proc.stdout.on('data', d =>
+      d.toString().split('\n').filter(Boolean).forEach(line =>
+        res.write(`data: ${JSON.stringify({ log: line })}\n\n`)
+      )
+    );
+    proc.stderr.on('data', d =>
+      res.write(`data: ${JSON.stringify({ warn: d.toString().trim() })}\n\n`)
+    );
+    proc.on('close', code => {
+      if (code === 0) resolve();
+      else reject(new Error(`exit ${code}`));
+    });
+  });
+}
+
+/** SSE: melhora conteúdo com Claude (viral pipeline) + regenera kit. */
+pdf.get('/admin/viral/:slug', auth.requireAdmin, async (req, res) => {
+  const { slug } = req.params;
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+  res.flushHeaders();
+
+  const BASE_DIR = path.resolve(__dirname, '..');
+  const viralScript = path.join(BASE_DIR, 'gerar_viral.py');
+  const kitScript   = path.join(BASE_DIR, 'gerar_dados_kit.py');
+
+  try {
+    res.write(`data: ${JSON.stringify({ log: `[viral] iniciando para ${slug}...` })}\n\n`);
+    await runPythonStream(res, viralScript, [slug, '--fix']);
+
+    // portão: checar viral.json — só continua se aprovados == total
+    const viralReportPath = path.join(BASE_DIR, 'assets', 'kit', slug, 'viral.json');
+    let viralReport = null;
+    try { viralReport = JSON.parse(require('fs').readFileSync(viralReportPath, 'utf8')); } catch (_) {}
+    if (viralReport && viralReport.aprovados < viralReport.total) {
+      const reprovados = viralReport.capitulos.filter(c => c.score < 9).map(c => `"${c.sub}" (${c.score}/10)`).join(', ');
+      throw new Error(`${viralReport.aprovados}/${viralReport.total} capítulos aprovados — reprovados: ${reprovados}`);
+    }
+
+    res.write(`data: ${JSON.stringify({ log: '[kit] regenerando templates...' })}\n\n`);
+    await runPythonStream(res, kitScript, [slug]);
+    res.write(`data: ${JSON.stringify({ done: true, ok: true })}\n\n`);
+  } catch (err) {
+    console.error('[viral]', err.message);
+    res.write(`data: ${JSON.stringify({ done: true, ok: false, error: err.message })}\n\n`);
+  }
+  res.end();
+});
+
 pdf.get('/admin/instagram/options', auth.requireAdmin, (req, res) => {
   const book = String(req.query.book || '');
   if (!SLUG_RE.test(book)) return res.status(400).json({ error: 'inválido' });

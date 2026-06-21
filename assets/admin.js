@@ -519,6 +519,30 @@
     async function doPublish(ctx) {
         const { statusEl, publishBtn } = ctx;
         publishBtn.disabled = true;
+
+        // etapa 0: melhora o conteúdo com Claude via SSE (viral pipeline + kit)
+        setStatus(statusEl, 'Claude melhorando conteúdo para viral…', 'busy');
+        try {
+            await new Promise((resolve, reject) => {
+                const es = new EventSource(prefix + 'pdf/admin/viral/' + encodeURIComponent(BIBLIOTECA_BOOK));
+                es.onmessage = (e) => {
+                    const d = JSON.parse(e.data);
+                    if (d.log) setStatus(statusEl, d.log, 'busy');
+                    if (d.done) {
+                        es.close();
+                        if (d.ok) resolve();
+                        else reject(new Error(d.error || 'falha no viral'));
+                    }
+                };
+                es.onerror = () => { es.close(); reject(new Error('SSE error')); };
+            });
+        } catch (e) {
+            // PORTÃO: viral falhou = abortar, não publicar conteúdo não aprovado
+            setStatus(statusEl, 'Erro: conteúdo não atingiu 9/10. Publicação cancelada. (' + e.message + ')', 'error');
+            publishBtn.disabled = false;
+            return;
+        }
+
         setStatus(statusEl, 'montando…', 'busy');
 
         // pequena transição de rótulo "publicando…" (feedback de etapa).

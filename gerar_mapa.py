@@ -20,13 +20,15 @@ OUT = ROOT / 'videos' / '_premium'
 FONTS = ROOT / '_fonts'
 W, H = 1080, 1350
 
-# paleta multicor controlada (1 cor por coluna) — verde lidera, depois varia
+# paleta MONO da marca (sem arco-iris) — 5 swatches distinguiveis por LUMINOSIDADE
+# dentro dos hues da marca: verde h152, ouro h83, alerta h30 (valores do MODO ESCURO
+# de marca.py, pois o canvas e escuro). 2 verdes + 2 ouros (L diferente) + alerta.
 ACCENTS = [
-    ('oklch(74% 0.17 152)', 'emerald green'),
-    ('oklch(70% 0.15 245)', 'electric blue'),
-    ('oklch(76% 0.15 190)', 'cyan teal'),
-    ('oklch(78% 0.15 75)',  'amber gold'),
-    ('oklch(66% 0.19 300)', 'violet purple'),
+    ('oklch(70% 0.13 152)',  'green'),        # verde-mae
+    ('oklch(76% 0.11 152)',  'light green'),  # verde-deep (L maior)
+    ('oklch(76% 0.105 83)',  'gold'),         # ouro
+    ('oklch(86% 0.075 83)',  'light gold'),   # ouro-soft (L maior)
+    ('oklch(72% 0.16 30)',   'alert orange'), # alerta
 ]
 BASE_STYLE = ("single central symbolic object, glowing neon rim light, dark moody background, "
               "cinematic product-shot, painterly digital art, highly detailed, centered composition, "

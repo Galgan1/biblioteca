@@ -517,10 +517,13 @@ HTML = f"""<!DOCTYPE html>
   --bg: oklch(97% 0.006 152); --card: oklch(99.5% 0.002 152); --hover: oklch(96.5% 0.014 152);
   --amber: {_AMBER_L}; --amber-bg: oklch(94% 0.06 83);
   --red: oklch(56% 0.18 25); --red-bg: oklch(94% 0.05 25);
-  --orange: oklch(62% 0.16 50); --orange-bg: oklch(94% 0.06 50);
-  --blue: oklch(56% 0.13 250); --blue-bg: oklch(94% 0.05 250);
-  --violet: oklch(54% 0.16 305); --violet-bg: oklch(94% 0.05 305);
-  --teal: oklch(56% 0.11 200); --teal-bg: oklch(94% 0.04 200);
+  /* MONO data-viz (marca: so hues 30/83/152 + neutros): cada categoria difere por LUM/CROMA.
+     orange=alerta-claro (h30, +claro que red), violet=ouro-fundo (h83, +escuro que amber),
+     teal=verde-musgo (h152, +dessaturado que green), blue=ardosia neutra (croma<0.04, livre). */
+  --orange: oklch(66% 0.14 30); --orange-bg: oklch(94% 0.05 30);
+  --blue: oklch(55% 0.025 240); --blue-bg: oklch(93% 0.012 240);
+  --violet: oklch(50% 0.10 83); --violet-bg: oklch(93% 0.045 83);
+  --teal: oklch(62% 0.07 152); --teal-bg: oklch(94% 0.03 152);
   --radius: 16px; --radius-sm: 10px;
   --shadow: 0 1px 2px oklch(20% 0.02 152 / .05), 0 8px 28px oklch(20% 0.04 152 / .07);
   --shadow-sm: 0 1px 2px oklch(20% 0.02 152 / .06), 0 3px 10px oklch(20% 0.03 152 / .05);
@@ -534,10 +537,12 @@ HTML = f"""<!DOCTYPE html>
     --bg: oklch(15% 0.012 152); --card: oklch(20% 0.012 152); --hover: oklch(25% 0.015 152);
     --amber: {_AMBER_D}; --amber-bg: oklch(32% 0.06 83);
     --red: oklch(72% 0.16 25); --red-bg: oklch(31% 0.07 25);
-    --orange: oklch(76% 0.14 50); --orange-bg: oklch(33% 0.07 50);
-    --blue: oklch(74% 0.12 250); --blue-bg: oklch(31% 0.06 250);
-    --violet: oklch(76% 0.14 305); --violet-bg: oklch(32% 0.07 305);
-    --teal: oklch(75% 0.10 200); --teal-bg: oklch(31% 0.05 200);
+    /* MONO data-viz (espelha o claro): orange=alerta (h30), violet=ouro-fundo (h83),
+       teal=verde-musgo (h152), blue=ardosia neutra (croma<0.04, livre). */
+    --orange: oklch(80% 0.12 30); --orange-bg: oklch(33% 0.06 30);
+    --blue: oklch(72% 0.022 240); --blue-bg: oklch(30% 0.012 240);
+    --violet: oklch(64% 0.075 83); --violet-bg: oklch(30% 0.05 83);
+    --teal: oklch(80% 0.06 152); --teal-bg: oklch(29% 0.035 152);
     --shadow: 0 1px 2px oklch(0% 0 0 / .3), 0 10px 30px oklch(0% 0 0 / .35);
     --shadow-sm: 0 1px 2px oklch(0% 0 0 / .25), 0 4px 12px oklch(0% 0 0 / .25);
   }}

@@ -11,14 +11,22 @@ Tudo que gera/edita código de produção:
 
 Triviais (1 linha, leitura) dispensam o cerimonial — use bom senso.
 
-## Contratos de Formato — Gerador de Conteúdo (ALVO — em consolidação)
+## Contratos de Formato — Gerador de Conteúdo (IMPLEMENTADO — gate verde 21/jun)
 
-> ⚠️ **Estado real (revisão 21/jun):** o `gerar_carrossel.py` ativo ainda NÃO cumpre tudo abaixo e o teste de contrato não entra no gate. Reconciliação em curso (lane Bibliotecário). Gate oficial = **`python testar.py`** (não `pytest`).
+Gate (o que a CI roda): **`python testar.py`** — `unittest discover` agrega `tests/` (inclui `tests/test_carrossel.py`, 8 testes de contrato já em `unittest.TestCase`, + `tests/test_verificar_conteudo.py`) e `videos/tests/`. Verde = exit code; **violar um contrato abaixo = teste VERMELHO no gate** (não só num `pytest` focado). `pytest tests/test_carrossel.py` segue válido como atalho de dev.
 
-- **Story (9:16 — `build_stories`):** 4 frames teaser → quote → insights/lições → CTA. Frame 3 = 1ª lição de cada um dos 3 primeiros capítulos (capítulo usa `ch['lessons']`; livro agrega 1 lição/capítulo).
-- **Carrossel de capítulo (`montar_slides` com `ch=`):** ≥ 6 slides quando há `lessons` (capa → N cards → lições → CTA); sem `ch`/sem `lessons` NÃO insere lições; usa classe `.lessons` + `_lessons_slide()`.
-- **Kit (`gerar_dados_kit.py`):** `insights-story.html` p/ todo livro com `lessons`; template em `assets/kit/_tpl/<slug>/`; endpoint `/pdf/asset/<slug>/insights-story.jpg` → 200.
-- **Módulos (alvo):** `gerar_carrossel.py` fino (≤ 350 linhas); CSS → `_carousel_css.py`, slides → `_carousel_slides.py`, stories → `_carousel_stories.py`.
+- **Story (9:16 — `build_stories`):** 4 frames teaser → quote → insights/lições → CTA. Frame 3 = 1ª lição de cada um dos 3 primeiros capítulos (`_story_insights` de `_carousel_stories.py`).
+- **Carrossel de capítulo (`montar_slides` com `ch=`):** ≥ 6 slides quando há `lessons` (capa → N cards → lições → CTA); sem `ch`/sem `lessons` NÃO insere lições (`_lessons_slide` de `_carousel_slides.py`).
+- **Kit (`gerar_dados_kit.py`):** `insights-story.html` p/ todo livro com `lessons`; template em `assets/kit/_tpl/<slug>/`.
+- **Módulos auxiliares (wired):** slides → `_carousel_slides.py` (`_lessons_slide`), stories → `_carousel_stories.py` (`_story_insights`); `gerar_carrossel.py` importa deles. **CSS/JS-de-fit = inline em `gerar_carrossel.py`** (fonte única — o antigo `_carousel_css.py` era cópia órfã divergente, removido; o `.lessons` foi portado p/ a CSS inline). `gerar_carrossel.py` segue monolito (~920 l.); reduzir ao orquestrador-fino é alvo de consolidação, não fato.
+
+## Verificação Editorial — Fidelidade ao Autor (IMPLEMENTADO — 21/jun)
+
+**Contrato:** nenhuma imagem publicada pode contradizer o que o autor defendeu. A skill é a referência canônica.
+
+- **`verificar_conteudo.py <slug> [--fix]`**: carrega `~/.claude/skills/<slug>/` (SKILL.md + chapters/*.md) como referência; chama Claude UMA VEZ por capítulo; verifica `b`, `tip`, `lessons` contra a skill; com `--fix` corrige cirurgicamente o `_data.py` (backup `.py.bak` + validação de importabilidade).
+- **Integrado em `publicar_livro.py` como step 1b** (antes de gerar qualquer coisa): corrige o `_data.py`, recarrega o módulo (`del sys.modules[...]`), depois gera tudo — site + kit + carrossel + stories — com o conteúdo verificado.
+- **Resultado esperado:** ao clicar "publicar" no site, o `_data.py` é revisto automaticamente contra a skill antes de qualquer imagem ser gerada.
 
 ## Git — REGRA ABSOLUTA: não commitar, não fazer push
 
@@ -27,6 +35,7 @@ O agente **GitGuy** é a ÚNICA lane autorizada a `git commit`/`git push`/criar 
 - **Você NUNCA:** `git commit` (nem `-m`), `git push`, `git add`+commit, `gh pr create`.
 - **Por quê:** working tree compartilhado entre lanes — commit fora de hora enterra trabalho alheio e dificulta rollback. O GitGuy age no `/create-pr` (revisa tudo no disco, agrupa por lane, commita).
 - **GitGuy NUNCA roda `git clean -fdx`/`reset --hard` com outra lane tendo untracked WIP** — varre trabalho não-commitado alheio (já apagou `_akita_pesquisa` + `.claude/settings.local.json` num resync pós-squash, jun/26). Antes de limpar: `git clean -nd` (dry-run); o `deny` em `.claude/settings.local.json` reforça.
+- **Enforcement por máquina (hook `PreToolUse`):** `hooks/git_guard.py` BLOQUEIA `git commit`/`push`/`gh pr create` — o **GitGuy commita prefixando `GITGUY=1`** (ex.: `GITGUY=1 git commit -m "..."`). Vale a partir da próxima sessão; scripts em `hooks/` (versionados), wiring em `.claude/settings.json` (gitignored → recriar se varrido).
 
 ## O que versionar (referência para o GitGuy)
 

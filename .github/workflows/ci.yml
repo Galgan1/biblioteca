@@ -25,6 +25,10 @@ jobs:
         # Roda ANTES do pip (so stdlib+git) p/ falhar barato se o repo estiver
         # quebrado em clone limpo (o bug que motivou: gerar_carrossel orfao).
         run: python audita_fantasmas.py
+      - name: Guarda de marca (paleta canonica, fail-fast, sem deps)
+        # Bloqueia cor cromatica NOVA fora da paleta da marca (verde/ouro/alerta de
+        # marca.py) vazando num gerador — "sem arco-iris". Divida conhecida no _BASELINE.
+        run: python valida_marca.py
       - name: Instalar dependencias
         # runtime (numpy/Pillow/ffmpeg/google/fal) + teste (pydantic/depthflow).
         # Sem o requirements.txt de runtime, os testes que importam esses modulos
