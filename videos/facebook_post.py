@@ -22,37 +22,28 @@ Uso:
 """
 import sys, json, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
+import facebook_base
+from facebook_base import GRAPH, HASHTAGS_BASE, PAGE_TOKEN_FILE, PAGE_ID_FILE
 
 ROOT = Path(__file__).parent
 SH = ROOT / '_shorts'
-SEC = ROOT / '.secrets'
-GRAPH = 'https://graph.facebook.com/v21.0'
-PAGE_TOKEN_FILE = SEC / 'facebook_page_token.txt'
-PAGE_ID_FILE = SEC / 'facebook_page_id.txt'
-HASHTAGS_BASE = ['livros', 'resumodelivro', 'leitura']
 HUB = 'https://www.andregalgani.com.br/biblioteca'
 
 
+# Wrappers finos: delegam ao facebook_base mas usam as constantes deste módulo
+# (PAGE_TOKEN_FILE / PAGE_ID_FILE) para que mock.patch.object(facebook_post, ...)
+# continue redirecionando corretamente nos testes.
+
 def _token():
-    if not PAGE_TOKEN_FILE.exists():
-        sys.exit(f'[!] {PAGE_TOKEN_FILE} ausente: salve o Page access token (escopo '
-                 'pages_manage_posts). Veja o cabeçalho deste arquivo.')
-    return PAGE_TOKEN_FILE.read_text(encoding='utf-8').strip()
+    return facebook_base.token(PAGE_TOKEN_FILE)
 
 
 def _page_id():
-    if not PAGE_ID_FILE.exists():
-        sys.exit(f'[!] {PAGE_ID_FILE} ausente: salve o id numérico da Página do Facebook.')
-    return PAGE_ID_FILE.read_text(encoding='utf-8').strip()
+    return facebook_base.page_id(PAGE_ID_FILE)
 
 
 def _post(path, token, params):
-    data = urllib.parse.urlencode({**params, 'access_token': token}).encode()
-    req = urllib.request.Request(f'{GRAPH}{path}', data=data)
-    try:
-        return json.load(urllib.request.urlopen(req, timeout=120))
-    except urllib.error.HTTPError as e:
-        return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
+    return facebook_base.post(path, token, params)
 
 
 def caption_for(cfg):

@@ -74,11 +74,11 @@ def build_metadata(roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
     try:
         from contracts import load_roteiro
-        _cfg_validated = load_roteiro(roteiro_path)
     except ImportError:
-        pass  # contracts.py opcional
-    except Exception as e:
-        print(f'  [contracts] aviso: {e}')
+        pass  # pydantic/contracts.py ausente no ambiente — sem validação
+    else:
+        # Guarda dura: roteiro inválido aborta ANTES de qualquer chamada de API paga.
+        load_roteiro(roteiro_path)
     yt = cfg.get('youtube', {})
     conceitos = ' • '.join(c['titulo'] for c in cfg['cenas'] if c.get('tipo') == 'conceito')
     titulo = yt.get('titulo') or f"{cfg['titulo']}, de {cfg['autor']} — Resumo em ~5 min"

@@ -176,6 +176,42 @@ class TestTtsElevenMockado(unittest.TestCase):
                 )
         self.assertFalse(resultado)
 
+    def test_usa_modelo_eleven_v3(self):
+        """A intonação só funciona no eleven_v3 — o payload DEVE usar esse modelo."""
+        out = Path('/tmp/test_eleven_v3.mp3')
+        fake_req = self._make_mock_requests(200)
+        self._call_com_chave(out, fake_req)
+        payload = fake_req.post.call_args[1]['json']
+        self.assertEqual(payload['model_id'], 'eleven_v3')
+
+    def test_aplica_intonar_no_texto(self):
+        """Texto plano enviado ao ElevenLabs DEVE sair com audio tag de intonação."""
+        out = Path('/tmp/test_eleven_tag.mp3')
+        fake_req = self._make_mock_requests(200)
+        self._call_com_chave(out, fake_req)   # _call usa text='Olá mundo.'
+        payload = fake_req.post.call_args[1]['json']
+        self.assertIn('[', payload['text'])   # alguma tag foi injetada
+
+
+class TestIntonar(unittest.TestCase):
+    """_intonar() injeta audio tags v3 em texto plano e é idempotente."""
+
+    def test_injeta_tom_e_pausa(self):
+        out = gerar_video._intonar('Você desconfia. Bem. Pascal reuniu as provas.', tom='serio')
+        self.assertIn('[serious]', out)
+        self.assertIn('[pause]', out)
+
+    def test_idempotente_se_ja_dirigido(self):
+        ja = '[serious] A instrução foi trocada. [pause] Está nos documentos.'
+        self.assertEqual(gerar_video._intonar(ja, tom='serio'), ja)
+
+    def test_pergunta_retorica_ganha_pausa(self):
+        out = gerar_video._intonar('Qual o segredo? A liberdade percebida.', tom='neutro')
+        self.assertIn('? [pause]', out)
+
+    def test_vazio_continua_vazio(self):
+        self.assertEqual(gerar_video._intonar('', tom='serio'), '')
+
 
 if __name__ == '__main__':
     unittest.main()

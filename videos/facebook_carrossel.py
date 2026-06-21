@@ -24,38 +24,14 @@ Uso:
 """
 import sys, json, mimetypes, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
+from facebook_base import (
+    GRAPH, HASHTAGS_BASE, PAGE_TOKEN_FILE, PAGE_ID_FILE,
+    token as _token, page_id as _page_id, post as _post,
+)
 
 ROOT = Path(__file__).parent
 SH = ROOT / '_shorts'
-SEC = ROOT / '.secrets'
 CARR = ROOT / '_carrossel'
-GRAPH = 'https://graph.facebook.com/v21.0'
-PAGE_TOKEN_FILE = SEC / 'facebook_page_token.txt'
-PAGE_ID_FILE = SEC / 'facebook_page_id.txt'
-HASHTAGS_BASE = ['livros', 'resumodelivro', 'leitura']
-
-
-def _token():
-    if not PAGE_TOKEN_FILE.exists():
-        sys.exit(f'[!] {PAGE_TOKEN_FILE} ausente: salve o Page access token (escopo '
-                 'pages_manage_posts). Veja o cabeçalho do facebook_post.py.')
-    return PAGE_TOKEN_FILE.read_text(encoding='utf-8').strip()
-
-
-def _page_id():
-    if not PAGE_ID_FILE.exists():
-        sys.exit(f'[!] {PAGE_ID_FILE} ausente: salve o id numérico da Página do Facebook.')
-    return PAGE_ID_FILE.read_text(encoding='utf-8').strip()
-
-
-def _post(path, token, params):
-    """POST application/x-www-form-urlencoded (igual ao irmão). Para o /feed final."""
-    data = urllib.parse.urlencode({**params, 'access_token': token}).encode()
-    req = urllib.request.Request(f'{GRAPH}{path}', data=data)
-    try:
-        return json.load(urllib.request.urlopen(req, timeout=120))
-    except urllib.error.HTTPError as e:
-        return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
 
 
 def _post_multipart(path, token, fields, file_field, file_path):

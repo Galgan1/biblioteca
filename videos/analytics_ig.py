@@ -12,6 +12,7 @@ Uso:
 import sys, json, csv, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
 from datetime import datetime, timezone
+from ig_base import refresh_token as _ig_refresh, read_token as _ig_read_token, read_user_id as _ig_read_user_id
 
 ROOT = Path(__file__).parent
 SEC = ROOT / '.secrets'
@@ -24,49 +25,21 @@ GRAPH = 'https://graph.facebook.com/v21.0'
 OUT_DIR = ROOT / '_analytics'
 
 # ---------------------------------------------------------------------------
-# Auth (mesmo padrão de instagram_post.py)
+# Auth — delegado para ig_base (DRY: pilar 4 Akita)
+# Wrappers locais passam os caminhos deste módulo; ig_base não lê globals.
 # ---------------------------------------------------------------------------
 
 def _refresh(tj):
-    if not (APP_ID_FILE.exists() and APP_SECRET_FILE.exists()):
-        return tj['access_token']
-    q = urllib.parse.urlencode({
-        'grant_type': 'fb_exchange_token',
-        'client_id': APP_ID_FILE.read_text(encoding='utf-8').strip(),
-        'client_secret': APP_SECRET_FILE.read_text(encoding='utf-8').strip(),
-        'fb_exchange_token': tj['access_token'],
-    })
-    try:
-        r = json.load(urllib.request.urlopen(f'{GRAPH}/oauth/access_token?{q}', timeout=60))
-    except urllib.error.HTTPError as e:
-        print(f'  [aviso] falha ao renovar token IG: {e.code} {e.read().decode()[:160]}')
-        return tj['access_token']
-    if 'access_token' not in r:
-        return tj['access_token']
-    r['_obtained_at'] = int(time.time())
-    TOKEN_JSON.write_text(json.dumps(r, ensure_ascii=False, indent=2), encoding='utf-8')
-    TOKEN_FILE.write_text(r['access_token'], encoding='utf-8')
-    print('  [token IG renovado automaticamente]')
-    return r['access_token']
+    return _ig_refresh(tj, APP_ID_FILE, APP_SECRET_FILE, TOKEN_JSON, TOKEN_FILE)
 
 
 def _token():
-    if TOKEN_JSON.exists():
-        tj = json.loads(TOKEN_JSON.read_text(encoding='utf-8'))
-        if tj.get('access_token') and tj.get('_obtained_at'):
-            if time.time() - tj['_obtained_at'] >= tj.get('expires_in', 5184000) - 7 * 86400:
-                return _refresh(tj)
-            return tj['access_token']
-    if not TOKEN_FILE.exists():
-        sys.exit(f'[!] token ausente: crie {TOKEN_FILE} com o access_token (permissão '
-                 'instagram_basic). Veja instagram_post.py para instruções.')
-    return TOKEN_FILE.read_text(encoding='utf-8').strip()
+    return _ig_read_token(TOKEN_FILE, TOKEN_JSON, APP_ID_FILE, APP_SECRET_FILE,
+                          permission='instagram_basic')
 
 
 def _user_id():
-    if not USER_ID_FILE.exists():
-        sys.exit(f'[!] {USER_ID_FILE} ausente: salve o id numérico da conta IG Business/Creator.')
-    return USER_ID_FILE.read_text(encoding='utf-8').strip()
+    return _ig_read_user_id(USER_ID_FILE)
 
 
 def _get(path, token, params=None):

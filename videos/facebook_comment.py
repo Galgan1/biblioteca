@@ -17,28 +17,10 @@ Uso:
 """
 import sys, json, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
+from facebook_base import GRAPH, PAGE_TOKEN_FILE, token as _token, post as _post
 
 ROOT = Path(__file__).parent
-SEC = ROOT / '.secrets'
-GRAPH = 'https://graph.facebook.com/v21.0'
-PAGE_TOKEN_FILE = SEC / 'facebook_page_token.txt'
 HUB = 'https://www.andregalgani.com.br/biblioteca'
-
-
-def _token():
-    if not PAGE_TOKEN_FILE.exists():
-        sys.exit(f'[!] {PAGE_TOKEN_FILE} ausente: salve o Page access token (escopo '
-                 'pages_manage_posts). Veja o cabeçalho deste arquivo.')
-    return PAGE_TOKEN_FILE.read_text(encoding='utf-8').strip()
-
-
-def _post(path, token, params):
-    data = urllib.parse.urlencode({**params, 'access_token': token}).encode()
-    req = urllib.request.Request(f'{GRAPH}{path}', data=data)
-    try:
-        return json.load(urllib.request.urlopen(req, timeout=120))
-    except urllib.error.HTTPError as e:
-        return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
 
 
 def cta_text(video_id=None, site_url=HUB, extra=''):
