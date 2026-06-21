@@ -29,7 +29,7 @@ SUITES = [
 
 
 def _rodar(cwd):
-    """Roda a bateria de uma pasta como subprocesso. Devolve (ran, falhas, ok)."""
+    """Roda a bateria de uma pasta como subprocesso. Devolve (ran, falhas, ok, saida)."""
     p = subprocess.run(
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-t", "."],
         cwd=str(cwd), capture_output=True, text=True,
@@ -37,7 +37,7 @@ def _rodar(cwd):
     saida = p.stderr + p.stdout
     ran = int(m.group(1)) if (m := re.search(r"Ran (\d+) test", saida)) else 0
     falhas = sum(int(x) for x in re.findall(r"(?:failures|errors)=(\d+)", saida))
-    return ran, falhas, p.returncode == 0
+    return ran, falhas, p.returncode == 0, saida
 
 
 def main(argv):
@@ -48,11 +48,17 @@ def main(argv):
         if not start.exists():
             linhas.append((nome, 0, 0, None))
             continue
-        ran, falhas, ok = _rodar(cwd)
+        ran, falhas, ok, saida = _rodar(cwd)
         total += ran
         failed += falhas
         passed += ran - falhas
         linhas.append((nome, ran, falhas, ok))
+        # Gate diagnosticável (Akita pilar 5): se a bateria falhou, mostra QUAL
+        # teste — senão a CI só diz "VERMELHO" sem dizer o quê, e fica opaca.
+        if not as_json and (falhas or not ok):
+            print(f"\n----- saída da bateria '{nome}' (falhou) -----")
+            print(saida.rstrip())
+            print("-" * 48)
 
     ok_geral = failed == 0 and all(l[3] is not False for l in linhas)
 
