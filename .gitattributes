@@ -12,6 +12,10 @@
 *.txt  text eol=lf
 *.xml  text eol=lf
 
+# Forçar tratamento como TEXTO (heurística do git marcou como binário por engano)
+_kit_preview/gemini_in/extract.py text eol=lf
+dirs.txt text eol=lf
+
 # Binários — sem conversão
 *.mp4  binary
 *.mp3  binary
