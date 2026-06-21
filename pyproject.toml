@@ -1,0 +1,17 @@
+# Config ruff — CONFIG-FIRST (Akita pilar 5).
+# A config existe ANTES de ligar o gate, para a master nunca nascer vermelha.
+# O reformat em massa (~294 arquivos) é um commit mecânico ÚNICO — lane do GitGuy,
+# com a árvore quieta (senão soterra o trabalho de outras lanes). NÃO rode `ruff format`
+# fora desse commit dedicado.
+#
+# *_data.py = fonte-da-verdade autoral dos livros (tabelas alinhadas, # fmt: off);
+# excluído por contrato. _legado/ = quarentena reversível (etapa 7).
+
+[tool.ruff]
+extend-exclude = ["*_data.py", "_legado", "node_modules", ".venv", "videos/_*"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "B", "UP"]
+
+[tool.ruff.format]
+quote-style = "preserve"

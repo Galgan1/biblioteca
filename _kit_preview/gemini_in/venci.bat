@@ -1,0 +1,12 @@
+del concat.py
+del batch_5_out_2.md
+del batch_5_out_3.md
+del b1.md
+del b2.md
+del b3.md
+del b4.md
+del b5.md
+del b6.md
+del b7.md
+del b8.md
+del fix.py

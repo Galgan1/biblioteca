@@ -6,12 +6,14 @@ Pipeline 100% local: edge-tts (narração) + Pillow (slides) + ffmpeg (montagem)
 Uso:  python gerar_video.py roteiros/arte-da-guerra.json
 Saída: videos/<slug>.mp4
 """
-import sys, json, subprocess, wave, struct
+import sys, json, subprocess
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 import imageio_ffmpeg
-import numpy as np
 from mutagen.mp3 import MP3
+
+from _video_tts import _provedor_voz, _tts_eleven, _to_ssml, tts
+from _video_audio import sintetiza_ambiente
 
 ROOT = Path(__file__).parent
 import sys as _sys
@@ -233,243 +235,6 @@ def hex_rgb_safe(h):
     return hex_rgb(h) if isinstance(h, str) else h
 
 
-def sintetiza_ambiente(dur, out_wav, seed=7, energia=0.65):
-    """Leito procedural livre de direitos em Ré menor — agora com PULSO RÍTMICO
-    (parâmetro `energia` 0..1) para uma trilha mais dinâmica e enérgica, SEM perder a
-    identidade do canal nem a voz soberana. Sonnenschein cap.5: ritmo/andamento → energia.
-      energia=0   → pad contemplativo puro (comportamento antigo);
-      energia~0.65 → leito pulsante + batida de coração grave (padrão do canal);
-      energia=1.0 → mais movimento. Tunável por vídeo via cfg 'musica_energia'
-    (livros contemplativos pedem menos; tática/ação/ofício pedem mais)."""
-    sr = 44100
-    rng = np.random.default_rng(seed)
-    energia = max(0.0, min(1.0, energia))
-    # Progressão modal contemplativa (Ré menor), graves + camada de oitava
-    prog = [
-        [146.83, 220.00, 293.66],   # Dm  (D3 A3 D4)
-        [116.54, 174.61, 233.08],   # Bb  (Bb2 F3 Bb3)
-        [174.61, 220.00, 261.63],   # F    (F3 A3 C4)
-        [146.83, 196.00, 233.08],   # Gm  (D3 G3 Bb3)
-    ]
-    seg = 24.0 - 4.0 * energia      # mais enérgico = harmonia anda mais rápido (24s → 20s)
-    xf = 6.0                        # crossfade entre acordes
-    n_total = int(dur * sr)
-    out = np.zeros(n_total, dtype=np.float64)
-    bpm = 60.0 + 18.0 * energia     # andamento do pulso (60 → 78 BPM)
-    beat = 60.0 / bpm
-
-    def voice(freqs, length, t0):
-        t = np.arange(length) / sr
-        sig = np.zeros(length)
-        for f in freqs:
-            for h, amp in [(1, 1.0), (2, 0.18), (3, 0.08)]:
-                det = 0.18 * h
-                sig += amp * (np.sin(2*np.pi*(f*h+det)*t) + np.sin(2*np.pi*(f*h-det)*t)) * 0.5
-            sig += 0.10 * np.sin(2*np.pi*f*2*t)   # shimmer de oitava
-        # gate RÍTMICO (o pad pulsa no tempo) + resíduo de tremolo lento
-        gate = 1 - (0.24 * energia) * (0.5 - 0.5*np.cos(2*np.pi*((t + t0)/beat)))  # cheio no tempo, recua entre tempos
-        slow = 0.88 + 0.12*np.sin(2*np.pi*0.05*t + rng.random()*6.28)
-        env = np.ones(length)
-        nxf = int(xf*sr)
-        env[:nxf] = np.sin(np.linspace(0, np.pi/2, nxf))**2
-        env[-nxf:] = np.sin(np.linspace(np.pi/2, 0, nxf))**2
-        return sig * gate * slow * env / max(1, len(freqs))
-
-    pos, i = 0, 0
-    step = int((seg - xf) * sr)
-    while pos < n_total:
-        length = int(seg * sr)
-        v = voice(prog[i % len(prog)], length, pos / sr)
-        end = min(pos + length, n_total)
-        out[pos:end] += v[:end-pos]
-        pos += step
-        i += 1
-
-    # batida de coração: pulso grave no tempo (raiz do acorde, oitava abaixo) — a energia
-    if energia > 0:
-        plen = int(0.5 * sr)
-        tt = np.arange(plen) / sr
-        penv = (1 - np.exp(-tt/0.004)) * np.exp(-tt/0.16)        # pluck: ataque rápido, decay curto
-        for k in range(int(np.ceil(dur / beat))):
-            tb = k * beat
-            ic = int(tb / max(1e-9, (seg - xf))) % len(prog)     # acorde tocando em tb
-            root = prog[ic][0] / 2.0                              # oitava abaixo da fundamental
-            accent = 1.0 if (k % 4 == 0) else 0.66                # acento no 1º tempo do compasso
-            s = int(tb * sr)
-            m = max(0, min(plen, n_total - s))
-            if m > 0:
-                out[s:s+m] += (np.sin(2*np.pi*root*tt) * penv * (0.42 * energia * accent))[:m]
-
-    # cadeia premium (espaço/calor/ar) — mão leve p/ não embolar sob a voz
-    try:
-        import dsp
-        out = dsp.master(out, lowcut_fc=40, sat=1.3, air_db=2.0, rev=0.08, decay=1.0, dark=0.7, seed=31, peak=1.0)[:n_total]
-    except Exception as _e:
-        print(f"  [aviso] DSP da trilha pulado: {_e}")
-    # normaliza + fade global
-    out /= (np.max(np.abs(out)) + 1e-9)
-    fi, fo = int(4*sr), int(7*sr)
-    out[:fi] *= np.linspace(0, 1, fi)
-    out[-fo:] *= np.linspace(1, 0, fo)
-    out = (out * 0.9 * 32767).astype(np.int16)
-
-    with wave.open(str(out_wav), 'w') as w:
-        w.setnchannels(1); w.setsampwidth(2); w.setframerate(sr)
-        w.writeframes(out.tobytes())
-
-
-def _provedor_voz(voice: str) -> str:
-    """Função PURA: classifica a string 'voice' no provedor correto.
-
-    Retornos possíveis:
-      'eleven' — prefixo 'eleven:' ou 'el:' (case-insensitive)
-      'google' — contém marcador de voz Cloud TTS (Chirp3/Studio/Neural2/Wavenet)
-      'edge'   — qualquer outro valor (inclui pt-BR-AntonioNeural, string vazia, etc.)
-
-    Exemplos:
-      'eleven:Rachel'                 → 'eleven'
-      'el:21m00Tcm4TlvDq8ikWAM'      → 'eleven'
-      'pt-BR-Chirp3-HD-Iapetus'       → 'google'
-      'pt-BR-Studio-B'                → 'google'
-      'pt-BR-AntonioNeural'           → 'edge'
-    """
-    v = voice.lower()
-    if v.startswith('eleven:') or v.startswith('el:'):
-        return 'eleven'
-    if any(t in voice for t in ('Chirp3', 'Studio', 'Neural2', 'Wavenet')):
-        return 'google'
-    return 'edge'
-
-
-def _tts_eleven(text: str, voice_id: str, out_mp3: str) -> bool:
-    """Chama a API ElevenLabs TTS (REST, modelo turbo-v2.5, saída mp3_44100_128).
-
-    Lê a chave em ordem de prioridade:
-      1. variável de ambiente ELEVENLABS_API_KEY
-      2. arquivo .secrets/elevenlabs_key.txt
-
-    Se a chave estiver AUSENTE ou VAZIA, imprime aviso e retorna False (sem chamar
-    a rede) — a lógica de fallback fica em tts(). Mesma filosofia soberana do projeto.
-
-    Retorna True em caso de sucesso, False em qualquer falha (ausência de chave,
-    erro de rede, status != 200). Nunca lança exceção — nunca quebra o build.
-
-    ATENÇÃO: a chamada real gasta créditos ElevenLabs. NÃO use sem autorização de
-    gasto e sem a chave configurada. Ver pendência em PENDENTE.md / resumo do PR.
-    """
-    import os
-
-    # 1. Obter chave
-    chave = os.environ.get('ELEVENLABS_API_KEY', '').strip()
-    if not chave:
-        try:
-            chave = (ROOT / '.secrets' / 'elevenlabs_key.txt').read_text(encoding='utf-8').strip()
-        except (FileNotFoundError, OSError):
-            chave = ''
-
-    if not chave:
-        print('  [aviso] ElevenLabs sem chave -> rota de fuga ativada')
-        return False
-
-    # 2. Chamar a API (REST puro via requests)
-    url = f'https://api.elevenlabs.io/v1/text-to-speech/{voice_id}'
-    payload = {
-        'text': text,
-        'model_id': 'eleven_turbo_v2_5',   # melhor custo/benefício pt-BR (jun/2026)
-        'voice_settings': {
-            'stability': 0.50,
-            'similarity_boost': 0.75,
-        },
-    }
-    headers = {
-        'xi-api-key': chave,
-        'Content-Type': 'application/json',
-        'Accept': 'audio/mpeg',
-    }
-    try:
-        import requests as _req
-        import json as _json
-        resp = _req.post(url, headers=headers, json=payload, timeout=60)
-        resp.raise_for_status()
-        Path(out_mp3).write_bytes(resp.content)
-        try:
-            from cost_tracker import record_cost
-            chars = len(text)
-            record_cost(api='elevenlabs_1k', units=chars / 1000)
-        except Exception:
-            pass
-        return True
-    except Exception as _e:
-        print(f'  [aviso] ElevenLabs falhou: {str(_e)[:120]}')
-        return False
-
-
-def _to_ssml(text):
-    """Direção de prosódia PREMIUM (jun/2026): cadência VARIADA, não metronômica.
-    O salto amador→premium é a MICRO-PAUSA DE VÍRGULA — sem ela a lista/oração 'corre'
-    e soa robótica; com ela a frase respira e ganha fraseado humano. As pausas são
-    diferenciadas por pontuação (cada sinal tem seu peso) e as reticências criam
-    suspense. Chirp3-HD/Studio/Neural2 aceitam <break> via SSML.
-    NB de orçamento: pausas custam tempo — manter narração ≤ ~52 palavras/cena para
-    caber nos 30s/cena do QC (premium pede frase enxuta, não densa)."""
-    import html as _html
-    t = _html.escape(text, quote=False)              # & < > seguros no XML
-    t = t.replace('... ', '…<break time="500ms"/> ')  # reticências → suspense
-    t = t.replace('… ', '…<break time="500ms"/> ')
-    t = t.replace('? ', '?<break time="560ms"/> ')    # pergunta pousa e respira
-    t = t.replace('! ', '!<break time="440ms"/> ')
-    t = t.replace('. ', '.<break time="400ms"/> ')    # ponto final: settle pleno
-    t = t.replace('; ', ';<break time="300ms"/> ')    # ponto-e-vírgula
-    t = t.replace(' — ', ' —<break time="330ms"/> ')  # travessão: pausa dramática
-    t = t.replace(', ', ',<break time="150ms"/> ')    # VÍRGULA: micro-pausa de fraseado (o salto premium)
-    return f'<speak>{t}</speak>'
-
-
-def tts(text, voice, out_mp3, rate=1.0):
-    """Narração TTS com fallback encadeado (Akita — soberania):
-
-      ElevenLabs (premium, mais humano pt-BR)
-        → Google Cloud TTS Chirp3-HD (se voice/credencial permitirem)
-          → edge-tts local GRÁTIS (NUNCA falha — a produção nunca para)
-
-    Prefixos de voz ElevenLabs:  'eleven:<voice_id>'  ou  'el:<voice_id>'
-    Vozes Google:                 contêm Chirp3 / Studio / Neural2 / Wavenet
-    Rota de fuga edge-tts:       qualquer outro valor (ex.: pt-BR-AntonioNeural)
-    """
-    FUGA_VOZ = 'pt-BR-AntonioNeural'   # voz de fuga: masculina, sóbria (mais próxima do Iapetus)
-
-    provedor = _provedor_voz(voice)
-
-    # --- 1ª opção: ElevenLabs ---
-    if provedor == 'eleven':
-        voice_id = voice.split(':', 1)[1]   # 'eleven:Rachel' → 'Rachel'
-        if _tts_eleven(text, voice_id, str(out_mp3)):
-            return
-        # ElevenLabs falhou → tenta Google Chirp3-HD (mesmo SSML) antes de cair no edge
-        print(f'  [ROTA DE FUGA] ElevenLabs indisponível → tentando Google Chirp3-HD')
-        voice = 'pt-BR-Chirp3-HD-Iapetus'
-        provedor = 'google'
-
-    # --- 2ª opção: Google Cloud TTS ---
-    if provedor == 'google':
-        import time as _time
-        for _tentativa in range(2):
-            try:
-                import tts_gcloud
-                if tts_gcloud.synth(text, voice, str(out_mp3), rate=rate, ssml=_to_ssml(text)):
-                    return
-            except Exception as _e:
-                print(f'  [aviso] Cloud TTS tentativa {_tentativa + 1}/2: {str(_e)[:100]}')
-            _time.sleep(2)
-        print(f'  [ROTA DE FUGA] Cloud TTS indisponível → voz grátis local edge-tts ({FUGA_VOZ})')
-        voice = FUGA_VOZ
-
-    # --- 3ª opção (e fallback final): edge-tts local GRÁTIS ---
-    subprocess.run([sys.executable, '-m', 'edge_tts', '--voice', voice,
-                    '--text', text, '--write-media', str(out_mp3)],
-                   check=True, capture_output=True)
-
-
 def make_clip(png, mp3, dur, out_mp4, ken_burns=False, kb=0):
     fo = max(0.1, dur - FADE)
     if ken_burns:
@@ -532,11 +297,11 @@ def main(roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
     try:
         from contracts import load_roteiro
-        _cfg_validated = load_roteiro(roteiro_path)
     except ImportError:
-        pass  # contracts.py opcional
-    except Exception as e:
-        print(f'  [contracts] aviso: {e}')
+        pass  # pydantic/contracts.py ausente no ambiente — sem validação
+    else:
+        # Guarda dura: roteiro inválido aborta ANTES de qualquer chamada de API paga.
+        load_roteiro(roteiro_path)
     slug = cfg['slug']
     import os as _os; _os.environ['PIPELINE_SLUG'] = slug
     accent = cfg.get('acento', marca.hex_of('ouro'))

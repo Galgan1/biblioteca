@@ -32,6 +32,7 @@ rótulo "Criador de conteúdo de IA"; a legenda reforça a divulgação).
 """
 import sys, json, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
+from ig_base import refresh_token as _ig_refresh, read_token as _ig_read_token, read_user_id as _ig_read_user_id
 
 ROOT = Path(__file__).parent
 SH = ROOT / '_shorts'
@@ -116,48 +117,21 @@ def _pergunta_ancora(titulo, tags=None):
 
 
 def _refresh(tj):
-    """Troca o token de 60 dias por outro de 60 dias (fb_exchange_token). Best-effort:
-    só roda se houver app_id + app_secret em .secrets. Atualiza os dois arquivos."""
-    if not (APP_ID_FILE.exists() and APP_SECRET_FILE.exists()):
-        return tj['access_token']
-    q = urllib.parse.urlencode({
-        'grant_type': 'fb_exchange_token',
-        'client_id': APP_ID_FILE.read_text(encoding='utf-8').strip(),
-        'client_secret': APP_SECRET_FILE.read_text(encoding='utf-8').strip(),
-        'fb_exchange_token': tj['access_token'],
-    })
-    try:
-        r = json.load(urllib.request.urlopen(f'{GRAPH}/oauth/access_token?{q}', timeout=60))
-    except urllib.error.HTTPError as e:
-        print(f'  [aviso] falha ao renovar token IG: {e.code} {e.read().decode()[:160]}')
-        return tj['access_token']
-    if 'access_token' not in r:
-        return tj['access_token']
-    r['_obtained_at'] = int(time.time())
-    TOKEN_JSON.write_text(json.dumps(r, ensure_ascii=False, indent=2), encoding='utf-8')
-    TOKEN_FILE.write_text(r['access_token'], encoding='utf-8')
-    print('  [token IG renovado automaticamente]')
-    return r['access_token']
+    """Delega para ig_base.refresh_token passando os caminhos deste módulo."""
+    return _ig_refresh(tj, APP_ID_FILE, APP_SECRET_FILE, TOKEN_JSON, TOKEN_FILE)
 
 
 def _token():
-    # Token de longa duração (60 dias). Renova ~7 dias antes de expirar, se houver app creds.
-    if TOKEN_JSON.exists():
-        tj = json.loads(TOKEN_JSON.read_text(encoding='utf-8'))
-        if tj.get('access_token') and tj.get('_obtained_at'):
-            if time.time() - tj['_obtained_at'] >= tj.get('expires_in', 5184000) - 7 * 86400:
-                return _refresh(tj)
-            return tj['access_token']
-    if not TOKEN_FILE.exists():
-        sys.exit(f'[!] token ausente: crie {TOKEN_FILE} com o access_token (permissão '
-                 'instagram_content_publish). Veja o cabeçalho deste arquivo.')
-    return TOKEN_FILE.read_text(encoding='utf-8').strip()
+    """Token de longa duração (60 dias). Delega para ig_base.read_token.
+    Passa os caminhos deste módulo para que mock.patch.object(ig, 'TOKEN_FILE')
+    continue a funcionar nos testes — ig_base não lê globals, só recebe paths."""
+    return _ig_read_token(TOKEN_FILE, TOKEN_JSON, APP_ID_FILE, APP_SECRET_FILE,
+                          permission='instagram_content_publish')
 
 
 def _user_id():
-    if not USER_ID_FILE.exists():
-        sys.exit(f'[!] {USER_ID_FILE} ausente: salve o id numérico da conta IG Business/Creator.')
-    return USER_ID_FILE.read_text(encoding='utf-8').strip()
+    """Delega para ig_base.read_user_id passando USER_ID_FILE deste módulo."""
+    return _ig_read_user_id(USER_ID_FILE)
 
 
 def _get(path, token, fields=None):

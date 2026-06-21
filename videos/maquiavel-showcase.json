@@ -1,0 +1,55 @@
+{
+  "slug": "maquiavel-showcase",
+  "titulo": "Maquiavel Pedagogo",
+  "autor": "Pascal Bernardin",
+  "voz": "pt-BR-AntonioNeural",
+  "provider": "google",
+  "musica": true,
+  "musica_energia": 0.5,
+  "tts_rate": 0.97,
+  "estilo_img": "dark cinematic, moody chiaroscuro lighting, desaturated teal and amber palette, film grain, dramatic deep shadows, shallow depth of field, ominous atmosphere, photorealistic, highly detailed, no text, no watermark, no logos",
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "As Provas",
+      "narracao": "Você desconfia da escola. Bem. Pascal Bernardin reuniu, documento por documento, as provas do que você suspeita.",
+      "img": "extreme close-up of weathered hands turning yellowed official documents covered in generic institutional seals and bureaucratic stamps, hard raking side light, dust motes in the air, slow solemn mood"
+    },
+    {
+      "tipo": "conceito",
+      "titulo": "Não é Ensinar",
+      "narracao": "A Unesco, a OCDE, o Conselho da Europa. Segundo o livro, eles não falam em ensinar. Falam em modificar valores, atitudes e comportamentos.",
+      "img": "cold sterile international bureaucratic conference hall, anonymous empty leather chairs around a vast round table, faceless institutional power, blue fluorescent light, wide symmetrical composition"
+    },
+    {
+      "tipo": "conceito",
+      "titulo": "Operação Psicológica",
+      "narracao": "A instrução foi trocada por uma operação psicológica. E isso está nos documentos oficiais.",
+      "img": "an empty classroom at dusk, rows of identical empty wooden desks, an erased black chalkboard, a single bare flickering lightbulb hanging, prison-like cold institutional atmosphere, wide centered shot"
+    },
+    {
+      "tipo": "conceito",
+      "titulo": "Atos Antes da Crença",
+      "narracao": "O mecanismo é simples: quem controla os atos da criança controla seus valores. Você induz o comportamento, e a crença vem atrás. Festinger demonstrou. A pedagogia aplicou.",
+      "img": "a single adult hand in shadow moving small chess pieces shaped like children silhouettes across a dark boardroom table, overhead dramatic spotlight, manipulation, faceless"
+    },
+    {
+      "tipo": "conceito",
+      "titulo": "O Sentimento de Liberdade",
+      "narracao": "O ingrediente ativo? O sentimento de liberdade. Os próprios textos da Unesco citam Lewin: os novos valores precisam parecer livremente escolhidos.",
+      "img": "a small child seen from behind standing alone in a wide open empty schoolyard under a vast pale sky, thin almost invisible marionette strings descending from above onto the child, eerie false warm light, unsettling"
+    },
+    {
+      "tipo": "conceito",
+      "titulo": "A Gaiola Aberta",
+      "narracao": "A gaiola mais eficaz é aquela em que o pássaro acredita que escolheu entrar. Antirracismo, paz, direitos humanos: as técnicas nascem sob esses álibis. Depois, os documentos as declaram aplicáveis às atitudes sociais em geral.",
+      "img": "a single small bird perched inside an open birdcage, not leaving, dramatic chiaroscuro, mostly black and white with a subtle ironic golden tint, symbol of false freedom, dark background"
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Avalie o Dispositivo",
+      "narracao": "Bernardin tem uma regra: avalie o dispositivo, nunca o pretexto. Você não precisa acreditar em mim. Leia as fontes. O resumo completo está na Biblioteca.",
+      "img": "a historical Renaissance engraving portrait of Niccolo Machiavelli superimposed in double exposure over the facade of a modern school building at dusk, scholarly, ominous, dark cinematic"
+    }
+  ]
+}

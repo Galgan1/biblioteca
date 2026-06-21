@@ -256,6 +256,35 @@
     border-color: var(--adm-coral);
 }
 .adm-btn--live:not(:disabled):hover { background: var(--adm-coral-dark); border-color: var(--adm-coral-dark); transform: translateY(-1px); }
+.adm-btn--yt { background: #c4302b; border-color: #c4302b; color: #fff; }
+.adm-btn--yt:not(:disabled):hover { background: #a32721; border-color: #a32721; transform: translateY(-1px); }
+.adm-yt-sep { height: 1px; background: oklch(46% 0.01 152 / 0.25); margin: 0.95rem 0 0.7rem; }
+
+/* Upload de livro na home (painel admin) */
+.adm-up-form .adm-field input[type="file"] { padding: 0.5rem; font: inherit; color: var(--adm-ink); }
+.adm-up-review { margin-top: 0.9rem; }
+.adm-up-card { border: 1px solid oklch(46% 0.01 152 / 0.22); border-radius: 12px; padding: 0.9rem 1rem; }
+.adm-up-lead { margin: 0 0 0.5rem; font-size: 0.9rem; color: var(--adm-muted); }
+.adm-up-meta { list-style: none; margin: 0 0 0.7rem; padding: 0; display: grid; gap: 0.25rem; font-size: 0.92rem; }
+.adm-up-meta b { color: var(--adm-ink); }
+
+/* Barra de progresso descritiva (enviar e gerar) */
+.adm-prog { margin: 0.5rem 0 0.2rem; }
+.adm-prog-track { height: 8px; border-radius: 999px; background: oklch(46% 0.01 152 / 0.15); overflow: hidden; }
+.adm-prog-fill { height: 100%; width: 0; border-radius: 999px; background: var(--adm-green); transition: width 0.5s ease; }
+.adm-prog-fill.working {
+    background-image: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.5) 50%, transparent 75%);
+    background-size: 200% 100%; animation: adm-prog-shimmer 1.2s linear infinite;
+}
+@keyframes adm-prog-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+.adm-prog-label { margin: 0.55rem 0 0.6rem; font-size: 0.9rem; font-weight: 600; color: var(--adm-ink); }
+.adm-prog-steps { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.8rem; color: var(--adm-muted); }
+.adm-prog-steps li { display: flex; align-items: center; gap: 0.35rem; opacity: 0.5; }
+.adm-prog-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+.adm-prog-steps li.done { opacity: 1; color: var(--adm-green); }
+.adm-prog-steps li.active { opacity: 1; color: var(--adm-ink); font-weight: 600; }
+.adm-prog-steps li.active .adm-prog-dot { background: var(--adm-green); animation: adm-dot-pulse 1s ease-in-out infinite; }
+@keyframes adm-dot-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.55); } }
 
 /* ----------------------------------------------------------------------
    Status inline (login + publicação): busy/ok/err

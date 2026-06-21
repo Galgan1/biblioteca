@@ -732,13 +732,20 @@ def cmd_mapa(ctx):
     discos = {
         p.stem: p for base in (ROOT, VIDEOS) if base.exists() 
         for p in base.glob('*.py') 
-        if not (p.name.endswith('_data.py') or p.name in ('vp100.py', 'limpar.py') or p.name.startswith('_'))
+        if not (p.name.endswith('_data.py') or p.name in ('vp100.py', 'limpar.py', 'testar.py') or p.name.startswith('_'))
     }
 
     seeds = set(ENTRYPOINT_SEEDS)
-    for bat in ROOT.glob('*.bat'):
-        try: seeds |= set(re.findall(r'([A-Za-z_][\w\-]*)\.py', bat.read_text('utf-8', 'replace')))
-        except Exception: pass
+    # .bat na raiz E em videos/ referenciam scripts manuais (doctor, tiktok_*, ci/auditoria) — são vivos
+    for base in (ROOT, VIDEOS):
+        for bat in base.glob('*.bat'):
+            try: seeds |= set(re.findall(r'([A-Za-z_][\w\-]*)\.py', bat.read_text('utf-8', 'replace')))
+            except Exception: pass
+    # módulos exercitados por uma bateria de testes (tests/, videos/tests/) têm rede de segurança = vivos
+    for base in (ROOT, VIDEOS):
+        for tf in (base / 'tests').glob('*.py'):
+            try: seeds |= _refs(tf)
+            except Exception: pass
 
     vivos, fila = set(), list(seeds)
     while fila:

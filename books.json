@@ -212,28 +212,6 @@
     ]
   },
   {
-    "id": "homem-mais-rico-babilonia",
-    "title": "O Homem Mais Rico da Babilônia",
-    "author": "George S. Clason",
-    "coverUrl": "assets/homem-mais-rico-babilonia-capa.png",
-    "description": "As parábolas de Arkad, Bansir e Dabasir destilam as leis universais da prosperidade: pague-se primeiro (no mínimo 10%), as Sete Curas para uma bolsa vazia, as Cinco Leis do Ouro, o plano 70/20/10 para sair das dívidas, e a ideia de que a sorte favorece quem age. Riqueza é resultado de hábitos simples e constantes, não de salário alto ou sorte.",
-    "tags": [
-      "Finanças",
-      "Poupança",
-      "Riqueza"
-    ],
-    "progress": "9 Capítulos",
-    "url": "homem-mais-rico-babilonia.html",
-    "amazon": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "design-do-dia-a-dia",
     "title": "O Design do Dia a Dia",
     "author": "Don Norman",
@@ -278,21 +256,6 @@
     ]
   },
   {
-    "id": "futebol-brasileiro",
-    "title": "A História do Futebol Brasileiro",
-    "author": "Mário Filho e clássicos do tema",
-    "coverUrl": "assets/futebol-brasileiro-capa.png",
-    "description": "A história do futebol brasileiro, da origem aristocrática (Charles Miller, 1894) à era das cinco estrelas — inspirada no maior clássico do tema, 'O Negro no Futebol Brasileiro' de Mário Filho. A barreira racial e o 'pó de arroz', a ruptura do Vasco (1923), Friedenreich e Leônidas, a profissionalização (1933), a invenção do futebol-arte, o Maracanazo (1950) e o 'complexo de vira-lata', o tri de Pelé e Garrincha (1958/62/70), a beleza que perdeu em 1982, o tetra e o penta (1994/2002), o 7 a 1 de 2014 e o debate sobre o mito da democracia racial.",
-    "tags": [
-      "História",
-      "Futebol",
-      "Brasil",
-      "Cultura"
-    ],
-    "progress": "10 Capítulos",
-    "url": "futebol-brasileiro.html"
-  },
-  {
     "id": "padrao-bitcoin",
     "title": "O Padrão Bitcoin",
     "author": "Saifedean Ammous",
@@ -311,28 +274,6 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8550827673/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "hora-da-estrela",
-    "title": "A Hora da Estrela",
-    "author": "Clarice Lispector",
-    "coverUrl": "assets/hora-da-estrela-capa.png",
-    "description": "Análise literária de 'A Hora da Estrela' de Clarice Lispector: metalinguagem, narrador-personagem Rodrigo S.M., a anti-heroína Macabéa, invisibilidade social, linguagem e silêncio, o instante, a falsa epifania e a morte como ápice da existência.",
-    "tags": [
-      "Literatura Brasileira",
-      "Clarice Lispector",
-      "Análise Literária"
-    ],
-    "progress": "8 Capítulos",
-    "url": "hora-da-estrela.html",
-    "amazon": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
@@ -975,28 +916,6 @@
     ]
   },
   {
-    "id": "sete-saberes",
-    "title": "Os Sete Saberes Necessários à Educação do Futuro",
-    "author": "Edgar Morin",
-    "coverUrl": "assets/sete-saberes-capa.png",
-    "description": "Os Sete Saberes de Edgar Morin para a UNESCO: bússola filosófica que aponta os buracos fatais da educação — das cegueiras do conhecimento à antropoética. Frameworks: conhecimento pertinente, ecologia da ação, estratégia × programa, unitas multiplex, compreensão × explicação, cidadania terrena.",
-    "tags": [
-      "Educação",
-      "Filosofia",
-      "Pensamento Complexo"
-    ],
-    "progress": "7 Capítulos",
-    "url": "sete-saberes.html",
-    "amazon": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "cabeca-bem-feita",
     "title": "A Cabeça Bem-Feita",
     "author": "Edgar Morin",
@@ -1103,28 +1022,6 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/6557121472/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "poder-do-habito",
-    "title": "O Poder do Hábito",
-    "author": "Charles Duhigg",
-    "coverUrl": "assets/poder-do-habito-capa.png",
-    "description": "Investigação de Charles Duhigg sobre a ciência dos hábitos. O loop (deixa, rotina, recompensa) e o craving que o move, a Regra de Ouro da mudança, os hábitos angulares, a força de vontade como músculo, e como hábitos governam organizações e movimentos sociais. Por que fazemos o que fazemos — e como mudar.",
-    "tags": [
-      "Comportamento",
-      "Psicologia",
-      "Produtividade"
-    ],
-    "progress": "9 Capítulos",
-    "url": "poder-do-habito.html",
-    "amazon": "https://www.amazon.com.br/dp/8539004119/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8539004119/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
@@ -1899,28 +1796,6 @@
     ]
   },
   {
-    "id": "comunicacao-nao-violenta",
-    "title": "Comunicação Não-Violenta",
-    "author": "Marshall B. Rosenberg",
-    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
-    "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
-    "tags": [
-      "Comunicação",
-      "Empatia",
-      "Relacionamentos"
-    ],
-    "progress": "11 Capítulos",
-    "url": "comunicacao-nao-violenta.html",
-    "amazon": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "coragem-de-nao-agradar",
     "title": "A Coragem de Não Agradar",
     "author": "Ichiro Kishimi & Fumitake Koga",
@@ -1961,28 +1836,6 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8504018024/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "essencialismo",
-    "title": "Essencialismo",
-    "author": "Greg McKeown",
-    "coverUrl": "assets/essencialismo-capa.png",
-    "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
-    "tags": [
-      "Produtividade",
-      "Foco",
-      "Prioridades"
-    ],
-    "progress": "12 Capítulos",
-    "url": "essencialismo.html",
-    "amazon": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
@@ -2031,72 +1884,6 @@
     ]
   },
   {
-    "id": "arte-da-guerra",
-    "title": "A Arte da Guerra",
-    "author": "Sun Tzu",
-    "coverUrl": "assets/arte-da-guerra-capa.png",
-    "description": "Os 13 capítulos de 'A Arte da Guerra' de Sun Tzu em cheat sheet: os 5 fatores do cálculo, vencer sem lutar, conhecer o inimigo e a si mesmo, a guerra como arte do engano, a vitória rápida, cheio e vazio, o momentum (shih), a flexibilidade da água, os tipos de terreno, não agir por raiva e o uso de espiões — frameworks de estratégia atemporal.",
-    "tags": [
-      "Estratégia",
-      "Liderança",
-      "Filosofia"
-    ],
-    "progress": "13 Capítulos",
-    "url": "arte-da-guerra.html",
-    "amazon": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "maquiavel-pedagogo",
-    "title": "Maquiavel Pedagogo",
-    "author": "Pascal Bernardin",
-    "coverUrl": "assets/maquiavel-pedagogo-capa.png",
-    "description": "Maquiavel Pedagogo de Pascal Bernardin em cheat sheet: a engenharia social aplicada à educação — dissonância cognitiva e sentimento de liberdade, a inversão atos→opiniões, a Unesco e a modificação de atitudes em escala, a revolução ética e cultural, reescrever a história, os IUFMs, a descentralização como engajamento, a avaliação como leme, a sociedade dual e o totalitarismo psicopedagógico.",
-    "tags": [
-      "Educação",
-      "Psicologia Social",
-      "Geopolítica"
-    ],
-    "progress": "16 Capítulos",
-    "url": "maquiavel-pedagogo.html",
-    "amazon": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "keller-casamento",
-    "title": "O Significado do Casamento",
-    "author": "Timothy Keller",
-    "coverUrl": "assets/keller-casamento-capa.png",
-    "description": "O Significado do Casamento de Timothy Keller em cheat sheet: aliança × relação de consumo, o Evangelho e a graça como base, ser cheio do Espírito, amor-ação antes de amor-sentimento, a santidade do outro como missão, verdade e graça, perdão como pagamento, papéis como serviço mútuo (Efésios 5), solteirice como vocação e o sexo como ato de aliança.",
-    "tags": [
-      "Relacionamento",
-      "Espiritualidade",
-      "Casamento"
-    ],
-    "progress": "8 Capítulos",
-    "url": "keller-casamento.html",
-    "amazon": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
     "id": "poder-do-silencio",
     "title": "O Poder do Silêncio",
     "author": "Eckhart Tolle",
@@ -2115,50 +1902,6 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/dp/8543103614/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "experiencia-psicodelica",
-    "title": "A Experiência Psicodélica",
-    "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
-    "coverUrl": "assets/experiencia-psicodelica-capa.png",
-    "description": "A Experiência Psicodélica (1964) de Leary, Metzner & Alpert em cheat sheet, lida como história das ideias e estudo da consciência: set & setting, a substância como chave química neutra, jogos × não-jogos, a morte do ego, os três Bardos (Clara Luz, visões, reentrada), tudo é projeção da própria mente, e o protocolo Confiar–Desligar–Flutuar.",
-    "tags": [
-      "Consciência",
-      "Misticismo",
-      "Psicologia"
-    ],
-    "progress": "9 Capítulos",
-    "url": "experiencia-psicodelica.html",
-    "amazon": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR"
-      }
-    ]
-  },
-  {
-    "id": "smith-assertividade",
-    "title": "Quando Digo Não, Me Sinto Culpado",
-    "author": "Manuel J. Smith",
-    "coverUrl": "assets/smith-assertividade-capa.png",
-    "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
-    "tags": [
-      "Assertividade",
-      "Comunicação",
-      "Psicologia"
-    ],
-    "progress": "11 Capítulos",
-    "url": "smith-assertividade.html",
-    "amazon": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR",
-    "compras": [
-      {
-        "loja": "amazon",
-        "nome": "Amazon",
-        "url": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   },
@@ -2247,6 +1990,263 @@
         "loja": "amazon",
         "nome": "Amazon",
         "url": "https://www.amazon.com.br/s?k=Blender+Fundamentals+Blender+Foundation&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "arte-da-guerra",
+    "title": "A Arte da Guerra",
+    "author": "Sun Tzu",
+    "coverUrl": "assets/arte-da-guerra-capa.png",
+    "description": "Os 13 capítulos de 'A Arte da Guerra' de Sun Tzu em cheat sheet: os 5 fatores do cálculo, vencer sem lutar, conhecer o inimigo e a si mesmo, a guerra como arte do engano, a vitória rápida, cheio e vazio, o momentum (shih), a flexibilidade da água, os tipos de terreno, não agir por raiva e o uso de espiões — frameworks de estratégia atemporal.",
+    "tags": [
+      "Estratégia",
+      "Liderança",
+      "Filosofia"
+    ],
+    "progress": "13 Capítulos",
+    "url": "arte-da-guerra.html",
+    "amazon": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8594318596/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "comunicacao-nao-violenta",
+    "title": "Comunicação Não-Violenta",
+    "author": "Marshall B. Rosenberg",
+    "coverUrl": "assets/comunicacao-nao-violenta-capa.png",
+    "description": "O clássico de Marshall Rosenberg que ensina a transformar conflito em conexão. Pela estrutura dos quatro componentes — observação, sentimento, necessidade e pedido — mostra como sair da linguagem que julga e exige (o 'chacal') para a que escuta e enriquece a vida (a 'girafa'): distinguir observação de avaliação, sentimento de interpretação, pedido de exigência, receber com empatia e traduzir a própria raiva.",
+    "tags": [
+      "Comunicação",
+      "Empatia",
+      "Relacionamentos"
+    ],
+    "progress": "11 Capítulos",
+    "url": "comunicacao-nao-violenta.html",
+    "amazon": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8571838267/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "essencialismo",
+    "title": "Essencialismo",
+    "author": "Greg McKeown",
+    "coverUrl": "assets/essencialismo-capa.png",
+    "description": "O manifesto de Greg McKeown contra a vida espalhada e ocupada que não leva a lugar nenhum. Em vez de dizer sim a tudo por pressão, o Essencialista escolhe: assume que todo 'sim' custa um 'não', aplica o critério dos 90% para recusar até o que é bom, e dedica sua energia à única coisa que faz a maior contribuição. Um método em três fases — explorar, eliminar, executar — para reconquistar a clareza, o controle e a alegria do que realmente conta.",
+    "tags": [
+      "Produtividade",
+      "Foco",
+      "Prioridades"
+    ],
+    "progress": "12 Capítulos",
+    "url": "essencialismo.html",
+    "amazon": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8543102146/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "experiencia-psicodelica",
+    "title": "A Experiência Psicodélica",
+    "author": "Timothy Leary, Ralph Metzner & Richard Alpert",
+    "coverUrl": "assets/experiencia-psicodelica-capa.png",
+    "description": "A Experiência Psicodélica (1964) de Leary, Metzner & Alpert em cheat sheet, lida como história das ideias e estudo da consciência: set & setting, a substância como chave química neutra, jogos × não-jogos, a morte do ego, os três Bardos (Clara Luz, visões, reentrada), tudo é projeção da própria mente, e o protocolo Confiar–Desligar–Flutuar.",
+    "tags": [
+      "Consciência",
+      "Misticismo",
+      "Psicologia"
+    ],
+    "progress": "9 Capítulos",
+    "url": "experiencia-psicodelica.html",
+    "amazon": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/6583239078/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "futebol-brasileiro",
+    "title": "A História do Futebol Brasileiro",
+    "author": "Mário Filho e clássicos do tema",
+    "coverUrl": "assets/futebol-brasileiro-capa.png",
+    "description": "A história do futebol brasileiro, da origem aristocrática (Charles Miller, 1894) à era das cinco estrelas — inspirada no maior clássico do tema, 'O Negro no Futebol Brasileiro' de Mário Filho. A barreira racial e o 'pó de arroz', a ruptura do Vasco (1923), Friedenreich e Leônidas, a profissionalização (1933), a invenção do futebol-arte, o Maracanazo (1950) e o 'complexo de vira-lata', o tri de Pelé e Garrincha (1958/62/70), a beleza que perdeu em 1982, o tetra e o penta (1994/2002), o 7 a 1 de 2014 e o debate sobre o mito da democracia racial.",
+    "tags": [
+      "História",
+      "Futebol",
+      "Brasil",
+      "Cultura"
+    ],
+    "progress": "10 Capítulos",
+    "url": "futebol-brasileiro.html"
+  },
+  {
+    "id": "homem-mais-rico-babilonia",
+    "title": "O Homem Mais Rico da Babilônia",
+    "author": "George S. Clason",
+    "coverUrl": "assets/homem-mais-rico-babilonia-capa.png",
+    "description": "As parábolas de Arkad, Bansir e Dabasir destilam as leis universais da prosperidade: pague-se primeiro (no mínimo 10%), as Sete Curas para uma bolsa vazia, as Cinco Leis do Ouro, o plano 70/20/10 para sair das dívidas, e a ideia de que a sorte favorece quem age. Riqueza é resultado de hábitos simples e constantes, não de salário alto ou sorte.",
+    "tags": [
+      "Finanças",
+      "Poupança",
+      "Riqueza"
+    ],
+    "progress": "9 Capítulos",
+    "url": "homem-mais-rico-babilonia.html",
+    "amazon": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8595081530/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "hora-da-estrela",
+    "title": "A Hora da Estrela",
+    "author": "Clarice Lispector",
+    "coverUrl": "assets/hora-da-estrela-capa.png",
+    "description": "Análise literária de 'A Hora da Estrela' de Clarice Lispector: metalinguagem, narrador-personagem Rodrigo S.M., a anti-heroína Macabéa, invisibilidade social, linguagem e silêncio, o instante, a falsa epifania e a morte como ápice da existência.",
+    "tags": [
+      "Literatura Brasileira",
+      "Clarice Lispector",
+      "Análise Literária"
+    ],
+    "progress": "8 Capítulos",
+    "url": "hora-da-estrela.html",
+    "amazon": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/853250812X/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "keller-casamento",
+    "title": "O Significado do Casamento",
+    "author": "Timothy Keller",
+    "coverUrl": "assets/keller-casamento-capa.png",
+    "description": "O Significado do Casamento de Timothy Keller em cheat sheet: aliança × relação de consumo, o Evangelho e a graça como base, ser cheio do Espírito, amor-ação antes de amor-sentimento, a santidade do outro como missão, verdade e graça, perdão como pagamento, papéis como serviço mútuo (Efésios 5), solteirice como vocação e o sexo como ato de aliança.",
+    "tags": [
+      "Relacionamento",
+      "Espiritualidade",
+      "Casamento"
+    ],
+    "progress": "8 Capítulos",
+    "url": "keller-casamento.html",
+    "amazon": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8527505266/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "maquiavel-pedagogo",
+    "title": "Maquiavel Pedagogo",
+    "author": "Pascal Bernardin",
+    "coverUrl": "assets/maquiavel-pedagogo-capa.png",
+    "description": "Maquiavel Pedagogo de Pascal Bernardin em cheat sheet: a engenharia social aplicada à educação — dissonância cognitiva e sentimento de liberdade, a inversão atos→opiniões, a Unesco e a modificação de atitudes em escala, a revolução ética e cultural, reescrever a história, os IUFMs, a descentralização como engajamento, a avaliação como leme, a sociedade dual e o totalitarismo psicopedagógico.",
+    "tags": [
+      "Educação",
+      "Psicologia Social",
+      "Geopolítica"
+    ],
+    "progress": "16 Capítulos",
+    "url": "maquiavel-pedagogo.html",
+    "amazon": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8563160273/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "poder-do-habito",
+    "title": "O Poder do Hábito",
+    "author": "Charles Duhigg",
+    "coverUrl": "assets/poder-do-habito-capa.png",
+    "description": "Investigação de Charles Duhigg sobre a ciência dos hábitos. O loop (deixa, rotina, recompensa) e o craving que o move, a Regra de Ouro da mudança, os hábitos angulares, a força de vontade como músculo, e como hábitos governam organizações e movimentos sociais. Por que fazemos o que fazemos — e como mudar.",
+    "tags": [
+      "Comportamento",
+      "Psicologia",
+      "Produtividade"
+    ],
+    "progress": "9 Capítulos",
+    "url": "poder-do-habito.html",
+    "amazon": "https://www.amazon.com.br/dp/8539004119/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8539004119/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "sete-saberes",
+    "title": "Os Sete Saberes Necessários à Educação do Futuro",
+    "author": "Edgar Morin",
+    "coverUrl": "assets/sete-saberes-capa.png",
+    "description": "Os Sete Saberes de Edgar Morin para a UNESCO: bússola filosófica que aponta os buracos fatais da educação — das cegueiras do conhecimento à antropoética. Frameworks: conhecimento pertinente, ecologia da ação, estratégia × programa, unitas multiplex, compreensão × explicação, cidadania terrena.",
+    "tags": [
+      "Educação",
+      "Filosofia",
+      "Pensamento Complexo"
+    ],
+    "progress": "7 Capítulos",
+    "url": "sete-saberes.html",
+    "amazon": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8524917547/?tag=andregalgani-20&language=pt_BR"
+      }
+    ]
+  },
+  {
+    "id": "smith-assertividade",
+    "title": "Quando Digo Não, Me Sinto Culpado",
+    "author": "Manuel J. Smith",
+    "coverUrl": "assets/smith-assertividade-capa.png",
+    "description": "O manual clássico de assertividade. Smith ensina um conjunto de habilidades verbais — disco riscado, banco de névoa, interrogação negativa — para lidar com a manipulação como seu próprio juiz, preservando o autorrespeito.",
+    "tags": [
+      "Assertividade",
+      "Comunicação",
+      "Psicologia"
+    ],
+    "progress": "11 Capítulos",
+    "url": "smith-assertividade.html",
+    "amazon": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/dp/8501010529/?tag=andregalgani-20&language=pt_BR"
       }
     ]
   }

@@ -251,4 +251,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // ---------- carregador do painel admin na HOME (upload de livro) ----------
+    // Mesmo gatilho discreto das páginas de livro: revela com #admin (uma vez) e
+    // fica lembrado no aparelho; visitante comum nunca baixa admin.js. O próprio
+    // admin.js trata login + checagem de papel e injeta o form de upload.
+    window.BIBLIOTECA_CTX = { book: '', prefix: '', isOverview: false, chapter: null, isHome: true };
+    try {
+        if (location.hash === '#admin') localStorage.setItem('bib:admin', '1');
+        if (localStorage.getItem('bib:admin') === '1') {
+            const _av = '?t=' + Date.now(); // cache-bust por carga (não briga com cache)
+            const aCss = document.createElement('link');
+            aCss.rel = 'stylesheet'; aCss.href = 'assets/admin.css' + _av;
+            document.head.appendChild(aCss);
+            const aJs = document.createElement('script');
+            aJs.src = 'assets/admin.js' + _av;
+            document.body.appendChild(aJs);
+        }
+    } catch (e) { /* sem localStorage → sem admin */ }
 });

@@ -3,7 +3,7 @@
   --green: oklch(70% 0.13 152); --green-soft: oklch(85% 0.105 152); --green-deep: oklch(56% 0.14 152);
   --ink: oklch(98% 0.008 152); --muted: oklch(75% 0.022 152); --ink-dim: oklch(64% 0.02 152);
   --bg: oklch(14.5% 0.014 152); --bg2: oklch(10.5% 0.012 152); --on-green: oklch(13% 0.02 152);
-  --gold: oklch(76% 0.105 83);
+  --gold: oklch(76% 0.105 83); --on-gold: oklch(20% 0.04 83);
   --warn: oklch(72% 0.16 30); --on-warn: oklch(16% 0.03 30);
   --hair: oklch(73% 0.05 152 / .30); --hair2: oklch(73% 0.05 152 / .14);
 }
@@ -52,9 +52,6 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   justify-content:center;background:var(--green);color:var(--on-green);flex:0 0 auto}
 .brandmark .seal svg{width:28px;height:28px;color:var(--on-green)}
 .brandmark b{color:var(--green);font-weight:900}
-.count{display:inline-flex;align-items:baseline;gap:4px;font-weight:800;
-  font-size:26px;letter-spacing:.04em;color:var(--green-soft)}
-.count b{font-size:34px;color:var(--green)} .count .sl{color:var(--hair);font-weight:700}
 
 /* ---------- selo do ícone ---------- */
 .card-icon{width:108px;height:108px;border-radius:26px;display:flex;align-items:center;
@@ -64,9 +61,9 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   box-shadow:0 0 48px oklch(70% 0.14 152 / .14), inset 0 1px 0 oklch(90% 0.1 152 / .12)}
 .card-icon svg{width:58px;height:58px;color:var(--green);
   filter:drop-shadow(0 0 12px oklch(72% 0.14 152 / .45))}
-.warn .card-icon{background:linear-gradient(160deg, oklch(75% 0.16 38 / .16), oklch(75% 0.16 38 / .04));
-  border-color:oklch(75% 0.16 38 / .42);box-shadow:0 0 48px oklch(75% 0.16 38 / .14)}
-.warn .card-icon svg{color:var(--warn);filter:drop-shadow(0 0 12px oklch(75% 0.16 38 / .45))}
+.warn .card-icon{background:linear-gradient(160deg, oklch(75% 0.16 30 / .16), oklch(75% 0.16 30 / .04));
+  border-color:oklch(75% 0.16 30 / .42);box-shadow:0 0 48px oklch(75% 0.16 30 / .14)}
+.warn .card-icon svg{color:var(--warn);filter:drop-shadow(0 0 12px oklch(75% 0.16 30 / .45))}
 
 /* ---------- conceito ---------- */
 .card-title{display:inline-block;background:var(--green);color:var(--on-green);
@@ -74,7 +71,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   text-transform:uppercase;text-wrap:balance;align-self:flex-start;letter-spacing:.004em;
   box-shadow:0 14px 40px oklch(60% 0.14 152 / .3)}
 .warn .card-title{background:var(--warn);color:var(--on-warn);
-  box-shadow:0 14px 40px oklch(65% 0.16 38 / .3)}
+  box-shadow:0 14px 40px oklch(65% 0.16 30 / .3)}
 .card-body{font-size:45px;line-height:1.4;color:var(--ink);margin-top:28px;
   font-weight:500;text-wrap:pretty}
 .card-body strong{color:var(--green-soft);font-weight:800}
@@ -85,7 +82,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .card-tip .tipic{flex:0 0 auto;width:42px;height:42px;margin-top:2px;color:var(--green)}
 .card-tip .tipic svg{width:42px;height:42px}
 .card-tip strong{color:var(--green);font-weight:800}
-.warn .card-tip{color:var(--warn);border-color:oklch(75% 0.16 38 / .5)}
+.warn .card-tip{color:var(--warn);border-color:oklch(75% 0.16 30 / .5)}
 .warn .card-tip .tipic{color:var(--warn)} .warn .card-tip strong{color:var(--warn)}
 
 /* ---------- conceito EDITORIAL (padrão quente W2) ---------- */
@@ -94,7 +91,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .ed-num{font-family:'Literata',Georgia,serif;font-weight:600;font-size:300px;line-height:.72;
   color:transparent;-webkit-text-stroke:2.5px oklch(74% 0.11 152 / .55);letter-spacing:-.04em;
   flex:0 0 auto;text-shadow:0 0 70px oklch(72% 0.14 152 / .12)}
-.warn .ed-num{-webkit-text-stroke-color:oklch(75% 0.16 38 / .5)}
+.warn .ed-num{-webkit-text-stroke-color:oklch(75% 0.16 30 / .5)}
 .ed-meta{flex:1;padding-bottom:22px}
 .ed-kicker{font-weight:800;font-size:23px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
 .warn .ed-kicker{color:var(--warn)}
@@ -113,7 +110,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .ed-body .dc{float:left;font-family:'Literata',Georgia,serif;font-weight:600;font-size:138px;line-height:.78;color:var(--green);margin:8px 22px -6px 0;text-shadow:0 0 44px oklch(72% 0.14 152 / .3)}
 .warn .ed-body .dc{color:var(--warn)}
 .ed-tip{margin-top:auto;display:flex;gap:26px;align-items:flex-start;background:linear-gradient(150deg, oklch(70% 0.14 152 / .14), oklch(70% 0.14 152 / .035));border:2px solid var(--hair);border-left:6px solid var(--green);border-radius:22px;padding:34px 38px;box-shadow:0 16px 44px oklch(8% 0.02 152 / .45), inset 0 1px 0 oklch(90% 0.1 152 / .08)}
-.warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 38 / .14), oklch(75% 0.16 38 / .035))}
+.warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 30 / .14), oklch(75% 0.16 30 / .035))}
 .ed-tip .tipic{flex:0 0 auto;width:60px;height:60px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--green);color:var(--on-green);box-shadow:0 8px 22px oklch(60% 0.14 152 / .4)}
 .warn .ed-tip .tipic{background:var(--warn)}
 .ed-tip .tipic svg{width:34px;height:34px;color:var(--on-green)}
@@ -149,7 +146,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   margin-top:58px;border-top:3px dashed var(--green);border-bottom:3px dashed var(--green);
   padding:32px 0;max-width:820px}
 .cover .hook .num{font-size:128px;font-weight:900;line-height:.76;color:var(--gold);
-  letter-spacing:-.04em;text-shadow:0 0 50px oklch(84% 0.12 92 / .35)}
+  letter-spacing:-.04em;text-shadow:0 0 50px oklch(84% 0.12 83 / .35)}
 .cover .hook .lbl{font-size:48px;font-weight:800;color:var(--ink);text-align:left;
   line-height:1.04;text-transform:uppercase;text-wrap:balance}
 .cover .hook .lbl span{color:var(--green)}
@@ -181,6 +178,16 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .cta .save svg{width:44px;height:44px;flex:0 0 auto}
 .cta .handle{position:absolute;bottom:116px;left:0;right:0;font-weight:900;letter-spacing:.12em;
   font-size:30px;color:var(--green-soft);text-transform:uppercase;z-index:2}
+
+/* ---------- lições do capítulo ---------- */
+.lessons{justify-content:flex-start}
+.lessons .ed-num{font-size:80px;width:80px;height:80px;display:flex;align-items:center;justify-content:center}
+.lessons .ed-num svg{width:54px;height:54px;color:var(--green);filter:drop-shadow(0 0 12px oklch(72% 0.14 152 / .45))}
+.lessons-list{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;flex:1}
+.lessons-list li{display:flex;align-items:flex-start;gap:30px;padding:32px 0;font-family:'Literata',Georgia,serif;font-size:41px;font-weight:500;color:var(--ink);line-height:1.3;text-wrap:pretty}
+.lessons-list li + li{border-top:2px dashed var(--hair)}
+.lessons-list .lnum{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:62px;font-weight:900;color:var(--green);line-height:.82;flex:0 0 44px;text-shadow:0 0 36px oklch(72% 0.14 152 / .38)}
+.lessons-list li strong{color:var(--green-soft);font-weight:700}
 
 /* ---------- citação ---------- */
 .quote{justify-content:center;align-items:flex-start;text-align:left;padding-top:120px}
@@ -214,4 +221,4 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .slide.ideia .handle{position:absolute;bottom:54px;left:0;right:0;text-align:center;
   font-weight:600;font-size:24px;letter-spacing:.04em;color:var(--ink-dim)}
 .slide.ideia .idtag{font-weight:900;font-size:19px;letter-spacing:.28em;text-transform:uppercase;color:var(--green)}
-</style></head><body style="width:1080px;height:1080px"><div class="slide ideia"><div class="topbar"><span class="brandmark"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 16C26 12 16 12 12 14v34c4-2 14-2 20 2 6-4 16-4 20-2V14c-4-2-14-2-20 2z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M32 18v34" stroke="currentColor" stroke-width="3"/></svg></span>Minuto<b>Real</b></span><span class="idtag">Ideia-chave</span></div><div class="ed"><div class="ed-kicker">O DESIGN DO DIA A DIA</div><div class="ed-rule"></div><h1 class="ed-title">Os 5 Princípios Fundamentais</h1><p class="ed-body"><span class="dc">O</span> checklist de todo bom design. <strong>Affordances</strong>: o que o objeto permite fazer. <strong>Significantes</strong>: sinais que dizem onde e como agir. <strong>Mapeamento</strong>: a relação controle→efeito (o natural espelha a função). <strong>Feedback</strong>: resposta imediata ao que você fez. <strong>Restrições</strong>: limites que guiam ao caminho certo.</p><div class="ed-tip"><span class="tipic"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 8L18 36h12l-4 20 20-30H34l4-18z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></span><div class="tiptext"><div class="tiplabel">Modelo mental</div><div class="tipbody">affordance é a possibilidade; significante é o anúncio dela. O designer controla o significante muito mais do que a affordance.</div></div></div></div><div class="handle">andregalgani.com.br/biblioteca</div></div></body></html>
+</style></head><body style="width:1080px;height:1080px"><div class="slide ideia"><div class="topbar"><span class="brandmark"><span class="seal"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 16C26 12 16 12 12 14v34c4-2 14-2 20 2 6-4 16-4 20-2V14c-4-2-14-2-20 2z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M32 18v34" stroke="currentColor" stroke-width="3"/></svg></span>Minuto<b>Real</b></span><span class="idtag">Ideia-chave</span></div><div class="ed"><div class="ed-kicker">O DESIGN DO DIA A DIA</div><div class="ed-rule"></div><h1 class="ed-title">Os 5 Princípios Fundamentais</h1><p class="ed-body"><span class="dc">O</span> checklist de todo bom design. <strong>Affordances</strong>: o que o objeto permite fazer.</p><div class="ed-tip"><span class="tipic"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M34 8L18 36h12l-4 20 20-30H34l4-18z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/></svg></span><div class="tiptext"><div class="tiplabel">Modelo mental</div><div class="tipbody">affordance é a possibilidade; significante é o anúncio dela. O designer controla o significante muito mais do que a affordance.</div></div></div></div><div class="handle">andregalgani.com.br/biblioteca</div></div></body></html>

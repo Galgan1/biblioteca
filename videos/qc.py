@@ -131,28 +131,44 @@ def aprovado(slug, stems_root=None):
 # Coletor (I/O): mede o arquivo real e agrega os estágios
 # --------------------------------------------------------------------------
 
+def _parse_resolucao(stderr):
+    """PURA: -> (largura, altura) da 1ª resolução WxH no stderr do ffmpeg; (None, None)."""
+    m = re.search(r'(\d{3,4})x(\d{3,4})', stderr)
+    return (int(m.group(1)), int(m.group(2))) if m else (None, None)
+
+
+def _parse_loudness(stderr):
+    """PURA: -> LUFS integrado do arquivo (campo input_i do loudnorm); None se ausente.
+
+    Lê o bloco JSON final do loudnorm (uma medição do arquivo INTEIRO). NÃO casa com
+    as linhas de progresso do ebur128, que começam no piso -70 LUFS no 1º frame — era
+    daí que vinha o falso -70 (re.search pegava a 1ª, não a medição final)."""
+    m = re.search(r'\{[^{}]*"input_i"[^{}]*\}', stderr, re.DOTALL)
+    if not m:
+        return None
+    try:
+        return float(json.loads(m.group(0))['input_i'])
+    except (ValueError, KeyError):
+        return None
+
+
 def medir_arquivo(video_path):
-    """-> (largura, altura, lufs, true_peak). Usa ffmpeg (ebur128); None se indisponível."""
+    """-> (largura, altura, lufs, true_peak). Mede o ARQUIVO FINAL com ffmpeg:
+    resolução + loudness integrado (loudnorm print_format=json). None se indisponível.
+    true_peak segue não medido aqui (gate de clipping recebe None -> pula)."""
     try:
         import imageio_ffmpeg
         ff = imageio_ffmpeg.get_ffmpeg_exe()
     except Exception:
         return None, None, None, None
-    w = h = lufs = tp = None
     try:
-        r = subprocess.run([ff, '-i', str(video_path), '-af', 'ebur128', '-f', 'null', '-'],
-                           capture_output=True, text=True)
-        s = r.stderr
-        if (m := re.search(r'(\d{3,4})x(\d{3,4})', s)):
-            w, h = int(m.group(1)), int(m.group(2))
-        # último bloco "Summary" do ebur128
-        if (m := re.search(r'I:\s*(-?\d+\.?\d*)\s*LUFS', s)):
-            lufs = float(m.group(1))
-        if (m := re.search(r'Peak:\s*(-?\d+\.?\d*)\s*dBFS', s)):
-            tp = float(m.group(1))
+        r = subprocess.run(
+            [ff, '-i', str(video_path), '-af', 'loudnorm=print_format=json', '-f', 'null', '-'],
+            capture_output=True, text=True)
     except Exception:
-        pass
-    return w, h, lufs, tp
+        return None, None, None, None
+    w, h = _parse_resolucao(r.stderr)
+    return w, h, _parse_loudness(r.stderr), None
 
 
 def coletar(roteiro_path, video_path=None):

@@ -53,6 +53,16 @@ ICONS = {
     "leaf": '<path d="M48 14C28 14 14 28 14 48c20 0 34-14 34-34z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M22 42L42 22" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>',
     "wave": '<path d="M6 38c6-8 12-8 18 0s12 8 18 0 12-8 16 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M6 26c6-8 12-8 18 0s12 8 18 0 12-8 16 0" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>',
     "key": '<circle cx="22" cy="22" r="12" stroke="currentColor" stroke-width="3"/><path d="M30 30l22 22M44 44l6-6M38 50l6-6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>',
+    # Geometria compartilhada com _carousel_slides._EXTRA (mesma marca visual).
+    "arrow": '<path d="M12 32h36M34 18l16 14-16 14" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+    "shield": '<path d="M32 8l20 8v13c0 14-9 23-20 27-11-4-20-13-20-27V16z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>',
+    "bookmark": '<path d="M18 10h28v44L32 44 18 54z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>',
+    "play": '<circle cx="32" cy="32" r="22" stroke="currentColor" stroke-width="3"/><path d="M27 23l16 9-16 9z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>',
+    "shelf": '<path d="M14 12h36v40H14z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="M14 24h36M14 38h36M24 12v12M40 24v14" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>',
+    "star": '<path d="M32 10L37.3 24.7L52.9 25.2L40.6 34.8L44.9 49.8L32 41L19.1 49.8L23.4 34.8L11.1 25.2L26.7 24.7Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>',
+    "flag": '<path d="M16 8v48" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M16 12h30l-7 8 7 8H16z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>',
+    "loop": '<path d="M48 20a18 18 0 1 0 4 13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M39 15l9 5-1 10" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>',
+    "balance": '<path d="M10 28h44M32 20v8" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M22 50l10-22 10 22z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>',
 }
 
 

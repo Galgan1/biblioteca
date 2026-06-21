@@ -30,6 +30,7 @@
     const CTX = (typeof window !== 'undefined' && window.BIBLIOTECA_CTX) || ctxFromPath();
     const BIBLIOTECA_BOOK = CTX.book || '';
     const isOverview = !!CTX.isOverview;
+    const isHome = !!CTX.isHome;
     const chapterMatch = CTX.chapter ? [null, CTX.chapter] : null;
     const onBookPage = isOverview || !!chapterMatch;
     const prefix = typeof CTX.prefix === 'string' ? CTX.prefix : (isOverview ? '' : '../');
@@ -78,6 +79,7 @@
     const X_ICON = _SVG('<path d="M6 6l12 12M18 6 6 18"/>');
     const LINK_ICON = _SVG('<path d="M9.5 14.5 14.5 9.5"/><path d="M11 7.5l1-1a3.5 3.5 0 0 1 5 5l-1 1"/>'
         + '<path d="M13 16.5l-1 1a3.5 3.5 0 0 1-5-5l1-1"/>');
+    const YT_ICON = _SVG('<rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z"/>');
     const EYE_ICON = _SVG('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/>');
     const EYE_OFF_ICON = _SVG('<path d="M3 3l18 18"/><path d="M10.6 10.6a3 3 0 0 0 4.2 4.2"/>'
         + '<path d="M9.9 5.2A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3 3.6"/>'
@@ -135,8 +137,10 @@
         SESSION = me;
         if (me.role === 'admin' && onBookPage && BIBLIOTECA_BOOK) {
             injectAdminPanel();
+        } else if (me.role === 'admin' && isHome) {
+            injectUploadPanel();
         }
-        // admin fora de página de livro, ou não-admin: nada visível.
+        // não-admin, ou admin sem contexto: nada visível.
     }
 
     // ======================================================================
@@ -308,6 +312,12 @@
             + '<div class="adm-actions adm-actions--publish">'
             + '  <button type="button" class="adm-btn adm-btn--solid" data-publish>'
             + SEND_ICON + '<span>Publicar</span></button>'
+            + '</div>'
+            + '<div class="adm-yt-sep"></div>'
+            + '<p class="adm-status adm-yt-status" role="status" aria-live="polite"></p>'
+            + '<div class="adm-actions">'
+            + '  <button type="button" class="adm-btn adm-btn--yt" data-publish-yt>'
+            + YT_ICON + '<span>Publicar vídeo no YouTube</span></button>'
             + '</div>';
 
         const formatSel = body.querySelector('[data-format]');
@@ -316,6 +326,9 @@
         const captionEl = body.querySelector('[data-caption]');
         const statusEl = body.querySelector('.adm-publish-status');
         const publishBtn = body.querySelector('[data-publish]');
+        const ytBtn = body.querySelector('[data-publish-yt]');
+        const ytStatus = body.querySelector('.adm-yt-status');
+        if (ytBtn) ytBtn.addEventListener('click', () => confirmYT(ytBtn, ytStatus));
 
         // "Todos os formatos" (publica 1 de cada, em sequência) — só com 2+ formatos
         if (formats.length > 1) {
@@ -340,7 +353,7 @@
             if (!sels.length) return null;
             const pref = {
                 feed: ['mapa', 'ideia', 'citacao-feed'],
-                story: ['capa-story', 'citacao-story'],
+                story: ['capa-story', 'citacao-story', 'insights-story'],
                 carrossel: ['overview'], carousel: ['overview'],
             }[String(fmt.type || '').toLowerCase()] || [];
             for (const p of pref) if (sels.includes(p)) return p;
@@ -555,6 +568,238 @@
             setStatus(statusEl, msg, 'err');
         }
         publishBtn.disabled = false;
+    }
+
+    // ======================================================================
+    //  YouTube — publica o vídeo do livro
+    // ======================================================================
+    function confirmYT(btn, statusEl) {
+        const overlay = makeOverlay('adm-overlay', 'Confirmar publicação no YouTube');
+        const modal = document.createElement('div');
+        modal.className = 'adm-modal adm-modal--confirm';
+        modal.innerHTML =
+            '<div class="adm-modal-head"><span class="adm-dot adm-dot--live"></span>'
+            + '<h2>Publicar no YouTube?</h2>'
+            + '<button type="button" class="adm-x" data-close aria-label="Fechar">' + X_ICON + '</button></div>'
+            + '<p class="adm-confirm-lead">Vai publicar o <b>vídeo</b> de <b>' + escapeHtml(BIBLIOTECA_BOOK)
+            + '</b> no canal (privacidade: <b>não listado</b>).</p>'
+            + '<div class="adm-actions">'
+            + '  <button type="button" class="adm-btn adm-btn--live" data-confirm>Publicar agora</button>'
+            + '  <button type="button" class="adm-btn adm-btn--ghost" data-close>Cancelar</button>'
+            + '</div>';
+        overlay.appendChild(modal);
+        document.body.appendChild(overlay);
+        wireClose(overlay);
+        modal.querySelector('[data-confirm]').addEventListener('click', async () => {
+            closeOverlay(overlay);
+            await doPublishYT(btn, statusEl);
+        });
+    }
+
+    async function doPublishYT(btn, statusEl) {
+        btn.disabled = true;
+        setStatus(statusEl, 'enviando vídeo ao YouTube…', 'busy');
+        let data = null, ok = false;
+        try {
+            const res = await apiPost('admin/youtube/publish', { book: BIBLIOTECA_BOOK, confirm: true, privacy: 'unlisted' });
+            data = await safeJson(res);
+            ok = res.ok;
+        } catch (e) { ok = false; }
+        if (ok && data && data.ok) {
+            if (data.dryRun) {
+                setStatus(statusEl, 'Dry-run ✓ — "' + (data.title || '') + '" (não publicado; modo teste ligado).', 'ok');
+            } else if (data.url) {
+                setStatusHtml(statusEl, 'Publicado ✓ <a class="adm-permalink" href="' + escapeAttr(data.url)
+                    + '" target="_blank" rel="noopener">' + LINK_ICON + 'ver no YouTube</a>', 'ok');
+            } else {
+                setStatus(statusEl, 'Publicado ✓', 'ok');
+            }
+        } else {
+            setStatus(statusEl, (data && data.error) ? data.error : 'Falha ao publicar no YouTube.', 'err');
+        }
+        btn.disabled = false;
+    }
+
+    // ======================================================================
+    //  Painel "Publicar um livro" (admin + HOME) — upload → skill → site
+    // ======================================================================
+    // Passos do pipeline, na ordem; `pct` = quanto a barra enche ao chegar nele.
+    // O worker grava o `stage` (ia/gate/build/ready) no job → a barra é DESCRITIVA.
+    const UP_STEPS = [
+        { key: 'upload', short: 'Enviando', label: 'Enviando o arquivo', pct: 18 },
+        { key: 'queued', short: 'Na fila', label: 'Na fila', pct: 26 },
+        { key: 'ia', short: 'Gerando com IA', label: 'Lendo o livro e gerando o resumo com IA', pct: 66 },
+        { key: 'gate', short: 'Validando', label: 'Validando a qualidade', pct: 82 },
+        { key: 'build', short: 'Montando o site', label: 'Montando as páginas e o kit', pct: 93 },
+        { key: 'ready', short: 'Pronto', label: 'Pronto para revisão', pct: 100 },
+    ];
+    const UP_HINT = { ia: ' — pode levar alguns minutos' };
+
+    function injectUploadPanel() {
+        if (document.querySelector('.adm-upload-panel')) return; // idempotente
+        const panel = document.createElement('section');
+        panel.className = 'adm-panel adm-upload-panel';
+        panel.setAttribute('aria-label', 'Publicar um livro');
+        const steps = UP_STEPS.map((s) => '<li data-st="' + s.key + '"><span class="adm-prog-dot"></span>'
+            + escapeHtml(s.short) + '</li>').join('');
+        panel.innerHTML =
+            '<div class="adm-panel-head">'
+            + '<div class="adm-panel-titles">'
+            + '  <span class="adm-panel-title">Publicar um livro</span>'
+            + '  <span class="adm-panel-sub">sobe o arquivo → vira resumo → você revisa → publica</span>'
+            + '</div>'
+            + '<button type="button" class="adm-x" data-logout aria-label="Sair">' + OUT_ICON + '</button>'
+            + '</div>'
+            + '<div class="adm-panel-body">'
+            + '  <form class="adm-up-form" novalidate>'
+            + '    <label class="adm-field"><span>Arquivo do livro (.pdf .epub .txt .docx .md)</span>'
+            + '      <input type="file" name="book" accept=".pdf,.epub,.txt,.docx,.md,.html,.rtf" required></label>'
+            + '    <label class="adm-field"><span>Slug (opcional — kebab-case, ex.: a-arte-da-guerra)</span>'
+            + '      <input type="text" name="slug" autocomplete="off" autocapitalize="off" spellcheck="false"></label>'
+            + '    <div class="adm-actions"><button type="submit" class="adm-btn adm-btn--solid">Enviar e gerar</button></div>'
+            + '  </form>'
+            + '  <div class="adm-prog" hidden aria-live="polite">'
+            + '    <div class="adm-prog-track"><div class="adm-prog-fill"></div></div>'
+            + '    <p class="adm-prog-label"></p>'
+            + '    <ol class="adm-prog-steps">' + steps + '</ol>'
+            + '  </div>'
+            + '  <p class="adm-status adm-up-status" role="status" aria-live="polite"></p>'
+            + '  <div class="adm-up-review" hidden></div>'
+            + '</div>';
+        const anchor = document.querySelector('header');
+        if (anchor) anchor.insertAdjacentElement('afterend', panel);
+        else document.body.insertBefore(panel, document.body.firstChild);
+        panel.querySelector('[data-logout]').addEventListener('click', () => doLogout(panel));
+
+        const ui = {
+            form: panel.querySelector('.adm-up-form'),
+            statusEl: panel.querySelector('.adm-up-status'),
+            progEl: panel.querySelector('.adm-prog'),
+            reviewEl: panel.querySelector('.adm-up-review'),
+        };
+        ui.form.addEventListener('submit', (e) => { e.preventDefault(); startUpload(ui); });
+    }
+
+    // pinta a barra no passo `key`; `uploadFrac` (0..1) só vale no passo 'upload'.
+    function setProgress(progEl, key, uploadFrac) {
+        progEl.hidden = false;
+        const idx = UP_STEPS.findIndex((s) => s.key === key);
+        const step = UP_STEPS[idx] || UP_STEPS[0];
+        const pct = (key === 'upload' && typeof uploadFrac === 'number')
+            ? Math.round(uploadFrac * step.pct) : step.pct;
+        const fill = progEl.querySelector('.adm-prog-fill');
+        fill.style.width = pct + '%';
+        fill.classList.toggle('working', key !== 'ready'); // shimmer enquanto trabalha
+        progEl.querySelector('.adm-prog-label').textContent = step.label + (UP_HINT[key] || '');
+        progEl.querySelectorAll('.adm-prog-steps li').forEach((li) => {
+            const i = UP_STEPS.findIndex((s) => s.key === li.getAttribute('data-st'));
+            li.classList.toggle('done', i < idx || key === 'ready');
+            li.classList.toggle('active', i === idx && key !== 'ready');
+        });
+    }
+
+    // upload via XHR p/ ter o % REAL do envio (fetch não expõe progresso de upload).
+    function xhrUpload(url, fd, onFrac) {
+        return new Promise((resolve) => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.withCredentials = true;
+            if (xhr.upload) xhr.upload.onprogress = (e) => {
+                if (e.lengthComputable) onFrac(e.loaded / e.total);
+            };
+            xhr.onload = () => {
+                let j = null; try { j = JSON.parse(xhr.responseText); } catch (e) { /* sem JSON */ }
+                resolve({ ok: xhr.status >= 200 && xhr.status < 300, data: j });
+            };
+            xhr.onerror = () => resolve({ ok: false, data: null });
+            xhr.send(fd);
+        });
+    }
+
+    async function startUpload(ui) {
+        const fileInput = ui.form.querySelector('input[name="book"]');
+        const slug = ui.form.querySelector('input[name="slug"]').value.trim();
+        if (!fileInput.files || !fileInput.files[0]) { setStatus(ui.statusEl, 'Escolha um arquivo.', 'err'); return; }
+        const submitBtn = ui.form.querySelector('button[type="submit"]');
+        submitBtn.disabled = true;
+        ui.reviewEl.hidden = true; ui.reviewEl.innerHTML = '';
+        setStatus(ui.statusEl, '', ''); // limpa erro de tentativa anterior
+        setProgress(ui.progEl, 'upload', 0);
+        const fd = new FormData();
+        fd.append('book', fileInput.files[0]);
+        if (slug) fd.append('slug', slug);
+        const res = await xhrUpload(apiUrl('admin/upload'), fd, (frac) => setProgress(ui.progEl, 'upload', frac));
+        if (!res.ok || !res.data || !res.data.jobId) {
+            submitBtn.disabled = false; ui.progEl.hidden = true;
+            setStatus(ui.statusEl, (res.data && res.data.error) ? res.data.error : 'Falha no upload.', 'err');
+            return;
+        }
+        setProgress(ui.progEl, 'queued');
+        pollJob(res.data.jobId, ui, submitBtn);
+    }
+
+    function pollJob(jobId, ui, submitBtn) {
+        let tries = 0;
+        const timer = setInterval(async () => {
+            tries++;
+            let s = null;
+            try {
+                const res = await apiGet('admin/upload/' + encodeURIComponent(jobId) + '/status');
+                s = await safeJson(res);
+            } catch (e) { return; }
+            if (!s || !s.status) return;
+            if (s.status === 'queued') setProgress(ui.progEl, 'queued');
+            else if (s.status === 'processing') {
+                // o worker grava stage = ia|gate|build; se faltar, mostra a 1ª (ia)
+                const st = ['ia', 'gate', 'build'].indexOf(s.stage) >= 0 ? s.stage : 'ia';
+                setProgress(ui.progEl, st);
+            } else if (s.status === 'ready') {
+                clearInterval(timer); setProgress(ui.progEl, 'ready');
+                renderReview(jobId, s, ui, submitBtn);
+            } else if (s.status === 'published') {
+                clearInterval(timer); showPublished(ui, s.url); submitBtn.disabled = false;
+            } else if (s.status === 'failed') {
+                clearInterval(timer); ui.progEl.hidden = true;
+                setStatus(ui.statusEl, s.error || 'Falhou ao gerar.', 'err'); submitBtn.disabled = false;
+            }
+            if (tries > 450) { clearInterval(timer); setStatus(ui.statusEl, 'demorou demais — confira o status mais tarde.', 'err'); submitBtn.disabled = false; }
+        }, 4000);
+    }
+
+    function renderReview(jobId, s, ui, submitBtn) {
+        const sm = s.summary || {};
+        const caps = (sm.chapters != null) ? String(sm.chapters) : '—';
+        ui.reviewEl.hidden = false;
+        ui.reviewEl.innerHTML =
+            '<div class="adm-up-card">'
+            + '<p class="adm-up-lead">Gerado no staging (ainda <b>não</b> está no ar). Revise:</p>'
+            + '<ul class="adm-up-meta">'
+            + '<li><b>Título:</b> ' + escapeHtml(sm.title || s.slug || '—') + '</li>'
+            + '<li><b>Autor:</b> ' + escapeHtml(sm.author || '—') + '</li>'
+            + '<li><b>Capítulos:</b> ' + escapeHtml(caps) + '</li>'
+            + '</ul>'
+            + '<div class="adm-actions">'
+            + '<button type="button" class="adm-btn adm-btn--live" data-pub>Publicar no site</button>'
+            + '</div></div>';
+        ui.reviewEl.querySelector('[data-pub]').addEventListener('click', async (e) => {
+            const btn = e.currentTarget; btn.disabled = true;
+            setStatus(ui.statusEl, 'publicando no site…', 'busy');
+            let d = null, ok = false;
+            try {
+                const res = await apiPost('admin/upload/' + encodeURIComponent(jobId) + '/publish', {});
+                d = await safeJson(res); ok = res.ok;
+            } catch (er) { ok = false; }
+            if (ok && d && d.ok) { showPublished(ui, d.url); submitBtn.disabled = false; }
+            else { btn.disabled = false; setStatus(ui.statusEl, (d && d.error) ? d.error : 'Falha ao publicar.', 'err'); }
+        });
+    }
+
+    function showPublished(ui, url) {
+        ui.progEl.hidden = true;
+        ui.reviewEl.hidden = true; ui.reviewEl.innerHTML = '';
+        if (url) setStatusHtml(ui.statusEl, 'Publicado ✓ <a class="adm-permalink" href="' + escapeAttr(url)
+            + '" target="_blank" rel="noopener">' + LINK_ICON + 'ver no site</a>', 'ok');
+        else setStatus(ui.statusEl, 'Publicado ✓', 'ok');
     }
 
     // ======================================================================

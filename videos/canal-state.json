@@ -1,37 +1,108 @@
 {
   "_doc": "Estado machine-readable do canal Minuto Real. Atualizado pelos scripts e pelo maestro. O CONTEXTO-CANAL-MINUTO-REAL.md permanece como narrativa de handoff; este arquivo é a fonte para leitura programática.",
   "_updated": "2026-06-14",
-
   "channel_id": "UC2N5xZ-gyCU3hNvH1QqNahA",
   "channel_name": "Minuto Real",
-
   "google_api": {
     "quota_status": "ok",
     "last_probe": "2026-06-14",
     "note": "Teto desbloqueado 14/jun. Se 429 RESOURCE_EXHAUSTED: levantar em https://ai.studio/spend (não é pagamento novo — é limite auto-configurado)."
   },
-
   "lanes": {
-    "biblioteca":  { "status": "active" },
-    "youtube":     { "status": "active" },
-    "instagram":   { "status": "active",  "account": "@minutoreal1701", "ig_id": "17841426834577980", "fb_page": "1225638803958838" },
-    "facebook":    { "status": "active" },
-    "tiktok":      { "status": "blocked", "reason": "token pendente — app em developers.tiktok.com, escopo video.publish; modo --draft funciona assim que houver access_token em .secrets/tiktok_token.txt" },
-    "x":           { "status": "blocked", "reason": "API paga; post manual até lá" }
+    "biblioteca": {
+      "status": "active",
+      "agent": "Bibliotecario"
+    },
+    "youtube": {
+      "status": "active"
+    },
+    "instagram": {
+      "status": "active",
+      "account": "@minutoreal1701",
+      "ig_id": "17841426834577980",
+      "fb_page": "1225638803958838"
+    },
+    "facebook": {
+      "status": "active"
+    },
+    "tiktok": {
+      "status": "blocked",
+      "reason": "token pendente — app em developers.tiktok.com, escopo video.publish; modo --draft funciona assim que houver access_token em .secrets/tiktok_token.txt"
+    },
+    "x": {
+      "status": "blocked",
+      "reason": "API paga; post manual até lá"
+    }
   },
-
   "schedule_cadence": {
-    "long":   { "days": ["monday", "thursday"], "time_brt": "19:00" },
-    "shorts": { "slots_after_long_days": [1, 2, 3, 4], "times_brt": ["12:00", "19:00", "12:00", "10:00"] }
+    "long": {
+      "days": [
+        "wednesday",
+        "thursday"
+      ],
+      "time_brt": "19:00"
+    },
+    "shorts": {
+      "slots_after_long_days": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "times_brt": [
+        "12:00",
+        "19:00",
+        "12:00",
+        "10:00"
+      ]
+    }
   },
-
   "upcoming_schedule": [
-    { "slug": "sound-design",    "longo_id": null, "longo_date": "2026-07-20", "shorts": [1,3,6,8] },
-    { "slug": "audiovisao",      "longo_id": null, "longo_date": "2026-07-23", "shorts": [1,2,4,5] },
-    { "slug": "coesao-coerencia","longo_id": null, "longo_date": "2026-07-27", "shorts": [2,3,5,7] },
-    { "slug": "ponerologia",     "longo_id": null, "longo_date": "2026-07-30", "shorts": [2,3,6,8] }
+    {
+      "slug": "sound-design",
+      "longo_id": null,
+      "longo_date": "2026-07-20",
+      "shorts": [
+        1,
+        3,
+        6,
+        8
+      ]
+    },
+    {
+      "slug": "audiovisao",
+      "longo_id": null,
+      "longo_date": "2026-07-23",
+      "shorts": [
+        1,
+        2,
+        4,
+        5
+      ]
+    },
+    {
+      "slug": "coesao-coerencia",
+      "longo_id": null,
+      "longo_date": "2026-07-27",
+      "shorts": [
+        2,
+        3,
+        5,
+        7
+      ]
+    },
+    {
+      "slug": "ponerologia",
+      "longo_id": null,
+      "longo_date": "2026-07-30",
+      "shorts": [
+        2,
+        3,
+        6,
+        8
+      ]
+    }
   ],
-
   "pending_operations": {
     "bitcoin_short4": {
       "commands": [
@@ -42,14 +113,38 @@
       "note": "4º short da cena 8 não subiu por uploadLimitExceeded — idempotente, re-roda sem problema"
     }
   },
-
   "api_health": {
-    "google_imagen": {"state": "closed", "failures": 0, "opened_at": null, "last_error": null},
-    "google_veo":    {"state": "closed", "failures": 0, "opened_at": null, "last_error": null},
-    "google_tts":    {"state": "closed", "failures": 0, "opened_at": null, "last_error": null},
-    "youtube_api":   {"state": "closed", "failures": 0, "opened_at": null, "last_error": null}
+    "google_imagen": {
+      "state": "closed",
+      "failures": 0,
+      "opened_at": null,
+      "last_error": null
+    },
+    "google_veo": {
+      "state": "closed",
+      "failures": 0,
+      "opened_at": null,
+      "last_error": null
+    },
+    "google_tts": {
+      "state": "closed",
+      "failures": 0,
+      "opened_at": null,
+      "last_error": null
+    },
+    "youtube_api": {
+      "state": "closed",
+      "failures": 0,
+      "opened_at": null,
+      "last_error": null
+    },
+    "_teste": {
+      "state": "closed",
+      "failures": 0,
+      "opened_at": null,
+      "last_error": null
+    }
   },
-
   "oauth": {
     "token_file": ".secrets/token_v2.json",
     "scope": "youtube.force-ssl",

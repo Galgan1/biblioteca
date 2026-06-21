@@ -29,7 +29,7 @@ const DISCLOSURE = 'Como Associado da Amazon, ganho com compras qualificadas.';
 
 // Conjuntos permitidos de selector por tipo.
 const FEED_SELECTORS = ['ideia', 'citacao-feed', 'mapa'];
-const STORY_SELECTORS = ['capa-story', 'citacao-story'];
+const STORY_SELECTORS = ['capa-story', 'citacao-story', 'insights-story'];
 
 // ---------------------------------------------------------------------------
 // books.json

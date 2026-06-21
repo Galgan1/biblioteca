@@ -1,0 +1,33 @@
+name: CI
+
+# Akita pilar 5: nada entra sem teste verde. Roda o mural do caminho critico
+# a cada push na main e em todo PR. Espelha o modelo do book-to-skill/.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  testes:
+    name: mural do caminho critico (unittest)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependencias
+        # runtime (numpy/Pillow/ffmpeg/google/fal) + teste (pydantic/depthflow).
+        # Sem o requirements.txt de runtime, os testes que importam esses modulos
+        # quebram com ModuleNotFoundError em ambiente limpo.
+        run: |
+          pip install -r requirements-dev.txt
+          pip install -r videos/requirements.txt
+      - name: Rodar o mural (ponto unico — raiz + videos, pilar 2)
+        # testar.py agrega as duas baterias: tests/ (raiz, contratos do gerador)
+        # + videos/tests (pipeline). Mesmo comando que o dev roda localmente.
+        run: python testar.py

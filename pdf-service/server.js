@@ -25,6 +25,8 @@ const { PDFDocument } = require('pdf-lib');
 const makeAuth = require('./auth');                 // login multiusuário + papéis
 const instagram = require('./instagram');           // publicação IG via Graph API
 const publishAssets = require('./publish_assets');  // mídia + legenda do post
+const youtube = require('./youtube');               // publicação YouTube via Data API
+const makeUpload = require('./upload');             // upload de livro (admin) → fila
 
 const PORT = Number(process.env.PORT) || 3008;
 const SITE_ROOT = process.env.SITE_ROOT || '/var/www/andregalgani/biblioteca';
@@ -700,6 +702,11 @@ const auth = makeAuth(SECRET);
 app.use('/pdf', auth.router);
 app.use('/biblioteca/pdf', auth.router);
 
+// upload de livro (admin) → fila em UPLOAD_DIR; o worker_upload.py processa
+const uploadRouter = makeUpload(auth.requireAdmin);
+app.use('/pdf', uploadRouter);
+app.use('/biblioteca/pdf', uploadRouter);
+
 // ------------------------------------------------------------- estatísticas
 // beacon de visita (sendBeacon do script.js): ?book=<slug> ou ?book=_estante
 pdf.post('/hit', (req, res) => {
@@ -732,8 +739,9 @@ const KIT_TPL = {
   'citacao-feed':  { tpl: 'quote.html',       w: 1080, h: 1350 },
   'citacao-story': { tpl: 'quote-story.html', w: 1080, h: 1920 },
   'ideia':         { tpl: 'ideia.html',       w: 1080, h: 1080 },
-  'capa-story':    { tpl: 'capa-story.html',  w: 1080, h: 1920 },
-  'mapa':          { tpl: 'mapa.html',        w: 1080, h: 1350 },
+  'capa-story':    { tpl: 'capa-story.html',    w: 1080, h: 1920 },
+  'insights-story':{ tpl: 'insights-story.html', w: 1080, h: 1920 },
+  'mapa':          { tpl: 'mapa.html',          w: 1080, h: 1350 },
   'thumb':         { tpl: 'thumb.html',       w: 1280, h: 720  },
 };
 
@@ -1016,6 +1024,32 @@ pdf.post('/admin/instagram/publish', auth.requireAdmin, async (req, res) => {
     res.json({ ok: true, dryRun, mediaId: result.id || result.containerId, permalink: result.permalink || null });
   } catch (err) {
     console.error('[ig-publish]', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ----- ADMIN: publicar no YouTube (espelha o IG). YT_DRYRUN=1 só monta os metadados. -----
+// Ativos do vídeo na VPS: VIDEOS_DIR/<slug>.mp4 + VIDEOS_DIR/roteiros/<slug>.json + VIDEOS_DIR/_thumbs/<slug>.png
+pdf.post('/admin/youtube/publish', auth.requireAdmin, async (req, res) => {
+  const { book, confirm, privacy } = req.body || {};
+  if (!SLUG_RE.test(String(book || ''))) return res.status(400).json({ error: 'livro inválido' });
+  if (!confirm) return res.status(400).json({ error: 'confirmação ausente' });
+  const dryRun = String(process.env.YT_DRYRUN || '') === '1';
+  const VIDEOS_DIR = process.env.VIDEOS_DIR || '/opt/biblioteca-pdf/videos';
+  const mp4 = path.join(VIDEOS_DIR, `${book}.mp4`);
+  const roteiro = path.join(VIDEOS_DIR, 'roteiros', `${book}.json`);
+  const thumb = path.join(VIDEOS_DIR, '_thumbs', `${book}.png`);
+  try {
+    await fsp.access(roteiro).catch(() => { throw new Error(`roteiro ausente: ${book}.json`); });
+    if (!dryRun) await fsp.access(mp4).catch(() => { throw new Error(`vídeo ausente na VPS: ${book}.mp4`); });
+    const meta = youtube.buildMetadata(roteiro);
+    const result = await youtube.publishVideo(mp4, meta, { privacy: privacy || 'unlisted', dryRun });
+    if (!dryRun && result.id) {
+      try { await fsp.access(thumb); await youtube.setThumbnail(result.id, thumb); } catch (e) { /* thumb opcional */ }
+    }
+    res.json({ ok: true, dryRun, videoId: result.id || null, url: result.url || null, title: meta.snippet.title });
+  } catch (err) {
+    console.error('[yt-publish]', err.message);
     res.status(500).json({ error: err.message });
   }
 });

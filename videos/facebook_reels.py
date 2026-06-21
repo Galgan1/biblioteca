@@ -28,44 +28,20 @@ Stdlib only (urllib). Conteúdo narrado/ilustrado por IA (a legenda divulga isso
 """
 import sys, json, time, urllib.request, urllib.parse, urllib.error
 from pathlib import Path
+from facebook_base import (
+    GRAPH, HASHTAGS_BASE, PAGE_TOKEN_FILE, PAGE_ID_FILE,
+    token as _token, page_id as _page_id, post as _post,
+)
 
 ROOT = Path(__file__).parent
 SH = ROOT / '_shorts'
-SEC = ROOT / '.secrets'
-GRAPH = 'https://graph.facebook.com/v21.0'
 RUPLOAD = 'https://rupload.facebook.com/video-upload/v21.0'
-PAGE_TOKEN_FILE = SEC / 'facebook_page_token.txt'
-PAGE_ID_FILE = SEC / 'facebook_page_id.txt'
-HASHTAGS_BASE = ['livros', 'resumodelivro', 'leitura']
 
 # Reusa a copy compartilhada se existir (não duplicar legendas); senão, fallback inline.
 try:
     import facebook_copy  # função esperada: reel_caption(cfg, cena)
 except ImportError:
     facebook_copy = None
-
-
-def _token():
-    if not PAGE_TOKEN_FILE.exists():
-        sys.exit(f'[!] {PAGE_TOKEN_FILE.name} ausente: salve o Page access token (escopo '
-                 'pages_manage_posts). Veja o cabeçalho do facebook_post.py.')
-    return PAGE_TOKEN_FILE.read_text(encoding='utf-8').strip()
-
-
-def _page_id():
-    if not PAGE_ID_FILE.exists():
-        sys.exit(f'[!] {PAGE_ID_FILE.name} ausente: salve o id numérico da Página do Facebook.')
-    return PAGE_ID_FILE.read_text(encoding='utf-8').strip()
-
-
-def _post(path, token, params):
-    """POST application/x-www-form-urlencoded na Graph API. Devolve dict (com 'error' em falha)."""
-    data = urllib.parse.urlencode({**params, 'access_token': token}).encode()
-    req = urllib.request.Request(f'{GRAPH}{path}', data=data)
-    try:
-        return json.load(urllib.request.urlopen(req, timeout=120))
-    except urllib.error.HTTPError as e:
-        return {'error': {'code': e.code, 'message': e.read().decode()[:300]}}
 
 
 def reel_caption(cfg, cena):

@@ -1,9 +1,29 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rm -rf _work/*)",
       "Bash(timeout 400 python gerar_video.py roteiros/arte-da-guerra.json)",
       "mcp__Claude_in_Chrome__javascript_tool"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(sudo:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "Bash(git push --delete:*)",
+      "Bash(git push origin :*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean -f:*)",
+      "Bash(git clean -fd:*)",
+      "Bash(git clean -fdx:*)",
+      "Bash(git clean -xfd:*)",
+      "Bash(git checkout -- :*)",
+      "Bash(git checkout .:*)",
+      "Bash(git branch -D:*)",
+      "Bash(git filter-branch:*)",
+      "Bash(git filter-repo:*)",
+      "Bash(git update-ref -d:*)",
+      "Bash(git reflog expire:*)",
+      "Bash(git gc:*)"
     ]
   }
 }

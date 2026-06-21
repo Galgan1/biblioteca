@@ -170,6 +170,18 @@ def emit(slug):
     # capa 9:16 (story) — anúncio do livro com nº de ideias
     n = len(book.get('overview_cards') or []) or sum(len(ch.get('cards', [])) for ch in data.CHAPTERS)
     pages['capa-story.html'] = _page(gc._story_teaser(book, n), 1080, 1920, css=gc.STORY_CSS)
+    # insights 9:16 (story) — 3 lições-chave: 1ª lição de cada capítulo (max 3)
+    _lessons = []
+    for chap in getattr(data, 'CHAPTERS', []) or []:
+        ls = chap.get('lessons', [])
+        if ls:
+            _lessons.append(ls[0])
+        if len(_lessons) >= 3:
+            break
+    if _lessons:
+        pages['insights-story.html'] = _page(
+            gc._story_insights(book, _lessons, 'O que você vai levar'),
+            1080, 1920, css=gc.STORY_CSS)
     # MAPA DO LIVRO 4:5 (infográfico LISTA, universal) — só se houver BOOK+CHAPTERS
     try:
         frag = gi.build_lista(data)
@@ -191,11 +203,12 @@ ASSET_META = {
     'mapa':          {'tpl': 'mapa.html',        'icon': 'idea',   'label': 'Mapa do livro',      'rede': 'Instagram', 'fmt': '4:5'},
     'citacao-feed':  {'tpl': 'quote.html',       'icon': 'quote',  'label': 'Citação (feed)',     'rede': 'Instagram', 'fmt': '4:5'},
     'citacao-story': {'tpl': 'quote-story.html', 'icon': 'quote',  'label': 'Citação (story)',    'rede': 'Stories',   'fmt': '9:16'},
-    'capa-story':    {'tpl': 'capa-story.html',  'icon': 'cover',  'label': 'Capa (story)',       'rede': 'Stories',   'fmt': '9:16'},
-    'thumb':         {'tpl': 'thumb.html',       'icon': 'cover',  'label': 'Thumbnail YouTube',  'rede': 'YouTube',   'fmt': '16:9'},
+    'capa-story':    {'tpl': 'capa-story.html',    'icon': 'cover',  'label': 'Capa (story)',        'rede': 'Stories',   'fmt': '9:16'},
+    'insights-story':{'tpl': 'insights-story.html','icon': 'idea',   'label': 'Insights (story)',    'rede': 'Stories',   'fmt': '9:16'},
+    'thumb':         {'tpl': 'thumb.html',         'icon': 'cover',  'label': 'Thumbnail YouTube',   'rede': 'YouTube',   'fmt': '16:9'},
 }
 # ordem de exibição na UI (carrossel do livro entra primeiro, à parte)
-ASSET_ORDER = ['mapa', 'ideia', 'citacao-feed', 'citacao-story', 'capa-story', 'thumb']
+ASSET_ORDER = ['mapa', 'ideia', 'citacao-feed', 'citacao-story', 'capa-story', 'insights-story', 'thumb']
 
 
 def _write_manifest(slug, book, pages):
@@ -238,6 +251,7 @@ def proof(slug):
     from playwright.sync_api import sync_playwright
     sizes = {'ideia.html': (1080, 1080), 'quote.html': (1080, 1350),
              'quote-story.html': (1080, 1920), 'capa-story.html': (1080, 1920),
+             'insights-story.html': (1080, 1920),
              'mapa.html': (1080, 1350), 'thumb.html': (1280, 720)}
     made = []
     with sync_playwright() as p:

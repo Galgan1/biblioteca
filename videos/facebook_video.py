@@ -33,31 +33,17 @@ Uso:
 """
 import sys, json, mimetypes, urllib.request, urllib.error
 from pathlib import Path
+from facebook_base import (
+    GRAPH, HASHTAGS_BASE, PAGE_TOKEN_FILE, PAGE_ID_FILE,
+    token as _token, page_id as _page_id,
+)
 
 ROOT = Path(__file__).parent
 SH = ROOT / '_shorts'
-SEC = ROOT / '.secrets'
-GRAPH = 'https://graph.facebook.com/v21.0'
-PAGE_TOKEN_FILE = SEC / 'facebook_page_token.txt'
-PAGE_ID_FILE = SEC / 'facebook_page_id.txt'
-HASHTAGS_BASE = ['livros', 'resumodelivro', 'leitura']
 HUB = 'https://www.andregalgani.com.br/biblioteca'
 
 # Acima deste tamanho, o upload simples é arriscado: usar o resumível (ver topo).
 LIMITE_SIMPLES = 100 * 1024 * 1024  # 100 MB
-
-
-def _token():
-    if not PAGE_TOKEN_FILE.exists():
-        sys.exit(f'[!] {PAGE_TOKEN_FILE} ausente: salve o Page access token (escopo '
-                 'pages_manage_posts). Veja o cabeçalho deste arquivo.')
-    return PAGE_TOKEN_FILE.read_text(encoding='utf-8').strip()
-
-
-def _page_id():
-    if not PAGE_ID_FILE.exists():
-        sys.exit(f'[!] {PAGE_ID_FILE} ausente: salve o id numérico da Página do Facebook.')
-    return PAGE_ID_FILE.read_text(encoding='utf-8').strip()
 
 
 def native_video_caption(cfg):

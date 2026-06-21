@@ -50,6 +50,13 @@ pipeline/events.jsonl
 pipeline/checkpoints.db
 pipeline/state/
 
+# ===== Runtime coletado/gerado — nunca versionar (Onda 1 revisão Akita) =====
+# Estado vivo de coleta/canal/loop. Estava rastreado por engano (modificados eternos).
+datas_coletadas.json
+historico_metadados.json
+videos/canal-state.json
+_audit/loop_state.json
+
 # ===== Analytics — dados e outputs gerados =====
 analytics/custos.json
 analytics/dashboard.html
