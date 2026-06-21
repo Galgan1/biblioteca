@@ -7,11 +7,13 @@ Funções exportadas:
   _to_ssml(text) -> str                                   — pura, prosódia SSML
   tts(text, voice, out_mp3, rate=1.0)                     — síntese com fallback encadeado
 """
+import re
 import sys
 import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).parent
+_AUDIO_MIN_BYTES = 256   # abaixo disso o "áudio" é fantasma (vazio/quebrado), não narração
 
 
 def _provedor_voz(voice: str) -> str:
@@ -40,6 +42,54 @@ def _provedor_voz(voice: str) -> str:
 TOM_TAG = {'serio': '[serious]', 'quieto': '[quietly]', 'deliberado': '[deliberate]',
            'sombrio': '[somber]', 'neutro': ''}
 
+# Audio tags v3 que o projeto RECONHECE como direção. Serve a 2 coisas: idempotência
+# PRECISA do _intonar (um '[risos]'/'[1984]' NÃO é direção → não deve silenciar a injeção)
+# e saber o que REMOVER no fallback Google/edge (que não leem tags → senão FALAM "serious").
+_TAGS_V3 = ('serious', 'quietly', 'deliberate', 'somber', 'curious', 'reflective',
+            'warmly', 'whispers', 'sighs', 'pause', 'short pause', 'neutral')
+_RE_TAG_CONHECIDA = re.compile(r'\[(?:' + '|'.join(_TAGS_V3) + r')\]', re.IGNORECASE)
+
+
+def _despir_tags(texto: str) -> str:
+    """Remove audio tags v3 do texto destinado a Google/edge (que NÃO as leem — senão a
+    voz FALA 'serious'/'pause'). As pausas reais voltam via _to_ssml (por pontuação)."""
+    return re.sub(r'  +', ' ', _RE_TAG_CONHECIDA.sub('', texto or '')).strip()
+
+
+# --- Normalização de PRONÚNCIA pt-BR (ponto único, antes de QUALQUER motor) ---
+_SIGLAS_SOLETRA = {   # siglas NÃO-pronunciáveis como palavra → soletrar. UNESCO/OTAN/INGSOC
+                      # ficam de FORA de propósito (são lidas inteiras, soletrar seria o erro).
+    'OCDE': 'ó cê dê é', 'FMI': 'éfe eme i', 'OMS': 'ó eme esse',
+    'PIB': 'pê i bê', 'EUA': 'ê ú á', 'CIA': 'cê i á',
+}
+_FALA_SIMBOLOS = [
+    (r'\bnº\s*', 'número '), (r'\bcap\.\s*', 'capítulo '),
+    (r'\betc\.', 'et cetera'), (r'\bvs\.?(?=\s|$)', 'versus'),
+    (r'\bDr\.\s*', 'doutor '), (r'\bDra\.\s*', 'doutora '),
+    (r'%', ' por cento'),
+]
+# Nomes estrangeiros mal pronunciados (Housel/Kahneman/Greene/Chion/Nietzsche…): VAZIO por
+# padrão — a grafia fonética varia por motor (v3 acerta mais que edge) e PODE PIORAR a voz
+# premium. Popular SÓ após A/B por OUVIDO (regra do projeto: "aprova-se por ouvido").
+_NOMES_FALA: dict = {}
+
+
+def normaliza_fala(texto: str) -> str:
+    """Normaliza pronúncia pt-BR ANTES do TTS (ponto único p/ eleven/google/edge). Conservador:
+    só o que comprovadamente quebra (siglas não-palavra, símbolos). Números já vêm por extenso
+    dos roteiros; nomes (glossário) ficam OFF até validar por ouvido. Idempotente; nunca lança."""
+    t = (texto or '').strip()
+    if not t:
+        return ''
+    for sig, fon in _SIGLAS_SOLETRA.items():
+        t = re.sub(rf'(?<![A-Za-zÀ-ÿ]){sig}(?![A-Za-zÀ-ÿ])', fon, t)
+    for k, v in _NOMES_FALA.items():
+        t = re.sub(rf'\b{re.escape(k)}\b', v, t)
+    for pat, sub in _FALA_SIMBOLOS:
+        t = re.sub(pat, sub, t)
+    t = re.sub(r'\bR\$\s*([\d.,]+)', r'\1 reais', t)
+    return re.sub(r'  +', ' ', t).strip()
+
 
 def _intonar(texto: str, tom: str = 'serio') -> str:
     """Injeta audio tags v3 (intonação) em narração pt-BR plana, IDEMPOTENTE.
@@ -51,7 +101,7 @@ def _intonar(texto: str, tom: str = 'serio') -> str:
     """
     import re
     t = (texto or '').strip()
-    if not t or re.search(r'\[[A-Za-zÀ-ÿ ]+\]', t):        # vazio ou já dirigido → não mexe
+    if not t or _RE_TAG_CONHECIDA.search(t):               # vazio ou já dirigido (tag v3 CONHECIDA) → não mexe
         return t
     tag = TOM_TAG.get(tom, '[serious]')
     if tag:
@@ -114,6 +164,9 @@ def _tts_eleven(text: str, voice_id: str, out_mp3: str) -> bool:
         import json as _json
         resp = _req.post(url, headers=headers, json=payload, timeout=60)
         resp.raise_for_status()
+        if not resp.content:                       # anti-fantasma: 200 com corpo vazio não é áudio
+            print('  [aviso] ElevenLabs devolveu áudio vazio -> rota de fuga')
+            return False
         Path(out_mp3).write_bytes(resp.content)
         try:
             from cost_tracker import record_cost
@@ -161,6 +214,7 @@ def tts(text, voice, out_mp3, rate=1.0):
     """
     FUGA_VOZ = 'pt-BR-AntonioNeural'   # voz de fuga: masculina, sóbria (mais próxima do Iapetus)
 
+    text = normaliza_fala(text)        # pronúncia pt-BR (siglas/símbolos) — ponto único, antes dos 3 motores
     provedor = _provedor_voz(voice)
 
     # --- 1ª opção: ElevenLabs ---
@@ -176,6 +230,7 @@ def tts(text, voice, out_mp3, rate=1.0):
     # --- 2ª opção: Google Cloud TTS ---
     if provedor == 'google':
         import time as _time
+        text = _despir_tags(text)      # Chirp/edge NÃO leem audio tags → senão a voz FALA "serious"
         for _tentativa in range(2):
             try:
                 import tts_gcloud
@@ -187,7 +242,19 @@ def tts(text, voice, out_mp3, rate=1.0):
         print(f'  [ROTA DE FUGA] Cloud TTS indisponível → voz grátis local edge-tts ({FUGA_VOZ})')
         voice = FUGA_VOZ
 
-    # --- 3ª opção (e fallback final): edge-tts local GRÁTIS ---
-    subprocess.run([sys.executable, '-m', 'edge_tts', '--voice', voice,
-                    '--text', text, '--write-media', str(out_mp3)],
-                   check=True, capture_output=True)
+    # --- 3ª opção (fallback final): edge-tts (grátis, MAS precisa de internet → servidores MS).
+    # Se até ela falhar (ex.: offline), ABORTA com contexto (pilar 7) em vez de um
+    # CalledProcessError cru — é o último recurso, então o erro tem que ser diagnosticável.
+    # (O comentário antigo "NUNCA falha" era otimista: sem rede, edge falha.) ---
+    try:
+        subprocess.run([sys.executable, '-m', 'edge_tts', '--voice', voice,
+                        '--text', _despir_tags(text), '--write-media', str(out_mp3)],
+                       check=True, capture_output=True)
+    except subprocess.CalledProcessError as _e:
+        _err = (_e.stderr or b'')[-300:].decode('utf-8', 'replace').strip()
+        raise RuntimeError(f"TODOS os provedores de voz falharam (edge-tts rc={_e.returncode}: "
+                           f"{_err or 'sem stderr'} — sem internet?). Sem áudio para a narração.") from _e
+    _out = Path(out_mp3)                            # anti-fantasma: edge rc=0 mas sem áudio gerado
+    if not _out.exists() or _out.stat().st_size < _AUDIO_MIN_BYTES:
+        _tam = _out.stat().st_size if _out.exists() else 0
+        raise RuntimeError(f"edge-tts não gerou áudio válido em {_out.name} (size={_tam}).")

@@ -36,8 +36,17 @@ IMG_MODEL = os.environ.get('FAL_IMG_MODEL', 'fal-ai/flux-2/pro')
 VID_MODEL = os.environ.get('FAL_VID_MODEL', 'fal-ai/kling-video/v3/pro/image-to-video')
 
 
+_DL_TIMEOUT_S = 120   # download não pode pendurar a produção pra sempre (retry/breaker não pegam hang)
+
+
 def _download(url, out_path):
-    Path(out_path).write_bytes(urllib.request.urlopen(url).read())
+    """Baixa url -> out_path. Timeout DURO (pilar 7: um hang sem timeout nunca vira
+    falha retentável — só o timeout o transforma em erro que o @retry trata) +
+    anti-fantasma: bytes vazios levantam, em vez de gravar um arquivo-fantasma."""
+    dados = urllib.request.urlopen(url, timeout=_DL_TIMEOUT_S).read()
+    if not dados:
+        raise ValueError(f'download vazio de {str(url)[:80]}')
+    Path(out_path).write_bytes(dados)
 
 
 @retry(max_attempts=3, base_s=2.0)
@@ -82,6 +91,33 @@ def animate(img_path, prompt, out_mp4, duration=5):
     _download(url, out_mp4)
     try:
         _record_cost(api='fal-kling')
+    except Exception:
+        pass
+    return True
+
+
+AVATAR_MODEL = os.environ.get('FAL_AVATAR_MODEL', 'fal-ai/kling-video/ai-avatar/v2/pro')
+
+
+@retry(max_attempts=2, base_s=3.0)
+@circuit_breaker(api='fal-avatar', threshold=2, timeout_s=900)
+def lip_sync(img_path, audio_path, out_mp4,
+             prompt='a calm composed man narrating to camera, subtle natural head motion, serious editorial'):
+    """Cabeça FALANTE (Kling AI Avatar): foto + áudio → vídeo com lip-sync.
+    PAGO: ~$0.115/segundo de saída. Retorna True/False."""
+    img_url = fal_client.upload_file(str(img_path))
+    aud_url = fal_client.upload_file(str(audio_path))
+    res = fal_client.subscribe(AVATAR_MODEL, arguments={
+        'image_url': img_url, 'audio_url': aud_url, 'prompt': prompt,
+    }, with_logs=False)
+    vid = res.get('video') or {}
+    url = vid.get('url') if isinstance(vid, dict) else None
+    if not url:
+        print(f'  ERRO fal avatar: resposta inesperada — {str(res)[:200]}')
+        return False
+    _download(url, out_mp4)
+    try:
+        _record_cost(api='fal-avatar')
     except Exception:
         pass
     return True

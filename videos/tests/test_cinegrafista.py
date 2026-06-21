@@ -34,6 +34,12 @@ class TestTratamento(unittest.TestCase):
     def test_sem_imagem_e_slide_parado(self):
         self.assertEqual(cg.tratamento('normal', tem_imagem=False, motion_pago=False, depthflow_ok=False), 'still')
 
+    def test_gaussian_sem_imagem_nao_aplica(self):
+        # Sem imagem não há o que reconstruir em 3D → slide parado.
+        self.assertEqual(
+            cg.tratamento('normal', tem_imagem=False, motion_pago=False, depthflow_ok=True, gaussian_ok=True),
+            'still')
+
 
 @unittest.skipUnless(_OK, 'cinegrafista indisponivel')
 class TestGuard(unittest.TestCase):
@@ -76,6 +82,50 @@ class TestCmd(unittest.TestCase):
         cmd = cg._depthflow_cmd('cap.png', 'out.mp4', 4.0, 24)
         idx = cmd.index('-t')
         self.assertEqual(cmd[idx + 1], '4')
+
+
+@unittest.skipUnless(_OK, 'cinegrafista indisponivel')
+class TestParallaxRobustez(unittest.TestCase):
+    """parallax: nunca levanta, registra o motivo da falha e aplica anti-fantasma."""
+
+    def test_arquivo_vazio_nao_e_sucesso(self):
+        # DepthFlow "rodou" mas deixou um clipe vazio (fantasma) → False (cai no Ken Burns).
+        import os, tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'out.mp4')
+            def fake_run(cmd, **kw):
+                open(out, 'wb').close()        # arquivo 0 byte
+                return mock.Mock()
+            with mock.patch.object(cg, 'depthflow_disponivel', lambda: True), \
+                 mock.patch.object(cg.subprocess, 'run', fake_run):
+                self.assertFalse(cg.parallax('x.png', out))
+
+    def test_erro_subprocess_nao_levanta(self):
+        # Falha do DepthFlow degrada (False), NUNCA propaga exceção pro pipeline.
+        from unittest import mock
+        def boom(cmd, **kw):
+            raise cg.subprocess.CalledProcessError(1, cmd, stderr=b'torch ausente')
+        with mock.patch.object(cg, 'depthflow_disponivel', lambda: True), \
+             mock.patch.object(cg.subprocess, 'run', boom):
+            try:
+                self.assertFalse(cg.parallax('x.png', 'out.mp4'))
+            except Exception as e:
+                self.fail(f'parallax levantou exceção (deveria degradar): {e}')
+
+    def test_clipe_valido_e_sucesso(self):
+        # Arquivo com conteúdo (> mínimo) → True.
+        import os, tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'out.mp4')
+            def fake_run(cmd, **kw):
+                with open(out, 'wb') as f:
+                    f.write(b'\x00' * (cg._CLIPE_MIN_BYTES + 64))
+                return mock.Mock()
+            with mock.patch.object(cg, 'depthflow_disponivel', lambda: True), \
+                 mock.patch.object(cg.subprocess, 'run', fake_run):
+                self.assertTrue(cg.parallax('x.png', out))
 
 
 if __name__ == '__main__':

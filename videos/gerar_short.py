@@ -12,11 +12,41 @@ from PIL import Image, ImageDraw
 import imageio_ffmpeg
 from mutagen.mp3 import MP3
 import gerar_video as gv
+import _short_audio as sa
 
 FF = imageio_ffmpeg.get_ffmpeg_exe()
 ROOT = Path(__file__).parent
 W, H = 1080, 1920
 HANDLE = '@MinutoReal'
+
+
+def _audio_filter(cover_s, lead_s):
+    """Áudio do Short: voz (atrasada p/ após a capa+respiro) + leito de engajamento [4].
+    amix normalize=0 mantém a voz CHEIA e o leito por baixo (VOZ SOBERANA); o alimiter
+    trava o pico onde o acento de síncrese encontra a entrada da voz. O leito cobre 0→fim."""
+    ms = int((cover_s + lead_s) * 1000)
+    return (f"[2:a]adelay={ms}:all=1[vx];"
+            f"[4:a][vx]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.97[a]")
+
+
+def _reveal_offsets(cena, voice_start, voice_dur):
+    """Offsets absolutos (s) dos ticks de revelação a partir do campo `reveal` da cena:
+    True = meio da narração; número = segundos dentro dela; string = substring (estimativa
+    por caractere). Synch point de CONTEÚDO (Chion) — pico sonoro no pico de informação.
+    Ausente/False/não-encontrado = [] (backward-compatible)."""
+    rev = cena.get('reveal')
+    narr = cena.get('narracao', '') or ''
+    if rev is None or rev is False:
+        return []
+    if rev is True:
+        off = voice_dur / 2.0
+    elif isinstance(rev, (int, float)):
+        off = float(rev)
+    elif isinstance(rev, str) and narr and rev in narr:
+        off = narr.index(rev) / len(narr) * voice_dur
+    else:
+        return []
+    return [voice_start + max(0.0, min(off, voice_dur))]
 
 
 def cover(src):
@@ -147,7 +177,8 @@ def main(slug, idx):
 
     COVER = 2.4    # capa de marca segurada na ABERTURA p/ a vitrine do IG (thumb_offset@1500ms cai aqui)
     LEAD = 0.45   # respiro de entrada: a 1ª palavra só entra DEPOIS do fade-in da cena
-    dur = LEAD + MP3(mp3).info.length + 0.6
+    voz_len = MP3(mp3).info.length
+    dur = LEAD + voz_len + 0.6
     nf = max(2, int(dur * 30))
     fo = max(0.1, dur - 0.4)
 
@@ -159,22 +190,30 @@ def main(slug, idx):
     cv_png = SH / f'{slug}_{idx:02d}_cover.png'
     make_cover(cena, accent, cfg, cv_png, bg_src)
 
+    # leito de engajamento (sonoplastia do Short): hook na capa + acento de síncrese
+    # no corte + tensão sub-grave sob a voz (vetoriza). Forward-looking, soberano.
+    bed_wav = SH / f'{slug}_{idx:02d}_bed.wav'
+    sa.short_bed(COVER + dur, COVER, LEAD, bed_wav, seed=idx + 7,
+                 energia=cfg.get('musica_energia', 0.6),
+                 reveals=_reveal_offsets(cena, COVER + LEAD, voz_len))
+
     out = SH / f'{slug}_{idx:02d}.mp4'
     # [3] = frame de capa de marca, segurado COVER s na abertura (vitrine do IG),
-    # depois concatena a cena animada. O áudio só começa após a capa + o respiro.
+    # depois concatena a cena animada. O áudio = voz (após a capa+respiro) + leito [4].
     vf = (f"[0:v]scale=1188:2112,zoompan=z='min(zoom+0.0008,1.12)':d={nf}:"
           f"x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':s=1080x1920:fps=30[z];"
           f"[z][1:v]overlay=0:0,fade=t=in:st=0:d=0.4,fade=t=out:st={fo:.2f}:d=0.4[scene];"
           f"[3:v]scale=1080:1920,fps=30,trim=duration={COVER:.2f},setpts=PTS-STARTPTS,"
           f"fade=t=out:st={COVER-0.3:.2f}:d=0.3[cov];"
           f"[cov][scene]concat=n=2:v=1:a=0[v];"
-          f"[2:a]adelay={int((COVER+LEAD)*1000)}:all=1[a]")   # voz após a capa + o respiro
+          f"{_audio_filter(COVER, LEAD)}")
     subprocess.run([FF, '-y', '-loop', '1', '-i', str(bg_png), '-loop', '1', '-i', str(ov_png),
-                    '-i', str(mp3), '-loop', '1', '-i', str(cv_png), '-filter_complex', vf,
+                    '-i', str(mp3), '-loop', '1', '-i', str(cv_png), '-i', str(bed_wav),
+                    '-filter_complex', vf,
                     '-map', '[v]', '-map', '[a]', '-t', f'{COVER + dur:.2f}',
                     '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-ar', '44100',
                     '-shortest', str(out)], check=True, capture_output=True)
-    print(f'OK -> {out}  ({COVER + dur:.1f}s, 1080x1920, capa de marca {COVER:.1f}s)')
+    print(f'OK -> {out}  ({COVER + dur:.1f}s, 1080x1920, capa {COVER:.1f}s + leito de engajamento)')
 
 
 if __name__ == '__main__':

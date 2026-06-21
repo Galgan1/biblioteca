@@ -33,7 +33,16 @@ DEFAULT_MIX = {"music_gain": 0.11, "sfx_gain": 1.0, "loudnorm": True, "lufs": -1
 
 
 def _run(args):
-    subprocess.run(args, check=True, capture_output=True)
+    # Pilar 7 (erro COM contexto): áudio master é crítico — não há degradação. Se o
+    # ffmpeg falhar, propaga ABORTANDO, mas com o MOTIVO (rc + cauda do stderr do
+    # ffmpeg), senão o CalledProcessError sobe mudo e o debug fica às cegas.
+    try:
+        subprocess.run(args, check=True, capture_output=True)
+    except subprocess.CalledProcessError as e:
+        motivo = (e.stderr or b'')[-400:].decode('utf-8', 'replace').strip()
+        raise RuntimeError(
+            f"ffmpeg rc={e.returncode} em mixmaster. detalhe: {motivo or '(sem stderr)'}"
+        ) from e
 
 
 def _build_audio_filter(mix, has_trilha, has_efe):
@@ -109,6 +118,11 @@ def master(slug, out=None):
         amap = last
     args += ['-map', '0:v', '-map', amap, '-c:v', 'copy', '-c:a', 'aac', '-b:a', '192k', str(out)]
     _run(args)
+    # Anti-fantasma (pilar 7): "passa o ffmpeg" ≠ "master existe". Um arquivo
+    # ausente/vazio é falha SILENCIOSA — aborta com contexto (qual caminho, qtos bytes).
+    tam = out.stat().st_size if out.exists() else 0
+    if tam == 0:
+        raise RuntimeError(f"master fantasma: {out} ficou com {tam} bytes (ffmpeg não produziu áudio/vídeo).")
     extras = (' +trilha' if trilha.exists() else '') + (' +SFX' if efe.exists() else '') + (' +loudnorm' if mix.get('loudnorm') else '')
     print(f"OK master -> {out}  ({out.stat().st_size/1e6:.1f} MB){extras}")
     return out

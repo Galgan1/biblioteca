@@ -4,6 +4,7 @@
 Funções exportadas:
   sintetiza_ambiente(dur, out_wav, seed=7, energia=0.65)  — síntese procedural WAV
 """
+import sys
 import wave
 from pathlib import Path
 
@@ -82,7 +83,9 @@ def sintetiza_ambiente(dur, out_wav, seed=7, energia=0.65):
         import dsp
         out = dsp.master(out, lowcut_fc=40, sat=1.3, air_db=2.0, rev=0.08, decay=1.0, dark=0.7, seed=31, peak=1.0)[:n_total]
     except Exception as _e:
-        print(f"  [aviso] DSP da trilha pulado: {_e}")
+        # pilar 7: erro com contexto (tipo + motivo) no canal de diagnóstico (stderr),
+        # sem alterar o fallback — a trilha segue sem o master DSP.
+        print(f"  [aviso] DSP da trilha pulado: {type(_e).__name__}: {_e}", file=sys.stderr)
     # normaliza + fade global
     out /= (np.max(np.abs(out)) + 1e-9)
     # clampa a janela de fade ao buffer real: dur curta (n_total < fade) estourava

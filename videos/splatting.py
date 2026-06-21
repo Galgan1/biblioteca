@@ -20,6 +20,7 @@ from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).parent
+_CLIPE_MIN_BYTES = 1024   # abaixo disso o "clipe" é fantasma (vazio/quebrado), não sucesso
 
 
 def gaussian_disponivel():
@@ -75,9 +76,16 @@ def splat_clip(src_png, out_mp4, dur=6.0, fps=30):
         import splatting_engine                      # motor concreto, instalado no setup de GPU
         poses = orbit_poses(n=int(dur * fps), raio=2.0, arco_graus=16.0)  # órbita curta (1ª plano denso; pouca disocclusion)
         splatting_engine.render(str(src_png), str(out_mp4), poses=poses, fps=fps)
-        return Path(out_mp4).exists()
-    except Exception:
+    except Exception as e:                            # pilar 7: registra o MOTIVO antes do fallback
+        print(f"[splatting] 3DGS falhou ({type(e).__name__}: {str(e)[:200]}) "
+              f"em {Path(src_png).name} -> parallax/Ken Burns", file=sys.stderr)
         return False
+    out = Path(out_mp4)                               # anti-fantasma: clipe ausente/vazio não é sucesso
+    tam = out.stat().st_size if out.exists() else 0
+    if tam < _CLIPE_MIN_BYTES:
+        print(f"[splatting] 3DGS não gerou clipe válido em {out.name} (size={tam}) -> fallback", file=sys.stderr)
+        return False
+    return True
 
 
 if __name__ == '__main__':

@@ -19,6 +19,7 @@ BASE = 'https://generativelanguage.googleapis.com/v1beta'
 MODEL = 'veo-3.1-fast-generate-preview'
 
 
+@retry(max_attempts=2, base_s=3.0)
 @circuit_breaker(api='google_veo', threshold=2, timeout_s=600)
 def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
     """Anima img_path segundo o prompt de movimento. Retorna True se gerou."""
@@ -39,7 +40,7 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
     req = urllib.request.Request(url, data=json.dumps(body).encode('utf-8'),
                                  headers={'Content-Type': 'application/json'})
     try:
-        op = json.load(urllib.request.urlopen(req))
+        op = json.load(urllib.request.urlopen(req, timeout=120))
     except urllib.error.HTTPError as e:
         # Erros 4xx/5xx no start → falha real (circuit breaker conta)
         raise RuntimeError(f'Veo start: HTTP {e.code} {e.read().decode()[:300]}')
@@ -48,7 +49,7 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
     for _ in range(90):  # até 15 min
         time.sleep(10)
         try:
-            st = json.load(urllib.request.urlopen(poll))
+            st = json.load(urllib.request.urlopen(poll, timeout=120))
         except urllib.error.HTTPError as e:
             raise RuntimeError(f'Veo poll: HTTP {e.code} {e.read().decode()[:300]}')
         if st.get('done'):
@@ -61,7 +62,13 @@ def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):
                 print('  ERRO Veo: resposta sem URI de vídeo')
                 return False
             dl = uri + (('&' if '?' in uri else '?') + f'key={KEY}')
-            Path(out_mp4).write_bytes(urllib.request.urlopen(dl).read())
+            dados = urllib.request.urlopen(dl, timeout=120).read()
+            if not dados:
+                # Anti-fantasma: bytes vazios viram arquivo "sucesso" falso —
+                # não grava; o caller cai no fallback.
+                print('  ERRO Veo: download vazio')
+                return False
+            Path(out_mp4).write_bytes(dados)
             try:
                 from cost_tracker import record_cost
                 record_cost(api='google_veo_8s', units=duration / 8)

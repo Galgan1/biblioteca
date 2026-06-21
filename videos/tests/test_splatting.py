@@ -70,5 +70,48 @@ class TestDecisaoGaussian(unittest.TestCase):
                           depthflow_ok=False), 'ken_burns')
 
 
+class TestSplatClipRobustez(unittest.TestCase):
+    """splat_clip: nunca levanta, registra o motivo da falha e aplica anti-fantasma."""
+
+    def test_arquivo_vazio_nao_e_sucesso(self):
+        import os, tempfile, types
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'out.mp4')
+            eng = types.ModuleType('splatting_engine')
+            eng.render = lambda src, o, poses=None, fps=30: open(o, 'wb').close()  # 0 byte
+            with mock.patch.object(sp, 'gaussian_disponivel', lambda: True), \
+                 mock.patch.dict(sys.modules, {'splatting_engine': eng}):
+                self.assertFalse(sp.splat_clip('x.png', out))
+
+    def test_erro_render_nao_levanta(self):
+        import types
+        from unittest import mock
+        eng = types.ModuleType('splatting_engine')
+        def boom(src, o, poses=None, fps=30):
+            raise RuntimeError('CUDA OOM')
+        eng.render = boom
+        with mock.patch.object(sp, 'gaussian_disponivel', lambda: True), \
+             mock.patch.dict(sys.modules, {'splatting_engine': eng}):
+            try:
+                self.assertFalse(sp.splat_clip('x.png', 'out.mp4'))
+            except Exception as e:
+                self.fail(f'splat_clip levantou (deveria degradar): {e}')
+
+    def test_clipe_valido_e_sucesso(self):
+        import os, tempfile, types
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'out.mp4')
+            eng = types.ModuleType('splatting_engine')
+            def render(src, o, poses=None, fps=30):
+                with open(o, 'wb') as f:
+                    f.write(b'\x00' * (sp._CLIPE_MIN_BYTES + 64))
+            eng.render = render
+            with mock.patch.object(sp, 'gaussian_disponivel', lambda: True), \
+                 mock.patch.dict(sys.modules, {'splatting_engine': eng}):
+                self.assertTrue(sp.splat_clip('x.png', out))
+
+
 if __name__ == '__main__':
     unittest.main()

@@ -227,5 +227,27 @@ class TestAnimateRetryEBreaker(_IsolateCB, unittest.TestCase):
         self.assertEqual(falgen.fal_client.upload_file.call_count, chamadas_antes)
 
 
+class TestDownload(unittest.TestCase):
+    """_download: timeout duro (anti-hang) e anti-fantasma (bytes vazios levantam)."""
+
+    def test_download_vazio_levanta(self):
+        fake = mock.Mock()
+        fake.read.return_value = b''                       # resposta vazia (ex.: página de erro 0 byte)
+        with mock.patch.object(falgen.urllib.request, 'urlopen', return_value=fake):
+            with self.assertRaises(ValueError):
+                falgen._download('http://x/a.png', '/tmp/_falgen_vazio.png')
+
+    def test_download_passa_timeout_e_grava(self):
+        fake = mock.Mock()
+        fake.read.return_value = b'PNGDATA' * 20
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'a.png')
+            with mock.patch.object(falgen.urllib.request, 'urlopen', return_value=fake) as m:
+                falgen._download('http://x/a.png', out)
+            _, kw = m.call_args
+            self.assertIn('timeout', kw)                   # nunca chama urlopen sem timeout
+            self.assertTrue(os.path.getsize(out) > 0)
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

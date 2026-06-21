@@ -1,0 +1,19 @@
+{
+  "slug": "geracao-ansiosa-reel",
+  "titulo": "A Geração Ansiosa",
+  "autor": "Jonathan Haidt",
+  "voz": "eleven:cwJjEggZKn5KfGG0DKUu",
+  "provider": "google",
+  "musica": true,
+  "musica_energia": 0.5,
+  "tts_rate": 1.0,
+  "estilo_img": "cinematic, moody dramatic lighting, film grain, shallow depth of field, emotional and atmospheric, desaturated cool tones, photorealistic, highly detailed, no text, no watermark, no logos, no identifiable faces",
+  "cenas": [
+    {"tipo": "abertura", "titulo": "Conectada e Sozinha", "narracao": "[serious] Cento e noventa e duas notificações por dia. [pause] E nunca uma geração foi tão SOZINHA.", "img": "a lone child silhouette seen from behind sitting on a bed in a dark room, face lit cold blue by a glowing phone screen, deep isolation, shallow depth of field, moody volumetric light, photorealistic, no identifiable face, no logos"},
+    {"tipo": "conceito", "titulo": "A Curva de 2012", "narracao": "[deliberate] Por volta de 2012, a doença mental adolescente DISPAROU. [pause] Uma curva em taco de hóquei, pior nas meninas.", "img": "a stark glowing line chart rising sharply like a hockey stick on a dark wall, cold blue and faint amber light, a small child silhouette dwarfed beneath it, dramatic, photorealistic, no text, no logos"},
+    {"tipo": "conceito", "titulo": "O que Foi Trocado", "narracao": "[quietly] Trocamos a infância de brincadeira pela de tela. [pause] O tempo cara a cara caiu de cento e vinte e dois para sessenta e sete minutos por dia.", "img": "an empty playground at dusk, still swings, long nostalgic shadows, warm fading melancholic light, no people, photorealistic, no logos"},
+    {"tipo": "conceito", "titulo": "Não é Culpa Sua", "narracao": "[serious] E não é culpa sua, pai, mãe. [pause] Todo mundo perdeu junto: você deu o celular pra ele não ficar de fora.", "img": "an aerial wide view of many small child silhouettes scattered far apart across a vast dark plain, each isolated in a small cold pool of phone light, lonely, cinematic, no faces, no logos"},
+    {"tipo": "conceito", "titulo": "Feito por Nós", "narracao": "[quietly] Mas o mais importante vem por último: [pause] essa reconfiguração foi feita por nós. [deliberate] Logo, pode ser desfeita por nós.", "img": "the first warm light of sunrise breaking over a green horizon, a child silhouette seen from behind running toward an open field, hopeful, golden hour, photorealistic, no identifiable face, no logos"},
+    {"tipo": "encerramento", "titulo": "De Volta à Terra", "narracao": "[serious] Sem smartphone antes do ensino médio. Redes só aos dezesseis. Escola sem celular. E mais rua. [pause] Vamos trazer a infância de volta à Terra.", "img": "several children silhouettes seen from behind playing freely outdoors in a green park at golden hour, running and climbing, warm joyful light, photorealistic, no faces, no logos"}
+  ]
+}

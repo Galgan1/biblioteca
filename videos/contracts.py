@@ -74,7 +74,7 @@ class RoteiroCfg(BaseModel):
     voz: str = 'pt-BR-Chirp3-HD-Iapetus'
     tts_rate: float = Field(default=1.0, ge=0.5, le=1.5)
     musica: bool = True
-    provider: Literal['base', 'google', 'fal'] = 'base'
+    provider: Literal['base', 'google', 'fal', 'nvidia'] = 'base'
 
     # opcionais
     acento: Optional[str] = None

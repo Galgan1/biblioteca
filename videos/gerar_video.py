@@ -326,6 +326,9 @@ def main(roteiro_path):
     elif provider == 'fal':
         import falgen
         img_gen, mot_gen = falgen.gen, falgen.animate
+    elif provider == 'nvidia':
+        import nvidia
+        img_gen = nvidia.gen          # imagens GRÁTIS (NIM Flux); sem movimento pago → Ken Burns
     else:
         if usa_img:
             import imagen
@@ -338,7 +341,7 @@ def main(roteiro_path):
     import splatting                                      # Cinegrafista 3D (3D Gaussian Splatting na GPU local)
     clips = []
     durs = []   # duração on-screen de cada cena (p/ legendas/capítulos da lane YouTube)
-    label = {'fal': 'Flux + Kling', 'google': 'Imagen + Veo'}.get(provider, provider)
+    label = {'fal': 'Flux + Kling', 'google': 'Imagen + Veo', 'nvidia': 'NVIDIA Flux (grátis)'}.get(provider, provider)
     print(f"Gerando '{cfg['titulo']}' — {n} cenas"
           + (f" · imagens IA + movimento ({label})" if usa_img else ""))
     for i, cena in enumerate(cenas):

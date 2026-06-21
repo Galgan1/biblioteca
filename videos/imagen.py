@@ -12,7 +12,18 @@ except ImportError:
     def circuit_breaker(**kw): return lambda f: f
     def retry(**kw): return lambda f: f
 
-KEY = (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
+def _read_key():
+    """Lê a chave COM guarda: ausente/ilegível -> '' em vez de derrubar o IMPORT do
+    módulo inteiro (e, por tabela, todo pipeline que importe imagen). Sem chave, gen()
+    aborta com mensagem e o caller cai p/ provider 'fal'/'local'."""
+    try:
+        return (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
+    except Exception:
+        return ''
+
+
+KEY = _read_key()
+_REQ_TIMEOUT_S = 120   # request ao Imagen não pode pendurar a produção pra sempre
 MODELS = ['imagen-4.0-generate-001', 'imagen-4.0-fast-generate-001']
 
 # Tiers de qualidade (cada um cai p/ o de baixo se faltar): ultra = topo (mais caro),
@@ -27,6 +38,9 @@ TIERS = {
 @retry(max_attempts=3, base_s=2.0)
 @circuit_breaker(api='google_imagen', threshold=3, timeout_s=300)
 def gen(prompt, out_png, aspect='16:9', tier='standard', size=None):
+    if not KEY:
+        print('ERRO imagen: sem chave em .secrets/imagen_api_key.txt -> use provider "fal" ou "local"')
+        return None
     params = {'sampleCount': 1, 'aspectRatio': aspect}
     if size:
         params['sampleImageSize'] = size                 # '1K' | '2K' (Imagen 4 std/ultra)
@@ -36,7 +50,7 @@ def gen(prompt, out_png, aspect='16:9', tier='standard', size=None):
         url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:predict?key={KEY}'
         req = urllib.request.Request(url, data=body, headers={'Content-Type': 'application/json'})
         try:
-            resp = json.load(urllib.request.urlopen(req))
+            resp = json.load(urllib.request.urlopen(req, timeout=_REQ_TIMEOUT_S))
         except urllib.error.HTTPError as e:
             last = f'{model}: {e.code} {e.read().decode()[:300]}'
             continue

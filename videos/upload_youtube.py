@@ -98,6 +98,22 @@ def build_metadata(roteiro_path):
     }
 
 
+_UPLOAD_CHUNK_RETRIES = 3   # retry POR CHUNK do upload resumável (backoff do googleapiclient)
+
+
+def _enviar(req):
+    """Envia o upload resumável chunk a chunk. `num_retries` faz o googleapiclient
+    re-tentar CADA CHUNK em falha transitória (5xx/conexão), com backoff — sem re-subir
+    o vídeo inteiro. Por isso upload() NÃO leva @retry: re-subir tudo criaria DUPLICATA
+    no canal (já sofremos com isso, jun/26). A idempotência da resiliência é por chunk."""
+    resp = None
+    while resp is None:
+        status, resp = req.next_chunk(num_retries=_UPLOAD_CHUNK_RETRIES)
+        if status:
+            print(f"  {int(status.progress() * 100)}%")
+    return resp
+
+
 @circuit_breaker(api='youtube_api', threshold=2, timeout_s=600)
 def upload(video_path, roteiro_path):
     cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
@@ -136,11 +152,7 @@ def upload(video_path, roteiro_path):
     media = MediaFileUpload(str(video_path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024)
     req = yt.videos().insert(part='snippet,status', body=body, media_body=media)
     print(f"Enviando '{meta['titulo']}' ({meta['privacidade']})...")
-    resp = None
-    while resp is None:
-        status, resp = req.next_chunk()
-        if status:
-            print(f"  {int(status.progress() * 100)}%")
+    resp = _enviar(req)
     vid = resp['id']
     print(f"\nOK ✓  https://youtu.be/{vid}   (privacidade: {meta['privacidade']})")
     try:

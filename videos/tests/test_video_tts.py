@@ -107,5 +107,136 @@ class TestToSsml(unittest.TestCase):
         self.assertIn(' —<break time="330ms"/> ', out)
 
 
+class TestElevenAntiFantasma(unittest.TestCase):
+    """_tts_eleven: HTTP 200 com corpo vazio NÃO é sucesso (não grava fantasma)."""
+
+    def test_corpo_vazio_retorna_false(self):
+        import os, types
+        from unittest import mock
+        resp = mock.Mock()
+        resp.content = b''                      # 200, mas sem áudio
+        resp.raise_for_status = mock.Mock()     # não levanta
+        fake_req = types.ModuleType('requests')
+        fake_req.post = mock.Mock(return_value=resp)
+        with mock.patch.dict(os.environ, {'ELEVENLABS_API_KEY': 'k'}, clear=False), \
+             mock.patch.dict(sys.modules, {'requests': fake_req}), \
+             mock.patch.object(Path, 'write_bytes') as m_write:
+            self.assertFalse(_mod._tts_eleven('texto', 'voiceid', '/tmp/_x.mp3'))
+            m_write.assert_not_called()          # nenhum arquivo-fantasma gravado
+
+
+class TestTtsRotaFinalEdge(unittest.TestCase):
+    """tts() na rota edge (voz pt-BR-AntonioNeural pula eleven/google):
+    falha do edge ABORTA com contexto; saída vazia ABORTA; sucesso não levanta."""
+
+    def test_edge_falha_aborta_com_contexto(self):
+        from unittest import mock
+        def boom(cmd, **k):
+            raise _mod.subprocess.CalledProcessError(1, cmd, stderr=b'No internet connection')
+        with mock.patch.object(_mod.subprocess, 'run', boom):
+            with self.assertRaises(RuntimeError) as ctx:
+                _mod.tts('texto', 'pt-BR-AntonioNeural', '/tmp/_x.mp3')
+        self.assertIn('edge-tts', str(ctx.exception))     # erro diagnosticável, não CalledProcessError cru
+
+    def test_edge_arquivo_vazio_aborta(self):
+        import os, tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'a.mp3')
+            def fake_run(cmd, **k):
+                open(out, 'wb').close()           # rc=0 mas 0 byte (fantasma)
+                return mock.Mock()
+            with mock.patch.object(_mod.subprocess, 'run', fake_run):
+                with self.assertRaises(RuntimeError):
+                    _mod.tts('texto', 'pt-BR-AntonioNeural', out)
+
+    def test_edge_sucesso_nao_aborta(self):
+        import os, tempfile
+        from unittest import mock
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'a.mp3')
+            def fake_run(cmd, **k):
+                with open(out, 'wb') as f:
+                    f.write(b'\x00' * (_mod._AUDIO_MIN_BYTES + 64))
+                return mock.Mock()
+            with mock.patch.object(_mod.subprocess, 'run', fake_run):
+                try:
+                    _mod.tts('texto', 'pt-BR-AntonioNeural', out)
+                except Exception as e:
+                    self.fail(f'tts edge com áudio válido levantou: {e}')
+
+
+class TestDespirTags(unittest.TestCase):
+    """_despir_tags: remove audio tags v3 (p/ Google/edge não FALAREM 'serious'), mantém o texto."""
+
+    def test_remove_tags_conhecidas(self):
+        out = _mod._despir_tags('[serious] Texto. [pause] Mais texto.')
+        self.assertNotIn('[', out)
+        self.assertIn('Texto', out)
+        self.assertIn('Mais texto', out)
+
+    def test_texto_plano_intacto(self):
+        self.assertEqual(_mod._despir_tags('Sem tags aqui.'), 'Sem tags aqui.')
+
+    def test_vazio(self):
+        self.assertEqual(_mod._despir_tags(''), '')
+
+
+class TestNormalizaFala(unittest.TestCase):
+    """normaliza_fala: siglas não-palavra soletradas, símbolos expandidos, idempotente."""
+
+    def test_sigla_soletrada(self):
+        self.assertIn('ó cê dê é', _mod.normaliza_fala('A OCDE alertou.'))
+
+    def test_sigla_palavra_intacta(self):
+        # UNESCO/INGSOC são lidas inteiras → NÃO entram na allowlist (soletrar seria erro).
+        self.assertIn('UNESCO', _mod.normaliza_fala('A UNESCO publicou.'))
+        self.assertIn('INGSOC', _mod.normaliza_fala('O INGSOC governa.'))
+
+    def test_simbolos_expandidos(self):
+        self.assertIn('por cento', _mod.normaliza_fala('Caiu 3%.'))
+        self.assertIn('reais', _mod.normaliza_fala('Custa R$ 1500 hoje.'))
+
+    def test_idempotente_e_vazio(self):
+        once = _mod.normaliza_fala('A OCDE caiu 3%.')
+        self.assertEqual(_mod.normaliza_fala(once), once)
+        self.assertEqual(_mod.normaliza_fala(''), '')
+
+
+class TestIntonarIdempotenciaPrecisa(unittest.TestCase):
+    """_intonar: só tag v3 CONHECIDA é 'já dirigido'; colchete estranho não silencia a injeção."""
+
+    def test_colchete_desconhecido_nao_silencia(self):
+        # '[risos]' não é audio tag → o texto AINDA recebe direção (antes ficava mudo).
+        out = _mod._intonar('[risos] Algo aconteceu. Preste atenção.', tom='serio')
+        self.assertIn('[serious]', out)
+
+    def test_tag_conhecida_preserva_intacto(self):
+        ja = '[deliberate] A regra é clara. [pause] Repare nela.'
+        self.assertEqual(_mod._intonar(ja, tom='serio'), ja)
+
+
+class TestEdgeSanitiza(unittest.TestCase):
+    """tts() na rota edge: texto com tags chega ao edge-tts SEM colchetes (voz não fala 'serious')."""
+
+    def test_edge_recebe_texto_limpo(self):
+        import os, tempfile
+        from unittest import mock
+        capt = {}
+        with tempfile.TemporaryDirectory() as d:
+            out = os.path.join(d, 'a.mp3')
+            def fake_run(cmd, **k):
+                capt['cmd'] = cmd
+                with open(out, 'wb') as f:
+                    f.write(b'\x00' * (_mod._AUDIO_MIN_BYTES + 64))
+                return mock.Mock()
+            with mock.patch.object(_mod.subprocess, 'run', fake_run):
+                _mod.tts('[serious] Texto importante. [pause] Fim.', 'pt-BR-AntonioNeural', out)
+            cmd = capt['cmd']
+            arg_texto = cmd[cmd.index('--text') + 1]
+            self.assertNotIn('[', arg_texto)        # tags removidas
+            self.assertIn('Texto importante', arg_texto)
+
+
 if __name__ == '__main__':
     unittest.main()

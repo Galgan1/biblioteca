@@ -55,6 +55,9 @@ def _depthflow_cmd(src_png, out_mp4, dur, fps):
             'main', '-o', str(out_mp4), '-t', f'{dur:g}', '-f', str(fps)]
 
 
+_CLIPE_MIN_BYTES = 1024   # abaixo disso o "clipe" é fantasma (vazio/quebrado), não sucesso
+
+
 def parallax(src_png, out_mp4, dur=6.0, fps=30):
     """Renderiza um clipe parallax 2.5D (mudo) a partir de uma imagem. Devolve True
     em sucesso; False se DepthFlow indisponível ou se o render falhar (nunca levanta).
@@ -62,7 +65,11 @@ def parallax(src_png, out_mp4, dur=6.0, fps=30):
 
     NO_COLOR=1 + PYTHONIOENCODING=utf-8: evitam UnicodeError do Rich/dearlog no
     Windows (cp1252 não suporta os box-drawing chars usados pelo logger do DepthFlow).
-    capture_output=True + sem text=True: bytes brutos, nenhum decode no processo-filho."""
+    capture_output=True + sem text=True: bytes brutos, nenhum decode no processo-filho.
+
+    Pilar 7 (erro COM contexto): em vez de engolir a falha muda, registra o MOTIVO
+    em stderr antes de cair no Ken Burns — senão o debug fica às cegas. E aplica
+    anti-fantasma: arquivo ausente/vazio NÃO conta como sucesso."""
     if not depthflow_disponivel():
         return False
     env = os.environ.copy()
@@ -70,6 +77,19 @@ def parallax(src_png, out_mp4, dur=6.0, fps=30):
     try:
         subprocess.run(_depthflow_cmd(src_png, out_mp4, dur, fps),
                        check=True, capture_output=True, env=env)
-        return Path(out_mp4).exists()
-    except Exception:
+    except subprocess.CalledProcessError as e:
+        _err = (e.stderr or b'')[-400:].decode('utf-8', 'replace').strip()
+        print(f"[cinegrafista] DepthFlow rc={e.returncode} em {Path(src_png).name} "
+              f"-> Ken Burns. detalhe: {_err or '(sem stderr)'}", file=sys.stderr)
         return False
+    except Exception as e:
+        print(f"[cinegrafista] DepthFlow {type(e).__name__}: {str(e)[:200]} "
+              f"em {Path(src_png).name} -> Ken Burns", file=sys.stderr)
+        return False
+    out = Path(out_mp4)
+    tam = out.stat().st_size if out.exists() else 0
+    if tam < _CLIPE_MIN_BYTES:
+        print(f"[cinegrafista] DepthFlow nao gerou clipe valido em {out.name} "
+              f"(size={tam}) -> Ken Burns", file=sys.stderr)
+        return False
+    return True

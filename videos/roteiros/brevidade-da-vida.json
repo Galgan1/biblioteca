@@ -1,0 +1,55 @@
+{
+  "slug": "brevidade-da-vida",
+  "titulo": "Sobre a Brevidade da Vida",
+  "autor": "Sêneca",
+  "voz": "pt-BR-Chirp3-HD-Iapetus",
+  "tts_rate": 0.98,
+  "acento": "#d8a64a",
+  "musica": true,
+  "musica_energia": 0.3,
+  "provider": "nvidia",
+  "estilo_img": "cinematic dark editorial, deep black background, single warm amber-gold rim light, photorealistic, premium, moody, high detail",
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "A Brevidade da Vida",
+      "subtitulo": "Sêneca",
+      "img": "an antique hourglass silhouette against a vast dark cosmos, golden sand drifting like distant stars, time and mortality, deep black background with warm amber light, cinematic, contemplative",
+      "narracao": "Você acredita que a vida é curta. Sêneca, há dois mil anos, diria que você está enganado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Engano",
+      "titulo": "Nós a tornamos breve",
+      "img": "an antique hourglass with glowing golden sand flowing, single warm amber light, deep black background, cinematic, photorealistic",
+      "narracao": "Não recebemos uma vida breve. Nós a tornamos breve. Não nos falta tempo: nós desperdiçamos a maior parte dele."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · A Distração",
+      "titulo": "Ocupados com tudo, menos viver",
+      "img": "a blurred crowd of people rushing through a dark city at night, motion blur, distant amber streetlight, melancholic, cinematic",
+      "narracao": "Entregamos nossos dias a quem não escolhemos. Vivemos ocupados com tudo, menos com viver. E o presente escapa entre os dedos."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Adiamento",
+      "titulo": "Como se fôssemos eternos",
+      "img": "a lone elderly man silhouette gazing at a fading sunset over a calm dark sea, warm amber gold light, contemplative, cinematic",
+      "narracao": "Adiamos o que importa para um amanhã que talvez não chegue. Planejamos a vida como se fôssemos eternos."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Sábio",
+      "titulo": "Viver desperto",
+      "img": "a single candle flame burning in deep darkness, warm golden glow, black background, serene, symbolic, cinematic",
+      "narracao": "Mas o tempo não volta. O sábio não é quem vive muito. É quem vive desperto, presente, dono das próprias horas."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Não adie viver",
+      "img": "a sunrise breaking over a quiet horizon, warm golden amber light cutting through the darkness, hopeful, minimal, cinematic",
+      "narracao": "A vida é longa o bastante para quem sabe usá-la. Não adie viver. Comece hoje."
+    }
+  ]
+}

@@ -12,11 +12,14 @@ Contratos verificados:
   - funciona com energia=0 (pad contemplativo puro)
   - funciona com energia=1.0 (máxima energia)
 """
+import io
 import sys
+import types
 import wave
 import struct
 import tempfile
 import unittest
+import contextlib
 from pathlib import Path
 
 ROOT = Path(__file__).parent.parent
@@ -165,6 +168,44 @@ class TestSintetizaAmbiente(unittest.TestCase):
             self.assertTrue(tmp.exists())
         finally:
             tmp.unlink(missing_ok=True)
+
+    # ── regressão pilar 7: falha do DSP é registrada com contexto, fallback segue ─
+    def test_dsp_falha_registra_contexto_e_nao_quebra(self):
+        """REGRESSÃO (Akita pilar 7): se `dsp.master` levantar, o except NÃO pode
+        engolir o erro em silêncio nem quebrar o fluxo. Deve:
+          (a) ainda gerar o WAV (fallback: trilha sem o master DSP);
+          (b) emitir o aviso em STDERR com o TIPO da exceção (não só a mensagem).
+
+        Hermético: injeta um módulo `dsp` falso em sys.modules cujo master estoura,
+        captura stderr e restaura o sys.modules original — não toca disco/ffmpeg real
+        além do tmp WAV (como os demais testes)."""
+        fake = types.ModuleType('dsp')
+
+        def _boom(*a, **k):
+            raise RuntimeError('falha sintetica do master')
+        fake.master = _boom
+
+        saved = sys.modules.get('dsp')
+        sys.modules['dsp'] = fake
+        tmp = Path(tempfile.mktemp(suffix='.wav'))
+        err = io.StringIO()
+        try:
+            with contextlib.redirect_stderr(err):
+                _mod.sintetiza_ambiente(12.0, tmp, seed=42, energia=0.65)
+            # (a) fallback funcionou: WAV existe e é válido
+            self.assertTrue(tmp.exists())
+            with wave.open(str(tmp), 'r') as wf:
+                self.assertGreater(wf.getnframes(), 0)
+            # (b) erro foi registrado em stderr COM contexto (tipo + motivo)
+            msg = err.getvalue()
+            self.assertIn('RuntimeError', msg, f'tipo da exceção ausente no aviso: {msg!r}')
+            self.assertIn('falha sintetica do master', msg)
+        finally:
+            tmp.unlink(missing_ok=True)
+            if saved is not None:
+                sys.modules['dsp'] = saved
+            else:
+                sys.modules.pop('dsp', None)
 
     # ── determinismo com mesma seed ──────────────────────────────────────────
     def test_determinismo_por_seed(self):
