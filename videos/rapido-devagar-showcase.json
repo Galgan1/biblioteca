@@ -1,0 +1,27 @@
+{
+  "slug": "rapido-devagar-showcase",
+  "titulo": "Rápido e Devagar",
+  "autor": "Daniel Kahneman",
+  "voz": "eleven:cwJjEggZKn5KfGG0DKUu",
+  "provider": "google",
+  "musica": true,
+  "musica_energia": 0.5,
+  "tts_rate": 1.0,
+  "estilo_img": "cerebral cinematic, cool teal and amber palette, moody dramatic lighting, film grain, deep shadows, shallow depth of field, conceptual and surreal, photorealistic, highly detailed, no text, no watermark, no logos",
+  "youtube": {
+    "titulo": "Você acha que pensa com lógica — mas não pensa | Rápido e Devagar, Kahneman",
+    "descricao": "Em \"Rápido e Devagar: Duas Formas de Pensar\", o Nobel Daniel Kahneman mostra que a maior parte das nossas decisoes nao vem da razao, e sim de atalhos automaticos cheios de vieses. Este video resume as ideias centrais do livro: o Sistema 1 (rapido, intuitivo) e o Sistema 2 (lento, preguicoso), a ancoragem, a aversao a perda, o WYSIATI (so existe o que voce ve) e o eu que lembra contra o eu que experimenta.\n\nConteudo de RESUMO/COMENTARIO da obra. Leia o livro e tire suas proprias conclusoes.\n\nResumo completo na Biblioteca: https://www.andregalgani.com.br/biblioteca\n\nNarracao e imagens geradas por IA.\n\n#RapidoEDevagar #Kahneman #vieses #psicologia #resumo #livros",
+    "tags": ["Rapido e Devagar", "Daniel Kahneman", "vieses cognitivos", "Sistema 1 Sistema 2", "psicologia", "resumo de livro", "livros"],
+    "privacidade": "public",
+    "publish_in_min": 15
+  },
+  "cenas": [
+    {"tipo": "abertura", "titulo": "Você Não Pensa", "narracao": "[serious] Você acha que decide com lógica. [pause] O Nobel Daniel Kahneman provou que quase nunca. [deliberate] A maior parte de você roda no piloto automático.", "img": "a human brain split into two halves, one side crackling with fast lightning, the other turning slow heavy gears, dark conceptual, dramatic rim light, cinematic"},
+    {"tipo": "conceito", "titulo": "Os Dois Sistemas", "narracao": "[serious] Há dois sistemas na sua cabeça. [pause] O Sistema 1 é rápido, intuitivo, emocional. O Sistema 2 é lento, lógico, e PREGUIÇOSO. Ele quase sempre assina embaixo do que o 1 sussurra.", "img": "a single silhouette split in two: one half reacting instantly to a bright flash, the other half slowly solving a puzzle under a desk lamp, moody split composition"},
+    {"tipo": "conceito", "titulo": "A Âncora", "narracao": "[deliberate] Jogue um número qualquer no ar antes de alguém decidir. [pause] Esse número vira uma ÂNCORA: puxa o julgamento dela sem que ela perceba. Os vendedores sabem disso.", "img": "a massive ship anchor sinking into deep dark water, dragging a faint glowing number down with it, surreal conceptual, dramatic underwater god rays"},
+    {"tipo": "conceito", "titulo": "A Dor de Perder", "narracao": "[serious] Perder dói cerca de DUAS vezes mais do que ganhar agrada. [pause] É a aversão à perda. Por isso seguramos ações que despencam e fugimos de riscos que valiam a pena.", "img": "an old brass balance scale, a small bright golden coin on one pan, a much heavier dark iron weight on the other tilting it down toward loss, dramatic side light, conceptual"},
+    {"tipo": "conceito", "titulo": "Só Existe o que Você Vê", "narracao": "[quietly] O que você vê é tudo que há. [pause] A mente constrói uma história coerente com a informação que tem, e ignora o que falta. [deliberate] É daí que nasce o excesso de confiança.", "img": "a lone person holding a small flashlight in a vast pitch-black room, the beam lighting only a tiny circle while huge unseen shapes loom in the dark, moody cinematic"},
+    {"tipo": "conceito", "titulo": "A Memória Mente", "narracao": "[serious] Existe o eu que VIVE o momento e o eu que LEMBRA dele. [pause] E quem decide o futuro é a memória. [quietly] Ela guarda só o pico e o fim, não a experiência inteira.", "img": "two translucent overlapping faces, one experiencing a vivid glowing moment, the other looking back at a faded old photograph, memory versus experience, ethereal dark conceptual"},
+    {"tipo": "encerramento", "titulo": "Uma Chance", "narracao": "[serious] Conhecer os vieses não te livra deles. [pause] Mas te dá uma chance de desconfiar de você mesmo na hora certa. [short pause] O resumo completo está na Biblioteca.", "img": "a single chess piece reflected in a slightly cracked mirror under warm contemplative light, self-knowledge and doubt, cinematic, shallow depth of field"}
+  ]
+}
