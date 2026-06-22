@@ -20,6 +20,17 @@ KEY = (ROOT / '.secrets' / 'nvidia_key.txt').read_text(encoding='utf-8').strip()
 GENAI = 'https://ai.api.nvidia.com/v1/genai'
 CHAT = 'https://integrate.api.nvidia.com/v1'
 
+try:                                   # resiliência: mesma fonte do falgen/imagen/veo
+    from circuit_breaker import retry
+except ImportError:                    # ambiente sem o módulo → no-op (não quebra import)
+    def retry(**kw):
+        return lambda f: f
+
+
+class _TransitorioNIM(Exception):
+    """Erro NIM retentável (5xx/429/408/timeout). Taxonomia: TRANSITÓRIO → @retry resolve.
+    Origem: 22/jun/26 um 500 isolado matou um render de 5 min na cena 5 (gen sem retry)."""
+
 # Persona-bible "O Narrador" (en — Flux é prompted em inglês). Ver AVATAR-MINUTO-REAL.md.
 FACE_PROMPT = (
     "A photorealistic editorial portrait of a credible Brazilian man in his mid-forties, "
@@ -40,7 +51,11 @@ def _post(url, body):
     try:
         return json.load(urllib.request.urlopen(req, timeout=120))
     except urllib.error.HTTPError as e:
-        return {'_http_error': e.code, '_body': e.read().decode()[:700]}
+        if e.code in (408, 429) or e.code >= 500:        # TRANSITÓRIO → o @retry retenta
+            raise _TransitorioNIM(f'NIM {e.code}') from e
+        return {'_http_error': e.code, '_body': e.read().decode()[:700]}   # 4xx permanente: não retenta
+    except urllib.error.URLError as e:                   # timeout/conexão = transitório
+        raise _TransitorioNIM(f'rede: {e.reason}') from e
 
 
 def _extract_b64(r):
@@ -53,6 +68,7 @@ def _extract_b64(r):
     return r.get('image') or r.get('b64_json')
 
 
+@retry(max_attempts=3, base_s=2.0)       # 5xx/429/timeout retentados antes de desistir (build de 5 min não morre por 1 erro isolado)
 def gen_image(prompt, out_png, model='black-forest-labs/flux.1-dev',
               width=1024, height=1024, steps=50, cfg=3.5, seed=0):
     r = _post(f'{GENAI}/{model}', {'prompt': prompt, 'mode': 'base', 'cfg_scale': cfg,
@@ -74,13 +90,23 @@ def gen_image(prompt, out_png, model='black-forest-labs/flux.1-dev',
 _DIMS = {'16:9': (1344, 768), '9:16': (768, 1344), '1:1': (1024, 1024)}
 
 
+def _gen_safe(prompt, out_png, w, h):
+    """gen_image já passou pelo @retry; se ainda assim levantar (NIM fora), vira None
+    em vez de propagar — quem decide o aborte é o gerar_video (mantém o contrato)."""
+    try:
+        return gen_image(prompt, out_png, width=w, height=h)
+    except Exception as e:
+        print(f'  [nvidia] geração falhou após retries: {str(e)[:100]}')
+        return None
+
+
 def gen(prompt, out_png, aspect='16:9'):
     """Interface compatível com imagen.gen/falgen.gen (provider do gerar_video).
     Imagens GRÁTIS (NIM Flux). Fallback p/ 1024² se as dims do aspecto derem erro/500."""
     w, h = _DIMS.get(aspect, (1024, 1024))
-    r = gen_image(prompt, out_png, width=w, height=h)
+    r = _gen_safe(prompt, out_png, w, h)
     if r is None and (w, h) != (1024, 1024):
-        r = gen_image(prompt, out_png, width=1024, height=1024)
+        r = _gen_safe(prompt, out_png, 1024, 1024)
     return r
 
 

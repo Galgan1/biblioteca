@@ -8,7 +8,7 @@
 
 Encadeia, na ordem certa e sem deixar esquecer nenhum passo:
   1. valida o schema do `<slug>_data.py`
-  2. gera visao geral + capitulos + script.js + books.json   (gerar_livro)
+  2. gera visao geral + capitulos + books.json   (gerar_livro; JS unico compartilhado)
   2b. gera kit de divulgacao (templates HTML para o admin do site)  (gerar_dados_kit)
   2c. gera dados de carrossel (slides.json + caps.json)             (gerar_dados_carrossel)
   2d. gera story PNGs com 4 frames (teaser+quote+insights+CTA)      (gerar_carrossel --stories)
@@ -135,13 +135,13 @@ def deploy(slug, CH):
     run(["ssh", VPS, f"mkdir -p {REMOTE}/{slug}"])
     run(["scp", f"{slug}.html", "index.html", "books.json", "sitemap.xml", "robots.txt",
          f"{VPS}:{REMOTE}/"], cwd=BASE)
-    files = [os.path.join(slug, f"{c['slug']}.html") for c in CH] + [os.path.join(slug, "script.js")]
+    files = [os.path.join(slug, f"{c['slug']}.html") for c in CH]
     run(["scp", *files, f"{VPS}:{REMOTE}/{slug}/"], cwd=BASE)
     # Inclui só as capas que existem: livro sem capa original tem só o -capa.png
     # (tipografica); o -cover.png pode não existir e quebraria o scp.
     cover_assets = [p for p in (f"assets/{slug}-cover.png", f"assets/{slug}-capa.png")
                     if os.path.exists(os.path.join(BASE, p))]
-    run(["scp", "assets/style.css", *cover_assets, "assets/favicon.svg",
+    run(["scp", "assets/style.css", "assets/script-livro.js", *cover_assets, "assets/favicon.svg",
          f"{VPS}:{REMOTE}/assets/"], cwd=BASE)
     # corrige a permissao da pasta nova (senao o nginx da 404 — o bug classico)
     run(["ssh", VPS, f"chmod 755 {REMOTE}/{slug} && chmod 644 {REMOTE}/{slug}/*"])

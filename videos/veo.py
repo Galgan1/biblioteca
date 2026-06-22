@@ -9,9 +9,11 @@ from pathlib import Path
 
 try:
     from circuit_breaker import circuit_breaker, retry, CircuitOpenError
+    from cost_tracker import budget_guard
 except ImportError:
     def circuit_breaker(**kw): return lambda f: f
     def retry(**kw): return lambda f: f
+    def budget_guard(**kw): return lambda f: f
     class CircuitOpenError(Exception): pass
 
 KEY = (Path(__file__).parent / '.secrets' / 'imagen_api_key.txt').read_text(encoding='utf-8').strip()
@@ -19,6 +21,7 @@ BASE = 'https://generativelanguage.googleapis.com/v1beta'
 MODEL = 'veo-3.1-fast-generate-preview'
 
 
+@budget_guard(api='google_veo')   # catraca de teto FORA do retry/breaker (abort != falha de API)
 @retry(max_attempts=2, base_s=3.0)
 @circuit_breaker(api='google_veo', threshold=2, timeout_s=600)
 def animate(img_path, prompt, out_mp4, duration=8, aspect='16:9'):

@@ -162,7 +162,9 @@ for book in books:
             if label is None:
                 return mm.group(0)
             return (f'<a href="{href}" class="chapter-nav-link" rel="prev" '
-                    f'aria-label="Capítulo anterior: {esc(label)}">&larr; {esc(label)}</a>')
+                    f'aria-label="Capítulo anterior: {esc(label)}">'
+                    f'<span class="cn-lab">Capítulo anterior</span>'
+                    f'<span class="cn-ttl">{esc(label)}</span></a>')
 
         def sub_next(mm):
             href = mm.group(1)
@@ -171,7 +173,9 @@ for book in books:
             if label is None:
                 return mm.group(0)
             return (f'<a href="{href}" class="chapter-nav-link" rel="next" '
-                    f'aria-label="Próximo capítulo: {esc(label)}">{esc(label)} &rarr;</a>')
+                    f'aria-label="Próximo capítulo: {esc(label)}">'
+                    f'<span class="cn-lab">Próximo capítulo</span>'
+                    f'<span class="cn-ttl">{esc(label)}</span></a>')
 
         n0 = html
         html = re.sub(r'<a href="([^"]+)" class="chapter-nav-link"[^>]*>\s*(?:&larr;|←)[^<]*</a>',

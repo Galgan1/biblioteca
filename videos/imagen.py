@@ -6,11 +6,13 @@ from pathlib import Path
 
 try:
     from circuit_breaker import circuit_breaker, retry, CircuitOpenError
+    from cost_tracker import budget_guard
     _cb_available = True
 except ImportError:
     _cb_available = False
     def circuit_breaker(**kw): return lambda f: f
     def retry(**kw): return lambda f: f
+    def budget_guard(**kw): return lambda f: f
 
 def _read_key():
     """Lê a chave COM guarda: ausente/ilegível -> '' em vez de derrubar o IMPORT do
@@ -35,6 +37,7 @@ TIERS = {
 }
 
 
+@budget_guard(api='google_imagen')   # catraca de teto FORA do retry/breaker (abort != falha de API)
 @retry(max_attempts=3, base_s=2.0)
 @circuit_breaker(api='google_imagen', threshold=3, timeout_s=300)
 def gen(prompt, out_png, aspect='16:9', tier='standard', size=None):

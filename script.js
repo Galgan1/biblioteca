@@ -59,9 +59,25 @@ document.addEventListener('DOMContentLoaded', () => {
         shelf.innerHTML = msg('Não foi possível carregar os livros. Tente recarregar a página.');
     });
 
-    function msg(text) {
-        return '<p class="grid-message">' + text + '</p>';
+    // Estado vazio/erro estruturado (juiz Wave3): ícone de LINHA (marca) + mensagem
+    // + CTA opcional p/ limpar a busca. Antes era só <p> cinza solto (feedback pobre).
+    function msg(text, withClear) {
+        return '<div class="grid-message">'
+            + '<svg class="grid-message-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+            + '<circle cx="11" cy="11" r="7"/><path d="m20.5 20.5-4-4"/></svg>'
+            + '<p>' + text + '</p>'
+            + (withClear ? '<button type="button" class="empty-clear">Ver acervo completo</button>' : '')
+            + '</div>';
     }
+
+    // CTA do estado vazio limpa a busca e volta ao acervo (delegação no shelf)
+    shelf.addEventListener('click', function (e) {
+        if (e.target.closest('.empty-clear')) {
+            state.query = '';
+            if (searchInput) searchInput.value = '';
+            render();
+        }
+    });
 
     function buildStatusToggle() {
         if (!statusToggle) return;
@@ -123,12 +139,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const byId = Object.fromEntries(allBooks.map(b => [b.id, b]));
             const [name, ids] = TRILHAS[state.trilha];
             const books = ids.map(id => byId[id]).filter(Boolean).filter(statusOk).filter(queryOk);
-            if (!books.length) { shelf.innerHTML = msg(q ? 'Nenhum livro nesta trilha para "' + q + '".' : 'Nenhum livro nesta trilha com esse filtro.'); return; }
+            if (!books.length) { shelf.innerHTML = msg(q ? 'Nenhum livro nesta trilha para "' + q + '".' : 'Nenhum livro nesta trilha com esse filtro.', !!q); return; }
             renderSection(name, books);
             return;
         }
         let books = allBooks.filter(statusOk).filter(queryOk);
-        if (!books.length) { shelf.innerHTML = msg(q ? 'Nenhum resultado para "' + q + '". Tente outro título ou autor.' : 'Nenhum livro encontrado.'); return; }
+        if (!books.length) { shelf.innerHTML = msg(q ? 'Nenhum resultado para "' + q + '". Tente outro título ou autor.' : 'Nenhum livro encontrado.', !!q); return; }
         books = books.slice().sort(rankSort);
         const title = q ? 'Resultados'
             : state.status === 'pronto' ? 'Resumos prontos'
@@ -180,6 +196,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="card-progress">${book.progress}</p>
             </div>
         `;
+        // Fallback de capa: livros sem arte pura (-cover) — só a capa gerada title-based
+        // (-capa), ex.: Blender/Wikibooks. Se o -cover 404, cai pro -capa e marca .is-capa
+        // → o CSS mostra a capa como CARD COMPLETO (sem moldura/título duplicados).
+        const coverImg = bookEl.querySelector('.card-cover img');
+        if (coverImg) {
+            coverImg.addEventListener('error', function onCoverErr() {
+                coverImg.removeEventListener('error', onCoverErr);
+                const pic = coverImg.closest('picture');
+                const src = pic && pic.querySelector('source');
+                if (src) src.remove();
+                coverImg.src = book.coverUrl;
+                const cover = coverImg.closest('.card-cover');
+                if (cover) cover.classList.add('is-capa');
+            });
+        }
         item.appendChild(bookEl);
 
         if (book.amazon) {

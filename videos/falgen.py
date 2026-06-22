@@ -31,9 +31,14 @@ try:
 except ImportError:
     def _record_cost(**kw): pass  # fallback silencioso
 
-# Modelos (verificáveis em https://fal.ai/models). Configuráveis por env.
+# Modelos — VERIFICAR em https://fal.ai/models ao ativar o billing (fal muda nomes).
+# Configuráveis por env. WAN = i2v (1080p) verificado VIVO em 22/jun/26 (smoke-test → 6 MB).
+# O antigo 'fal-ai/wan-v2.1/image-to-video' MORREU (404 "Application wan-v2.1 not found");
+# nomes atuais: wan-pro (1080p), wan/v2.2-5b (barato 720p), wan-i2v (base). Ver doutor de APIs.
 IMG_MODEL = os.environ.get('FAL_IMG_MODEL', 'fal-ai/flux-2/pro')
 VID_MODEL = os.environ.get('FAL_VID_MODEL', 'fal-ai/kling-video/v3/pro/image-to-video')
+WAN_MODEL = os.environ.get('FAL_WAN_MODEL', 'fal-ai/wan-pro/image-to-video')
+UPSCALE_MODEL = os.environ.get('FAL_UPSCALE_MODEL', 'fal-ai/video-upscaler')
 
 
 _DL_TIMEOUT_S = 120   # download não pode pendurar a produção pra sempre (retry/breaker não pegam hang)
@@ -72,28 +77,49 @@ def gen(prompt, out_png, aspect='16:9'):
     return IMG_MODEL
 
 
+def _i2v_call(model, img_path, prompt, out_mp4, duration, extra=None):
+    """Corpo COMPARTILHADO image-to-video (upload+subscribe+download) — DRY entre Kling
+    e Wan; SEM decorador/custo (quem decide isso é o wrapper público). Levanta em falha
+    de rede (p/ o @retry tratar); retorna False só quando a resposta vem sem URL."""
+    img_url = fal_client.upload_file(str(img_path))
+    args = {'prompt': prompt, 'image_url': img_url, 'duration': str(duration)}
+    if extra:
+        args.update(extra)
+    res = fal_client.subscribe(model, arguments=args, with_logs=False)
+    vid = res.get('video') or {}
+    url = vid.get('url') if isinstance(vid, dict) else None
+    if not url:
+        print(f'  ERRO fal i2v ({model}): resposta inesperada — {str(res)[:200]}')
+        return False
+    _download(url, out_mp4)
+    return True
+
+
 @retry(max_attempts=2, base_s=3.0)
 @circuit_breaker(api='fal-kling', threshold=2, timeout_s=600)
 def animate(img_path, prompt, out_mp4, duration=5):
     """Anima img_path (Kling i2v). Mesma assinatura de veo.animate(). Retorna True/False."""
-    img_url = fal_client.upload_file(str(img_path))
-    res = fal_client.subscribe(VID_MODEL, arguments={
-        'prompt': prompt,
-        'image_url': img_url,
-        'duration': str(duration),
-        'aspect_ratio': '16:9',
-    }, with_logs=False)
-    vid = res.get('video') or {}
-    url = vid.get('url') if isinstance(vid, dict) else None
-    if not url:
-        print(f'  ERRO fal vídeo: resposta inesperada — {str(res)[:200]}')
-        return False
-    _download(url, out_mp4)
-    try:
-        _record_cost(api='fal-kling')
-    except Exception:
-        pass
-    return True
+    ok = _i2v_call(VID_MODEL, img_path, prompt, out_mp4, duration, {'aspect_ratio': '16:9'})
+    if ok:
+        try:
+            _record_cost(api='fal-kling')
+        except Exception:
+            pass
+    return ok
+
+
+@retry(max_attempts=2, base_s=3.0)
+@circuit_breaker(api='fal-wan', threshold=2, timeout_s=600)
+def animate_wan(img_path, prompt, out_mp4, duration=5):
+    """Anima img_path (Wan i2v — ESTÁGIO 2 do pipeline barato, mais em conta que o Kling).
+    Mesma assinatura de animate()/veo.animate() → plugável como mot_gen. Retorna True/False."""
+    ok = _i2v_call(WAN_MODEL, img_path, prompt, out_mp4, duration)
+    if ok:
+        try:
+            _record_cost(api='fal-wan')
+        except Exception:
+            pass
+    return ok
 
 
 AVATAR_MODEL = os.environ.get('FAL_AVATAR_MODEL', 'fal-ai/kling-video/ai-avatar/v2/pro')
@@ -118,6 +144,29 @@ def lip_sync(img_path, audio_path, out_mp4,
     _download(url, out_mp4)
     try:
         _record_cost(api='fal-avatar')
+    except Exception:
+        pass
+    return True
+
+
+@retry(max_attempts=2, base_s=3.0)
+@circuit_breaker(api='fal-upscale', threshold=2, timeout_s=600)
+def upscale_video(in_mp4, out_mp4, scale=2):
+    """ESTÁGIO 3 (opt-in): upscale de IA do clipe (ex.: 720p→1080p/4K). PAGO.
+    Default do pipeline é o lanczos GRÁTIS do make_motion_clip; este é o passo extra
+    de qualidade só quando vale pagar. Retorna True/False."""
+    vid_url = fal_client.upload_file(str(in_mp4))
+    res = fal_client.subscribe(UPSCALE_MODEL, arguments={
+        'video_url': vid_url, 'scale': scale,
+    }, with_logs=False)
+    vid = res.get('video') or {}
+    url = vid.get('url') if isinstance(vid, dict) else None
+    if not url:
+        print(f'  ERRO fal upscale: resposta inesperada — {str(res)[:200]}')
+        return False
+    _download(url, out_mp4)
+    try:
+        _record_cost(api='fal-upscale')
     except Exception:
         pass
     return True

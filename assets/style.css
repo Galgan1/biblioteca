@@ -323,7 +323,19 @@ body {
     text-align: center;
     grid-column: 1 / -1;
     column-span: all;
+    /* estado vazio/erro estruturado (Wave3): coluna centrada com ícone de linha */
+    display: flex; flex-direction: column; align-items: center; gap: 0.85rem;
+    padding: 3rem 1rem;
 }
+.grid-message > p { font-size: 1.08rem; max-width: 42ch; margin: 0; }
+.grid-message-icon { width: 46px; height: 46px; color: var(--green); opacity: 0.8; }
+.empty-clear {
+    margin-top: 0.3rem; font-family: var(--font-display); font-size: 0.82rem; font-weight: 600;
+    color: var(--green-dark); background: color-mix(in oklch, var(--green-light) 60%, var(--paper-bg));
+    border: 1px solid color-mix(in oklch, var(--green) 35%, transparent); border-radius: 999px;
+    padding: 0.45rem 1.1rem; cursor: pointer; transition: background .15s ease, border-color .15s ease;
+}
+.empty-clear:hover { background: var(--green-light); border-color: var(--green); }
 
 /* === Estante curada: controles, chips, trilhas e seções (jun/2026) ===
    Coleções temáticas geradas das tags pelo script.js; tudo nos tokens verdes. */
@@ -535,43 +547,50 @@ body {
 }
 
 /* --- Chapter Navigation --- */
+/* "Superfície Tátil Suave" (opt3 — escolha do André, jun/26). Cartões de papel levíssimo
+   (tinta de green-light via color-mix → auto-adapta claro/escuro), borda quase invisível,
+   cantos macios; o botão existe pela MATERIALIDADE, não pelo contorno. Altura igual = grid
+   align-items:stretch + height:100% (desktop). Mesma estrutura HTML (.cn-lab/.cn-ttl). */
 .chapter-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch; /* botões nomeados sempre na mesma altura */
-    gap: 1rem;
-    margin-top: 0; /* o grid acima já dá o respiro — sem vazio acumulado */
-    margin-bottom: 3rem;
-    padding-top: 1.5rem;
-    border-top: var(--border-solid);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: stretch;
+    margin: 1.5rem 0 3rem;
 }
-
 .chapter-nav-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    padding: 1.25rem 1.375rem;
+    min-height: 100px;
+    height: 100%;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    flex: 1 1 0; /* navegação nomeada: botões gêmeos, sempre da mesma altura */
-    max-width: 48%;
-    font-size: 0.92rem;
-    border: var(--border-solid);
-    border-radius: var(--radius);
-    color: var(--green-dark);
-    font-weight: 700;
-    transition: background-color 200ms var(--ease-out-quart), border-color 200ms var(--ease-out-quart);
+    background: color-mix(in oklch, var(--green-light) 60%, var(--paper-bg));
+    border: 1px solid color-mix(in oklch, var(--green-light) 45%, transparent);
+    border-radius: 14px;
+    transition: background 0.18s ease, border-color 0.18s ease;
 }
-.chapter-nav-link[rel="next"],
-.chapter-nav-link:last-child {
-    justify-content: flex-end;
-    text-align: right;
-    margin-left: auto;
-}
-
 .chapter-nav-link:hover {
-    background-color: var(--surface-hover);
-    border-color: var(--green);
+    background: color-mix(in oklch, var(--green-light) 85%, var(--paper-bg));
+    border-color: color-mix(in oklch, var(--green-light) 55%, var(--green));
 }
+.chapter-nav-link[rel="next"] { align-items: flex-end; text-align: right; }
+.chapter-nav-link .cn-lab {
+    display: inline-flex; align-items: center; gap: 5px; opacity: 0.7;
+    font-family: var(--font-display); font-size: 0.625rem; font-weight: 500;
+    letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-dark); line-height: 1;
+}
+.chapter-nav-link .cn-lab::before { content: "\2190"; color: var(--gold); font-size: 0.95rem; line-height: 1; }
+.chapter-nav-link[rel="next"] .cn-lab { flex-direction: row-reverse; }
+.chapter-nav-link[rel="next"] .cn-lab::before { content: "\2192"; }
+.chapter-nav-link .cn-ttl {
+    font-family: var(--font-serif); font-size: 0.95rem; font-weight: 500; line-height: 1.4;
+    color: var(--green-dark);
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.chapter-nav-link[rel="next"] .cn-ttl { text-align: right; }
 
 /* --- Botões de PDF (cheat sheet premium) --- */
 .pdf-actions {
@@ -619,6 +638,7 @@ body {
     color: var(--gray-dark);
     margin: 0 auto 1rem;
     max-width: 50ch;
+    font-weight: 500;  /* ancora o lead do CTA (juiz Wave3: flutuava antes do botão) */
 }
 
 .amazon-btn {
@@ -884,7 +904,7 @@ blockquote {
     font-weight: 700; color: var(--green-dark);
 }
 .card-tip::before {
-    content: ""; display: inline-block; width: 14px; height: 1px;
+    content: ""; display: inline-block; width: 16px; height: 2px;  /* 2px: 1px sumia no fundo claro (juiz) */
     background: var(--gold); vertical-align: middle; margin-right: 0.5rem; transform: translateY(-1px);
 }
 
@@ -1001,6 +1021,9 @@ blockquote {
     opacity: 0.85;
     font-size: 0.9rem;
 }
+/* footer com identidade (Wave3): nome + tagline serifada (eco do header) acima do crédito */
+.footer-brand { font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: -.01em; margin: 0 0 0.1rem; }
+.footer-tagline { font-family: var(--font-serif); font-style: italic; font-size: 0.95rem; opacity: 0.82; margin: 0 0 0.9rem; }
 .footer-link {
     color: inherit;
     font-weight: 700;
@@ -1168,13 +1191,19 @@ blockquote {
     .header { padding: 0 0 1.75rem; margin-bottom: 2rem; }
     .header-subtitle { font-size: 0.92rem; letter-spacing: 0.06em; }
     .header-credit { margin-bottom: 1rem; }
-    .header-intro { font-size: 0.98rem; }
+    .header-intro { font-size: 1.08rem; line-height: 1.65; margin-bottom: 0.5rem; }  /* lead mobile maior + respiro intro→card (juiz) */
+    .card-tip strong { font-size: 0.75rem; }  /* micro-label não pode espremer no mobile (juiz) */
     .back-link { margin-bottom: 1.25rem; }
     .crumbs { font-size: 0.95rem; }  /* legibilidade do breadcrumb no celular (juiz #5) */
     .pdf-actions { margin: -0.5rem 0 1.75rem; }
     .pdf-btn { flex: 1 1 auto; justify-content: center; }
-    .chapter-nav { flex-direction: column; gap: 0.5rem; }
-    .chapter-nav-link { max-width: 100%; justify-content: center !important; text-align: center !important; }
+    /* opt3 mobile: 1 coluna empilhada; next alinha à ESQUERDA (como prev); min-height
+       (medido) iguala as duas alturas (grid 1-col não tem o stretch de altura do 2-col). */
+    .chapter-nav { grid-template-columns: 1fr; }
+    .chapter-nav-link[rel="next"] { align-items: flex-start; text-align: left; }
+    .chapter-nav-link[rel="next"] .cn-lab { flex-direction: row; }
+    .chapter-nav-link[rel="next"] .cn-ttl { text-align: left; }
+    .chapter-nav-link { min-height: 106px; }  /* iguala as duas alturas no mobile (medido = altura de 2 linhas) */
 
     /* Cards: ícone menor devolve largura ao texto */
     .card { padding: 1.25rem; gap: 1rem; }
@@ -1547,6 +1576,13 @@ h1, h2, h3, h4 {
 }
 .shelf-grid .card-cover::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 3px; }
 .shelf-grid .card-cover::after { inset: auto -1px -1px auto; border-left: 0; border-top: 0; border-bottom-right-radius: 3px; }
+/* Fallback (.is-capa, via JS): livro sem arte pura (-cover) → a capa GERADA (-capa, que
+   já tem moldura+título embutidos) vira o card INTEIRO, sem o passe-partout/esquadros nem
+   o título duplicado abaixo. Evita o "título dobrado" e a imagem quebrada. */
+.shelf-grid .card-cover.is-capa { padding: 0; background: none; border: 0; box-shadow: none; border-radius: var(--radius); overflow: hidden; }
+.shelf-grid .card-cover.is-capa::before, .shelf-grid .card-cover.is-capa::after { display: none; }
+.shelf-grid .card-cover.is-capa img { object-fit: cover; background: none; box-shadow: none; border-radius: 0; }
+.shelf-grid .shelf-item:has(.card-cover.is-capa) .card-content { display: none; }
 .shelf-grid .shelf-item .card-content { padding: 11px 13px 4px; display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; }
 .shelf-grid .shelf-item .card-title {
     font-family: var(--font-serif); font-weight: 600; font-size: 0.96rem; line-height: 1.18;

@@ -14,6 +14,7 @@ Uso:
 """
 import json
 import random
+import sys
 import time
 import functools
 from pathlib import Path
@@ -35,7 +36,14 @@ def _load_state() -> dict:
     try:
         data = json.loads(_STATE_FILE.read_text(encoding='utf-8'))
         return data.get('api_health', {})
-    except Exception:
+    except FileNotFoundError:
+        return {}   # ausente é legítimo (primeira execução) → defaults, sem ruído
+    except Exception as e:
+        # Corrompido/ilegível: NÃO fingir saúde — isso esqueceria um circuit OPEN
+        # (liberando chamadas a uma API quebrada) e apagaria o last_error. Avisa com
+        # contexto (simétrico a _save_state) em vez de devolver {} caladamente.
+        print(f'[circuit_breaker] estado ILEGÍVEL ({_STATE_FILE}): {e} — tratando como '
+              f'vazio; verifique se há circuit OPEN perdido', file=sys.stderr)
         return {}
 
 

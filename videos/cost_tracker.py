@@ -18,8 +18,10 @@ Consulta:
   from cost_tracker import get_run_cost, get_slug_total, print_costs
   print_costs()
 """
+import functools
 import json
 import os
+import sys
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -132,6 +134,62 @@ def weekly_cost() -> float:
         if ts[:10] >= start_iso:
             total += run.get('total_usd', 0.0)
     return round(total, 4)
+
+
+# ---------------------------------------------------------------------------
+# Teto de gasto (catraca ANTES da chamada paga) — Akita pilar 8
+# ---------------------------------------------------------------------------
+# Pior nº1 da auditoria A6: weekly_cost() não tinha consumidor; record_cost só
+# contava DEPOIS do gasto. Aqui a catraca: nenhuma chamada paga dispara se a semana
+# já estourou o teto. Default-on no pipeline via WEEKLY_BUDGET_USD (gerar_video.main
+# o define); ausente = inativo (preserva comportamento atual e a rota soberana grátis).
+
+DEFAULT_WEEKLY_BUDGET_USD = 50.0   # teto que o pipeline (gerar_video.main) liga por default
+
+
+class BudgetExceeded(RuntimeError):
+    """Teto semanal de gasto de API atingido — chamada paga abortada (não é falha de API)."""
+
+
+def _budget_limit() -> float:
+    """Teto ativo em US$. 0 = catraca desligada (env ausente, ou 0/negativo explícito)."""
+    raw = os.environ.get('WEEKLY_BUDGET_USD', '').strip()
+    if not raw:
+        return 0.0   # não configurado → inativo (não inventa teto sem o caller pedir)
+    try:
+        return max(0.0, float(raw))
+    except ValueError:
+        # Akita pilar 7: env inválido não pode sumir calado. Avisa e mantém a catraca
+        # no default (um typo não deve DESLIGAR a guarda — fail-safe p/ o lado seguro).
+        print(f'[cost_tracker] WEEKLY_BUDGET_USD inválido ({raw!r}) — '
+              f'usando default US$ {DEFAULT_WEEKLY_BUDGET_USD:.2f}', file=sys.stderr)
+        return DEFAULT_WEEKLY_BUDGET_USD
+
+
+def check_budget(api: str = '') -> None:
+    """Aborta com BudgetExceeded se o gasto da semana já atingiu o teto. No-op se inativo."""
+    limit = _budget_limit()
+    if limit <= 0:
+        return
+    gasto = weekly_cost()
+    if gasto >= limit:
+        raise BudgetExceeded(
+            f'teto semanal de gasto atingido: US$ {gasto:.4f} >= US$ {limit:.2f} '
+            f'(WEEKLY_BUDGET_USD); chamada paga {api!r} abortada. Aumente o teto ou '
+            f'rode o pipeline soberano (provider="base", R$0).')
+
+
+def budget_guard(api: str = ''):
+    """Decorator de catraca de orçamento. APLICAR COMO O MAIS EXTERNO (fora de
+    @retry/@circuit_breaker): um abort por teto não é falha de API — não pode tripar
+    o breaker (apagaria last_error) nem ser re-tentado pelo @retry."""
+    def deco(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            check_budget(api)
+            return func(*args, **kwargs)
+        return wrapper
+    return deco
 
 
 def print_costs() -> None:

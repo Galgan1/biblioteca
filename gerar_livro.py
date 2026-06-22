@@ -4,8 +4,8 @@
 Lê  <slug>_data.py  (que define BOOK e CHAPTERS) e produz:
   <slug>.html                  visão geral
   <slug>/chNN-*.html           uma página cheat sheet por capítulo
-  <slug>/script.js             (cópia de script-livro.js — botões de PDF + expansão)
-e registra/atualiza o livro em books.json.
+e registra/atualiza o livro em books.json. O JS é ÚNICO e compartilhado
+(assets/script-livro.js — botões de PDF + expansão); nenhuma cópia por-livro.
 
 Uso:  python gerar_livro.py <slug>
 
@@ -16,7 +16,7 @@ BOOK = {
 }
 CHAPTERS = [ {"slug","sub","intro","cards":[...],"lessons_title","lessons":[...]} ]
 """
-import os, sys, json, shutil, importlib
+import os, sys, json, importlib
 from datetime import date
 
 BASE = os.path.dirname(os.path.abspath(__file__))
@@ -181,7 +181,7 @@ def chapter_page(B, ch, prev_href, prev_label, next_href, next_label):
             </nav>
         </main>
 '''
-    html += FOOT.format(credit=f'{B["title"]} · {B["author"]}', script="script.js")
+    html += FOOT.format(credit=f'{B["title"]} · {B["author"]}', script="../assets/script-livro.js")
     return html
 
 
@@ -224,7 +224,7 @@ def overview_page(B, chapters):
             </div>
         </main>
 '''
-    html += FOOT.format(credit=f'{B["title"]} · {B["author"]}', script=f'{B["slug"]}/script.js')
+    html += FOOT.format(credit=f'{B["title"]} · {B["author"]}', script="assets/script-livro.js")
     return html
 
 
@@ -247,14 +247,6 @@ def main(slug):
     out = os.path.join(BASE, slug)
     os.makedirs(out, exist_ok=True)
 
-    src_js = os.path.join(BASE, "script-livro.js")
-    dst_js = os.path.join(out, "script.js")
-    if os.path.exists(src_js):
-        shutil.copyfile(src_js, dst_js)
-    else:
-        open(dst_js, "w", encoding="utf-8", newline='\n').write(
-            "document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.card').forEach(c=>c.addEventListener('click',()=>{if(c.querySelector('.card-details'))c.classList.toggle('expanded')}))});")
-
     n = len(CH)
     for i, ch in enumerate(CH):
         prev_href = f'../{slug}.html' if i == 0 else CH[i - 1]["slug"] + ".html"
@@ -266,7 +258,7 @@ def main(slug):
 
     open(os.path.join(BASE, slug + ".html"), "w", encoding="utf-8", newline='\n').write(overview_page(B, CH))
     update_books_json(B)
-    print(f"OK: {slug} — {n} capítulos + visão geral + script.js; books.json atualizado.")
+    print(f"OK: {slug} — {n} capítulos + visão geral; books.json atualizado (JS único compartilhado).")
     # Kit de Divulgação: emite os dados do carrossel (slides.json + caps.json) p/ o
     # serviço gerar sob demanda. Import tardio evita ciclo (gerar_carrossel→gerar_livro).
     try:

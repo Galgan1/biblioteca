@@ -19,6 +19,16 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Encode da ESCRITA final em UTF-8: o resumo agregado reimprime a saída das
+# sub-suites, que contém emoji (🤖, da lane bot_minutoreal). O console padrão do
+# Windows é cp1252 — sem isto o print() do resumo MORRE com UnicodeEncodeError ao
+# encodar o emoji. errors='replace' nunca crasha. Não basta o decode em _rodar()
+# (esse trata a LEITURA das sub-suites); o ofensor é a ESCRITA aqui. Tem que vir
+# ANTES de qualquer print. (hasattr: stdout pode não ser TextIOWrapper se redirecionado.)
+for _stream in (sys.stdout, sys.stderr):
+    if hasattr(_stream, "reconfigure"):
+        _stream.reconfigure(encoding="utf-8", errors="replace")
+
 ROOT = Path(__file__).resolve().parent
 
 # (nome, cwd, start_dir-de-teste) — comando canônico: unittest discover -s tests -t .
@@ -33,6 +43,11 @@ def _rodar(cwd):
     p = subprocess.run(
         [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-t", "."],
         cwd=str(cwd), capture_output=True, text=True,
+        # Decodifica em UTF-8 com replace: o subprocesso emite UTF-8 (vários módulos
+        # reconfiguram stderr p/ utf-8), mas o locale do Windows é cp1252 — sem isto o
+        # gate MORRE ao decodificar um byte não-cp1252 (ex.: 'Í' = C3 8D). Os números
+        # que o regex lê ('Ran N'/'failures=') são ASCII, então o parsing não muda.
+        encoding="utf-8", errors="replace",
     )
     saida = p.stderr + p.stdout
     ran = int(m.group(1)) if (m := re.search(r"Ran (\d+) test", saida)) else 0

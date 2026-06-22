@@ -13,9 +13,9 @@ O conjunto copiado espelha o que `publicar_livro.deploy()` envia por scp, mais o
 extras combinados (OG e o KIT inteiro):
   - <slug>.html                                         (obrigatorio)
   - books.json                                          (obrigatorio)
-  - pasta <slug>/ inteira (capitulos + script.js)
+  - pasta <slug>/ inteira (capitulos; JS unico compartilhado)
   - index.html, sitemap.xml, robots.txt                 (os que existirem)
-  - assets/style.css, assets/favicon.svg
+  - assets/style.css, assets/script-livro.js, assets/favicon.svg
   - assets/<slug>-capa.png                              (capa de estante)
   - assets/<slug>-cover.png, assets/<slug>-og.png       (se existirem)
   - assets/kit/<slug>/ inteira (manifest.json, slides.json, caps.json)
@@ -113,7 +113,7 @@ def publish(slug, build_dir, live_dir):
     copy_file(b(f"{slug}.html"), l(f"{slug}.html"), copied, missing, required=True)
     copy_file(b("books.json"), l("books.json"), copied, missing, required=True)
 
-    # --- pasta do livro inteira: capitulos + script.js ---
+    # --- pasta do livro inteira: capitulos (o JS e o unico assets/script-livro.js) ---
     copy_tree(b(slug), l(slug), copied, missing, required=True, label=f"{slug}/")
 
     # --- raiz: opcionais "os que existirem" ---
@@ -123,6 +123,9 @@ def publish(slug, build_dir, live_dir):
     # --- assets de marca (sempre presentes) + capas ---
     copy_file(b("assets", "style.css"), l("assets", "style.css"),
               copied, missing, label="assets/style.css")
+    # JS unico compartilhado por TODAS as paginas (substitui as 103 copias por-livro)
+    copy_file(b("assets", "script-livro.js"), l("assets", "script-livro.js"),
+              copied, missing, label="assets/script-livro.js")
     copy_file(b("assets", "favicon.svg"), l("assets", "favicon.svg"),
               copied, missing, label="assets/favicon.svg")
     # -capa.png e a capa de estante (hibrida); -cover.png/-og.png podem faltar.

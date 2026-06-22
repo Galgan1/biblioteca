@@ -69,15 +69,22 @@ def get_creds():
                  f"    (ou salve client_secret.json em {CLIENT})\n    detalhe: {e}\n")
 
 
-def build_metadata(roteiro_path):
-    cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
+def _validar_roteiro(roteiro_path):
+    """Guarda dura: roteiro inválido aborta ANTES de gastar API. Se contracts/pydantic
+    faltar, AVISA (não silencia) — uma guarda paga que some calada é pior que o ruído
+    (Akita pilar 7: regra em doc ≠ regra cumprida)."""
     try:
         from contracts import load_roteiro
-    except ImportError:
-        pass  # pydantic/contracts.py ausente no ambiente — sem validação
-    else:
-        # Guarda dura: roteiro inválido aborta ANTES de qualquer chamada de API paga.
-        load_roteiro(roteiro_path)
+    except ImportError as e:
+        print(f'[AVISO] contracts/pydantic ausente — roteiro NÃO validado, gasto de API '
+              f'SEM guarda ({e})', file=sys.stderr)
+        return
+    load_roteiro(roteiro_path)
+
+
+def build_metadata(roteiro_path):
+    cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
+    _validar_roteiro(roteiro_path)
     yt = cfg.get('youtube', {})
     conceitos = ' • '.join(c['titulo'] for c in cfg['cenas'] if c.get('tipo') == 'conceito')
     titulo = yt.get('titulo') or f"{cfg['titulo']}, de {cfg['autor']} — Resumo em ~5 min"
@@ -96,6 +103,24 @@ def build_metadata(roteiro_path):
         'privacidade': yt.get('privacidade', 'unlisted'),  # unlisted = não público até você revisar
         'publish_in_min': yt.get('publish_in_min'),        # se setado: agenda (private→public no horário)
     }
+
+
+def _registrar_upload(slug, vid):
+    """Pós-upload: grava estado e custo. O vídeo JÁ está no ar (irreversível, gastou cota),
+    então uma falha aqui NÃO pode ser silenciosa: perder o video_id = risco de RE-UPLOAD
+    (duplicata no canal) e some do doctor.py. Registra COM contexto (slug + video_id) p/
+    reconciliação manual; best-effort (nunca derruba um upload já concluído)."""
+    try:
+        import pipeline_state
+        pipeline_state.mark_done(slug, 'uploaded', data={'video_id': vid})
+    except Exception as e:
+        print(f"  [!] mark_done FALHOU p/ {slug} (video_id={vid}, JÁ no ar — "
+              f"reconcilie à mão): {e}", file=sys.stderr)
+    try:
+        from cost_tracker import record_cost
+        record_cost(api='youtube_upload', slug=slug)
+    except Exception as e:
+        print(f"  [!] record_cost falhou p/ {slug} (video_id={vid}): {e}", file=sys.stderr)
 
 
 _UPLOAD_CHUNK_RETRIES = 3   # retry POR CHUNK do upload resumável (backoff do googleapiclient)
@@ -155,16 +180,7 @@ def upload(video_path, roteiro_path):
     resp = _enviar(req)
     vid = resp['id']
     print(f"\nOK ✓  https://youtu.be/{vid}   (privacidade: {meta['privacidade']})")
-    try:
-        import pipeline_state
-        pipeline_state.mark_done(cfg['slug'], 'uploaded', data={'video_id': vid})
-    except Exception:
-        pass
-    try:
-        from cost_tracker import record_cost
-        record_cost(api='youtube_upload', slug=cfg['slug'])
-    except Exception:
-        pass
+    _registrar_upload(cfg['slug'], vid)
     # Pós-produção API (legendas + playlist temática) — best-effort, nunca derruba o upload.
     try:
         import youtube_pos

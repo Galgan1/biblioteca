@@ -22,10 +22,10 @@ def _fake_build(build, slug):
     cap = b / slug
     cap.mkdir(parents=True, exist_ok=True)
     (cap / "ch01.html").write_text("cap1", encoding="utf-8")
-    (cap / "script.js").write_text("//", encoding="utf-8")
     assets = b / "assets"
     assets.mkdir(parents=True, exist_ok=True)
     (assets / "style.css").write_text("x", encoding="utf-8")
+    (assets / "script-livro.js").write_text("// js unico", encoding="utf-8")
     (assets / "favicon.svg").write_text("<svg/>", encoding="utf-8")
     (assets / f"{slug}-capa.png").write_bytes(b"PNG")
     kit = assets / "kit" / slug
@@ -40,6 +40,7 @@ class TestPublish(unittest.TestCase):
             P.publish("meu-livro", build, live)
             L = Path(live)
             for rel in ("meu-livro.html", "books.json", "meu-livro/ch01.html",
+                        "assets/script-livro.js",  # JS unico compartilhado chega no live
                         "assets/kit/meu-livro/manifest.json", "assets/meu-livro-capa.png"):
                 self.assertTrue((L / rel).exists(), f"faltou no live: {rel}")
 

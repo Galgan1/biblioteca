@@ -75,6 +75,9 @@ class RoteiroCfg(BaseModel):
     tts_rate: float = Field(default=1.0, ge=0.5, le=1.5)
     musica: bool = True
     provider: Literal['base', 'google', 'fal', 'nvidia'] = 'base'
+    # movimento DESACOPLADO da imagem (imagem grátis + i2v pago só nas heróis); fallback soberano
+    motion_provider: Optional[Literal['fal-wan', 'fal-kling', 'veo']] = None
+    upscale: bool = False                                  # estágio 3 (opt-in, pago)
 
     # opcionais
     acento: Optional[str] = None

@@ -6,9 +6,11 @@ from pathlib import Path
 
 try:
     from circuit_breaker import circuit_breaker, retry, CircuitOpenError
+    from cost_tracker import budget_guard
 except ImportError:
     def circuit_breaker(**kw): return lambda f: f
     def retry(**kw): return lambda f: f
+    def budget_guard(**kw): return lambda f: f
     class CircuitOpenError(Exception): pass
 
 KEY = (Path(__file__).parent / '.secrets' / 'tts_api_key.txt').read_text(encoding='utf-8').strip()
@@ -21,6 +23,7 @@ def list_voices(lang='pt-BR'):
     return data.get('voices', [])
 
 
+@budget_guard(api='google_tts')   # catraca de teto FORA do retry/breaker (abort != falha de API)
 @retry(max_attempts=4, base_s=3.0)
 @circuit_breaker(api='google_tts', threshold=3, timeout_s=300)
 def synth(text, voice, out_mp3, rate=1.0, pitch=0.0, ssml=None):

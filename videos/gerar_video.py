@@ -293,17 +293,44 @@ def make_motion_clip(veo_mp4, overlay_png, mp3, dur, out_mp4, src_dur=None):
                    check=True, capture_output=True)
 
 
-def main(roteiro_path):
-    cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
+def _montar_clipe(mot, faz_movimento, faz_slide):
+    """Resiliência no laço (Akita pilar 8): tenta o clipe de movimento; se ele falhar
+    (3DGS/i2v malformado, ffmpeg crash), cai no slide estático. Uma cena NUNCA mata o
+    render de 5 min. Origem: 22/jun/26 um clipe 3DGS corrompido crashou o ffmpeg e
+    abortou o build inteiro na cena 2. Devolve 'movimento' ou 'slide' (p/ o log)."""
+    if mot:
+        try:
+            faz_movimento()
+            return 'movimento'
+        except Exception as e:
+            print(f"  [!] clipe de movimento falhou ({type(e).__name__}: {str(e)[:60]}) "
+                  f"— caindo p/ slide estático")
+    faz_slide()
+    return 'slide'
+
+
+def _validar_roteiro(roteiro_path):
+    """Guarda dura: roteiro inválido aborta ANTES de gastar API. Se contracts/pydantic
+    faltar, AVISA (não silencia) — uma guarda paga que some calada é pior que o ruído
+    (Akita pilar 7: regra em doc ≠ regra cumprida)."""
     try:
         from contracts import load_roteiro
-    except ImportError:
-        pass  # pydantic/contracts.py ausente no ambiente — sem validação
-    else:
-        # Guarda dura: roteiro inválido aborta ANTES de qualquer chamada de API paga.
-        load_roteiro(roteiro_path)
+    except ImportError as e:
+        print(f'[AVISO] contracts/pydantic ausente — roteiro NÃO validado, gasto de API '
+              f'SEM guarda ({e})', file=sys.stderr)
+        return
+    load_roteiro(roteiro_path)
+
+
+def main(roteiro_path):
+    cfg = json.loads(Path(roteiro_path).read_text(encoding='utf-8'))
+    _validar_roteiro(roteiro_path)
     slug = cfg['slug']
     import os as _os; _os.environ['PIPELINE_SLUG'] = slug
+    # Catraca de gasto (Akita pilar 8): liga o teto semanal p/ TODA chamada paga deste run
+    # (veo/imagen/tts têm @budget_guard). setdefault → respeita override do operador/CI.
+    import cost_tracker as _ct
+    _os.environ.setdefault('WEEKLY_BUDGET_USD', str(_ct.DEFAULT_WEEKLY_BUDGET_USD))
     accent = cfg.get('acento', marca.hex_of('ouro'))
     voice = cfg.get('voz', 'pt-BR-AntonioNeural')
     book_label = f"{cfg['titulo'].upper()}  ·  {cfg['autor'].upper()}"
@@ -336,6 +363,17 @@ def main(roteiro_path):
         if usa_mot:
             import veo
             mot_gen = veo.animate
+
+    # motion_provider DESACOPLA o movimento da imagem: imagem GRÁTIS (nvidia) + movimento
+    # pago só nas cenas-herói. Se a chamada paga falhar/sem budget, o try/except do loop
+    # cai no fallback SOBERANO (3DGS/DepthFlow/Ken Burns) — o pipeline nunca quebra.
+    _mp = cfg.get('motion_provider')
+    if usa_mot and _mp in ('fal-wan', 'fal-kling'):
+        import falgen
+        mot_gen = falgen.animate_wan if _mp == 'fal-wan' else falgen.animate
+    elif usa_mot and _mp == 'veo':
+        import veo
+        mot_gen = veo.animate
 
     import cinegrafista                                  # Cinegrafista NORMAL (parallax grátis / fallback Ken Burns)
     import splatting                                      # Cinegrafista 3D (3D Gaussian Splatting na GPU local)
@@ -371,6 +409,15 @@ def main(roteiro_path):
                     print(f"  [!] movimento falhou ({type(_me).__name__}: {str(_me)[:80]}) — usando Ken Burns")
                     mot = None
 
+        if mot and cfg.get('upscale'):                   # ESTÁGIO 3 (opt-in): upscale de IA só do clipe PAGO
+            import falgen
+            _up = MOTDIR / f'{slug}_{i:02d}_up.mp4'
+            try:
+                if _up.exists() or falgen.upscale_video(str(mot), str(_up)):
+                    mot = _up
+            except Exception as _ue:                     # nunca quebra o build pelo upscale
+                print(f"  [aviso] upscale pulado: {_ue}")
+
         # Cinegrafista 3D: imagem sem movimento pago → 3D Gaussian Splatting na GPU local
         # (cena 3D navegável, melhor profundidade). Dormente sem torch+CUDA + motor 3DGS.
         if not mot and bg and not mot_gen and splatting.gaussian_disponivel():
@@ -393,15 +440,15 @@ def main(roteiro_path):
         tts(cena['narracao'], voice, mp3, rate=cfg.get('tts_rate', 1.0))
         dur = MP3(mp3).info.length + TAIL
         durs.append(dur)
-        if mot:
-            make_overlay(cena, accent, i, n, book_label, png, side=side)
-            make_motion_clip(mot, png, mp3, dur, clip)
-        else:
-            make_slide(cena, accent, i, n, book_label, png, bg_path=bg, side=side)
-            make_clip(png, mp3, dur, clip, ken_burns=bool(bg), kb=i)
+        usou = _montar_clipe(
+            mot,
+            faz_movimento=lambda: (make_overlay(cena, accent, i, n, book_label, png, side=side),
+                                   make_motion_clip(mot, png, mp3, dur, clip)),
+            faz_slide=lambda: (make_slide(cena, accent, i, n, book_label, png, bg_path=bg, side=side),
+                               make_clip(png, mp3, dur, clip, ken_burns=bool(bg), kb=i)))
         clips.append(clip)
         print(f"  cena {i+1}/{n}: {dur:.1f}s  · {cena['titulo'][:40]}"
-              + ("  [movimento]" if mot else ""))
+              + (f"  [{usou}]" if mot else ""))
 
     # concat (vídeo + narração)
     listf = WORK / 'list.txt'

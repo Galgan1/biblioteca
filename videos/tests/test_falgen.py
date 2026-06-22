@@ -249,5 +249,82 @@ class TestDownload(unittest.TestCase):
             self.assertTrue(os.path.getsize(out) > 0)
 
 
+# ---------------------------------------------------------------------------
+# animate_wan() — Wan i2v (estágio 2 do pipeline barato)
+# ---------------------------------------------------------------------------
+
+class TestAnimateWanSucesso(_IsolateCB, unittest.TestCase):
+    def test_retorna_true_e_registra_custo_wan(self):
+        vid_url = 'https://cdn.fal.ai/wan.mp4'
+        with mock.patch.object(falgen, 'fal_client') as m_fal, \
+             mock.patch.object(falgen, '_download') as m_dl, \
+             mock.patch.object(falgen, '_record_cost') as m_cost:
+            m_fal.upload_file.return_value = 'https://storage.fal.ai/img.png'
+            m_fal.subscribe.return_value = {'video': {'url': vid_url}}
+            result = falgen.animate_wan('/tmp/img.png', 'movimento', '/tmp/out.mp4')
+        self.assertTrue(result)
+        m_dl.assert_called_once_with(vid_url, '/tmp/out.mp4')
+        m_cost.assert_called_once_with(api='fal-wan')
+        self.assertEqual(cb.get_circuit_state('fal-wan')['state'], 'closed')
+
+    def test_resposta_sem_url_retorna_false_wan(self):
+        with mock.patch.object(falgen, 'fal_client') as m_fal, \
+             mock.patch.object(falgen, '_download'), \
+             mock.patch.object(falgen, '_record_cost'):
+            m_fal.upload_file.return_value = 'https://storage.fal.ai/img.png'
+            m_fal.subscribe.return_value = {'video': {}}
+            result = falgen.animate_wan('/tmp/img.png', 'p', '/tmp/out.mp4')
+        self.assertFalse(result)
+        self.assertEqual(cb.get_circuit_state('fal-wan')['failures'], 0)
+
+
+class TestAnimateWanRetryEBreaker(_IsolateCB, unittest.TestCase):
+    def test_breaker_abre_apos_threshold_wan(self):
+        """Erro permanente + max_attempts=2 → 2 falhas (threshold=2) → circuit OPEN."""
+        with mock.patch.object(falgen, 'fal_client') as m_fal:
+            m_fal.upload_file.side_effect = RuntimeError('erro upload')
+            with self.assertRaises(RuntimeError):
+                falgen.animate_wan('/tmp/img.png', 'p', '/tmp/out.mp4')
+        self.assertEqual(cb.get_circuit_state('fal-wan')['state'], 'open')
+
+
+# ---------------------------------------------------------------------------
+# upscale_video() — estágio 3 (opt-in)
+# ---------------------------------------------------------------------------
+
+class TestUpscaleSucesso(_IsolateCB, unittest.TestCase):
+    def test_retorna_true_e_registra_custo_upscale(self):
+        vid_url = 'https://cdn.fal.ai/up.mp4'
+        with mock.patch.object(falgen, 'fal_client') as m_fal, \
+             mock.patch.object(falgen, '_download') as m_dl, \
+             mock.patch.object(falgen, '_record_cost') as m_cost:
+            m_fal.upload_file.return_value = 'https://storage.fal.ai/in.mp4'
+            m_fal.subscribe.return_value = {'video': {'url': vid_url}}
+            result = falgen.upscale_video('/tmp/in.mp4', '/tmp/out.mp4', scale=2)
+        self.assertTrue(result)
+        m_dl.assert_called_once_with(vid_url, '/tmp/out.mp4')
+        m_cost.assert_called_once_with(api='fal-upscale')
+        self.assertEqual(cb.get_circuit_state('fal-upscale')['state'], 'closed')
+
+    def test_resposta_sem_url_retorna_false_upscale(self):
+        with mock.patch.object(falgen, 'fal_client') as m_fal, \
+             mock.patch.object(falgen, '_download'), \
+             mock.patch.object(falgen, '_record_cost'):
+            m_fal.upload_file.return_value = 'https://storage.fal.ai/in.mp4'
+            m_fal.subscribe.return_value = {}
+            result = falgen.upscale_video('/tmp/in.mp4', '/tmp/out.mp4')
+        self.assertFalse(result)
+        self.assertEqual(cb.get_circuit_state('fal-upscale')['failures'], 0)
+
+
+class TestUpscaleRetryEBreaker(_IsolateCB, unittest.TestCase):
+    def test_breaker_abre_apos_threshold_upscale(self):
+        with mock.patch.object(falgen, 'fal_client') as m_fal:
+            m_fal.upload_file.side_effect = RuntimeError('erro')
+            with self.assertRaises(RuntimeError):
+                falgen.upscale_video('/tmp/in.mp4', '/tmp/out.mp4')
+        self.assertEqual(cb.get_circuit_state('fal-upscale')['state'], 'open')
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
