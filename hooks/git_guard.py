@@ -15,7 +15,11 @@ import json
 import re
 import sys
 
-ALVO = re.compile(r"\bgit\s+commit\b|\bgit\s+push\b|\bgh\s+pr\s+create\b")
+ALVO = re.compile(
+    r"\bgit\s+commit\b|\bgit\s+push\b|\bgh\s+pr\s+create\b"        # contrato nº1
+    r"|\bgit\s+clean\b|\bgit\s+reset\s+--hard\b"                    # destrutivos: apagam WIP
+    r"|\bgit\s+checkout\s+(?:--|\.)|\bgit\s+branch\s+-D\b"
+    r"|\bgit\s+filter-branch\b|\bgit\s+update-ref\s+-d\b")
 
 
 def main():
@@ -28,8 +32,9 @@ def main():
             "hookEventName": "PreToolUse",
             "permissionDecision": "deny",
             "permissionDecisionReason": (
-                "Contrato nº1 (constituição): só o GitGuy commita/pusha/cria PR. "
-                "Se você É o GitGuy, prefixe o comando com `GITGUY=1`."),
+                "Bloqueado: git de escrita/destrutivo (commit/push/PR/clean/reset --hard) "
+                "é só do GitGuy (contrato nº1 + anti-clean). Se você É o GitGuy, "
+                "prefixe o comando com `GITGUY=1` (e rode `git clean -nd` antes)."),
         }}))
     return 0
 

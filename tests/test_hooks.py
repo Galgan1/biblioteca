@@ -41,6 +41,18 @@ class TestGitGuard(unittest.TestCase):
     def test_comando_inocente_libera(self):
         self.assertNotIn("deny", _run(GIT, {"tool_input": {"command": "ls -la"}}).stdout)
 
+    def test_clean_bloqueia(self):  # o incidente que apagou _akita_pesquisa
+        self.assertIn("deny", _run(GIT, {"tool_input": {"command": "git clean -fdx"}}).stdout)
+
+    def test_reset_hard_bloqueia(self):
+        self.assertIn("deny", _run(GIT, {"tool_input": {"command": "git reset --hard HEAD~1"}}).stdout)
+
+    def test_gitguy_bypassa_clean(self):
+        self.assertNotIn("deny", _run(GIT, {"tool_input": {"command": "GITGUY=1 git clean -fdx"}}).stdout)
+
+    def test_trocar_branch_libera(self):  # checkout <branch> não é destrutivo de untracked
+        self.assertNotIn("deny", _run(GIT, {"tool_input": {"command": "git checkout main"}}).stdout)
+
     def test_stdin_invalido_failopen(self):
         p = subprocess.run([sys.executable, str(GIT)], input="nao eh json",
                            capture_output=True, text=True)
