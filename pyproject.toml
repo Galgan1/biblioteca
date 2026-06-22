@@ -1,0 +1,15 @@
+# Config ruff — CONFIG-FIRST (Akita pilar 5). RECRIADO 21/jun (a versão anterior,
+# untracked, foi varrida por um `git clean` — virou trabalho-fantasma).
+# ⚠️ GitGuy: COMMITAR este arquivo (senão some de novo no próximo clean).
+# A config existe ANTES de ligar o gate de lint, para a master não nascer vermelha.
+# O reformat em massa é um commit mecânico ÚNICO do GitGuy, com a árvore quieta.
+# *_data.py = fonte-da-verdade autoral (tabelas alinhadas); excluído por contrato.
+
+[tool.ruff]
+extend-exclude = ["*_data.py", "_legado", "node_modules", ".venv", "videos/_*", "videos/_blender"]
+
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "B", "UP"]
+
+[tool.ruff.format]
+quote-style = "preserve"
