@@ -40,7 +40,7 @@ def bloco(titulo, compras):
             if len(compras) == 1 else
             "Alguns links acima são de afiliado — posso ganhar comissão por compras qualificadas, sem custo extra para você.")
     return f"""{INI}
-        <section class="amazon-cta">
+        <section class="amazon-cta" aria-label="Comprar o livro">
             <p class="amazon-cta-text">Gostou do resumo? Leia <strong>{t}</strong> na íntegra:</p>
 {botoes}
             <p class="amazon-cta-disc">{disc}</p>

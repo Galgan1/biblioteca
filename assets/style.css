@@ -578,7 +578,8 @@ body {
 }
 .chapter-nav-link[rel="next"] { align-items: flex-end; text-align: right; }
 .chapter-nav-link .cn-lab {
-    display: inline-flex; align-items: center; gap: 5px; opacity: 0.7;
+    display: inline-flex; align-items: center; gap: 5px;
+    /* sem opacity: a 0.7 derrubava o contraste do rótulo abaixo de AA (axe sério) */
     font-family: var(--font-display); font-size: 0.625rem; font-weight: 500;
     letter-spacing: 0.09em; text-transform: uppercase; color: var(--gray-dark); line-height: 1;
 }
@@ -677,7 +678,7 @@ body {
     line-height: 1.5;
     margin: 0.9rem auto 0;
     max-width: 52ch;
-    opacity: 0.8;
+    /* sem opacity: a opacidade derrubava o contraste do gray-dark abaixo de AA (axe sério) */
 }
 
 /* --- Estante: link de compra discreto por card (aparece no hover) --- */

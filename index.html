@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="assets/style.css?v=20260622a">
+    <link rel="stylesheet" href="assets/style.css?v=20260622b">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <meta name="theme-color" content="#fcfdfc" media="(prefers-color-scheme: light)">
@@ -693,17 +693,20 @@
             <p class="header-subtitle">Livros inteiros, destilados numa página</p>
         </header>
 
-        <!-- Library Controls -->
-        <div class="library-controls animate-entrance" style="--i: 0">
-            <input type="search" id="searchInput" class="search-input" placeholder="Pesquisar livros por título ou autor…" aria-label="Pesquisar livros">
-            <div class="status-toggle" id="statusToggle" role="group" aria-label="Filtrar por status"></div>
-        </div>
+        <!-- Navegação do acervo (busca + filtros + trilhas) num landmark <nav> p/ A11y:
+             o axe acusava .library-controls/.trilhas fora de landmark (region). -->
+        <nav class="acervo-nav" aria-label="Buscar e navegar o acervo">
+            <div class="library-controls animate-entrance" style="--i: 0">
+                <input type="search" id="searchInput" class="search-input" placeholder="Pesquisar livros por título ou autor…" aria-label="Pesquisar livros">
+                <div class="status-toggle" id="statusToggle" role="group" aria-label="Filtrar por status"></div>
+            </div>
 
-        <!-- Trilhas de leitura — seção discreta e colapsável -->
-        <details class="trilhas-section animate-entrance" style="--i: 1" id="trilhasSection" open>
-            <summary class="trilhas-toggle">Trilhas de leitura <span class="trilhas-arrow">▾</span></summary>
-            <div class="trilhas-row" id="trilhasChips" role="group" aria-label="Trilhas de leitura"></div>
-        </details>
+            <!-- Trilhas de leitura — seção discreta e colapsável -->
+            <details class="trilhas-section animate-entrance" style="--i: 1" id="trilhasSection" open>
+                <summary class="trilhas-toggle">Trilhas de leitura <span class="trilhas-arrow">▾</span></summary>
+                <div class="trilhas-row" id="trilhasChips" role="group" aria-label="Trilhas de leitura"></div>
+            </details>
+        </nav>
 
         <!-- Estante: lista única ranqueada por likes, injetada pelo script.js -->
         <main class="library" id="bookshelf">
@@ -718,6 +721,6 @@
     </div>
 
     <script defer src="busca.js"></script>
-    <script defer src="script.js?v=20260622a"></script>
+    <script defer src="script.js?v=20260622b"></script>
 </body>
 </html>
