@@ -48,8 +48,16 @@ def short_desc(parent):
             f"#Shorts #livros #resumo #minutoreal")
 
 
+def _short_privacidade(cfg):
+    """Short herda youtube.privacidade do roteiro (consistente com o longo). Default
+    'unlisted' (preserva o drip p/ livros que não pedem público). Bug jun/26: era
+    hardcoded 'unlisted' -> Shorts nunca publicavam mesmo com o longo público."""
+    return cfg.get('youtube', {}).get('privacidade', 'unlisted')
+
+
 def main(slug, parent):
     cfg = json.loads((ROOT / 'roteiros' / f'{slug}.json').read_text(encoding='utf-8'))
+    priv = _short_privacidade(cfg)
     tags = cfg.get('youtube', {}).get('tags', [])[:8] + ['shorts']
     idxs = hero_idxs(cfg)
     print(f"Cenas-herói de '{slug}': {idxs}")
@@ -77,7 +85,7 @@ def main(slug, parent):
         body = {
             'snippet': {'title': short_title(cena), 'description': short_desc(parent),
                         'tags': tags, 'categoryId': '27', 'defaultLanguage': 'pt-BR'},
-            'status': {'privacyStatus': 'unlisted', 'selfDeclaredMadeForKids': False,
+            'status': {'privacyStatus': priv, 'selfDeclaredMadeForKids': False,
                        'containsSyntheticMedia': True},
         }
         media = MediaFileUpload(str(path), mimetype='video/mp4', resumable=True, chunksize=1024 * 1024)

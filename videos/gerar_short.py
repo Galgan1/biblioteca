@@ -160,7 +160,7 @@ def make_cover(cena, accent, cfg, out_png, bg_src=None):
     img.save(out_png)
 
 
-def main(slug, idx):
+def main(slug, idx, intro='gongo', out_name=None):
     cfg = json.loads((ROOT / 'roteiros' / f'{slug}.json').read_text(encoding='utf-8'))
     cena = cfg['cenas'][idx]
     accent = cfg.get('acento', gv.marca.hex_of('ouro'))
@@ -169,11 +169,12 @@ def main(slug, idx):
 
     bg_src = ROOT / '_img' / f'{slug}_{idx:02d}.png'   # existe só em vídeo cinema
 
-    # re-sintetiza a narração desta cena com a MESMA voz do longo (pausas SSML via gv.tts)
+    # re-sintetiza a narração com a MESMA voz do longo — incl. voz POR CENA (slogans em
+    # voz feminina, p.ex.), p/ o short bater com o longo. Usa o mesmo gate que o gerar_video.
+    voz, rate = gv._voz_cena(cena, cfg.get('voz', 'pt-BR-Chirp3-HD-Iapetus'), cfg.get('tts_rate', 1.0))
     mp3 = SH / f'{slug}_{idx:02d}_aud.mp3'
     if not mp3.exists():
-        gv.tts(cena['narracao'], cfg.get('voz', 'pt-BR-Chirp3-HD-Iapetus'),
-               mp3, rate=cfg.get('tts_rate', 1.0))
+        gv.tts(cena['narracao'], voz, mp3, rate=rate)
 
     COVER = 2.4    # capa de marca segurada na ABERTURA p/ a vitrine do IG (thumb_offset@1500ms cai aqui)
     LEAD = 0.45   # respiro de entrada: a 1ª palavra só entra DEPOIS do fade-in da cena
@@ -195,9 +196,9 @@ def main(slug, idx):
     bed_wav = SH / f'{slug}_{idx:02d}_bed.wav'
     sa.short_bed(COVER + dur, COVER, LEAD, bed_wav, seed=idx + 7,
                  energia=cfg.get('musica_energia', 0.6),
-                 reveals=_reveal_offsets(cena, COVER + LEAD, voz_len))
+                 reveals=_reveal_offsets(cena, COVER + LEAD, voz_len), intro=intro)
 
-    out = SH / f'{slug}_{idx:02d}.mp4'
+    out = SH / (f'{out_name}.mp4' if out_name else f'{slug}_{idx:02d}.mp4')
     # [3] = frame de capa de marca, segurado COVER s na abertura (vitrine do IG),
     # depois concatena a cena animada. O áudio = voz (após a capa+respiro) + leito [4].
     vf = (f"[0:v]scale=1188:2112,zoompan=z='min(zoom+0.0008,1.12)':d={nf}:"

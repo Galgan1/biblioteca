@@ -27,6 +27,9 @@ except ImportError:                    # ambiente sem o módulo → no-op (não 
         return lambda f: f
 
 
+_MIN_IMG_BYTES = 20000   # PNG abaixo disso = placeholder de moderação (~6KB), não imagem real
+
+
 class _TransitorioNIM(Exception):
     """Erro NIM retentável (5xx/429/408/timeout). Taxonomia: TRANSITÓRIO → @retry resolve.
     Origem: 22/jun/26 um 500 isolado matou um render de 5 min na cena 5 (gen sem retry)."""
@@ -83,6 +86,10 @@ def gen_image(prompt, out_png, model='black-forest-labs/flux.1-dev',
     out = Path(out_png)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_bytes(base64.b64decode(b64))
+    if out.stat().st_size < _MIN_IMG_BYTES:   # anti-fantasma: 200 com PNG ~6KB = placeholder de MODERAÇÃO
+        print(f'  [nvidia] imagem degenerada ({out.stat().st_size}B) — provável moderação; descartada')
+        out.unlink(missing_ok=True)           # não deixa cache envenenado
+        return None
     print('OK ->', out, f'({out.stat().st_size // 1024} KB)')
     return str(out)
 

@@ -9,9 +9,10 @@ desliza antes da 1ª palavra. Os 3 autores-juízes convergiram nessa lacuna:
   - Sonnenschein: silêncio sem contraste não é gancho — é ausência.
 
 short_bed() desenha o leito de engajamento, tudo procedural/numpy (soberano):
-  - HOOK 0→capa: riser acusmático que CONSTRÓI e termina no corte (antecipação
-    que NÃO resolve — Lembke; valor acrescentado/temporalização — Chion).
-  - ACENTO no corte capa→cena: knock grave colado no corte (SÍNCRESE — Chion).
+  - INTRO (22/jun, pedido do André): UM impacto grave — gongo OU tambor — no
+    CONTRA-TEMPO (meia batida antes do corte capa→cena), no lugar do leito de hook
+    empilhado (riser+knock, que ficou "não legal"). A cauda do impacto vetoriza por
+    cima do corte (temporalização — Chion) sem a camada cheia anterior.
   - LEITO sob a voz: sub-grave 40–55 Hz pulsante, ABAIXO da faixa da fala
     (VOZ SOBERANA), com gain baixo e curva de VETORIZAÇÃO (sobe rumo a ~75% e
     resolve) — o Short "puxa" em vez de "apresentar".
@@ -30,27 +31,45 @@ SR = 44100
 MARCA = Path(__file__).parent / '_marca_sonora'
 
 
-def _riser(n):
-    """Sweep + ar com brilho crescente que dispara rumo ao corte — antecipação."""
-    t = np.arange(n) / SR
-    d = max(1e-6, n / SR)
-    env = 0.20 + 0.80 * (t / d) ** 2.0                  # presença imediata que CONSTRÓI
-    sweep = np.sin(2 * np.pi * (180 + 560 * (t / d) ** 1.7) * t)
-    rng = np.random.default_rng(5)
-    air = np.cumsum(rng.standard_normal(n)) / np.sqrt(np.arange(1, n + 1))
-    air /= (np.max(np.abs(air)) + 1e-9)                 # ruído rosa-ish (brilho)
-    return (sweep * 0.55 + air * 0.40) * env
+def _fade_out(sig, secs):
+    """Fade-out meio-cosseno nos últimos `secs`s: a cauda do impacto MORRE em silêncio
+    real, sem corte seco (o array terminava em ~7% de amplitude = clique). Conexão natural
+    impacto→fala. Pedido do André (22/jun)."""
+    n = min(len(sig), max(1, int(SR * secs)))
+    sig[-n:] *= np.cos(np.linspace(0, np.pi / 2, n)) ** 2     # 1→0 suave
+    return sig
 
 
-def _knock(peak=0.6, f0=80.0):
-    """Acento grave de síncrese no corte (porta seca + glide → punch)."""
-    n = int(SR * 0.32)
+def _gongo(peak=0.66, f0=56.0, dur=1.7):
+    """Gongo grave: parciais INARMÔNICOS (timbre metálico) com os graves dominando,
+    ataque rápido (sem clique) e cauda CONTROLADA que vetoriza por cima do corte mas
+    resolve antes de disputar com a voz (voz soberana). Pedido do André (22/jun)."""
+    n = int(SR * dur)
     t = np.arange(n) / SR
-    pitch = f0 * (1 + 0.8 * np.exp(-t / 0.03))
-    body = np.sin(2 * np.pi * np.cumsum(pitch) / SR) * np.exp(-t / 0.10)
-    a = int(SR * 0.0015)
-    body[:a] *= np.linspace(0, 1, a)                    # mata o clique de DC
-    return body / (np.max(np.abs(body)) + 1e-9) * peak
+    ratios = (1.0, 2.0, 2.76, 3.76, 5.40)              # razões de placa/gongo (inarmônicas)
+    gains = (1.0, 0.42, 0.24, 0.13, 0.08)              # graves pesam mais → "grave de verdade"
+    sig = sum(g * np.sin(2 * np.pi * f0 * r * t) for r, g in zip(ratios, gains))
+    sig *= (1 + 0.05 * np.sin(2 * np.pi * 3.1 * t))    # shimmer/batimento leve
+    env = np.exp(-t / (dur * 0.38))                    # cauda controlada (resolve ~1,7s)
+    atk = int(SR * 0.012)
+    env[:atk] *= np.linspace(0, 1, atk)               # ataque sem clique de DC
+    sig *= env
+    return _fade_out(sig / (np.max(np.abs(sig)) + 1e-9) * peak, 0.5)   # cauda morre suave p/ a fala
+
+
+def _tambor_grave(peak=0.85, f0=60.0, dur=0.95):
+    """Tambor grave (taiko/surdo): fundamental baixo com GLIDE de pitch (punch), corpo
+    focado e cauda média seca. Alternativa ao gongo p/ o impacto de contra-tempo."""
+    n = int(SR * dur)
+    t = np.arange(n) / SR
+    pitch = f0 * (1 + 1.2 * np.exp(-t / 0.05))        # glide descendente = soco de tambor
+    fase = 2 * np.pi * np.cumsum(pitch) / SR
+    body = np.sin(fase) + 0.25 * np.sin(2 * fase)     # 2º harmônico p/ corpo
+    env = np.exp(-t / (dur * 0.28))
+    atk = int(SR * 0.002)
+    env[:atk] *= np.linspace(0, 1, atk)               # mata o clique
+    body *= env
+    return _fade_out(body / (np.max(np.abs(body)) + 1e-9) * peak, 0.25)   # cauda morre suave p/ a fala
 
 
 def _tick(peak=0.22, f0=1400.0):
@@ -119,7 +138,8 @@ def _marca(name, gain, marca_dir):
     return raw.astype(np.float64) / 32768 * gain
 
 
-def short_bed(total, cover, lead, out_wav, seed=7, energia=0.6, marca_dir=MARCA, reveals=None):
+def short_bed(total, cover, lead, out_wav, seed=7, energia=0.6, marca_dir=MARCA,
+              reveals=None, intro='gongo'):
     """Desenha e grava o leito de engajamento do Short (WAV mono 44.1k).
 
     total: duração total do short (s); cover: janela da capa de marca (s);
@@ -131,27 +151,21 @@ def short_bed(total, cover, lead, out_wav, seed=7, energia=0.6, marca_dir=MARCA,
     energia = max(0.0, min(1.0, energia))
     n = int(total * SR)
     buf = np.zeros(n, dtype=np.float64)
+    beat = 60.0 / (60.0 + 18.0 * energia)
 
-    # HOOK — riser na janela da capa, termina no corte (antecipação que não resolve)
-    nh = max(1, int(cover * SR))
-    _overlay(buf, _riser(nh) * 0.6, 0.0)
-    riser_marca = _marca('04_riser', 0.5, marca_dir)
-    if riser_marca is not None:
-        _overlay(buf, riser_marca, max(0.0, cover - len(riser_marca) / SR + 0.05))
+    # INTRO — UM impacto grave (gongo|tambor) no CONTRA-TEMPO CEDO (off-beat da 1ª batida)
+    # que RESSOA até a fala: a voz EMERGE da cauda decaindo (overlap), sem o gap de silêncio
+    # que soava desconexo. Pedido do André (22/jun): "acerte o timing". A duração é medida
+    # da posição do impacto até ~0,3s DEPOIS da entrada da voz (cover+lead) → conexão contínua.
+    pos = beat * 0.5
+    span = (cover + lead) - pos + 0.30
+    hit = _tambor_grave(dur=span) if intro == 'tambor' else _gongo(dur=span)
+    _overlay(buf, hit, pos)
 
-    # ACENTO de síncrese no corte capa→cena
-    _overlay(buf, _knock(0.6), max(0.0, cover - 0.04))
-    impacto = _marca('05_impacto', 0.5, marca_dir)
-    if impacto is not None:
-        _overlay(buf, impacto, max(0.0, cover - 0.06))
-
-    # SILÊNCIO FUNCIONAL: respiro após o acento antes do leito subir — o impacto pousa
-    # no vazio (Sonnenschein) e a voz "emerge" do silêncio (acusmêtre — Chion).
-    gap = 0.40
-    body_start = cover + gap
+    # LEITO sob a voz (corpo) — soberano-safe, bem abaixo da voz; sobe rumo ao clímax.
+    body_start = cover + 0.40
     nb = n - int(body_start * SR)
     if nb > 0:
-        beat = 60.0 / (60.0 + 18.0 * energia)
         bed = _tension(nb, energia, beat) * _vetor(nb) * 0.12
         _overlay(buf, bed, body_start)
 

@@ -4,8 +4,9 @@
 Antes deste arquivo o orquestrador tinha 0 cobertura (A2_testes nº2). Cobre:
   - `validate()`: o schema-guard que ABORTA cedo (antes de gastar geração) em
     `<slug>_data.py` malformado;
-  - a SEQUÊNCIA do contrato "Verificação Editorial": o step-1b
-    (`verificar_conteudo --fix`) roda ANTES de gerar qualquer página.
+  - o contrato "Verificação Editorial" (opt-in, ajuste de custo): o step-1b
+    (`verificar_conteudo --fix`, que chama o Claude por capítulo) só roda com
+    `--verify` e, quando roda, precede a geração; SEM a flag não é chamado.
 
 unittest.TestCase p/ entrar no gate canônico `python testar.py`.
 """
@@ -88,10 +89,11 @@ class TestValidate(unittest.TestCase):
             P.validate(slug)
 
 
-class TestStep1bAntesDeGerar(unittest.TestCase):
-    """Contrato 'Verificação Editorial': a checagem de fidelidade roda ANTES da geração."""
+class TestStep1bEditorialOptIn(unittest.TestCase):
+    """Contrato 'Verificação Editorial' (opt-in, ajuste de custo): o step-1b chama o
+    Claude por capítulo, então só roda com --verify; sem a flag, não é invocado."""
 
-    def test_verificar_conteudo_roda_antes_de_gerar_livro(self):
+    def _rodar(self, argv):
         order = []
         B = {"title": "T", "author": "A", "cover": "x"}
         CH = [{"slug": "ch01", "cards": [{}]}]
@@ -99,7 +101,7 @@ class TestStep1bAntesDeGerar(unittest.TestCase):
         def fake_run(cmd, cwd=None):
             order.append(" ".join(str(c) for c in cmd))
 
-        with mock.patch.object(sys, "argv", ["publicar_livro.py", "zz-ord"]), \
+        with mock.patch.object(sys, "argv", argv), \
              mock.patch.object(P, "validate", return_value=(B, CH)), \
              mock.patch.object(P, "run", side_effect=fake_run), \
              mock.patch.object(P, "ensure_cover"), \
@@ -107,14 +109,24 @@ class TestStep1bAntesDeGerar(unittest.TestCase):
              mock.patch.object(gerar_livro, "main",
                                side_effect=lambda s: order.append("GERAR_LIVRO")):
             P.main()
+        return order
 
+    def test_com_verify_roda_antes_de_gerar(self):
+        order = self._rodar(["publicar_livro.py", "zz-ord", "--verify"])
         joined = "\n".join(order)
         self.assertIn("verificar_conteudo.py", joined)
         self.assertIn("--fix", joined)                       # corrige cirurgicamente
         i_verif = next(i for i, c in enumerate(order) if "verificar_conteudo.py" in c)
         i_gerar = order.index("GERAR_LIVRO")
         self.assertLess(i_verif, i_gerar,
-                        f"verificar_conteudo deve preceder a geração; ordem={order}")
+                        f"com --verify, 1b precede a geracao; ordem={order}")
+
+    def test_sem_verify_nao_chama_o_modelo(self):
+        # Regressão do vazamento de custo: publicação normal NÃO pode invocar o Claude.
+        order = self._rodar(["publicar_livro.py", "zz-ord"])
+        self.assertNotIn("verificar_conteudo.py", "\n".join(order),
+                         f"sem --verify nao deve chamar o LLM; ordem={order}")
+        self.assertIn("GERAR_LIVRO", order)  # mas a geracao segue normal
 
 
 if __name__ == "__main__":

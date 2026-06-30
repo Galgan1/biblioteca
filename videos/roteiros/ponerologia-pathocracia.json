@@ -1,0 +1,118 @@
+{
+  "slug": "ponerologia-pathocracia",
+  "titulo": "Ponerologia Política",
+  "autor": "Andrzej Łobaczewski",
+  "voz": "eleven:xNGAXaCH8MaasNuo7Hr7",
+  "tts_rate": 1.0,
+  "acento": "#a04848",
+  "musica": true,
+  "musica_energia": 0.42,
+  "provider": "fal",
+  "motion_provider": "fal-wan",
+  "shorts": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  "estilo_img": "cinematic allegorical digital painting, cold desaturated palette of grey, slate blue and muted crimson, austere monumental architecture, dramatic low-key lighting, volumetric haze, symbolic and solemn mood, no recognizable real people, no real symbols, no flags, no text, no letters, no words, no watermark, highly detailed, wide cinematic composition",
+  "youtube": {
+    "titulo": "PATHOCRACIA: o que acontece quando psicopatas capturam o poder | Ponerologia, Łobaczewski",
+    "descricao": "O conceito mais perturbador de Ponerologia Política, de Andrzej Łobaczewski: a PATHOCRACIA — o estágio em que uma minoria patológica captura o aparelho de um Estado inteiro e o governa contra a própria população.\n\nO governo dos patológicos • O spellbinder • A ponerogênese • A máscara ideológica • A captura do Estado • A inversão institucional • A seleção da mediocridade • O custo do medo • A duplicidade • Feroz por fora, frágil por dentro • A defesa: reconhecer para resistir.\n\n⚠️ Vídeo de análise psicológica e social, em chave DEFENSIVA e clínica — Łobaczewski era psiquiatra e escreveu sob o totalitarismo, para que pessoas comuns reconheçam o processo e resistam a ele. Não é um manual, nem um rótulo para adversários. Banalizar o termo destrói o seu valor diagnóstico.\n\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n🎙 Narração e imagens geradas por IA.\n\n#ponerologia #pathocracia #lobaczewski #psicologia #resumoDeLivro",
+    "tags": ["ponerologia", "pathocracia", "lobaczewski", "psicologia do mal", "psicopatia", "totalitarismo", "resumo de livro", "filosofia política"],
+    "privacidade": "public"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Pathocracia",
+      "subtitulo": "Ponerologia · Łobaczewski",
+      "img": "a lone scholar's silhouette at a wooden desk in a dim room at night under a single warm lamp, writing in a notebook, long shadows stretching across a bare wall, solemn and contemplative atmosphere, desaturated cold palette, cinematic",
+      "motion": "Very slow cinematic push-in toward the writing scholar; the warm lamp glows softly; thin haze drifts in the dim light; shadows shift slowly; solemn, minimal ambient motion.",
+      "narracao": "Um psiquiatra que viveu sob o totalitarismo fez uma pergunta perigosa. E se o mal no poder não fosse uma ideologia, mas uma doença? Łobaczewski deu um nome ao estágio final desse processo: pathocracia. O governo dos patológicos. Não para acusar ninguém, mas para que pessoas comuns reconheçam o padrão, e resistam a ele."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Tese",
+      "titulo": "O governo dos patológicos",
+      "img": "a vast cold austere stone hall, a tiny group of faceless figures gathered at the center on a high platform, a uniform grey crowd standing below filling the floor, monumental solemn scale, desaturated, allegorical, no recognizable faces",
+      "motion": "Slow downward camera drift over the immense hall; the grey crowd shifts almost imperceptibly; cold light falls in shafts; faint dust in the air; solemn, still grandeur.",
+      "narracao": "A pathocracia é o estágio terminal. Uma pequena minoria de indivíduos que não sentem os laços morais normais captura o centro do poder e o exerce contra a própria população. Eles usam a maioria como recurso, e a ideologia como máscara. E a maioria os subestima, porque não consegue imaginar uma mente assim."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Enfeitiçador",
+      "titulo": "O spellbinder",
+      "img": "a faceless speaker on a raised platform lit by a single dramatic shaft of light, a still grey crowd below all turned toward him, solemn and tense atmosphere, cold desaturated palette, allegorical, no banners, no symbols",
+      "motion": "The shaft of light pulses gently on the speaker; the crowd sways slowly as if drawn in; faint haze in the beam; solemn, slow ambient motion.",
+      "narracao": "Tudo começa com uma figura magnética: o spellbinder, o enfeitiçador. Um indivíduo carismático que hipnotiza seguidores com uma visão total, que parece explicar tudo. Ele não convence pela razão. Fascina. E quem aponta a contradição é tratado como inimigo da causa. O feitiço é coletivo, e quem está dentro não o percebe."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · A Contaminação",
+      "titulo": "Como um grupo adoece",
+      "img": "a long line of grey human figures, half of them slowly shaded darker as a soft shadow passes down the row, a quiet spreading change, cold clinical allegory, desaturated, symbolic",
+      "motion": "The soft shadow spreads slowly figure by figure down the line; faint haze drifts; a quiet creeping change; slow, inevitable motion.",
+      "narracao": "Łobaczewski chama o processo de ponerogênese: a gênese do mal. Um grupo saudável adoece passo a passo. O núcleo patológico atrai os ressentidos e os fracassados. As falhas morais são reinterpretadas como virtudes. E, sem perceber, o grupo inteiro se converte em veículo do processo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Disfarce",
+      "titulo": "A máscara ideológica",
+      "img": "a serene golden ceremonial mask held up in front of a shadowed hollow featureless face, a noble disguise over emptiness, dramatic chiaroscuro, symbolic, cold palette with a single warm golden mask",
+      "motion": "The golden mask is slowly raised into place over the hollow face; subtle glints on the gold; shadow shifts behind it; symbolic, deliberate, slow motion.",
+      "narracao": "Nenhuma captura se sustenta sem um disfarce nobre. Uma ideia generosa — justiça, igualdade, ordem — vira a máscara. O ideal original é esvaziado por dentro; os lemas continuam, mas agora cobrem o oposto do que prometiam. A máscara serve para recrutar os idealistas sinceros, que dão à coisa um rosto bonito."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · A Captura",
+      "titulo": "Quando o Estado é tomado",
+      "img": "dark climbing ivy slowly covering the tall columns of a grand classical institutional building, a quiet overtaking of the structure, cold desaturated palette, allegorical, solemn",
+      "motion": "The dark ivy creeps slowly up the columns; cold mist rolls at the base; the light dims gradually; solemn, encroaching, slow motion.",
+      "narracao": "A associação cresce até tomar o aparelho do Estado. Os tribunais, a imprensa, as escolas, a ciência. Quando o núcleo patológico ocupa o centro de um país inteiro, nasce a pathocracia. Não é mais um grupo doente. É uma sociedade inteira governada contra si mesma."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Inversão",
+      "titulo": "A forma sobrevive ao conteúdo",
+      "img": "the pristine intact marble facade of a grand classical hall on the outside, but hollow and empty within, a stark contrast of perfect form and inner emptiness, cold symbolic lighting, still and quiet",
+      "motion": "Slow camera move revealing the hollow empty interior behind the intact facade; dust drifts in cold shafts of light; quiet emptiness; slow, unsettling motion.",
+      "narracao": "Aqui está a chave do diagnóstico. As instituições continuam com os mesmos nomes — justiça, imprensa, ciência. Mas a função se inverte: passam a servir ao núcleo, não ao público. O tribunal existe, mas absolve o culpado e condena o crítico. A forma permanece intacta. O conteúdo foi esvaziado."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Seleção",
+      "titulo": "A mediocridade sobe",
+      "img": "a grand staircase where many identical grey figures climb upward in line while a single distinct upright figure is quietly set apart at the edge, ascent by sameness over merit, cold allegory, solemn",
+      "motion": "The grey figures climb the staircase steadily; the distinct figure is gently moved aside; cold light from above; solemn, deliberate motion.",
+      "narracao": "Num regime assim, promove-se por lealdade e cumplicidade, nunca por competência. O talento íntegro é afastado, ou eliminado. A mediocridade leal sobe. E os cargos se enchem de pessoas que devem tudo ao sistema, e que por isso jamais o trairão. A incompetência não é um defeito do regime. É o seu cimento."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · O Custo",
+      "titulo": "A minoria governa pelo medo",
+      "img": "a single large stylized eye symbol set high in a cold grey sky above a small quiet crowd standing in an empty stone plaza, a sense of constant watching, monumental scale, desaturated, allegorical",
+      "motion": "The large eye slowly scans across the plaza; the small crowd draws together; cold wind stirs faint dust; solemn, watchful, slow motion.",
+      "narracao": "A pathocracia nunca tem o apoio sincero da maioria. Ela se sustenta por medo, vigilância, cooptação e, acima de tudo, pela paralisia das pessoas normais — o receio, o conformismo, o autoengano. Governar contra a própria natureza humana custa caro. Por isso ela vigia tanto, e gasta tanta energia em controle."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · A Duplicidade",
+      "titulo": "Pensar uma coisa, dizer outra",
+      "img": "rows of grey identical figures each wearing a calm blank mask while their cast shadows on the wall behind show different troubled expressions, a quiet double life, cold clinical allegory, symbolic",
+      "motion": "The masked figures stand still while their shadows on the wall shift subtly; cold flickering light; the contrast breathes slowly; quiet, unsettling ambient motion.",
+      "narracao": "Para sobreviver, a população aprende a se duplicar. Pensa uma coisa e diz outra. Sorri por fora e teme por dentro. O absurdo vira rotina, e a mentira vira o ar que se respira. Essa duplicidade constante é o preço diário que cada pessoa paga para não ser notada."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · A Fragilidade",
+      "titulo": "Feroz por fora, frágil por dentro",
+      "img": "a massive solemn iron statue cracking and hollow within, an imposing outer surface revealing an empty core, cold desaturated palette, heavy grey sky, symbolic",
+      "motion": "Cracks spread slowly across the iron statue; dust falls from the fissures; the hollow interior is glimpsed; heavy grey sky drifts; slow, foreboding motion.",
+      "narracao": "Mas há uma esperança nessa lógica. Porque contraria a natureza da maioria, a pathocracia é estruturalmente frágil e improdutiva. Feroz por fora, oca por dentro. Durar não é ser legítimo — é apenas controlar. E nenhum controle sustenta para sempre um sistema que serve a tão poucos contra tantos."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "A Defesa",
+      "subtitulo": "Reconhecer para resistir",
+      "img": "a single warm candle being lit in deep cold darkness held by an ordinary person, others nearby lighting their own candles from its flame, warm light gently spreading and pushing back the dark, hopeful, allegorical, warm light against cold dark",
+      "motion": "One candle is lit, then another and another spread the warm light through the darkness; the glow grows slowly; gentle hopeful motion; the cold dark recedes.",
+      "narracao": "Łobaczewski não escreveu para assustar, mas para imunizar. A defesa não é a violência: é o conhecimento espalhado. Reconhecer a inversão sob a forma intacta é o diagnóstico. E um aviso final: banalizar o termo, chamar todo adversário de pathocrata, destrói a própria defesa. O nome descreve uma doença social específica — não quem pensa diferente de você. Saber é o antídoto."
+    }
+  ]
+}

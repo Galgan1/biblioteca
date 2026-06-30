@@ -35,7 +35,7 @@ except ImportError:
 # Configuráveis por env. WAN = i2v (1080p) verificado VIVO em 22/jun/26 (smoke-test → 6 MB).
 # O antigo 'fal-ai/wan-v2.1/image-to-video' MORREU (404 "Application wan-v2.1 not found");
 # nomes atuais: wan-pro (1080p), wan/v2.2-5b (barato 720p), wan-i2v (base). Ver doutor de APIs.
-IMG_MODEL = os.environ.get('FAL_IMG_MODEL', 'fal-ai/flux-2/pro')
+IMG_MODEL = os.environ.get('FAL_IMG_MODEL', 'fal-ai/flux-2-pro')   # hífen! 'flux-2/pro' dá 404 "Path /pro not found"
 VID_MODEL = os.environ.get('FAL_VID_MODEL', 'fal-ai/kling-video/v3/pro/image-to-video')
 WAN_MODEL = os.environ.get('FAL_WAN_MODEL', 'fal-ai/wan-pro/image-to-video')
 UPSCALE_MODEL = os.environ.get('FAL_UPSCALE_MODEL', 'fal-ai/video-upscaler')

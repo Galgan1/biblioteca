@@ -25,8 +25,8 @@ Gate (o que a CI roda): **`python testar.py`** — `unittest discover` agrega `t
 **Contrato:** nenhuma imagem publicada pode contradizer o que o autor defendeu. A skill é a referência canônica.
 
 - **`verificar_conteudo.py <slug> [--fix]`**: carrega `~/.claude/skills/<slug>/` (SKILL.md + chapters/*.md) como referência; chama Claude UMA VEZ por capítulo; verifica `b`, `tip`, `lessons` contra a skill; com `--fix` corrige cirurgicamente o `_data.py` (backup `.py.bak` + validação de importabilidade).
-- **Integrado em `publicar_livro.py` como step 1b** (antes de gerar qualquer coisa): corrige o `_data.py`, recarrega o módulo (`del sys.modules[...]`), depois gera tudo — site + kit + carrossel + stories — com o conteúdo verificado.
-- **Resultado esperado:** ao clicar "publicar" no site, o `_data.py` é revisto automaticamente contra a skill antes de qualquer imagem ser gerada.
+- **No `publicar_livro.py` é step 1b OPT-IN (`--verify`)** — chama o Claude por capítulo (caro), então **NÃO roda em toda publicação/`--deploy`**: só com `--verify` (revisão de conteúdo novo/suspeito). Quando roda, corrige o `_data.py`, recarrega o módulo (`del sys.modules[...]`) e segue a geração. **Ajuste de custo 14/jun** (a verificação-em-todo-deploy queimou centenas de chamadas Sonnet nas republicações em lote); a integridade do que vai ao ar passa a ser garantida pelo gate estrutural **`valida_skill_lane.py`** (contrato em `tests/test_publicar_livro.py`).
+- **Resultado esperado:** publicação normal é barata (sem LLM); a revisão editorial contra a skill roda sob demanda com `--verify` (ou avulso: `python verificar_conteudo.py <slug> --fix`).
 
 ## Git — REGRA ABSOLUTA: não commitar, não fazer push
 
@@ -72,6 +72,14 @@ Mapa dos módulos do Criador de Vídeos (revisão Akita; detalhe em `AKITA-REVIS
 - **Pipeline de cena (custo escalonado):** imagem por `provider` (`nvidia` GRÁTIS / `google`/`fal` pago) → movimento por `motion_provider` **DESACOPLADO** (`fal-wan` i2v barato / `fal-kling` / `veo`) só nas cenas com `motion` (heróis) → `upscale:true` opcional (estágio 3 IA, pago; default é o lanczos grátis). REGRA: imagem default = grátis, movimento pago é exceção controlada, e **toda falha paga cai no fallback SOBERANO** (DepthFlow/3DGS/Ken Burns) pelo `try/except` do loop — o build NUNCA quebra por falta de budget. `WAN_MODEL`/`UPSCALE_MODEL` em `falgen` = **VERIFICAR em fal.ai ao ativar o billing** (nomes mudam).
 - **Som procedural (numpy puro):** `dsp.py` (low-cut→saturação→ar→reverb), `marca_sonora.py` (10 sons, Ré menor), `efeitos_transicao.py` (arco Fibonacci + `place_marca`). `_video_audio.py` = trilha (`sintetiza_ambiente`); `_video_tts.py` = voz (`_to_ssml`, `tts` fallback Eleven→Google→edge).
 - **`gerar_video.py` é orquestrador fino** (< 500 linhas): delega som a `_video_audio`/`_video_tts` — não reabsorva.
+- **Lições de produção (anti-repetição, 22/jun/26 — pilar 7: regra em doc ≠ cumprida):**
+  1. **SMOKE-TEST 1 cena antes do build inteiro de 5 min.** Os nomes de modelo do fal MUDAM e dão 404: `wan-v2.1`→`fal-ai/wan-pro/image-to-video`, `flux-2/pro`→`fal-ai/flux-2-pro` (hífen). Um smoke de 1 imagem/clipe pega isso antes de queimar 12 cenas. Idem voz (`eleven:<id>` → mp3 real).
+  2. **UM build por vez — NUNCA concorrente.** `_work/` é compartilhado (sem prefixo de slug → colisão) e o ffmpeg crasha por contenção sob carga (exit `3752568763`) com pythons órfãos. Mesma cena roda exit 0 sozinha. Limpeza de órfão = matar o **PID específico** (`taskkill //PID <pid> //T`), nunca `//IM python.exe` (mata bot Telegram/outras lanes).
+  3. **Saída degenerada = FALHA, não sucesso** (anti-fantasma): PNG < 20KB = placeholder de moderação → `nvidia.gen_image` descarta→None; clipe/ffmpeg que crasha → `_montar_clipe` cai no slide; imagem falha → slide escuro (nunca aborta o render).
+  4. **Tema sombrio/político → NVIDIA Flux grátis MODERA tudo (PNG vazio).** Usar `provider:"fal"` (flux-2-pro, mais permissivo); se ainda moderar, subir `safety_tolerance` (2→6) ANTES de rodar — não depois de gastar.
+  5. **Exit code honesto:** rodar `python ... > log 2>&1` (sem `| tee`, sem `; echo` — mascaram o código real do Python).
+  6. **Montar do que já existe:** clipes de cena ficam em `_work/c{NN}.mp4` (narração embutida); dá p/ fechar o vídeo (concat+trilha+master) SEM nenhuma chamada de API se o build morrer no fim.
+  7. Bug→teste de regressão SEMPRE: `tests/test_nvidia.py`, `tests/test_montar_clipe.py` nasceram destes erros.
 
 ## Normas de ofício (Akita) — detalhe na skill `akita`, aqui só os ganchos do projeto
 

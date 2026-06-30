@@ -1,0 +1,110 @@
+{
+  "slug": "arte-da-guerra-vencer-sem-lutar",
+  "titulo": "A Arte da Guerra",
+  "autor": "Sun Tzu",
+  "voz": "eleven:xNGAXaCH8MaasNuo7Hr7",
+  "tts_rate": 1.0,
+  "acento": "#d8a64a",
+  "musica": true,
+  "musica_energia": 0.5,
+  "shorts": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  "provider": "nvidia",
+  "estilo_img": "cinematic atmospheric digital painting, ancient China, muted antique gold and deep charcoal palette, dramatic volumetric fog and soft directional light, painterly brushwork, subtle film grain, epic somber contemplative mood, wide cinematic composition, highly detailed, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "A LIÇÃO PROIBIDA de Sun Tzu: como VENCER sem LUTAR | A Arte da Guerra (Cap. 3)",
+    "descricao": "O capítulo mais poderoso de A Arte da Guerra, de Sun Tzu: a Estratégia Ofensiva. Por que o verdadeiro mestre vence a guerra ANTES da batalha — e como isso se aplica a negócios, negociação e à sua vida.\n\nVencer sem lutar • A hierarquia dos quatro alvos • Nunca sitiar uma cidade • A matemática do combate • A coragem de recuar • O general como baluarte • Os três erros de quem manda • As cinco essências da vitória • Conhece o inimigo e a ti mesmo.\n\n📚 Biblioteca de André Galgani — https://www.andregalgani.com.br/biblioteca\n\n🎙 Narração e imagens geradas por IA.\n\n#arteDaGuerra #sunTzu #estrategia #vencerSemLutar #resumoDeLivro",
+    "tags": ["a arte da guerra", "sun tzu", "estratégia", "vencer sem lutar", "estratégia ofensiva", "resumo de livro", "filosofia", "liderança", "negociação"],
+    "privacidade": "public"
+  },
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Vencer Sem Lutar",
+      "subtitulo": "A Arte da Guerra · Sun Tzu",
+      "img": "a lone ancient Chinese general in dark lacquered armor standing calm on a misty mountain ridge at dawn, sword sheathed at his side, overlooking a vast valley of fog, golden sunrise breaking through clouds, monumental, epic, contemplative",
+      "motion": "Slow cinematic camera push-in over a misty mountain valley at golden dawn; fog drifts slowly across the peaks; the general's cloak sways gently in the wind; soft volumetric light, subtle floating embers; calm, epic.",
+      "narracao": "Imagine um general que vence a guerra sem disparar uma única flecha. Para Sun Tzu, esse era o verdadeiro mestre. O auge da estratégia não é ganhar cem batalhas. É vencer antes que a batalha exista. Há dois mil e quinhentos anos, ele escreveu o capítulo que generais, executivos e negociadores ainda estudam: como vencer sem lutar."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · O Auge da Habilidade",
+      "titulo": "Vencer cem batalhas não basta",
+      "img": "two vast ancient Chinese armies frozen in a tense silent standoff across a foggy plain at dawn, banners and spears raised, no fighting, an intact untouched walled city in the distance",
+      "narracao": "Vencer cem batalhas em cem combates não é o auge da habilidade. O auge é subjugar o exército inimigo sem nenhum combate. Destruir um reino é fácil, e caro. Tomá-lo inteiro, intacto, sem ruínas e sem cadáveres — isso, sim, é a obra-prima. A maior vitória é a que não deixa cicatrizes."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · O Primeiro Alvo",
+      "titulo": "Ataque o plano dele",
+      "img": "an ancient Chinese general in a dim candlelit tent at night studying a large strategy map and bamboo scrolls spread on a wooden table, deep shadows, pensive and focused expression, warm low light, cinematic",
+      "motion": "Candle flames flicker softly in the dark tent; faint smoke drifts upward; the warlord's eyes study the map; subtle ambient motion, static camera, intimate and tense.",
+      "narracao": "Sun Tzu cria uma hierarquia de quatro alvos. O nível supremo é atacar a própria estratégia do inimigo: desmontar o plano dele dentro da cabeça dele, antes de qualquer movimento. Se você frustra a ideia, a guerra morre antes de nascer. Vence-se primeiro na mente. Só depois, se for preciso, no campo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Segundo Alvo",
+      "titulo": "Isole-o dos aliados",
+      "img": "two ancient Chinese envoys clasping hands sealing a secret pact by candlelight inside a tent, a distant rival figure left standing alone in shadow, intrigue and quiet diplomacy, warm low light",
+      "narracao": "Se não der para destruir o plano, parta para o segundo alvo: as alianças. Um inimigo cercado de aliados é forte; sozinho, é frágil. Corte os laços, feche acordos com quem o sustenta, e ele perde o chão sem que você levante a espada. Isolar é enfraquecer sem combater."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · O Terceiro Alvo",
+      "titulo": "Só então, as tropas",
+      "img": "two ancient Chinese armies clashing in disciplined formation on a dusty plain at dusk, spears and banners, dramatic yet somber atmosphere, the heavy cost of open battle, muted gold light",
+      "narracao": "O terceiro alvo é o exército no campo aberto. Aqui já há sangue, já há custo. Sun Tzu não proíbe a batalha, mas a coloca abaixo da estratégia e das alianças. Lutar contra as tropas é admitir que os caminhos mais inteligentes falharam. É vitória, sim, mas a mais cara de todas."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · O Último Recurso",
+      "titulo": "Nunca sitie uma cidade",
+      "img": "an ancient Chinese army with tall wooden siege towers and ladders assaulting massive stone city walls under a grim overcast sky, soldiers falling, attrition and desperation, epic and dark",
+      "motion": "Smoke and dust drift across the besieged walls; banners flap in a cold wind; distant flickering fires; grim, heavy, slow ambient motion, static wide shot.",
+      "narracao": "E o pior de todos os métodos? Sitiar cidades muradas. Meses construindo torres e máquinas. Soldados morrendo como formigas contra a pedra. O general consumido pela impaciência. Sun Tzu é direto: o cerco é o recurso do desespero, a prova de que nada melhor foi pensado. Suba sempre o mais alto possível na hierarquia."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · A Matemática do Combate",
+      "titulo": "Dimensione a luta",
+      "img": "a strategic high aerial view of ancient Chinese troop formations rendered as glowing markers across a dark war map terrain, encircling and dividing maneuvers, calculation and order, gold and charcoal",
+      "narracao": "Não existe ataque sempre certo. Tudo depende da proporção de forças. Em dez contra um, cerque o inimigo. Em cinco contra um, ataque. No dobro, divida-o em duas frentes. Em forças iguais, lute com habilidade. Inferior, defenda-se. E muito inferior, fuja. O sábio mede antes de agir."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "07 · A Coragem de Recuar",
+      "titulo": "Recuar também é estratégia",
+      "img": "a small ancient Chinese detachment retreating in disciplined good order through a misty mountain pass at dusk, calm and composed, preserving their strength, atmospheric and quiet",
+      "narracao": "Sun Tzu dá um aviso que fere o orgulho: uma força pequena e teimosa só vira presa fácil de uma força maior. Insistir por bravura é entregar-se à captura. Recuar a tempo não é covardia. É preservar o exército para o dia em que a proporção vai virar. Saber fugir é saber vencer depois."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "08 · A Autonomia do Comando",
+      "titulo": "O general é a muralha",
+      "img": "a single resolute ancient Chinese general standing like a pillar before a fortified gate at dusk, his silhouette merging with a great stone wall, guardianship and quiet strength, monumental",
+      "narracao": "O general é o baluarte do Estado. Quando ele é forte e livre, a nação é forte. Mas há uma condição: o soberano não pode atrapalhar de longe. A vitória exige duas coisas juntas — um comandante capaz, e um governante que confia e não interfere naquilo que não entende."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "09 · O Erro de Quem Manda",
+      "titulo": "Três modos de destruir o próprio exército",
+      "img": "a distant ancient Chinese emperor on a high throne reaching a controlling hand over a tiny battlefield map while uncertain generals hesitate below, interference and doubt, ominous, symbolic, dark gold",
+      "narracao": "Há três formas de o soberano arruinar o próprio exército. Primeira: ordenar avanço ou recuo sem conhecer o terreno — é algemar quem deveria lutar. Segunda: administrar o exército como se administra um reino — e confundir os oficiais. Terceira: interferir no comando sem entender de tática — e semear a dúvida nas fileiras. A microgestão derrota antes do inimigo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "10 · Os Cinco Sinais",
+      "titulo": "Quem vence sabe estas cinco coisas",
+      "img": "five glowing paper lanterns floating in a row over a misty ancient Chinese valley at night, unity and clarity, symbolic and serene yet powerful, warm gold light against deep darkness",
+      "motion": "Five lanterns drift and glow gently over the dark misty valley; soft fog rolls below; faint embers float upward; serene, hopeful, slow ambient motion, static camera.",
+      "narracao": "Cinco coisas anunciam a vitória. Saber quando lutar e quando não lutar. Saber comandar tanto os muitos quanto os poucos. Ter um exército unido por um só espírito, do general ao soldado. Estar preparado, e esperar o inimigo despreparado. E ter um general competente que o soberano não amarra. Onde estão os cinco, a vitória já começou."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Conhece o inimigo e a ti mesmo",
+      "subtitulo": "A lição eterna",
+      "img": "an ancient Chinese general gazing at his own calm reflection in a still dark lake at golden dusk, self-knowledge and wisdom, serene, epic, contemplative, mirror-like water",
+      "motion": "Golden dusk light shimmers softly on the still water; the reflection ripples gently; the general's robes sway in a faint breeze; serene, contemplative, slow ambient motion, static camera.",
+      "narracao": "E aqui Sun Tzu cravou a frase mais citada da história da estratégia. Se conheces o inimigo e a ti mesmo, não precisas temer o resultado de cem batalhas. Se conheces só a ti, para cada vitória virá uma derrota. Se não conheces nem a ti nem ao inimigo, perderás todas. O autoconhecimento é metade da guerra. Tudo começa, e termina, dentro de você."
+    }
+  ]
+}

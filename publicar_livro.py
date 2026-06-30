@@ -4,6 +4,7 @@
 
     python publicar_livro.py <slug>            # gera + capa + retrofit + verifica (local)
     python publicar_livro.py <slug> --check    # so valida o <slug>_data.py (nao escreve nada)
+    python publicar_livro.py <slug> --verify   # editorial via Claude (opt-in)
     python publicar_livro.py <slug> --deploy   # tudo acima + scp p/ VPS + chmod da pasta
 
 Encadeia, na ordem certa e sem deixar esquecer nenhum passo:
@@ -185,18 +186,22 @@ def main():
     slug = args[0]
 
     step("1", f"validando {slug}_data.py")
-    validate(slug)
+    B, CH = validate(slug)
     if "--check" in flags:
         print("\nOK: --check: schema ok, nada escrito.")
         return
 
-    step("1b", "verificacao editorial (fidelidade ao autor — skill e a referencia)")
-    run([sys.executable, "verificar_conteudo.py", slug, "--fix"], cwd=BASE)
-    # Recarrega o modulo apos possiveis correcoes (file pode ter mudado)
-    _mod = slug.replace("-", "_") + "_data"
-    if _mod in sys.modules:
-        del sys.modules[_mod]
-    B, CH = validate(slug)
+    # 1b OPT-IN (ajuste 14/jun): a verificacao editorial chama o Claude por capitulo
+    # (verificar_conteudo -> `claude -p`) — caro, e antes rodava em TODA publicacao
+    # (queimou centenas de chamadas nas republicacoes). Agora so com --verify; o gate
+    # estrutural valida_skill_lane.py ja garante a integridade do que vai ao ar.
+    if "--verify" in flags:
+        step("1b", "verificacao editorial via Claude (opt-in) — fidelidade ao autor")
+        run([sys.executable, "verificar_conteudo.py", slug, "--fix"], cwd=BASE)
+        _mod = slug.replace("-", "_") + "_data"  # recarrega apos possiveis correcoes
+        if _mod in sys.modules:
+            del sys.modules[_mod]
+        B, CH = validate(slug)
 
     step("2", "gerando paginas + books.json")
     import gerar_livro

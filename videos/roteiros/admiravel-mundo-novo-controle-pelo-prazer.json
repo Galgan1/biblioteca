@@ -1,0 +1,85 @@
+{
+  "slug": "admiravel-mundo-novo-controle-pelo-prazer",
+  "titulo": "Admirável Mundo Novo",
+  "autor": "Aldous Huxley",
+  "voz": "eleven:xNGAXaCH8MaasNuo7Hr7",
+  "tts_rate": 1.0,
+  "acento": "#7ec8d8",
+  "musica": true,
+  "musica_energia": 0.4,
+  "provider": "nvidia",
+  "estilo_img": "cinematic editorial portrait, soft even frontal flattering beauty lighting, glossy clean skin, soft bright highlights in the eyes, shadowless high-key glamour light from the front, bright luminous and well-lit, bright clean exposure, airy, clean glossy sterile futuristic aesthetic, shallow depth of field, premium, highly detailed, stylized anonymous faces not recognizable real people, no text, no letters, no words, no watermark",
+  "youtube": {
+    "titulo": "HUXLEY ACERTOU: como te controlam pelo PRAZER | Admirável Mundo Novo",
+    "descricao": "O capítulo mais perturbador de Admirável Mundo Novo, de Aldous Huxley: o condicionamento e o soma — a tirania que não usa o chicote, mas o prazer. Por que Huxley pode ter previsto o nosso presente melhor que Orwell.\n\nOrwell x Huxley • A hipnopedia • Amar a própria jaula • O soma • A opressão pelo prazer • Anestesiar a dor é anestesiar a alma • Qual é o seu soma?\n\n🎙 Narração com duas vozes geradas por IA: o narrador e a voz do condicionamento do Estado Mundial.\n\n📚 Acervo: www.andregalgani.com.br/biblioteca\n\n#admiravelMundoNovo #huxley #distopia #soma #resumoDeLivro",
+    "tags": ["admirável mundo novo", "aldous huxley", "distopia", "soma", "huxley x orwell", "resumo de livro", "filosofia"],
+    "privacidade": "public"
+  },
+  "shorts": [1, 2, 3, 4, 5, 6],
+  "cenas": [
+    {
+      "tipo": "abertura",
+      "titulo": "Admirável Mundo Novo",
+      "subtitulo": "Aldous Huxley · o controle pelo prazer",
+      "img": "a serene perfectly beautiful young citizen with a calm content smile, soft bright highlights in the eyes, soft even frontal flattering beauty light, glossy clean skin, a plain out-of-focus pale grey wall behind her, eerily happy, cool neutral tone, clean editorial",
+      "motion": "Very slow cinematic push-in toward the serene smiling face; soft clean even light; calm, unsettling stillness.",
+      "narracao": "George Orwell temia quem nos proibiria os livros. Aldous Huxley temia algo pior: que não houvesse motivo para proibir um livro, porque ninguém mais quereria ler um. Em Admirável Mundo Novo, a tirania perfeita não usa o chicote. Ela usa o prazer. E o pesadelo é que ninguém quer acordar dele."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "01 · A Voz que Ensina Dormindo",
+      "titulo": "Hipnopedia",
+      "voz": "eleven:jotBQRDYDizrWQAbv9VO",
+      "tts_rate": 0.9,
+      "img": "rows of identical adult citizens sleeping peacefully in clean white sleep-pods, soft glowing speakers beside each pillow, a serene clinical dormitory in soft even cool blue-white light, shadowless and orderly, clean editorial",
+      "narracao": "Durma. Repita comigo, como repetiu mil noites. Todo mundo pertence a todo mundo. Não existe o seu, não existe o meu. Ser feliz é ser igual a todos. Durma... e acorde sabendo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "02 · Fabricar a Vontade",
+      "titulo": "Amar a própria jaula",
+      "img": "a sterile bright clinical nursery with rows of identical white cribs and a low table holding colorful books and a bowl of roses, cold and orderly, soft even frontal cool white light, shadowless clean illumination, editorial",
+      "narracao": "Não basta fabricar o corpo; é preciso fabricar a vontade. No berço, o Estado associa livros e flores a sustos e ruído, até a criança odiar, para a vida toda, ler — que a faria pensar — e a natureza — que não gera consumo. Não se proíbe a liberdade. Faz-se com que ela jamais seja desejada."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "03 · O Comprimido da Calma",
+      "titulo": "Soma",
+      "voz": "eleven:jotBQRDYDizrWQAbv9VO",
+      "tts_rate": 0.9,
+      "img": "a delicate young hand holding a single softly glowing pill, a soft bright highlight on the pill's smooth surface, bright luminous warm beauty light, clean and well-lit, bright airy pale background, shallow depth of field, shadowless",
+      "narracao": "Sentiu tristeza? Dúvida? Um vazio que pede uma pergunta? Não pense. Um grama na hora certa poupa nove. É melhor um grama que um lamento. Tome, sorria... e tudo passa."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "04 · A Opressão pelo Prazer",
+      "titulo": "A felicidade como algema",
+      "img": "a person reclining in serene chemical euphoria, eyes half-closed in calm bliss, soft even frontal beauty light with a gentle bright highlight in the eyes, bright luminous well-lit warm tone, clean futuristic and airy, bright pale background, shadowless",
+      "narracao": "O soma é a droga oficial da felicidade: euforia sem ressaca, calma sem culpa. Onde Orwell controlaria pela dor, Huxley controla pelo bem-estar. Um povo permanentemente contente nunca pergunta por quê. A droga substitui a polícia, a propaganda e a repressão, de uma vez só."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "05 · O Preço Invisível",
+      "titulo": "Anestesiar a dor é anestesiar a alma",
+      "img": "a flawless beautiful face with hollow distant empty eyes, a soft bright highlight in the eyes contrasting the emptiness behind them, soft even frontal beauty light, clean sterile and cold, cool neutral, shadowless",
+      "narracao": "Mas há um preço que ninguém vê. Quem anestesia toda dor anestesia também a profundidade. Sem desconforto não há reflexão, nem arte, nem amor verdadeiro, nem mudança. Eles trocaram a grandeza humana pela estabilidade. Trocaram Shakespeare por conforto. E acharam o negócio justo."
+    },
+    {
+      "tipo": "conceito",
+      "kicker": "06 · Consuma, Descarte, Repita",
+      "titulo": "Fora é melhor que conserto",
+      "voz": "eleven:jotBQRDYDizrWQAbv9VO",
+      "tts_rate": 0.9,
+      "img": "a glamorous figure surrounded by glossy new products in a bright clean consumer paradise, abundant and seductive, soft even warm frontal beauty light, soft bright highlights on the glossy surfaces, warm amber, shadowless",
+      "narracao": "Por que consertar, se o novo é tão fácil? Fora é melhor que conserto. Quanto mais você joga fora, mais o mundo gira. Compre, descarte... e nunca, nunca fique sozinho com seus pensamentos."
+    },
+    {
+      "tipo": "encerramento",
+      "titulo": "Qual é o seu soma?",
+      "subtitulo": "O aviso de Huxley",
+      "img": "a person standing before a mirror in a bright luminous clean well-lit room, a soft glow and a bright highlight reflected in their eyes and faintly in the glass, contemplative with a faint flicker of awakening, cool neutral turning warm, bright well-lit shadowless beauty light, airy",
+      "motion": "Slow push toward the mirror; a soft glow shimmers gently in the reflection and in the eyes; a faint flicker of awareness; quiet, contemplative motion.",
+      "narracao": "Huxley não escreveu sobre um futuro distante. Escreveu sobre o que nos seduz hoje. A liberdade mais difícil de defender é aquela que te ensinaram a não querer. Então, antes de deslizar para o próximo prazer que apaga a pergunta, vale uma só: qual é o seu soma?"
+    }
+  ]
+}

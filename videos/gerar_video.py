@@ -31,6 +31,49 @@ WHITE = marca.rgb('tinta')     # texto claro
 GRAY = marca.rgb('tinta-fraca')
 TAIL = 0.7   # silêncio extra ao fim de cada narração (respiro)
 FADE = 0.45  # fade in/out por cena (fade-to-black entre cenas)
+LEAD_ABERTURA = 0.8  # respiro de abertura SÓ na cena 0: imagem+trilha respiram antes da 1ª
+                     # palavra (não dead-air — a trilha cobre). Akita 22/jun: abrir seco era
+                     # falta de polimento, não escolha; curto p/ não ferir retenção (Lembke).
+
+
+def _voz_cena(cena, voz_global, rate_global):
+    """Voz/ritmo POR CENA (default = o global do roteiro). Permite 2+ vozes no MESMO vídeo
+    SEM virar podcast: ex.: narrador no corpo + voz feminina jovem nos slogans do Estado
+    (voz do condicionamento). Akita 22/jun. Devolve (voz, tts_rate)."""
+    return cena.get('voz', voz_global), float(cena.get('tts_rate', rate_global))
+
+
+def _prepend_silencio(mp3, lead):
+    """Atrasa a voz por `lead`s (silêncio na frente) → a abertura ganha respiro com a
+    imagem+trilha tocando antes da 1ª palavra. Devolve um novo mp3; nunca toca o original."""
+    out = Path(mp3).with_name(Path(mp3).stem + '_lead.mp3')
+    subprocess.run([FFMPEG, '-y', '-i', str(mp3), '-af', f'adelay={int(lead * 1000)}:all=1',
+                    str(out)], check=True, capture_output=True)
+    return out
+
+
+def _abertura_tambor(mp3, lead):
+    """Abertura do vídeo LONGO: um TAMBOR grave (o MESMO `_tambor_grave` dos shorts — DRY)
+    abre, ressoa, e a narração EMERGE da cauda (voz atrasada por `lead`s, sobre a ressonância
+    decaindo — mesmo timing impacto→fala dos shorts). Pedido do André (22/jun): tambor nos
+    longos. Devolve novo mp3; nunca toca o original."""
+    import wave
+    import numpy as np
+    import _short_audio as sa
+    tb = sa._tambor_grave(dur=lead + 0.5)             # ressoa ~0,5s além da entrada da voz (overlap)
+    wav = Path(mp3).with_name(Path(mp3).stem + '_tb.wav')
+    with wave.open(str(wav), 'w') as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(sa.SR)
+        w.writeframes((np.clip(tb, -1, 1) * 32767).astype(np.int16).tobytes())
+    out = Path(mp3).with_name(Path(mp3).stem + '_lead.mp3')
+    subprocess.run([FFMPEG, '-y', '-i', str(wav), '-i', str(mp3), '-filter_complex',
+                    f'[1:a]adelay={int(lead * 1000)}:all=1[v];'
+                    f'[0:a][v]amix=inputs=2:duration=longest:normalize=0,alimiter=limit=0.97[a]',
+                    '-map', '[a]', str(out)], check=True, capture_output=True)
+    wav.unlink(missing_ok=True)
+    return out
 
 
 def font(name, size):
@@ -392,9 +435,16 @@ def main(roteiro_path):
             bg = IMGDIR / f'{slug}_{i:02d}.png'
             if not bg.exists():  # cache: não regenera (e não recobra) imagem já feita
                 full = f"{cena['img']}, {estilo}" if estilo else cena['img']
-                if not img_gen(full, str(bg), aspect='16:9'):
-                    raise RuntimeError(f'Geração de imagem falhou na cena {i+1}')
-                print(f"  imagem {i+1}/{n} gerada")
+                ok = False
+                try:
+                    ok = bool(img_gen(full, str(bg), aspect='16:9'))
+                except Exception as _ie:    # moderação/endpoint/rede da imagem NÃO mata o build de 5 min
+                    print(f"  [!] imagem da cena {i+1} levantou ({type(_ie).__name__}: {str(_ie)[:60]})")
+                if ok:
+                    print(f"  imagem {i+1}/{n} gerada")
+                else:                        # soberano p/ imagem: falha/moderada → slide escuro temático
+                    print(f"  [!] imagem da cena {i+1} falhou/moderada — slide escuro temático")
+                    bg = None
 
         mot = None
         if cena.get('motion') and bg and mot_gen:
@@ -437,7 +487,13 @@ def main(roteiro_path):
         tipo = cena.get('tipo', 'conceito')
         side = 'center' if tipo in ('abertura', 'encerramento') else ('left' if i % 2 == 1 else 'right')
 
-        tts(cena['narracao'], voice, mp3, rate=cfg.get('tts_rate', 1.0))
+        voz_c, rate_c = _voz_cena(cena, voice, cfg.get('tts_rate', 1.0))   # 2ª voz por cena (slogans)
+        tts(cena['narracao'], voz_c, mp3, rate=rate_c)
+        if i == 0 and LEAD_ABERTURA > 0:          # abertura (cena 0 só): tambor que ressoa
+            if cfg.get('abertura_tambor', True):   # default nos longos; opt-out no roteiro
+                mp3 = _abertura_tambor(mp3, LEAD_ABERTURA)
+            else:
+                mp3 = _prepend_silencio(mp3, LEAD_ABERTURA)
         dur = MP3(mp3).info.length + TAIL
         durs.append(dur)
         usou = _montar_clipe(

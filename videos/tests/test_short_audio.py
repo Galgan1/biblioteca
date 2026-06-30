@@ -3,8 +3,8 @@
 
 Fixa os contratos que os 3 autores-juízes pediram (revisão Akita 21/jun):
   - WAV válido, finito, sem clipping (pico < 32767);
-  - HOOK: a janela da capa (0→cover) NÃO é silenciosa (evento sônico real) —
-    era exatamente o buraco: o Short abria mudo;
+  - INTRO (22/jun): UM impacto grave (gongo|tambor) no CONTRA-TEMPO — a capa NÃO abre
+    muda, mas o impacto cai longe do início (off-beat) e o começo fica quieto (sem riser);
   - VOZ SOBERANA: o leito sob a voz (corpo) tem RMS bem abaixo do hook;
   - VETORIZAÇÃO (Chion): dentro do corpo, o leito SOBE rumo ao clímax
     (RMS de um trecho tardio > de um trecho inicial);
@@ -33,10 +33,10 @@ COVER, LEAD, TOTAL = 2.4, 0.45, 15.0
 _SEM_MARCA = Path('__sem_marca_para_teste__')
 
 
-def _render(total=TOTAL, cover=COVER, lead=LEAD, seed=7, energia=0.6, reveals=None):
+def _render(total=TOTAL, cover=COVER, lead=LEAD, seed=7, energia=0.6, reveals=None, intro='gongo'):
     tmp = Path(tempfile.mktemp(suffix='.wav'))
     sa.short_bed(total, cover, lead, tmp, seed=seed, energia=energia,
-                 marca_dir=_SEM_MARCA, reveals=reveals)
+                 marca_dir=_SEM_MARCA, reveals=reveals, intro=intro)
     return tmp
 
 
@@ -78,18 +78,19 @@ class TestShortBed(unittest.TestCase):
         try:
             x = _samples(tmp)
             hook = x[: int(COVER * SR)]
-            self.assertGreater(float(np.max(np.abs(hook))), 0.1)   # pico claro (riser+acento)
+            self.assertGreater(float(np.max(np.abs(hook))), 0.1)   # pico claro (impacto de contra-tempo)
             self.assertGreater(_rms(hook), 0.02)                   # energia, não silêncio
         finally:
             tmp.unlink(missing_ok=True)
 
     def test_voz_soberana_corpo_baixo(self):
-        """O leito sob a voz (corpo) é bem mais baixo que o hook — não disputa com a voz."""
+        """O leito SUSTENTADO sob a voz é bem mais baixo que o impacto da intro — não
+        disputa com a voz. Mede após a cauda do impacto (cover+2s), que é esperada/curta."""
         tmp = _render()
         try:
             x = _samples(tmp)
             hook = x[: int(COVER * SR)]
-            corpo = x[int((COVER + LEAD) * SR): int((TOTAL - 2.5) * SR)]   # exclui cauda
+            corpo = x[int((COVER + 2.0) * SR): int((TOTAL - 2.5) * SR)]   # após a cauda do impacto
             self.assertLess(_rms(corpo), 0.6 * _rms(hook))
         finally:
             tmp.unlink(missing_ok=True)
@@ -132,16 +133,57 @@ class TestShortBed(unittest.TestCase):
         sub = float(S[(fr >= 30) & (fr <= 60)].sum())
         self.assertGreater(audivel, 0.2 * sub)           # harmônicos presentes, não some no fone
 
-    def test_silencio_funcional_apos_acento(self):
-        """Há um respiro (dip claro) entre o acento de síncrese e o leito — o impacto pousa."""
+    def test_intro_no_contratempo(self):
+        """O impacto cai no CONTRA-TEMPO (off-beat da 1ª batida, ~0,4s — NÃO no downbeat t=0),
+        soa CEDO (sem o dead-air que o fazia passar despercebido), e o instante inicial fica quieto."""
         tmp = _render()
         try:
             x = _samples(tmp)
-            hook = x[: int(COVER * SR)]
-            respiro = x[int((COVER + 0.32) * SR): int((COVER + 0.40) * SR)]
-            self.assertLess(_rms(respiro), 0.5 * _rms(hook))
+            jan = x[: int((COVER + 0.3) * SR)]
+            pico_t = int(np.argmax(np.abs(jan))) / SR
+            self.assertGreater(pico_t, 0.2)                    # não no downbeat (é contra-tempo)
+            self.assertLess(pico_t, 0.9)                       # mas CEDO (sem 1,9s de silêncio antes)
+            self.assertLess(_rms(x[: int(0.2 * SR)]), 0.03)    # instante inicial quieto (off-beat, sem riser)
         finally:
             tmp.unlink(missing_ok=True)
+
+    def test_intro_e_grave(self):
+        """As duas opções de impacto são GRAVES: energia <120 Hz domina os agudos (>400 Hz)."""
+        for nome, sig in (('gongo', sa._gongo()), ('tambor', sa._tambor_grave())):
+            S = np.abs(np.fft.rfft(sig))
+            fr = np.fft.rfftfreq(len(sig), 1 / SR)
+            grave = float(S[fr < 120].sum())
+            agudo = float(S[fr > 400].sum())
+            self.assertGreater(grave, 3 * agudo, f'{nome} não é grave o bastante')
+
+    def test_intro_tambor_difere_do_gongo(self):
+        """gongo e tambor produzem leitos distintos — o André escolhe de ouvido."""
+        g, t = _render(intro='gongo'), _render(intro='tambor')
+        try:
+            self.assertFalse(np.array_equal(_samples(g), _samples(t)))
+        finally:
+            g.unlink(missing_ok=True)
+            t.unlink(missing_ok=True)
+
+    def test_impacto_cauda_morre_suave(self):
+        """Fade-out: gongo e tambor terminam em silêncio real (sem corte seco/clique) —
+        a conexão impacto→fala soa natural. O array antes acabava em ~7% (clique)."""
+        for nome, sig in (('gongo', sa._gongo()), ('tambor', sa._tambor_grave())):
+            pico = float(np.max(np.abs(sig)))
+            fim = float(np.max(np.abs(sig[-int(SR * 0.01):])))     # 10 ms finais
+            self.assertLess(fim, 0.02 * pico, f'{nome} corta seco (não fez fade-out)')
+
+    def test_impacto_ressoa_ate_a_voz_sem_gap(self):
+        """O timing certo: o impacto RESSOA até a entrada da voz (cover+lead). A janela logo
+        ANTES da fala NÃO é silêncio — a fala emerge da cauda (sem o gap que soava desconexo)."""
+        for intro in ('gongo', 'tambor'):
+            tmp = _render(intro=intro)
+            try:
+                x = _samples(tmp)
+                antes = x[int((COVER + LEAD - 0.25) * SR): int((COVER + LEAD) * SR)]
+                self.assertGreater(_rms(antes), 0.003, f'{intro}: gap de silêncio antes da voz')
+            finally:
+                tmp.unlink(missing_ok=True)
 
     def test_seam_fallback_finito_e_resolve(self):
         """O seam procedural (Lá→Ré) é finito e decai (resolução, não corte seco)."""

@@ -141,10 +141,11 @@ def weekly_cost() -> float:
 # ---------------------------------------------------------------------------
 # Pior nº1 da auditoria A6: weekly_cost() não tinha consumidor; record_cost só
 # contava DEPOIS do gasto. Aqui a catraca: nenhuma chamada paga dispara se a semana
-# já estourou o teto. Default-on no pipeline via WEEKLY_BUDGET_USD (gerar_video.main
-# o define); ausente = inativo (preserva comportamento atual e a rota soberana grátis).
+# já estourou o teto. Default-on no pipeline via WEEKLY_BUDGET_USD (gerar_video.main e
+# publicar_tudo o definem); ausente = inativo (preserva comportamento atual e a rota
+# soberana grátis).
 
-DEFAULT_WEEKLY_BUDGET_USD = 50.0   # teto que o pipeline (gerar_video.main) liga por default
+DEFAULT_WEEKLY_BUDGET_USD = 20.0   # teto que o pipeline (gerar_video.main + publicar_tudo) liga por default
 
 
 class BudgetExceeded(RuntimeError):

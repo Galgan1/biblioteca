@@ -1,0 +1,10 @@
+[
+  {"slug": "habitos-atomicos",   "titulo": "Hábitos Atômicos",      "serie": "mentalidade", "formato": "reel+stories", "dia": "SEG", "horario": "18:30", "semana": 1},
+  {"slug": "sapiens",            "titulo": "Sapiens",               "serie": "outros",      "formato": "stories",      "dia": "TER", "horario": "08:00", "semana": 1},
+  {"slug": "1984",               "titulo": "1984",                  "serie": "comportamento","formato": "reel+stories","dia": "QUA", "horario": "18:30", "semana": 1},
+  {"slug": "homo-deus",          "titulo": "Homo Deus",             "serie": "outros",      "formato": "stories",      "dia": "QUI", "horario": "08:00", "semana": 1},
+  {"slug": "7-habitos",          "titulo": "7 Hábitos",             "serie": "mentalidade", "formato": "carrossel",    "dia": "SEX", "horario": "18:30", "semana": 1},
+  {"slug": "antifragil",         "titulo": "Antifrágil",            "serie": "outros",      "formato": "stories",      "dia": "SAB", "horario": "10:00", "semana": 1},
+  {"slug": "a-unica-coisa",      "titulo": "A Única Coisa",         "serie": "mentalidade", "formato": "reel+stories", "dia": "SEG", "horario": "18:30", "semana": 2},
+  {"slug": "o-principe",         "titulo": "O Príncipe",            "serie": "poder",       "formato": "stories",      "dia": "TER", "horario": "08:00", "semana": 2}
+]

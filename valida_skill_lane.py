@@ -50,6 +50,8 @@ SKILLS_FORA_DO_CATALOGO = {  # entregues skill-only (sem books.json)
     "pragmatic-programmer",
     "clean-code",
     "philosophy-software-design",
+    "o-necromante",
+    "neuromancer",
 }
 
 ARQUIVOS_APOIO = ("SKILL.md", "glossary.md", "patterns.md", "cheatsheet.md")
