@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>nav_opt2 — Régua Editorial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Literata:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: oklch(52% 0.14 152);
+  --green-dark: oklch(40% 0.12 152);
+  --green-light: oklch(95% 0.03 152);
+  --gold: oklch(60% 0.10 83);
+  --gold-soft: oklch(72% 0.09 83);
+  --black: oklch(22% 0.01 152);
+  --gray-dark: oklch(46% 0.01 152);
+  --gray-light: oklch(86% 0.01 152);
+  --paper-bg: oklch(99% 0.002 152);
+  --body-bg: oklch(95% 0.005 152);
+}
+.dark {
+  --green: oklch(70% 0.13 152);
+  --green-dark: oklch(76% 0.11 152);
+  --green-light: oklch(28% 0.04 152);
+  --gold: oklch(76% 0.105 83);
+  --gold-soft: oklch(86% 0.075 83);
+  --black: oklch(95% 0.01 152);
+  --gray-dark: oklch(82% 0.01 152);
+  --gray-light: oklch(38% 0.01 152);
+  --paper-bg: oklch(21% 0.005 152);
+  --body-bg: oklch(16% 0.01 152);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Hanken Grotesk', sans-serif;
+  background: var(--body-bg);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.panel {
+  background: var(--paper-bg);
+  padding: 2.5rem 2rem;
+  border-radius: 4px;
+}
+
+.panel-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+  margin-bottom: 2rem;
+  opacity: 0.6;
+}
+
+/* Nav row */
+.nav-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+/* Each nav item */
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  transition: opacity 0.15s ease;
+  min-height: 110px;
+}
+
+.nav-item:hover { opacity: 0.72; }
+
+/* Hairline rule on top */
+.nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--gold);
+  opacity: 0.7;
+  transition: opacity 0.18s ease;
+}
+
+.nav-item:hover::before {
+  opacity: 1;
+}
+
+/* Separator between prev and next */
+.nav-item.prev {
+  padding-right: 2rem;
+  border-right: 1px solid var(--gray-light);
+  opacity: 0.9;
+}
+.nav-item.prev:hover { opacity: 0.72; }
+
+.nav-item.next {
+  padding-left: 2rem;
+  align-items: flex-end;
+}
+
+.nav-item.next .nav-content {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Inner layout */
+.nav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Kicker row: seta + rótulo */
+.nav-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.nav-item.next .nav-kicker {
+  flex-direction: row-reverse;
+}
+
+.nav-arrow {
+  font-size: 11px;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+  line-height: 1;
+}
+
+/* Title */
+.nav-title {
+  font-family: 'Literata', serif;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--green);
+  max-width: 28ch;
+  /* clamp to avoid overflow */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nav-item.next .nav-title {
+  text-align: right;
+}
+
+/* Mobile */
+@media (max-width: 560px) {
+  .nav-pair {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .nav-item.prev {
+    padding-right: 0;
+    padding-bottom: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--gray-light);
+    min-height: unset;
+  }
+
+  .nav-item.next {
+    padding-left: 0;
+    padding-top: 1.5rem;
+    align-items: flex-start;
+    min-height: unset;
+  }
+
+  .nav-item.next .nav-content {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .nav-item.next .nav-kicker {
+    flex-direction: row;
+  }
+
+  .nav-item.next .nav-title {
+    text-align: left;
+  }
+
+  /* On mobile, equalize height by making both same min-height */
+  .nav-item {
+    min-height: unset;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- PAINEL CLARO -->
+<div class="panel">
+  <p class="panel-label">Modo Claro</p>
+  <nav class="nav-pair" aria-label="Navegação entre capítulos">
+
+    <a class="nav-item prev" href="#" aria-label="Ir para capítulo anterior">
+      <div class="nav-content">
+        <div class="nav-kicker">
+          <span class="nav-arrow" aria-hidden="true">&#8592;</span>
+          <span class="nav-label">Capítulo anterior</span>
+        </div>
+        <span class="nav-title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+      </div>
+    </a>
+
+    <a class="nav-item next" href="#" aria-label="Ir para próximo capítulo">
+      <div class="nav-content">
+        <div class="nav-kicker">
+          <span class="nav-label">Próximo capítulo</span>
+          <span class="nav-arrow" aria-hidden="true">&#8594;</span>
+        </div>
+        <span class="nav-title">Visão Geral</span>
+      </div>
+    </a>
+
+  </nav>
+</div>
+
+<!-- PAINEL ESCURO -->
+<div class="panel dark">
+  <p class="panel-label">Modo Escuro</p>
+  <nav class="nav-pair" aria-label="Navegação entre capítulos">
+
+    <a class="nav-item prev" href="#" aria-label="Ir para capítulo anterior">
+      <div class="nav-content">
+        <div class="nav-kicker">
+          <span class="nav-arrow" aria-hidden="true">&#8592;</span>
+          <span class="nav-label">Capítulo anterior</span>
+        </div>
+        <span class="nav-title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+      </div>
+    </a>
+
+    <a class="nav-item next" href="#" aria-label="Ir para próximo capítulo">
+      <div class="nav-content">
+        <div class="nav-kicker">
+          <span class="nav-label">Próximo capítulo</span>
+          <span class="nav-arrow" aria-hidden="true">&#8594;</span>
+        </div>
+        <span class="nav-title">Visão Geral</span>
+      </div>
+    </a>
+
+  </nav>
+</div>
+
+</body>
+</html>

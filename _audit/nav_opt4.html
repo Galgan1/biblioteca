@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nav Opt 4 — Movimento Refinado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Literata:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: oklch(52% 0.14 152);
+  --green-dark: oklch(40% 0.12 152);
+  --green-light: oklch(95% 0.03 152);
+  --gold: oklch(60% 0.10 83);
+  --gold-soft: oklch(72% 0.09 83);
+  --black: oklch(22% 0.01 152);
+  --gray-dark: oklch(46% 0.01 152);
+  --gray-light: oklch(86% 0.01 152);
+  --paper-bg: oklch(99% 0.002 152);
+  --body-bg: oklch(95% 0.005 152);
+}
+.dark {
+  --green: oklch(70% 0.13 152);
+  --green-dark: oklch(76% 0.11 152);
+  --green-light: oklch(28% 0.04 152);
+  --gold: oklch(76% 0.105 83);
+  --gold-soft: oklch(86% 0.075 83);
+  --black: oklch(95% 0.01 152);
+  --gray-dark: oklch(82% 0.01 152);
+  --gray-light: oklch(38% 0.01 152);
+  --paper-bg: oklch(21% 0.005 152);
+  --body-bg: oklch(16% 0.01 152);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Hanken Grotesk', sans-serif;
+  background: #f0f0f0;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.panel-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.panel {
+  background: var(--body-bg);
+  padding: 2.5rem 2rem;
+  border-radius: 6px;
+}
+
+/* ── Nav container ── */
+.nav-caps {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+/* ── Botão base ── */
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 1.25rem 0 1rem;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  outline: none;
+
+  /* linha de base discreta */
+  border-bottom: 1px solid var(--gray-light);
+  transition: border-color 0.25s ease;
+}
+
+/* linha de ouro que cresce no hover — pseudo-element */
+.nav-btn::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn:hover::after,
+.nav-btn:focus-visible::after {
+  width: 100%;
+}
+
+.nav-btn:hover,
+.nav-btn:focus-visible {
+  border-color: transparent;
+}
+
+/* ── Alinhamento prev / next ── */
+.nav-btn.prev {
+  align-items: flex-start;
+}
+.nav-btn.next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* ── Rótulo ── */
+.nav-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+  margin-bottom: 0.55rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s ease;
+}
+
+.nav-btn:hover .nav-label,
+.nav-btn:focus-visible .nav-label {
+  color: var(--gold);
+}
+
+/* ── Seta ── */
+.nav-arrow {
+  font-size: 13px;
+  color: var(--gold-soft);
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.nav-btn.prev:hover .nav-arrow,
+.nav-btn.prev:focus-visible .nav-arrow {
+  transform: translateX(-4px);
+  color: var(--gold);
+}
+
+.nav-btn.next:hover .nav-arrow,
+.nav-btn.next:focus-visible .nav-arrow {
+  transform: translateX(4px);
+  color: var(--gold);
+}
+
+/* ── Título ── */
+.nav-title {
+  font-family: 'Literata', serif;
+  font-size: 0.975rem;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--green);
+  transition: color 0.2s ease;
+
+  /* clamp para não transbordar */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nav-btn:hover .nav-title,
+.nav-btn:focus-visible .nav-title {
+  color: var(--green-dark);
+}
+
+/* ── Divisor central ── */
+.nav-divider {
+  width: 1px;
+  background: var(--gray-light);
+  align-self: stretch;
+  flex-shrink: 0;
+}
+
+/* ── Mobile ── */
+@media (max-width: 560px) {
+  .nav-caps {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-divider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .nav-btn {
+    padding: 1.1rem 0 0.9rem;
+  }
+
+  /* igualar altura no mobile: flex com min-height */
+  .nav-btn.prev,
+  .nav-btn.next {
+    min-height: 88px;
+    justify-content: center;
+  }
+
+  /* no mobile prev/next ambos à esquerda para legibilidade */
+  .nav-btn.next {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .nav-btn.next::after {
+    left: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<div>
+  <p class="panel-label">Modo claro</p>
+  <div class="panel">
+    <nav class="nav-caps" aria-label="Navegação entre capítulos">
+      <a class="nav-btn prev" href="#" aria-label="Capítulo anterior">
+        <span class="nav-label">
+          <span class="nav-arrow" aria-hidden="true">←</span>
+          Capítulo anterior
+        </span>
+        <span class="nav-title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+      </a>
+
+      <div class="nav-divider" aria-hidden="true"></div>
+
+      <a class="nav-btn next" href="#" aria-label="Próximo capítulo">
+        <span class="nav-label">
+          Próximo capítulo
+          <span class="nav-arrow" aria-hidden="true">→</span>
+        </span>
+        <span class="nav-title">Visão Geral</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<div>
+  <p class="panel-label">Modo escuro</p>
+  <div class="panel dark">
+    <nav class="nav-caps" aria-label="Navegação entre capítulos">
+      <a class="nav-btn prev" href="#" aria-label="Capítulo anterior">
+        <span class="nav-label">
+          <span class="nav-arrow" aria-hidden="true">←</span>
+          Capítulo anterior
+        </span>
+        <span class="nav-title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+      </a>
+
+      <div class="nav-divider" aria-hidden="true"></div>
+
+      <a class="nav-btn next" href="#" aria-label="Próximo capítulo">
+        <span class="nav-label">
+          Próximo capítulo
+          <span class="nav-arrow" aria-hidden="true">→</span>
+        </span>
+        <span class="nav-title">Visão Geral</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+</body>
+</html>

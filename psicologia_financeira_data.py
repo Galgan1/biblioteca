@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · DINHEIRO É COMPORTAMENTO, NÃO MATEMÁTICA",
  "intro": "Ninguém é doido com dinheiro: cada um age conforme as cicatrizes que a própria vida lhe deixou. Por isso o gênio das contas quebra e a faxineira que poupou em silêncio morre milionária — porque <em>como</em> você se comporta pesa mais do que <em>o que</em> você sabe. Morgan Housel não traz fórmulas; traz histórias. E a história que ele conta é simples e dura de viver: dinheiro não é uma ciência exata a ser dominada, é um traço de caráter a ser educado. Quem aprende a sobreviver, a esperar e a dizer 'tenho o bastante' já venceu a parte difícil — o resto é deixar o tempo trabalhar.",
  "description": "As lições atemporais de Morgan Housel sobre riqueza, ganância e felicidade — uma coleção de histórias, não de planilhas. A tese é desconcertante de tão simples: o sucesso financeiro é uma soft skill, e o melhor investidor não é o mais inteligente, é o que sobrevive por mais tempo. Sorte e risco como irmãos, o 'nunca o bastante', os juros compostos que o cérebro se recusa a imaginar, sobreviver para deixar o tempo compor, as caudas que decidem tudo, a liberdade como o maior dividendo do dinheiro, a riqueza que justamente por ser riqueza ninguém vê, e a margem de segurança para o dia em que o plano não der certo.",
+ "hook": "Você sabe tudo de finanças — e ainda age pelo medo.",
+ "story_promise": "O SEU BASTANTE. OS 20 PECADOS.",
+ "story_lessons": [
+   "Housel prova: gênio das contas quebra, faxineira paciente enriquece.",
+   "Riqueza real é invisível — feita do que você decidiu não gastar.",
+   "Não saber dizer 'já chega' é o pecado financeiro mais caro que existe.",
+ ],
  "tags": ["Finanças", "Comportamento", "Investimento"],
  "progress": "11 Capítulos",
  "cover": "assets/psicologia-financeira-cover.png",

@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · A BALANÇA ENTRE O PRAZER E A DOR",
  "intro": "Anna Lembke é psiquiatra do vício — e começa o livro confessando o próprio: romances baratos, lidos compulsivamente de madrugada. Sua tese vem do consultório e da neurociência: prazer e dor são processados no mesmo lugar do cérebro, em lados opostos de uma balança que só quer ficar nivelada. Por isso todo prazer cobra a sua dor depois. Inunde a balança e o cérebro instala pesos do lado da dor para se defender — é assim que a busca da felicidade fabrica o sofrimento, e por que, no mundo mais farto da história, estamos tão infelizes.",
  "description": "A neurociência do prazer e do vício, por Anna Lembke. A balança prazer-dor e a homeostase; a dopamina como régua do potencial viciante; a tolerância, a anedonia e o déficit que nasce do excesso; o cérebro de escassez perdido na abundância; o jejum de dopamina (~30 dias, acrônimo DOPAMINE); o autovínculo contra a fissura; a busca deliberada da dor (hormese); a honestidade radical e a vergonha que reconecta. A receita não é abolir o prazer — é aprender a sentar-se no meio da balança.",
+ "hook": "Você vive no mundo mais farto da história. Por que está infeliz?",
+ "story_promise": "A BALANÇA PRAZER-DOR DE LEMBKE",
+ "story_lessons": [
+   "Prazer e dor dividem o mesmo circuito — todo pico cobra um vale depois.",
+   "Seu celular dispara mais dopamina do que você imagina.",
+   "Buscar dor de propósito — frio, esforço — é a porta dos fundos para o prazer.",
+ ],
  "tags": ["Psicologia", "Neurociência", "Hábitos"],
  "progress": "9 Capítulos",
  "cover": "assets/nacao-dopamina-cover.png",

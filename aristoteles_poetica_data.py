@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · OS FUNDAMENTOS DA DRAMATURGIA",
  "intro": "O texto que fundou a teoria da narrativa, há 2.300 anos. Aristóteles disseca a tragédia e descobre as leis que ainda governam toda história que emociona: o enredo é a alma, o herói cai por um erro, a reviravolta surpreende e é inevitável, e a solução nasce de dentro — nunca de um truque. É o avô direto de toda dramaturgia, do teatro grego ao roteiro de cinema.",
  "description": "O tratado que fundou a teoria da narrativa. Aristóteles revela as leis da tragédia que ainda governam toda história: o enredo como alma, peripécia e reconhecimento, a hamartia do herói, a catarse, e o verossímil acima do possível.",
+ "hook": "Você acha que personagem faz a história. Aristóteles discorda.",
+ "story_promise": "HAMARTIA → CATARSE: A LEI DAS BOAS",
+ "story_lessons": [
+   "O enredo manda: sem ação, não existe personagem.",
+   "O herói cai por um erro — não por ser mau.",
+   "Uma boa história te deixa mais leve ao sair — é a catarse.",
+ ],
  "tags": ["Filosofia", "Narrativa", "Dramaturgia"],
  "progress": "7 Capítulos",
  "cover": "assets/aristoteles-poetica-cover.png",

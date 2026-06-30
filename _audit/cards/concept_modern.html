@@ -1,0 +1,327 @@
+<!doctype html>
+<!--
+  CONCEITO: "Superfície Tech Moderna" — o card de livro da Biblioteca tratado como
+  um objeto de produto de tecnologia premium (Vercel / Linear / Awwwards), MAS com
+  a alma verde editorial da casa. Keyline fino em gradiente verde->ouro que ganha
+  vida só no hover; capa-herói com micro-zoom contido; chip de engajamento
+  minimalista; "comprar" como ação discreta e secundária. Restrição é o luxo:
+  poucos elementos, muito ar, hierarquia clara, um único gesto de marca por card.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Biblioteca — card premium · superfície tech moderna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Tokens de marca — fonte única, NÃO inventar paleta */
+    --green: oklch(52% 0.14 152);
+    --green-dark: oklch(40% 0.12 152);
+    --gold: oklch(60% 0.10 83);
+    --black: oklch(22% 0.01 152);
+    --gray-dark: oklch(46% 0.01 152);
+    --paper-bg: oklch(99% 0.002 152);
+    --radius: 6px;          /* token base da casa */
+    --radius-card: 14px;    /* canto maior, contemporâneo (tech surface) */
+
+    --font-display: 'Hanken Grotesk', system-ui, sans-serif;
+    --font-serif: 'Literata', Georgia, serif;
+
+    /* Derivados sutis (mesmas hues, só translucidez/leveza) */
+    --keyline: color-mix(in oklab, var(--black) 9%, transparent);
+    --keyline-hover: color-mix(in oklab, var(--green) 38%, transparent);
+    --ink-soft: color-mix(in oklab, var(--black) 60%, transparent);
+    --chip-bg: color-mix(in oklab, var(--green) 8%, var(--paper-bg));
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 2.5rem 1.25rem 3.5rem;
+    background: oklch(96% 0.005 152);
+    font-family: var(--font-display);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .stage {
+    max-width: 390px;
+    margin: 0 auto;
+  }
+
+  .stage h1 {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    margin: 0 0 1.5rem;
+  }
+
+  .shelf {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  /* ---- O CARD ---- */
+  /* A borda em gradiente verde->ouro vive numa moldura de 1.25px; o miolo é papel.
+     Em repouso ela é quase invisível (keyline neutro); no hover acende a marca. */
+  .card {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-card);
+    padding: 1.25px;                 /* espessura do keyline em gradiente */
+    background: var(--keyline);      /* repouso: keyline neutro discreto */
+    transition: background 220ms ease, transform 220ms ease,
+                box-shadow 220ms ease;
+    will-change: transform;
+  }
+
+  .card__inner {
+    position: relative;
+    background: var(--paper-bg);
+    border-radius: calc(var(--radius-card) - 1.25px);
+    overflow: hidden;
+  }
+
+  /* ---- Capa herói ---- */
+  .cover {
+    position: relative;
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: color-mix(in oklab, var(--green) 6%, var(--paper-bg));
+  }
+
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 480ms cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+  }
+
+  /* Chip de engajamento — flutua sobre a capa, vidro discreto */
+  .chip {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 9px 4px 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--green-dark);
+    background: color-mix(in oklab, var(--paper-bg) 82%, transparent);
+    backdrop-filter: blur(8px) saturate(1.1);
+    -webkit-backdrop-filter: blur(8px) saturate(1.1);
+    border: 1px solid color-mix(in oklab, var(--green) 16%, transparent);
+    border-radius: 999px;
+    transition: border-color 220ms ease, color 220ms ease;
+  }
+  .chip svg { width: 12px; height: 12px; display: block; }
+
+  /* ---- Corpo textual ---- */
+  .body {
+    padding: 0.85rem 0.9rem 0.95rem;
+  }
+
+  .title {
+    font-family: var(--font-serif);
+    font-size: 1.06rem;
+    font-weight: 500;
+    line-height: 1.18;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: var(--black);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .author {
+    margin: 0.3rem 0 0;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
+
+  /* ---- Rodapé: comprar discreto ---- */
+  .foot {
+    margin-top: 0.85rem;
+    padding-top: 0.7rem;
+    border-top: 1px solid color-mix(in oklab, var(--black) 7%, transparent);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .read {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--green-dark);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .read svg {
+    width: 11px; height: 11px;
+    transition: transform 220ms ease;
+  }
+
+  /* Comprar = ação secundária, quase um sussurro até o hover */
+  .buy {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--gray-dark);
+    text-decoration: none;
+    padding: 3px 8px;
+    border-radius: var(--radius);
+    transition: color 200ms ease, background 200ms ease;
+  }
+  .buy svg { width: 12px; height: 12px; }
+  .buy:hover {
+    color: var(--gold);
+    background: color-mix(in oklab, var(--gold) 12%, transparent);
+  }
+
+  /* ---- Micro-interações de hover no card ---- */
+  .card:hover,
+  .card:focus-visible {
+    background: linear-gradient(135deg,
+                var(--keyline-hover),
+                color-mix(in oklab, var(--gold) 32%, transparent));
+    transform: translateY(-3px);
+    box-shadow:
+      0 1px 2px color-mix(in oklab, var(--black) 8%, transparent),
+      0 14px 28px -12px color-mix(in oklab, var(--green) 28%, transparent);
+    outline: none;
+  }
+
+  .card:hover .cover img,
+  .card:focus-visible .cover img {
+    transform: scale(1.045);
+  }
+
+  .card:hover .read svg { transform: translateX(2px); }
+
+  .card:hover .chip {
+    color: var(--green-dark);
+    border-color: color-mix(in oklab, var(--green) 30%, transparent);
+  }
+
+  /* Acessibilidade: foco por teclado herda o tratamento de hover acima */
+  .card:focus-visible { outline: 2px solid color-mix(in oklab, var(--green) 50%, transparent); outline-offset: 3px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card, .cover img, .read svg { transition: none; }
+    .card:hover { transform: none; }
+    .card:hover .cover img { transform: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="stage">
+    <h1>Estante · conceito superfície tech moderna</h1>
+
+    <div class="shelf">
+
+      <!-- Card 1 -->
+      <a class="card" href="#" aria-label="Sapiens, de Yuval Noah Harari — 248 curtidas">
+        <span class="card__inner">
+          <span class="cover">
+            <img src="https://www.andregalgani.com.br/biblioteca/assets/sapiens-capa.png" alt="Capa de Sapiens" loading="lazy" />
+            <span class="chip" aria-label="248 curtidas">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+              248
+            </span>
+          </span>
+          <span class="body">
+            <h2 class="title">Sapiens</h2>
+            <p class="author">Yuval Noah Harari</p>
+            <span class="foot">
+              <span class="read">Ler resumo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              <span class="buy" role="link" aria-label="Comprar na Amazon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6 5 3H3"/></svg>
+                Comprar
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Card 2 -->
+      <a class="card" href="#" aria-label="1984, de George Orwell — 412 curtidas">
+        <span class="card__inner">
+          <span class="cover">
+            <img src="https://www.andregalgani.com.br/biblioteca/assets/1984-capa.png" alt="Capa de 1984" loading="lazy" />
+            <span class="chip" aria-label="412 curtidas">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+              412
+            </span>
+          </span>
+          <span class="body">
+            <h2 class="title">1984</h2>
+            <p class="author">George Orwell</p>
+            <span class="foot">
+              <span class="read">Ler resumo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              <span class="buy" role="link" aria-label="Comprar na Amazon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6 5 3H3"/></svg>
+                Comprar
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Card 3 -->
+      <a class="card" href="#" aria-label="As Leis da Natureza Humana, de Robert Greene — 189 curtidas">
+        <span class="card__inner">
+          <span class="cover">
+            <img src="https://www.andregalgani.com.br/biblioteca/assets/leis-da-natureza-humana-capa.png" alt="Capa de As Leis da Natureza Humana" loading="lazy" />
+            <span class="chip" aria-label="189 curtidas">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
+              189
+            </span>
+          </span>
+          <span class="body">
+            <h2 class="title">As Leis da Natureza Humana</h2>
+            <p class="author">Robert Greene</p>
+            <span class="foot">
+              <span class="read">Ler resumo
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+              <span class="buy" role="link" aria-label="Comprar na Amazon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6 5 3H3"/></svg>
+                Comprar
+              </span>
+            </span>
+          </span>
+        </span>
+      </a>
+
+    </div>
+  </main>
+</body>
+</html>

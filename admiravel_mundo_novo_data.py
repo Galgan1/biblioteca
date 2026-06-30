@@ -9,6 +9,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · A SERVIDÃO QUE SE AMA",
  "intro": "Imagine uma tirania sem torturador, sem porão, sem censura — porque ninguém deseja ler o livro proibido. No ano 632 depois de Ford, o Estado Mundial não impõe a felicidade: ele a fabrica antes do nascimento, no frasco, junto com a casta e o gosto pela casta. Não há dor, não há velhice, não há perguntas; há sexo, consumo e um grama de soma para cada pontada de tristeza. A corrente que prende este mundo não pesa, não fere e não se vê — porque cada um a beija. Então chega John, criado fora do paraíso, e comete o único crime que sobrou: <em>quer sofrer</em>.",
  "description": "O romance de Huxley sobre a distopia que ninguém perceberia ser uma. Frascos, castas, hipnopedia e soma compõem uma engenharia da felicidade tão perfeita que dispensa o medo — e é justamente por isso que assusta mais. Onde Orwell temeu a bota que esmaga, Huxley temeu o abraço que adormece: o consumo permanente, o prazer obrigatório e o entretenimento como anestésico de massa. A profecia mais incômoda do século não é a do livro queimado, mas a do livro que ninguém quer mais abrir.",
+ "hook": "Você já tomou um soma hoje. Só não sabia o nome.",
+ "story_promise": "SOMA: A DROGA QUE SUBSTITUI A POLÍCIA",
+ "story_lessons": [
+   "O Estado não proíbe a liberdade — ele te faz não querer mais.",
+   "Anestesiar toda dor anestesia também a profundidade da vida.",
+   "Você não vê a jaula quando a jaula é o seu próprio prazer.",
+ ],
  "tags": ["Distopia", "Filosofia", "Consumismo"],
  "progress": "8 Capítulos",
  "cover": "assets/admiravel-mundo-novo-cover.png",

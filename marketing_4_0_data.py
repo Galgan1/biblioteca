@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · DO TRADICIONAL AO DIGITAL",
  "intro": "Por décadas a marca falou e o cliente escutou. Acabou. Na economia conectada quem decide é uma rede horizontal e cética, que confia mais no palpite de um desconhecido na internet do que no comercial mais caro do ano. Marketing 4.0 é a resposta de Kotler a esse mundo: usar a tecnologia <strong>para reaproximar gente, não para substituí-la</strong>. O alvo deixou de ser a venda. A venda é o meio do caminho — o destino é o cliente que recomenda a marca de graça, com a credibilidade que dinheiro nenhum compra.",
  "description": "O manual de Kotler, Kartajaya e Setiawan para o marketing na era da conectividade — quando o poder migrou da marca para o cliente. Reorganiza tudo em torno da jornada dos Cinco As (Assimilação, Atração, Arguição, Ação, Apologia), troca os 4 Ps pelos Quatro Cs, mede o que importa com PAR e BAR, e aposta no fator-F: a recomendação do par como a mídia mais poderosa que existe. No fim, marketing humano, de conteúdo, omnichannel e de engajamento, todos a serviço de uma só ideia — transformar o comprador em defensor.",
+ "hook": "Seu anúncio milionário perde para um desconhecido na internet.",
+ "story_promise": "BAR SCORE: QUANTOS TE DEFENDEM?",
+ "story_lessons": [
+   "O cliente confia mais no fator-F do que na sua propaganda.",
+   "A venda é só a metade — quem para ali perde o defensor.",
+   "Seu BAR score revela mais sobre a marca do que qualquer métrica de alcance.",
+ ],
  "tags": ["Marketing", "Negócios", "Digital"],
  "progress": "8 Capítulos",
  "cover": "assets/marketing-4-0-cover.png",

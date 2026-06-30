@@ -1,0 +1,300 @@
+<!--
+  CONCEITO: "Elevação Material" — cada card é uma placa de material premium (papel branco
+  flutuante) sobre a estante cinza. A profundidade real vem de TRÊS sombras empilhadas
+  (ambiente difusa + contato curta + key média), não de uma sombra dura. A capa tem
+  elevação interna própria (inset + sombra de contato) para parecer um objeto físico
+  pousado sobre a placa. No hover o card LEVANTA (translateY -6px) e a sombra cresce em
+  camadas — sensação tátil, nítida e cara, ao estilo Stripe/Linear. On-brand: verde h152
+  só nos detalhes (chip de curtidas, affordance de comprar); o branco e o papel mandam.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca — card premium (Elevação Material)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green:      oklch(52% 0.14 152);
+    --green-dark: oklch(40% 0.12 152);
+    --gold:       oklch(60% 0.10 83);
+    --black:      oklch(22% 0.01 152);
+    --gray-dark:  oklch(46% 0.01 152);
+    --paper-bg:   oklch(99% 0.002 152);
+    --radius:     6px;
+
+    /* superfície/material derivados (sem inventar paleta — só neutros e alphas do verde) */
+    --card-radius:   14px;
+    --cover-radius:  9px;
+    --line:          oklch(90% 0.004 152);
+    --green-tint:    oklch(96% 0.02 152);
+    --font-ui:       "Hanken Grotesk", system-ui, sans-serif;
+    --font-serif:    "Literata", Georgia, serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    /* fundo da estante: cinza claro pedido */
+    background: oklch(96% 0.005 152);
+    font-family: var(--font-ui);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    padding: 28px 0 48px;
+  }
+
+  .shelf {
+    width: 390px;
+    margin: 0 auto;
+    padding: 0 18px;
+  }
+
+  .shelf__kicker {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    margin: 0 2px 18px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  /* ---------- O CARD: placa de material flutuante ---------- */
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 0.5px solid var(--line);
+    border-radius: var(--card-radius);
+    padding: 12px 12px 14px;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    /* PROFUNDIDADE em camadas: contato curto + key médio + ambiente difuso */
+    box-shadow:
+      0 1px 1.5px oklch(22% 0.01 152 / 0.05),
+      0 4px 8px   oklch(22% 0.01 152 / 0.06),
+      0 12px 26px oklch(22% 0.01 152 / 0.07);
+    transition:
+      transform 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 240ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 240ms ease;
+    will-change: transform;
+  }
+
+  /* HOVER: o card LEVANTA e a sombra cresce em camadas */
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-6px);
+    border-color: oklch(86% 0.01 152);
+    box-shadow:
+      0 2px 3px   oklch(22% 0.01 152 / 0.06),
+      0 10px 18px oklch(22% 0.01 152 / 0.08),
+      0 24px 48px oklch(22% 0.01 152 / 0.12);
+    outline: none;
+  }
+  .card:active { transform: translateY(-2px); }
+
+  /* ---------- CAPA (herói) com elevação interna própria ---------- */
+  .cover {
+    position: relative;
+    border-radius: var(--cover-radius);
+    aspect-ratio: 2 / 3;
+    overflow: hidden;
+    background: var(--paper-bg);
+    /* a capa parece um objeto pousado: sombra de contato + recorte sutil */
+    box-shadow:
+      0 1px 2px  oklch(22% 0.01 152 / 0.10),
+      0 6px 14px oklch(22% 0.01 152 / 0.12);
+    transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card:hover .cover { transform: translateY(-1px); }
+
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* borda interna fina = "vidro/laca" sobre a capa, sela a elevação */
+  .cover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 0.5px oklch(22% 0.01 152 / 0.10);
+    pointer-events: none;
+  }
+
+  /* chip de engajamento discreto, flutuando no canto da capa */
+  .likes {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 9px 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--green-dark);
+    background: oklch(99% 0.002 152 / 0.86);
+    backdrop-filter: saturate(1.4) blur(6px);
+    box-shadow:
+      0 1px 2px oklch(22% 0.01 152 / 0.14),
+      inset 0 0 0 0.5px oklch(22% 0.01 152 / 0.06);
+  }
+  .likes svg { width: 13px; height: 13px; display: block; }
+  .likes svg path { fill: var(--green); }
+
+  /* ---------- META: título + autor ---------- */
+  .meta { padding: 12px 4px 0; }
+
+  .title {
+    font-family: var(--font-serif);
+    font-size: 15.5px;
+    font-weight: 600;
+    line-height: 1.22;
+    letter-spacing: -0.006em;
+    color: var(--black);
+    margin: 0 0 3px;
+    /* trava em 2 linhas para manter a grade alinhada */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 2.44em;
+  }
+
+  .author {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--gray-dark);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ---------- RODAPÉ: affordance de comprar discreta ---------- */
+  .foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 12px 4px 0;
+    padding-top: 11px;
+    border-top: 0.5px solid var(--line);
+  }
+
+  .read {
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+
+  /* comprar = ícone-pílula discreto; ganha cor só no hover do card */
+  .buy {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-dark);
+    transition: color 200ms ease, transform 200ms ease;
+  }
+  .buy svg { width: 14px; height: 14px; display: block; }
+  .buy svg path { stroke: currentColor; }
+  .card:hover .buy { color: var(--green-dark); }
+  .card:hover .buy svg { transform: translateX(1px); }
+</style>
+</head>
+<body>
+  <main class="shelf">
+    <p class="shelf__kicker">Estante · em alta</p>
+
+    <div class="grid">
+
+      <!-- Card 1 -->
+      <a class="card" href="#" aria-label="Sapiens, de Yuval Noah Harari — 248 curtidas">
+        <div class="cover">
+          <img src="https://www.andregalgani.com.br/biblioteca/assets/sapiens-capa.png"
+               alt="Capa do livro Sapiens" loading="lazy">
+          <span class="likes" aria-label="248 curtidas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.6 9 1.6 5.6 4.8 5c2-.4 3.6.7 4.4 2 0 0 .6 1 .8 1 .2 0 .8-1 .8-1 .8-1.3 2.4-2.4 4.4-2 3.2.6 4.2 4 2.8 6.8C19.5 16.4 12 21 12 21z"/></svg>
+            248
+          </span>
+        </div>
+        <div class="meta">
+          <h3 class="title">Sapiens</h3>
+          <p class="author">Yuval Noah Harari</p>
+        </div>
+        <div class="foot">
+          <span class="read">Resumo</span>
+          <span class="buy">Comprar
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 2 -->
+      <a class="card" href="#" aria-label="1984, de George Orwell — 412 curtidas">
+        <div class="cover">
+          <img src="https://www.andregalgani.com.br/biblioteca/assets/1984-capa.png"
+               alt="Capa do livro 1984" loading="lazy">
+          <span class="likes" aria-label="412 curtidas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.6 9 1.6 5.6 4.8 5c2-.4 3.6.7 4.4 2 0 0 .6 1 .8 1 .2 0 .8-1 .8-1 .8-1.3 2.4-2.4 4.4-2 3.2.6 4.2 4 2.8 6.8C19.5 16.4 12 21 12 21z"/></svg>
+            412
+          </span>
+        </div>
+        <div class="meta">
+          <h3 class="title">1984</h3>
+          <p class="author">George Orwell</p>
+        </div>
+        <div class="foot">
+          <span class="read">Resumo</span>
+          <span class="buy">Comprar
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <!-- Card 3 -->
+      <a class="card" href="#" aria-label="As Leis da Natureza Humana, de Robert Greene — 189 curtidas">
+        <div class="cover">
+          <img src="https://www.andregalgani.com.br/biblioteca/assets/leis-da-natureza-humana-capa.png"
+               alt="Capa do livro As Leis da Natureza Humana" loading="lazy">
+          <span class="likes" aria-label="189 curtidas">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.6 9 1.6 5.6 4.8 5c2-.4 3.6.7 4.4 2 0 0 .6 1 .8 1 .2 0 .8-1 .8-1 .8-1.3 2.4-2.4 4.4-2 3.2.6 4.2 4 2.8 6.8C19.5 16.4 12 21 12 21z"/></svg>
+            189
+          </span>
+        </div>
+        <div class="meta">
+          <h3 class="title">As Leis da Natureza Humana</h3>
+          <p class="author">Robert Greene</p>
+        </div>
+        <div class="foot">
+          <span class="read">Resumo</span>
+          <span class="buy">Comprar
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+</body>
+</html>

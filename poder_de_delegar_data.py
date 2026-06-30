@@ -12,6 +12,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · QUEM FAZ TUDO NÃO LIDERA NADA",
  "intro": "Dois primos idênticos, James e Jones: mesmas mães gêmeas, mesma inteligência, o mesmo cargo de chefia. E vidas opostas. Jones joga golfe, janta em casa e está com tudo sob controle; James pula o café, apaga incêndios e some debaixo da caixa de entrada. A única diferença entre eles não é dom — é um hábito que se aprende: <em>delegar</em>. Genett vira do avesso o velho ditado e prova que, se você quer bem feito, justamente <strong>não</strong> precisa fazer sozinho. O método cabe em seis passos, e quando ele falha a culpa é de quem delegou.",
  "description": "A parábola de gestão de Donna Genett. Pelos primos James e Jones — partida idêntica, finais opostos — ela mostra que delegar não é empurrar tarefa para baixo: é liderança e coaching disfarçados de tarefa. Os seis passos na ordem (preparar, discutir e repetir de volta, prazo, nível de autoridade, checkpoints, debriefing), os três níveis de autoridade (Recomendar / Informar e iniciar / Agir) e a meta provocadora de delegar 95% do que cruza a mesa. Pular um passo é a causa de quase todo fracasso — e quem se torna gargalo com o próprio nome.",
+ "hook": "Você chega primeiro, sai por último — e a pilha só cresce.",
+ "story_promise": "VOCÊ VIROU UM GARGALO",
+ "story_lessons": [
+   "Fazer tudo sozinho não te torna indispensável — te torna o gargalo.",
+   "Quem delega bem multiplica o time; quem faz tudo soma só a si mesmo.",
+   "Quando a delegação falha, a culpa é de quem delegou, não de quem recebeu.",
+ ],
  "tags": ["Liderança", "Gestão", "Produtividade"],
  "progress": "8 Capítulos",
  "cover": "assets/poder-de-delegar-cover.png",

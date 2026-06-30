@@ -24,9 +24,8 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
   background-image:radial-gradient(oklch(78% 0.07 152 / .055) 1.1px, transparent 1.3px);
   background-size:36px 36px;background-position:center;
   -webkit-mask-image:radial-gradient(125% 105% at 50% -5%, #000 50%, transparent 100%);}
-/* moldura tracejada (DNA cheat sheet), refinada + halo interno */
-.slide::after{content:'';position:absolute;inset:38px;border:2px dashed var(--green);
-  border-radius:32px;opacity:.38;pointer-events:none;
+/* halo interno (borda removida — parecia debug, não design) */
+.slide::after{content:'';position:absolute;inset:38px;border-radius:32px;opacity:0;pointer-events:none;
   box-shadow:inset 0 0 90px oklch(70% 0.13 152 / .05)}
 /* numeral-fantasma de fundo (contido pela moldura p/ não virar artefato) */
 .slide>*{position:relative;z-index:1}
@@ -107,7 +106,7 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .warn .ed-body::before{border-color:var(--warn)}
 .ed-body strong{font-weight:700;color:var(--green-soft)}
 .warn .ed-body strong{color:var(--warn)}
-.ed-body .dc{float:left;font-family:'Literata',Georgia,serif;font-weight:600;font-size:138px;line-height:.78;color:var(--green);margin:8px 22px -6px 0;text-shadow:0 0 44px oklch(72% 0.14 152 / .3)}
+.ed-body .dc{color:var(--green);font-weight:700;text-shadow:0 0 24px oklch(72% 0.14 152 / .2)}
 .warn .ed-body .dc{color:var(--warn)}
 .ed-tip{margin-top:auto;display:flex;gap:26px;align-items:flex-start;background:linear-gradient(150deg, oklch(70% 0.14 152 / .14), oklch(70% 0.14 152 / .035));border:2px solid var(--hair);border-left:6px solid var(--green);border-radius:22px;padding:34px 38px;box-shadow:0 16px 44px oklch(8% 0.02 152 / .45), inset 0 1px 0 oklch(90% 0.1 152 / .08)}
 .warn .ed-tip{border-left-color:var(--warn);background:linear-gradient(150deg, oklch(75% 0.16 30 / .14), oklch(75% 0.16 30 / .035))}
@@ -119,7 +118,19 @@ body{background:#000;font-family:'Hanken Grotesk',system-ui,sans-serif;
 .warn .ed-tip .tiplabel{color:var(--warn)}
 .ed-tip .tipbody{font-size:31px;line-height:1.36;color:var(--green-soft);font-weight:500;text-wrap:pretty}
 .ed-tip .tipbody strong{color:var(--green);font-weight:800}
-.warn .ed-tip .tipbody{color:oklch(82% 0.08 38)} .warn .ed-tip .tipbody strong{color:var(--warn)}
+.warn .ed-tip .tipbody{color:oklch(82% 0.08 30)} .warn .ed-tip .tipbody strong{color:var(--warn)}
+
+/* ---------- lições-chave (slide final do carrossel de capítulo) ---------- */
+/* _lessons_slide (de _carousel_slides.py) emite .lessons/.lessons-list/.lnum;
+   estas regras viviam só no órfão _carousel_css.py → portadas p/ a fonte única inline. */
+.lessons{justify-content:flex-start}
+.lessons .ed-num{font-size:80px;width:80px;height:80px;display:flex;align-items:center;justify-content:center}
+.lessons .ed-num svg{width:54px;height:54px;color:var(--green);filter:drop-shadow(0 0 12px oklch(72% 0.14 152 / .45))}
+.lessons-list{list-style:none;padding:0;margin:20px 0 0;display:flex;flex-direction:column;flex:1}
+.lessons-list li{display:flex;align-items:flex-start;gap:30px;padding:32px 0;font-family:'Literata',Georgia,serif;font-size:41px;font-weight:500;color:var(--ink);line-height:1.3;text-wrap:pretty}
+.lessons-list li + li{border-top:2px dashed var(--hair)}
+.lessons-list .lnum{font-family:'Hanken Grotesk',system-ui,sans-serif;font-size:62px;font-weight:900;color:var(--green);line-height:.82;flex:0 0 44px;text-shadow:0 0 36px oklch(72% 0.14 152 / .38)}
+.lessons-list li strong{color:var(--green-soft);font-weight:700}
 
 /* ---------- capa ---------- */
 .cover{justify-content:center;text-align:center;align-items:center}

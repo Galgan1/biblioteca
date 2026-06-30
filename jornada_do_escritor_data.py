@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · O MAPA SECRETO DE TODA HISTÓRIA",
  "intro": "Por baixo de cada conto de fogueira, cada filme e cada lenda corre um só rio. Joseph Campbell ouviu mil mitos do mundo inteiro e descobriu que contavam, no fundo, a mesma história. Vogler pegou esse mapa e o devolveu ao escritor como ferramenta de trabalho: doze estágios e oito arquétipos. Não porque a fórmula vende, mas porque a Jornada do Herói é o desenho da única coisa que comove de verdade — alguém que parte do que era para se tornar outro. Quem escreve está sempre recontando esse caminho. A questão é se sabe disso.",
  "description": "A adaptação que Christopher Vogler fez do monomito de Joseph Campbell para o ofício do roteiro: os 12 estágios da Jornada do Herói e os 8 arquétipos vistos como funções psicológicas, não tipos fixos. Uma bússola para escrever — e diagnosticar — qualquer história, do mito épico ao drama mais íntimo. Mapa flexível, jamais receita.",
+ "hook": "Você está recontando o monomito sem saber — e errando os passos.",
+ "story_promise": "O MAPA DOS 12 ESTÁGIOS DO HERÓI",
+ "story_lessons": [
+   "O arquétipo não é personagem — é função que qualquer um pode vestir.",
+   "Sem morte simbólica, não há renascimento: o herói precisa perder algo real.",
+   "O elixir guardado não cura ninguém: a vitória só fecha quando é partilhada.",
+ ],
  "tags": ["Roteiro", "Mito", "Ofício"],
  "progress": "10 Capítulos",
  "cover": "assets/jornada-do-escritor-cover.png",

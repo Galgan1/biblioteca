@@ -14,6 +14,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · O QUE OS RICOS ENSINAM AOS FILHOS",
  "intro": "Dois homens criaram Kiyosaki, e cada um lhe deu um conselho. O Pai Pobre — professor de PhD — dizia 'estude para arranjar um bom emprego'. O Pai Rico — que largou a escola na 8ª série e ficou milionário — dizia 'estude para que o dinheiro trabalhe para você'. Os dois ganhavam bem; só um morreu rico. A escola te treina para ser o melhor funcionário possível e nunca te conta o segredo mais simples do jogo: <em>os ricos não trabalham por dinheiro — eles compram ativos, e os ativos é que trabalham</em>.",
  "description": "O livro de finanças mais vendido da história, e o que mais irrita quem ama diploma. Kiyosaki desmonta a promessa da escola — boas notas, bom emprego, segurança — e a chama de armadilha: a corrida dos ratos, em que cada aumento de salário só compra uma gaiola mais cara. Contra isso, uma única regra que dá nome ao jogo: ativo põe dinheiro no seu bolso, passivo tira. Dos dois pais à coluna de ativos, das corporações que driblam o imposto ao pague-se primeiro, é um manual para parar de trabalhar por dinheiro e fazê-lo trabalhar por você.",
+ "hook": "Você trabalha por dinheiro a vida toda. Os ricos fazem o contrário.",
+ "story_promise": "ATIVO VS. PASSIVO: SAIA DA CORRIDA",
+ "story_lessons": [
+   "Ativo põe dinheiro no bolso. Passivo tira. Só isso.",
+   "A escola te treina pra ser o melhor funcionário.",
+   "Pague-se primeiro — antes de pagar qualquer conta.",
+ ],
  "tags": ["Finanças", "Educação Financeira", "Mentalidade"],
  "progress": "10 Capítulos",
  "cover": "assets/pai-rico-pai-pobre-cover.png",

@@ -14,6 +14,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · A LEI DO DINHEIRO FORTE",
  "intro": "Antes de discutir o Bitcoin, Ammous obriga você a olhar para o dinheiro — algo que quase ninguém examina, porque o usa todos os dias sem pensar. E há uma única lei sob toda a história monetária, das conchas ao ouro, do ouro ao papel do governo: <strong>vence o dinheiro mais difícil de fabricar.</strong> A régua é a razão estoque/fluxo, e o veredicto é austero — o Bitcoin, de oferta absolutamente fixa, seria o dinheiro mais duro que a humanidade já teve nas mãos.",
  "description": "Saifedean Ammous escreve com a economia austríaca na ponta da língua e o fiat na mira. Sua tese: a qualidade do dinheiro decide se uma sociedade poupa ou queima, constrói catedrais ou estoura bolhas, valoriza o futuro ou o devora hoje. Dinheiro forte (alta razão estoque/fluxo) preserva a poupança e a civilização; dinheiro fácil expropria quem confia nele. O Bitcoin, argumenta, é o ponto final dessa história — escassez que nenhum decreto consegue diluir.",
+ "hook": "Seu salário perde valor todo mês — e você chama isso de normal.",
+ "story_promise": "DINHEIRO DURO PRESERVA QUEM POUPA",
+ "story_lessons": [
+   "Dinheiro difícil de produzir protege a poupança, não a lei.",
+   "O dinheiro fraco ensina você a gastar — não é culpa sua.",
+   "O Bitcoin tem 21 milhões fixos e ninguém pode criar mais.",
+ ],
  "tags": ["Economia", "Dinheiro", "Bitcoin"],
  "progress": "10 Capítulos",
  "cover": "assets/padrao-bitcoin-cover.png",

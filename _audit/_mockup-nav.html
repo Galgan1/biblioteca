@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockups — navegação entre capítulos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Literata:ital,opsz,wght@0,7..72,500;0,7..72,600;0,7..72,700;1,7..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:oklch(52% 0.14 152); --green-dark:oklch(40% 0.12 152); --green-light:oklch(95% 0.03 152);
+  --gold:oklch(60% 0.10 83); --gold-soft:oklch(72% 0.09 83);
+  --black:oklch(22% 0.01 152); --gray-dark:oklch(46% 0.01 152); --gray-light:oklch(86% 0.01 152);
+  --paper-bg:oklch(99% 0.002 152); --body-bg:oklch(95% 0.005 152); --radius:6px;
+  --display:'Hanken Grotesk',system-ui,sans-serif; --serif:'Literata',Georgia,serif;
+}
+.dark{
+  --green:oklch(70% 0.13 152); --green-dark:oklch(76% 0.11 152); --green-light:oklch(28% 0.04 152);
+  --gold:oklch(76% 0.105 83); --gold-soft:oklch(86% 0.075 83);
+  --black:oklch(95% 0.01 152); --gray-dark:oklch(82% 0.01 152); --gray-light:oklch(38% 0.01 152);
+  --paper-bg:oklch(21% 0.005 152); --body-bg:oklch(16% 0.01 152);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--display);background:oklch(93% 0.005 152);color:var(--black);padding:0 0 4rem}
+.panel{padding:1.6rem 1.4rem}
+.panel.light{background:var(--body-bg)} .panel.dark{background:var(--body-bg);color:var(--black)}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:1.3rem;margin:0;padding:1.6rem 1.4rem 0;text-align:center}
+.sub{text-align:center;color:var(--gray-dark);font-size:.9rem;margin:.3rem 0 0;padding:0 1.4rem}
+.modehead{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-dark);text-align:center;margin:0 0 1.2rem}
+.vcard{margin:0 auto 1.7rem;max-width:680px}
+.vtitle{display:flex;align-items:baseline;gap:.6rem;margin:0 0 .1rem}
+.vtitle b{font-size:1rem;font-weight:700;color:var(--green-dark)}
+.vtitle .num{font-family:var(--serif);font-style:italic;color:var(--gold);font-weight:600}
+.vdesc{color:var(--gray-dark);font-size:.84rem;margin:0 0 .7rem}
+.chapter-nav{display:flex;justify-content:space-between;align-items:stretch;gap:1rem}
+.cn{flex:1 1 0;max-width:48%;min-width:0;text-decoration:none;border-radius:var(--radius);
+    border:1px solid var(--gray-light);background:var(--paper-bg);transition:border-color .18s,background .18s}
+
+/* ---- V1 — Editorial serifado ---- */
+.v1 .cn{display:flex;flex-direction:column;gap:4px;padding:.72rem 1.05rem}
+.v1 .lab{font-size:.62rem;letter-spacing:.13em;text-transform:uppercase;color:var(--gray-dark);
+    display:flex;align-items:center;gap:6px;font-weight:600}
+.v1 .lab .ar{color:var(--gold);font-size:.85rem;line-height:1}
+.v1 .ttl{font-family:var(--serif);font-size:1.02rem;font-weight:600;color:var(--green-dark);line-height:1.18}
+.v1 .cn.next{align-items:flex-end;text-align:right}
+.v1 .cn.next .lab{flex-direction:row-reverse}
+.v1 .cn:hover{border-color:var(--green)}
+
+/* ---- V2 — Seta em bloco ---- */
+.v2 .cn{display:flex;align-items:center;gap:12px;padding:.62rem .8rem}
+.v2 .chip{width:36px;height:36px;flex-shrink:0;border-radius:8px;background:var(--green-light);
+    color:var(--green-dark);display:flex;align-items:center;justify-content:center;font-size:1.15rem;
+    box-shadow:inset 0 0 0 1px color-mix(in oklch,var(--green) 30%,transparent)}
+.v2 .txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.v2 .lab{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-dark);font-weight:600}
+.v2 .ttl{font-family:var(--display);font-size:.92rem;font-weight:700;color:var(--green-dark);line-height:1.15}
+.v2 .cn.next{flex-direction:row-reverse;text-align:right}
+.v2 .cn.next .txt{align-items:flex-end}
+.v2 .cn:hover{border-color:var(--green)}
+.v2 .cn:hover .chip{background:var(--green);color:var(--paper-bg)}
+
+/* ---- V3 — Minimal premium (seta desliza no hover) ---- */
+.v3 .cn{display:flex;flex-direction:column;gap:5px;padding:.82rem 1.15rem}
+.v3 .lab{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gray-dark);font-weight:600}
+.v3 .ttl{font-family:var(--display);font-size:.98rem;font-weight:700;color:var(--green-dark);
+    display:flex;align-items:center;gap:8px;line-height:1.15}
+.v3 .ar{color:var(--gold);transition:transform .18s;font-weight:700}
+.v3 .cn.next{align-items:flex-end;text-align:right}
+.v3 .cn.next .ttl{flex-direction:row-reverse}
+.v3 .cn:hover{border-color:var(--green);background:color-mix(in oklch,var(--green-light) 45%,var(--paper-bg))}
+.v3 .cn.prev:hover .ar{transform:translateX(-3px)}
+.v3 .cn.next:hover .ar{transform:translateX(3px)}
+
+@media (max-width:560px){
+  .chapter-nav{flex-direction:column;gap:.6rem}
+  .cn{max-width:100%}
+  .v1 .cn.next,.v3 .cn.next{align-items:flex-start;text-align:left}
+  .v1 .cn.next .lab{flex-direction:row}
+  .v2 .cn.next{flex-direction:row}
+  .v2 .cn.next .txt{align-items:flex-start}
+  .v3 .cn.next .ttl{flex-direction:row}
+}
+</style></head>
+<body>
+<h1>Navegação entre capítulos — 3 variações premium</h1>
+<p class="sub">Mesma marca (verde + ouro + serifa). Os dois botões têm largura idêntica. Passe o mouse pra ver o hover. Diga: <b>quero a 1, a 2 ou a 3</b> (claro ou escuro).</p>
+
+<div class="panel light">
+  <p class="modehead">— Modo claro —</p>
+  <div class="wrap">
+    <div class="vcard v1">
+      <div class="vtitle"><b>Variação 1</b> <span class="num">Editorial serifado</span></div>
+      <p class="vdesc">Rótulo miúdo em maiúscula + título em serifa Literata. Seta de ouro discreta. Ar de livro.</p>
+      <div class="chapter-nav">
+        <a class="cn prev" href="#"><span class="lab"><span class="ar">&larr;</span>Capítulo anterior</span><span class="ttl">Visão Geral</span></a>
+        <a class="cn next" href="#"><span class="lab"><span class="ar">&rarr;</span>Próximo capítulo</span><span class="ttl">Materiais — Principled BSDF</span></a>
+      </div>
+    </div>
+    <div class="vcard v2">
+      <div class="vtitle"><b>Variação 2</b> <span class="num">Seta em bloco</span></div>
+      <p class="vdesc">Seta num quadrado verde (ganha cor no hover) + rótulo + título sans forte. Mais estruturado/app.</p>
+      <div class="chapter-nav">
+        <a class="cn prev" href="#"><span class="chip">&larr;</span><span class="txt"><span class="lab">Capítulo anterior</span><span class="ttl">Visão Geral</span></span></a>
+        <a class="cn next" href="#"><span class="chip">&rarr;</span><span class="txt"><span class="lab">Próximo · Cap. 2</span><span class="ttl">Materiais — Principled BSDF</span></span></a>
+      </div>
+    </div>
+    <div class="vcard v3">
+      <div class="vtitle"><b>Variação 3</b> <span class="num">Minimal premium</span></div>
+      <p class="vdesc">Rótulo + título sans forte, seta de ouro que desliza no hover, fundo verde sutil no hover. Limpo.</p>
+      <div class="chapter-nav">
+        <a class="cn prev" href="#"><span class="lab">Capítulo anterior</span><span class="ttl"><span class="ar">&larr;</span>Visão Geral</span></a>
+        <a class="cn next" href="#"><span class="lab">Próximo capítulo</span><span class="ttl"><span class="ar">&rarr;</span>Materiais — Principled BSDF</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel dark">
+  <p class="modehead">— Modo escuro —</p>
+  <div class="wrap">
+    <div class="vcard v1 dark">
+      <div class="vtitle"><b>Variação 1</b> <span class="num">Editorial serifado</span></div>
+      <div class="chapter-nav">
+        <a class="cn prev" href="#"><span class="lab"><span class="ar">&larr;</span>Capítulo anterior</span><span class="ttl">Visão Geral</span></a>
+        <a class="cn next" href="#"><span class="lab"><span class="ar">&rarr;</span>Próximo capítulo</span><span class="ttl">Materiais — Principled BSDF</span></a>
+      </div>
+    </div>
+    <div class="vcard v2 dark">
+      <div class="vtitle"><b>Variação 2</b> <span class="num">Seta em bloco</span></div>
+      <div class="chapter-nav">
+        <a class="cn prev" href="#"><span class="chip">&larr;</span><span class="txt"><span class="lab">Capítulo anterior</span><span class="ttl">Visão Geral</span></span></a>
+        <a class="cn next" href="#"><span class="chip">&rarr;</span><span class="txt"><span class="lab">Próximo · Cap. 2</span><span class="ttl">Materiais — Principled BSDF</span></span></a>
+      </div>
+    </div>
+    <div class="vcard v3 dark">
+      <div class="vtitle"><b>Variação 3</b> <span class="num">Minimal premium</span></div>
+      <div class="chapter-nav">
+        <a class="cn prev" href="#"><span class="lab">Capítulo anterior</span><span class="ttl"><span class="ar">&larr;</span>Visão Geral</span></a>
+        <a class="cn next" href="#"><span class="lab">Próximo capítulo</span><span class="ttl"><span class="ar">&rarr;</span>Materiais — Principled BSDF</span></a>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,297 @@
+<!--
+  CONCEITO: "CAPA-HERÓI IMERSIVA" — card-cartaz de streaming premium para a estante da Biblioteca.
+  A CAPA preenche o card inteiro (aspect ratio de pôster 2:3). Título + autor pousam SOBRE a capa
+  num scrim em gradiente (preto -> transparente) no rodapé, garantindo legibilidade sem caixa pesada.
+  O verde da marca entra COMO DETALHE: filete superior + coração/contador de curtidas + microhover.
+  Sem pílulas, sem "% lido", sem votos. Card todo clicável. Refinado, não exagerado.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca — Card cinematográfico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green: oklch(52% 0.14 152);
+    --green-dark: oklch(40% 0.12 152);
+    --gold: oklch(60% 0.10 83);
+    --black: oklch(22% 0.01 152);
+    --gray-dark: oklch(46% 0.01 152);
+    --paper-bg: oklch(99% 0.002 152);
+    --radius: 6px;
+    --sans: "Hanken Grotesk", system-ui, sans-serif;
+    --serif: "Literata", Georgia, serif;
+  }
+
+  *{ box-sizing: border-box; margin: 0; padding: 0; }
+
+  body{
+    background: oklch(96% 0.005 152);
+    font-family: var(--sans);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+    padding: 24px 16px 40px;
+  }
+
+  .shelf{
+    max-width: 390px;
+    margin: 0 auto;
+  }
+
+  .shelf-head{
+    margin: 4px 4px 20px;
+  }
+  .shelf-head h1{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    color: var(--black);
+  }
+  .shelf-head p{
+    font-size: 12.5px;
+    color: var(--gray-dark);
+    margin-top: 3px;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* ---------- O CARD ---------- */
+  .card{
+    position: relative;
+    display: block;
+    aspect-ratio: 2 / 3;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--black);
+    text-decoration: none;
+    color: #fff;
+    isolation: isolate;
+    box-shadow: 0 1px 2px oklch(22% 0.01 152 / .10),
+                0 8px 22px -10px oklch(22% 0.01 152 / .28);
+    transition: transform .28s cubic-bezier(.2,.7,.2,1),
+                box-shadow .28s cubic-bezier(.2,.7,.2,1);
+  }
+  .card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 2px 4px oklch(22% 0.01 152 / .12),
+                0 18px 34px -12px oklch(22% 0.01 152 / .42);
+  }
+  .card:focus-visible{
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+  }
+
+  /* filete verde da marca — assina o topo do cartaz */
+  .card::before{
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--green);
+    z-index: 3;
+  }
+
+  /* a capa (herói) */
+  .card .cover{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform .5s cubic-bezier(.2,.7,.2,1);
+  }
+  .card:hover .cover{ transform: scale(1.045); }
+
+  /* scrim em gradiente: preto no rodapé -> transparente no meio */
+  .card .scrim{
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+      to top,
+      oklch(20% 0.01 152 / .94) 0%,
+      oklch(20% 0.01 152 / .82) 18%,
+      oklch(20% 0.01 152 / .42) 42%,
+      oklch(20% 0.01 152 / 0)   62%
+    );
+  }
+
+  /* curtidas — selo no topo, vidro escuro + acento verde */
+  .card .likes{
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 9px 5px 8px;
+    border-radius: 999px;
+    background: oklch(20% 0.01 152 / .55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid oklch(99% 0.002 152 / .14);
+    font-size: 12px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--paper-bg);
+    letter-spacing: .01em;
+  }
+  .card .likes svg{
+    width: 13px;
+    height: 13px;
+    fill: var(--green);
+    flex: none;
+    transform: translateY(.5px);
+  }
+
+  /* texto sobre a capa */
+  .card .meta{
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 4;
+    padding: 0 13px 13px;
+  }
+  .card .title{
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 16.5px;
+    line-height: 1.16;
+    letter-spacing: -0.012em;
+    color: #fff;
+    text-shadow: 0 1px 10px oklch(20% 0.01 152 / .6);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .author{
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: .02em;
+    color: oklch(99% 0.002 152 / .82);
+    text-transform: uppercase;
+  }
+  /* tracinho verde — assinatura da casa antes do autor */
+  .card .author::before{
+    content: "";
+    width: 14px;
+    height: 1.5px;
+    background: var(--gold);
+    flex: none;
+    border-radius: 2px;
+  }
+
+  /* COMPRAR — discreto: aparece como ação leve, não compete com a capa */
+  .card .buy{
+    position: absolute;
+    bottom: 13px;
+    right: 11px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: oklch(99% 0.002 152 / .12);
+    border: 1px solid oklch(99% 0.002 152 / .22);
+    color: var(--paper-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: .85;
+    transition: background .2s, opacity .2s, transform .2s;
+  }
+  .card .buy svg{ width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 1.7; }
+  .card:hover .buy{ opacity: 1; }
+  .card .buy:hover{
+    background: var(--green);
+    border-color: var(--green);
+    transform: scale(1.06);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .card, .card .cover, .card .buy{ transition: none; }
+    .card:hover{ transform: none; }
+    .card:hover .cover{ transform: none; }
+  }
+</style>
+</head>
+<body>
+  <main class="shelf">
+    <header class="shelf-head">
+      <h1>Estante</h1>
+      <p>Resumos que cabem numa folha.</p>
+    </header>
+
+    <section class="grid">
+
+      <!-- SAPIENS -->
+      <a class="card" href="#" aria-label="Sapiens, de Yuval Noah Harari — 248 curtidas. Abrir resumo.">
+        <img class="cover" src="https://www.andregalgani.com.br/biblioteca/assets/sapiens-capa.png" alt="Capa de Sapiens" loading="lazy">
+        <span class="scrim" aria-hidden="true"></span>
+        <span class="likes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.7 9.1 1.6 5.6 4.7 4.6c2-.6 3.9.3 5 1.9 1.1-1.6 3-2.5 5-1.9 3.1 1 4 4.5 2.7 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          248
+        </span>
+        <div class="meta">
+          <h2 class="title">Sapiens</h2>
+          <p class="author">Yuval Noah Harari</p>
+        </div>
+        <span class="buy" role="button" aria-label="Comprar na Amazon" title="Comprar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12L6 6zM6 6L5 3H2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="17" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
+        </span>
+      </a>
+
+      <!-- 1984 -->
+      <a class="card" href="#" aria-label="1984, de George Orwell — 412 curtidas. Abrir resumo.">
+        <img class="cover" src="https://www.andregalgani.com.br/biblioteca/assets/1984-capa.png" alt="Capa de 1984" loading="lazy">
+        <span class="scrim" aria-hidden="true"></span>
+        <span class="likes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.7 9.1 1.6 5.6 4.7 4.6c2-.6 3.9.3 5 1.9 1.1-1.6 3-2.5 5-1.9 3.1 1 4 4.5 2.7 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          412
+        </span>
+        <div class="meta">
+          <h2 class="title">1984</h2>
+          <p class="author">George Orwell</p>
+        </div>
+        <span class="buy" role="button" aria-label="Comprar na Amazon" title="Comprar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12L6 6zM6 6L5 3H2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="17" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
+        </span>
+      </a>
+
+      <!-- AS LEIS DA NATUREZA HUMANA -->
+      <a class="card" href="#" aria-label="As Leis da Natureza Humana, de Robert Greene — 189 curtidas. Abrir resumo.">
+        <img class="cover" src="https://www.andregalgani.com.br/biblioteca/assets/leis-da-natureza-humana-capa.png" alt="Capa de As Leis da Natureza Humana" loading="lazy">
+        <span class="scrim" aria-hidden="true"></span>
+        <span class="likes">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.2C.7 9.1 1.6 5.6 4.7 4.6c2-.6 3.9.3 5 1.9 1.1-1.6 3-2.5 5-1.9 3.1 1 4 4.5 2.7 7.2C19.5 16.4 12 21 12 21z"/></svg>
+          189
+        </span>
+        <div class="meta">
+          <h2 class="title">As Leis da Natureza Humana</h2>
+          <p class="author">Robert Greene</p>
+        </div>
+        <span class="buy" role="button" aria-label="Comprar na Amazon" title="Comprar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h15l-1.5 9h-12L6 6zM6 6L5 3H2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.3" fill="currentColor" stroke="none"/><circle cx="17" cy="20" r="1.3" fill="currentColor" stroke="none"/></svg>
+        </span>
+      </a>
+
+    </section>
+  </main>
+</body>
+</html>

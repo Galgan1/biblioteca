@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · A ANATOMIA FRIA DO PODER (LEITURA DEFENSIVA)",
  "intro": "O poder não tem moral — tem regras, e elas não mudam há três mil anos. Robert Greene dissecou a corte de Versalhes, os condottieri italianos e os trapaceiros de feira no mesmo bisturi, e o que sobrou foram 48 leis ditas em tom glacial: o poder como ele é, não como o púlpito gostaria que fosse. Por isso o livro escandaliza. Mas o mesmo mapa que arma o ambicioso protege quem só quer dormir tranquilo — e aqui ele serve a essa segunda mão. <em>A pergunta que governa cada página: quem está aplicando isto em mim?</em>",
  "description": "O tratado de Robert Greene sobre a mecânica do poder, destilado de três milênios de cortes, guerras e golpes — frio, histórico, sem indignação. Reorganizado por eixos e lido em chave defensiva: o cortesão que protege a reputação, o jogo das aparências e da atenção, a dependência que prende, a indireção que vence sem confronto, a sedução e o timing, a defesa contra o falso amigo e o falso presente, e a lei que fecha tudo — ser informe, fluir como água para não dar alvo.",
+ "hook": "Você está sendo manipulado agora — e provavelmente não percebe.",
+ "story_promise": "48 LEIS QUE NINGUÉM TE ENSINOU",
+ "story_lessons": [
+   "Quem não joga não fica puro — fica peão.",
+   "Seu inimigo derrotado vira aliado mais fiel que o amigo.",
+   "Reputação entra na sala antes de você — proteja-a.",
+ ],
  "tags": ["Poder", "Estratégia", "Psicologia"],
  "progress": "8 Capítulos",
  "cover": "assets/48-leis-do-poder-cover.png",

@@ -1,0 +1,297 @@
+<!doctype html>
+<!-- Conceito EDITORIAL MINIMALISTA: a capa é a heroína sobre papel quente; título, autor e engajamento são um sussurro tipográfico embaixo — hierarquia por tamanho/peso/cor, zero caixas. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Biblioteca — Card Editorial Minimalista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Literata:opsz,wght@7..72,400;7..72,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green: oklch(52% 0.14 152);
+    --green-dark: oklch(40% 0.12 152);
+    --gold: oklch(60% 0.10 83);
+    --black: oklch(22% 0.01 152);
+    --gray-dark: oklch(46% 0.01 152);
+    --paper-bg: oklch(99% 0.002 152);
+    --radius: 6px;
+
+    --page-bg: oklch(96% 0.005 152);
+    --hairline: oklch(88% 0.008 152);
+    --font-ui: "Hanken Grotesk", system-ui, sans-serif;
+    --font-editorial: "Literata", Georgia, serif;
+  }
+
+  *{ box-sizing: border-box; }
+
+  body{
+    margin: 0;
+    padding: 28px 20px 48px;
+    background: var(--page-bg);
+    font-family: var(--font-ui);
+    color: var(--black);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .stage{
+    max-width: 390px;
+    margin: 0 auto;
+  }
+
+  .stage__eyebrow{
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray-dark);
+    margin: 0 0 22px;
+    text-align: center;
+  }
+
+  .shelf{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 26px 18px;
+  }
+
+  /* ---------- O CARD ---------- */
+  .book{
+    appearance: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    font: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* A heroína: a capa, sobre papel quente com hairline.
+     A sombra é mínima — sugere a página, não grita. */
+  .book__cover{
+    position: relative;
+    background: var(--paper-bg);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 11px;
+    transition: transform .45s cubic-bezier(.2,.7,.2,1),
+                box-shadow .45s cubic-bezier(.2,.7,.2,1);
+    box-shadow: 0 1px 2px oklch(22% 0.01 152 / .05);
+  }
+
+  .book__cover img{
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 3px;
+    background: oklch(92% 0.01 152);
+  }
+
+  /* Micro-detalhe 1: filete de lombada dourado, do lado interno da capa.
+     Aparece só no hover — a "borda do livro" pegando luz. */
+  .book__cover::after{
+    content: "";
+    position: absolute;
+    top: 11px;
+    bottom: 11px;
+    left: 11px;
+    width: 2px;
+    border-radius: 3px 0 0 3px;
+    background: linear-gradient(var(--gold), oklch(60% 0.10 83 / .35));
+    opacity: 0;
+    transition: opacity .45s ease;
+    pointer-events: none;
+  }
+
+  /* ---------- A LEGENDA (sussurro) ---------- */
+  .book__meta{
+    padding: 14px 3px 0;
+  }
+
+  /* Título em serifa editorial — o segundo herói. */
+  .book__title{
+    font-family: var(--font-editorial);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.22;
+    letter-spacing: -0.005em;
+    color: var(--black);
+    margin: 0;
+    /* corta com elegância em 2 linhas, sem caixa */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Autor — mais baixo na hierarquia: menor, cinza, espaçado. */
+  .book__author{
+    font-size: 11.5px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--gray-dark);
+    margin: 5px 0 0;
+  }
+
+  /* Linha de rodapé: engajamento à esquerda, comprar à direita.
+     Separada por um respiro, não por uma borda. */
+  .book__foot{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 13px;
+  }
+
+  /* Engajamento: número primeiro (o que importa), rótulo em verde discreto.
+     O coração é um traço fino — afeto, não botão. */
+  .book__likes{
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--gray-dark);
+  }
+  .book__likes .heart{
+    align-self: center;
+    width: 11px;
+    height: 11px;
+    color: var(--green);
+    transform: translateY(.5px);
+  }
+  .book__likes b{
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--black);
+    font-size: 12.5px;
+  }
+
+  /* Comprar: affordance discreta — só o ícone de sacola em verde,
+     vira pílula suave no hover. Sem a palavra "Comprar" gritando. */
+  .book__buy{
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: var(--green);
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    display: inline-grid;
+    place-items: center;
+    cursor: pointer;
+    transition: background .25s ease, color .25s ease, transform .25s ease;
+  }
+  .book__buy svg{ width: 16px; height: 16px; }
+
+  /* ---------- ESTADOS (o acabamento premium) ---------- */
+  @media (hover: hover){
+    .book:hover .book__cover{
+      transform: translateY(-4px);
+      box-shadow: 0 14px 28px oklch(40% 0.12 152 / .14),
+                  0 3px 8px oklch(22% 0.01 152 / .08);
+    }
+    .book:hover .book__cover::after{ opacity: 1; }
+    .book:hover .book__title{ color: var(--green-dark); }
+
+    .book__buy:hover{
+      background: var(--green);
+      color: var(--paper-bg);
+      transform: scale(1.06);
+    }
+  }
+
+  .book:active .book__cover{ transform: translateY(-1px); }
+
+  /* Foco acessível por teclado — o card inteiro é o alvo. */
+  .book:focus-visible{ outline: none; }
+  .book:focus-visible .book__cover{
+    box-shadow: 0 0 0 2px var(--page-bg), 0 0 0 4px var(--green);
+  }
+  .book__buy:focus-visible{
+    outline: 2px solid var(--green);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+  <main class="stage">
+    <p class="stage__eyebrow">Biblioteca · Estante</p>
+
+    <section class="shelf" aria-label="Livros">
+
+      <!-- Card 1 — Sapiens -->
+      <article>
+        <a class="book" href="#sapiens" aria-label="Abrir Sapiens, de Yuval Noah Harari">
+          <div class="book__cover">
+            <img src="https://www.andregalgani.com.br/biblioteca/assets/sapiens-capa.png" alt="Capa de Sapiens" loading="lazy">
+          </div>
+          <div class="book__meta">
+            <h2 class="book__title">Sapiens</h2>
+            <p class="book__author">Yuval Noah Harari</p>
+            <div class="book__foot">
+              <span class="book__likes">
+                <svg class="heart" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5C5.5 16.5 3 12.8 3 9.3 3 6.9 4.9 5 7.2 5c1.6 0 2.9.8 3.8 2.1.9-1.3 2.2-2.1 3.8-2.1C17.1 5 19 6.9 19 9.3c0 3.5-2.5 7.2-7 11.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <b>248</b> curtidas
+              </span>
+              <button class="book__buy" type="button" aria-label="Comprar Sapiens" onclick="event.preventDefault();event.stopPropagation();">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12l-1 11.5a1 1 0 0 1-1 .9H8a1 1 0 0 1-1-.9L6 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V7a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Card 2 — 1984 -->
+      <article>
+        <a class="book" href="#1984" aria-label="Abrir 1984, de George Orwell">
+          <div class="book__cover">
+            <img src="https://www.andregalgani.com.br/biblioteca/assets/1984-capa.png" alt="Capa de 1984" loading="lazy">
+          </div>
+          <div class="book__meta">
+            <h2 class="book__title">1984</h2>
+            <p class="book__author">George Orwell</p>
+            <div class="book__foot">
+              <span class="book__likes">
+                <svg class="heart" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5C5.5 16.5 3 12.8 3 9.3 3 6.9 4.9 5 7.2 5c1.6 0 2.9.8 3.8 2.1.9-1.3 2.2-2.1 3.8-2.1C17.1 5 19 6.9 19 9.3c0 3.5-2.5 7.2-7 11.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <b>412</b> curtidas
+              </span>
+              <button class="book__buy" type="button" aria-label="Comprar 1984" onclick="event.preventDefault();event.stopPropagation();">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12l-1 11.5a1 1 0 0 1-1 .9H8a1 1 0 0 1-1-.9L6 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V7a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </a>
+      </article>
+
+      <!-- Card 3 — As Leis da Natureza Humana (título de 2 linhas valida o clamp) -->
+      <article>
+        <a class="book" href="#leis-da-natureza-humana" aria-label="Abrir As Leis da Natureza Humana, de Robert Greene">
+          <div class="book__cover">
+            <img src="https://www.andregalgani.com.br/biblioteca/assets/leis-da-natureza-humana-capa.png" alt="Capa de As Leis da Natureza Humana" loading="lazy">
+          </div>
+          <div class="book__meta">
+            <h2 class="book__title">As Leis da Natureza Humana</h2>
+            <p class="book__author">Robert Greene</p>
+            <div class="book__foot">
+              <span class="book__likes">
+                <svg class="heart" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20.5C5.5 16.5 3 12.8 3 9.3 3 6.9 4.9 5 7.2 5c1.6 0 2.9.8 3.8 2.1.9-1.3 2.2-2.1 3.8-2.1C17.1 5 19 6.9 19 9.3c0 3.5-2.5 7.2-7 11.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <b>189</b> curtidas
+              </span>
+              <button class="book__buy" type="button" aria-label="Comprar As Leis da Natureza Humana" onclick="event.preventDefault();event.stopPropagation();">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 8h12l-1 11.5a1 1 0 0 1-1 .9H8a1 1 0 0 1-1-.9L6 8Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 8V7a3 3 0 0 1 6 0v1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </a>
+      </article>
+
+    </section>
+  </main>
+</body>
+</html>

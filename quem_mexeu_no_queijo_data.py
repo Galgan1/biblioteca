@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · QUANDO O QUEIJO SAI DO LUGAR",
  "intro": "Quatro personagens vivem num labirinto e correm atrás de Queijo — o nome simples que a fábula dá a tudo que a gente quer: emprego, amor, dinheiro, paz. Dois são ratos: Sniff fareja, Scurry corre. Dois são gentinhas do tamanho de ratos, com cabeça de gente: Hem se revolta e Haw, depois de muito sofrer, aprende a rir e seguir. Um dia o Queijo some. E a pergunta não é quem o levou — é o que você faz quando descobre que ele se foi. <em>Mexeram no seu Queijo. E agora?</em>",
  "description": "A parábola mais vendida do mundo sobre mudança. Spencer Johnson conta uma historinha de ratos e Queijo para dizer uma verdade adulta: o Queijo sempre acaba, alguém sempre mexe nele, e a única defesa é cheirá-lo todo dia para sentir quando começa a envelhecer — e largá-lo antes que apodreça.",
+ "hook": "Você acha que merece o que perdeu — e trava.",
+ "story_promise": "O QUEIJO SUMIU: HEM E HAW",
+ "story_lessons": [
+   "Hem nega a perda; Haw ri de si mesmo e sai andando.",
+   "Os ratos vencem por serem simples, não por serem espertos.",
+   "O prêmio é não ter mais medo de perder — não o Queijo.",
+ ],
  "tags": ["Mudança", "Carreira", "Autodesenvolvimento"],
  "progress": "7 Capítulos",
  "cover": "assets/quem-mexeu-no-queijo-cover.png",

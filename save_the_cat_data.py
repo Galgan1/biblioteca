@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · O MANUAL QUE HOLLYWOOD TENTA ESCONDER",
  "intro": "Blake Snyder vendeu roteiros por uma fortuna, levou choque atrás de choque e voltou com a confissão que todo roteirista finge não precisar: história tem regra, e a regra cabe num guardanapo. Venda o filme inteiro numa frase (a logline) antes de escrever uma cena; descubra qual das 10 transformações você está contando; bata as 15 batidas que o público já sabe de cor sem saber que sabe; arme tudo no Quadro, onde mover uma cena custa um alfinete; e, quando emperrar, dê nome ao defeito em vez de chorar. Não é fórmula que mata a arte — é a gramática que liberta. E sim: faça o herói salvar o gato logo na página dois.",
  "description": "O manual de roteiro mais prático e debochado de Hollywood. Blake Snyder entrega o sistema inteiro: a logline com ironia que vende o filme numa frase, os 10 gêneros (que são tipos de transformação, não cenários), a beat sheet de 15 batidas, o Quadro de 40 cartões, as leis da física do roteiro (salve o gato, o papa na piscina, uma só mágica por filme) e o diagnóstico que conserta a história pela planta baixa, não pela tinta da parede.",
+ "hook": "Sua história afunda porque falta gramática, não talento.",
+ "story_promise": "OS 15 BEATS DE SNYDER",
+ "story_lessons": [
+   "O herói precisa salvar o gato antes de exigir sua simpatia.",
+   "Gênero é o tipo de transformação, não o cenário nem o figurino.",
+   "Estrutura firme liberta — quem a evita é quem mais tranca na página.",
+ ],
  "tags": ["Roteiro", "Narrativa", "Ofício"],
  "progress": "8 Capítulos",
  "cover": "assets/save-the-cat-cover.png",

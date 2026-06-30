@@ -9,6 +9,13 @@ BOOK = {
   "subtitle": "VISÃO GERAL · A QUIETUDE COMO PORTÃO PARA O AGORA",
   "intro": "Há uma voz na sua cabeça que não para — e a vida inteira você a confundiu consigo mesmo. Tolle convida a um gesto simples e quase impossível: ficar quieto. No silêncio entre dois pensamentos abre-se uma fresta, e por ela aparece quem você é por baixo do barulho: não a mente, não o ego, não a dor antiga, mas a presença serena que percebe tudo isso passar. Este livro não pede que você acrescente nada. Pede que você largue o que nunca foi você. <em>A quietude já está aqui; basta parar de cobri-la de ruído.</em>",
   "description": "Eckhart Tolle reúne aforismos contemplativos em torno de uma única verdade: você não é a mente que tagarela, é a consciência que a escuta. A quietude — o silêncio interior, não a mera ausência de som — é a porta direta para o Agora, o único momento que existe de fato. Capítulo a capítulo dissolvem-se as camadas do que você não é: o pensamento compulsivo, o ego feito de rótulos, o corpo-dor que se alimenta de sofrimento. Restam o presente, a entrega ao que é, a natureza e o outro como espelhos de presença, e o sem-forma que a morte não toca. Nada para entender — tudo para viver.",
+  "hook": "Tem uma voz na sua cabeça que você nunca escolheu.",
+  "story_promise": "A VOZ QUE VOCÊ NÃO ESCOLHEU",
+  "story_lessons": [
+    "Você não é a voz — você é quem a escuta em silêncio.",
+    "Calar a mente à força é só mais barulho mental.",
+    "Aceitar o que não aceita dissolve a resistência interior.",
+  ],
   "tags": ["Espiritualidade", "Consciência", "Meditação"],
   "progress": "9 Capítulos",
   "cover": "assets/poder-do-silencio-capa.png",

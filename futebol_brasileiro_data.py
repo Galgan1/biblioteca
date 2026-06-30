@@ -15,6 +15,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · COMO UM ESPORTE DE ELITE VIROU A ALMA DO BRASIL",
  "intro": "Em 1894 a bola chegou debaixo do braço de um filho da elite, vinda da Inglaterra — esporte de sócio branco, de luva e diploma. Virou a coisa mais brasileira que existe no dia em que o negro, o mulato e o pobre pularam a cerca e ganharam. Mário Filho, em 'O Negro no Futebol Brasileiro', conta esse momento: foi quando a várzea invadiu o gramado nobre que o jogo deixou de ser cópia e aprendeu a gingar. Daí nasceram tudo — o drible que o mundo copia, o tri de Pelé, e as duas feridas que não fecham, o Maracanazo e o 7 a 1. A história do futebol brasileiro é o próprio Brasil se olhando no espelho — e nem sempre gostando do que vê.",
  "description": "A história do futebol brasileiro da casaca à camisa amarela, lida pelo maior clássico do tema: 'O Negro no Futebol Brasileiro', de Mário Filho. Charles Miller e a origem de elite (1894); a barreira racial e o 'pó de arroz'; a ruptura do Vasco (1923), que escalou pobre e foi campeão; Friedenreich e Leônidas; a profissionalização (1933) que derrubou o último muro; a invenção da ginga; o Maracanazo (1950) e o 'complexo de vira-lata' de Nelson Rodrigues; o tri de Pelé e Garrincha (1958/62/70); a beleza que perdeu em 1982; o tetra e o penta (1994/2002); o 7 a 1 de 2014; e o debate sobre o mito da democracia racial — o futebol como arena da nossa questão de raça, não como sua cura.",
+ "hook": "O craque precisava empoar o rosto para jogar. Isso é futebol brasileiro.",
+ "story_promise": "O PÓ DE ARROZ QUE O BRASIL ESCONDE",
+ "story_lessons": [
+   "A ginga brasileira nasceu da exclusão racial, não do talento natural.",
+   "O Vasco de 1923 foi campeão sem precisar de um único jogador branco.",
+   "O 7 a 1 de 2014 revelou o mesmo Brasil que o Maracanazo de 1950.",
+ ],
  "tags": ["História", "Futebol", "Brasil", "Cultura"],
  "progress": "10 Capítulos",
  "cover": "assets/futebol-brasileiro-cover.png",

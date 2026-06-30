@@ -9,6 +9,13 @@ BOOK = {
   "subtitle": "VISÃO GERAL · O MINISTÉRIO DA REFORMA PSICOLÓGICA",
   "intro": "Bernardin não denuncia uma conspiração: cita-a. Linha a linha, ele transcreve o que Unesco, OCDE, Conselho da Europa e Bruxelas escreveram em seus próprios relatórios — e o que se lê é o projeto de trocar a instrução pela <strong>modificação de “valores, atitudes e comportamentos”</strong>, executada com técnicas de manipulação validadas em laboratório. A escola já não ensina a contar: ensina a sentir o que mandaram sentir. <em>O método não está escondido; está publicado — e ninguém leu.</em>",
   "description": "Maquiavel Pedagogo de Pascal Bernardin em cheat sheet: a engenharia psicológica aplicada à escola, provada com os próprios documentos oficiais. A inversão atos→opiniões e o sentimento de liberdade como alavanca, a Unesco modificando atitudes em escala continental, a revolução ética que demole a família, o interculturalismo que dissolve as raízes, a história reescrita em palimpsesto, os IUFMs que formam o professor dócil, a descentralização que aprisiona engajando, a avaliação convertida em leme, a sociedade dual e o totalitarismo psicopedagógico do berço ao túmulo.",
+  "hook": "A escola não está falhando. Está funcionando para outra coisa.",
+  "story_promise": "A ESCOLA NÃO ENSINA: ELA MOLDA",
+  "story_lessons": [
+    "Atos mudam opiniões — quem manda no gesto manda na crença.",
+    "Pressão fraca convence mais que pressão forte: com álibi, ninguém muda.",
+    "A queda do nível não é fracasso da escola — é a prova de que funciona.",
+  ],
   "tags": ["Educação", "Psicologia Social", "Geopolítica"],
   "progress": "16 Capítulos",
   "cover": "assets/maquiavel-pedagogo-capa.png",

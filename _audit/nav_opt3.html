@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nav Opt3 — Superfície Tátil Suave</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Literata:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: oklch(52% 0.14 152);
+  --green-dark: oklch(40% 0.12 152);
+  --green-light: oklch(95% 0.03 152);
+  --gold: oklch(60% 0.10 83);
+  --gold-soft: oklch(72% 0.09 83);
+  --black: oklch(22% 0.01 152);
+  --gray-dark: oklch(46% 0.01 152);
+  --gray-light: oklch(86% 0.01 152);
+  --paper-bg: oklch(99% 0.002 152);
+  --body-bg: oklch(95% 0.005 152);
+
+  --nav-surface: color-mix(in oklch, var(--green-light) 60%, var(--paper-bg) 40%);
+  --nav-surface-hover: color-mix(in oklch, var(--green-light) 85%, var(--paper-bg) 15%);
+  --nav-border: color-mix(in oklch, var(--green-light) 40%, transparent 60%);
+  --nav-label-color: var(--gray-dark);
+  --nav-arrow-color: var(--gold);
+  --nav-title-color: var(--green-dark);
+}
+
+.dark {
+  --green: oklch(70% 0.13 152);
+  --green-dark: oklch(76% 0.11 152);
+  --green-light: oklch(28% 0.04 152);
+  --gold: oklch(76% 0.105 83);
+  --gold-soft: oklch(86% 0.075 83);
+  --black: oklch(95% 0.01 152);
+  --gray-dark: oklch(82% 0.01 152);
+  --gray-light: oklch(38% 0.01 152);
+  --paper-bg: oklch(21% 0.005 152);
+  --body-bg: oklch(16% 0.01 152);
+
+  --nav-surface: color-mix(in oklch, var(--green-light) 70%, var(--paper-bg) 30%);
+  --nav-surface-hover: color-mix(in oklch, var(--green-light) 90%, var(--paper-bg) 10%);
+  --nav-border: color-mix(in oklch, var(--green-light) 50%, transparent 50%);
+  --nav-label-color: var(--gray-dark);
+  --nav-arrow-color: var(--gold);
+  --nav-title-color: var(--green);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Hanken Grotesk', sans-serif;
+  padding: 2.5rem 1.5rem;
+  background: var(--body-bg);
+  color: var(--black);
+}
+
+.panel {
+  background: var(--paper-bg);
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  color: var(--black);
+}
+
+.panel-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+  margin-bottom: 1.25rem;
+  opacity: 0.6;
+}
+
+/* ── navegação ── */
+
+.nav-chapters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.nav-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 1.25rem 1.375rem;
+  background: var(--nav-surface);
+  border: 1px solid var(--nav-border);
+  border-radius: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+  min-height: 100px;
+  height: 100%;
+}
+
+.nav-btn:hover {
+  background: var(--nav-surface-hover);
+  border-color: color-mix(in oklch, var(--green-light) 70%, var(--green) 30%);
+}
+
+.nav-btn--next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.nav-btn__label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--nav-label-color);
+  opacity: 0.55;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.nav-btn--next .nav-btn__label {
+  flex-direction: row-reverse;
+}
+
+.nav-btn__arrow {
+  color: var(--nav-arrow-color);
+  font-size: 15px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.nav-btn__title {
+  font-family: 'Literata', serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--nav-title-color);
+  line-height: 1.45;
+}
+
+/* ── mobile ── */
+
+@media (max-width: 560px) {
+  .nav-chapters {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-btn {
+    min-height: 90px;
+  }
+
+  .nav-btn--next {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .nav-btn--next .nav-btn__label {
+    flex-direction: row;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- PAINEL CLARO -->
+<div class="panel">
+  <p class="panel-label">Modo Claro</p>
+  <nav class="nav-chapters" aria-label="Navegação entre capítulos">
+
+    <a class="nav-btn nav-btn--prev" href="#">
+      <span class="nav-btn__label">
+        <span class="nav-btn__arrow">←</span>
+        Capítulo anterior
+      </span>
+      <span class="nav-btn__title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+    </a>
+
+    <a class="nav-btn nav-btn--next" href="#">
+      <span class="nav-btn__label">
+        Próximo capítulo
+        <span class="nav-btn__arrow">→</span>
+      </span>
+      <span class="nav-btn__title">Visão Geral</span>
+    </a>
+
+  </nav>
+</div>
+
+<!-- PAINEL ESCURO -->
+<div class="panel dark">
+  <p class="panel-label">Modo Escuro</p>
+  <nav class="nav-chapters" aria-label="Navegação entre capítulos">
+
+    <a class="nav-btn nav-btn--prev" href="#">
+      <span class="nav-btn__label">
+        <span class="nav-btn__arrow">←</span>
+        Capítulo anterior
+      </span>
+      <span class="nav-btn__title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+    </a>
+
+    <a class="nav-btn nav-btn--next" href="#">
+      <span class="nav-btn__label">
+        Próximo capítulo
+        <span class="nav-btn__arrow">→</span>
+      </span>
+      <span class="nav-btn__title">Visão Geral</span>
+    </a>
+
+  </nav>
+</div>
+
+</body>
+</html>

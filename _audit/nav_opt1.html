@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nav Opt 1 — Minimalismo Sem Caixa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Literata:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:        oklch(52% 0.14 152);
+  --green-dark:   oklch(40% 0.12 152);
+  --green-light:  oklch(95% 0.03 152);
+  --gold:         oklch(60% 0.10 83);
+  --gold-soft:    oklch(72% 0.09 83);
+  --black:        oklch(22% 0.01 152);
+  --gray-dark:    oklch(46% 0.01 152);
+  --gray-light:   oklch(86% 0.01 152);
+  --paper-bg:     oklch(99% 0.002 152);
+  --body-bg:      oklch(95% 0.005 152);
+}
+
+.dark {
+  --green:        oklch(70% 0.13 152);
+  --green-dark:   oklch(76% 0.11 152);
+  --green-light:  oklch(28% 0.04 152);
+  --gold:         oklch(76% 0.105 83);
+  --gold-soft:    oklch(86% 0.075 83);
+  --black:        oklch(95% 0.01 152);
+  --gray-dark:    oklch(82% 0.01 152);
+  --gray-light:   oklch(38% 0.01 152);
+  --paper-bg:     oklch(21% 0.005 152);
+  --body-bg:      oklch(16% 0.01 152);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Hanken Grotesk', sans-serif;
+  background: oklch(88% 0.005 152);
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.panel {
+  background: var(--body-bg);
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+}
+
+.panel-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+  margin-bottom: 2rem;
+  opacity: 0.7;
+}
+
+/* ── Nav container ── */
+.chapter-nav {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  border-top: 1px solid var(--green-dark);
+  border-bottom: 1px solid var(--green-dark);
+}
+
+.dark .chapter-nav {
+  border-top-color: var(--green-light);
+  border-bottom-color: var(--green-light);
+}
+
+/* ── Each side ── */
+.nav-item {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5rem 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+  min-height: 0;
+}
+
+.nav-item:hover { opacity: 0.72; }
+
+.nav-item.prev { padding-right: 1.5rem; }
+.nav-item.next { padding-left: 1.5rem; text-align: right; align-items: flex-end; }
+
+/* divider between the two sides */
+.nav-divider {
+  width: 1px;
+  background: var(--green-dark);
+  align-self: stretch;
+  flex-shrink: 0;
+  opacity: 0.35;
+}
+
+.dark .nav-divider {
+  background: var(--green-light);
+}
+
+/* ── Label row: rótulo + seta ── */
+.nav-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+  margin-bottom: 0.5rem;
+}
+
+.nav-item.next .nav-label-row {
+  flex-direction: row-reverse;
+}
+
+.nav-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+}
+
+.nav-arrow {
+  font-size: 13px;
+  color: var(--gold);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+/* ── Chapter title ── */
+.nav-title {
+  font-family: 'Literata', Georgia, serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--green);
+}
+
+/* ── Responsive: empilhar no mobile ── */
+@media (max-width: 560px) {
+  .chapter-nav {
+    flex-direction: column;
+  }
+
+  .nav-divider {
+    width: auto;
+    height: 1px;
+    align-self: stretch;
+  }
+
+  .nav-item.prev { padding-right: 0; padding-bottom: 1.5rem; }
+  .nav-item.next { padding-left: 0; padding-top: 1.5rem; text-align: left; align-items: flex-start; }
+
+  .nav-item.next .nav-label-row {
+    flex-direction: row;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ── PAINEL CLARO ── -->
+<div class="panel">
+  <p class="panel-label">Modo claro</p>
+
+  <nav class="chapter-nav" aria-label="Navegação entre capítulos">
+
+    <a class="nav-item prev" href="#" aria-label="Ir para capítulo anterior">
+      <div class="nav-label-row">
+        <span class="nav-arrow" aria-hidden="true">←</span>
+        <span class="nav-label">Capítulo anterior</span>
+      </div>
+      <span class="nav-title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+    </a>
+
+    <div class="nav-divider" aria-hidden="true"></div>
+
+    <a class="nav-item next" href="#" aria-label="Ir para próximo capítulo">
+      <div class="nav-label-row">
+        <span class="nav-label">Próximo capítulo</span>
+        <span class="nav-arrow" aria-hidden="true">→</span>
+      </div>
+      <span class="nav-title">Visão Geral</span>
+    </a>
+
+  </nav>
+</div>
+
+<!-- ── PAINEL ESCURO ── -->
+<div class="panel dark">
+  <p class="panel-label">Modo escuro</p>
+
+  <nav class="chapter-nav" aria-label="Navegação entre capítulos">
+
+    <a class="nav-item prev" href="#" aria-label="Ir para capítulo anterior">
+      <div class="nav-label-row">
+        <span class="nav-arrow" aria-hidden="true">←</span>
+        <span class="nav-label">Capítulo anterior</span>
+      </div>
+      <span class="nav-title">MOVIMENTO 7: Ezequiel, o Ciúme e a Tentação</span>
+    </a>
+
+    <div class="nav-divider" aria-hidden="true"></div>
+
+    <a class="nav-item next" href="#" aria-label="Ir para próximo capítulo">
+      <div class="nav-label-row">
+        <span class="nav-label">Próximo capítulo</span>
+        <span class="nav-arrow" aria-hidden="true">→</span>
+      </div>
+      <span class="nav-title">Visão Geral</span>
+    </a>
+
+  </nav>
+</div>
+
+</body>
+</html>

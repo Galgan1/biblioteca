@@ -11,6 +11,13 @@ BOOK = {
  "subtitle": "VISÃO GERAL · AUTOAJUDA ÀS AVESSAS",
  "intro": "Sua cota de fodas-se é finita — gastá-la em tudo é falir. Manson manda a autoajuda otimista para o inferno: querer mais positividade e mais sucesso é justamente o que te deixa miserável. Parar de se importar com o trivial não é frieza — é o luxo brutal de escolher a dor que vale e a régua pela qual você se mede.",
  "description": "O anti-livro de autoajuda de Mark Manson, com a delicadeza de um soco. A cota finita de fodas-se, o feedback loop do inferno, a felicidade que mora no problema certo, a tirania de ter que ser especial, a régua dos bons e maus valores, a culpa que não é responsabilidade — e a morte como o único filtro que não mente.",
+ "hook": "Você não está buscando felicidade. Está alimentando o inferno.",
+ "story_promise": "A LEI DO F*DA-SE SELETIVO",
+ "story_lessons": [
+   "A busca pela felicidade é o que te deixa infeliz.",
+   "Você não escolhe se sofre. Escolhe por quê sofre.",
+   "A morte é a única bússola que não mente.",
+ ],
  "tags": ["Autodesenvolvimento", "Filosofia", "Comportamento"],
  "progress": "8 Capítulos",
  "cover": "assets/sutil-arte-cover.png",

@@ -2249,5 +2249,49 @@
         "url": "https://www.amazon.com.br/dp/8560499008/?tag=andregalgani-20&language=pt_BR"
       }
     ]
+  },
+  {
+    "id": "o-necromante",
+    "title": "O Necromante",
+    "author": "Lorenz Flammenberg (Carl F. Kahlert)",
+    "coverUrl": "assets/o-necromante-capa.png",
+    "description": "Romance gótico alemão (Schauerroman) de Carl Friedrich Kahlert, assinado como Lorenz Flammenberg, na célebre adaptação inglesa de Peter Teuthold (1794). Herman e Hellfried trocam relatos de assombração — uma estalagem, um castelo em ruínas, um ritual no calabouço — que se revelam, tarde e em pedaços, obra de Volkert, o conjurador que ENCENA o além para esvaziar a bolsa dos crédulos, e do bando de ladrões do capitão Wolf. É o gótico 'explicado': o medo como engenharia sensorial e instrumento de manipulação, a estrutura em molduras encaixadas como a forma literária do boato, e uma franja de mistério que a explicação não fecha. Um dos sete 'horrid novels' satirizados por Jane Austen.",
+    "tags": [
+      "Gótico",
+      "Schauerroman",
+      "Sobrenatural × Fraude"
+    ],
+    "progress": "9 Capítulos",
+    "url": "o-necromante.html",
+    "amazon": "https://www.amazon.com.br/s?k=O+Necromante+Lorenz+Flammenberg+%28Carl+F.+Kahlert%29&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=O+Necromante+Lorenz+Flammenberg+%28Carl+F.+Kahlert%29&tag=andregalgani-20"
+      }
+    ]
+  },
+  {
+    "id": "neuromancer",
+    "title": "Neuromancer",
+    "author": "William Gibson",
+    "coverUrl": "assets/neuromancer-capa.png",
+    "description": "Romance cyberpunk de William Gibson (1984), o livro que cunhou 'cyberspace' e 'a matrix' — a 'alucinação consensual' — e varreu a tríplice coroa Hugo, Nebula e Philip K. Dick. Um console cowboy decaído, recrutado por uma IA que quer transcender os limites impostos pela lei e pelos seus criadores imortais. Estética 'high tech, low life': tecnologia sublime sobre uma base social podre — zaibatsu soberanos, corpos editáveis, mentes gravadas em ROM, o ICE que pode matar de verdade. Não é só boa ficção científica: é o texto que pré-formatou como o mundo passou a imaginar a internet, a IA e o posthumano.",
+    "tags": [
+      "Cyberpunk",
+      "Ficção Científica",
+      "Posthumano"
+    ],
+    "progress": "9 Capítulos",
+    "url": "neuromancer.html",
+    "amazon": "https://www.amazon.com.br/s?k=Neuromancer+William+Gibson&tag=andregalgani-20",
+    "compras": [
+      {
+        "loja": "amazon",
+        "nome": "Amazon",
+        "url": "https://www.amazon.com.br/s?k=Neuromancer+William+Gibson&tag=andregalgani-20"
+      }
+    ]
   }
 ]

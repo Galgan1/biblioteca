@@ -9,6 +9,13 @@ BOOK = {
   "subtitle": "VISÃO GERAL · A VITÓRIA DECIDIDA ANTES DA BATALHA",
   "intro": "Dois mil e quinhentos anos depois, ainda é o tratado mais frio já escrito sobre vencer. Sun Tzu não ensina a lutar melhor — ensina a tornar a luta desnecessária. A guerra é assunto de vida e morte para o Estado: por isso se decide no cálculo, longe do barulho, e quem mais conta no templo já venceu antes de sacar a espada. O cume da arte não é triunfar em cem batalhas — é dobrar o inimigo sem combater. <em>Quem domina o engano e conhece os dois lados não precisa da sorte.</em>",
   "description": "Os 13 capítulos de 'A Arte da Guerra' de Sun Tzu em cheat sheet: os 5 fatores do cálculo, vencer sem lutar, conhecer o inimigo e a si mesmo, a guerra como arte do engano, a vitória rápida, cheio e vazio, o momentum (shih), a flexibilidade da água, os tipos de terreno, não agir por raiva e o uso de espiões — a estratégia clássica chinesa para negócios, negociação e toda decisão sob conflito.",
+  "hook": "Você lutou quando devia ter feito o inimigo desistir sozinho.",
+  "story_promise": "A MAIOR VITÓRIA É SEM BATALHA",
+  "story_lessons": [
+    "Vencer cem batalhas não é genialidade — evitá-las é.",
+    "Toda virtude levada ao extremo vira a sua pior fraqueza.",
+    "Sun Tzu nunca age por ira: raiva destrói mais rápido que o inimigo.",
+  ],
   "tags": ["Estratégia", "Liderança", "Filosofia"],
   "progress": "13 Capítulos",
   "cover": "assets/arte-da-guerra-capa.png",
